@@ -62,27 +62,20 @@ get_header();
 			<?php } /* End while */ ?>
 			</div> <!-- end div slide -->
 			
-			<?php if(is_front_page() && is_home()){ ?>
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >MLB</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >Futbol</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >NBA</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >NFL</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-			<?php } ?>
+			<?php if(is_front_page() && is_home()){ 
+				$depo = $wpdb->get_results( 
+					$wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts where post_status='publish' and post_type='deporte' ")
+				); 
+				foreach($depo as $deporte){
+					$cat_wp = get_the_category($deporte->ID);
+					foreach($cat_wp as $category_wp){ ?>
+						<section class="container_tarjetitas">
+							<h2 class="sub_title" ><?php echo $category_wp->name; ?></h2>
+							<?php include 'components/tarjetita_pronostico.php'; ?>
+						</section>
+					<?php }
+				} 
+			} ?>
 
 			<?php if(!is_front_page() && is_home()){ ?>
 				<section class="container_tarjetitas">
@@ -91,28 +84,20 @@ get_header();
 				</section>
 			<?php } ?>
 
-			<?php if(!is_front_page() && !is_home()){ ?>
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >MLB</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >Futbol</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >NBA</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-
-				<section class="container_tarjetitas">
-					<h2 class="sub_title" >NFL</h2>
-					<?php include 'components/tarjetita_pronostico.php'; ?>
-				</section>
-			<?php } ?>
-			
+			<?php if(!is_front_page() && !is_home()){ 
+				$depo = $wpdb->get_results( 
+					$wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts where post_status='publish' and post_type='deporte' ")
+				); 
+				foreach($depo as $deporte){
+					$cat_wp = get_the_category($deporte->ID);
+					foreach($cat_wp as $category_wp){ ?>
+						<section class="container_tarjetitas">
+							<h2 class="sub_title" ><?php echo $category_wp->name; ?></h2>
+							<?php include 'components/tarjetita_pronostico.php'; ?>
+						</section>
+					<?php }
+				}  
+			} ?>
 	</article>
 
 <?php include 'aside.php'; ?>

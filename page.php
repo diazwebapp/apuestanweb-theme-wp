@@ -30,14 +30,22 @@ get_header();
             <?php }
     } ?>
 
-    <?php if(is_front_page() && !$pagename){ ?>
+    <?php if(is_front_page() && !$pagename){
        
-        <section class="container_tarjetitas">
-			<h2 class="sub_title" >MLB </h2>
-			<?php include 'components/tarjetita_pronostico.php'; ?>
-        </section>
+        $depo = $wpdb->get_results( 
+					$wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts where post_status='publish' and post_type='deporte' ")
+				); 
+				foreach($depo as $deporte){
+					$cat_wp = get_the_category($deporte->ID);
+					foreach($cat_wp as $category_wp){ ?>
+						<section class="container_tarjetitas">
+							<h2 class="sub_title" ><?php echo $category_wp->name; ?></h2>
+							<?php include 'components/tarjetita_pronostico.php'; ?>
+						</section>
+					<?php }
+				} 
                 
-    <?php } ?>
+    } ?>
 
     <?php if(!is_front_page() && $pagename){ 
         if(have_posts()){
