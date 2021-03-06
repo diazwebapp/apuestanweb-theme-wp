@@ -25,7 +25,7 @@ foreach ($posts as $key => $post) {
                 <small><?php echo $post->post_date_gmt ?></small>
                 <h3 class="title_post" ><?php echo $post->post_title ?></h3>
                 <p>
-                    <?php echo $post->post_excerpt ?>
+                    <?php the_excerpt() ?>
                 </p>
             </a>
             <?php } ?>
