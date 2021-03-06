@@ -18,70 +18,25 @@
 	<body >
 
 		<header>
-			<nav>	
-				<?php
-				//Desktop menu
-					if ( has_nav_menu( 'izquierda' ) ) {
-
-						wp_nav_menu(
-							array(
-								'container'  => '',
-								'theme_location' => 'izquierda',
-							)
-						);
-
-					}else{ ?>
-						<ul>
-							<li><a href="http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']  ?>/e-sports" >e-sports</a></li>
-							<li><a href="http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']  ?>/blog" >blog</a></li>
-						</ul>
-					<?php } 
-				?>
-				<div id="btn_menu_mobile" >menu</div>
-
-				<?php the_custom_logo(); ?>
-					
-				<?php
-				//Desktop menu
-					if ( has_nav_menu( 'derecha' ) ) {
-
-						wp_nav_menu(
-							array(
-								'container'  => '',
-								'theme_location' => 'derecha',
-							)
-						);
-
-					}else{ ?>
-						<ul>
-							<li><a href="http://<?php echo $_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']  ?>/pronosticos" >pronosticos</a></li>
-							<li><a href="#" >contacto</a></li>
-						</ul>
-					<?php } 
-				?>
-				<div>Contact</div>
-			</nav>
+			<?php include 'template/navigation_desktop.php' ?>
 		</header>
 		<div class="sub_header" >
 			<div class="container" >
-				<?php foreach ($posts_deportes as $key => $deporte) { ?>
-					<span>
-						<?php echo $deporte->post_title ;?>
-				</span>
+				<?php foreach ($posts_deportes as $key => $deporte) {
+					$imagen_url = get_the_post_thumbnail_url($deporte->ID); ?>
+						<a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
+								echo $_SERVER["HTTP_HOST"];
+							}else{echo $_SERVER['SERVER_NAME']; } ?>/index.php?category=<?php echo $deporte->post_name ;?>" >
+							<img src="<?php echo $imagen_url ?>" />
+							<b><?php echo $deporte->post_title ;?></b>
+						</a>
 				<?php } ?>
 			</div>
 		</div>
-		<div class="menu_mobile_bg"></div>
-		<div class="menu_mobile" >
-			<?php
-				wp_nav_menu(
-					array(
-						'container'  => '',
-						'theme_location' => 'derecha',
-					)
-				);
-			?>
-		</div>
-	
+
+		<!-- Menu mobile-->
+		<?php include 'template/navigation_mobile.php' ?>
+	<!-- banner top -->
+	<?php include 'template/banner_top.php' ?>
 	<main> 
 		

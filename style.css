@@ -114,7 +114,6 @@ header{
 	margin: 0 auto;
 }
 main{
-	padding-top: calc(var(--height-header) * 2);
 	display:grid;
 	grid-template-columns: 100%;
 	gap: 10px;
@@ -159,29 +158,34 @@ main > article > section{
 	margin:0 auto;
 	background: var(--bg-page);
 	display: flex;
+	flex-flow:row wrap;
+	align-items: center;
+	align-content: center;
 	justify-content: space-around;
 }
-.sub_header > div span{
-	height: 40px;
+.sub_header > div > a{
+	height: var(--height-header);
 	overflow: hidden;
 	display: grid;
 	grid-template-columns: 32px calc(100% - 32px);
 	align-items: center;
 	gap: 5px;
 }
+.sub_header > div > a img{
+	width: 100%;
+	height:var(--height-header);
+	object-fit:contain;
+}
 /************Navigation ***********/
 nav,nav > ul,nav > div{
-	padding: 0 !important;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
 	align-items: center;
-	height:100%;
 }
 nav > div,nav > ul{
 	width:calc(50% - 100px);
 	justify-content: center;
-	height:100%;
 	background:var(--secondary-color);
 }
 nav > div:last-child{
@@ -190,10 +194,29 @@ nav > div:last-child{
 nav > ul:nth-child(4){
 	background:var(--primary-color);
 }
+nav > ul > li{
+	position: relative;
+	text-align: center;
+	z-index: 1;
+	width:100%;
+}
+nav > ul > li:nth-child(2n):before{
+	position:absolute;
+	top:calc( 170% - var(--height-header));
+	left:0;
+	width:10%;
+	content:'';
+	transform: rotate(0deg) skew(156deg);
+	border-left: 3px solid rgba(0,0,0, .2);
+	height:var(--height-header);
+	z-index: -1;
+}
+
 nav > ul > li a,nav > div, .menu_mobile > ul li a{
 	text-transform: uppercase;
 	padding: 5px;
 	color:var(--bg-page);
+	text-align: center;
 }
 
 nav > ul{
@@ -526,19 +549,34 @@ aside{
 	width: 100%;
 	height:100%;
 }
-/*Container casas apuestas*/
-.container_casas_apuestas{
+/*Banner_bottom*/
+.banner{
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	align-content: center;
 	max-width: 1280px;
 	margin: 0 auto;
-	padding:1vmin;
+	padding:1vmin 5vmin;
 	position:relative;
 	z-index: 1;
 }
-.container_casas_apuestas::before{
+.before_up{
+	margin-top: calc( var(--height-header) * 2.2) ;
+	margin-bottom: 10px ;
+}
+.before_up::before{
+	content:'';
+	background:var(--secondary-color);
+	width:100%;
+	height:100%;
+	top:0;
+	left:auto;
+	bottom:100%;
+	position:absolute;
+	z-index: -1;
+}
+.before_dow::before{
 	content:'';
 	background:var(--secondary-color);
 	width:100%;
@@ -549,13 +587,11 @@ aside{
 	position:absolute;
 	z-index: -1;
 }
-.container_casas_apuestas > div:first-child,.container_casas_apuestas > a{
+
+.banner > div:first-child{
 	width:100%;
 }
-.container_casas_apuestas > div:first-child{
-	width:100%;
-}
-.container_casas_apuestas > a{
+.banner > a{
 	border: 3px solid var(--bg-page);
 	padding: 5px;
 	border-radius: var(--radius);
@@ -564,15 +600,16 @@ aside{
 	text-align: center;
 	color: var(--bg-page);
 }
-.container_casas_apuestas > div:first-child p{
+.banner > div:first-child p{
 	padding: 15px;
 }
-.container_casas_apuestas > div:first-child h2, .container_casas_apuestas > div:first-child p{
+.banner > div:first-child h2, .banner > div:first-child p{
 	text-align: justify;
 	color:var(--bg-page);
 	padding: 10px;
 }
-.container_casas_apuestas > div:last-child{
+/*Container casas apuestas*/
+.container_casas_apuestas{
 	width: 100%;
 	display: flex;
 	flex-flow: row wrap;
@@ -640,10 +677,11 @@ aside{
 	height: 100px;
 	background:var(--bg-page);
 }
-@media(min-width:720px){
+@media(min-width:860px){
 	:root{
 		--height-header:50px;
 	}
+	
 	nav > ul{
 		display: flex;
 		justify-content: space-around;
@@ -667,10 +705,10 @@ aside{
 	.menu_mobile{
 		display: none;
 	}
-	.container_casas_apuestas > div:first-child{
+	.banner > div:first-child{
 		width:calc(100% - 200px);
 	}
-	.container_casas_apuestas > a{
+	.banner > a{
 		width: 200px;
 	}
 }

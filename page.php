@@ -31,19 +31,18 @@ get_header();
     } ?>
 
     <?php if(is_front_page() && !$pagename){
-       
-        $depo = $wpdb->get_results( 
-					$wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts where post_status='publish' and post_type='deporte' ")
-				); 
-				foreach($depo as $deporte){
-					$cat_wp = get_the_category($deporte->ID);
-					foreach($cat_wp as $category_wp){ ?>
-						<section class="container_tarjetitas">
-							<h2 class="sub_title" ><?php echo $category_wp->name; ?></h2>
-							<?php include 'components/tarjetita_pronostico.php'; ?>
-						</section>
-					<?php }
-				} 
+       $depo = $wpdb->get_results( 
+        $wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts where post_status='publish' and post_type='deporte' ")
+        ); 
+        foreach($depo as $deporte){
+            ?>
+                <section class="container_tarjetitas">
+                    <h2 class="sub_title" ><?php echo $deporte->post_title; ?></h2>
+                    <?php require_once 'components/tarjetita_pronostico.php';
+                        fill_post($deporte->post_name,'pronosticos');
+                    ?>
+                </section>
+        <?php }
                 
     } ?>
 
