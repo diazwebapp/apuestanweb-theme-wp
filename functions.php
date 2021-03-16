@@ -27,6 +27,8 @@ function apuestanweb_menus() {
 	$locations = array(
 		'izquierda'  => __( 'Desktop Izquierda', 'apuestanweb' ),
 		'derecha'  => __( 'Desktop Derecha', 'apuestanweb' ),
+		'mobile'  => __( 'Mobile', 'apuestanweb' ),
+		'sub_header'  => __( 'Menu de sub_header', 'apuestanweb' )
 	);
 
 	register_nav_menus( $locations );
@@ -36,8 +38,7 @@ add_action( 'after_setup_theme', 'apuestanweb_menus' );
 
 
 // Añadiendo soporte de logo personalizado
-
-function add_theme_feactures(){
+if(function_exists('add_theme_support')){
 	// logo
 	$default = array(
 		'height' => 64,
@@ -47,21 +48,20 @@ function add_theme_feactures(){
 		'header-text' => array('site-title'),
 		'unlink-homepage-logo' => false
 	);
+	add_theme_support('custom-logo',$default);
 
 	//imagen destacada
-	add_theme_support('custom-logo',$default);
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 1568, 9999 );
-}
 
-add_action('after_setup_theme','add_theme_feactures');
+}
 
 // Register Custom Pronostico
 function custom_post_type_pronostico() {
 
 	$labels = array(
-		'name'                  => _x( 'Pronosticos', 'Pronostico General Name', 'text_domain' ),
-		'singular_name'         => _x( 'Pronostico', 'Pronostico Singular Name', 'text_domain' ),
+		'name'                  => _x( 'pronosticos', 'Pronostico General Name', 'text_domain' ),
+		'singular_name'         => _x( 'pronostico', 'Pronostico Singular Name', 'text_domain' ),
 		'menu_name'             => __( 'Pronosticos', 'text_domain' ),
 		'name_admin_bar'        => __( 'Pronostico', 'text_domain' ),
 		'archives'              => __( 'Item Archives', 'text_domain' ),
@@ -89,44 +89,73 @@ function custom_post_type_pronostico() {
 		'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
 	);
 	$args = array(
-		'label'                 => __( 'Pronostico', 'text_domain' ),
-		'description'           => __( 'Pronostico Description', 'text_domain' ),
+		'label'                 => __( 'pronostico', 'text_domain' ),
+		'description'           => __( 'Post Type Description', 'text_domain' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'revisions' ),
-		'taxonomies'            => array( 'category', 'post_tag' ),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'excerpt' ),
+		'taxonomies'            => array( 'deportes' ),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
 		'menu_position'         => 5,
+		'menu_icon'             => 'dashicons-analytics',
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
 		'has_archive'           => true,
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
-		'capability_type'     => 'page',
-		'show_in_rest'        => true,
+		'capability_type'       => 'post',
+		'show_in_rest'          => true
 	);
 	register_post_type( 'pronosticos', $args );
 
-/**
- * Agrega el tipo personalizado pronostico a la página inicial de WP
- *
- * @param Query $query
- *
- * @return Query
- */
-	function get_posts_y_pronosticos( $query ) {
+}
+
+add_action( 'init', 'custom_post_type_pronostico');
+
+// Creando taxonomia, para pronosticos.
+add_action( 'init', 'taxonomia_tipo_deporte' );
+
+function taxonomia_tipo_deporte() {
+	$labels = array(
+		'name'                => _x( 'Deporte', 'taxonomy general name', 'deportes' ),
+		'singular_name'       => _x( 'Deporte', 'taxonomy singular name', 'deportes' ),
+		'search_items'        => __( 'Buscar Deporte', 'deportes' ),
+		'all_items'           => __( 'Todos los tipos de deporte', 'deportes' ),
+		'parent_item'         => __( 'Deporte padre', 'deportes' ),
+		'parent_item_colon'   => __( 'Deporte Padre:', 'deportes' ),
+		'edit_item'           => __( 'Editar Deporte', 'deportes' ),
+		'update_item'         => __( 'Editar Deporte', 'deportes' ),
+		'add_new_item'        => __( 'Agregar nuevo Deporte', 'deportes' ),
+		'new_item_name'       => __( 'Nuevo Deporte', 'deportes' ),
+		'menu_name'           => __( 'Deporte', 'deportes' ),
+	);
+
+	$args = array(
+		'hierarchical'      => true,
+		'labels'            => $labels,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => array( 'slug' => 'deportes' ),
+		'show_in_rest'      => true
+	);
+	// Nombre de taxonomia, post type al que se aplica y argumentos.
+	register_taxonomy( 'deportes', array( 'pronosticos' ), $args );
+}
+
+/* Agrega post personalizados a la página inicial de WP */
+/* function get_posts_types( $query ) {
 		if ( is_home() && $query->is_main_query() ) {
-			$query->set( 'post_type', array( 'post','pronosticos' ) );
+			$query->set( 'post_type', array( 'post') );
 		}
 
 		return $query;
-	}
-	add_filter( 'pre_get_posts', 'get_posts_y_pronosticos' );
-}
-add_action( 'init', 'custom_post_type_pronostico');
+	} */
+
+add_filter( 'pre_get_posts', 'get_posts_types' );
 
 // Register Custom Deporte
 function custom_post_type_deporte() {
@@ -183,7 +212,7 @@ function custom_post_type_deporte() {
 	register_post_type( 'Deporte', $args );
 
 }
-add_action( 'init', 'custom_post_type_deporte');
+//add_action( 'init', 'custom_post_type_deporte');
 
 // Register CPT casas apuestas
 function cpt_casa_apuestas() {
@@ -242,7 +271,7 @@ function cpt_casa_apuestas() {
 }
 add_action( 'init', 'cpt_casa_apuestas');
 
-add_meta_box(
+/* add_meta_box(
 	'meta_casa_apuesta',
 	'Datos casa apuesta',
 	'func_casa_apuesta',
@@ -252,40 +281,28 @@ add_meta_box(
 );
 function func_casa_apuesta($post){ ?>
 	<div>Datos de test</div>
-<?php }
-/* Funcion para insertar paginas */
-/* function insertData(){
-	global $wpdb;
-	$wpdb->insert( 'wp_posts', 
-	  array( 
-		'post_title' => 'pronosticos', 
-		'post_type' => 'page',
-		'post_status' => 'publish',
-	  )
-	);
+<?php } */
+
+/** Activanco widgets */
+
+function widgets_apuestanweb(){
+	register_sidebar(array(
+		'id' => 'primary_widget',
+		'name' => __('Apuestanweb Sidebar'),
+		'before_widget' => '<div class="aside_widgets" >',
+		'after_widget' => '</div>',
+		'before_title' => '<h2>',
+		'after_title' => '</h2>'
+	));
+
+	register_sidebar(array(
+		'id' => 'top_widget',
+		'name' => __('Apuestanweb top banner'),
+		'before_widget' => '<div class="aside_widgets" >',
+		'after_widget' => '</div>',
+		'before_title' => '<h2>',
+		'after_title' => '</h2>'
+	));
 }
 
-  // Ejecutamos nuestro funcion en WordPress
-  add_action('wp', 'insertData'); */
-
-/*   function paginate_aw($prev = '<', $next = '>'){
-	  global $wp_query, $wp_rewrite;
-	  $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
-
-	  $pagination = array(
-		  'base' => '',
-		  'format' => '',
-		  'total' => $wp_query->max_num_pages,
-		  'current' => $current,
-		  'prev_text' => __($prev),
-		  'next_text' => __($next),
-		  'type' => 'plain'
-	  );
-
-	  if($wp_rewrite->using_permalinks())
-		  $pagination['base'] = user_trailingslashit(trailingslashit(remove_query_arg('s',get_pagenum_link(1) )) . 'page/%#%/', 'paged');
-	  if(!empty($wp_query->query_vars['s']))
-		  $pagination['add_args'] = array('s'=>$wp_query->query_var('s'));
-	echo paginate_links($pagination);
-  }
- */
+add_action('widgets_init','widgets_apuestanweb');

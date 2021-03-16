@@ -13,11 +13,12 @@
         }else{ ?>
             <ul>
                 <li><a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
-                    echo $_SERVER["HTTP_HOST"] .$_SERVER['PHP_SELF'];
-                }else{echo $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF']; }  ?>/e-sports" >e-sports</a></li>
+                    echo $_SERVER["HTTP_HOST"] ;
+                }else{echo $_SERVER['SERVER_NAME'] ; }  ?>/index.php/e-sports" >e-sports</a></li>
+
                 <li><a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
-                    echo $_SERVER["HTTP_HOST"] .$_SERVER['PHP_SELF'];
-                }else{ echo $_SERVER["SERVER_NAME"] . $_SERVER['PHP_SELF'];} ?>/blog" >blog</a></li>
+                    echo $_SERVER["HTTP_HOST"] ;
+                }else{ echo $_SERVER["SERVER_NAME"] ;} ?>/index.php/blog" >blog</a></li>
             </ul>
         <?php } 
     ?>
@@ -39,8 +40,8 @@
         }else{ ?>
             <ul>
                 <li><a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
-                    echo $_SERVER["HTTP_HOST"] .$_SERVER['PHP_SELF'];
-                }else{echo $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF']; }  ?>/pronosticos" >pronosticos</a></li>
+                    echo $_SERVER["HTTP_HOST"] ;
+                }else{echo $_SERVER['SERVER_NAME']; }  ?>/index.php/pronosticos" >pronosticos</a></li>
                 <li><a href="#" >contacto</a></li>
             </ul>
         <?php } 

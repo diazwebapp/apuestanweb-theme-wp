@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
-	<article> index.php
-	<?php if(have_posts()){ ?>
+	<article> is home.php
+		<?php if(have_posts()){ ?>
 			<div class="slide_home" >
 			<?php while(have_posts()){ 
 				the_post() ;
@@ -76,7 +76,7 @@
 
 				</section>
 			<?php } ?>
-
+            
 	</article>
 
 	<?php get_sidebar() ?>
