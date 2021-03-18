@@ -14,10 +14,7 @@
                 ),
             ),
         ); 
-        $query = new WP_Query( array(
-            'post_type' => 'pronosticos',
-            'posts_per_page' => get_option('to_count_pronosticos'), 
-            'paged' => get_query_var('paged') ? get_query_var('paged') : 1));  ?>
+        $query = new WP_Query($args);  ?>
         <section class="container_tarjetitas" >
             <h2 class="sub_title" ><?php echo $term->name; ?></h2>
             <?php 
@@ -66,13 +63,7 @@
             ?>  
 
 <div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
-        <?php $big = 999999999; // need an unlikely integer
- echo paginate_links( array(
-    'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
-    'format' => '?paged=%#%',
-    'current' => max( 1, get_query_var('paged') ),
-    'total' => $loop->max_num_pages
-) );?>
+        <?php echo paginate_links();?>
 </div>                
         </section>
     <?php } ?>
