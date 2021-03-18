@@ -2,9 +2,9 @@
 <?php get_template_part('components/banner_top') ?>
 
 <main>
-	<article> taxt.php
+	<article> taxonomy.php
     <?php
-        print apply_filters( 'taxonomy-images-queried-term-image', '');
+        the_archive_title();
         
         if($post->post_type == 'pronosticos') : ?>
             <section class="container_tarjetitas" >
@@ -15,8 +15,8 @@
         if($post->post_type != 'pronosticos') :
             get_template_part('template-parts/content-archive');
         endif;
-    ?>
-            
+         
+    ?>    
 	</article>
 
     <?php get_sidebar() ?>

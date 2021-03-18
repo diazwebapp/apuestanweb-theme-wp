@@ -23,7 +23,7 @@ foreach ($posts as $key => $post) {
                     <?php the_post_thumbnail() ?>
                 </div>
                 <small><?php echo $post->post_date_gmt ?></small>
-                <h3 class="title_post" ><?php echo $post->post_title ?></h3>
+                <h3 class="title_post" ><?php  _e($post->post_title,'apuestanweb') ?></h3>
                 <p>
                     <?php the_excerpt() ?>
                 </p>

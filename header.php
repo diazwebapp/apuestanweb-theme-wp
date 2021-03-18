@@ -9,7 +9,7 @@
 	<head>
 
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
 
 		<?php wp_head(); ?>
 
@@ -25,24 +25,23 @@
 			
 			<div class="container" >
 			<?php if ( has_nav_menu( 'sub_header' ) ) {
-
-				$items = wp_get_nav_menu_items('sub'); 
-				foreach($items as $item){ ?>
-
-					<a href="<?php echo $item->url ;?>" >
-						<img src="<?php echo get_taxonomy_image($item->object_id)?>" />
-						<b><?php echo $item->slug ?></b>
+					$locations = get_nav_menu_locations();
+						$menu = get_term( $locations['sub_header'], 'nav_menu' );
+						$menu_items = wp_get_nav_menu_items($menu->term_id);
+			
+				foreach ($menu_items as $taxt_term) { ?>
+					<a href="<?php echo $taxt_term->url ;?>" >
+						<b><?php echo $taxt_term->title; ?></b>
 					</a>
 				<?php }
 
 				}else{
-					foreach ($posts_deportes as $key => $deporte) {
-						$imagen_url = get_the_post_thumbnail_url($deporte->ID); ?>
-							<a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
-									echo $_SERVER["HTTP_HOST"];
-								}else{echo $_SERVER['SERVER_NAME']; } ?>/index.php?category=<?php echo $deporte->post_name ;?>" >
-								<img src="<?php echo $imagen_url ?>" />
-								<b><?php echo $deporte->post_title ;?></b>
+					foreach (get_terms(['taxonomy' => 'nav_menu_item','hide_empty' => false]) as $key => $tax_term) {
+				
+						?>
+							<a href="<?php echo esc_attr(get_term_link($tax_term, 'deportes')) ;?>" >
+								<img src="<?php echo get_taxonomy_image($tax_term->term_id)?> "alt="<?php echo __($tax_term->slug,'apuestanweb_lang') ?>"/>
+								<b><?php echo __($tax_term->name,'apuestanweb_lang') ;?></b>
 							</a>
 					<?php } 
 
