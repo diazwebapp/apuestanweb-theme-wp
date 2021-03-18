@@ -29,9 +29,10 @@
 						$menu = get_term( $locations['sub_header'], 'nav_menu' );
 						$menu_items = wp_get_nav_menu_items($menu->term_id);
 			
-				foreach ($menu_items as $taxt_term) { ?>
-					<a href="<?php echo $taxt_term->url ;?>" >
-						<b><?php echo $taxt_term->title; ?></b>
+				foreach ($menu_items as $tax_term) { ?>
+					<a href="<?php echo $tax_term->url ;?>" >
+						<img src="<?php echo get_taxonomy_image($tax_term->object_id)?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
+						<b><?php echo $tax_term->title; ?></b>
 					</a>
 				<?php }
 
@@ -40,7 +41,7 @@
 				
 						?>
 							<a href="<?php echo esc_attr(get_term_link($tax_term, 'deportes')) ;?>" >
-								<img src="<?php echo get_taxonomy_image($tax_term->term_id)?> "alt="<?php echo __($tax_term->slug,'apuestanweb_lang') ?>"/>
+								<img src="<?php echo get_taxonomy_image($tax_term->term_id)?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
 								<b><?php echo __($tax_term->name,'apuestanweb_lang') ;?></b>
 							</a>
 					<?php } 
