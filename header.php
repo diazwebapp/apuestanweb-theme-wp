@@ -31,7 +31,7 @@
 			
 				foreach ($menu_items as $tax_term) { ?>
 					<a href="<?php echo $tax_term->url ;?>" >
-						<img src="<?php echo get_taxonomy_image($tax_term->object_id)?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
+						<img src="<?php if(get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
 						<b><?php echo $tax_term->title; ?></b>
 					</a>
 				<?php }
