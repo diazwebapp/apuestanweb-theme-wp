@@ -303,7 +303,7 @@ add_action('widgets_init','widgets_apuestanweb');
 //Extrayendo terminos, recibe como parametro un arreglo de taxonomias
 function get_term_names($taxonomies){
 	foreach ($taxonomies as $key => $taxonomy) {
-		return get_terms(['taxonomy' => $taxonomy,'hide_empty' => false]);
+		return get_terms(['taxonomy' => $taxonomy,'hide_empty' => true]);
 	};
 }
 //Creando shortcode pronosticos
