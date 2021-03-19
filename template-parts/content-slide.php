@@ -7,7 +7,7 @@
 						<?php if(has_post_thumbnail()) : 
 							the_post_thumbnail();
 						else : ?> 
-						<img src="https://wallpaperaccess.com/full/552032.jpg" alt="">
+						<img src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
 						<?php endif; ?>
 						<div class="slide_title_pronostico">
 						

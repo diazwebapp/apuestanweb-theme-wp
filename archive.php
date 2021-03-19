@@ -2,17 +2,14 @@
 <?php get_template_part('components/banner_top') ?>
 
 <main>
-	<article> archive.php
+	<article>
     <?php
-        if($post->post_type == 'pronosticos') : ?>
-            <section class="container_tarjetitas" >
-            <?php get_template_part('template-parts/content-archive') ?>
+   
+        if(have_posts()) : while(have_posts()): the_post() ; ?>
+            <section>
+                <h2 class="sub_title" ><?php the_title() ?></h2>
             </section>
-        <?php endif;
-
-        if($post->post_type != 'pronosticos') :
-            get_template_part('template-parts/content-archive');
-        endif;
+        <?php endwhile; endif;  echo $term;
     ?>
             
 	</article>

@@ -26,23 +26,23 @@
 			
 					foreach ($menu_items as $tax_term): ?>
 						<a href="<?php echo $tax_term->url ;?>" >
-							<img src="<?php if(get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
+							<img src="<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
 							<b><?php echo $tax_term->title; ?></b>
 						</a>
 					<?php endforeach;
 
 				endif;
-				$data = get_terms(['taxonomy' => 'nav_menu_item','hide_empty' => false]);
-				if(!$data->errors):
-					foreach ($menu_items as $tax_term): ?>
-						<a href="<?php echo $tax_term->url ;?>" >
-							<img src="<?php if(get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
-							<b><?php echo $tax_term->title; ?></b>
+				$data = get_terms(['taxonomy' => 'deportes','hide_empty' => false]);
+				if(empty($data->errors)):
+					foreach ($data as $tax_term): ?>
+						<a href="/index.php/<?php echo $tax_term->taxonomy.'/'.$tax_term->slug ;?>" >
+							<img src="<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->term_id)){echo get_taxonomy_image($tax_term->term_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+							<b><?php echo $tax_term->name; ?></b>
 						</a>
 					<?php endforeach;
 				endif; 
 				if($data->errors): ?>
-						<b>Añada taxonomias de tipo deportes para habilitar la navegacion</b>
+						<b><?php __('Añada un menu sub_header', 'apuestanweb_lang') ?></b>
 				<?php endif; ?>
 			</div>
 		</div>

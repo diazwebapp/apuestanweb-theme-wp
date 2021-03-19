@@ -14,7 +14,7 @@ while(have_posts()) : the_post();
         $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido"); ?>
 
         <a href="<?php the_permalink() ?>" class="tarjetita_pronostico" >
-            <h3 class="title_pronostico" ><?php echo $post->post_title ?></h3>
+            <h3 class="title_pronostico" ><?php echo __(the_title(),'apuestanweb_lang') ?></h3>
             <div class="equipos_pronostico" >
                 <div>
                     <img src="<?php echo $img_equipo_1[0] ?>" />
@@ -42,7 +42,7 @@ while(have_posts()) : the_post();
                 <?php if(has_post_thumbnail()) : 
 							the_post_thumbnail();
 						else : ?> 
-						<img src="https://wallpaperaccess.com/full/552032.jpg" alt="">
+						<img src="https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png" alt="">
 						<?php endif; ?>
             </div>
             <small><?php echo $post->post_date_gmt ?></small>

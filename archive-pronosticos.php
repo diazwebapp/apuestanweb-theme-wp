@@ -1,54 +1,36 @@
-<?php get_header(); ?>
+<?php
+/**
+* Template Name: pronosticos
+*/
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+ get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
-	<article>archive-p.php
+	<article>
 
-    <?php if(have_posts()){ ?>
-			<div class="slide_home" >
-			<?php while(have_posts()){ 
-				the_post() ;
-				$nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1");
-                $img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1");
-                $resena_equipo_1 = get_post_meta(get_the_ID(),"resena_equipo_1");
-                $average_equipo_1 = get_post_meta(get_the_ID(),"average_equipo_1");
-            
-                $nombre_equipo_2 = get_post_meta(get_the_ID(),"nombre_equipo_2");
-                $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2");
-                $resena_equipo_2 = get_post_meta(get_the_ID(),"resena_equipo_2");
-                $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2");
-            
-                $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido");?>
-
-					<div class="slide_home_item" >
-						<?php if(has_post_thumbnail()) : 
-							the_post_thumbnail();
-						else : ?> 
-						<img src="https://wallpaperaccess.com/full/552032.jpg" alt="">
-						<?php endif; ?>
-						<div class="slide_title_pronostico">
-									
-                            <h2>
-                                <?php echo $nombre_equipo_1[0] ?>
-                            </h2>
-                            <h2>
-                                <?php echo $nombre_equipo_2[0] ?>
-                            </h2>
-                            <div class="slide_average_pronostico" >
-                                <p><?php echo $average_equipo_1[0] ?></p>
-                                <p>%</p>
-                                <p><?php echo $average_equipo_2[0] ?></p>
-                            </div>
-								
-						</div>
-					</div>
-			<?php }  /* End while */ ?>
-			</div> <!-- end div slide --> <?php } 
+    <?php if(have_posts()){
+                get_template_part('template-parts/content-slide');
+			} 
             
             // get taxonomies by post type, and print loop content filtred by term taxonomi
-            set_query_var('array_taxonomy',get_term_names(get_object_taxonomies($post->post_type)));
-            get_template_part('template-parts/content-archive-pronosticos');
             
-        ?>
+            foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term) : ?>
+                <section class="container_tarjetitas" >
+                    <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb_lang'); ?></h2>
+                    <?php 
+                        // The Loop
+                        while ( have_posts() ) :
+                            the_post();
+                            $post_tax = wp_get_post_terms( get_the_ID(), $term->taxonomy, array( 'fields' => 'slugs' ) );
+                            if($post_tax[0] == $term->slug) : 
+                                get_template_part('template-parts/tarjetita_pronostico');
+                        endif; endwhile; ?>
+
+                    <div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
+                        <?php echo paginate_links();?>
+                    </div>
+                </section>
+            <?php endforeach; ?> 
 	</article>
 
     <?php get_sidebar() ?>

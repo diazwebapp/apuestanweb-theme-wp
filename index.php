@@ -1,21 +1,31 @@
-<?php get_header(); ?>
+<?php
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
 	<article>
+		<?php if(have_posts()){ get_template_part('template-parts/content-slide');} ?>
 
-		<?php if(have_posts()){ 
-			get_template_part('template-parts/content-slide');
-		} 
-			if(!is_front_page()):
-				get_template_part('template-parts/content-home'); 
-			endif;
-			if(is_front_page()):
-				// get taxonomies by post type, and print loop content filtred by term taxonomi
-				set_query_var('array_taxonomy',get_term_names(get_object_taxonomies("pronosticos")));
-				get_template_part('template-parts/content-archive-pronosticos');
-			endif;
-			
-		?>
+		<div class="terms_nav">
+			<?php 
+                foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term_item):  ?>
+                    <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo $term_item->taxonomy.'/'.$term_item->slug;?>">
+                        <?php echo $term_item->name; ?>
+                    </a>
+            <?php endforeach;  ?>
+		</div>
+		
+        <section class="container_posts">
+		<?php
+
+			while(have_posts()): the_post(); 
+				get_template_part('template-parts/tarjetita_post');
+			endwhile; ?>
+
+		<div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
+				<?php echo paginate_links() ?>
+		</div>
+		</section>	
 	</article>
 
 	<?php get_sidebar() ?>
