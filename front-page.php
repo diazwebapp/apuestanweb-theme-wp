@@ -4,8 +4,9 @@ get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
 	<article> front-page.php
-		<?php if(have_posts()){ 
-			get_template_part('template-parts/content-slide');
+        <?php if(have_posts()){
+            $cpt = new WP_Query(array('post_type'=>'pronosticos')); 
+			get_template_part('template-parts/content-slide-pronosticos','',$cpt);
 		} 
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
 			foreach (get_term_names(get_object_taxonomies('pronosticos')) as $key => $term) : 
