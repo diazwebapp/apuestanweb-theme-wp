@@ -31,9 +31,7 @@ get_header(); ?>
                                 get_template_part('template-parts/tarjetita_pronostico');
                         endif; endwhile; ?>
                 </section>
-			<?php endforeach; 
-			
-			the_content(); ?>
+			<?php endforeach; ?>
             
 	</article>
 

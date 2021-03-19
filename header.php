@@ -32,7 +32,7 @@
 					<?php endforeach;
 
 				endif;
-				$data = get_terms(['taxonomy' => 'deportes','hide_empty' => false]);
+				$data = get_terms(['taxonomy' => 'progreso','hide_empty' => false]);
 				if(empty($data->errors)):
 					foreach ($data as $tax_term): ?>
 						<a href="/index.php/<?php echo $tax_term->taxonomy.'/'.$tax_term->slug ;?>" >

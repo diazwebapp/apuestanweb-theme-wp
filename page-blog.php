@@ -17,8 +17,10 @@ get_header(); ?>
 		
         <section class="container_posts">
 		<?php
-
-			while(have_posts()): the_post(); 
+			$query = new wp_Query(array(
+				'post_type' => 'post'
+			));
+			while($query->have_posts()): $query->the_post(); 
 				get_template_part('template-parts/tarjetita_post');
 			endwhile; ?>
 
