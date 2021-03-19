@@ -4,14 +4,14 @@
     <article>
     
         <div class="imagen_destacada_container">
-            <?php the_post_thumbnail() ?>
+        <?php if(has_post_thumbnail()) : 
+                    the_post_thumbnail();
+                else : ?> 
+                    <img src="https://wallpaperaccess.com/full/552032.jpg" alt="">
+        <?php endif; ?>
         </div>
-        <h1>is page.php</h1>
         <section>
             <h1><?php the_title() ?></h1>
-
-            
-
             <?php
                 if(is_singular()): 
                     the_content(); 
@@ -27,9 +27,6 @@
                     set_query_var('array_taxonomy',get_term_names(get_object_taxonomies('pronosticos')));
                     get_template_part('template-parts/content-home'); 
                 endif;
-
-                if(is_home()): echo 'es home page' . '<br />' ; endif;
-                if(is_singular()): echo 'es singular page' . '<br />' ; endif;
             ?>
         </section>
 

@@ -22,9 +22,7 @@
                     echo $_SERVER["HTTP_HOST"] ;
                 }else{ echo $_SERVER["SERVER_NAME"] ;} ?>/index.php/blog" >blog</a></li>
 
-                <li><a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
-                    echo $_SERVER["HTTP_HOST"] ;
-                }else{echo $_SERVER['SERVER_NAME'] ; }  ?>/index.php/pronosticos" >pronosticos</a></li>
+                <li><a href="<?php echo get_post_type_archive_link('pronosticos'); ?>" >pronosticos</a></li>
 
                 <li><a href="#" >contacto</a></li>
             </ul>

@@ -113,6 +113,7 @@ header{
 	position:relative;
 	margin: 0 auto;
 }
+
 main{
 	display:grid;
 	grid-template-columns: 100%;

@@ -2,7 +2,7 @@
 <?php get_template_part('components/banner_top') ?>
 
 <main>
-	<article> 
+	<article> archive.php
     <?php
         if($post->post_type == 'pronosticos') : ?>
             <section class="container_tarjetitas" >

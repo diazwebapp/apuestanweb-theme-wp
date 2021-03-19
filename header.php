@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<?php
-	$posts_deportes = $wpdb->get_results( 
-			$wpdb->prepare("SELECT * FROM {$wpdb->prefix}posts where post_status='publish' and post_type='Deporte' ")
-	); 
-?>
 <html <?php language_attributes(); ?>>
 
 	<head>
@@ -24,30 +19,31 @@
 		<div class="sub_header" >
 			
 			<div class="container" >
-			<?php if ( has_nav_menu( 'sub_header' ) ) {
+			<?php if ( has_nav_menu( 'sub_header' ) ) :
 					$locations = get_nav_menu_locations();
-						$menu = get_term( $locations['sub_header'], 'nav_menu' );
-						$menu_items = wp_get_nav_menu_items($menu->term_id);
+					$menu = get_term( $locations['sub_header'], 'nav_menu' );
+					$menu_items = wp_get_nav_menu_items($menu->term_id);
 			
-				foreach ($menu_items as $tax_term) { ?>
-					<a href="<?php echo $tax_term->url ;?>" >
-						<img src="<?php if(get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
-						<b><?php echo $tax_term->title; ?></b>
-					</a>
-				<?php }
+					foreach ($menu_items as $tax_term): ?>
+						<a href="<?php echo $tax_term->url ;?>" >
+							<img src="<?php if(get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
+							<b><?php echo $tax_term->title; ?></b>
+						</a>
+					<?php endforeach;
 
-				}else{
-					foreach (get_terms(['taxonomy' => 'nav_menu_item','hide_empty' => false]) as $key => $tax_term) {
-				
-						?>
-							<a href="<?php echo esc_attr(get_term_link($tax_term, 'deportes')) ;?>" >
-								<img src="<?php echo get_taxonomy_image($tax_term->term_id)?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
-								<b><?php echo __($tax_term->name,'apuestanweb_lang') ;?></b>
-							</a>
-					<?php } 
-
-				} ?>
-				
+				endif;
+				$data = get_terms(['taxonomy' => 'nav_menu_item','hide_empty' => false]);
+				if(!$data->errors):
+					foreach ($menu_items as $tax_term): ?>
+						<a href="<?php echo $tax_term->url ;?>" >
+							<img src="<?php if(get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
+							<b><?php echo $tax_term->title; ?></b>
+						</a>
+					<?php endforeach;
+				endif; 
+				if($data->errors): ?>
+						<b>Añada taxonomias de tipo deportes para habilitar la navegacion</b>
+				<?php endif; ?>
 			</div>
 		</div>
 

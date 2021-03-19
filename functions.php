@@ -103,7 +103,7 @@ function custom_post_type_pronostico() {
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive'           => true,
+		'has_archive'           => 'pronosticos',
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
@@ -149,7 +149,7 @@ function taxonomia_tipo_deporte() {
 // Agrega post personalizados a la página inicial de WP */
 function get_posts_types( $query ) {
 		if ( is_home() && $query->is_main_query() ) {
-			$query->set( 'post_type', array( 'post') );
+			$query->set( 'post_type', array( 'post','pronosticos') );
 		}
 
 		return $query;

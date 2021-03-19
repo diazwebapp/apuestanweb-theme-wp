@@ -3,6 +3,7 @@
     $posts = new WP_Query(array('post_type'=>'post'));
 ?>
 <aside>
+<?php if($pronosticos->have_posts()): ?>
 <div class="aside_widgets">
     <h2>Ultimos pronosticos</h2>
     <ul>
@@ -41,7 +42,7 @@
                     <?php  endwhile; ?>
     </ul>
 </div>
-
+<?php endif; ?>
 <div class="aside_widgets">
     <h2>ultimos posts</h2>
     <ul>
@@ -52,7 +53,11 @@
             if($post_type== "post"): ?>
             <a href="<?php the_permalink() ?>" class="aside_item_post">
                 <div>
-                    <?php the_post_thumbnail() ?>
+                <?php if(has_post_thumbnail()) : 
+							the_post_thumbnail();
+						else : ?> 
+						<img src="https://wallpaperaccess.com/full/552032.jpg" alt="">
+						<?php endif; ?>
                 </div>
                 <div>
                     <h4><?php the_title(); ?></h4>

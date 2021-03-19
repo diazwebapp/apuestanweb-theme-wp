@@ -24,7 +24,13 @@
     ?>
     <div id="btn_menu_mobile" >menu</div>
 
-    <?php the_custom_logo(); ?>
+    <?php if(the_custom_logo()){the_custom_logo();}else{ ?>
+        <a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
+                    echo $_SERVER["HTTP_HOST"] ;
+                }else{echo $_SERVER['SERVER_NAME'] ; }  ?>/" >
+            <img src="https://apuestanweb.com/wp-content/uploads/2019/10/hh2.png" alt="logo">
+		</a>
+    <?php } ?>
         
     <?php
     //Desktop menu
@@ -39,9 +45,7 @@
 
         }else{ ?>
             <ul>
-                <li><a href="http://<?php if($_SERVER["SERVER_NAME"] == "localhost"){
-                    echo $_SERVER["HTTP_HOST"] ;
-                }else{echo $_SERVER['SERVER_NAME']; }  ?>/index.php/pronosticos" >pronosticos</a></li>
+                <li><a href="<?php echo get_post_type_archive_link('pronosticos'); ?>" >pronosticos</a></li>
                 <li><a href="#" >contacto</a></li>
             </ul>
         <?php } 

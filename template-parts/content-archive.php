@@ -39,7 +39,11 @@ while(have_posts()) : the_post();
     if($post->post_type == 'post') : ?>
         <a href="<?php the_permalink() ?>" class="tarjetita_post" >
             <div class="img_post" >
-                <?php the_post_thumbnail() ?>
+                <?php if(has_post_thumbnail()) : 
+							the_post_thumbnail();
+						else : ?> 
+						<img src="https://wallpaperaccess.com/full/552032.jpg" alt="">
+						<?php endif; ?>
             </div>
             <small><?php echo $post->post_date_gmt ?></small>
             <h3 class="title_post" ><?php the_title() ?></h3>

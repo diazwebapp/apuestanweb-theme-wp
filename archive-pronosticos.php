@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
-	<article> 
+	<article>archive-p.php
 
     <?php if(have_posts()){ ?>
 			<div class="slide_home" >
@@ -20,7 +20,11 @@
                 $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido");?>
 
 					<div class="slide_home_item" >
-						<?php the_post_thumbnail(); ?>
+						<?php if(has_post_thumbnail()) : 
+							the_post_thumbnail();
+						else : ?> 
+						<img src="https://wallpaperaccess.com/full/552032.jpg" alt="">
+						<?php endif; ?>
 						<div class="slide_title_pronostico">
 									
                             <h2>
@@ -49,4 +53,4 @@
 
     <?php get_sidebar() ?>
 </main>
-<?php get_footer(); apply_filters ( 'taxonomy-images-queried-term-image ', '');
+<?php get_footer(); 
