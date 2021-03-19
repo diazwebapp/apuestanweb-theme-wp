@@ -22,8 +22,8 @@
                 $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido"); ?>
                         <a href="<?php the_permalink() ?>" class="aside_item_pronostico" >
                             <div >
-                                <img src="<?php echo $img_equipo_1[0] ?>" />
-                                <img src="<?php echo $img_equipo_2[0] ?>" />
+                                <img src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{echo "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png"; } ?> ?>" />
+                                <img src="<?php if($img_equipo_2[0]){ echo $img_equipo_2[0];}else{echo "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png"; } ?> ?>" />
                             </div>
                             <div>
                                 <span>
