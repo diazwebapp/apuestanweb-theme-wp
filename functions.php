@@ -115,7 +115,7 @@ function custom_post_type_pronostico() {
 		'description'           => __( 'Post Type Description', 'apuestanweb_lang' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'excerpt' ),
-		'taxonomies'            => array( 'deportes', 'progreso' ),
+		'taxonomies'            => array('deporte','estado'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -141,17 +141,17 @@ add_action( 'init', 'custom_post_type_pronostico');
 
 function taxonomia_tipo_deporte() {
 	$labels = array(
-		'name'                => _x( 'Deporte', 'taxonomy general name', 'apuestanweb_lang' ),
-		'singular_name'       => _x( 'Deporte', 'taxonomy singular name', 'apuestanweb_lang' ),
-		'search_items'        => __( 'Buscar Deporte', 'apuestanweb_lang' ),
-		'all_items'           => __( 'Todos los tipos de deporte', 'apuestanweb_lang' ),
-		'parent_item'         => __( 'Deporte padre', 'apuestanweb_lang' ),
-		'parent_item_colon'   => __( 'Deporte Padre:', 'apuestanweb_lang' ),
-		'edit_item'           => __( 'Editar Deporte', 'apuestanweb_lang' ),
-		'update_item'         => __( 'Editar Deporte', 'apuestanweb_lang' ),
-		'add_new_item'        => __( 'Agregar nuevo Deporte', 'apuestanweb_lang' ),
-		'new_item_name'       => __( 'Nuevo Deporte', 'apuestanweb_lang' ),
-		'menu_name'           => __( 'Deporte', 'apuestanweb_lang' ),
+		'name'                => _x( 'deportes', 'taxonomy general name', 'apuestanweb_lang' ),
+		'singular_name'       => _x( 'deporte', 'taxonomy singular name', 'apuestanweb_lang' ),
+		'search_items'        => __( 'Buscar deportes', 'apuestanweb_lang' ),
+		'all_items'           => __( 'Todos los tipos de deportes', 'apuestanweb_lang' ),
+		'parent_item'         => __( 'deporte padre', 'apuestanweb_lang' ),
+		'parent_item_colon'   => __( 'deporte Padre:', 'apuestanweb_lang' ),
+		'edit_item'           => __( 'Editar deporte', 'apuestanweb_lang' ),
+		'update_item'         => __( 'Editar deporte', 'apuestanweb_lang' ),
+		'add_new_item'        => __( 'Agregar nuevo deporte', 'apuestanweb_lang' ),
+		'new_item_name'       => __( 'Nuevo deporte', 'apuestanweb_lang' ),
+		'menu_name'           => __( 'deporte', 'apuestanweb_lang' ),
 	);
 
 	$args = array(
@@ -161,25 +161,27 @@ function taxonomia_tipo_deporte() {
 		'show_admin_column' => true,
 		'query_var'         => true,
 		'rewrite'           => array( 'slug' => 'deportes' ),
-		'show_in_rest'      => true
+		'show_in_rest'      => true,
+		'show_in_nav_menus' => true
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'deportes', array( 'pronosticos' ), $args );
+	register_taxonomy( 'deporte', array( 'pronosticos' ), $args );
 }
 add_action( 'init', 'taxonomia_tipo_deporte' );
-function taxonomia_tipo_progreso() {
+
+function taxonomia_tipo_estado() {
 	$labels = array(
-		'name'                => _x( 'progreso', 'taxonomy general name', 'apuestanweb_lang' ),
-		'singular_name'       => _x( 'progreso', 'taxonomy singular name', 'apuestanweb_lang' ),
-		'search_items'        => __( 'Buscar progreso', 'apuestanweb_lang' ),
-		'all_items'           => __( 'Todos los tipos de progreso', 'apuestanweb_lang' ),
-		'parent_item'         => __( 'progreso padre', 'apuestanweb_lang' ),
-		'parent_item_colon'   => __( 'progreso Padre:', 'apuestanweb_lang' ),
-		'edit_item'           => __( 'Editar progreso', 'apuestanweb_lang' ),
-		'update_item'         => __( 'Editar progreso', 'apuestanweb_lang' ),
-		'add_new_item'        => __( 'Agregar nuevo progreso', 'apuestanweb_lang' ),
-		'new_item_name'       => __( 'Nuevo progreso', 'apuestanweb_lang' ),
-		'menu_name'           => __( 'progreso', 'apuestanweb_lang' ),
+		'name'                => _x( 'estados', 'taxonomy general name', 'apuestanweb_lang' ),
+		'singular_name'       => _x( 'estado', 'taxonomy singular name', 'apuestanweb_lang' ),
+		'search_items'        => __( 'Buscar estado', 'apuestanweb_lang' ),
+		'all_items'           => __( 'Todos los tipos de estados', 'apuestanweb_lang' ),
+		'parent_item'         => __( 'estado padre', 'apuestanweb_lang' ),
+		'parent_item_colon'   => __( 'estado Padre:', 'apuestanweb_lang' ),
+		'edit_item'           => __( 'Editar estado', 'apuestanweb_lang' ),
+		'update_item'         => __( 'Editar estado', 'apuestanweb_lang' ),
+		'add_new_item'        => __( 'Agregar nuevo estado', 'apuestanweb_lang' ),
+		'new_item_name'       => __( 'Nuevo estado', 'apuestanweb_lang' ),
+		'menu_name'           => __( 'estado', 'apuestanweb_lang' ),
 	);
 
 	$args = array(
@@ -188,13 +190,15 @@ function taxonomia_tipo_progreso() {
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
-		'rewrite'           => array( 'slug' => 'progreso' ),
-		'show_in_rest'      => true
+		'rewrite'           => array( 'slug' => 'estados' ),
+		'show_in_rest'      => true,
+		'show_in_nav_menus' => true
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'progreso', array( 'pronosticos' ), $args );
+	register_taxonomy( 'estado', array( 'pronosticos' ), $args );
 }
-add_action( 'init', 'taxonomia_tipo_progreso' );
+add_action( 'init', 'taxonomia_tipo_estado' );
+
 // Agrega post personalizados a la página inicial de WP */
 function get_posts_types( $query ) {
 		if ( is_home() && $query->is_main_query() ) {
@@ -305,6 +309,17 @@ function get_term_names($taxonomies){
 	foreach ($taxonomies as $key => $taxonomy) {
 		return get_terms(['taxonomy' => $taxonomy,'hide_empty' => true]);
 	};
+}
+function aw_post_terms($taxonomies){
+	$terms = array();
+	foreach (get_terms(array('hide_empty' => false)) as $term) {
+		foreach ($taxonomies as $key => $taxonomy) {
+			if($taxonomy == $term->taxonomy){
+				$terms[] = $term ;
+			}
+		}
+	}
+	return $terms;
 }
 //Creando shortcode pronosticos
 function pronosticos_sections() {

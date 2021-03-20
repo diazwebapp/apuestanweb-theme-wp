@@ -5,9 +5,12 @@ get_header(); ?>
 <main style="margin-top:calc(var(--height-header) * 2);">
 	<article> 
 		<?php if(have_posts()){ get_template_part('template-parts/content-slide');} ?>
-
-		<div class="terms_nav">
+		<section>
+			<?php the_content() ?>
+		</section>
+		<div class="terms_nav" style="position:relative;" >
 			<?php 
+					
                 foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term_item):  ?>
                     <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo $term_item->taxonomy.'/'.$term_item->slug;?>">
                         <?php echo $term_item->name; ?>

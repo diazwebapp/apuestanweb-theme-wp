@@ -26,17 +26,25 @@
 			
 					foreach ($menu_items as $tax_term): ?>
 						<a href="<?php echo $tax_term->url ;?>" >
-							<img src="<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->object_id)){echo get_taxonomy_image($tax_term->object_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->title,'apuestanweb_lang') ?>"/>
+							<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->object_id) != 'Please Upload Image First!'){ ?>
+								<img src="<?php echo get_taxonomy_image($tax_term->object_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+							<?php }else{ ?>
+								<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png' alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+							<?php } ?>
 							<b><?php echo $tax_term->title; ?></b>
 						</a>
 					<?php endforeach;
 
 				endif;
-				$data = get_terms(['taxonomy' => 'deportes','hide_empty' => false]);
-				if(empty($data->errors)):
-					foreach ($data as $tax_term): ?>
+				
+				if(!empty(get_object_taxonomies('pronosticos'))):
+					foreach (aw_post_terms($taxonomies) as $tax_term): ?>
 						<a href="/index.php/<?php echo $tax_term->taxonomy.'/'.$tax_term->slug ;?>" >
-							<img src="<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->term_id)){echo get_taxonomy_image($tax_term->term_id);}else{echo 'https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png';} ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+							<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->term_id) != 'Please Upload Image First!'){ ?>
+								<img src="<?php echo get_taxonomy_image($tax_term->term_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+							<?php }else{ ?>
+								<img src='https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-80-1081639.png' alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+							<?php } ?>
 							<b><?php echo $tax_term->name; ?></b>
 						</a>
 					<?php endforeach;

@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
-	<article> front-page.php
+	<article>
         <?php if(have_posts()){
             $cpt = new WP_Query(array('post_type'=>'pronosticos')); 
 			get_template_part('template-parts/content-slide-pronosticos','',$cpt);
@@ -32,7 +32,12 @@ get_header(); ?>
                                 get_template_part('template-parts/tarjetita_pronostico');
                         endif; endwhile; ?>
                 </section>
-			<?php endforeach; ?>
+            <?php endforeach;
+            $taxonomies = get_object_taxonomies('pronosticos');
+            foreach(aw_post_terms($taxonomies) as $data){
+                echo $data->slug . '<br/>';
+            };
+            ?>
             
 	</article>
 
