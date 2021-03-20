@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
-	<article> 
+	<article> home
 		<?php if(have_posts()){ get_template_part('template-parts/content-slide');} ?>
 
 		<div class="terms_nav">

@@ -5,7 +5,7 @@
 <aside>
 <?php if($pronosticos->have_posts()): ?>
 <div class="aside_widgets">
-    <h2>Ultimos pronosticos</h2>
+    <h2><?php echo __('Ultimos pronosticos','apuestanweb-lang') ?></h2>
     <ul>
         <?php while($pronosticos->have_posts()): $pronosticos->the_post();
                 
@@ -44,7 +44,7 @@
 </div>
 <?php endif; ?>
 <div class="aside_widgets">
-    <h2>ultimos posts</h2>
+    <h2><?php echo __('ultimos posts','apuestanweb-lang') ?></h2>
     <ul>
     <?php 
         while($posts->have_posts()):
@@ -60,7 +60,7 @@
 						<?php endif; ?>
                 </div>
                 <div>
-                    <h4><?php the_title(); ?></h4>
+                    <h4><?php echo __(the_title(),'apuestanweb-lang'); ?></h4>
                     <?php the_excerpt(); ?>
                 </div>
             </a>

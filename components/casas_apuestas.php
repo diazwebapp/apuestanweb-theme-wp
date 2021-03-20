@@ -13,7 +13,7 @@ foreach ($casas_apuestas as $key => $casa_apuesta) {
             <div class="circle" >
                 <img src="<?php echo $imagen_url ?>" />
             </div>
-            <div class="rectangle" >ranking</div>
+            <div class="rectangle" ><?php echo __('Rango','apuestanweb-lang') ?></div>
         </div>
         <div>
             <b><?php echo $casa_apuesta->post_title ?></b>

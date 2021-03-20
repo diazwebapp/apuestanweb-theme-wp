@@ -1,10 +1,16 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-get_header(); ?>
+get_header(); 
+$query = new wp_Query(array(
+	'post_type' => 'post'
+));?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
-	<article> 
-		<?php if(have_posts()){ get_template_part('template-parts/content-slide');} ?>
+	<article> page-b
+		<?php if($query->have_posts()){ 
+				set_query_var('blog_page',$query);
+				get_template_part('template-parts/content-slide');
+			} ?>
 		<section>
 			<?php the_content() ?>
 		</section>
@@ -20,9 +26,7 @@ get_header(); ?>
 		
         <section class="container_posts">
 		<?php
-			$query = new wp_Query(array(
-				'post_type' => 'post'
-			));
+			
 			while($query->have_posts()): $query->the_post(); 
 				get_template_part('template-parts/tarjetita_post');
 			endwhile; ?>

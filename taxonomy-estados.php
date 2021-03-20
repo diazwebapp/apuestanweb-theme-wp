@@ -14,7 +14,7 @@
             <?php endforeach;  ?>
         </div>
         <section class="container_tarjetitas" >
-            <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term)."",'apuestanweb_lang') ?></h2>
+            <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term)."",'apuestanweb-lang') ?></h2>
             <?php 
                 while ( have_posts() ) :
                     the_post();

@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
             
             foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term) : ?>
                 <section class="container_tarjetitas" >
-                    <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb_lang'); ?></h2>
+                    <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb-lang'); ?></h2>
                     <?php 
                         // The Loop
                         while ( have_posts() ) :

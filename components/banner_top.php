@@ -1,7 +1,7 @@
     <div class="banner before_up" >
         <div>
-            <h2>Has tus mejores apuestas y garantiza tu dinero</h2>
+        <h2><?php echo __('Has tus mejores apuestas y garantiza tu dinero','apuestanweb-lang') ?></h2>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus, saepe.</p>
         </div>
-        <a href="#" >Casas de apuestas</a>
+        <a href="#" ><?php echo __('Casas apuestas','apuestanweb-lang') ?></a>
     </div>

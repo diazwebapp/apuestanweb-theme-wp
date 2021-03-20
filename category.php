@@ -10,7 +10,7 @@
                 <?php 
                     foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term_item): ?>
                         <a class="<?php if($current_cat=== $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo 'category/'.$term_item->slug ;?>">
-                            <?php if($term_item->slug == 'sin-categoria'){echo __('todo','apuestanweb_lang');}else{echo $term_item->name;}; ?>
+                            <?php if($term_item->slug == 'sin-categoria'){echo __('todo','apuestanweb-lang');}else{echo $term_item->name;}; ?>
                         </a>
                 <?php endforeach;  ?>
             </div>

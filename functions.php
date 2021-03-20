@@ -51,14 +51,14 @@ add_filter( 'excerpt_length', 'my_theme_excerpt' );
 function apuestanweb_setup() {
 
 	register_nav_menus(array(
-		'izquierda'  => __( 'Desktop Izquierda', 'apuestanweb_lang' ),
-		'derecha'  => __( 'Desktop Derecha', 'apuestanweb_lang' ),
-		'mobile'  => __( 'Mobile', 'apuestanweb_lang' ),
-		'sub_header'  => __( 'Menu de sub_header', 'apuestanweb_lang' )
+		'izquierda'  => __( 'Desktop Izquierda', 'apuestanweb-lang' ),
+		'derecha'  => __( 'Desktop Derecha', 'apuestanweb-lang' ),
+		'mobile'  => __( 'Mobile', 'apuestanweb-lang' ),
+		'sub_header'  => __( 'Menu de sub_header', 'apuestanweb-lang' )
 	));
      
 	// Ready for i18n
-	load_theme_textdomain( "apuestanweb_lang", TEMPLATEPATH . "/lang");
+	load_theme_textdomain( "apuestanweb-lang", get_template_directory_uri(). "/lang");
 
 	// Use thumbnails
 	add_theme_support( 'post-thumbnails' );
@@ -120,37 +120,37 @@ if(function_exists('add_theme_support')){
 function custom_post_type_pronostico() {
 
 	$labels = array(
-		'name'                  => _x( 'pronosticos', 'Pronostico General Name', 'apuestanweb_lang' ),
-		'singular_name'         => _x( 'pronostico', 'Pronostico Singular Name', 'apuestanweb_lang' ),
-		'menu_name'             => __( 'Pronosticos', 'apuestanweb_lang' ),
-		'name_admin_bar'        => __( 'Pronostico', 'apuestanweb_lang' ),
-		'archives'              => __( 'Item Archives', 'apuestanweb_lang' ),
-		'attributes'            => __( 'Item Attributes', 'apuestanweb_lang' ),
-		'parent_item_colon'     => __( 'Parent Item:', 'apuestanweb_lang' ),
-		'all_items'             => __( 'All Items', 'apuestanweb_lang' ),
-		'add_new_item'          => __( 'Add New Item', 'apuestanweb_lang' ),
-		'add_new'               => __( 'Add New', 'apuestanweb_lang' ),
-		'new_item'              => __( 'New Item', 'apuestanweb_lang' ),
-		'edit_item'             => __( 'Edit Item', 'apuestanweb_lang' ),
-		'update_item'           => __( 'Update Item', 'apuestanweb_lang' ),
-		'view_item'             => __( 'View Item', 'apuestanweb_lang' ),
-		'view_items'            => __( 'View Items', 'apuestanweb_lang' ),
-		'search_items'          => __( 'Search Item', 'apuestanweb_lang' ),
-		'not_found'             => __( 'Not found', 'apuestanweb_lang' ),
-		'not_found_in_trash'    => __( 'Not found in Trash', 'apuestanweb_lang' ),
-		'featured_image'        => __( 'Featured Image', 'apuestanweb_lang' ),
-		'set_featured_image'    => __( 'Set featured image', 'apuestanweb_lang' ),
-		'remove_featured_image' => __( 'Remove featured image', 'apuestanweb_lang' ),
-		'use_featured_image'    => __( 'Use as featured image', 'apuestanweb_lang' ),
-		'insert_into_item'      => __( 'Insert into item', 'apuestanweb_lang' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this item', 'apuestanweb_lang' ),
-		'items_list'            => __( 'Items list', 'apuestanweb_lang' ),
-		'items_list_navigation' => __( 'Items list navigation', 'apuestanweb_lang' ),
-		'filter_items_list'     => __( 'Filter items list', 'apuestanweb_lang' ),
+		'name'                  => _x( 'pronosticos', 'Pronostico General Name', 'apuestanweb-lang' ),
+		'singular_name'         => _x( 'pronostico', 'Pronostico Singular Name', 'apuestanweb-lang' ),
+		'menu_name'             => __( 'Pronosticos', 'apuestanweb-lang' ),
+		'name_admin_bar'        => __( 'Pronostico', 'apuestanweb-lang' ),
+		'archives'              => __( 'Item Archives', 'apuestanweb-lang' ),
+		'attributes'            => __( 'Item Attributes', 'apuestanweb-lang' ),
+		'parent_item_colon'     => __( 'Parent Item:', 'apuestanweb-lang' ),
+		'all_items'             => __( 'All Items', 'apuestanweb-lang' ),
+		'add_new_item'          => __( 'Add New Item', 'apuestanweb-lang' ),
+		'add_new'               => __( 'Add New', 'apuestanweb-lang' ),
+		'new_item'              => __( 'New Item', 'apuestanweb-lang' ),
+		'edit_item'             => __( 'Edit Item', 'apuestanweb-lang' ),
+		'update_item'           => __( 'Update Item', 'apuestanweb-lang' ),
+		'view_item'             => __( 'View Item', 'apuestanweb-lang' ),
+		'view_items'            => __( 'View Items', 'apuestanweb-lang' ),
+		'search_items'          => __( 'Search Item', 'apuestanweb-lang' ),
+		'not_found'             => __( 'Not found', 'apuestanweb-lang' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'apuestanweb-lang' ),
+		'featured_image'        => __( 'Featured Image', 'apuestanweb-lang' ),
+		'set_featured_image'    => __( 'Set featured image', 'apuestanweb-lang' ),
+		'remove_featured_image' => __( 'Remove featured image', 'apuestanweb-lang' ),
+		'use_featured_image'    => __( 'Use as featured image', 'apuestanweb-lang' ),
+		'insert_into_item'      => __( 'Insert into item', 'apuestanweb-lang' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'apuestanweb-lang' ),
+		'items_list'            => __( 'Items list', 'apuestanweb-lang' ),
+		'items_list_navigation' => __( 'Items list navigation', 'apuestanweb-lang' ),
+		'filter_items_list'     => __( 'Filter items list', 'apuestanweb-lang' ),
 	);
 	$args = array(
-		'label'                 => __( 'pronostico', 'apuestanweb_lang' ),
-		'description'           => __( 'Post Type Description', 'apuestanweb_lang' ),
+		'label'                 => __( 'pronostico', 'apuestanweb-lang' ),
+		'description'           => __( 'Post Type Description', 'apuestanweb-lang' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'excerpt' ),
 		'taxonomies'            => array('deporte','estado'),
@@ -179,17 +179,17 @@ add_action( 'init', 'custom_post_type_pronostico');
 
 function taxonomia_tipo_deporte() {
 	$labels = array(
-		'name'                => _x( 'deportes', 'taxonomy general name', 'apuestanweb_lang' ),
-		'singular_name'       => _x( 'deporte', 'taxonomy singular name', 'apuestanweb_lang' ),
-		'search_items'        => __( 'Buscar deportes', 'apuestanweb_lang' ),
-		'all_items'           => __( 'Todos los tipos de deportes', 'apuestanweb_lang' ),
-		'parent_item'         => __( 'deporte padre', 'apuestanweb_lang' ),
-		'parent_item_colon'   => __( 'deporte Padre:', 'apuestanweb_lang' ),
-		'edit_item'           => __( 'Editar deporte', 'apuestanweb_lang' ),
-		'update_item'         => __( 'Editar deporte', 'apuestanweb_lang' ),
-		'add_new_item'        => __( 'Agregar nuevo deporte', 'apuestanweb_lang' ),
-		'new_item_name'       => __( 'Nuevo deporte', 'apuestanweb_lang' ),
-		'menu_name'           => __( 'deporte', 'apuestanweb_lang' ),
+		'name'                => _x( 'deportes', 'taxonomy general name', 'apuestanweb-lang' ),
+		'singular_name'       => _x( 'deporte', 'taxonomy singular name', 'apuestanweb-lang' ),
+		'search_items'        => __( 'Buscar deportes', 'apuestanweb-lang' ),
+		'all_items'           => __( 'Todos los tipos de deportes', 'apuestanweb-lang' ),
+		'parent_item'         => __( 'deporte padre', 'apuestanweb-lang' ),
+		'parent_item_colon'   => __( 'deporte Padre:', 'apuestanweb-lang' ),
+		'edit_item'           => __( 'Editar deporte', 'apuestanweb-lang' ),
+		'update_item'         => __( 'Editar deporte', 'apuestanweb-lang' ),
+		'add_new_item'        => __( 'Agregar nuevo deporte', 'apuestanweb-lang' ),
+		'new_item_name'       => __( 'Nuevo deporte', 'apuestanweb-lang' ),
+		'menu_name'           => __( 'deporte', 'apuestanweb-lang' ),
 	);
 
 	$args = array(
@@ -209,17 +209,17 @@ add_action( 'init', 'taxonomia_tipo_deporte' );
 
 function taxonomia_tipo_estado() {
 	$labels = array(
-		'name'                => _x( 'estados', 'taxonomy general name', 'apuestanweb_lang' ),
-		'singular_name'       => _x( 'estado', 'taxonomy singular name', 'apuestanweb_lang' ),
-		'search_items'        => __( 'Buscar estado', 'apuestanweb_lang' ),
-		'all_items'           => __( 'Todos los tipos de estados', 'apuestanweb_lang' ),
-		'parent_item'         => __( 'estado padre', 'apuestanweb_lang' ),
-		'parent_item_colon'   => __( 'estado Padre:', 'apuestanweb_lang' ),
-		'edit_item'           => __( 'Editar estado', 'apuestanweb_lang' ),
-		'update_item'         => __( 'Editar estado', 'apuestanweb_lang' ),
-		'add_new_item'        => __( 'Agregar nuevo estado', 'apuestanweb_lang' ),
-		'new_item_name'       => __( 'Nuevo estado', 'apuestanweb_lang' ),
-		'menu_name'           => __( 'estado', 'apuestanweb_lang' ),
+		'name'                => _x( 'estados', 'taxonomy general name', 'apuestanweb-lang' ),
+		'singular_name'       => _x( 'estado', 'taxonomy singular name', 'apuestanweb-lang' ),
+		'search_items'        => __( 'Buscar estado', 'apuestanweb-lang' ),
+		'all_items'           => __( 'Todos los tipos de estados', 'apuestanweb-lang' ),
+		'parent_item'         => __( 'estado padre', 'apuestanweb-lang' ),
+		'parent_item_colon'   => __( 'estado Padre:', 'apuestanweb-lang' ),
+		'edit_item'           => __( 'Editar estado', 'apuestanweb-lang' ),
+		'update_item'         => __( 'Editar estado', 'apuestanweb-lang' ),
+		'add_new_item'        => __( 'Agregar nuevo estado', 'apuestanweb-lang' ),
+		'new_item_name'       => __( 'Nuevo estado', 'apuestanweb-lang' ),
+		'menu_name'           => __( 'estado', 'apuestanweb-lang' ),
 	);
 
 	$args = array(
@@ -252,37 +252,37 @@ add_filter( 'pre_get_posts', 'get_posts_types' );
 function cpt_casa_apuestas() {
 
 	$labels = array(
-		'name'                  => _x( 'Casa apuestas', 'Casa apuesta General Name', 'apuestanweb_lang' ),
-		'singular_name'         => _x( 'Casa apuesta', 'Casa apuesta Singular Name', 'apuestanweb_lang' ),
-		'menu_name'             => __( 'Casa apuestas', 'apuestanweb_lang' ),
-		'name_admin_bar'        => __( 'Casa apuesta', 'apuestanweb_lang' ),
-		'archives'              => __( 'Item Archives', 'apuestanweb_lang' ),
-		'attributes'            => __( 'Item Attributes', 'apuestanweb_lang' ),
-		'parent_item_colon'     => __( 'Parent Item:', 'apuestanweb_lang' ),
-		'all_items'             => __( 'All Items', 'apuestanweb_lang' ),
-		'add_new_item'          => __( 'Add New Item', 'apuestanweb_lang' ),
-		'add_new'               => __( 'Add New', 'apuestanweb_lang' ),
-		'new_item'              => __( 'New Item', 'apuestanweb_lang' ),
-		'edit_item'             => __( 'Edit Item', 'apuestanweb_lang' ),
-		'update_item'           => __( 'Update Item', 'apuestanweb_lang' ),
-		'view_item'             => __( 'View Item', 'apuestanweb_lang' ),
-		'view_items'            => __( 'View Items', 'apuestanweb_lang' ),
-		'search_items'          => __( 'Search Item', 'apuestanweb_lang' ),
-		'not_found'             => __( 'Not found', 'apuestanweb_lang' ),
-		'not_found_in_trash'    => __( 'Not found in Trash', 'apuestanweb_lang' ),
-		'featured_image'        => __( 'Featured Image', 'apuestanweb_lang' ),
-		'set_featured_image'    => __( 'Set featured image', 'apuestanweb_lang' ),
-		'remove_featured_image' => __( 'Remove featured image', 'apuestanweb_lang' ),
-		'use_featured_image'    => __( 'Use as featured image', 'apuestanweb_lang' ),
-		'insert_into_item'      => __( 'Insert into item', 'apuestanweb_lang' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this item', 'apuestanweb_lang' ),
-		'items_list'            => __( 'Items list', 'apuestanweb_lang' ),
-		'items_list_navigation' => __( 'Items list navigation', 'apuestanweb_lang' ),
-		'filter_items_list'     => __( 'Filter items list', 'apuestanweb_lang' ),
+		'name'                  => _x( 'Casa apuestas', 'Casa apuesta General Name', 'apuestanweb-lang' ),
+		'singular_name'         => _x( 'Casa apuesta', 'Casa apuesta Singular Name', 'apuestanweb-lang' ),
+		'menu_name'             => __( 'Casa apuestas', 'apuestanweb-lang' ),
+		'name_admin_bar'        => __( 'Casa apuesta', 'apuestanweb-lang' ),
+		'archives'              => __( 'Item Archives', 'apuestanweb-lang' ),
+		'attributes'            => __( 'Item Attributes', 'apuestanweb-lang' ),
+		'parent_item_colon'     => __( 'Parent Item:', 'apuestanweb-lang' ),
+		'all_items'             => __( 'All Items', 'apuestanweb-lang' ),
+		'add_new_item'          => __( 'Add New Item', 'apuestanweb-lang' ),
+		'add_new'               => __( 'Add New', 'apuestanweb-lang' ),
+		'new_item'              => __( 'New Item', 'apuestanweb-lang' ),
+		'edit_item'             => __( 'Edit Item', 'apuestanweb-lang' ),
+		'update_item'           => __( 'Update Item', 'apuestanweb-lang' ),
+		'view_item'             => __( 'View Item', 'apuestanweb-lang' ),
+		'view_items'            => __( 'View Items', 'apuestanweb-lang' ),
+		'search_items'          => __( 'Search Item', 'apuestanweb-lang' ),
+		'not_found'             => __( 'Not found', 'apuestanweb-lang' ),
+		'not_found_in_trash'    => __( 'Not found in Trash', 'apuestanweb-lang' ),
+		'featured_image'        => __( 'Featured Image', 'apuestanweb-lang' ),
+		'set_featured_image'    => __( 'Set featured image', 'apuestanweb-lang' ),
+		'remove_featured_image' => __( 'Remove featured image', 'apuestanweb-lang' ),
+		'use_featured_image'    => __( 'Use as featured image', 'apuestanweb-lang' ),
+		'insert_into_item'      => __( 'Insert into item', 'apuestanweb-lang' ),
+		'uploaded_to_this_item' => __( 'Uploaded to this item', 'apuestanweb-lang' ),
+		'items_list'            => __( 'Items list', 'apuestanweb-lang' ),
+		'items_list_navigation' => __( 'Items list navigation', 'apuestanweb-lang' ),
+		'filter_items_list'     => __( 'Filter items list', 'apuestanweb-lang' ),
 	);
 	$args = array(
-		'label'                 => __( 'Casa apuesta', 'apuestanweb_lang' ),
-		'description'           => __( 'Casa apuesta Description', 'apuestanweb_lang' ),
+		'label'                 => __( 'Casa apuesta', 'apuestanweb-lang' ),
+		'description'           => __( 'Casa apuesta Description', 'apuestanweb-lang' ),
 		'labels'                => $labels,
 		'supports'              => array('title', 'editor', 'thumbnail', 'comments', 'excerpt'),
 		'taxonomies'            => false,
@@ -322,7 +322,7 @@ function func_casa_apuesta($post){ ?>
 function widgets_apuestanweb(){
 	register_sidebar(array(
 		'id' => 'primary_widget',
-		'name' => __('Apuestanweb Sidebar','apuestanweb_lang'),
+		'name' => __('Apuestanweb Sidebar','apuestanweb-lang'),
 		'before_widget' => '<div class="aside_widgets" >',
 		'after_widget' => '</div>',
 		'before_title' => '<h2>',
@@ -331,7 +331,7 @@ function widgets_apuestanweb(){
 
 	register_sidebar(array(
 		'id' => 'top_widget',
-		'name' => __('Apuestanweb top banner','apuestanweb_lang'),
+		'name' => __('Apuestanweb top banner','apuestanweb-lang'),
 		'before_widget' => '<div class="aside_widgets" >',
 		'after_widget' => '</div>',
 		'before_title' => '<h2>',
@@ -374,7 +374,7 @@ function pronosticos_sections() {
 		); 
 		$cpt = new WP_Query($args); ?>
 		<section class="container_tarjetitas" >
-			<h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb_lang'); ?></h2>
+			<h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb-lang'); ?></h2>
 			<?php 
 				// The Loop
 				while ( $cpt->have_posts() ) :
