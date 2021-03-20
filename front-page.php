@@ -32,12 +32,7 @@ get_header(); ?>
                                 get_template_part('template-parts/tarjetita_pronostico');
                         endif; endwhile; ?>
                 </section>
-            <?php endforeach;
-            $taxonomies = get_object_taxonomies('pronosticos');
-            foreach(aw_post_terms($taxonomies) as $data){
-                echo $data->slug . '<br/>';
-            };
-            ?>
+            <?php endforeach; ?>
             
 	</article>
 

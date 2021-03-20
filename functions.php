@@ -14,6 +14,16 @@ function apuestanweb_load_scripts() {
 	
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_scripts' );
+//comprueba si un post existe
+function aw_post_exists($post_name,$post_type){
+	$query = new WP_Query( array( 'pagename' => $post_name,'post_type'=>$post_type ) );
+	if($query->have_posts()){
+		$query->the_post();
+		return true;
+	}else{
+		return false;
+	};
+}
 
 // Removes some links from the header
 function my_theme_remove_headlinks() {
@@ -70,7 +80,35 @@ function apuestanweb_setup() {
 
 	// Switch default core markup for search form, comment form, and comments to output valid HTML5.
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
-
+	
+	if(!aw_post_exists('blog','page')){
+		wp_insert_post(array(
+			'post_title'   => 'Blog',
+			'post_status'  => 'publish',
+			'post_type'		=> 'page'
+			/* 'tax_input'    => array(
+				'hierarchical_tax'     => $hierarchical_tax,
+				'non_hierarchical_tax' => $non_hierarchical_terms,
+			),
+			'meta_input'   => array(
+				'test_meta_key' => 'value of test_meta_key',
+			), */
+		));
+	 } 
+	 if(!aw_post_exists('e-sports','page')){
+		wp_insert_post(array(
+			'post_title'   => 'E-Sports',
+			'post_status'  => 'publish',
+			'post_type'		=> 'page'
+			/* 'tax_input'    => array(
+				'hierarchical_tax'     => $hierarchical_tax,
+				'non_hierarchical_tax' => $non_hierarchical_terms,
+			),
+			'meta_input'   => array(
+				'test_meta_key' => 'value of test_meta_key',
+			), */
+		));
+	 } 
 }
 
 // Añadiendo soporte de logo personalizado
@@ -362,3 +400,18 @@ function pagination_nav() {
         </nav>
 <?php }
 }
+$post_arr = array(
+    'post_title'   => 'E-Sports',
+    'post_content' => 'Test post content',
+	'post_status'  => 'publish',
+	'post_type'		=> 'page'
+    /* 'tax_input'    => array(
+        'hierarchical_tax'     => $hierarchical_tax,
+        'non_hierarchical_tax' => $non_hierarchical_terms,
+    ),
+    'meta_input'   => array(
+        'test_meta_key' => 'value of test_meta_key',
+    ), */
+);
+
+
