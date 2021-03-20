@@ -4,8 +4,7 @@
 <main>
 	<article> 
     <?php
-    $current_cat = str_replace("/","",str_replace("/deportes/","",$_SERVER["PATH_INFO"]));
-    echo $current_cat;
+    echo $term;
     
         if(have_posts()): get_template_part('template-parts/content-slide'); endif;?>
         <div class="terms_nav">
