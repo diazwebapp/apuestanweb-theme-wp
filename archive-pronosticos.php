@@ -12,9 +12,9 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
                 get_template_part('template-parts/content-slide');
 			} 
             
-            // get taxonomies by post type, and print loop content filtred by term taxonomi
+            // print loop content filtred by terms
             
-            foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term) : ?>
+            foreach (get_terms('deporte') as $key => $term) : ?>
                 <section class="container_tarjetitas" >
                     <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb-lang'); ?></h2>
                     <?php 

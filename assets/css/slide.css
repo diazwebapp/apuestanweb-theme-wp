@@ -1,0 +1,55 @@
+
+/**************Slide home****************/
+.slide_aw{
+	position: relative;
+	width:100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+	border-radius:var(--radius);
+	max-height:480px;
+}
+
+.slide_item{
+	min-width: 100%;
+	height: max-content;
+}
+.slide_item > .slide_item_pronosticos{
+	position: absolute;
+	bottom:0;
+	width:100%;
+	padding: 10px;
+}
+.slide_item > .slide_item_pronosticos h2, .slide_item > h1{
+	color:var(--bg-page);
+}
+.slide_item > .slide_item_pronosticos h2:nth-child(2){
+	color:inherit;
+}
+.slide_item > .slide_item_pronosticos .slide_average_pronostico{
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	width:300px;
+	gap:20px;
+}
+.slide_item > .slide_item_pronosticos .slide_average_pronostico p{
+	background-color: var(--fondo);
+	border-radius: var(--radius);
+	margin: 0 auto;
+	padding:1px 20px;
+}
+.slide_item > h1{
+	position: absolute;
+	bottom:10%;
+	left:auto;
+	width:100%;
+}
+.slide_item > img{
+	min-width:100%;
+	max-width:100%;
+	height:480px;
+	object-fit: cover;
+}

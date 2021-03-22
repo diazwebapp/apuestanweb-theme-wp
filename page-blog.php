@@ -10,14 +10,17 @@ $query = new wp_Query(array(
 		<?php if($query->have_posts()){ 
 				set_query_var('blog_page',$query);
 				get_template_part('template-parts/content-slide');
+
+				while($query->have_posts()):
+					$query->the_post();
+					the_content();
+				endwhile; 
 			} ?>
-		<section>
-			<?php the_content() ?>
-		</section>
+		
 		<div class="terms_nav" style="position:relative;" >
 			<?php 
 					
-                foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term_item):  ?>
+                foreach (get_terms('deporte') as $key => $term_item):  ?>
                     <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo $term_item->taxonomy.'/'.$term_item->slug;?>">
                         <?php echo $term_item->name; ?>
                     </a>

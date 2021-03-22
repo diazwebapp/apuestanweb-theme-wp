@@ -1,0 +1,146 @@
+
+
+/* Container tarjetitas*/
+.container_tarjetitas,.container_posts{
+	width:100%;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap:1%;
+	background:var(--bg-page)
+}
+.container_tarjetitas > .sub_title{
+	grid-column:1 / span 1;
+}
+.container_posts{
+	background:transparent;
+	grid-template-columns: repeat(2,1fr);
+}
+/* Tarjetita pronostico*/
+.tarjetita_pronostico,.tarjetita_post{
+	width:100%;
+	height:max-content;
+	border-radius: var(--radius);
+	overflow: hidden;
+	box-shadow: 0px 0px 10px var(--shadow);
+	margin:10px auto;
+	padding-bottom:5px;
+}
+
+.tarjetita_post{
+	min-width:100px;
+	height:300px;
+	border:none;
+}
+.tarjetita_post > .title_post{
+	max-height:50px;
+	overflow: hidden;
+	color:var(--secondary-color);
+}
+.tarjetita_post > .img_post{
+	width:100%;
+	height:130px;
+	overflow: hidden;
+	border-radius: var(--radius);
+}
+.tarjetita_post > p{
+	color:grey;
+	text-align: justify;
+}
+.tarjetita_post > small{
+	color:var(--primary-color);
+	font-weight:bold;
+}
+.tarjetita_post > .img_post > img{
+	width:100%;
+	height:100%;
+	object-fit: cover;
+}
+.equipos_pronostico,.average_pronostico{
+	display:grid;
+	grid-template-columns:repeat(3,1fr);
+}
+.title_pronostico,  .average_pronostico{
+	background: var(--secondary-color);
+	color:var(--bg-page);
+}
+.title_pronostico {
+	height:30px;
+	font-size: 14px;
+	line-height: 2;
+	grid-column: 1 / span 3;
+}
+
+.equipos_pronostico > div{
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: calc(100% - 20px) 20px;
+	align-items: center;
+	padding:10px;
+}
+.equipos_pronostico > div img{
+	width:10vmin;
+	height:10vmin;
+	border-radius: 50%;
+	margin: 0 auto;
+	border: 1px solid var(--secondary-color);
+	box-shadow: 0px 0px 10px var(--bg-average);
+	background:var(--bg-page);
+	object-fit: contain;
+}
+.average_pronostico{
+	background-color: transparent;
+	height:20px;
+	overflow: hidden;
+}
+.average_pronostico p{
+	background-color: var(--bg-average);
+	width:70%;
+	font-size:12px;
+	max-width:60px;
+}
+.tarjetita_pronostico p{
+	color: var(--dark);
+}
+.equipos_pronostico > div p{
+	font-size: 16px;
+	height:20px;
+	overflow: hidden;
+}
+.tarjetita_pronostico > div p{
+	width:100%;
+	display: block;
+}
+.tarjetita_pronostico > div p,.tarjetita_pronostico > div > div p,.tarjetita_pronostico > h3{
+	text-align: center;
+	margin: 0 auto;
+}
+@media(min-width:640px){
+	.container_posts{
+		grid-template-columns: repeat(3,1fr);
+	}
+	.container_tarjetitas{
+		grid-template-columns: repeat(2,1fr);
+	}
+	.container_tarjetitas > .sub_title{
+		grid-column:1 / span 2;
+	}
+}
+@media(min-width:860px){
+	
+	.container_posts{
+		grid-template-columns: repeat(4,1fr);
+	}
+}
+@media(min-width:960px){
+	.container_tarjetitas{
+		grid-template-columns: repeat(3,1fr);
+	}
+	.container_tarjetitas > .sub_title{
+		grid-column:1 / span 3;
+	}
+}
+@media(min-width:1080px){
+	.container_tarjetitas{
+		gap:3px;
+	}
+}

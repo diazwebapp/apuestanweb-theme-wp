@@ -4,7 +4,6 @@ get_header(); ?>
 
 <main style="margin-top:calc(var(--height-header) * 2);">
     <article>
-    page
         <div class="imagen_destacada_container">
         <?php if(has_post_thumbnail()) : 
                     the_post_thumbnail();
@@ -13,7 +12,11 @@ get_header(); ?>
         <section>
             <h1><?php the_title() ?></h1>
             <?php
-                the_content(); 
+                if(have_posts()):
+                    while(have_posts()):
+                        the_post();
+                        the_content(); 
+                    endwhile; endif;
             ?>
         </section>
 

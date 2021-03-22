@@ -24,6 +24,29 @@ function aw_post_exists($post_name,$post_type){
 		return false;
 	};
 }
+//Cambiando estilos e login
+function my_login_logo() { ?>
+	<style type="text/css">
+	  #login h1 a, .login h1 a {
+	  background-image: url(<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>);
+		width:100%;
+		background-size: contain;
+		background-repeat: no-repeat;
+	  }
+	</style>
+  <?php }//end my_login_logo()
+  add_action( 'login_enqueue_scripts', 'my_login_logo' );
+  
+  function my_login_logo_url() {
+	return home_url();
+  }//end my_login_logo_url()
+  add_filter( 'login_headerurl', 'my_login_logo_url' );
+  
+  function my_login_logo_url_title() {
+	return 'Apuestanweb';
+  }//end my_login_logo_url_title()
+  add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
 
 // Removes some links from the header
 function my_theme_remove_headlinks() {
@@ -341,24 +364,33 @@ function widgets_apuestanweb(){
 
 add_action('widgets_init','widgets_apuestanweb');
 
-
-//Extrayendo terminos, recibe como parametro un arreglo de taxonomias
-function get_term_names($taxonomies){
-	foreach ($taxonomies as $key => $taxonomy) {
-		return get_terms(['taxonomy' => $taxonomy,'hide_empty' => true]);
-	};
-}
-function aw_post_terms($taxonomies){
-	$terms = array();
-	foreach (get_terms(array('hide_empty' => false)) as $term) {
-		foreach ($taxonomies as $key => $taxonomy) {
-			if($taxonomy == $term->taxonomy){
-				$terms[] = $term ;
+function aw_taxonomy_by_post_type_and_term($array_tax,$term){
+	$trems = array();
+	if(isset($term)){
+		foreach($array_tax as $taxonomy_name){
+			foreach(get_terms(array('taxonomy'=>$taxonomy_name,'hide_empty'=>false)) as $term_1){
+				if($taxonomy_name == $term_1->taxonomy && $term_1->name == $term){
+					return $taxonomy_name;
+				}
 			}
 		}
 	}
+}
+
+function aw_terms_by_taxs($array_taxonomies){
+	$terms = array();
+	
+		foreach (get_terms(array('hide_empty' => false)) as $term) {
+			foreach ($array_taxonomies as $key => $taxonomy) {
+				if($taxonomy == $term->taxonomy){
+					$terms[] = $term ;
+				}
+			}
+		}
+	
 	return $terms;
 }
+
 //Creando shortcode pronosticos
 function pronosticos_sections() {
 	foreach (get_term_names(get_object_taxonomies('pronosticos')) as $term) : 

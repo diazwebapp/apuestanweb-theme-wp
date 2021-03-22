@@ -1,15 +1,14 @@
 <?php get_header(); ?>
-<?php get_template_part('components/banner_top') ?>
-
+<?php get_template_part('components/banner_top');
+$current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies('pronosticos'),$term); ?>
 <main>
-	<article> term: 
+	<article> 
     <?php
-    echo $term;
     
         if(have_posts()): get_template_part('template-parts/content-slide'); endif;?>
         <div class="terms_nav">
             <?php 
-                foreach (get_term_names(get_object_taxonomies($post->post_type)) as $key => $term_item): ?>
+                foreach (get_terms(array('taxonomy'=>$current_taxonomy,'hide_empty' => false)) as $term_item): ?>
                     <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo 'deportes/'.$term_item->slug ;?>">
                         <?php echo $term_item->name; ?>
                     </a>

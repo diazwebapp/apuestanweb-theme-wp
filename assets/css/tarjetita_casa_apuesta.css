@@ -1,0 +1,70 @@
+
+/*Container casas apuestas*/
+.container_casas_apuestas{
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+}
+/* Tarjeta casas apuestas*/
+.tarjeta_casa_apuesta{
+	width:280px;
+	height: 230px;
+	border-radius: var(--radius);
+	border: 1px solid var(--secondary-color);
+	overflow: hidden;
+}
+.tarjeta_casa_apuesta > div{
+	position: relative;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+}
+.tarjeta_casa_apuesta > div:first-child{
+	height: 130px;
+	overflow: hidden;
+	background: url('./assets/images/futbol1.jpg');
+	background-size: cover;
+	background-color: lawngreen;
+	background-blend-mode: multiply;
+}
+.tarjeta_casa_apuesta > div:first-child img{
+	width:100%;
+	height:100%;
+	object-fit: cover;
+}
+
+.tarjeta_casa_apuesta > div:first-child div{
+	position: absolute;
+	z-index: 10;
+	width:120px;
+	background: var(--bg-page);
+	text-align: center;
+	overflow: hidden;
+}
+.tarjeta_casa_apuesta > div:first-child .circle{
+	height:120px;
+	left:20px;
+	border-radius: 50%;
+	z-index: 10;
+}
+.tarjeta_casa_apuesta > div:first-child .rectangle{
+	height:40px;
+	left:130px;
+	width:140px;
+	border-radius: var(--radius);
+	z-index: 9;
+}
+.tarjeta_casa_apuesta > div:first-child .circle img{
+	width:100%;
+	height:100%;
+	object-fit: contain;
+	margin: 0 auto;
+}
+.tarjeta_casa_apuesta > div:last-child{
+	height: 100px;
+	background:var(--bg-page);
+}

@@ -11,7 +11,7 @@ $cpt = new WP_Query(array('post_type'=>'pronosticos')); ?>
 			get_template_part('template-parts/content-slide');
 		} 
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
-			foreach (get_term_names(get_object_taxonomies('pronosticos')) as $key => $term) : 
+			foreach (get_terms('deporte') as $key => $term) : 
                 $args = array(
                     'posts_per_page' => get_option('to_count_pronosticos'), 
                     'paged' => get_query_var('paged') ? get_query_var('paged') : 1,

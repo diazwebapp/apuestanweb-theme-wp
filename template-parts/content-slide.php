@@ -9,7 +9,9 @@
 								<?php 
 									if(has_post_thumbnail()) : 
 										the_post_thumbnail();
-									endif; 
+										else : ?>
+										<img src="<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>" alt="">
+									<?php endif; 
 									if($post_type=='pronosticos'): 
 										$nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1");
 										$img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1");
