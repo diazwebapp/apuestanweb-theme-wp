@@ -455,3 +455,14 @@ function my_login_redirect($user_name, $user) {
 	}
 }
 add_action( 'wp_login', 'my_login_redirect', 10, 3 );
+
+// Accedemos a la variable global creada por WordPress
+global $wp_roles;
+// Añadimos un nuevo rol para este tipo de usuarios
+
+$wp_roles->add_role('VIP', 'VIP', array(
+	'read' => true, // Les damos permisos de lectura (como a los suscriptores)
+	'edit_posts' => false, // No tienen permisos suficientes para editar entradas
+	'delete_posts' => false, // No tienen permisos suficientes para eliminar entradas
+	'leer_datos' => true // Creamos una capacidad nueva exclusiva para este rol
+  ));

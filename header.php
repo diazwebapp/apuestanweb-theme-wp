@@ -45,7 +45,7 @@
 				endif;
 				
 				if(!has_nav_menu( 'sub_header' ) && !empty(get_object_taxonomies('pronosticos'))):
-					foreach (aw_post_terms(get_object_taxonomies('pronosticos')) as $tax_term): ?>
+					foreach (get_terms(get_object_taxonomies('pronosticos')) as $tax_term): ?>
 						<a href="/index.php/<?php echo $tax_term->taxonomy.'/'.$tax_term->slug ;?>" >
 							<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->term_id) != 'Please Upload Image First!'){ ?>
 								<img src="<?php echo get_taxonomy_image($tax_term->term_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
@@ -55,10 +55,7 @@
 							<b><?php echo $tax_term->name; ?></b>
 						</a>
 					<?php endforeach;
-				endif; 
-				if($data->errors): ?>
-						<b><?php __('Añada un menu sub_header', 'apuestanweb-lang') ?></b>
-				<?php endif; ?>
+				endif;  ?>
 			</div>
 		</div>
 
