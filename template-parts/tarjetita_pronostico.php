@@ -14,8 +14,10 @@
 ?>
 <a href="<?php the_permalink() ?>" class="tarjetita_pronostico <?php
                 if(!current_user_can('administrator')){
-                    if(count($tags) >= 0){
-                        echo 'block_content';
+                    foreach($tags as $tag){
+                        if($tag->name !== $current_user->roles[0]){
+                            echo 'block_content';
+                        }
                     }
                 }
             ?>" >
@@ -40,8 +42,8 @@
                 if(current_user_can('administrator')){
                     echo $average_equipo_1[0];
                 }else{
-                    foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
-                        if($current_user->roles[0] == $tag->name){
+                    foreach($tags as $tag){
+                        if($tag->name == $current_user->roles[0]){
                             echo $average_equipo_1[0];
                         }
                     }
@@ -53,8 +55,8 @@
                 if(current_user_can('administrator')){
                     echo 'VIP';
                 }else{
-                    foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
-                        if($current_user->roles[0] == $tag->name){
+                    foreach($tags as $tag){
+                        if($tag->name == $current_user->roles[0]){
                             echo 'VIP';
                         }
                     }
@@ -66,8 +68,8 @@
                 if(current_user_can('administrator')){
                     echo $average_equipo_2[0];
                 }else{
-                    foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
-                        if($current_user->roles[0] == $tag->name){
+                    foreach($tags as $tag){
+                        if($tag->name == $current_user->roles[0]){
                             echo $average_equipo_2[0];
                         }
                     }

@@ -19,22 +19,30 @@
                 $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2");
                 $resena_equipo_2 = get_post_meta(get_the_ID(),"resena_equipo_2");
                 $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2");
-
+                $tags = wp_get_post_tags(get_the_ID());
                 $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido"); ?>
-                        <a href="<?php the_permalink() ?>" class="aside_item_pronostico" >
+                        <a href="<?php the_permalink() ?>" class="aside_item_pronostico <?php
+                                        if(!current_user_can('administrator')){
+                                            foreach($tags as $tag){
+                                                if($tag->name !== $current_user->roles[0]){
+                                                    echo 'block_content';
+                                                }
+                                            }
+                                        }
+                                    ?>" >
                             <div >
                                 <img src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
                                 <img src="<?php if($img_equipo_2[0]){ echo $img_equipo_2[0];}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
                             </div>
                             <div>
                                 <span>
-                                    <p class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>"><?php echo $nombre_equipo_1[0] ?></p>
-                                    <small class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>">
+                                    <p class="<?php if(current_user_can('administrator') && $average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>"><?php echo $nombre_equipo_1[0] ?></p>
+                                    <small class="<?php if(current_user_can('administrator') && $average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>">
                                         <?php if(current_user_can('administrator')){
                                             echo $average_equipo_1[0];
                                         }else{
-                                            foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
-                                                if($current_user->roles[0] == $tag->name){
+                                            foreach($tags as $tag){
+                                                if($tag->name == $current_user->roles[0]){
                                                     echo $average_equipo_1[0];
                                                 }
                                             }
@@ -42,13 +50,13 @@
                                     </small>
                                 </span>
                                 <span>
-                                    <p class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>" ><?php echo $nombre_equipo_2[0] ?></p>
-                                    <small class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>">
+                                    <p class="<?php if(current_user_can('administrator') && $average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>" ><?php echo $nombre_equipo_2[0] ?></p>
+                                    <small class="<?php if(current_user_can('administrator') && $average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>">
                                         <?php if(current_user_can('administrator')){
                                             echo $average_equipo_2[0];
                                         }else{
-                                            foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
-                                                if($current_user->roles[0] == $tag->name){
+                                            foreach($tags as $tag){
+                                                if($tag->name == $current_user->roles[0]){
                                                     echo $average_equipo_2[0];
                                                 }
                                             }
