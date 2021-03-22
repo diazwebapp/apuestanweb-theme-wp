@@ -1,6 +1,7 @@
 <?php
     $pronosticos = new WP_Query(array('post_type'=>'pronosticos'));
     $posts = new WP_Query(array('post_type'=>'post'));
+    $current_user = wp_get_current_user();
 ?>
 <aside>
 <?php if($pronosticos->have_posts()): ?>
@@ -28,11 +29,31 @@
                             <div>
                                 <span>
                                     <p class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>"><?php echo $nombre_equipo_1[0] ?></p>
-                                    <small class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>"><?php if(current_user_can( 'administrator' )) : echo $average_equipo_1[0]; endif;?></small>
+                                    <small class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>">
+                                        <?php if(current_user_can('administrator')){
+                                            echo $average_equipo_1[0];
+                                        }else{
+                                            foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
+                                                if($current_user->roles[0] == $tag->name){
+                                                    echo $average_equipo_1[0];
+                                                }
+                                            }
+                                        }?>
+                                    </small>
                                 </span>
                                 <span>
                                     <p class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>" ><?php echo $nombre_equipo_2[0] ?></p>
-                                    <small class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>"><?php if(current_user_can( 'administrator' )) : echo $average_equipo_2[0]; endif; ?></small>
+                                    <small class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>">
+                                        <?php if(current_user_can('administrator')){
+                                            echo $average_equipo_2[0];
+                                        }else{
+                                            foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
+                                                if($current_user->roles[0] == $tag->name){
+                                                    echo $average_equipo_2[0];
+                                                }
+                                            }
+                                        }?>
+                                    </small>
                                 </span>
                             </div>
                             <div>

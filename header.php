@@ -3,7 +3,7 @@
 	   // Obtenemos la informacion del usuario conectado y asignamos los valores a las variables globales
 	   // Mas info sobre 'get_currentuserinfo()': 
 	   // http://codex.wordpress.org/Function_Reference/get_currentuserinfo
-	   get_currentuserinfo();
+	  $current_user = wp_get_current_user();
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

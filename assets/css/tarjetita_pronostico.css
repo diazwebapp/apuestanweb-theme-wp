@@ -25,7 +25,23 @@
 	margin:10px auto;
 	padding-bottom:5px;
 }
-
+.block_content{
+	position: relative;
+}
+.block_content::after{
+	content:'';
+	top:0;
+	left: 0;
+	right:0;
+	bottom:0;
+	position: absolute;
+	z-index: 2;
+	background-image: url('../images/download.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 50px 50px;
+	background-color: rgba(0,0,0, .8);
+}
 .tarjetita_post{
 	min-width:100px;
 	height:300px;

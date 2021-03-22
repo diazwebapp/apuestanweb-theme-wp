@@ -1,4 +1,5 @@
 <?php 
+    $current_user = wp_get_current_user();
     $nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1");
     $img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1");
     $resena_equipo_1 = get_post_meta(get_the_ID(),"resena_equipo_1");
@@ -8,11 +9,17 @@
     $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2");
     $resena_equipo_2 = get_post_meta(get_the_ID(),"resena_equipo_2");
     $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2");
-
+    $tags = wp_get_post_tags(get_the_ID());
     $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido");
 ?>
-<a href="<?php the_permalink() ?>" class="tarjetita_pronostico" >
-    <h3 class="title_pronostico" ><?php echo __(the_title(), 'apuestanweb-lang') ?></h3>
+<a href="<?php the_permalink() ?>" class="tarjetita_pronostico <?php
+                if(!current_user_can('administrator')){
+                    if(count($tags) >= 0){
+                        echo 'block_content';
+                    }
+                }
+            ?>" >
+    <h3 class="title_pronostico" ><?php echo __($current_user->roles[0], 'apuestanweb-lang') ?></h3>
     <div class="equipos_pronostico" >
         <div>
             <img src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
@@ -28,8 +35,44 @@
         </div>
     </div>
     <div class="average_pronostico" >
-        <p><?php if(current_user_can( 'administrator' )) : echo $average_equipo_1[0]; endif; ?></p>
-        <p>%</p>
-        <p><?php if(current_user_can( 'administrator' )) : echo $average_equipo_2[0]; endif; ?></p>
+        <p>
+            <?php
+                if(current_user_can('administrator')){
+                    echo $average_equipo_1[0];
+                }else{
+                    foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
+                        if($current_user->roles[0] == $tag->name){
+                            echo $average_equipo_1[0];
+                        }
+                    }
+                }
+            ?>
+        </p>
+        <p>
+            <?php 
+                if(current_user_can('administrator')){
+                    echo 'VIP';
+                }else{
+                    foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
+                        if($current_user->roles[0] == $tag->name){
+                            echo 'VIP';
+                        }
+                    }
+                }
+            ?>
+        </p>
+        <p>
+            <?php 
+                if(current_user_can('administrator')){
+                    echo $average_equipo_2[0];
+                }else{
+                    foreach ( get_tags(array('name'=>$current_user->roles[0])) as $tag ) {
+                        if($current_user->roles[0] == $tag->name){
+                            echo $average_equipo_2[0];
+                        }
+                    }
+                }
+            ?>
+        </p>
     </div>
 </a>

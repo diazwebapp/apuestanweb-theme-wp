@@ -176,7 +176,7 @@ function custom_post_type_pronostico() {
 		'description'           => __( 'Post Type Description', 'apuestanweb-lang' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'excerpt' ),
-		'taxonomies'            => array('deporte','estado'),
+		'taxonomies'            => array('deporte','estado','post_tag'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
