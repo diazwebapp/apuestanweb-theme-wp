@@ -446,4 +446,12 @@ $post_arr = array(
     ), */
 );
 
-
+function my_login_redirect($user_name, $user) {
+	foreach($user->roles as $rol){
+		if($rol !== 'administrator'){
+			wp_redirect(home_url());
+			exit;
+		}
+	}
+}
+add_action( 'wp_login', 'my_login_redirect', 10, 3 );

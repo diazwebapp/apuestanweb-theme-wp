@@ -28,11 +28,11 @@
                             <div>
                                 <span>
                                     <p class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>"><?php echo $nombre_equipo_1[0] ?></p>
-                                    <small class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>"><?php echo $average_equipo_1[0] ?></small>
+                                    <small class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder" ;} ?>"><?php if(current_user_can( 'administrator' )) : echo $average_equipo_1[0]; endif;?></small>
                                 </span>
                                 <span>
                                     <p class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>" ><?php echo $nombre_equipo_2[0] ?></p>
-                                    <small class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>"><?php echo $average_equipo_2[0] ?></small>
+                                    <small class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder" ;} ?>"><?php if(current_user_can( 'administrator' )) : echo $average_equipo_2[0]; endif; ?></small>
                                 </span>
                             </div>
                             <div>

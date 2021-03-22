@@ -28,8 +28,8 @@
         </div>
     </div>
     <div class="average_pronostico" >
-        <p><?php echo $average_equipo_1[0] ?></p>
+        <p><?php if(current_user_can( 'administrator' )) : echo $average_equipo_1[0]; endif; ?></p>
         <p>%</p>
-        <p><?php echo $average_equipo_2[0] ?></p>
+        <p><?php if(current_user_can( 'administrator' )) : echo $average_equipo_2[0]; endif; ?></p>
     </div>
 </a>
