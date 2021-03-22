@@ -20,7 +20,9 @@
     ?>
     <div id="btn_menu_mobile" >menu</div>
 
-    <?php if(the_custom_logo()){the_custom_logo();}else{ ?>
+    <?php if ( has_custom_logo() ){
+            the_custom_logo();
+        }else{ ?>
         <a href="<?php echo home_url()  ?>" >
             <img src="https://apuestanweb.com/wp-content/uploads/2019/10/hh2.png" alt="logo">
 		</a>
