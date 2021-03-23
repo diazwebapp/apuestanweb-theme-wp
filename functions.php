@@ -198,6 +198,35 @@ function custom_post_type_pronostico() {
 
 add_action( 'init', 'custom_post_type_pronostico');
 
+//añadir CPT al loop wp
+function my_get_posts( $query )
+{
+    global $wp_query;
+    if ( !is_preview() && !is_admin() && !is_singular() )
+    {
+        $args = array(
+            'public' => true ,
+            '_builtin' => false
+        );
+        $output = 'names';
+        $operator = 'and';
+        $post_types = get_post_types( $args , $output , $operator );
+        $post_types = array_merge( $post_types , array( 'post', 'pronosticos') );
+        if ($query->is_feed)
+        {
+            /* Si es el Feed no insertes los custom posts, si quiere mostrarlo quita este if */
+        } else {
+            $my_post_type = get_query_var( 'post_type' );
+            if ( empty( $my_post_type ) )
+            {
+                $query->set( 'post_type' , $post_types );
+            }
+        }
+    }
+    return $query;
+}
+add_filter( 'pre_get_posts', 'my_get_posts' );
+
 // Creando taxonomia, para pronosticos.
 
 function taxonomia_tipo_deporte() {

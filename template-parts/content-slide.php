@@ -3,7 +3,7 @@
 			
 					while(get_query_var('blog_page')->have_posts()):
 						get_query_var('blog_page')->the_post() ;
-						$post_type = get_post_type(get_the_ID()); ?>
+						 ?>
 
 							<div class="slide_item" >
 								<?php 
@@ -12,7 +12,7 @@
 										else : ?>
 										<img src="<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>" alt="">
 									<?php endif; 
-									if($post_type=='pronosticos'): 
+									if($post->post_type=='pronosticos'): 
 										$nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1");
 										$img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1");
 										$resena_equipo_1 = get_post_meta(get_the_ID(),"resena_equipo_1");
@@ -38,7 +38,7 @@
 											</div>
 										</div>
 									<?php endif;
-									if($post_type=='post'): ?>
+									if($post->post_type=='post'): ?>
 									<h1>
 										<?php __(the_title(), 'apuestanweb-lang')  ?>
 									</h1>
@@ -48,7 +48,7 @@
 					if(!get_query_var('blog_page')):
 						while(have_posts()):
 							the_post() ;
-							$post_type = get_post_type(get_the_ID()); ?>
+							 ?>
 	
 							<div class="slide_item" >
 								<?php 
@@ -57,7 +57,7 @@
 										else : ?>
 										<img src="<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>" alt="">
 									<?php endif;
-									if($post_type=='pronosticos'): 
+									if($post->post_type=='pronosticos'): 
 										$nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1");
 										$img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1");
 										$resena_equipo_1 = get_post_meta(get_the_ID(),"resena_equipo_1");
@@ -83,7 +83,7 @@
 											</div>
 										</div>
 									<?php endif;
-									if($post_type=='post'): ?>
+									if($post->post_type=='post'): ?>
 									<h1>
 										<?php __(the_title(), 'apuestanweb-lang')  ?>
 									</h1>

@@ -21,7 +21,7 @@
                     }
                 }
             ?>" >
-    <h3 class="title_pronostico" ><?php echo __($current_user->roles[0], 'twentytwentyone') ?></h3>
+    <h3 class="title_pronostico" ><?php echo __(the_title(), 'twentytwentyone') ?></h3>
     <div class="equipos_pronostico" >
         <div>
             <img src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />

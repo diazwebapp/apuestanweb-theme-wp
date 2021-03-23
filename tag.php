@@ -1,21 +1,11 @@
 <?php get_header(); ?>
 <?php get_template_part('components/banner_top');
-$param_tag = str_replace("/","",str_replace("/tag/","",$_SERVER["PATH_INFO"]));
-$query = new wp_Query(array(
-    'post_type' => array('post','pronosticos'),
-	'posts_per_page' => get_option('to_count_pronosticos'), 
-    'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
-    'tax_query' => array(
-        array(
-            'taxonomy' => $param_tag
-        ),
-    ),
-)); ?>
+$param_tag = str_replace("/","",str_replace("/tag/","",$_SERVER["PATH_INFO"])); ?>
 
 <main>
 	<article> 
     <?php 
-    echo $param_tag;
+    echo 'tag.php-'.$param_tag;
         if(have_posts()): get_template_part('template-parts/content-slide'); endif; ?>
         <div class="terms_nav">
             <?php 
