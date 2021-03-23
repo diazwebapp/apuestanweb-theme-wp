@@ -251,7 +251,8 @@ function taxonomia_tipo_deporte() {
 		'show_admin_column' => true,
 		'query_var'         => true,
 		'show_in_rest'      => true,
-		'show_in_nav_menus' => true
+		'show_in_nav_menus' => true,
+		'rewrite' => array('slug' => 'deportes', 'with_front' => true)
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
 	register_taxonomy( 'deportes', array( 'pronosticos' ), $args );
@@ -280,7 +281,8 @@ function taxonomia_tipo_estado() {
 		'show_admin_column' => true,
 		'query_var'         => true,
 		'show_in_rest'      => true,
-		'show_in_nav_menus' => true
+		'show_in_nav_menus' => true,
+		'rewrite' => array('slug' => 'estados', 'with_front' => true)
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
 	register_taxonomy( 'estados', array( 'pronosticos' ), $args );
