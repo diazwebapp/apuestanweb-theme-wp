@@ -7,8 +7,8 @@
         <?php endif; ?>
     </div>
     <small><span style="color:var(--secondary-color);" ><?php echo strtoupper($args) ?></span> <?php the_date('y-m-d')?></small>
-    <h3 class="title_post" ><?php echo __(the_title(),'apuestanweb-lang') ?></h3>
+    <h3 class="title_post" ><?php echo sprintf(__(the_title(),'twentytwenty')) ?></h3>
     <p>
-        <?php echo __(the_excerpt(),'apuestanweb-lang') ?>
+        <?php echo __(the_excerpt(),'twentytwenty') ?>
     </p>
 </a>

@@ -14,9 +14,9 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
             
             // print loop content filtred by terms
             
-            foreach (get_terms('deporte') as $key => $term) : ?>
+            foreach (get_terms(array('taxonomy'=>'deportes','hide_empty'=>true)) as $key => $term) : ?>
                 <section class="container_tarjetitas" >
-                    <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb-lang'); ?></h2>
+                    <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'twentytwentyone'); ?></h2>
                     <?php 
                         // The Loop
                         while ( have_posts() ) :

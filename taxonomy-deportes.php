@@ -9,13 +9,13 @@ $current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies('pro
         <div class="terms_nav">
             <?php 
                 foreach (get_terms(array('taxonomy'=>$current_taxonomy,'hide_empty' => false)) as $term_item): ?>
-                    <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo 'deportes/'.$term_item->slug ;?>">
+                    <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo $current_taxonomy.'/'.$term_item->slug ;?>">
                         <?php echo $term_item->name; ?>
                     </a>
             <?php endforeach;  ?>
         </div>
         <section class="container_tarjetitas" >
-            <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term)."",'apuestanweb_lang') ?></h2>
+            <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term)."",'apuestanweb-lang') ?></h2>
             <?php 
                 while ( have_posts() ) :
                     the_post();

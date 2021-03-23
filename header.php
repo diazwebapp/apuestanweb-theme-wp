@@ -44,9 +44,9 @@
 
 				endif;
 				
-				if(!has_nav_menu( 'sub_header' ) && !empty(get_object_taxonomies('pronosticos'))):
-					foreach (get_terms(get_object_taxonomies('pronosticos')) as $tax_term): ?>
-						<a href="/index.php/<?php echo $tax_term->taxonomy.'/'.$tax_term->slug ;?>" >
+				if(!has_nav_menu( 'sub_header' )):
+					foreach (get_terms(array('taxonomy'=>get_object_taxonomies('pronosticos'),'hide_empty'=>true)) as $tax_term): ?>
+						<a href="<?php echo home_url()."/index.php/".$tax_term->taxonomy.'/'.$tax_term->slug ;?>" >
 							<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->term_id) != 'Please Upload Image First!'){ ?>
 								<img src="<?php echo get_taxonomy_image($tax_term->term_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
 							<?php }else{ ?>
