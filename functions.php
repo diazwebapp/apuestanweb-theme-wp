@@ -255,7 +255,7 @@ function taxonomia_tipo_deporte() {
 		'rewrite' => array('slug' => 'deportes', 'with_front' => true)
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'deportes', array( 'pronosticos' ), $args );
+	register_taxonomy( 'deporte', array( 'pronosticos' ), $args );
 }
 add_action( 'init', 'taxonomia_tipo_deporte' );
 
@@ -285,7 +285,7 @@ function taxonomia_tipo_estado() {
 		'rewrite' => array('slug' => 'estados', 'with_front' => true)
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'estados', array( 'pronosticos' ), $args );
+	register_taxonomy( 'estado', array( 'pronosticos' ), $args );
 }
 add_action( 'init', 'taxonomia_tipo_estado' );
 
