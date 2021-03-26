@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); ?>
 
-<main style="margin-top:calc(var(--height-header) * 2);">
+<main>
 	<article> home
 		<!-- Slide -->
 		<?php if(have_posts()){ get_template_part('template-parts/content-slide');} ?>
@@ -10,7 +10,7 @@ get_header(); ?>
 		<!-- Navegacion de deportes -->
 		<div class="terms_nav">
 			<?php 
-                foreach (get_terms(array('taxonomy'=>'deportes','hide_empty'=>false)) as $key => $term_item):  ?>
+                foreach (get_terms(array('taxonomy'=>'deporte','hide_empty'=>false)) as $key => $term_item):  ?>
                     <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo $term_item->taxonomy.'/'.$term_item->slug;?>">
                         <?php echo $term_item->name; ?>
                     </a>
@@ -24,10 +24,10 @@ get_header(); ?>
 				get_template_part('template-parts/tarjetita_post');
 			endwhile; ?>
 		</section>	
-		<div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
-				
-				<?php get_template_part( 'template-parts/pagination' ); ?>
-		</div>
+		
+		<div class="container_pagination" >
+			<?php echo paginate_links();?>
+		</div> 
 	</article>
 
 	<?php get_sidebar() ?>

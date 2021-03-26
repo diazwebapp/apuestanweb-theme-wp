@@ -1,30 +1,4 @@
 
-
-/* Container tarjetitas*/
-.container_tarjetitas,.container_posts{
-	width:100%;
-	display: grid;
-	grid-template-columns: 1fr;
-	gap:1%;
-	background:var(--bg-page)
-}
-.container_tarjetitas > .sub_title{
-	grid-column:1 / span 1;
-}
-.container_posts{
-	background:transparent;
-	grid-template-columns: repeat(2,1fr);
-}
-/* Tarjetita pronostico*/
-.tarjetita_pronostico,.tarjetita_post{
-	width:100%;
-	height:max-content;
-	border-radius: var(--radius);
-	overflow: hidden;
-	box-shadow: 0px 0px 10px var(--shadow);
-	margin:10px auto;
-	padding-bottom:5px;
-}
 .block_content{
 	position: relative;
 }
@@ -39,16 +13,48 @@
 	background-image: url('../images/download.png');
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 50px 50px;
-	background-color: rgba(0,0,0, .8);
+	background-size: 40px 40px;
+}
+
+/* Container tarjetitas*/
+.container_tarjetitas,.container_posts{
+	width:100%;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap:1%;
+	background:var(--bg-page);
+	padding-bottom: 40px;
+}
+.container_tarjetitas > .sub_title{
+	grid-column:1 / span 1;
+}
+.container_posts{
+	background:transparent;
+	grid-template-columns: repeat(2,1fr);
+}
+/* Tarjetita pronostico*/
+.tarjetita_pronostico,.tarjetita_post{
+	width:100%;
+	border-radius: var(--radius);
+	box-shadow: 0px 0px 10px var(--shadow);
+	margin:10px auto;
+	padding-bottom:5px;
+	position:relative;
+}
+.tarjetita_pronostico{
+	padding-bottom: 30px;
+	margin-bottom: 20px;
 }
 .tarjetita_post{
 	min-width:100px;
-	height:300px;
+	height:330px;
 	border:none;
+	box-shadow: none;
+	overflow: hidden;
 }
 .tarjetita_post > .title_post{
-	max-height:50px;
+	height:70px;
+	font-size: 18px;
 	overflow: hidden;
 	color:var(--secondary-color);
 }
@@ -59,8 +65,8 @@
 	border-radius: var(--radius);
 }
 .tarjetita_post > p{
-	color:grey;
-	text-align: justify;
+	color:var(--shadow);
+	padding: 0 2px;
 }
 .tarjetita_post > small{
 	color:var(--primary-color);
@@ -84,6 +90,7 @@
 	font-size: 14px;
 	line-height: 2;
 	grid-column: 1 / span 3;
+	border-radius: 5px 5px 0 0;
 }
 
 .equipos_pronostico > div{
@@ -94,14 +101,15 @@
 	padding:10px;
 }
 .equipos_pronostico > div img{
-	width:5vmin;
-	height:5vmin;
+	width:64px;
+	height:64px;
 	border-radius: 50%;
 	margin: 0 auto;
 	border: 1px solid var(--secondary-color);
 	box-shadow: 0px 0px 10px var(--bg-average);
 	background:var(--bg-page);
 	object-fit: contain;
+	padding: 5px;
 }
 .average_pronostico{
 	background-color: transparent;
@@ -130,6 +138,51 @@
 	text-align: center;
 	margin: 0 auto;
 }
+.tarjetita_pronostico > a, .tarjetita_pronostico > button.block_content{
+	background: var(--secondary-color);
+	position: absolute;
+	left: 25%;
+	width:50%;
+	bottom:-10px;
+	z-index: 999;
+	padding: 5px 0;
+	font-weight: bold;
+	color: var(--bg-page);
+	border-radius: 5px;
+	text-align: center;
+}
+.tarjetita_pronostico > button.block_content{
+	height:40px;
+	background: transparent;
+}
+/*tarjetita en pagina unica */
+.single_pronostico{
+	margin: 20px 0 !important;
+}
+.single_pronostico img{
+	width:20vmin !important;
+	height:20vmin !important;
+}
+.single_pronostico .title_pronostico {
+	padding: 5px;
+	font-size: 18px;
+	height: unset !important;
+	background: var(--bg-sub-title) !important;
+}
+.single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
+	width: 98%;
+	margin: 0 auto;
+}
+.single_pronostico .average_pronostico{
+	height:30px;
+}
+.single_pronostico .average_pronostico p{
+	background-color: var(--bg-average);
+	width:70%;
+	font-size:18px;
+	max-width:90px;
+	font-weight: bold;
+}
 @media(min-width:640px){
 	.container_posts{
 		grid-template-columns: repeat(3,1fr);
@@ -146,21 +199,20 @@
 	.container_posts{
 		grid-template-columns: repeat(4,1fr);
 	}
-}
-@media(min-width:960px){
 	.container_tarjetitas{
 		grid-template-columns: repeat(3,1fr);
 	}
 	.container_tarjetitas > .sub_title{
 		grid-column:1 / span 3;
 	}
-}
-@media(min-width:1280px){
-	.container_tarjetitas > .sub_title{
-		grid-column:1 / span 4;
+	.single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
+		width: 90%;
+		margin: 0 auto;
 	}
-	.container_tarjetitas{
-		gap:3px;
-		grid-template-columns: repeat(4,1fr);
+}
+@media(min-width:960px){
+	.single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
+		width: 80%;
+		margin: 0 auto;
 	}
 }

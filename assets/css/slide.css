@@ -16,15 +16,18 @@
 .slide_item{
 	min-width: 100%;
 	height: max-content;
+	position: relative;
 }
 .slide_item > .slide_item_pronosticos{
 	position: absolute;
 	bottom:0;
 	width:100%;
-	padding: 10px;
+	padding: 20px;
 }
 .slide_item > .slide_item_pronosticos h2, .slide_item > h1{
 	color:var(--bg-page);
+	text-align: left;
+	margin-bottom: 20px;
 }
 .slide_item > .slide_item_pronosticos h2:nth-child(2){
 	color:inherit;
@@ -50,6 +53,19 @@
 .slide_item > img{
 	min-width:100%;
 	max-width:100%;
-	height:480px;
+	height:400px;
 	object-fit: cover;
+	position: relative;
+}
+.slide_item > .slide_item::after{
+	content: '';
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	width:100%;
+	height: 100%;
+	background: red;
+	z-index: 20;
 }

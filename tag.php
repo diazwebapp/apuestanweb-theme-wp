@@ -1,15 +1,17 @@
 <?php get_header(); ?>
-<?php get_template_part('components/banner_top');
-$param_tag = str_replace("/","",str_replace("/tag/","",$_SERVER["PATH_INFO"])); ?>
+<?php 
+$param_tag = str_replace("/","",str_replace("/tag/","",$_SERVER["PATH_INFO"])); 
+$current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies($post->post_type),$param_tag);
+?>
 
 <main>
 	<article> 
     <?php 
-    echo 'tag.php-'.$param_tag;
+
         if(have_posts()): get_template_part('template-parts/content-slide'); endif; ?>
         <div class="terms_nav">
             <?php 
-                foreach (get_terms(array('taxonomy'=>'post_tag','hide_empty' => true)) as $term_item): ?>
+                foreach (get_terms(array('taxonomy'=>'post_tag','hide_empty' => false)) as $term_item): ?>
                     <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo 'tag/'.$term_item->slug ;?>">
                         <?php echo __($term_item->name,'apuestanweb-lang'); ?>
                     </a>
@@ -22,7 +24,7 @@ $param_tag = str_replace("/","",str_replace("/tag/","",$_SERVER["PATH_INFO"])); 
                     get_template_part('template-parts/tarjetita_post'); 
                 endwhile; ?>
 
-            <div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
+            <div class="container_pagination" >
                 <?php echo paginate_links();?>
             </div> 
         </section>

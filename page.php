@@ -2,8 +2,8 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); ?>
 
-<main style="margin-top:calc(var(--height-header) * 2);">
-    <article> fgdfg
+<main>
+    <article>
         <div class="imagen_destacada_container">
         <?php if(has_post_thumbnail()) : 
                     the_post_thumbnail();
@@ -18,7 +18,9 @@ get_header(); ?>
                     endwhile; endif;
             ?>
         </section>
-
+        <div class="container_pagination" >
+            <?php echo paginate_links();?>
+        </div> 
     </article>
 
     <?php get_sidebar() ?>

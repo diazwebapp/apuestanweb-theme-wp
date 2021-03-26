@@ -2,12 +2,12 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); 
 $query = new wp_Query(array(
-	'posts_per_page' => get_option('to_count_pronosticos'), 
+	'posts_per_page' => get_option('to_count_post'), 
     'paged' => ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1
 ));?>
 
-<main style="margin-top:calc(var(--height-header) * 2);">
-	<article> page-b
+<main>
+	<article>
 		<?php if(have_posts()){ 
 				set_query_var('blog_page',$query);
 				get_template_part('template-parts/content-slide');
@@ -37,14 +37,14 @@ $query = new wp_Query(array(
 						endwhile; ?>
 						
 				</section>
-				<div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
+				<div class="container_pagination" >
 					<?php echo paginate_links(array(
 							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
 							'format' => '?paged=%#%',
 							'current' => max( 1, get_query_var('paged') ),
 							'total' => $query->max_num_pages
 						) ) ?>
-					<?php get_template_part( 'template-parts/pagination' ); ?>
+					
 				</div>
 			<?php endif; ?>
 	</article>

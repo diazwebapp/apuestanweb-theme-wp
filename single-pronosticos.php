@@ -1,8 +1,22 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-get_header(); ?>
+get_header();
 
-<?php get_template_part('components/banner_top') ?>
+$author_posts = new wp_Query(array(
+    'post_type' => $post->post_type,
+    'author' => $post->post_author,
+    'post_not_in' => array( $post->ID ),
+    'tax_query'=>array(
+        array(
+            'taxonomy' => 'deporte',
+            'terms' => 'all'
+        )
+    )
+));
+
+
+?>
+
 
 <main>
     <article>
@@ -27,7 +41,7 @@ get_header(); ?>
                                   endif; ?>
                         </div>
 
-                        <div href="<?php the_permalink() ?>" class="tarjetita_pronostico" >
+                        <div href="<?php the_permalink() ?>" class="tarjetita_pronostico single_pronostico" >
                                 <h3 class="title_pronostico" ><?php __(the_title(),'apuestanweb-lang') ?></h3>
                                 <div class="equipos_pronostico" >
                                     <div >
@@ -49,7 +63,32 @@ get_header(); ?>
                                 </div>
                         </div>
                         <?php __(the_content(),'apuestanweb-lang') ?>
-            <?php endwhile; endif; ?>
+            <?php endwhile; endif;
+        
+            set_query_var('data_card_author',array('post'=>$post,'pronosticos'=>$author_posts));
+            get_template_part('components/card_author');
+            
+            
+            // posts del autor -->
+			if($author_posts->have_posts()): ?>
+				<section class="container_posts">
+					<?php
+						while($author_posts->have_posts()): $author_posts->the_post(); 
+                            
+							get_template_part('template-parts/tarjetita_post');
+						endwhile; ?>
+						
+				</section>
+				<div class="container_pagination" >
+					<?php echo paginate_links(array(
+							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
+							'format' => '?paged=%#%',
+							'current' => max( 1, get_query_var('paged') ),
+							'total' => $author_posts->max_num_pages
+						) ) ?>
+					
+				</div>
+            <?php endif; ?>
     </article>
 
 

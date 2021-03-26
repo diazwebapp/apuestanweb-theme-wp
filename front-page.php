@@ -2,19 +2,20 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); 
 
-$cpt = new WP_Query(array('post_type'=>'pronosticos')); ?>
+$cpt = new wp_Query(array(
+    'post_type' => 'pronosticos',
+	'posts_per_page' => get_option('to_count_pronosticos'), 
+    'paged' => ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1
+));?>
 
-<main style="margin-top:calc(var(--height-header) * 2);">
-	<article> front
+<main>
+	<article>
         <?php if(have_posts()){
-            set_query_var('blog_page',$cpt);
 			get_template_part('template-parts/content-slide');
 		} 
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
-			foreach (get_terms(array('taxonomy'=>'deportes','hide_empty'=>true)) as $term) : 
+			foreach (get_terms(array('taxonomy'=>'deporte','hide_empty'=>true)) as $term) : 
                 $args = array(
-                    'posts_per_page' => get_option('to_count_pronosticos'), 
-                    'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
                     'tax_query' => array(
                         array(
                             'taxonomy' => $term->taxonomy,
@@ -34,8 +35,16 @@ $cpt = new WP_Query(array('post_type'=>'pronosticos')); ?>
                                 get_template_part('template-parts/tarjetita_pronostico');
                         endif; endwhile; ?>
                 </section>
+                <div class="container_pagination" >
+                    <?php echo paginate_links(array(
+							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
+							'format' => '?paged=%#%',
+							'current' => max( 1, get_query_var('paged') ),
+							'total' => $cards_cpt->max_num_pages
+						) ) ?>
+                    </div>
             <?php endforeach; ?>
-            
+             
 	</article>
 
 	<?php get_sidebar() ?>

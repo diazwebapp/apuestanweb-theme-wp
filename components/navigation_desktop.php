@@ -24,7 +24,7 @@
             the_custom_logo();
         }else{ ?>
         <a href="<?php echo home_url()  ?>" >
-            <img src="https://apuestanweb.com/wp-content/uploads/2019/10/hh2.png" alt="logo">
+            <img src="<?php echo get_template_directory_uri() ?>/assets/images/hh2.png" alt="logo">
 		</a>
     <?php } ?>
         

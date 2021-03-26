@@ -1,28 +1,32 @@
 <?php get_header(); ?>
-<?php get_template_part('components/banner_top');
-$current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies('pronosticos'),$term); ?>
+<?php 
+$current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies('pronosticos'),$term); 
+?>
 <main>
 	<article> 
-    <?php
-    
+    <?php 
         if(have_posts()): get_template_part('template-parts/content-slide'); endif;?>
         <div class="terms_nav">
             <?php 
-                foreach (get_terms(array('taxonomy'=>$current_taxonomy,'hide_empty' => false)) as $term_item): ?>
+                foreach (get_terms(array('taxonomy'=>'deporte','hide_empty' => false)) as $term_item):?>
                     <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo $current_taxonomy.'/'.$term_item->slug ;?>">
                         <?php echo $term_item->name; ?>
                     </a>
             <?php endforeach;  ?>
         </div>
+        
         <section class="container_tarjetitas" >
             <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term)."",'apuestanweb-lang') ?></h2>
             <?php 
-                while ( have_posts() ) :
-                    the_post();
-                    get_template_part('template-parts/tarjetita_pronostico'); 
-                endwhile; ?>
+                if(have_posts()):
+                    while ( have_posts() ) :
+                        the_post();
+                        get_template_part('template-parts/tarjetita_pronostico'); 
+                    endwhile;
+                else: echo 'Sin datos para mostrar'; endif; 
+            ?>
 
-            <div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
+            <div class="container_pagination" >
                 <?php echo paginate_links();?>
             </div> 
         </section>

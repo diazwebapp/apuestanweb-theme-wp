@@ -5,7 +5,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  get_header(); ?>
 
-<main style="margin-top:calc(var(--height-header) * 2);">
+<main>
 	<article>
 
     <?php if(have_posts()){
@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
             
             // print loop content filtred by terms
             
-            foreach (get_terms(array('taxonomy'=>'deportes','hide_empty'=>true)) as $key => $term) : ?>
+            foreach (get_terms(array('taxonomy'=>'deporte','hide_empty'=>true)) as $key => $term) : ?>
                 <section class="container_tarjetitas" >
                     <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'twentytwentyone'); ?></h2>
                     <?php 
@@ -26,7 +26,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
                                 get_template_part('template-parts/tarjetita_pronostico');
                         endif; endwhile; ?>
 
-                    <div class="container_pagination" style="width:100%;min-width:100%;display:flex;justify-content:center;" >
+                    <div class="container_pagination" >
                         <?php echo paginate_links();?>
                     </div>
                 </section>
