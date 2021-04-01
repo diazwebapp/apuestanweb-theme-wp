@@ -24,7 +24,7 @@ $query = new wp_Query(array(
 					
                 foreach (get_terms(array('taxonomy'=>'category','hide_empty'=>false)) as $key => $term_item):  ?>
                     <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="/index.php/<?php echo $term_item->taxonomy.'/'.$term_item->slug;?>">
-                        <?php echo $term_item->name; ?>
+                        <?php if($term_item->slug == 'sin-categoria'):echo __('todo','apuestanweb-lang');else:echo __($term_item->name,'apuestanweb-lang');endif; ?>
                     </a>
             <?php endforeach;  ?>
 		</div>

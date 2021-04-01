@@ -3,15 +3,17 @@ require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
 function apuestanweb_load_css_files() {
 	wp_enqueue_style( 'apuestanweb-style', get_template_directory_uri() . '/assets/css/styles.css' );
-    wp_enqueue_script( 'apuestanweb-js', get_template_directory_uri() . '/assets/js/scripts.js', array( 'js' ), '', true );
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_css_files' );
 
 function apuestanweb_load_scripts() {
+
+		wp_register_script( 'chart', get_template_directory_uri(). '/assets/js/chart.js');
+		wp_enqueue_script( 'chart' );
 	
 		wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/scripts.js');
 		wp_enqueue_script( 'theme_scripts' );
-	
+			
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_scripts' );
 
@@ -139,7 +141,7 @@ function custom_post_type_pronostico() {
 		'description'           => __( 'Post Type Description', 'apuestanweb-lang' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'excerpt','author','post_meta' ),
-		'taxonomies'            => array('post_tag'),
+		'taxonomies'            => array(),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -167,37 +169,20 @@ function my_get_posts( $query )
     global $wp_query;
     if ( !is_preview() && !is_admin() && !is_singular() )
     {
-        $args = array(
-            'public' => true ,
-            '_builtin' => false
-        );
-        $output = 'names';
-        $operator = 'and';
-        $post_types = get_post_types( $args , $output , $operator );
-        $post_types = array_merge( $post_types , array( 'post', 'pronosticos') );
-        if ($query->is_feed)
-        {
-            /* Si es el Feed no insertes los custom posts, si quiere mostrarlo quita este if */
-        } else {
-            $my_post_type = get_query_var( 'post_type' );
-            if ( empty( $my_post_type ) )
-            {
-                $query->set( 'post_type' , $post_types );
-            }
-        }
+        $post_types = array_merge( array( 'post', 'pronosticos') );
     }
     return $query;
 }
-add_filter( 'pre_get_posts', 'my_get_posts' );
+add_filter( 'pre_get_posts', 'my_get_posts' ); 
 
 // Creando taxonomia, para pronosticos.
 
 function taxonomia_tipo_deporte() {
 	$labels = array(
-		'name'                => _x( 'deportes', 'taxonomy general name', 'apuestanweb-lang' ),
+		'name'                => _x( 'deporte', 'taxonomy general name', 'apuestanweb-lang' ),
 		'singular_name'       => _x( 'deporte', 'taxonomy singular name', 'apuestanweb-lang' ),
 		'search_items'        => __( 'Buscar deporte', 'apuestanweb-lang' ),
-		'all_items'           => __( 'Todos los tipos de deportes', 'apuestanweb-lang' ),
+		'all_items'           => __( 'Todos los tipos de deporte', 'apuestanweb-lang' ),
 		'parent_item'         => __( 'deporte padre', 'apuestanweb-lang' ),
 		'parent_item_colon'   => __( 'deporte Padre:', 'apuestanweb-lang' ),
 		'edit_item'           => __( 'Editar deporte', 'apuestanweb-lang' ),
@@ -222,35 +207,6 @@ function taxonomia_tipo_deporte() {
 }
 add_action( 'init', 'taxonomia_tipo_deporte' );
 
-function taxonomia_tipo_estado() {
-	$labels = array(
-		'name'                => _x( 'estados', 'taxonomy general name', 'apuestanweb-lang' ),
-		'singular_name'       => _x( 'estado', 'taxonomy singular name', 'apuestanweb-lang' ),
-		'search_items'        => __( 'Buscar estado', 'apuestanweb-lang' ),
-		'all_items'           => __( 'Todos los tipos de estados', 'apuestanweb-lang' ),
-		'parent_item'         => __( 'estado padre', 'apuestanweb-lang' ),
-		'parent_item_colon'   => __( 'estado Padre:', 'apuestanweb-lang' ),
-		'edit_item'           => __( 'Editar estados', 'apuestanweb-lang' ),
-		'update_item'         => __( 'Editar estados', 'apuestanweb-lang' ),
-		'add_new_item'        => __( 'Agregar nuevo estado', 'apuestanweb-lang' ),
-		'new_item_name'       => __( 'Nuevo estado', 'apuestanweb-lang' ),
-		'menu_name'           => __( 'estados', 'apuestanweb-lang' ),
-	);
-
-	$args = array(
-		'hierarchical'      => true,
-		'labels'            => $labels,
-		'show_ui'           => true,
-		'show_admin_column' => true,
-		'query_var'         => true,
-		'show_in_rest'      => true,
-		'show_in_nav_menus' => true,
-		'rewrite' => array('slug' => 'estado', 'with_front' => true)
-	);
-	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'estado', array( 'pronosticos' ), $args );
-}
-add_action( 'init', 'taxonomia_tipo_estado' );
 
 // Register CPT casas apuestas
 function cpt_casa_apuestas() {
@@ -393,3 +349,11 @@ $wp_roles->add_role('VIP', 'VIP', array(
 	'delete_posts' => false, // No tienen permisos suficientes para eliminar entradas
 	'leer_datos' => true // Creamos una capacidad nueva exclusiva para este rol
   ));
+
+remove_role('vip');
+
+
+
+
+
+?>

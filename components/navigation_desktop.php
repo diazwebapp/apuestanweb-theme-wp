@@ -18,7 +18,7 @@
             </ul>
         <?php } 
     ?>
-    <div id="btn_menu_mobile" >menu</div>
+    <div id="btn_menu_mobile" ><a>menu</a></div>
 
     <?php if ( has_custom_logo() ){
             the_custom_logo();
@@ -58,5 +58,15 @@
             </ul>
         <?php } 
     ?>
-    <div>Contact</div>
+    <div>
+    <?php 
+            if (is_user_logged_in())
+                {
+                    echo '<a href="'. wp_logout_url() .'">'. __("Salir") .'</a>';
+                }
+                else
+                {
+                    echo '<a href="'. wp_login_url() .'">'. __("Acceder") .'</a></li>';
+        } ?>
+    </div>
 </nav>

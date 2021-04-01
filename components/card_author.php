@@ -33,12 +33,8 @@
                 </div>
 
                 <div class="barra-grafica">
-                    <div style="width:<?php echo ($total_p / $total_s ) ?>%;" >
-                        <?php echo  ($total_p / $total_s ) ?>% aciertos
-                    </div>
-                    <div style="width:<?php echo  ($total_p / $total_f) ?>%;" >
-                        <?php echo ($total_p / $total_f) ?>% fallidos
-                    </div>
+                    <canvas data_total="<?php echo $total_p ?>" data_success="<?php echo $total_s ?>" data_failed="<?php echo $total_f ?>" id="grafics" style="width:100%;height:100%;" >
+                    </canvas>
                 </div>
                 <?php endif; ?>
             </div>

@@ -32,9 +32,9 @@
 												<?php echo $nombre_equipo_2[0] ?>
 											</h2>
 											<div class="slide_average_pronostico" >
-												<p><?php echo $average_equipo_1[0] ?></p>
+												<p><?php echo 1 / $average_equipo_1[0] * 100 ?>%</p>
 												<p>%</p>
-												<p><?php echo $average_equipo_2[0] ?></p>
+												<p><?php echo 1 / $average_equipo_2[0] * 100 ?>%</p>
 											</div>
 										</div>
 									<?php endif;

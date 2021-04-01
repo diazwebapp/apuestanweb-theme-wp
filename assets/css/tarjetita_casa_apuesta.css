@@ -26,7 +26,7 @@
 .tarjeta_casa_apuesta > div:first-child{
 	height: 130px;
 	overflow: hidden;
-	background: url('./assets/images/futbol1.jpg');
+	background: url('../images/futbol1.jpg');
 	background-size: cover;
 	background-color: lawngreen;
 	background-blend-mode: multiply;

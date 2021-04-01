@@ -14,9 +14,11 @@
 
         }else{ ?>
             <ul>
+          
                 <li><a href="<?php echo home_url().'/index.php'  ?>/e-sports" >e-sports</a></li>
 
                 <li><a href="<?php echo home_url().'/index.php'  ?>/blog" >blog</a></li>
+          
 
                 <li><a href="<?php echo get_post_type_archive_link('pronosticos'); ?>" >pronosticos</a></li>
 

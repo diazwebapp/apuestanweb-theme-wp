@@ -6,7 +6,7 @@ nav,nav > ul,nav > div{
 	align-items: center;
 }
 nav > div,nav > ul{
-	width:calc(50% - 100px);
+	width:calc(50% - 135px);
 	justify-content: center;
 	background:var(--secondary-color);
 }
@@ -34,7 +34,7 @@ nav > ul > li:nth-child(2n):before{
 	z-index: -1;
 }
 
-nav > ul > li a,nav > div, .menu_mobile > ul li a{
+nav > ul > li a,nav > div > a, .menu_mobile > ul li a{
 	text-transform: uppercase;
 	padding: 5px;
 	color:var(--bg-page);
@@ -46,7 +46,7 @@ nav > ul{
 }
 
 nav > a{
-	width:200px;
+	width:270px;
 	height:var(--height-header);
 	overflow: hidden;
 	position: relative;
@@ -73,9 +73,9 @@ nav > a::after{
 	z-index:-1;
 }
 nav > a > img {
-	width:100%;
+	width: 100%;
 	height:var(--height-header);
-	object-fit: contain;
+	object-fit:contain;
 }
 /**********Navigation Mobile***************/
 .menu_mobile,.menu_mobile_bg{
@@ -90,6 +90,9 @@ nav > a > img {
 	background:var(--primary-color);
 	z-index:var(--index-header);
 }
+.menu_mobile{
+	left: -100%;
+}
 .menu_mobile > ul{
 	width:100%;
 	display:flex;
@@ -100,10 +103,13 @@ nav > a > img {
 .menu_mobile > ul li{
 	width:100%;
 	margin: 5px 0;
-	border-bottom: 1px solid var(--secondary-color);
 }
-.menu_mobile{
-	left: -100%;
+.menu_mobile > ul li a{
+	display: block;
+	border-bottom: 1px solid var(--shadow);
+	padding: 10px 3px;
+	text-align: left;
+	font-weight: bold;
 }
 .menu_mobile_bg{
 	display:none;
@@ -154,7 +160,7 @@ nav > a > img {
 	nav > a > img {
 		width:100%;
 		height:var(--height-header);
-		object-fit: contain;
+		object-fit: cover;
 	}
 	.menu_mobile{
 		display: none;

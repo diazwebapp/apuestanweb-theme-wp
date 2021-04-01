@@ -9,12 +9,17 @@
     $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2");
     $resena_equipo_2 = get_post_meta(get_the_ID(),"resena_equipo_2");
     $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2");
-    $tags = wp_get_post_tags(get_the_ID());
+
     $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido");
     $estado_pronostico = get_post_meta(get_the_ID(),"estado_pronostico");
+    $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico");
+
 ?>
 <div class="tarjetita_pronostico" >
-    <h3 class="title_pronostico" ><?php echo __($estado_pronostico[0], 'apuestanweb-lang') ?></h3>
+    <h3 class="title_pronostico" ><?php echo __($nombre_equipo_1[0].' vs '.$nombre_equipo_2[0], 'apuestanweb-lang') ?></h3>
+    <?php if($acceso_pronostico[0] !== 'free'):?>
+        <b data="<?php echo $acceso_pronostico[0] ?>" class="sticker_tarjetita" ></b>
+    <?php endif; ?>
     <div class="equipos_pronostico" >
         <div>
             <img src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
@@ -29,16 +34,15 @@
             <p><?php if($nombre_equipo_2[0]){echo __($nombre_equipo_2[0],'apuestanweb-lang'); }else{echo __("falta equipo 1","apuestanweb-lang"); } ?></p>
         </div>
     </div>
-    <?php  
-            if(count($tags) > 0):
-                foreach($tags as $tag):
-                    if($tag->name == $current_user->roles[0] || $current_user->roles[0] == 'administrator'){ ?>
+    <?php  //si no es free o no tienen rango necesario
+            if($acceso_pronostico[0] !== 'free'):
+                if($acceso_pronostico[0] == $current_user->roles[0] || $current_user->roles[0] == 'administrator' || $current_user->roles[0] == 'author' || $current_user->roles[0] == 'editor' ): ?>
                         <div class="average_pronostico" >
                             <p>
                                 <?php echo ceil(1 / $average_equipo_1[0] * 100); ?>%
                             </p>
                             <p>
-                                <?php echo $tag->name; ?>
+                                <?php echo $acceso_pronostico[0]; ?>
                             </p>
                             <p>
                                 <?php echo ceil(1 / $average_equipo_2[0] * 100);?>%
@@ -47,17 +51,17 @@
                         <a href="<?php the_permalink() ?>">
                             Ver pronostico
                         </a>
-                    <?php }else{?>
+                    <?php else:?>
                         <button class="block_content"></button>
-                    <?php }
-                endforeach; endif;
-            if(count($tags) == 0): ?>
+                <?php endif; 
+                //si el contenido es free o tienen el rango necesario
+            else: ?>
                     <div class="average_pronostico" >
                             <p>
                                 <?php echo ceil(1 / $average_equipo_1[0] * 100); ?>%
                             </p>
                             <p>
-                                <?php echo $tag->name; ?>
+                                <?php echo $acceso_pronostico[0]; ?>
                             </p>
                             <p>
                                 <?php echo ceil(1 / $average_equipo_2[0] * 100);?>%
@@ -66,6 +70,6 @@
                     <a href="<?php the_permalink() ?>">
                         Ver pronostico
                     </a>
-    <?php   endif;?>
+    <?php  endif;?>
    
 </div>

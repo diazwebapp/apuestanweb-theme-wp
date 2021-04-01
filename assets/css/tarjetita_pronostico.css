@@ -1,4 +1,26 @@
-
+.sticker_tarjetita{
+	width:100%;
+	position: absolute;
+	left:0;
+	top:0;
+	height: 100%;
+	z-index: 1;
+	overflow:hidden ;
+}
+.sticker_tarjetita::before{
+	content: attr(data);
+	width:35%;
+	position: absolute;
+	left:-10%;
+	top:5%;
+	background: var(--primary-color);
+	height: 20px;
+	transform: rotate(-45deg);
+	z-index: 2;
+	color: white;
+	text-align: center;
+	line-height: 20px;
+}
 .block_content{
 	position: relative;
 }
@@ -29,7 +51,6 @@
 	grid-column:1 / span 1;
 }
 .container_posts{
-	background:transparent;
 	grid-template-columns: repeat(2,1fr);
 }
 /* Tarjetita pronostico*/
@@ -158,6 +179,7 @@
 /*tarjetita en pagina unica */
 .single_pronostico{
 	margin: 20px 0 !important;
+	background: var(--bg-page);
 }
 .single_pronostico img{
 	width:20vmin !important;

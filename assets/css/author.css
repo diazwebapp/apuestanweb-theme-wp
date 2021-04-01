@@ -48,18 +48,6 @@ div:first-child,.card_author > div:nth-child(3){
 	width:100%;
 }
 
-.card_author .barra-grafica div{
-    font-weight: bold;
-    color:white;
-    padding: 7px 0;
-	background: var(--secondary-color);
-    margin:8px 0;
-    text-align: center;
-    overflow: hidden;
-}
-.card_author .barra-grafica div:last-child{
-	background: var(--primary-color);
-}
 @media(min-width:720px){
 	.card_author{
         grid-template-columns: repeat(2,1fr);

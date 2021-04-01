@@ -58,10 +58,10 @@
 	--secondary-color:#1e73bf;
 	--bg-sub-title:#043a69;
 	--bg-average:#c6dcef;
-	--height-header:40px;
+	--height-header:50px;
 	--radius:7px;
-	--shadow:#9c9b9b;
-	--shadow-light:#fafbfc;
+	--shadow:#cecece;
+	--shadow-light:#f7f7f7;
 	--index-header:900000;
 	--padding-horizontal:0 2px;
 }
@@ -200,7 +200,7 @@ main > article > section{
 }
 @media(min-width:860px){
 	:root{
-		--height-header:50px;
+		--height-header:60px;
 	}
 }
 @media(min-width:1080px){

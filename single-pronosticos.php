@@ -35,11 +35,8 @@ $author_posts = new wp_Query(array(
                     
                         $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido");
                         ?>
-                        <div class="imagen_destacada_container" >
-                            <?php if(has_post_thumbnail()) : 
-                                        the_post_thumbnail();
-                                  endif; ?>
-                        </div>
+                       
+                       <h1><?php the_title() ?></h1>
 
                         <div href="<?php the_permalink() ?>" class="tarjetita_pronostico single_pronostico" >
                                 <h3 class="title_pronostico" ><?php __(the_title(),'apuestanweb-lang') ?></h3>
