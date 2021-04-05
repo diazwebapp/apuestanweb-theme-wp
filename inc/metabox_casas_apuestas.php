@@ -13,6 +13,7 @@ function func_casa_apuesta($post){
     $slogan = get_post_meta($post->ID,'slogan_casa_apuesta')[0];
     $puntuacion = get_post_meta($post->ID,'puntuacion_casa_apuesta')[0];
     $tiempo_pago = get_post_meta($post->ID,'tiempo_pago_casa_apuesta')[0];
+    $url_logo = get_post_meta($post->ID,'url_logo_casa_apuesta')[0];
 
     $metodo_pago_1= get_post_meta($post->ID,'m_p_icon_1')[0];
     $metodo_pago_2= get_post_meta($post->ID,'m_p_icon_2')[0];
@@ -32,6 +33,9 @@ function func_casa_apuesta($post){
     .adm_meta_ca > div > *{
         width:90%;
     }
+    .adm_meta_ca > div > button{
+        background:blue;
+    }
     </style>
 	<div class="adm_meta_ca" style="display:flex;flex-flow:row wrap;align-items:flex-start;align-content:flex-start;" >
         <div class="upload_img" >
@@ -42,23 +46,23 @@ function func_casa_apuesta($post){
 
         <div class="upload_img">
             <button id="m_p_icon_1">m. Pago 1</button>
-            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_1" src="<?php echo $m_p_icon_1 ?>"/>
-            <input type="hidden" name="m_p_icon_1" id="url_m_p_icon_1" value="<?php echo $m_p_icon_1 ?>">
+            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_1" src="<?php echo $metodo_pago_1 ?>"/>
+            <input type="hidden" name="m_p_icon_1" id="url_m_p_icon_1" value="<?php echo $metodo_pago_1 ?>">
         </div>
         <div class="upload_img">
             <button id="m_p_icon_2">m. Pago 2</button>
-            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_2" src="<?php echo $m_p_icon_2 ?>"/>
-            <input type="hidden" name="m_p_icon_2" id="url_m_p_icon_2" value="<?php echo $m_p_icon_2 ?>">
+            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_2" src="<?php echo $metodo_pago_2 ?>"/>
+            <input type="hidden" name="m_p_icon_2" id="url_m_p_icon_2" value="<?php echo $metodo_pago_2 ?>">
         </div>
         <div class="upload_img">
             <button id="m_p_icon_3">m. Pago 3</button>
-            <img width="80px" height="80px" style="object-fit:cover;" src="<?php echo $m_p_icon_3 ?>" id="prev_img_m_p_icon_3" />
-            <input type="hidden" name="m_p_icon_3" id="url_m_p_icon_3" value="<?php echo $m_p_icon_3 ?>">
+            <img width="80px" height="80px" style="object-fit:cover;" src="<?php echo $metodo_pago_3 ?>" id="prev_img_m_p_icon_3" />
+            <input type="hidden" name="m_p_icon_3" id="url_m_p_icon_3" value="<?php echo $metodo_pago_3 ?>">
         </div>
         <div class="upload_img">
             <button id="m_p_icon_4">m. Pago 4</button>
-            <img width="80px" height="80px" style="object-fit:cover;" src="<?php echo $m_p_icon_4 ?>" id="prev_img_m_p_icon_4" />
-            <input type="hidden" name="m_p_icon_4" value="<?php echo $m_p_icon_4 ?>" id="url_m_p_icon_4">
+            <img width="80px" height="80px" style="object-fit:cover;" src="<?php echo $metodo_pago_4 ?>" id="prev_img_m_p_icon_4" />
+            <input type="hidden" name="m_p_icon_4" value="<?php echo $metodo_pago_4 ?>" id="url_m_p_icon_4">
         </div>
 
         <div >
@@ -68,7 +72,7 @@ function func_casa_apuesta($post){
 
         <div >
             <label for="slogan_casa_apuesta">Slogan:</label>
-            <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo get_post_meta($post->ID,'url_logo_casa_apuesta')[0]  ?>" >
+            <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo $url_logo  ?>" >
         </div>
 
         <div >

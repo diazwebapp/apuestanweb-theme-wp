@@ -25,7 +25,7 @@
     </div>
     <div>
         <div >
-            <b>Tiempo de pago</b>
+            <b> <?php echo $metodo_pago_3 ?></b>
             <span><?php echo $tiempo_pago ?> días</span>
         </div>
         <div>
@@ -33,19 +33,19 @@
         </div>
         <div class="metodos_pago">
             <?php if($metodo_pago_1): ?>
-                <img src="<?php echo $metodo_pago_1 ?>" alt="<?php the_title() ?>">
+                <img src="<?php echo $metodo_pago_1 ?>" >
             <?php endif; ?>
 
             <?php if($metodo_pago_2): ?>
-                <img src="<?php echo $metodo_pago_2 ?>" alt="<?php the_title() ?>">
+                <img src="<?php echo $metodo_pago_2 ?>" >
             <?php endif; ?>
 
-            <?php if($metodo_pago_3): ?>
-                <img src="<?php echo $metodo_pago_3 ?>" alt="<?php the_title() ?>">
+            <?php if($metodo_pago_3 !== false): ?>
+                <img src="<?php echo $metodo_pago_3 ?>" >
             <?php endif; ?>
 
             <?php if($metodo_pago_4): ?>
-                <img src="<?php echo $metodo_pago_4 ?>" alt="<?php the_title() ?>">
+                <img src="<?php echo $metodo_pago_4 ?>" >
             <?php endif; ?>
         </div>
     
