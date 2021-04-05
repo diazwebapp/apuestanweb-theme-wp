@@ -33,9 +33,6 @@ function func_casa_apuesta($post){
     .adm_meta_ca > div > *{
         width:90%;
     }
-    .adm_meta_ca > div > button{
-        background:blue;
-    }
     </style>
 	<div class="adm_meta_ca" style="display:flex;flex-flow:row wrap;align-items:flex-start;align-content:flex-start;" >
         <div class="upload_img" >
