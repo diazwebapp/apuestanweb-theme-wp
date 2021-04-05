@@ -17,7 +17,7 @@
             <b><?php echo $slogan ?></b>
         </div>
         <div>
-            <span><?php echo $puntuacion ?></span>
+            <b><?php echo $puntuacion . '/ 5' ?></b>
             <a href="<?php the_permalink() ?>">
                 <button>ofertar</button>
             </a>
@@ -32,10 +32,21 @@
             <b>Metodos de pago</b>
         </div>
         <div class="metodos_pago">
-            <img src="<?php echo $metodo_pago_1 ?>" alt="<?php the_title() ?>">
-            <img src="<?php echo $metodo_pago_2 ?>" alt="<?php the_title() ?>">
-            <img src="<?php echo $metodo_pago_3 ?>" alt="<?php the_title() ?>">
-            <img src="<?php echo $metodo_pago_4 ?>" alt="<?php the_title() ?>">
+            <?php if($metodo_pago_1): ?>
+                <img src="<?php echo $metodo_pago_1 ?>" alt="<?php the_title() ?>">
+            <?php endif; ?>
+
+            <?php if($metodo_pago_2): ?>
+                <img src="<?php echo $metodo_pago_2 ?>" alt="<?php the_title() ?>">
+            <?php endif; ?>
+
+            <?php if($metodo_pago_3): ?>
+                <img src="<?php echo $metodo_pago_3 ?>" alt="<?php the_title() ?>">
+            <?php endif; ?>
+
+            <?php if($metodo_pago_4): ?>
+                <img src="<?php echo $metodo_pago_4 ?>" alt="<?php the_title() ?>">
+            <?php endif; ?>
         </div>
     
     </div>
