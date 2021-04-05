@@ -70,7 +70,8 @@ function apuestanweb_setup() {
 		'izquierda'  => __( 'Desktop Izquierda', 'apuestanweb-lang' ),
 		'derecha'  => __( 'Desktop Derecha', 'apuestanweb-lang' ),
 		'mobile'  => __( 'Mobile', 'apuestanweb-lang' ),
-		'sub_header'  => __( 'Menu de sub_header', 'apuestanweb-lang' )
+		'sub_header'  => __( 'Menu de sub_header', 'apuestanweb-lang' ),
+		'user_menu'  => __( 'Menu de user_menu', 'apuestanweb-lang' )
 	));
      
 	// Ready for i18n

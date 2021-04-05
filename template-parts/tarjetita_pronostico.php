@@ -16,14 +16,14 @@
 
 ?>
 <div class="tarjetita_pronostico" >
-    <h3 class="title_pronostico" ><?php echo __($nombre_equipo_1[0].' vs '.$nombre_equipo_2[0], 'apuestanweb-lang') ?></h3>
+    <h3 class="title_pronostico" ><?php echo _e($nombre_equipo_1[0].' vs '.$nombre_equipo_2[0], 'apuestanweb-lang') ?></h3>
     <?php if($acceso_pronostico[0] !== 'free'):?>
         <b data="<?php echo $acceso_pronostico[0] ?>" class="sticker_tarjetita" ></b>
     <?php endif; ?>
     <div class="equipos_pronostico" >
         <div>
             <img src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
-            <p><?php if($nombre_equipo_1[0]){echo $nombre_equipo_1[0]; }else{echo __("falta equipo 1","apuestanweb-lang"); }  ?></p>
+            <p><?php if($nombre_equipo_1[0]){echo $nombre_equipo_1[0]; }else{echo _e("falta equipo 1","apuestanweb-lang"); }  ?></p>
         </div>
         <div>
             <p><?php echo $fecha_partido[0] ?></p>
@@ -31,7 +31,7 @@
         </div>
         <div>
         <img src="<?php if($img_equipo_2[0]){ echo $img_equipo_2[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
-            <p><?php if($nombre_equipo_2[0]){echo __($nombre_equipo_2[0],'apuestanweb-lang'); }else{echo __("falta equipo 1","apuestanweb-lang"); } ?></p>
+            <p><?php if($nombre_equipo_2[0]){echo _e($nombre_equipo_2[0],'apuestanweb-lang'); }else{echo _e("falta equipo 1","apuestanweb-lang"); } ?></p>
         </div>
     </div>
     <?php  //si no es free o no tienen rango necesario

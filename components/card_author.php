@@ -22,7 +22,7 @@
                     <!-- <img src="<?php //echo get_template_directory_uri(). '/assets/images/icon.png' ?>" alt="Erick"> -->
                 </div>
                 <div >
-                    <b><?php echo the_author_meta('nickname') ?></b>
+                    <b><?php echo _e(the_author_meta('nickname'),'apuestanweb-lang') ?></b>
                     <p><?php echo $total_s .'-'.$total_f ?></p>
                 </div>
                 <!-- Solo en pronosticos-->

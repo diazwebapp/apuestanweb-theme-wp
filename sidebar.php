@@ -14,7 +14,7 @@
 <aside>
 <?php if($pronosticos->have_posts()): ?>
 <div class="aside_widgets">
-    <h2 class="sub_title" ><?php echo __('Ultimos pronosticos','apuestanweb-lang') ?></h2>
+    <h2 class="sub_title" ><?php echo _e('Ultimos pronosticos','apuestanweb-lang') ?></h2>
     <ul>
         <?php while($pronosticos->have_posts()): $pronosticos->the_post();
                 
@@ -130,7 +130,7 @@
 </div>
 
 <div class="aside_widgets">
-    <h2 class="sub_title" ><?php echo __('ultimos posts','apuestanweb-lang') ?></h2>
+    <h2 class="sub_title" ><?php echo _e('ultimos posts','apuestanweb-lang') ?></h2>
     <ul>
         <?php 
             while($posts->have_posts()):

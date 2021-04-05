@@ -19,7 +19,7 @@ $author_posts = new wp_Query(array(
                         </div>
 
                         
-                        <?php __(the_content(),'apuestanweb-lang') ?>
+                        <?php _e(the_content(),'apuestanweb-lang') ?>
             <?php endwhile; endif;
 
             

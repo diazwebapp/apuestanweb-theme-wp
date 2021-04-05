@@ -1,0 +1,300 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Apuestan web\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-05 07:22+0000\n"
+"PO-Revision-Date: 2021-04-05 07:22+0000\n"
+"Last-Translator: Erick Diaz\n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.2; wp-5.7\n"
+"X-Domain: apuestanweb-lang"
+
+#: page-blog.php:27 category.php:15
+msgid "todo"
+msgstr ""
+
+#: functions.php:70
+msgid "Desktop Izquierda"
+msgstr ""
+
+#: functions.php:71
+msgid "Desktop Derecha"
+msgstr ""
+
+#: functions.php:72
+msgid "Mobile"
+msgstr ""
+
+#: functions.php:73
+msgid "Menu de sub_header"
+msgstr ""
+
+#: functions.php:74
+msgid "Menu de user_menu"
+msgstr ""
+
+#: functions.php:112
+msgctxt "Pronostico General Name"
+msgid "pronosticos"
+msgstr ""
+
+#: functions.php:113
+msgctxt "Pronostico Singular Name"
+msgid "pronostico"
+msgstr ""
+
+#: functions.php:114
+msgid "Pronosticos"
+msgstr ""
+
+#: functions.php:115
+msgid "Pronostico"
+msgstr ""
+
+#: functions.php:116 functions.php:220
+msgid "Item Archives"
+msgstr ""
+
+#: functions.php:117 functions.php:221
+msgid "Item Attributes"
+msgstr ""
+
+#: functions.php:118 functions.php:222
+msgid "Parent Item:"
+msgstr ""
+
+#: functions.php:119 functions.php:223
+msgid "All Items"
+msgstr ""
+
+#: functions.php:120 functions.php:224
+msgid "Add New Item"
+msgstr ""
+
+#: functions.php:121 functions.php:225
+msgid "Add New"
+msgstr ""
+
+#: functions.php:122 functions.php:226
+msgid "New Item"
+msgstr ""
+
+#: functions.php:123 functions.php:227
+msgid "Edit Item"
+msgstr ""
+
+#: functions.php:124 functions.php:228
+msgid "Update Item"
+msgstr ""
+
+#: functions.php:125 functions.php:229
+msgid "View Item"
+msgstr ""
+
+#: functions.php:126 functions.php:230
+msgid "View Items"
+msgstr ""
+
+#: functions.php:127 functions.php:231
+msgid "Search Item"
+msgstr ""
+
+#: functions.php:128 functions.php:232
+msgid "Not found"
+msgstr ""
+
+#: functions.php:129 functions.php:233
+msgid "Not found in Trash"
+msgstr ""
+
+#: functions.php:130 functions.php:234
+msgid "Featured Image"
+msgstr ""
+
+#: functions.php:131 functions.php:235
+msgid "Set featured image"
+msgstr ""
+
+#: functions.php:132 functions.php:236
+msgid "Remove featured image"
+msgstr ""
+
+#: functions.php:133 functions.php:237
+msgid "Use as featured image"
+msgstr ""
+
+#: functions.php:134 functions.php:238
+msgid "Insert into item"
+msgstr ""
+
+#: functions.php:135 functions.php:239
+msgid "Uploaded to this item"
+msgstr ""
+
+#: functions.php:136 functions.php:240
+msgid "Items list"
+msgstr ""
+
+#: functions.php:137 functions.php:241
+msgid "Items list navigation"
+msgstr ""
+
+#: functions.php:138 functions.php:242
+msgid "Filter items list"
+msgstr ""
+
+#: functions.php:141
+msgid "pronostico"
+msgstr ""
+
+#: functions.php:142
+msgid "Post Type Description"
+msgstr ""
+
+#: functions.php:183
+msgctxt "taxonomy general name"
+msgid "deporte"
+msgstr ""
+
+#: functions.php:184
+msgctxt "taxonomy singular name"
+msgid "deporte"
+msgstr ""
+
+#: functions.php:185
+msgid "Buscar deporte"
+msgstr ""
+
+#: functions.php:186
+msgid "Todos los tipos de deporte"
+msgstr ""
+
+#: functions.php:187
+msgid "deporte padre"
+msgstr ""
+
+#: functions.php:188
+msgid "deporte Padre:"
+msgstr ""
+
+#: functions.php:189 functions.php:190
+msgid "Editar deporte"
+msgstr ""
+
+#: functions.php:191
+msgid "Agregar nuevo deporte"
+msgstr ""
+
+#: functions.php:192
+msgid "Nuevo deporte"
+msgstr ""
+
+#: functions.php:193
+msgid "deportes"
+msgstr ""
+
+#: functions.php:216
+msgctxt "Casa apuesta General Name"
+msgid "Casa apuestas"
+msgstr ""
+
+#: functions.php:217
+msgctxt "Casa apuesta Singular Name"
+msgid "Casa apuesta"
+msgstr ""
+
+#: functions.php:218
+msgid "Casa apuestas"
+msgstr ""
+
+#: functions.php:219 functions.php:245
+msgid "Casa apuesta"
+msgstr ""
+
+#: functions.php:246
+msgid "Casa apuesta Description"
+msgstr ""
+
+#: functions.php:273
+msgid "Apuestanweb Sidebar"
+msgstr ""
+
+#: functions.php:282
+msgid "Apuestanweb top banner"
+msgstr ""
+
+#: sidebar.php:17
+msgid "Ultimos pronosticos"
+msgstr ""
+
+#: sidebar.php:101
+msgid "Los mejores autores"
+msgstr ""
+
+#: sidebar.php:133
+msgid "ultimos posts"
+msgstr ""
+
+#: taxonomy.php:17
+msgid "No hay datos"
+msgstr ""
+
+#: single-pronosticos.php:46 single-pronosticos.php:53
+#: template-parts/tarjetita_pronostico.php:26
+#: template-parts/tarjetita_pronostico.php:34
+msgid "falta equipo 1"
+msgstr ""
+
+#: components/casas_apuestas.php:23
+msgid "Apostar"
+msgstr ""
+
+#: components/banner_top.php:3 components/banner_footer.php:5
+msgid "Has tus mejores apuestas y garantiza tu dinero"
+msgstr ""
+
+#: components/banner_top.php:6 components/banner_footer.php:8
+msgid "Casas apuestas"
+msgstr ""
+
+#: template-parts/tarjeta_casa_apuesta_h.php:22
+msgid "ofertar"
+msgstr ""
+
+#: template-parts/tarjeta_casa_apuesta_h.php:28
+msgid "Tiempo de pago"
+msgstr ""
+
+#: inc/metabox_casas_apuestas.php:114
+msgid "Necesitas más privilegios para publicar contenidos."
+msgstr ""
+
+#: inc/metabox_casas_apuestas.php:115
+msgid "Lo siento, no puedes crear contenidos desde esta cuenta."
+msgstr ""
+
+#. Name of the theme
+msgid "Apuestan web"
+msgstr ""
+
+#. Description of the theme
+msgid "Tema oficial para apuestanweb.com"
+msgstr ""
+
+#. URI of the theme
+msgid "https://github.com/erickoficial69/apuestanweb-theme-wp"
+msgstr ""
+
+#. Author of the theme
+msgid "diaz web app"
+msgstr ""
+
+#. Author URI of the theme
+msgid "http://diazwebapp.ga"
+msgstr ""

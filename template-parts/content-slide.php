@@ -40,7 +40,7 @@
 									<?php endif;
 									if($post->post_type=='post'): ?>
 									<h1>
-										<?php __(the_title(), 'apuestanweb-lang')  ?>
+										<?php _e(the_title(), 'apuestanweb-lang')  ?>
 									</h1>
 									<?php endif; ?>
 							</div>
@@ -85,7 +85,7 @@
 									<?php endif;
 									if($post->post_type=='post'): ?>
 									<h1>
-										<?php __(the_title(), 'apuestanweb-lang')  ?>
+										<?php _e(the_title(), 'apuestanweb-lang')  ?>
 									</h1>
 									<?php endif; ?>
 							</div>
