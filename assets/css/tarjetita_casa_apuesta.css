@@ -101,6 +101,9 @@
 	border-radius: var(--radius);
 	text-transform: uppercase;
 }
+.tarjetita_casa_apuesta_horinzontal > div .estrellita{
+	color: gold;
+}
 .tarjetita_casa_apuesta_horinzontal > div:first-child{
 	border-bottom: 1px solid var(--shadow);
 }

@@ -17,7 +17,7 @@
             <b><?php echo $slogan ?></b>
         </div>
         <div>
-            <b><?php echo $puntuacion . '/ 5' ?></b>
+            <b><?php echo $puntuacion ?>/5 <span class="estrellita" >✭</span></b>
             <a href="<?php the_permalink() ?>">
                 <button>ofertar</button>
             </a>
@@ -25,7 +25,7 @@
     </div>
     <div>
         <div >
-            <b> <?php echo $metodo_pago_3 ?></b>
+            <b> <?php echo $tiempo_pago ?></b>
             <span><?php echo $tiempo_pago ?> días</span>
         </div>
         <div>
@@ -40,7 +40,7 @@
                 <img src="<?php echo $metodo_pago_2 ?>" >
             <?php endif; ?>
 
-            <?php if($metodo_pago_3 !== false): ?>
+            <?php if($metodo_pago_3): ?>
                 <img src="<?php echo $metodo_pago_3 ?>" >
             <?php endif; ?>
 
