@@ -7,7 +7,7 @@ $query = new wp_Query(array(
 ));?>
 
 <main>
-	<article>
+	<article> 
 		<?php if(have_posts()){ 
 				set_query_var('blog_page',$query);
 				get_template_part('template-parts/content-slide');

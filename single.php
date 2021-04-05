@@ -22,8 +22,7 @@ $author_posts = new wp_Query(array(
                         <?php __(the_content(),'apuestanweb-lang') ?>
             <?php endwhile; endif;
 
-            set_query_var('data_card_author',array('post'=>$post));
-            get_template_part('components/card_author');
+            
 
             // posts del autor -->
 
