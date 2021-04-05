@@ -14,18 +14,18 @@
             <img src="<?php echo $url_logo ?>" alt="<?php the_title() ?>">
         </div>
         <div>
-            <b><?php echo $slogan ?></b>
+            <b><?php echo __($slogan,'apuestanweb-lang') ?></b>
         </div>
         <div>
             <b><?php echo $puntuacion ?>/5 <span class="estrellita" >✭</span></b>
             <a href="<?php the_permalink() ?>">
-                <button>ofertar</button>
+                <button><?php echo __('ofertar','apuestanweb-lang') ?></button>
             </a>
         </div>
     </div>
     <div>
         <div >
-            <b> <?php echo $tiempo_pago ?></b>
+            <b> <?php echo __('Tiempo de pago','apuestanweb-lang') ?></b>
             <span><?php echo $tiempo_pago ?> días</span>
         </div>
         <div>

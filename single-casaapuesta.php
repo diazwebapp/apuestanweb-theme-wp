@@ -27,7 +27,7 @@ $casas_apuestas = new wp_query(array(
                         $casas_apuestas->the_post() ;
                         
                         get_template_part('template-parts/tarjeta_casa_apuesta_h');
-                        echo __(the_content(),'apuestanweb-lang');
+                       
              endwhile; endif;?>
             </section>
     </article>
