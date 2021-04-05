@@ -40,8 +40,8 @@ function func_casa_apuesta($post){
 	<div class="adm_meta_ca" style="display:flex;flex-flow:row wrap;align-items:flex-start;align-content:flex-start;" >
         <div class="upload_img" >
             <button id="btn_lca">Subir logo</button>
-            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img" />
-            <input type="hidden" name="url_logo_casa_apuesta" id="url_logo_casa_apuesta">
+            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img" src="<?php echo $url_logo ?>"/>
+            <input type="hidden" name="url_logo_casa_apuesta" id="url_logo_casa_apuesta" value="<?php echo $metodo_pago_4 ?>" >
         </div>
 
         <div class="upload_img">
@@ -72,7 +72,7 @@ function func_casa_apuesta($post){
 
         <div >
             <label for="slogan_casa_apuesta">Slogan:</label>
-            <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo $url_logo  ?>" >
+            <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo $slogan  ?>" >
         </div>
 
         <div >
