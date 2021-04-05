@@ -10,8 +10,14 @@ add_meta_box(
 
 function func_casa_apuesta($post){ 
     wp_nonce_field( 'grabar_meta', 'casaapuesta_nonce' ); 
-    $time = $post->timpo_pago_casa_apuesta;
-    $slogan = $post->slogan_casa_apuesta; ?>
+    $slogan = get_post_meta($post->ID,'slogan_casa_apuesta')[0];
+    $puntuacion = get_post_meta($post->ID,'puntuacion_casa_apuesta')[0];
+    $tiempo_pago = get_post_meta($post->ID,'tiempo_pago_casa_apuesta')[0];
+
+    $metodo_pago_1= get_post_meta($post->ID,'m_p_icon_1')[0];
+    $metodo_pago_2= get_post_meta($post->ID,'m_p_icon_2')[0];
+    $metodo_pago_3= get_post_meta($post->ID,'m_p_icon_3')[0];
+    $metodo_pago_4= get_post_meta($post->ID,'m_p_icon_4')[0]; ?>
     <style>
     .adm_meta_ca > div{
         margin:0 5px;
@@ -36,38 +42,38 @@ function func_casa_apuesta($post){
 
         <div class="upload_img">
             <button id="m_p_icon_1">m. Pago 1</button>
-            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_1" />
-            <input type="hidden" name="m_p_icon_1" id="url_m_p_icon_1">
+            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_1" src="<?php echo $m_p_icon_1 ?>"/>
+            <input type="hidden" name="m_p_icon_1" id="url_m_p_icon_1" value="<?php echo $m_p_icon_1 ?>">
         </div>
         <div class="upload_img">
             <button id="m_p_icon_2">m. Pago 2</button>
-            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_2" />
-            <input type="hidden" name="m_p_icon_2" id="url_m_p_icon_2">
+            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_2" src="<?php echo $m_p_icon_2 ?>"/>
+            <input type="hidden" name="m_p_icon_2" id="url_m_p_icon_2" value="<?php echo $m_p_icon_2 ?>">
         </div>
         <div class="upload_img">
             <button id="m_p_icon_3">m. Pago 3</button>
-            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_3" />
-            <input type="hidden" name="m_p_icon_3" id="url_m_p_icon_3">
+            <img width="80px" height="80px" style="object-fit:cover;" src="<?php echo $m_p_icon_3 ?>" id="prev_img_m_p_icon_3" />
+            <input type="hidden" name="m_p_icon_3" id="url_m_p_icon_3" value="<?php echo $m_p_icon_3 ?>">
         </div>
         <div class="upload_img">
             <button id="m_p_icon_4">m. Pago 4</button>
-            <img width="80px" height="80px" style="object-fit:cover;" id="prev_img_m_p_icon_4" />
-            <input type="hidden" name="m_p_icon_4" id="url_m_p_icon_4">
+            <img width="80px" height="80px" style="object-fit:cover;" src="<?php echo $m_p_icon_4 ?>" id="prev_img_m_p_icon_4" />
+            <input type="hidden" name="m_p_icon_4" value="<?php echo $m_p_icon_4 ?>" id="url_m_p_icon_4">
         </div>
 
         <div >
-            <label for="puntuacion_casa_apuesta">Puntiación:</label>
-            <input type="number" steep="any" name="puntuacion_casa_apuesta" id="puntuacion_casa_apuesta">
+            <label for="puntuacion_casa_apuesta">Puntuación:</label>
+            <input type="number" steep="any" name="puntuacion_casa_apuesta" id="puntuacion_casa_apuesta" value="<?php echo $puntuacion ?>">
         </div>
 
         <div >
             <label for="slogan_casa_apuesta">Slogan:</label>
-            <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo esc_attr( $slogan ) ?>" >
+            <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo get_post_meta($post->ID,'url_logo_casa_apuesta')[0]  ?>" >
         </div>
 
         <div >
             <label for="tiempo_pago_casa_apuesta">Pago en:</label>
-            <input type="number" name="tiempo_pago_casa_apuesta" id="tiempo_pago_casa_apuesta" value="<?php echo esc_attr( $time ) ?>" >
+            <input type="number" name="tiempo_pago_casa_apuesta" id="tiempo_pago_casa_apuesta" value="<?php echo esc_attr( $tiempo_pago) ?>" >
         </div>
     </div>
 <?php } 
