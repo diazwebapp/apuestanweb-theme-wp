@@ -1,4 +1,5 @@
 @import './tarjetita_pronostico.css';
+@import './tarjetita_pronostico_vip.css';
 @import './navigation.css';
 @import './sidebar.css';
 @import './slide.css';
@@ -63,7 +64,7 @@
 	--shadow:#cecece;
 	--shadow-light:#f7f7f7;
 	--index-header:900000;
-	--padding-horizontal:0 2px;
+	--padding-horizontal:0 4px;
 }
 body,html{
 	background: var(--fondo);
@@ -115,9 +116,9 @@ main{
 main > article > section{
 	width:100% ;
 	border-radius: var(--radius);
-	margin: 10px auto;
 	overflow: hidden;
 	background: var(--bg-page);
+	margin-bottom: 10px;
 }
 .sub_title{
 	background: var(--bg-sub-title);
@@ -126,6 +127,8 @@ main > article > section{
 	text-align: center;
 	padding:7px 0;
 	font-size: 24px;
+	border-top-left-radius: var(--radius);
+	border-top-right-radius: var(--radius);
 }
 .bolder{
 	font-weight: bolder;

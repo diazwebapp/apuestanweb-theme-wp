@@ -1,12 +1,6 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-get_header(); 
-
-$cpt = new wp_Query(array(
-    'post_type' => 'pronosticos',
-	'posts_per_page' => get_option('to_count_pronosticos'), 
-    'paged' => ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1
-));?>
+get_header(); ?>
 
 <main>
 	<article>

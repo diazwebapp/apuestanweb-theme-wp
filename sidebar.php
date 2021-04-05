@@ -10,38 +10,6 @@
 
     $usuarios = get_users();
 
-    function statics_user($post_author){
-        
-        $author_posts = new wp_Query(array(
-            'author' => $post_author,
-            'tax_query'=>array(
-                array(
-                    'taxonomy' => 'deporte',
-                    'terms' => 'all'
-                )
-            )
-        ));
-
-        $total_p = $author_posts->post_count; 
-        $total_s=0; 
-        $total_f=0;
-            foreach ($author_posts->get_posts() as $key => $data) {
-                $state = get_post_meta($data->ID,'estado_pronostico');
-                if($state[0] == 'acertado'){
-                    $total_s++;
-                }
-                if($state[0] == 'no_acertado'){
-                    $total_f++;
-                }
-            }
-        return array(
-            'total_p' => $total_p,
-            'total_c' => $total_s+$total_f,
-            'total_s' => $total_s,
-            'total_f' => $total_f,
-            'average' => ceil($total_s / ($total_s+$total_f) * 100).'%',
-        );
-    }
 ?>
 <aside>
 <?php if($pronosticos->have_posts()): ?>

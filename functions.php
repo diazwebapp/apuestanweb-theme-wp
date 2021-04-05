@@ -1,5 +1,6 @@
 <?php
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+require_once('inc/metabox_casas_apuestas.php' );
 
 function apuestanweb_load_css_files() {
 	wp_enqueue_style( 'apuestanweb-style', get_template_directory_uri() . '/assets/css/styles.css' );
@@ -7,7 +8,6 @@ function apuestanweb_load_css_files() {
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_css_files' );
 
 function apuestanweb_load_scripts() {
-
 		wp_register_script( 'chart', get_template_directory_uri(). '/assets/js/chart.js');
 		wp_enqueue_script( 'chart' );
 	
@@ -265,20 +265,7 @@ function cpt_casa_apuestas() {
 }
 add_action( 'init', 'cpt_casa_apuestas');
 
-/* add_meta_box(
-	'meta_casa_apuesta',
-	'Datos casa apuesta',
-	'func_casa_apuesta',
-	'casaapuesta',
-	'normal',
-	'high'
-);
-function func_casa_apuesta($post){ ?>
-	<div>Datos de test</div>
-<?php } */
-
-/** Activanco widgets */
-
+//Activando widgeths
 function widgets_apuestanweb(){
 	register_sidebar(array(
 		'id' => 'primary_widget',
@@ -352,8 +339,39 @@ $wp_roles->add_role('VIP', 'VIP', array(
 
 remove_role('vip');
 
+//Extrae estadisticas del autor
+function statics_user($post_author){
+        
+	$author_posts = new wp_Query(array(
+		'author' => $post_author,
+		'tax_query'=>array(
+			array(
+				'taxonomy' => 'deporte',
+				'terms' => 'all'
+			)
+		)
+	));
 
-
+	$total_p = $author_posts->post_count; 
+	$total_s=0; 
+	$total_f=0;
+		foreach ($author_posts->get_posts() as $key => $data) {
+			$state = get_post_meta($data->ID,'estado_pronostico');
+			if($state[0] == 'acertado'){
+				$total_s++;
+			}
+			if($state[0] == 'no_acertado'){
+				$total_f++;
+			}
+		}
+	return array(
+		'total_p' => $total_p,
+		'total_c' => $total_s+$total_f,
+		'total_s' => $total_s,
+		'total_f' => $total_f,
+		'average' => ceil($total_s / ($total_s+$total_f) * 100).'%',
+	);
+}
 
 
 ?>
