@@ -38,7 +38,7 @@ function func_casa_apuesta($post){
         <div class="upload_img" >
             <button id="btn_lca">Subir logo</button>
             <img width="80px" height="80px" style="object-fit:cover;" id="prev_img" src="<?php echo $url_logo ?>"/>
-            <input type="hidden" name="url_logo_casa_apuesta" id="url_logo_casa_apuesta" value="<?php echo $metodo_pago_4 ?>" >
+            <input type="hidden" name="url_logo_casa_apuesta" id="url_logo_casa_apuesta" value="<?php echo $url_logo ?>" >
         </div>
 
         <div class="upload_img">

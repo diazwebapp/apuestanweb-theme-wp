@@ -6,7 +6,7 @@ $casas_apuestas = new wp_query(array(
 ));
 ?>
 <main>
-    <article>
+    <section>
         <?php if(have_posts()):
                     while(have_posts()):
                         the_post() ;
@@ -21,7 +21,7 @@ $casas_apuestas = new wp_query(array(
                         </div>
                         <?php __(the_content(),'apuestanweb-lang') ?>
             <?php endwhile; endif;?>
-            <section>
+            <article>
             <?php if($casas_apuestas->have_posts()):
                     while($casas_apuestas->have_posts()):
                         $casas_apuestas->the_post() ;
@@ -29,8 +29,8 @@ $casas_apuestas = new wp_query(array(
                         get_template_part('template-parts/tarjeta_casa_apuesta_h');
                        
              endwhile; endif;?>
-            </section>
-    </article>
+            </article>
+    </section>
 
 
     <?php get_sidebar() ?>

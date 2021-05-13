@@ -6,33 +6,6 @@
 @import './tarjetita_casa_apuesta.css';
 @import './banner.css';
 @import './author.css';
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-
-	0. 	CSS Reset
-	1. 	Document Setup
-	2. 	Element Base
-	3. 	Helper Classes
-	4. 	Site Header
-	5. 	Menu Modal
-	6. 	Search Modal
-	7. 	Page Templates
-		a. 	Template: Cover Template
-		c. 	Template: Full Width
-	8.  Post: Archive
-	9.  Post: Single
-	10. Blocks
-	11. Entry Content
-	12. Comments
-	13. Site Pagination
-	14. Error 404
-	15. Widgets
-	16. Site Footer
-	17. Media Queries
-
------------------------------------------------------------------------------ */
-
 
 /* -------------------------------------------------------------------------- */
 
@@ -48,27 +21,19 @@
 	list-style: none;
 	scroll-behavior: smooth;
 	text-decoration: none;
-	color:var(--dark);
+	color:var(--font-color);
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-:root{
-	--fondo:#ececeb;
-	--bg-page:#fff;
-	--dark:#484848;
-	--primary-color:#ff4141;
-	--secondary-color:#1e73bf;
-	--bg-sub-title:#043a69;
-	--bg-average:#c6dcef;
-	--height-header:50px;
-	--radius:7px;
-	--shadow:#cecece;
-	--shadow-light:#f7f7f7;
+:root{	
+	--height-header:60px;
+	--radius:16px;
 	--index-header:900000;
-	--padding-horizontal:0 4px;
+	--padding-horizontal:0 5px;
 }
 body,html{
 	background: var(--fondo);
 }
+
 header,footer{
 	width:100%;
 }
@@ -93,14 +58,30 @@ header{
 	top:0;
 	left: auto;
 	height:var(--height-header);
-	box-shadow: 0px 1px var(--dark);
+	box-shadow: 0px 1px 5px var(--shadow);
 	z-index: var(--index-header);
 }
-
+#theme_mode_header{
+	top:unset;
+	display: grid;
+	place-content: center;
+	place-items: center;
+	height:calc(var(--height-header) / 1.5);
+	width:calc(var(--height-header) / 1.5);
+	border-radius: 50%;
+	font-size: 2em;
+	padding-top:-5px;
+	cursor: pointer;
+	background: transparent;
+	box-shadow: unset;
+}
+#theme_mode_header:hover{
+	box-shadow: 0px 1px 5px var(--font-color);
+}
 .container,main,nav{
 	width:100%;
 	padding:var(--padding-horizontal);
-	max-width: 1280px;
+	max-width: 1170px;
 	position:relative;
 	margin: 0 auto;
 }
@@ -110,19 +91,17 @@ main{
 	grid-template-columns: 100%;
 	margin: 0 auto;
 	justify-content: space-between;
-	margin-top: calc(var(--height-header) * 2.5);
+	margin-top: calc(var(--height-header) * 2.2);
 }
 
-main > article > section{
+main > section > article{
 	width:100% ;
 	border-radius: var(--radius);
-	overflow: hidden;
 	background: var(--bg-page);
-	margin-bottom: 10px;
 }
 .sub_title{
 	background: var(--bg-sub-title);
-	color:var(--bg-page);
+	color:var(--color-sub-title);
 	width:100%;
 	text-align: center;
 	padding:7px 0;
@@ -133,11 +112,22 @@ main > article > section{
 .bolder{
 	font-weight: bolder;
 }
-.btn_outline_blue{
+.btn_outline,.btn_outline_blue,.btn_outline_red,.btn_outline_white{
 	border-radius: var(--radius);
-	box-shadow:0px 0px 10px var(--secondary-color);
 	text-align: center;
 	padding: 2px 10px;
+}
+.btn_outline{
+	border:2px solid var(--font-color);
+}
+.btn_outline_blue{
+	border:2px solid var(--secondary-color);
+}
+.btn_outline_blue{
+	border:2px solid var(--secondary-color);
+}
+.btn_outline_white{
+	border:2px solid white;
 }
 /********Sub header bar **************/
 .sub_header{
@@ -147,34 +137,48 @@ main > article > section{
 	right:0;
 	width: 100%;
 	z-index: calc(var(--index-header) - 2);
+	padding: var(--padding-horizontal);
 }
 .sub_header > div{
-	width:98%;
-	padding:0;
-	border-radius:0 0 var(--radius) var(--radius);
-	box-shadow:0px 0px 10px var(--shadow);
+	width:100%;
+	max-width: 1170px;
+	border-radius:0 0 10px 10px;
 	margin:0 auto;
 	background: var(--bg-page);
 	display: flex;
-	flex-flow:row wrap;
+	flex-flow:row nowrap;
 	align-items: center;
-	align-content: center;
-	justify-content: space-around;
+	justify-content: space-between;
+	overflow-x: auto;
+	overflow-y: hidden;
+	height: var(--height-header);
+	padding:unset;
+	padding-right: 10px;
+}
+.sub_header > div ::-webkit-scrollbar{
+	overflow: hidden !important;
 }
 .sub_header > div > a{
-	height: var(--height-header);
-	max-height: var(--height-header);
-	display: grid;
-	grid-template-columns: 32px calc(100% - 32px);
-	align-items: center;
-	gap: 5px;
+	margin: 0 10px;
 }
-.sub_header > div > a img{
-	width: 100%;
-	height:var(--height-header);
+.sub_header > div > a .icon_tag{
+	width: 32px;
+	height:32px;
+	overflow: hidden;
+	border-radius: 5px;
+	background: white;
+	margin: 0 auto;
+}
+.sub_header > div > a .icon_tag img{
+	width:100%;
+	height:100%;
 	object-fit:contain;
 }
 
+.sub_header > div > a p{
+	height: 20px;
+	overflow: hidden;
+}
 /* imagen destacada*/
 .imagen_destacada_container{
 	width: 100%;
@@ -182,14 +186,21 @@ main > article > section{
 }
 .imagen_destacada_container img{
 	width: 100%;
-	height:100%;
-	max-height: 480px;
+	height: 380px;
 }
 .container_pagination{
-	width:100%;
+	width:max-content;
+	max-width:100%;
 	min-width:300px;
 	display:flex;
-	justify-content:center;
+	justify-content:space-between;
+	border-top: 1px solid var(--secondary-color);
+	padding: 10px;
+	margin: 10px auto;
+	overflow-x: auto;
+}
+.container_pagination::-webkit-scrollbar{
+	display: none;
 }
 .container_pagination > span, .container_pagination > a{
 	padding: 5px 20px;
@@ -199,16 +210,35 @@ main > article > section{
 	margin:0 5px;
 	border-radius: 5px;
 }
-@media(min-width:640px){
+.cont_p_p{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+body::-webkit-scrollbar{
+	background:transparent;
+	width:5px;
+}
+*::-webkit-scrollbar-thumb{
+	background-color:red;
 }
 @media(min-width:860px){
-	:root{
-		--height-header:60px;
+	#theme_mode_header {
+		top:calc(var(--height-header) / 7);
+	}
+	.sub_header > div{
+		justify-content: space-around;
 	}
 }
 @media(min-width:1080px){
+	:root{
+		--height-header:60px;
+		--padding-horizontal:0 2px;
+	}
 	main{
-		grid-template-columns: calc(100% - 350px) 340px;
-		gap: 10px;
+		grid-template-columns: calc(100% - 340px) 320px;
+		gap: 20px;
 	}
 }

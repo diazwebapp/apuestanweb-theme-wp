@@ -19,7 +19,7 @@ $author_posts = new wp_Query(array(
 
 
 <main>
-    <article>
+    <section>
         <?php if(have_posts()):
                     while(have_posts()):
                         the_post() ;
@@ -34,9 +34,9 @@ $author_posts = new wp_Query(array(
                         $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2");
                     
                         $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido");
+                        $cuota_empate_pronostico = get_post_meta(get_the_ID(),"cuota_empate_pronostico");
+                        $puntuacion = get_post_meta($post->ID,'puntuacion_p');
                         ?>
-                       
-                       <h1><?php the_title() ?></h1>
 
                         <div href="<?php the_permalink() ?>" class="tarjetita_pronostico single_pronostico" >
                                 <h3 class="title_pronostico" ><?php __(the_title(),'apuestanweb-lang') ?></h3>
@@ -54,12 +54,14 @@ $author_posts = new wp_Query(array(
                                     </div>
                                 </div>
                                 <div class="average_pronostico" >
-                                    <p><?php echo $average_equipo_1[0] ?></p>
-                                    <p>%</p>
-                                    <p><?php echo $average_equipo_2[0] ?></p>
+                                    <p><?php echo ceil(1 / $average_equipo_1[0] * 100) ?> %</p>
+                                    <p><?php echo ceil( 1 / $cuota_empate_pronostico[0] * 100) ?> %</p>
+                                    <p><?php echo ceil( 1 / $average_equipo_2[0] * 100) ?> %</p>
                                 </div>
                         </div>
                         <?php __(the_content(),'apuestanweb-lang') ?>
+
+                        
             <?php endwhile; endif;
         
             set_query_var('data_card_author',array('post'=>$post,'pronosticos'=>$author_posts));
@@ -68,14 +70,14 @@ $author_posts = new wp_Query(array(
             
             // posts del autor -->
 			if($author_posts->have_posts()): ?>
-				<section class="container_posts">
+				<article class="container_posts">
 					<?php
 						while($author_posts->have_posts()): $author_posts->the_post(); 
                             
 							get_template_part('template-parts/tarjetita_post');
 						endwhile; ?>
 						
-				</section>
+				</article>
 				<div class="container_pagination" >
 					<?php echo paginate_links(array(
 							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
@@ -86,7 +88,7 @@ $author_posts = new wp_Query(array(
 					
 				</div>
             <?php endif; ?>
-    </article>
+    </section>
 
 
     <?php get_sidebar() ?>

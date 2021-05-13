@@ -6,7 +6,7 @@
                 <img src="<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>" alt="">
         <?php endif; ?>
     </div>
-    <small><span style="color:var(--secondary-color);" ><?php echo strtoupper($args) ?></span> <?php the_date('y-m-d')?></small>
+    <small><span style="color:var(--secondary-color);" ><?php if($args):echo strtoupper($args); endif; ?></span> <?php the_date('y-m-d')?></small>
     <h3 class="title_post" ><?php echo sprintf(__(the_title(),'apuestanweb-lang')) ?></h3>
     <?php echo __(the_excerpt(),'apuestanweb-lang') ?>
 </a>

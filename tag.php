@@ -5,7 +5,7 @@ $current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies($pos
 ?>
 
 <main>
-	<article> 
+	<section> 
     <?php 
 
         if(have_posts()): get_template_part('template-parts/content-slide'); endif; ?>
@@ -17,7 +17,7 @@ $current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies($pos
                     </a>
             <?php endforeach;  ?>
         </div>
-        <section class="container_posts" >
+        <article class="container_posts" >
             <?php 
                 while (have_posts() ) :
                     the_post();
@@ -27,9 +27,9 @@ $current_taxonomy = aw_taxonomy_by_post_type_and_term(get_object_taxonomies($pos
             <div class="container_pagination" >
                 <?php echo paginate_links();?>
             </div> 
-        </section>
+        </article>
 
-	</article>
+	</section>
 
     <?php get_sidebar() ?>
 </main>

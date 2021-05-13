@@ -1,6 +1,9 @@
 <?php
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 require_once('inc/metabox_casas_apuestas.php' );
+//include shortcodes
+require_once('admin_theme/shortcodes.php');
+require_once('admin_theme/admin_theme.php');
 
 function apuestanweb_load_css_files() {
 	wp_enqueue_style( 'apuestanweb-style', get_template_directory_uri() . '/assets/css/styles.css' );
@@ -13,6 +16,9 @@ function apuestanweb_load_scripts() {
 	
 		wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/scripts.js');
 		wp_enqueue_script( 'theme_scripts' );
+
+		wp_register_script( 'slide_scripts', get_template_directory_uri(). '/assets/js/slide_script.js');
+		wp_enqueue_script( 'slide_scripts' );
 			
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_scripts' );
@@ -38,7 +44,7 @@ function my_login_logo() { ?>
   function my_login_logo_url_title() {
 	return 'Apuestanweb';
   }//end my_login_logo_url_title()
-  add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+  add_filter( 'login_headertext', 'my_login_logo_url_title' );
 
 
 // Removes some links from the header
@@ -67,11 +73,11 @@ add_filter( 'excerpt_length', 'my_theme_excerpt' );
 function apuestanweb_setup() {
 
 	register_nav_menus(array(
-		'izquierda'  => __( 'Desktop Izquierda', 'apuestanweb-lang' ),
-		'derecha'  => __( 'Desktop Derecha', 'apuestanweb-lang' ),
+		'izquierda'  => __( 'Desktop Left', 'apuestanweb-lang' ),
+		'derecha'  => __( 'Desktop Right', 'apuestanweb-lang' ),
 		'mobile'  => __( 'Mobile', 'apuestanweb-lang' ),
-		'sub_header'  => __( 'Menu de sub_header', 'apuestanweb-lang' ),
-		'user_menu'  => __( 'Menu de user_menu', 'apuestanweb-lang' )
+		'sub_header'  => __( 'Menu subheader', 'apuestanweb-lang' ),
+		'user_menu'  => __( 'Menu user', 'apuestanweb-lang' )
 	));
      
 	// Ready for i18n
@@ -341,10 +347,16 @@ $wp_roles->add_role('VIP', 'VIP', array(
 remove_role('vip');
 
 //Extrae estadisticas del autor
-function statics_user($post_author){
-        
+function statics_user($user_id){
+	$total_p = 0; 
+	$total_s=0; 
+	$total_f=0;
+	$total_c = 0;
+	$total_av = 0;
+
+	
 	$author_posts = new wp_Query(array(
-		'author' => $post_author,
+		'author' => $user_id,
 		'tax_query'=>array(
 			array(
 				'taxonomy' => 'deporte',
@@ -354,25 +366,29 @@ function statics_user($post_author){
 	));
 
 	$total_p = $author_posts->post_count; 
-	$total_s=0; 
-	$total_f=0;
-		foreach ($author_posts->get_posts() as $key => $data) {
-			$state = get_post_meta($data->ID,'estado_pronostico');
-			if($state[0] == 'acertado'){
-				$total_s++;
-			}
-			if($state[0] == 'no_acertado'){
-				$total_f++;
-			}
-		}
-	return array(
-		'total_p' => $total_p,
-		'total_c' => $total_s+$total_f,
-		'total_s' => $total_s,
-		'total_f' => $total_f,
-		'average' => ceil($total_s / ($total_s+$total_f) * 100).'%',
-	);
-}
 
+	while($author_posts->have_posts()) : $author_posts->the_post();
+		$state = get_post_meta(get_the_ID(),'estado_pronostico');
+		if($state[0] == 'acertado'){
+			$total_s++;
+		}
+		if($state[0] == 'no_acertado'){
+			$total_f++;
+		}
+	endwhile;
+	//Calculamos los pronosticos completados sumando los success y failed
+	$total_c = $total_s+$total_f;
+	// si el total completados es mayor a cero calculamos el average para que no de errores
+	if($total_c > 0){
+		$total_av = ceil($total_s / $total_c * 100);
+	}
+
+	update_user_meta( $user_id, 'average_aciertos', $total_av );
+	update_user_meta( $user_id, 'pronosticos_completados', $total_c );
+	update_user_meta( $user_id, 'pronosticos_acertados', $total_s );
+	update_user_meta( $user_id, 'pronosticos_no_acertados', $total_f );
+	update_user_meta( $user_id, 'pronosticos_realozados', $total_p );
+
+}
 
 ?>

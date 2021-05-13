@@ -1,6 +1,7 @@
 <div class="menu_mobile_bg"></div>
 <div class="menu_mobile" >
 
+<b class="title_nav" >Apuestanweb</b>
 <?php
     //Mobile menu
         if ( has_nav_menu( 'mobile' ) ) {

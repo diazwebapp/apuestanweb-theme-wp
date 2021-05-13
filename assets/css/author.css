@@ -3,6 +3,7 @@
 	border-radius: var(--radius);
 	display: grid;
 	grid-template-columns: repeat(1,1fr);
+	margin: 10px auto;
 }
 .card_author_pronostico{
 	padding: 20px ;

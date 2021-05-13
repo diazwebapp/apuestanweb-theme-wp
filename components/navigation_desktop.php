@@ -1,12 +1,12 @@
 <nav>	
     <?php
     //Desktop menu
-        if ( has_nav_menu( 'izquierda' ) ) {
+        if ( has_nav_menu( 'left' ) ) {
 
             wp_nav_menu(
                 array(
                     'container'  => '',
-                    'theme_location' => 'izquierda',
+                    'theme_location' => 'left',
                 )
             );
 
@@ -18,7 +18,7 @@
             </ul>
         <?php } 
     ?>
-    <div id="btn_menu_mobile" ><a>menu</a></div>
+    <div id="btn_menu_mobile" ><a class="icon" href="#!" >☰</a></div>
 
     <?php if ( has_custom_logo() ){
             the_custom_logo();
@@ -30,43 +30,37 @@
         
     <?php
     //Desktop menu
-        if ( has_nav_menu( 'derecha' ) ) {
+        if ( has_nav_menu( 'right' ) ) {
 
-            wp_nav_menu(
+           wp_nav_menu(
                 array(
                     'container'  => '',
-                    'theme_location' => 'derecha',
+                    'theme_location' => 'right',
                 )
-            );
-
-        }else{ ?>
+            ); ?>
+            
+        <?php }else{ ?>
             <ul>
-                <li><a href="<?php echo get_post_type_archive_link('pronosticos'); ?>" ><?php echo __("pronósticos") ?></a></li>
+                <!-- <li><a href="<?php /* echo get_post_type_archive_link('pronosticos'); */ ?>" ><?php /* echo _e("pronósticos") */ ?></a></li> -->
+                <li>
                 <?php 
-                    if (is_user_logged_in())
-                        {
-                            echo '<li>
-                                        <a href="'. wp_logout_url() .'">'. __("Salir") .'</a>
-                                        </li>';
-                        }
-                        else
-                        {
-                            echo '<li>
-                                        <a href="'. wp_login_url() .'">'. __("Acceder") .'</a>
-                                        </li>';
-                } ?>
+                    if (is_user_logged_in()):?>
+                            <a title="Logout" href="<?php echo wp_logout_url() ?>"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M320,176V136a40,40,0,0,0-40-40H88a40,40,0,0,0-40,40V376a40,40,0,0,0,40,40H280a40,40,0,0,0,40-40V336" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><polyline points="384 176 464 256 384 336" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="191" y1="256" x2="464" y2="256" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg></a>
+                    <?php else: ?>
+                            <a class="icon" title="Login" href="<?php echo wp_login_url() ?>"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M192,176V136a40,40,0,0,1,40-40H392a40,40,0,0,1,40,40V376a40,40,0,0,1-40,40H240c-22.09,0-48-17.91-48-40V336" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><polyline points="288 336 368 256 288 176" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="80" y1="256" x2="352" y2="256" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg></a></li>
+                <?php endif; ?>
+                </li>
             </ul>
-        <?php } 
-    ?>
+            
+        <?php } ?>
+     
     <div>
-    <?php 
-            if (is_user_logged_in())
-                {
-                    echo '<a href="'. wp_logout_url() .'">'. __("Salir") .'</a>';
-                }
-                else
-                {
-                    echo '<a href="'. wp_login_url() .'">'. __("Acceder") .'</a></li>';
-        } ?>
+        <?php 
+            if (is_user_logged_in()):?>
+                    <a title="Logout" href="<?php echo wp_logout_url() ?>"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M320,176V136a40,40,0,0,0-40-40H88a40,40,0,0,0-40,40V376a40,40,0,0,0,40,40H280a40,40,0,0,0,40-40V336" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><polyline points="384 176 464 256 384 336" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="191" y1="256" x2="464" y2="256" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg></a>
+            <?php else: ?>
+                    <a class="icon" title="Login" href="<?php echo wp_login_url() ?>"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M192,176V136a40,40,0,0,1,40-40H392a40,40,0,0,1,40,40V376a40,40,0,0,1-40,40H240c-22.09,0-48-17.91-48-40V336" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><polyline points="288 336 368 256 288 176" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/><line x1="80" y1="256" x2="352" y2="256" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"/></svg></a></li>
+        <?php endif; ?>
     </div>
 </nav>
+

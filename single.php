@@ -8,7 +8,7 @@ $author_posts = new wp_Query(array(
 
 
 <main>
-    <article>
+    <section>
         <?php if(have_posts()):
                     while(have_posts()):
                         the_post() ;?>
@@ -27,13 +27,13 @@ $author_posts = new wp_Query(array(
             // posts del autor -->
 
 			if($author_posts->have_posts()): ?>
-				<section class="container_posts">
+				<article class="container_posts">
 					<?php
 						while($author_posts->have_posts()): $author_posts->the_post(); 
 							get_template_part('template-parts/tarjetita_post');
 						endwhile; ?>
 						
-				</section>
+				</article>
 				<div class="container_pagination" >
 					<?php echo paginate_links(array(
 							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
@@ -44,7 +44,7 @@ $author_posts = new wp_Query(array(
 					
 				</div>
 			<?php endif; ?>
-    </article>
+    </section>
 
 
     <?php get_sidebar() ?>

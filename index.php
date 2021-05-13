@@ -4,7 +4,7 @@ get_header();
 ?>
 
 <main>
-	<article>
+	<section>
 		<!-- Slide -->
 		<?php if(have_posts()){ get_template_part('template-parts/content-slide');} ?>
 
@@ -18,17 +18,17 @@ get_header();
             <?php endforeach;  ?>
 		</div>
 		<!-- Listado de posts -->
-        <section class="container_posts">
+        <article class="container_posts">
 		<?php
 
 			while(have_posts()): the_post(); 
 				get_template_part('template-parts/tarjetita_post');
 			endwhile; ?>
-		</section>	
+		</article>	
 		<div class="container_pagination" >
 				<?php echo paginate_links() ?>
 		</div>
-	</article>
+	</section>
 
 	<?php get_sidebar() ?>
 </main>

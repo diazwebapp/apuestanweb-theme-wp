@@ -7,7 +7,7 @@ $query = new wp_Query(array(
 ));?>
 
 <main>
-	<article> 
+	<section> 
 		<?php if(have_posts()){ 
 				set_query_var('blog_page',$query);
 				get_template_part('template-parts/content-slide');
@@ -30,13 +30,13 @@ $query = new wp_Query(array(
 		</div>
 		<?php 
 			if($query->have_posts()): ?>
-				<section class="container_posts">
+				<article class="container_posts">
 					<?php
 						while($query->have_posts()): $query->the_post(); 
 							get_template_part('template-parts/tarjetita_post');
 						endwhile; ?>
 						
-				</section>
+				</article>
 				<div class="container_pagination" >
 					<?php echo paginate_links(array(
 							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
@@ -47,7 +47,7 @@ $query = new wp_Query(array(
 					
 				</div>
 			<?php endif; ?>
-	</article>
+	</section>
 
 	<?php get_sidebar() ?>
 </main>

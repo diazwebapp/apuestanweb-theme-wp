@@ -1,71 +1,171 @@
 
-/**************Slide home****************/
-.slide_aw{
-	position: relative;
-	width:100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
-	border-radius:var(--radius);
-	max-height:480px;
-}
 
-.slide_item{
-	min-width: 100%;
-	height: max-content;
-	position: relative;
+.slide-contenedor{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin-bottom: 10px;
 }
-.slide_item > .slide_item_pronosticos{
+.slide-contenedor > .filter_slide{
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right:0;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 2;
+    width:100%;
+    height: 100%;
+}
+.miSlider{
+    height: 380px;
+    width: 100%;
+}
+.miSlider > .slide_item_pronostico_bottom,.miSlider > .slide_item_pronostico_top{
 	position: absolute;
-	bottom:0;
+	top:0;
 	width:100%;
 	padding: 20px;
+    z-index: 3;
 }
-.slide_item > .slide_item_pronosticos h2, .slide_item > h1{
-	color:var(--bg-page);
+.miSlider > .slide_item_pronostico_top{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.miSlider > .slide_item_pronostico_top .item_w_img{
+    width:100px;
+    position: relative;
+}
+.miSlider > .slide_item_pronostico_top .item_w_img img{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 10px;
+	border-radius: 50%;
+	border:2px solid var(--secondary-color);
+	padding: 8px;
+    background-color: white;
+}
+.miSlider > .slide_item_pronostico_top .item_w_img img:nth-child(2){
+	left: 52px;
+}
+.miSlider > .slide_item_pronostico_top .date_partido{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 0;
+    margin: 0;
+}
+.miSlider > .slide_item_pronostico_top .date_partido > span{
+    color:white;
+    font-size: 21px;
+}
+.miSlider > .slide_item_pronostico_top .date_partido > b{
+    color:grey;
+    text-shadow: 0px 0px white;
+}
+.miSlider > .slide_item_pronostico_bottom{
+    bottom: 0;
+    top: unset;
+}
+.miSlider > .slide_item_pronostico_bottom h2{
+	color:white;
 	text-align: left;
-	margin-bottom: 20px;
+    text-shadow:0px 0px grey;
+    font-size: 2em;
 }
-.slide_item > .slide_item_pronosticos h2:nth-child(2){
-	color:inherit;
+.miSlider > .slide_item_pronostico_bottom h2:nth-child(2){
+    color:lightgrey;
+    font-weight: lighter;
+    margin: 5px 0;
 }
-.slide_item > .slide_item_pronosticos .slide_average_pronostico{
+.miSlider > .slide_item_pronostico_bottom .slide_average_pronostico{
 	display: grid;
 	grid-template-columns: repeat(3,1fr);
-	width:300px;
+	width:250px;
 	gap:20px;
 }
-.slide_item > .slide_item_pronosticos .slide_average_pronostico p{
-	background-color: var(--fondo);
-	border-radius: var(--radius);
+.miSlider > .slide_item_pronostico_bottom .slide_average_pronostico p{
+	background-color: whitesmoke;
+	border-radius: 5px;
 	margin: 0 auto;
-	padding:1px 20px;
+    color: rgb(70, 70, 70);
+    font-weight: bold;
+    width: 100%;
 }
-.slide_item > h1{
+.miSlider > h3{
 	position: absolute;
 	bottom:10%;
 	left:auto;
 	width:100%;
+    color: white;
+    text-align:left;
+    padding: 0 10px;
+    z-index: 3;
 }
-.slide_item > img{
-	min-width:100%;
-	max-width:100%;
-	height:400px;
-	object-fit: cover;
-	position: relative;
+.miSlider img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    vertical-align: top;
+    transition: 1s;
 }
-.slide_item > .slide_item::after{
-	content: '';
-	position: absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	width:100%;
-	height: 100%;
-	background: red;
-	z-index: 20;
+
+.direcciones{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    z-index: 3;
+}
+
+.direcciones button{
+    color: #fff;
+    display: inline-block;
+    padding: 20px;
+    text-decoration: none;
+    background: transparent;
+}
+
+.direcciones button:hover{
+    background: rgba(0, 0, 0, .5);
+    transition: .3s;
+}
+
+.barras{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom:15px;
+}
+
+.barra{
+    cursor: pointer;
+    height:2px;
+    width: 25px;
+    margin: 0 2px;
+    background: #dcdde1;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.active{
+    background-color: #e74c3c;
+}
+
+.fade{
+    animation-name: fade;
+    animation-duration: .5s;    
+}
+
+@keyframes fade {
+    from {opacity: .4;}
+    to{opacity:1;}
 }

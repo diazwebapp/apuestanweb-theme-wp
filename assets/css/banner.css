@@ -41,21 +41,22 @@
 	width:100%;
 }
 .banner > a{
-	border: 3px solid var(--bg-page);
+	border: 3px solid white;
 	padding: 5px;
 	border-radius: var(--radius);
 	height:max-content;
 	margin:10px 0;
 	text-align: center;
-	color: var(--bg-page);
+	color: white;
 }
 .banner > div:first-child p{
 	padding: 15px;
+	color: white;
 }
 .banner > div:first-child h2, .banner > div:first-child p{
 	text-align: justify;
-	color:var(--bg-page);
 	padding: 10px;
+	color: white;
 }
 
 @media(min-width:860px){

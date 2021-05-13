@@ -43,9 +43,11 @@
 	width:100%;
 	display: grid;
 	grid-template-columns: 1fr;
-	gap:1%;
+	border-radius:var(--radius);
+	overflow: hidden;
 	background:var(--bg-page);
-	padding-bottom: 40px;
+	place-content: center;
+	place-items: center;
 }
 .container_tarjetitas > .sub_title{
 	grid-column:1 / span 1;
@@ -58,36 +60,39 @@
 	width:100%;
 	border-radius: var(--radius);
 	box-shadow: 0px 0px 10px var(--shadow);
-	margin:10px auto;
+	margin:5px 0px 20px 0px;
 	padding-bottom:5px;
 	position:relative;
+	background:var(--bg-tarjetitas);
 }
 .tarjetita_pronostico{
 	padding-bottom: 30px;
-	margin-bottom: 20px;
+	width: 95%;
+	border:1px solid var(--bg-average) ;
+	height:185px;
 }
 .tarjetita_post{
-	min-width:100px;
-	height:330px;
+	width: 95%;
+	height:320px;
 	border:none;
 	box-shadow: none;
 	overflow: hidden;
 }
 .tarjetita_post > .title_post{
-	height:70px;
+	max-height:50px;
 	font-size: 18px;
 	overflow: hidden;
 	color:var(--secondary-color);
 }
 .tarjetita_post > .img_post{
 	width:100%;
-	height:130px;
+	height:140px;
 	overflow: hidden;
 	border-radius: var(--radius);
 }
 .tarjetita_post > p{
-	color:var(--shadow);
-	padding: 0 2px;
+	padding: 0 5px;
+	color: var(--font-color-2);
 }
 .tarjetita_post > small{
 	color:var(--primary-color);
@@ -102,16 +107,16 @@
 	display:grid;
 	grid-template-columns:repeat(3,1fr);
 }
-.title_pronostico,  .average_pronostico{
-	background: var(--secondary-color);
-	color:var(--bg-page);
-}
+
 .title_pronostico {
 	height:30px;
 	font-size: 14px;
 	line-height: 2;
 	grid-column: 1 / span 3;
-	border-radius: 5px 5px 0 0;
+	border-radius: var(--radius) var(--radius) 0 0;
+	color:white;
+	background: var(--secondary-color);
+	text-align: center;
 }
 
 .equipos_pronostico > div{
@@ -128,12 +133,11 @@
 	margin: 0 auto;
 	border: 1px solid var(--secondary-color);
 	box-shadow: 0px 0px 10px var(--bg-average);
-	background:var(--bg-page);
+	background:white;
 	object-fit: contain;
-	padding: 5px;
+	padding: 10px;
 }
 .average_pronostico{
-	background-color: transparent;
 	height:20px;
 	overflow: hidden;
 }
@@ -142,12 +146,14 @@
 	width:70%;
 	font-size:12px;
 	max-width:60px;
+	font-weight: bold;
+	line-height: 2;
 }
 .tarjetita_pronostico p{
-	color: var(--dark);
+	color: var(--font-color);
 }
 .equipos_pronostico > div p{
-	font-size: 16px;
+	font-size: 13px;
 	height:20px;
 	overflow: hidden;
 }
@@ -155,9 +161,10 @@
 	width:100%;
 	display: block;
 }
-.tarjetita_pronostico > div p,.tarjetita_pronostico > div > div p,.tarjetita_pronostico > h3{
+.tarjetita_pronostico > div p,.tarjetita_pronostico > div > div p{
 	text-align: center;
 	margin: 0 auto;
+	color: var(--font-color);
 }
 .tarjetita_pronostico > a, .tarjetita_pronostico > button.block_content{
 	background: var(--secondary-color);
@@ -168,9 +175,9 @@
 	z-index: 999;
 	padding: 5px 0;
 	font-weight: bold;
-	color: var(--bg-page);
 	border-radius: 5px;
 	text-align: center;
+	color: white;
 }
 .tarjetita_pronostico > button.block_content{
 	height:40px;
@@ -178,8 +185,9 @@
 }
 /*tarjetita en pagina unica */
 .single_pronostico{
-	margin: 20px 0 !important;
-	background: var(--bg-page);
+	margin: 0 0 20px 0 !important;
+	width: 100% !important;
+	background: var(--bg-tarjetitas);
 }
 .single_pronostico img{
 	width:20vmin !important;
@@ -190,6 +198,7 @@
 	font-size: 18px;
 	height: unset !important;
 	background: var(--bg-sub-title) !important;
+	color: var(--color-sub-title) ;
 }
 .single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
 	width: 98%;
@@ -217,24 +226,38 @@
 	}
 }
 @media(min-width:860px){
-	
-	.container_posts{
-		grid-template-columns: repeat(4,1fr);
-	}
 	.container_tarjetitas{
 		grid-template-columns: repeat(3,1fr);
 	}
 	.container_tarjetitas > .sub_title{
 		grid-column:1 / span 3;
 	}
+	
+	.container_posts{
+		grid-template-columns: repeat(4,1fr);
+	}
 	.single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
-		width: 90%;
 		margin: 0 auto;
 	}
 }
 @media(min-width:960px){
 	.single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
-		width: 80%;
 		margin: 0 auto;
+	}
+}
+@media (min-width:1080px){
+	.container_tarjetitas{
+		grid-template-columns: repeat(2,1fr);
+	}
+	.container_tarjetitas > .sub_title{
+		grid-column:1 / span 2;
+	}
+}
+@media (min-width:1160px){
+	.container_tarjetitas{
+		grid-template-columns: repeat(3,1fr);
+	}
+	.container_tarjetitas > .sub_title{
+		grid-column:1 / span 3;
 	}
 }

@@ -3,13 +3,13 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); ?>
 
 <main>
-    <article>
+    <section>
         <div class="imagen_destacada_container">
         <?php if(has_post_thumbnail()) : 
                     the_post_thumbnail();
                endif; ?>
         </div>
-        <section>
+        <article>
             <?php
                 if(have_posts()):
                     while(have_posts()):
@@ -17,11 +17,11 @@ get_header(); ?>
                         the_content(); 
                     endwhile; endif;
             ?>
-        </section>
+        </article>
         <div class="container_pagination" >
             <?php echo paginate_links();?>
         </div> 
-    </article>
+    </section>
 
     <?php get_sidebar() ?>
 </main>

@@ -1,5 +1,5 @@
 <?php
-    $term= get_term_by( 'slug', get_query_var( 'term'), get_query_var( 'taxonomy') );
+    
     $pronosticos = new WP_Query(array(
         'post_type'=>'pronosticos',
         'posts_per_page' => 4
@@ -8,8 +8,8 @@
     $posts = new WP_Query(array('post_type'=>'post','posts_per_page' => 4));
     $current_user = wp_get_current_user();
 
-    $usuarios = get_users();
-
+    $usuarios = get_users("orderby=meta_value&meta_key=average_aciertos&order=DESC");
+    
 ?>
 <aside>
 <?php if($pronosticos->have_posts()): ?>
@@ -20,12 +20,10 @@
                 
                 $nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1")[0];
                 $img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1")[0];
-                $resena_equipo_1 = get_post_meta(get_the_ID(),"resena_equipo_1")[0];
                 $average_equipo_1 = ceil(1 / get_post_meta(get_the_ID(),"average_equipo_1")[0] * 100);
 
                 $nombre_equipo_2 = get_post_meta(get_the_ID(),"nombre_equipo_2")[0];
                 $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2")[0];
-                $resena_equipo_2 = get_post_meta(get_the_ID(),"resena_equipo_2")[0];
                 $average_equipo_2 = ceil(1 / get_post_meta(get_the_ID(),"average_equipo_2")[0] * 100);
 
                 $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico")[0];
@@ -89,7 +87,7 @@
 
                             <div>
                                 <b><?php echo $acceso_pronostico; ?></b>
-                                <p>25-11-2021</p>
+                                <p><?php echo $fecha_partido ?></p>
                             </div>
                         </a>
                     <?php endif; endwhile; ?>
@@ -98,16 +96,15 @@
 <?php endif; ?>
 
 <div class="aside_widgets">
-    <h2 class="sub_title" ><?php echo _e('Los mejores autores','apuestanweb-lang');  ?></h2>
+    <h2 class="sub_title" ><?php echo _e($term,'apuestanweb-lang');  ?></h2>
     <ul>
         <?php 
             if($usuarios != false):
                     $cont = 0;
                 foreach ($usuarios as $user ) :
                     
-                    //$post_tax = wp_get_post_terms( get_the_ID(), get_query_var('taxonomy'), array( 'fields' => 'slugs' ) );
+                    statics_user($user->ID);
                     
-                    $static = statics_user($user->ID);
                     if($user->roles[0] == 'administrator' || $user->roles[0] == 'author' || $user->roles[0] == 'editor' ):
                         $cont++; ?>
                         
@@ -119,9 +116,9 @@
                                 <?php echo get_avatar( get_the_author_meta('email'), '80' ); ?>
                             </div>
                             <div>
-                                <h4><?php echo $user->display_name ; ?></h4>
-                                <p><?php echo $static['total_s'] .'-'. $static['total_f'] . '('.$static['average'].') T'.$static['total_c']?></p>
-                                <b>+100</b>
+                                <h4><?php echo $user->display_name ?></h4>
+                                <p><?php echo get_the_author_meta('pronosticos_acertados') .'-'.get_the_author_meta('pronosticos_no_acertados').' ('.get_the_author_meta('average_aciertos').') '.'T'. get_the_author_meta('pronosticos_completados')?></p>
+                                <b><?php echo get_the_author_meta('average_aciertos') ?></b>
                             </div>
                         </a>
                 <?php endif; endforeach; 
@@ -153,7 +150,6 @@
                 <?php endif; endwhile; ?>
     </ul>
 </div>
-
 
 <?php
     if(is_active_sidebar('primary_widget')) : ?>

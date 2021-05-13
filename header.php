@@ -12,7 +12,6 @@
 
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
-
 		<?php wp_head(); ?>
 
 	</head>
@@ -34,11 +33,15 @@
 					foreach ($menu_items as $tax_term): ?>
 						<a href="<?php echo $tax_term->url ;?>" >
 							<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->object_id) != 'Please Upload Image First!'){ ?>
-								<img src="<?php echo get_taxonomy_image($tax_term->object_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								<div class="icon_tag">
+									<img src="<?php echo get_taxonomy_image($tax_term->object_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								</div>
 							<?php }else{ ?>
-								<img src='<?php echo get_template_directory_uri(). '/assets/images/icon.png' ?>' alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								<div class="icon_tag">
+									<img src='<?php echo get_template_directory_uri(). '/assets/images/icon.png' ?>' alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								</div>
 							<?php } ?>
-							<b><?php echo $tax_term->title; ?></b>
+							<p><?php echo $tax_term->title; ?></p>
 						</a>
 					<?php endforeach;
 
@@ -48,11 +51,15 @@
 					foreach (get_terms(array('taxonomy'=>'deporte','hide_empty'=>false)) as $tax_term): ?>
 						<a href="/<?php echo 'index.php/'.$tax_term->taxonomy.'/'.$tax_term->slug ;?>" >
 							<?php if(function_exists('get_taxonomy_image') && get_taxonomy_image($tax_term->term_id) != 'Please Upload Image First!'){ ?>
-								<img src="<?php echo get_taxonomy_image($tax_term->term_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								<div class="icon_tag">
+									<img src="<?php echo get_taxonomy_image($tax_term->term_id); ?> " alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								</div>
 							<?php }else{ ?>
-								<img src='<?php echo get_template_directory_uri(). '/assets/images/icon.png' ?>' alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								<div class="icon_tag">
+									<img src='<?php echo get_template_directory_uri(). '/assets/images/icon.png' ?>' alt="<?php echo __($tax_term->name,'apuestanweb_lang') ?>"/>
+								</div>
 							<?php } ?>
-							<b><?php echo $tax_term->name; ?></b>
+							<p><?php echo $tax_term->name; ?></p>
 						</a>
 					<?php endforeach;
 				endif;  ?>

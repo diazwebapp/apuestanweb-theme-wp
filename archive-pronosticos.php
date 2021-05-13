@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header(); ?>
 
 <main>
-	<article>
+	<section>
         <?php if(have_posts()){
 			get_template_part('template-parts/content-slide');
 		} 
@@ -18,7 +18,7 @@ get_header(); ?>
                     ),
                 ); 
                 $cards_cpt = new WP_Query($args); ?>
-                <section class="container_tarjetitas" >
+                <article class="container_tarjetitas" >
                     <h2 class="sub_title" ><?php echo __("Pronósticos: ".strtoupper($term->name)."", 'apuestanweb-lang'); ?></h2>
                     <?php 
                         // The Loop
@@ -28,18 +28,13 @@ get_header(); ?>
                             if($post_tax[0] == $term->slug) : 
                                 get_template_part('template-parts/tarjetita_pronostico');
                         endif; endwhile; ?>
-                </section>
+                </article>
                 <div class="container_pagination" >
-                    <?php echo paginate_links(array(
-							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
-							'format' => '?paged=%#%',
-							'current' => max( 1, get_query_var('paged') ),
-							'total' => $cards_cpt->max_num_pages
-						) ) ?>
-                    </div>
+                    <a href="<?php echo home_url().'/'.$term->taxonomy.'/'.$term->slug ?>">Ver más</a>
+                </div>
             <?php endforeach; ?>
              
-	</article>
+	</section>
 
 	<?php get_sidebar() ?>
 </main>

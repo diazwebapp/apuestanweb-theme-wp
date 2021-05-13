@@ -1,4 +1,5 @@
 <?php 
+
     $current_user = wp_get_current_user();
     $nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1");
     $img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1");
@@ -13,6 +14,7 @@
     $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido");
     $estado_pronostico = get_post_meta(get_the_ID(),"estado_pronostico");
     $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico");
+    $cuota_empate_pronostico = get_post_meta(get_the_ID(),"cuota_empate_pronostico");
 
 ?>
 <div class="tarjetita_pronostico" >
@@ -22,16 +24,34 @@
     <?php endif; ?>
     <div class="equipos_pronostico" >
         <div>
-            <img src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
-            <p><?php if($nombre_equipo_1[0]){echo $nombre_equipo_1[0]; }else{echo _e("falta equipo 1","apuestanweb-lang"); }  ?></p>
+            <img loading="lazy" src="<?php if($img_equipo_1[0]){ echo $img_equipo_1[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
+            <?php 
+            if($acceso_pronostico !== 'free'): 
+                    if($acceso_pronostico == $current_user->roles[0] || $current_user->roles[0] == 'administrator' || $current_user->roles[0] == 'author' || $current_user->roles[0] == 'editor'){ ?>
+                            <p class="<?php if($average_equipo_2[0] < $average_equipo_1[0]){echo "bolder flechita" ;} ?>"><?php echo $nombre_equipo_1[0] ?></p>  
+                    <?php }else{ ?>
+                        <p ><?php echo $nombre_equipo_1[0] ?></p>   
+                    <?php }
+                else: ?>
+                    <p ><?php echo $nombre_equipo_1[0] ?></p> 
+            <?php endif; ?>    
         </div>
         <div>
             <p><?php echo $fecha_partido[0] ?></p>
             <span>8:00 pm</span>
         </div>
         <div>
-        <img src="<?php if($img_equipo_2[0]){ echo $img_equipo_2[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
-            <p><?php if($nombre_equipo_2[0]){echo _e($nombre_equipo_2[0],'apuestanweb-lang'); }else{echo _e("falta equipo 1","apuestanweb-lang"); } ?></p>
+        <img loading="lazy" src="<?php if($img_equipo_2[0]){ echo $img_equipo_2[0];}else{ echo get_template_directory_uri(). '/assets/images/hh2.png'; } ?>" />
+        <?php 
+            if($acceso_pronostico !== 'free'): 
+                    if($acceso_pronostico == $current_user->roles[0] || $current_user->roles[0] == 'administrator' || $current_user->roles[0] == 'author' || $current_user->roles[0] == 'editor'){ ?>
+                            <p class="<?php if($average_equipo_2[0] > $average_equipo_1[0]){echo "bolder flechita" ;} ?>"><?php echo $nombre_equipo_2[0] ?></p>  
+                    <?php }else{ ?>
+                        <p ><?php echo $nombre_equipo_2[0] ?></p>   
+                    <?php }
+                else: ?>
+                    <p ><?php echo $nombre_equipo_2[0] ?></p> 
+            <?php endif; ?> 
         </div>
     </div>
     <?php  //si no es free o no tienen rango necesario
@@ -39,13 +59,13 @@
                 if($acceso_pronostico[0] == $current_user->roles[0] || $current_user->roles[0] == 'administrator' || $current_user->roles[0] == 'author' || $current_user->roles[0] == 'editor' ): ?>
                         <div class="average_pronostico" >
                             <p>
-                                <?php echo ceil(1 / $average_equipo_1[0] * 100); ?>%
+                                <?php echo ceil(1 / $average_equipo_1[0] * 100)  ?>%
                             </p>
                             <p>
-                                <?php echo $acceso_pronostico[0]; ?>
+                                <?php echo ceil(1 / $cuota_empate_pronostico[0] * 100) ?> %
                             </p>
                             <p>
-                                <?php echo ceil(1 / $average_equipo_2[0] * 100);?>%
+                                <?php echo ceil(1 / $average_equipo_2[0] * 100)  ?>%
                             </p>
                         </div>
                         <a href="<?php the_permalink() ?>">
@@ -58,13 +78,13 @@
             else: ?>
                     <div class="average_pronostico" >
                             <p>
-                                <?php echo ceil(1 / $average_equipo_1[0] * 100); ?>%
+                                <?php echo ceil(1 / $average_equipo_1[0] * 100)  ?>%
                             </p>
                             <p>
-                                <?php echo $acceso_pronostico[0]; ?>
+                                <?php echo ceil(1 / $cuota_empate_pronostico[0] * 100) ?> %
                             </p>
                             <p>
-                                <?php echo ceil(1 / $average_equipo_2[0] * 100);?>%
+                                <?php echo ceil(1 / $average_equipo_2[0] * 100)  ?>%
                             </p>
                     </div>
                     <a href="<?php the_permalink() ?>">

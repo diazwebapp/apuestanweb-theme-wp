@@ -1,0 +1,60 @@
+{
+    "_id": ObjectId("6094286ed6b26aaa02dd31f2"),
+    "estado": true,
+    "visitas": 13,
+    "nombre": "Vidrio templado samsung j5, j2, j7",
+    "color": "",
+    "imagenes": {
+        "imagen1": "http://localhost:4000/upload/1607962070595.jpg",
+        "imagen2": "/logo192x192.png",
+        "imagen3": "/logo192x192.png"
+    },
+    "modelo": "samsung j2, j5, j7",
+    "precio": 2,
+    "producto": "vidrio-templado",
+    "description": "vidrio templado de calidad para telefonos samsung",
+    "keywords": "vidrio templado para redmi, vidrio templado para samsung, vidrio templado huawei",
+    "url": "vidrio-templado-samsung-j5-j2-j7",
+    "createdAt": ISODate("2021-05-06T17:33:34.356Z"),
+    "updatedAt": ISODate("2021-05-07T17:06:33.827Z")
+}
+{
+    "_id": ObjectId("609428d9d6b26aaa02dd31f3"),
+    "estado": true,
+    "visitas": 41,
+    "nombre": "forros RGB de goma para redmi, colores variados, solo cellunatic te da la mejor oferta",
+    "color": "",
+    "imagenes": {
+        "imagen1": "http://localhost:4000/upload/1607961967733.jpg",
+        "imagen2": "/logo192x192.png",
+        "imagen3": "/logo192x192.png"
+    },
+    "modelo": "Mi 9t, Note 9, 9a, 9s, Note 8 Pro, 8a, 7, 7a",
+    "precio": 5,
+    "producto": "forros",
+    "description": "forros para telefonos redmi",
+    "keywords": "Forros para cellulares, forros para smartphones",
+    "url": "forros-para-redmi",
+    "createdAt": ISODate("2021-05-06T17:35:21.977Z"),
+    "updatedAt": ISODate("2021-05-08T05:54:45.526Z")
+}
+{
+    "_id": ObjectId("609446d701adacb94174a97f"),
+    "estado": true,
+    "visitas": 19,
+    "nombre": "forro para samsung",
+    "color": "blanco",
+    "imagenes": {
+        "imagen1": "/logo192x192",
+        "imagen2": "/logo192x192.png",
+        "imagen3": "/logo192x192.png"
+    },
+    "modelo": "samsung j2, j5, j7",
+    "precio": 3,
+    "producto": "forros",
+    "description": "awdadad",
+    "keywords": "adad",
+    "url": "forro-para-samsung",
+    "createdAt": ISODate("2021-05-06T19:43:19.708Z"),
+    "updatedAt": ISODate("2021-05-07T18:45:45.702Z")
+}

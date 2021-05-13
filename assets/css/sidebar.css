@@ -12,19 +12,19 @@ aside{
 	width:100%;
 	min-width: 310px;
 	border-radius: var(--radius);
-	box-shadow: 0px 0px 10px var(--shadow);
+	box-shadow: 0px 0px var(--shadow-length) var(--shadow);
 	background: var(--bg-page);
 	height: max-content;
 	overflow: hidden;
 	margin-bottom: 10px;
 }
 .aside_widgets > h2{
-	color:var(--secondary-color);
 	border-bottom: 1px solid var(--shadow);
 	background: transparent;
+	color: var(--secondary-color);
 }
 .aside_widgets > ul > a:nth-child(2n){
-	background: var(--shadow-light);
+	background: var(--bg-tarjetitas);
 }
 /*pronostico*/
 .aside_widgets > ul > .item_w_pronostico{
@@ -46,7 +46,7 @@ aside{
 }
 
 .aside_widgets > ul > .item_w_pronostico > div:last-child{
-	border-left:1px solid var(--dark);
+	border-left:1px solid var(--font-color);
 	text-align: center;
 }
 .aside_widgets > ul > .item_w_pronostico > .item_w_img img{
@@ -56,9 +56,9 @@ aside{
 	left: 10px;
 	border-radius: 50%;
 	border:2px solid var(--shadow);
-	box-shadow: 0px 0px 10px var(--shadow);
+	box-shadow: 0px 0px var(--shadow-length) var(--shadow);
 	padding: 3px;
-	background: var(--bg-page);
+	background: white;
 }
 .aside_widgets > ul > .item_w_pronostico > .item_w_img img:nth-child(2){
 	left: 40px;
@@ -93,6 +93,7 @@ aside{
 	gap: 2px;
 	max-height: 90px;
 	padding: 0 5px;
+	overflow: hidden;
 }
 
 .aside_widgets > ul > .aside_item_post > div > img{
@@ -105,8 +106,7 @@ aside{
 	overflow: hidden;
 }
 .aside_widgets > ul > .aside_item_post > div > p{
-	height: 70px;
-	overflow: hidden;
+	height: 68px;
 	text-align: justify;
 }
 /*usuarios*/
@@ -130,7 +130,7 @@ aside{
 	padding: 0 5px;
 }
 .aside_widgets > ul > .aside_item_usuarios > div:last-child p{
-	color: var(--shadow);
+	color: var(--font-color-2);
 }
 .aside_widgets > ul > .aside_item_usuarios > div:last-child b{
 	color: var(--secondary-color);
@@ -149,6 +149,6 @@ aside{
 @media(min-width:1080px){
 	.aside_widgets{
 		width:100%;
-		margin-left: 1px;
+		min-width: 250px;
 	}
 }

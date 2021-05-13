@@ -1,7 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-get_header(); ?>
+get_header(); 
 
+?>
 <main>
 	<article>
         <?php if(have_posts()){
@@ -30,13 +31,10 @@ get_header(); ?>
                         endif; endwhile; ?>
                 </section>
                 <div class="container_pagination" >
-                    <?php echo paginate_links(array(
-							'base' => str_replace( '9999999999', '%#%', esc_url( get_pagenum_link( '9999999999') ) ),
-							'format' => '?paged=%#%',
-							'current' => max( 1, get_query_var('paged') ),
-							'total' => $cards_cpt->max_num_pages
-						) ) ?>
-                    </div>
+                    <a href="<?php echo home_url().'/'.$term->taxonomy.'/'.$term->slug ?>" >
+                        Ver todo
+                    </a>
+                </div>
             <?php endforeach; ?>
              
 	</article>

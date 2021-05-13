@@ -11,7 +11,7 @@
  <div class="tarjetita_casa_apuesta_horinzontal" >
     <div>
         <div class="casa_apuesta_img_especial">
-            <img src="<?php echo $url_logo ?>" alt="<?php the_title() ?>">
+            <img loading="lazy" src="<?php echo $url_logo ?>" alt="<?php the_title() ?>">
         </div>
         <div>
             <b><?php echo __($slogan,'apuestanweb-lang') ?></b>
@@ -33,19 +33,19 @@
         </div>
         <div class="metodos_pago">
             <?php if($metodo_pago_1): ?>
-                <img src="<?php echo $metodo_pago_1 ?>" >
+                <img loading="lazy" src="<?php echo $metodo_pago_1 ?>" >
             <?php endif; ?>
 
             <?php if($metodo_pago_2): ?>
-                <img src="<?php echo $metodo_pago_2 ?>" >
+                <img loading="lazy" src="<?php echo $metodo_pago_2 ?>" >
             <?php endif; ?>
 
             <?php if($metodo_pago_3): ?>
-                <img src="<?php echo $metodo_pago_3 ?>" >
+                <img loading="lazy" src="<?php echo $metodo_pago_3 ?>" >
             <?php endif; ?>
 
             <?php if($metodo_pago_4): ?>
-                <img src="<?php echo $metodo_pago_4 ?>" >
+                <img loading="lazy" src="<?php echo $metodo_pago_4 ?>" >
             <?php endif; ?>
         </div>
     

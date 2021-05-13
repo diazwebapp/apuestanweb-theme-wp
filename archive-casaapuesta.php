@@ -6,8 +6,8 @@ $casas_apuestas = new wp_query(array(
 ));
 ?>
 <main>
-    <article>
-            <section>
+    <section>
+            <article>
             <?php if($casas_apuestas->have_posts()):
                     while($casas_apuestas->have_posts()):
                         $casas_apuestas->the_post() ;
@@ -23,8 +23,8 @@ $casas_apuestas = new wp_query(array(
                         'total' => $casas_apuestas->max_num_pages
                     ) ) ?>
             </div>
-            </section>
-    </article>
+            </article>
+    </section>
 
 
     <?php get_sidebar() ?>

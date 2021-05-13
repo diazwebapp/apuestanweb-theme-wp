@@ -19,8 +19,8 @@ while($casas_apuestas->have_posts()) : $casas_apuestas->the_post();
             <div class="rectangle" ><?php echo __($puntuacion[0],'apuestanweb-lang') ?></div>
         </div>
         <div>
-            <b><?php echo $slogan[0] ?></b>
-            <a class="btn_outline_blue" href="<?php the_permalink() ?>" ><?php echo __('Apostar','apuestanweb-lang') ?></a>
+            <h3 style="margin: 3px 0;"><?php echo $slogan[0] ?></h3>
+            <a class="btn_outline" href="<?php the_permalink() ?>" ><?php echo __('start','apuestanweb-laang') ?></a>
         </div>
     </div>
     <?php endwhile; ?>
