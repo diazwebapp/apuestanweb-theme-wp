@@ -11,15 +11,15 @@ $author_posts = new wp_Query(array(
     <section>
         <?php if(have_posts()):
                     while(have_posts()):
-                        the_post() ;?>
+                        the_post() ; 
+						 ?>
                         <div class="imagen_destacada_container" >
                             <?php if(has_post_thumbnail()) : 
                                         the_post_thumbnail();
                                   endif; ?>
                         </div>
 
-                        
-                        <?php _e(the_content(),'apuestanweb-lang') ?>
+                        <article style="padding:10px;" ><?php __(the_content(),'apuestanweb-lang') ?></article>
             <?php endwhile; endif;
 
             
@@ -43,7 +43,8 @@ $author_posts = new wp_Query(array(
 						) ) ?>
 					
 				</div>
-			<?php endif; ?>
+			<?php endif; comments_template();?>
+
     </section>
 
 

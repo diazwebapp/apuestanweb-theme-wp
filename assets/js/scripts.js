@@ -35,8 +35,9 @@ window.addEventListener('load',()=>{
                 --primary-color:#ff4141;
                 --secondary-color:#1e73bf;
                 --color-sub-title:#fff;
+                --color-title-sidebar:rgb(30,115,191);
                 --bg-sub-title:#043a69;
-                --shadow-length: 6px ;
+                --shadow-length: 36px ;
             } </style>`
             html_head.innerHTML += style
         }
@@ -46,13 +47,14 @@ window.addEventListener('load',()=>{
                 --fondo:#f5f5f5;
                 --bg-page:#fff;
                 --bg-tarjetitas:#f5f5f5;
-                --shadow:#ececeb;
+                --shadow:rgba(0,0,0, .12);
                 --bg-average:rgba(30, 115, 191, .25);
                 --font-color:#484848;
                 --font-color-2:#808080;
                 --primary-color:#ff4141;
                 --secondary-color:#1e73bf;
                 --color-sub-title:#fff;
+                --color-title-sidebar:rgb(30,115,191);
                 --bg-sub-title:#043a69;
                 --shadow-length: 36px ;
             } </style>`
@@ -166,4 +168,5 @@ window.addEventListener('load',()=>{
             body.appendChild(btn)
         }
     }
+    
 })

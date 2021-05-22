@@ -9,12 +9,11 @@
     $current_user = wp_get_current_user();
 
     $usuarios = get_users("orderby=meta_value&meta_key=average_aciertos&order=DESC");
-    
 ?>
 <aside>
-<?php if($pronosticos->have_posts()): ?>
+<?php if($pronosticos->have_posts() && count($pronosticos->posts) > 0): ?>
 <div class="aside_widgets">
-    <h2 class="sub_title" ><?php echo _e('Ultimos pronosticos','apuestanweb-lang') ?></h2>
+    <p ><?php echo __('Ultimos Pronosticos','apuestanweb-lang') ?></p>
     <ul>
         <?php while($pronosticos->have_posts()): $pronosticos->the_post();
                 
@@ -32,8 +31,14 @@
 
                         <a href="<?php the_permalink() ?>" class="item_w_pronostico" >
                             <div class="item_w_img" >
-                                <img src="<?php if($img_equipo_1){ echo $img_equipo_1;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
-                                <img src="<?php if($img_equipo_2){ echo $img_equipo_2;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                                
+                                <div>
+                                    <img loader="lazy" src="<?php if($img_equipo_1){ echo $img_equipo_1;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                                </div>
+                                <div>
+                                    <img loader="lazy" src="<?php if($img_equipo_2){ echo $img_equipo_2;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                                </div>
+                                
                             </div>
 
                             <div class="item_w_eq">
@@ -95,12 +100,12 @@
 </div>
 <?php endif; ?>
 
-<div class="aside_widgets">
-    <h2 class="sub_title" ><?php echo _e($term,'apuestanweb-lang');  ?></h2>
-    <ul>
-        <?php 
-            if($usuarios != false):
-                    $cont = 0;
+<?php if($usuarios != false): $cont = 0; ?>
+
+    <div class="aside_widgets">
+        <p ><?php echo _e('Best Authors','apuestanweb-lang');  ?></p>
+        <ul>
+             <?php       
                 foreach ($usuarios as $user ) :
                     
                     statics_user($user->ID);
@@ -121,13 +126,14 @@
                                 <b><?php echo get_the_author_meta('average_aciertos') ?></b>
                             </div>
                         </a>
-                <?php endif; endforeach; 
-        endif; ?>
+                <?php endif; endforeach; ?>
     </ul>
 </div>
 
+<?php endif; ?>
+
 <div class="aside_widgets">
-    <h2 class="sub_title" ><?php echo _e('ultimos posts','apuestanweb-lang') ?></h2>
+    <p ><?php echo __('Posts Recientes','apuestanweb-lang') ?></p>
     <ul>
         <?php 
             while($posts->have_posts()):
@@ -139,7 +145,7 @@
                         <?php if(has_post_thumbnail()) : 
                                 the_post_thumbnail();
                             else : ?> 
-                            <img src="<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>" alt="">
+                            <img loader="lazy" src="<?php echo get_template_directory_uri(). '/assets/images/hp.png'; ?>" alt="">
                         <?php endif; ?>
                     </div>
                     <div>

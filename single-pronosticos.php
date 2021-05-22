@@ -38,29 +38,33 @@ $author_posts = new wp_Query(array(
                         $puntuacion = get_post_meta($post->ID,'puntuacion_p');
                         ?>
 
+                       
                         <div href="<?php the_permalink() ?>" class="tarjetita_pronostico single_pronostico" >
-                                <h3 class="title_pronostico" ><?php __(the_title(),'apuestanweb-lang') ?></h3>
-                                <div class="equipos_pronostico" >
-                                    <div >
-                                        <img src="<?php echo $img_equipo_1[0] ?>" />
-                                        <p><?php if($nombre_equipo_1[0]){echo $nombre_equipo_1[0]; }else{echo __("falta equipo 1","apuestanweb-lang"); }  ?></p>
-                                    </div>
-                                    <div >
-                                        <p><?php echo $fecha_partido[0] ?></p>
-                                    </div>
-                                    <div >
-                                        <img  src="<?php echo $img_equipo_2[0] ?>" />
-                                        <p><?php if($nombre_equipo_2[0]){echo $nombre_equipo_2[0]; }else{echo __("falta equipo 1","apuestanweb-lang"); }  ?></p>
-                                    </div>
+                            <h3 class="title_pronostico" ><?php __(the_title(),'apuestanweb-lang') ?></h3>
+                            <div class="equipos_pronostico" >
+                                <div >
+                                    <img src="<?php echo $img_equipo_1[0] ?>" />
+                                    <p><?php if($nombre_equipo_1[0]){echo $nombre_equipo_1[0]; }else{echo __("falta equipo 1","apuestanweb-lang"); }  ?></p>
                                 </div>
-                                <div class="average_pronostico" >
-                                    <p><?php echo ceil(1 / $average_equipo_1[0] * 100) ?> %</p>
-                                    <p><?php echo ceil( 1 / $cuota_empate_pronostico[0] * 100) ?> %</p>
-                                    <p><?php echo ceil( 1 / $average_equipo_2[0] * 100) ?> %</p>
+                                <div >
+                                    <p><?php echo $fecha_partido[0] ?></p>
                                 </div>
+                                <div >
+                                    <img  src="<?php echo $img_equipo_2[0] ?>" />
+                                    <p><?php if($nombre_equipo_2[0]){echo $nombre_equipo_2[0]; }else{echo __("falta equipo 1","apuestanweb-lang"); }  ?></p>
+                                </div>
+                            </div>
+                            <div class="average_pronostico" >
+                                <p><?php echo ceil(1 / $average_equipo_1[0] * 100) ?> %</p>
+                                <p><?php echo ceil( 1 / $cuota_empate_pronostico[0] * 100) ?> %</p>
+                                <p><?php echo ceil( 1 / $average_equipo_2[0] * 100) ?> %</p>
+                            </div>
                         </div>
-                        <?php __(the_content(),'apuestanweb-lang') ?>
-
+                        <article>
+                            <?php __(the_content(),'apuestanweb-lang') ?>
+                            <?php echo do_shortcode("[puntuacion_pronostico]"); ?>
+                        </article>
+                        <?php comments_template(); ?> 
                         
             <?php endwhile; endif;
         

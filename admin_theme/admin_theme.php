@@ -37,7 +37,9 @@ function func_custon_admin_page(){ ?>
 			position:absolute;
 			background:white;
 			width:100%;
-			top:0:left:0;right:0;
+			top:0;
+			left:0;
+			right:0;
 		}
 		.aw_page_active{
 			z-index:3;

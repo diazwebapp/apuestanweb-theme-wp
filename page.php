@@ -18,9 +18,7 @@ get_header(); ?>
                     endwhile; endif;
             ?>
         </article>
-        <div class="container_pagination" >
-            <?php echo paginate_links();?>
-        </div> 
+         
     </section>
 
     <?php get_sidebar() ?>

@@ -16,11 +16,11 @@ while($casas_apuestas->have_posts()) : $casas_apuestas->the_post();
             <div class="circle" >
                 <img src="<?php echo $url_logo[0] ?>" />
             </div>
-            <div class="rectangle" ><?php echo __($puntuacion[0],'apuestanweb-lang') ?></div>
+            <div class="rectangle" ><?php echo $puntuacion[0] .' / 5 ' ?><span >✭</span></div>
         </div>
         <div>
             <h3 style="margin: 3px 0;"><?php echo $slogan[0] ?></h3>
-            <a class="btn_outline" href="<?php the_permalink() ?>" ><?php echo __('start','apuestanweb-laang') ?></a>
+            <a class="btn_outline" href="<?php the_permalink() ?>" ><?php echo __('Start Now','apuestanweb-lang') ?></a>
         </div>
     </div>
     <?php endwhile; ?>

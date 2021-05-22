@@ -18,10 +18,18 @@ aside{
 	overflow: hidden;
 	margin-bottom: 10px;
 }
-.aside_widgets > h2{
+.aside_widgets > p{
 	border-bottom: 1px solid var(--shadow);
-	background: transparent;
-	color: var(--secondary-color);
+	color: var(--color-title-sidebar);
+	font-size: 23px;
+	line-height:32px;
+	text-align:center;
+	width:100%;
+	font-weight:bold;
+	font-size: 16px;
+}
+.aside_widgets > ul{
+	width:100%;
 }
 .aside_widgets > ul > a:nth-child(2n){
 	background: var(--bg-tarjetitas);
@@ -30,10 +38,11 @@ aside{
 .aside_widgets > ul > .item_w_pronostico{
 	position: relative;
 	display: grid;
-	grid-template-columns: 90px 1fr 40px 100px;
+	grid-template-columns: 80px 1fr 40px 100px;
 	margin: 5px auto;
 	padding:10px 0;
 	gap: 5px;
+	width:100%;
 }
 /*pronostico*/
 
@@ -49,19 +58,29 @@ aside{
 	border-left:1px solid var(--font-color);
 	text-align: center;
 }
-.aside_widgets > ul > .item_w_pronostico > .item_w_img img{
+.aside_widgets > ul > .item_w_pronostico > div:last-child p, .aside_widgets > ul > .item_w_pronostico > div:last-child b{
+	font-size: 14px;
+}
+.aside_widgets > ul > .item_w_pronostico > .item_w_img div{
 	width: 40px;
 	height: 40px;
 	position: absolute;
 	left: 10px;
 	border-radius: 50%;
-	border:2px solid var(--shadow);
-	box-shadow: 0px 0px var(--shadow-length) var(--shadow);
-	padding: 3px;
+	display:grid;
+	place-content: center;
+	place-items:center;
 	background: white;
+	box-shadow: 0px 0px 15px var(--shadow);
 }
-.aside_widgets > ul > .item_w_pronostico > .item_w_img img:nth-child(2){
-	left: 40px;
+.aside_widgets > ul > .item_w_pronostico > .item_w_img div:nth-child(2){
+	left: 35px;
+}
+.aside_widgets > ul > .item_w_pronostico > .item_w_img img{
+	width:20px;
+	height:20px;
+	object-fit: contain;
+	background: transparent;
 }
 .aside_widgets > ul > .item_w_pronostico > .item_w_eq p{
 	overflow: hidden;
