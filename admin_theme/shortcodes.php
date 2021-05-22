@@ -207,7 +207,7 @@ function punt_pronostico($attr){
 }
 add_shortcode('puntuacion_pronostico','punt_pronostico');
 function shortcode_pronosticos_filtered($attr){
-	extract( shortcode_atts( array( 'deporte' => false, 'limit' => 4 ), $attr ) );
+	extract( shortcode_atts( array( 'deporte' => false ), $attr ) );
 	$terms = wp_get_object_terms( get_the_ID(),'deporte');
 	if($deporte){
 		$terms = get_terms('deporte');
@@ -223,7 +223,6 @@ function shortcode_pronosticos_filtered($attr){
 			'post_rest_slug' => 'pronosticos',
 			'class_container_tarjetitas' => 'container_tarjetitas',
 			'class_delimiter' => 'container_pagination',
-			'init' => $limit,
 			'current_user' => $current_user,
 		) );
 

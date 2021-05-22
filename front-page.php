@@ -12,7 +12,7 @@ $current_user = wp_get_current_user();
         'post_rest_slug' => 'pronosticos',
         'class_container_tarjetitas' => 'container_tarjetitas',
         'class_delimiter' => 'container_pagination',
-        'init' => 2,
+        'init' => 1,
         'current_user' => $current_user,
        ) );
 ?>

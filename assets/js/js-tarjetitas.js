@@ -1,6 +1,7 @@
 window.addEventListener('load',()=>{
     const get_data = async ({term,post_rest_slug,container_tarjetitas,loader,init,current_user=false})=>{
         if(loader) loader.innerHTML = "<b>Loading data....</b>"
+        console.log(parseInt(term))
         try{
             const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
             const posts = await req_posts.json()
@@ -67,50 +68,55 @@ window.addEventListener('load',()=>{
                         }
                     })
                 }
-                if(loader) loader.innerHTML = ""   
-            }
-            
-            ): loader? loader.innerHTML = "No data fetch":null
+             
+            if(loader) loader.innerHTML = ""   
+            }): loader? loader.innerHTML = "No data fetch":null
         }catch(err){
             loader? loader.innerHTML = err:console.log(err)
         }
     }
     function create(params_object,i){
         let termid, term, scroll, delimiter,loader
+        
         if(params_object.container_tarjetitas[i] != undefined){
             termid = params_object.container_tarjetitas[i].attributes.termid.textContent
             term = params_object.terms.find(term => parseInt(term.term_id) == parseInt(termid))
             scroll = document.documentElement.scrollTop + window.innerHeight
             delimiter = params_object.delimiter[i].offsetTop
-            loader = params_object.delimiter[i]
+            loader = params_object.delimiter[i]            
         }
+        
         return {termid, term, scroll, delimiter, loader}
     }   
     const initial_set=async(params_object)=>{
         
         for(let i=0; i < params_object.terms.length;i++){
-            
-                
             const {term,loader,delimiter} = create(params_object,i)
+            
             if(term != undefined || term != false){  
-                if(delimiter <= window.innerHeight){
-                    params_object.init++
+                let exist = params_object.init.find(term => term.term_id == term.term_id)
+                if(!exist){
+                    params_object.init.push({term,limit:1})
+                    if(delimiter <= window.innerHeight){
+                        params_object.init[i].limit++
+                    }
+                    if(parseInt(term.count) >= params_object.init[i].limit){
+                        
+                        get_data({...params_object,
+                            term,
+                            container_tarjetitas:params_object.container_tarjetitas[i],
+                            delimiter:loader,
+                            init:params_object.init[i].limit
+                        })
+                    }
                 }
-                      
-                if(parseInt(term.count) >= params_object.init){       
+                if(exist){
                     
-                    get_data({...params_object,
-                        term,
-                        container_tarjetitas:params_object.container_tarjetitas[i],
-                        delimiter:loader
-                    })
                 }
-            return
             }
         }
         
     }
-
     const scroll_pagination = async(params_object)=>{
         
         let block = []
@@ -122,31 +128,38 @@ window.addEventListener('load',()=>{
             for(let i=0;i < params_object.terms.length; i++){
                 
                 const {term,loader,scroll,delimiter} = create(params_object,i)
-
+                
                 if(term != undefined || term != false){
                     block[i] = false
+                    let exist = params_object.init.find(term => term.term_id == term.term_id)
+                    if(!exist){
+                        params_object.init.push({term,limit:1})
+                    }
+                    if(exist){
+                        params_object.init[i] ={...exist,limit:exist.limit+1}
                     
                         if(scroll > delimiter &&  !block[i]){
                             block = true
-                            setTimeout(()=>{
-                                
-                                if(parseInt(term.count) >= params_object.init){
+                            
+                            
+                            if(parseInt(term.count) >= exist.limit){
+                                setTimeout(()=>{ 
                                     
                                     get_data({...params_object,
                                         term:term,
                                         container_tarjetitas:params_object.container_tarjetitas[i],
                                         delimiter:loader,
-                                        init:params_object.init+=2
+                                        init:params_object.init[i].limit
                                     })
-                                }
-                                block = false
-                            }, 1000)
+                                    block = false
+                                }, 2000)
+                            }
                         }
+                    }
                 }
             }
         } 
         lastScrollTop = st;
-        window.removeEventListener('scroll',()=>{})
     }
     if(taxonomy_data){
 
@@ -155,7 +168,7 @@ window.addEventListener('load',()=>{
             post_rest_slug: taxonomy_data.post_rest_slug,
             container_tarjetitas:document.querySelectorAll(`.${taxonomy_data.class_container_tarjetitas}`),
             delimiter:document.querySelectorAll(`.${taxonomy_data.class_delimiter}`),
-            init:parseInt(taxonomy_data.init),
+            init:[],
             current_user: taxonomy_data.current_user,
         }
         initial_set(params_object)

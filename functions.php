@@ -229,5 +229,30 @@ function statics_user($user_id){
 	update_user_meta( $user_id, 'pronosticos_realozados', $total_p );
 
 }
+//Añadimos endpoints a la api-res
 
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'aw/v1','/pronosticos', array(
+	  'methods' => 'GET',
+	  'callback' => 'aw_pronosticos_by_deporte',
+	) );
+  } );
+  
+  //Función Callback
+  function aw_pronosticos_by_deporte( $data ) {
+	
+	$pronosticos = new WP_Query(array(
+        'post_type'=>'pronosticos',
+        'posts_per_page' => 4,
+		'tax_query' => array(
+			array (
+				'taxonomy' => 'deporte',
+				'field' => 'slug',
+				'terms' => 'mlb',
+			)
+		),
+    ));
+  
+	return $pronosticos->posts;
+  }
 ?>
