@@ -180,10 +180,13 @@ function shortcode_pronostico($attr){
 	$pronosticos = new wp_query(array(
 		"post_type"=>"pronosticos",
 		"posts_per_page" => $limit,
-		"tax_query" => array(
-			'taxonomy' => 'deporte',
-			''
-		)
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'deporte',
+				'field'    => 'slug',
+				'terms'    => $deporte
+			),
+		),
 	));
 	wp_enqueue_style( 'pronosticos_css', get_template_directory_uri() . '/assets/css/tarjetita_pronostico_'.$model.'.css' );
 	$html = '';
@@ -233,25 +236,22 @@ function shortcode_pronostico($attr){
 	
 	return $html;
 }
-
 add_shortcode('pronostico','shortcode_pronostico');
 //Sports menu
 function sports_menu($attr){
-	extract( shortcode_atts( array( 'taxonomy' => 'categories','deporte' => false), $attr ) );
+	extract( shortcode_atts( array( 'deporte' => false), $attr ) );
 	$class = '' ;
 	$html = '<div class="terms_nav">';
-	if ( has_nav_menu( 'sports_bar' ) ) :
-		$locations = get_nav_menu_locations();
-		$menu = get_term( $locations['sports_bar'], 'nav_menu' );
-		$menu_items = wp_get_nav_menu_items($menu->term_id);
+	$terms = get_terms(array('taxonomy'=>'deporte','hidde_empty'=>false));
+	
+		foreach ($terms as $tax_term):
+			$html .= '<a class="current" href="'.home_url()."\deporte/".$tax_term->slug .'" >
+			'.$tax_term->name.'</p>
+		</a>';
+		endforeach;
 
-		foreach ($menu_items as $tax_term): if($term === $tax_term->title): 'current'; endif;?>
-			<a class="<?php if($term === $tax_term->title):echo 'current'; endif; ?>" href="<?php echo $tax_term->url ;?>" >
-				<?php echo $tax_term->title; ?></p>
-			</a>
-		<?php endforeach;
 
-	endif;
 	$html .= '</div>';
 	return $html;
 }
+add_shortcode('sportsmenu','sports_menu');

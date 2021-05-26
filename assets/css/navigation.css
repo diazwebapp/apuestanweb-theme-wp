@@ -128,7 +128,7 @@ nav > a > img {
 	max-width: 100%;
 	display:flex;
 	flex-flow:row nowrap;
-	justify-content:space-between;
+	justify-content:flex-start;
 	align-items:center;
 	align-content:center;
 	border-bottom:1px solid grey;
