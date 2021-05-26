@@ -1,19 +1,14 @@
 window.addEventListener('load',()=>{
-    const get_data = async ({term,post_rest_slug,container_tarjetitas,loader,init,current_user=false})=>{
-        if(loader) loader.innerHTML = "<b>Loading data....</b>"
-        console.log(parseInt(term))
-        try{
-            const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
-            const posts = await req_posts.json()
-            
-            posts.length > 0 ? posts.map(post=>{
-                const div = document.createElement('div')
-                div.classList.add('tarjetita_pronostico')
-                div.id = post.id
-                div.innerHTML = `<h3 class="title_pronostico" >${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</h3>
-                                    
-                ${post.acceso_pronostico.toString().toLowerCase() == 'vip'?`<b data="${post.acceso_pronostico}" class="sticker_tarjetita" ></b>`:''}
-            
+    const create_tarjetita = (post,model,current_user,user)=>{
+        const div = document.createElement('a')
+        div.setAttribute('href',post.link)
+        div.classList.add(model)
+        div.id = post.id
+        if(model == 'tarjetita_pronostico_1'){
+            div.innerHTML = `<h3 class="title_pronostico" >${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</h3>
+                                
+            ${post.acceso_pronostico.toString().toLowerCase() == 'vip'?`<b data="${post.acceso_pronostico}" class="sticker_tarjetita" ></b>`:''}
+        
             <div class="equipos_pronostico" >
                 <div>
                     <img loading="lazy" src="${post.img_equipo_1}" alt="${post.nombre_equipo_1}"/>
@@ -21,7 +16,7 @@ window.addEventListener('load',()=>{
                 </div>
                 <div>
                     <p>${post.fecha_partido}</p>
-                    <span></span>
+                    <span>${post.hora_partido}</span>
                 </div>
                 <div>
                     <img loading="lazy" src="${post.img_equipo_2}" alt="${post.nombre_equipo_2}"/>   
@@ -29,50 +24,127 @@ window.addEventListener('load',()=>{
                 </div>
             </div>
             <div class="average_pronostico" >
-            ${post.acceso_pronostico.toString().toLowerCase() == 'vip' && current_user.ID != 0 ?(
-                current_user.roles[0].toString().toLowerCase() == 'administrator' || current_user.roles[0].toString().toLowerCase() == 'vip' ?(
-                    `
+           
                 <p>${post.average_equipo_1}</p> <p>${post.cuota_empate_pronostico}</p> <p>${post.average_equipo_2}</p>
                 
-                `  
-                ):(
-                    '<p></p> <p>lock</p> <p></p>'
-                )
-            ):post.acceso_pronostico.toString().toLowerCase() == 'vip' && current_user.ID == 0 ?(
-                '<p></p> <p>lock</p> <p></p>'
-            ):(
-                `
-                <p>${post.average_equipo_1}</p> <p>${post.cuota_empate_pronostico}</p> <p>${post.average_equipo_2}</p>
-                
-                `
-            )}
             </div>`
-    
-                let existe = container_tarjetitas.querySelectorAll('.tarjetita_pronostico')
-                
-                if(existe.length < 1){
+        }
+        if(model == 'tarjetita_pronostico_2'){
+            div.innerHTML = `
+           
+                <div>
+                    <b>${post.hora_partido}</b>
+                    <div>
+                        
+                        <img loading="lazy" src="${post.img_equipo_1}" alt="${post.nombre_equipo_1}"/>
+                    
+                        <img loading="lazy" src="${post.img_equipo_2}" alt="${post.nombre_equipo_2}"/>
+                        
+                    </div>
+                </div>
+                <div>
+                    <b>${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</b>
+                    <small>${post.eleccion} </small>
+                </div>
+                <div>
+                    <b>${post.acceso_pronostico}</b>
+                    <a href="${post.link}" >Ver</a>
+                </div>
+            
+            `
+        }
+        if(model == 'tarjetita_pronostico_vip'){
+            
+            div.innerHTML = `
+           
+                <div>
+                    <small>
+                        
+                        ${post.nombre_equipo_1} ${post.average_equipo_1} vs ${post.nombre_equipo_2} ${post.average_equipo_2} | ${post.fecha_partido}
+                        
+                    </small>
+                    <h2>
+                        ${post.average_equipo_1 > post.average_equipo_2? post.nombre_equipo_1:post.nombre_equipo_2} 
+                        <span style="
+                            ${post.estado_pronostico == 'no_acertado'?'background:orange;color:white;':''}
+                            ${post.estado_pronostico == 'acertado'?'background:lightgreen;color:black;':''}
+                            ${post.estado_pronostico != 'acertado' && post.estado_pronostico != 'no_acertado'?'background:grey;color:white;':''}                        
+                        ">
+                        ${post.estado_pronostico == 'no_acertado'?'fail':''}
+                        ${post.estado_pronostico == 'acertado'?'win':''}
+                        ${post.estado_pronostico != 'acertado' && post.estado_pronostico != 'no_acertado'?'wait':''}
+                        </span>
+                    </h2>
+                ${post.excerpt.rendered}
+                </div>
+                <div>
+                    <img src="http://localhost:5000/wp-content/plugins/ultimate-member/assets/img/default_avatar.jpg">
+
+                    <p>${user.name}</p>
+                    <p style="display:inline-block;margin:5px;font-size:14px;background:lightgreen;padding:5px 10px;border-radius:4px;color:black;">
+                        + ${user.meta.pronosticos_acertados} 
+                    </p>
+            
+                    <p style="display:inline-block;margin:5px;font-size:14px;background:orange;padding:5px 10px;border-radius:4px;color:black;">
+                        - ${user.meta.pronosticos_no_acertados} 
+                    </p>
+            
+                    <p> ${user.meta.average_aciertos}% average</p>
+                </div>
+            `
+        }
+        return div
+    }
+    const insert_tajetita_to_container = (model,container_tarjetitas,div,loader)=>{
+        let existe = container_tarjetitas.querySelectorAll(`${'.'+model}`)
+        
+        if(existe.length < 1){
+            container_tarjetitas.append(div)
+        }
+        if(existe.length == 1){
+            for(data of existe){
+                if(parseInt(data.id) !== parseInt(div.id)){
                     container_tarjetitas.append(div)
+                }
+            }
+        }
+        if(existe.length > 1){
+            existe.forEach(html=>{
+                if(parseInt(html.id) !== parseInt(div.id)){
+                    container_tarjetitas.append(div)
+                }
+                if(parseInt(html.id) === parseInt(div.id)){
+                    existe[0].remove()
+                }
+            })
+        }
+    
+        if(loader) loader.innerHTML = "" 
+    }
+    const get_data = async ({rank,model,term,post_rest_slug,container_tarjetitas,loader,init,current_user=false})=>{
+       
+        if(loader) loader.innerHTML = "<b>Loading data....</b>"
+        try{
+            const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
+            const posts = await req_posts.json()
+            const requser = await fetch(`/wp-json/wp/v2/users`)
+            const users = await requser.json()
+            
+            posts.length > 0 ? posts.map(async post=>{
+                const user = users.find(user => parseInt(user.id) === parseInt(post.author)) 
+                if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
+                    const div = create_tarjetita(post,model,current_user,user)
+                    insert_tajetita_to_container(model,container_tarjetitas,div,loader)
                     return
-                }
-                if(existe.length > 0){
-                    existe.forEach(html=>{
-                        if(parseInt(html.id) !== parseInt(div.id)){
-                            container_tarjetitas.append(div)
-                        }
-                        if(parseInt(html.id) == parseInt(div.id)){
-                            container_tarjetitas.querySelectorAll('.tarjetita_pronostico').forEach(duplicate=>{
-                                if(parseInt(duplicate.id) == parseInt(div.id)){
-                                    duplicate.remove()
-                                }
-                            })
-                        }
-                    })
-                }
-             
-            if(loader) loader.innerHTML = ""   
+                } 
+                if(!rank || parseInt(rank) == 0 && parseInt(user.id) == parseInt(post.author)){
+                    const div = create_tarjetita(post,model,current_user,user)
+                    insert_tajetita_to_container(model,container_tarjetitas,div,loader)
+                    return
+                }  
             }): loader? loader.innerHTML = "No data fetch":null
         }catch(err){
-            loader? loader.innerHTML = err:console.log(err)
+            console.log(err)
         }
     }
     function create(params_object,i){
@@ -100,18 +172,25 @@ window.addEventListener('load',()=>{
                     if(delimiter <= window.innerHeight){
                         params_object.init[i].limit++
                     }
-                    if(parseInt(term.count) >= params_object.init[i].limit){
-                        
+                    get_data({...params_object,
+                        term,
+                        container_tarjetitas:params_object.container_tarjetitas[i],
+                        delimiter:loader,
+                        init:params_object.init[i].limit
+                    })
+                }
+                if(exist){
+                    if(parseInt(term.count) >= exist.limit || parseInt(term.count) == 1){
+                        if(delimiter <= window.innerHeight){
+                           exist.limit++
+                        }
                         get_data({...params_object,
                             term,
                             container_tarjetitas:params_object.container_tarjetitas[i],
                             delimiter:loader,
-                            init:params_object.init[i].limit
+                            init:exist.limit
                         })
                     }
-                }
-                if(exist){
-                    
                 }
             }
         }
@@ -170,7 +249,10 @@ window.addEventListener('load',()=>{
             delimiter:document.querySelectorAll(`.${taxonomy_data.class_delimiter}`),
             init:[],
             current_user: taxonomy_data.current_user,
+            rank:taxonomy_data.rank,
+            model:taxonomy_data.model
         }
+        
         initial_set(params_object)
         document.addEventListener('scroll',()=>{scroll_pagination(params_object)}
         )

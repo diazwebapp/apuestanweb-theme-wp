@@ -8,13 +8,16 @@
 	align-content: center;
 	align-items: center;
 }
+
 /* Tarjeta casas apuestas*/
 .tarjeta_casa_apuesta{
+	width:100%;
 	min-width:280px;
 	height: 230px;
 	border-radius: var(--radius);
 	border: 1px solid var(--secondary-color);
 	overflow: hidden;
+	display: inline-block;
 }
 .tarjeta_casa_apuesta > div{
 	position: relative;
@@ -89,13 +92,14 @@
 	margin:5px 0;
 	width: 90%;
 }
-
+/* Tarjeta casas apuestas horizontal */
 .tarjetita_casa_apuesta_horinzontal{
-	background: var(--bg-tarjetitas);
-	margin: 0 auto;
+	width:100%;
+	background: var(--bg-page);
+	display: inline-block;
 }
 .tarjetita_casa_apuesta_horinzontal:nth-child(2n){
-	background: var(--shadow);
+	background: var(--bg-tarjetitas);
 }
 .tarjetita_casa_apuesta_horinzontal > div{
 	display: grid;
@@ -105,10 +109,10 @@
 	align-content: center;
 	gap: 5px;
 }
-.tarjetita_casa_apuesta_horinzontal > div button{
-	padding: 3px 8px;
+.tarjetita_casa_apuesta_horinzontal > div a{
+	padding: 3px 10px;
 	margin: 0 5px;
-	color:var(--font-color);
+	color:white;
 	background: var(--secondary-color);
 	border-radius: var(--radius);
 	text-transform: uppercase;
@@ -124,10 +128,10 @@
 	height: 50px;
 	margin: 0 auto;
 	border-radius: 20px;
-	box-shadow: 0px 5px 2px var(--shadow);
-	display: flex;
-	align-items: center;
-	padding: 0 3px;
+	box-shadow: 0px 3px 2px var(--shadow);
+	display: grid;
+    place-items: center;
+    place-content: center;
 }
 .tarjetita_casa_apuesta_horinzontal > div > .metodos_pago{
 	width: 100%;

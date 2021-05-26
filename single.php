@@ -7,7 +7,7 @@ $author_posts = new wp_Query(array(
 ?>
 
 
-<main>
+<main> 
     <section>
         <?php if(have_posts()):
                     while(have_posts()):
@@ -19,12 +19,10 @@ $author_posts = new wp_Query(array(
                                   endif; ?>
                         </div>
 
-                        <article style="padding:10px;" ><?php __(the_content(),'apuestanweb-lang') ?></article>
+                        <article style="padding:10px;" >
+							<?php __(the_content(),'apuestanweb-lang') ?>
+						</article>
             <?php endwhile; endif;
-
-            
-
-            // posts del autor -->
 
 			if($author_posts->have_posts()): ?>
 				<article class="container_posts">
@@ -43,7 +41,7 @@ $author_posts = new wp_Query(array(
 						) ) ?>
 					
 				</div>
-			<?php endif; comments_template();?>
+			<?php endif; ?>
 
     </section>
 
@@ -51,4 +49,4 @@ $author_posts = new wp_Query(array(
     <?php get_sidebar() ?>
 </main>
 
-<?php get_footer();
+<?php get_footer() ?>

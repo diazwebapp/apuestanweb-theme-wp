@@ -33,6 +33,4 @@ get_header();
 	<?php get_sidebar() ?>
 </main>
 
-<?php get_template_part('components/banner_footer') ?>
-
 <?php get_footer();

@@ -8,14 +8,14 @@
         <div class="terms_nav">
             <?php 
                 if(!empty($current_taxonomy)):
-                    foreach (get_terms(array('taxonomy'=>$current_taxonomy,'hide_empty' => false)) as $term_item): ?>
+                    foreach (get_terms(array('taxonomy'=>$current_taxonomy,'hide_empty' => true)) as $term_item): if($term->parent == 0): ?>
                         <a class="<?php if($term === $term_item->slug):echo 'current'; endif; ?>" href="<?php echo site_url().'/'.$current_taxonomy.'/'.$term_item->slug ;?>">
                             <?php echo $term_item->name; ?>
                         </a>
-            <?php endforeach; else: 
-                if ( has_nav_menu( 'sub_header' ) ) :
+            <?php endif; endforeach; else: 
+                if ( has_nav_menu( 'sports_bar' ) ) :
 					$locations = get_nav_menu_locations();
-					$menu = get_term( $locations['sub_header'], 'nav_menu' );
+					$menu = get_term( $locations['sports_bar'], 'nav_menu' );
 					$menu_items = wp_get_nav_menu_items($menu->term_id);
 			
 					foreach ($menu_items as $tax_term): ?>

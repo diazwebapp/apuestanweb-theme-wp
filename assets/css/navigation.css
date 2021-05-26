@@ -13,9 +13,7 @@ nav > div,nav > ul{
 nav > div:last-child,nav > ul:nth-child(4),nav > ul:nth-child(5){
 	background:var(--primary-color);
 }
-nav > div{
-	padding: 0 20px;
-}
+
 nav > div:nth-child(5){
 	justify-content: flex-end;
 }

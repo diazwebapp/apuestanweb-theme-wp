@@ -1,0 +1,102 @@
+/* Container tarjetitas*/
+.container_tarjetitas_2{
+	width:99%;
+	display: grid;
+	grid-template-columns: 1fr;
+	border-radius:var(--radius);
+	overflow: hidden;
+	background:var(--bg-page);
+	place-content: center;
+	place-items: center;
+    border:1px solid var(--shadow);
+    margin: auto;
+}
+.container_tarjetitas_2 > .sub_title{
+	grid-column:1 / span 1;
+    text-align: left;
+    background: var(--bg-page);
+    border-bottom:1px solid var(--shadow) ;
+    color:var(--primary-color);
+    padding: 5px 20px;
+}
+
+/*tarjetitas*/
+.tarjetita_pronostico_2{
+    display:grid;
+    grid-template-columns: 100px 1fr 80px;
+    place-content: center;
+    place-items: center;
+    background-color:var(--bg-page);
+    width:100%;
+    border-bottom:1px solid var(--shadow) ;
+    border-bottom:1px solid var(--shadow);
+}
+.tarjetita_pronostico_2 > div{
+    width:100%;
+    margin: 10px 0;
+}
+
+.tarjetita_pronostico_2 > div:first-child > div{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    place-content: center;
+    margin:5px 0;
+}
+
+.tarjetita_pronostico_2 > div:first-child > div img{
+    object-fit: contain;
+    border-radius: 50%;
+    width:30px;
+    height:30px;
+    padding: 1px;
+    border:1px solid var(--bg-average);
+    background:white;
+}
+.tarjetita_pronostico_2 > div:nth-child(2) b, .tarjetita_pronostico_2 > div:nth-child(2) small,.tarjetita_pronostico_2 > div:last-child > b,.tarjetita_pronostico_2 > div:last-child > a{
+    overflow: hidden;
+    height: 25px;
+    line-height: 25px;
+    display: block;
+    margin:5px auto;
+    text-align: center;
+    word-break: break-all;
+}
+.tarjetita_pronostico_2 > div:last-child > a{
+    padding:  0 5px;
+    background: lightgreen;
+    border-radius: 5px;
+    color:black;
+    line-height: 25px;
+    margin: 5px ;
+}
+
+@media(min-width:730px){
+    .container_tarjetitas_2{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .container_tarjetitas_2 > .sub_title{
+        grid-column:1 / span 2;
+    }
+    
+    .tarjetita_pronostico_2:nth-child(2n){
+        border-right:1px solid var(--shadow);
+    }
+    .tarjetita_pronostico_2 > div{
+        border-right:1px solid var(--shadow);
+        width:100%;
+    }
+    .tarjetita_pronostico_2 > div:last-child{
+        border-right:unset;
+    }
+    .tarjetita_pronostico_2 > div:first-child > div img{
+        width:35px;
+        height:35px;
+        padding: 1px;
+    }
+    .tarjetita_pronostico_2 > div:nth-child(2) b, .tarjetita_pronostico_2 > div:nth-child(2) small{
+        text-align: left;
+        padding: 0 10px;
+    }
+}

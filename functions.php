@@ -3,7 +3,7 @@ require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 require_once('inc/cpt_tax.php' );
 require_once('inc/metabox_casas_apuestas.php' );
 //include shortcodes
-require_once('admin_theme/shortcodes.php');
+require_once('inc/shortcodes.php');
 require_once('admin_theme/admin_theme.php');
 
 function apuestanweb_load_css_files() {
@@ -94,8 +94,8 @@ function apuestanweb_setup() {
 
 	// Enable support for custom logo.
 	add_theme_support( 'custom-logo', array(
-		'height' => 240,
-		'width' => 240,
+		'height' => 48,
+		'width' => 48,
 		'flex-height' => true,
 		'header-text' => array('site-title'),
 		'unlink-homepage-logo' => false
@@ -226,33 +226,20 @@ function statics_user($user_id){
 	update_user_meta( $user_id, 'pronosticos_completados', $total_c );
 	update_user_meta( $user_id, 'pronosticos_acertados', $total_s );
 	update_user_meta( $user_id, 'pronosticos_no_acertados', $total_f );
-	update_user_meta( $user_id, 'pronosticos_realozados', $total_p );
+	update_user_meta( $user_id, 'pronosticos_realizados', $total_p );
 
 }
-//Añadimos endpoints a la api-res
 
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'aw/v1','/pronosticos', array(
-	  'methods' => 'GET',
-	  'callback' => 'aw_pronosticos_by_deporte',
-	) );
-  } );
-  
-  //Función Callback
-  function aw_pronosticos_by_deporte( $data ) {
-	
-	$pronosticos = new WP_Query(array(
-        'post_type'=>'pronosticos',
-        'posts_per_page' => 4,
-		'tax_query' => array(
-			array (
-				'taxonomy' => 'deporte',
-				'field' => 'slug',
-				'terms' => 'mlb',
-			)
-		),
-    ));
-  
-	return $pronosticos->posts;
-  }
+function custom_um_profile_query_make_posts( $args = array() ) 
+{
+    $args['post_type'] = ['post','pronosticos'];
+ 
+    return $args;
+}
+ 
+// call your function using the UM hook
+ 
+add_filter( 'um_profile_query_make_posts', 'custom_um_profile_query_make_posts', 12, 1 );
+ 
 ?>
+

@@ -208,8 +208,8 @@ function cpt_casa_apuestas() {
 }
 add_action( 'init', 'cpt_casa_apuestas');
 
-$post_type = "pronosticos";
-function my_rest_prepare_post($data, $post, $request) {
+$pronosticos = "pronosticos";
+function prepare_rest_pronosticos($data, $post, $request) {
     $_data = $data->data;
     $fields = get_post_custom($post->ID);
     foreach ($fields as $key => $value){
@@ -218,4 +218,13 @@ function my_rest_prepare_post($data, $post, $request) {
     $data->data = $_data;
     return $data;
 }
-add_filter("rest_prepare_{$post_type}", 'my_rest_prepare_post', 10, 3);
+add_filter("rest_prepare_{$pronosticos}", 'prepare_rest_pronosticos', 10, 3);
+$users = get_users();
+
+foreach ($users as $key => $user) {
+	$metas = get_user_meta($user->ID);
+	foreach($metas as $key => $value){
+		register_meta('user',$key,['show_in_rest'=>true]);
+	}
+}
+

@@ -105,7 +105,7 @@
     <div class="aside_widgets">
         <p ><?php echo _e('Best Authors','apuestanweb-lang');  ?></p>
         <ul>
-             <?php       
+             <?php  
                 foreach ($usuarios as $user ) :
                     
                     statics_user($user->ID);
@@ -113,7 +113,7 @@
                     if($user->roles[0] == 'administrator' || $user->roles[0] == 'author' || $user->roles[0] == 'editor' ):
                         $cont++; ?>
                         
-                        <a href="<?php the_permalink() ?>" class="aside_item_usuarios">
+                        <a href="<?php echo home_url()."\user/".$user->user_login?>" class="aside_item_usuarios">
                             <div>
                                 <?php echo $cont; ?>
                             </div>
@@ -162,4 +162,4 @@
         <?php dynamic_sidebar('primary_widget'); ?>
     <?php endif;
     ?>
-</aside>
+</aside>                  

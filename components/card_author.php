@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="barra-grafica">
-                    <canvas data_total="<?php echo $total_p ?>" data_success="<?php echo $total_s ?>" data_failed="<?php echo $total_f ?>" id="grafics" style="width:100%;height:100%;" >
+                    <canvas data_total="<?php echo $total_p ?>" data_success="<?php echo $total_s ?>" data_failed="<?php echo $total_f ?>" id="grafics" >
                     </canvas>
                 </div>
                 <?php endif; ?>

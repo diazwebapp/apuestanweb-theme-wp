@@ -112,30 +112,25 @@ window.addEventListener('load',()=>{
                 //estableciendo objeto de acerdatos
                 let data_acertados={
                     label:'Acertados',
-                    data:[0,n_acertados],
-                    lineTension:0.3,
-                    fill:false,
-                    backgroundColor:'transparent',
-                    borderColor:'blue'
+                    data:[n_acertados],
+                    backgroundColor:'blue',
                 }
                 //estableciendo objeto de fallidos
                 let data_fallidos={
                     label:'Fallidos',
-                    data:[0,n_fallidos],
-                    lineTension:0.3,
-                    fill:false,
-                    backgroundColor:'transparent',
-                    borderColor:'orange'
+                    data:[n_fallidos],
+                    backgroundColor:'orange',
                 }
-                //objeto final para lagrafica
+                
+                //objeto final para la grafica
                 
                 let finaldata={
-                    labels:['totales','segmentacion'],
-                    datasets:[data_total,data_acertados,data_fallidos]
+                    labels:['Avegare del autor'],
+                    datasets:[data_acertados,data_fallidos]
                 }
                 let context = canvas.getContext('2d')
-                let chart = new Chart(context,{
-                    type:'line',
+                new Chart(context,{
+                    type:'bar',
                     data:finaldata
                 })
             })()

@@ -8,7 +8,7 @@ if(is_front_page()){ ?>
         <a href="#" ><?php echo __('Casas apuestas','apuestanweb-lang') ?></a>
 
         <div class="container_casas_apuestas" >
-            <?php include 'casas_apuestas.php' ?>
+            
         </div>
     </div>
 <?php } ?>
