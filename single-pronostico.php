@@ -20,7 +20,7 @@ $author_posts = new wp_Query(array(
 <main>
     <section>
         <?php if(have_posts()):
-                echo do_shortcode('[pronostico paginate="'.false.'" limit="1" id="'.$post->ID.'" ]'); ?>
+                echo do_shortcode('[pronostico paginate="'.false.'" id="'.$post->ID.'" ]'); ?>
 
                 <article>
                     <?php __(the_content(),'apuestanweb-lang') ?>

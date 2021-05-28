@@ -131,7 +131,7 @@ function shortcode_eleccion($attr){
 		}
 	</style>
 	<?php
-	
+	if($equipo_ganador):
 		$html .= '<div class="short_equipo_ganador" >
 			<div>'.$eleccion.'</div>
 			
@@ -145,7 +145,7 @@ function shortcode_eleccion($attr){
 				<a style="color:white;text-decoration:none;background:#ff4141;padding:3px 10px; border-radius:5px;" href="'.$refear_link.'" >'.__('Start Now','apuestanweb-lang').'</a>
 			</div>
 		</div>';
-	
+	endif;
 
 	return $html;
 }
@@ -196,8 +196,7 @@ function shortcode_pronosticos($attr){
 add_shortcode('pronosticos','shortcode_pronosticos');
 //Pronostico
 function shortcode_pronostico($attr){ 
-    extract( shortcode_atts( array( 'paginate' => true,'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false, 'deporte'=>false ), $attr ) );
-
+    extract( shortcode_atts( array( 'paginate' => true,'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false, 'deporte'=>false  ), $attr ) );
 	$pronosticos;
 	if(!$deporte){
 		$pronosticos = new wp_query(array(
@@ -218,63 +217,102 @@ function shortcode_pronostico($attr){
 			)
 		));
 	}
-	wp_enqueue_style( 'pronosticos_css_unique', get_template_directory_uri() . '/assets/css/tarjetita_pronostico_'.$model.'.css' );
+	wp_enqueue_style( 'pronosticos_css', get_template_directory_uri() . '/assets/css/tarjetita_pronostico_'.$model.'.css' );
 	$html = '';
-	foreach ($pronosticos->get_posts() as $pronostico) {
+	if(!$id){
+		foreach ($pronosticos->get_posts() as $pronostico) {
 		
-		$data = array(
-			'nombre_equipo_1' 			=> get_post_meta($pronostico->ID,"nombre_equipo_1")[0],
-			'img_equipo_1' 			=> get_post_meta($pronostico->ID,"img_equipo_1")[0],
-			'resena_equipo_1' 			=> get_post_meta($pronostico->ID,"resena_equipo_1")[0],
-			'average_equipo_1' 		=> get_post_meta($pronostico->ID,"average_equipo_1")[0],
-		
-			'nombre_equipo_2' 			=> get_post_meta($pronostico->ID,"nombre_equipo_2")[0],
-			'img_equipo_2' 			=> get_post_meta($pronostico->ID,"img_equipo_2")[0],
-			'resena_equipo_2' 			=> get_post_meta($pronostico->ID,"resena_equipo_2")[0],
-			'average_equipo_2' 		=> get_post_meta($pronostico->ID,"average_equipo_2")[0],
-		
-			'fecha_partido' 			=> get_post_meta($pronostico->ID,"fecha_partido")[0],
-			'cuota_empate_pronostico' 	=> get_post_meta($pronostico->ID,"cuota_empate_pronostico")[0],
-			'puntuacion' 				=> get_post_meta($pronostico->ID,'puntuacion_p')[0],
-			'link'			=> get_the_permalink($pronostico->ID),
-			'button'		=> $button,
-			'style'			=> $style
-		);
-		if($id && $id == $pronostico->ID){
-			if($model == 1){
-				$html .= pronostico_1($data);
+			$data = array(
+				'nombre_equipo_1' 			=> get_post_meta($pronostico->ID,"nombre_equipo_1")[0],
+				'img_equipo_1' 			=> get_post_meta($pronostico->ID,"img_equipo_1")[0],
+				'resena_equipo_1' 			=> get_post_meta($pronostico->ID,"resena_equipo_1")[0],
+				'average_equipo_1' 		=> get_post_meta($pronostico->ID,"average_equipo_1")[0],
+			
+				'nombre_equipo_2' 			=> get_post_meta($pronostico->ID,"nombre_equipo_2")[0],
+				'img_equipo_2' 			=> get_post_meta($pronostico->ID,"img_equipo_2")[0],
+				'resena_equipo_2' 			=> get_post_meta($pronostico->ID,"resena_equipo_2")[0],
+				'average_equipo_2' 		=> get_post_meta($pronostico->ID,"average_equipo_2")[0],
+			
+				'fecha_partido' 			=> get_post_meta($pronostico->ID,"fecha_partido")[0],
+				'cuota_empate_pronostico' 	=> get_post_meta($pronostico->ID,"cuota_empate_pronostico")[0],
+				'puntuacion' 				=> get_post_meta($pronostico->ID,'puntuacion_p')[0],
+				'link'			=> get_the_permalink($pronostico->ID),
+				'button'		=> $button,
+				'style'			=> $style
+			);
+			if($id && $id == $pronostico->ID){
+				if($model == 1){
+					$html .= pronostico_1($data);
+				}
+				if($model == 2){
+					$html .= pronostico_2($data);
+				}
+				if($model == 'vip'){
+					$html .= pronostico_vip($data);
+				}
 			}
-			if($model == 2){
-				$html .= pronostico_2($data);
+			if(!$id && $id != $pronostico->ID){
+				if($model == 1){
+					$html .= pronostico_1($data);
+				}
+				if($model == 2){
+					$html .= pronostico_2($data);
+				}
+				if($model == 'vip'){
+					$html .= pronostico_vip($data);
+				}
+			}		
+		}
+	
+		if($paginate){
+			if(!$deporte){
+				$html .= '<div class="container_pagination">
+					<a href="'.home_url().'\pronostico/'.'" >Ver más</a>
+				</div>';
 			}
-			if($model == 'vip'){
-				$html .= pronostico_vip($data);
+			if($deporte){
+				$html .= '<div class="container_pagination">
+					<a href="'.home_url().'\deportes/'.$deporte.'" >Ver más</a>
+				</div>';
 			}
 		}
-		if(!$id && $id != $pronostico->ID){
-			if($model == 1){
-				$html .= pronostico_1($data);
-			}
-			if($model == 2){
-				$html .= pronostico_2($data);
-			}
-			if($model == 'vip'){
-				$html .= pronostico_vip($data);
-			}
-		}		
 	}
-	if($paginate){
-		if(!$deporte){
-			$html .= '<div class="container_pagination">
-				<a href="'.home_url().'\pronostico/'.'" >Ver más</a>
-			</div>';
-		}
-		if($deporte){
-			$html .= '<div class="container_pagination">
-				<a href="'.home_url().'\deportes/'.$deporte.'" >Ver más</a>
-			</div>';
+	if($id){
+		foreach ($pronosticos->get_posts() as $pronostico) {
+		
+			$data = array(
+				'nombre_equipo_1' 			=> get_post_meta($id,"nombre_equipo_1")[0],
+				'img_equipo_1' 			=> get_post_meta($id,"img_equipo_1")[0],
+				'resena_equipo_1' 			=> get_post_meta($id,"resena_equipo_1")[0],
+				'average_equipo_1' 		=> get_post_meta($id,"average_equipo_1")[0],
+			
+				'nombre_equipo_2' 			=> get_post_meta($id,"nombre_equipo_2")[0],
+				'img_equipo_2' 			=> get_post_meta($id,"img_equipo_2")[0],
+				'resena_equipo_2' 			=> get_post_meta($id,"resena_equipo_2")[0],
+				'average_equipo_2' 		=> get_post_meta($id,"average_equipo_2")[0],
+			
+				'fecha_partido' 			=> get_post_meta($id,"fecha_partido")[0],
+				'cuota_empate_pronostico' 	=> get_post_meta($id,"cuota_empate_pronostico")[0],
+				'puntuacion' 				=> get_post_meta($id,'puntuacion_p')[0],
+				'link'			=> get_the_permalink($id),
+				'button'		=> $button,
+				'style'			=> $style
+			);
+			if($id && $id == $pronostico->ID){
+				if($model == 1){
+					$html .= pronostico_1($data);
+				}
+				if($model == 2){
+					$html .= pronostico_2($data);
+				}
+				if($model == 'vip'){
+					$html .= pronostico_vip($data);
+				}
+			}
+				
 		}
 	}
+	
 	return $html;
 }
 add_shortcode('pronostico','shortcode_pronostico');
@@ -297,11 +335,11 @@ function sports_menu($attr){
 }
 add_shortcode('sportsmenu','sports_menu');
 
-//Slide 
-
 function shortcode_slide($attr){
 	extract( shortcode_atts( array( 'post_type' => 'post'), $attr ) );
-	
+	wp_enqueue_style( 'aw_slide', get_template_directory_uri() . '/assets/css/slide.css' );
+	wp_register_script( 'aw_slide_scripts', get_template_directory_uri(). '/assets/js/slide_script.js');
+	wp_enqueue_script( 'aw_slide_scripts' );
 	$slide = '<div class="slide-contenedor" >';
 	
 	$posts = new wp_query(array(
@@ -383,5 +421,4 @@ function shortcode_slide($attr){
 
 	return $slide;
 }
-
 add_shortcode('aw_slide','shortcode_slide');

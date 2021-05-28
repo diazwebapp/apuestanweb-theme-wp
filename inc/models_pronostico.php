@@ -5,7 +5,7 @@ function pronostico_1($data){
         $button .= '<a class="btn_outline" href="'.$data['link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
     }
     $html = '
-        <div class="tarjetita_pronostico_'.$data['model'].' single_pronostico" style="'.$data['style'].'" >
+        <div class="tarjetita_pronostico_1 single_pronostico" style="'.$data['style'].'" >
                 <h3 class="title_pronostico" >'.$data['nombre_equipo_1'].' vs '.$data['nombre_equipo_2'].'</h3>
                                             
                 <div class="equipos_pronostico" >
@@ -55,7 +55,7 @@ function pronostico_2($data){
     endif; 
 
     $html = '
-        <div class="tarjetita_pronostico_'.$data['model'].'" style="'.$data['style'].'">
+        <div class="tarjetita_pronostico_2" style="'.$data['style'].'">
             <div>
                 <b>22:00</b>
                 <div>
@@ -101,7 +101,7 @@ function pronostico_vip($data){
     endif; 
 
     $html = '
-        <div class="tarjetita_pronostico_'.$data['model'].'" style="'.$data['style'].'">
+        <div class="tarjetita_pronostico_2" style="'.$data['style'].'">
             <div>
                 <b>22:00</b>
                 <div>

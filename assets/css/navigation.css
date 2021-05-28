@@ -136,7 +136,9 @@ nav > a > img {
 	overflow-x: auto;
 	overflow-y: hidden;
 }
-
+.terms_nav::-webkit-scrollbar{
+	display: none;
+}
 .terms_nav > a{
 	text-transform: uppercase;
 	padding: 5px ;

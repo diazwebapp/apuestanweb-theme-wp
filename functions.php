@@ -1,14 +1,12 @@
 <?php
-require( ABSPATH . 'wp-admin/includes/upgrade.php' );
-require('inc/cpt_tax.php' );
-require('inc/metabox_casas_apuestas.php' );
+require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+require_once('inc/cpt_tax.php' );
+require_once('inc/metabox_casas_apuestas.php' );
 //include shortcodes
-require('inc/shortcodes.php');
-require('admin_theme/admin_theme.php');
+require_once('inc/shortcodes.php');
+require_once('admin_theme/admin_theme.php');
 
 function apuestanweb_load_css_files() {
-	wp_enqueue_style( 'slide_css', get_template_directory_uri() . '/assets/css/slide.css' );
-
 	wp_enqueue_style( 'apuestanweb-style', get_template_directory_uri() . '/assets/css/styles.css' );
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_css_files' );
@@ -19,9 +17,7 @@ function apuestanweb_load_scripts() {
 	
 		wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/scripts.js');
 		wp_enqueue_script( 'theme_scripts' );
-
-		wp_register_script('js-tarjetitas', get_template_directory_uri(). '/assets/js/slide_script.js', '1', true );
-		wp_enqueue_script('js-tarjetitas');
+			
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_scripts' );
 
@@ -149,7 +145,6 @@ $wp_roles->add_role('VIP', 'VIP', array(
 	'read' => true, // Les damos permisos de lectura (como a los suscriptores)
 	'edit_posts' => false, // No tienen permisos suficientes para editar entradas
 	'delete_posts' => false, // No tienen permisos suficientes para eliminar entradas
-	'leer_datos' => true // Creamos una capacidad nueva exclusiva para este rol
   ));
 
 remove_role('vip');
