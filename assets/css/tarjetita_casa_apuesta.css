@@ -21,10 +21,6 @@
 }
 .tarjeta_casa_apuesta_1 > div{
 	position: relative;
-	display: flex;
-	flex-flow: column;
-	justify-content: center;
-	align-items: center;
 }
 .tarjeta_casa_apuesta_1 > div:first-child{
 	height: 130px;
@@ -55,26 +51,32 @@
 	text-align: center;
 	overflow: hidden;
 }
-.tarjeta_casa_apuesta_1 > div:first-child .circle{
+.tarjeta_casa_apuesta_1 > div:first-child a.circle,.tarjeta_casa_apuesta_1 > div:first-child .rectangle{
+	width:120px;
 	height:120px;
-	left:25px;
+	position: absolute;
+	top:calc(50% - 60px);
+	left: calc(50% - 120px);
 	border-radius: 50%;
-	z-index: 10;
-	padding: 10px;
+	overflow: hidden;
+	background: white;
+	z-index: 2;
+	box-shadow: 0px 0px var(--shadow-length) var(--shadow);
 }
 .tarjeta_casa_apuesta_1 > div:first-child .rectangle{
 	height:40px;
-	left:125px;
-	width:140px;
-	border-radius: var(--radius);
-	z-index: 9;
-	color:black;
 	line-height: 40px;
+	left: 49%;
+	z-index: 1;
+	border-radius: unset;
+	top:calc(65px - 20px);
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 .tarjeta_casa_apuesta_1 > div:first-child .rectangle span{
 	color:gold;
 }
-.tarjeta_casa_apuesta_1 > div:first-child .circle img{
+.tarjeta_casa_apuesta_1 > div:first-child a.circle img{
 	width:100%;
 	height:100%;
 	object-fit: contain;
@@ -83,6 +85,9 @@
 .tarjeta_casa_apuesta_1 > div:last-child{
 	height: 100px;
 	background:var(--bg-tarjetitas);
+	display: grid;
+	place-content: center;
+	place-items: center;
 }
 .tarjeta_casa_apuesta_1 > div:last-child .stars_content{
 	color: gold;
@@ -113,9 +118,11 @@
 	padding: 3px 10px;
 	margin: 0 5px;
 	color:white;
-	background: var(--secondary-color);
 	border-radius: var(--radius);
 	text-transform: uppercase;
+}
+.tarjeta_casa_apuesta_2 > div a.refer{
+	background: var(--secondary-color);
 }
 .tarjeta_casa_apuesta_2 > div .estrellita{
 	color: gold;

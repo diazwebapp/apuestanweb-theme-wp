@@ -4,12 +4,15 @@ function casa_apuesta_1($data){
     if($data['button']){
         $button .= '<a class="btn_outline" href="'.$data['link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
     }
+    if(!$data['button']){
+        $button .= '<a class="btn_outline" href="'.$data['link'].'" >'. __('Offert Now','apuestanweb-lang') .'</a>';
+    }
     $html = '<div class="tarjeta_casa_apuesta_'.$data['model'].'" style="'.$data['style'].'">
         <div>
             <img src="'.$data['thumb'].'" />
-            <div class="circle" >
+            <a href="'.$data['link'].'" class="circle" >
                 <img src="'.$data['logo'].'" />
-            </div>
+            </a>
             <div class="rectangle" >'.$data['puntuacion'] .' / 5 ' .'<span >✭</span></div>
         </div>
         <div>
@@ -24,7 +27,10 @@ function casa_apuesta_2($data){
     $metodos_pago;
     $button;
     if($data['button']){
-        $button .= '<a class="btn_outline" href="'.$data['link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
+        $button .= '<a class="btn_outline refer" href="'.$data['link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
+    }
+    if(!$data['button']){
+        $button .= '<a class="btn_outline refer" href="'.$data['link'].'" >'. __('Offert Now','apuestanweb-lang') .'</a>';
     }
     if($data['metodo_pago_1']): 
         $metodos_pago .= '<img loading="lazy" src="'. $data['metodo_pago_1'] .'" >';
@@ -41,9 +47,9 @@ function casa_apuesta_2($data){
 
     $html = ' <div class="tarjeta_casa_apuesta_'.$data['model'].'" style="'.$data['style'].'">
         <div>
-            <div class="casa_apuesta_img_especial">
+            <a href="'.$data['link'].'" class="casa_apuesta_img_especial">
                 <img loading="lazy" src="'.$data['logo'].'">
-            </div>
+            </a>
             <div>
                 <b>'.__($data['slogan'],'apuestanweb-lang') .'</b>
             </div>

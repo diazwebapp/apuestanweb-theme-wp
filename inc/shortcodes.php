@@ -318,13 +318,15 @@ function shortcode_pronostico($attr){
 add_shortcode('pronostico','shortcode_pronostico');
 //Sports menu
 function sports_menu($attr){
-	extract( shortcode_atts( array( 'deporte' => false), $attr ) );
+	global $term;
+	extract( shortcode_atts( array( 'deporte' => false,'taxonomy'=>'deportes'), $attr ) );
 	$class = '' ;
-	$html = '<div class="terms_nav">';
-	$terms = get_terms(array('taxonomy'=>'deportes','hidde_empty'=>false));
 	
-		foreach ($terms as $tax_term):
-			$html .= '<a class="current" href="'.home_url()."\deportes/".$tax_term->slug .'" >
+	$html = '<div class="terms_nav">';
+	$terms = get_terms(array('taxonomy'=>$taxonomy,'hidde_empty'=>false));
+	
+		foreach ($terms as $tax_term): if($term == $tax_term->name):$class='class="current"';endif;
+			$html .= '<a '.$class.' href="'.home_url()."/".$taxonomy.'/'.$tax_term->slug .'" >
 			'.$tax_term->name.'</p>
 		</a>';
 		endforeach;
