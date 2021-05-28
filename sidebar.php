@@ -1,7 +1,7 @@
 <?php
     
     $pronosticos = new WP_Query(array(
-        'post_type'=>'pronosticos',
+        'post_type'=>'pronostico',
         'posts_per_page' => 4
     ));
    
@@ -27,8 +27,7 @@
 
                 $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico")[0];
                 $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido")[0];
-                if($post->post_type=='pronosticos'): ?>
-
+               ?>
                         <a href="<?php the_permalink() ?>" class="item_w_pronostico" >
                             <div class="item_w_img" >
                                 
@@ -95,7 +94,7 @@
                                 <p><?php echo $fecha_partido ?></p>
                             </div>
                         </a>
-                    <?php endif; endwhile; ?>
+                    <?php endwhile; ?>
     </ul>
 </div>
 <?php endif; ?>
@@ -123,7 +122,7 @@
                             <div>
                                 <h4><?php echo $user->display_name ?></h4>
                                 <p><?php echo get_the_author_meta('pronosticos_acertados') .'-'.get_the_author_meta('pronosticos_no_acertados').' ('.get_the_author_meta('average_aciertos').') '.'T'. get_the_author_meta('pronosticos_completados')?></p>
-                                <b><?php echo get_the_author_meta('average_aciertos') ?></b>
+                               
                             </div>
                         </a>
                 <?php endif; endforeach; ?>

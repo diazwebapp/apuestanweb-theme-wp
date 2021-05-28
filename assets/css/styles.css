@@ -1,7 +1,5 @@
 @import './navigation.css';
 @import './sidebar.css';
-@import './slide.css';
-@import './banner.css';
 @import './author.css';
 
 /* -------------------------------------------------------------------------- */
@@ -289,9 +287,10 @@ p{
 	border-radius: 5px;
 }
 
-body::-webkit-scrollbar{
+*::-webkit-scrollbar{
 	background:transparent;
 	width:5px;
+	height:5px;
 }
 *::-webkit-scrollbar-thumb{
 	background-color:var(--primary-color);

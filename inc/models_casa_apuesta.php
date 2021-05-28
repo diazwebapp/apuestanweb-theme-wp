@@ -4,7 +4,7 @@ function casa_apuesta_1($data){
     if($data['button']){
         $button .= '<a class="btn_outline" href="'.$data['link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
     }
-    $html = '<div class="tarjeta_casa_apuesta" style="'.$data['style'].'">
+    $html = '<div class="tarjeta_casa_apuesta_'.$data['model'].'" style="'.$data['style'].'">
         <div>
             <img src="'.$data['thumb'].'" />
             <div class="circle" >
@@ -39,7 +39,7 @@ function casa_apuesta_2($data){
         $metodos_pago .= '<img loading="lazy" src="'. $data['metodo_pago_4'] .'" >';
     endif; 
 
-    $html = ' <div class="tarjetita_casa_apuesta_horinzontal" style="'.$data['style'].'">
+    $html = ' <div class="tarjeta_casa_apuesta_'.$data['model'].'" style="'.$data['style'].'">
         <div>
             <div class="casa_apuesta_img_especial">
                 <img loading="lazy" src="'.$data['logo'].'">

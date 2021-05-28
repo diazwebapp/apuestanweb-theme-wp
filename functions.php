@@ -1,12 +1,14 @@
 <?php
-require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-require_once('inc/cpt_tax.php' );
-require_once('inc/metabox_casas_apuestas.php' );
+require( ABSPATH . 'wp-admin/includes/upgrade.php' );
+require('inc/cpt_tax.php' );
+require('inc/metabox_casas_apuestas.php' );
 //include shortcodes
-require_once('inc/shortcodes.php');
-require_once('admin_theme/admin_theme.php');
+require('inc/shortcodes.php');
+require('admin_theme/admin_theme.php');
 
 function apuestanweb_load_css_files() {
+	wp_enqueue_style( 'slide_css', get_template_directory_uri() . '/assets/css/slide.css' );
+
 	wp_enqueue_style( 'apuestanweb-style', get_template_directory_uri() . '/assets/css/styles.css' );
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_css_files' );
@@ -18,9 +20,8 @@ function apuestanweb_load_scripts() {
 		wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/scripts.js');
 		wp_enqueue_script( 'theme_scripts' );
 
-		wp_register_script( 'slide_scripts', get_template_directory_uri(). '/assets/js/slide_script.js');
-		wp_enqueue_script( 'slide_scripts' );
-			
+		wp_register_script('js-tarjetitas', get_template_directory_uri(). '/assets/js/slide_script.js', '1', true );
+		wp_enqueue_script('js-tarjetitas');
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_scripts' );
 
@@ -65,10 +66,6 @@ function my_theme_remove_headlinks() {
 }
 add_action( 'init', 'my_theme_remove_headlinks' );
 
-//limite de palabras del etracto
-function my_theme_excerpt($length) {
-    return 25;
-}
 add_filter( 'excerpt_length', 'my_theme_excerpt' );
 
 function apuestanweb_setup() {
@@ -134,34 +131,6 @@ function widgets_apuestanweb(){
 
 add_action('widgets_init','widgets_apuestanweb');
 
-function aw_taxonomy_by_post_type_and_term($array_tax,$term){
-	$trems = array();
-	if(isset($term)){
-		foreach($array_tax as $taxonomy_name){
-			foreach(get_terms(array('taxonomy'=>$taxonomy_name,'hide_empty'=>false)) as $term_1){
-				if($taxonomy_name == $term_1->taxonomy && $term_1->slug == $term){
-					return $taxonomy_name;
-				}
-			}
-		}
-	}
-}
-
-function aw_terms_by_taxs($array_taxonomies){
-	$terms = array();
-	
-		foreach (get_terms(array('hide_empty' => false)) as $term) {
-			foreach ($array_taxonomies as $key => $taxonomy) {
-				if($taxonomy == $term->taxonomy){
-					$terms[] = $term ;
-				}
-			}
-		}
-	
-	return $terms;
-}
-
-
 function my_login_redirect($user_name, $user) {
 	foreach($user->roles as $rol){
 		if($rol !== 'administrator'){
@@ -196,12 +165,8 @@ function statics_user($user_id){
 	
 	$author_posts = new wp_Query(array(
 		'author' => $user_id,
-		'tax_query'=>array(
-			array(
-				'taxonomy' => 'deporte',
-				'terms' => 'all'
-			)
-		)
+		'posts_per_page' => 1000,
+		'post_type' => 'pronostico'
 	));
 
 	$total_p = $author_posts->post_count; 
@@ -229,17 +194,5 @@ function statics_user($user_id){
 	update_user_meta( $user_id, 'pronosticos_realizados', $total_p );
 
 }
-
-function custom_um_profile_query_make_posts( $args = array() ) 
-{
-    $args['post_type'] = ['post','pronosticos'];
- 
-    return $args;
-}
- 
-// call your function using the UM hook
- 
-add_filter( 'um_profile_query_make_posts', 'custom_um_profile_query_make_posts', 12, 1 );
  
 ?>
-

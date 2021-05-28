@@ -35,8 +35,8 @@ function custom_post_type_pronostico() {
 		'label'                 => __( 'pronostico', 'apuestanweb-lang' ),
 		'description'           => __( 'Post Type Description', 'apuestanweb-lang' ),
 		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'excerpt','author','post_meta' ),
-		'taxonomies'            => array('deporte'),
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt','author','post_meta' ),
+		'taxonomies'            => true,
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,
@@ -52,7 +52,7 @@ function custom_post_type_pronostico() {
 		'capability_type'       => 'post',
 		'show_in_rest'          => true
 	);
-	register_post_type( 'pronosticos', $args );
+	register_post_type( 'pronostico', $args );
 
 }
 
@@ -61,7 +61,7 @@ add_action( 'init', 'custom_post_type_pronostico');
 //añadir CPT al loop wp
 function add_custom_post_type_to_query( $query ) {
     if ( $query->is_home() && $query->is_main_query() ) {
-        $query->set( 'post_type', array('post', 'pronosticos') );
+        $query->set( 'post_type', array('post', 'pronostico') );
     }
 }
 add_action( 'pre_get_posts', 'add_custom_post_type_to_query' );
@@ -70,7 +70,7 @@ add_action( 'pre_get_posts', 'add_custom_post_type_to_query' );
 
 function taxonomia_tipo_deporte() {
 	$labels = array(
-		'name'                => _x( 'deporte', 'taxonomy general name', 'apuestanweb-lang' ),
+		'name'                => _x( 'deportes', 'taxonomy general name', 'apuestanweb-lang' ),
 		'singular_name'       => _x( 'deporte', 'taxonomy singular name', 'apuestanweb-lang' ),
 		'search_items'        => __( 'Buscar deporte', 'apuestanweb-lang' ),
 		'all_items'           => __( 'Todos los tipos de deporte', 'apuestanweb-lang' ),
@@ -80,7 +80,7 @@ function taxonomia_tipo_deporte() {
 		'update_item'         => __( 'Editar deporte', 'apuestanweb-lang' ),
 		'add_new_item'        => __( 'Agregar nuevo deporte', 'apuestanweb-lang' ),
 		'new_item_name'       => __( 'Nuevo deporte', 'apuestanweb-lang' ),
-		'menu_name'           => __( 'deporte', 'apuestanweb-lang' ),
+		'menu_name'           => __( 'deportes', 'apuestanweb-lang' ),
 	);
 
 	$args = array(
@@ -93,63 +93,12 @@ function taxonomia_tipo_deporte() {
 		'show_in_rest'      => true,
 		'show_in_nav_menus' => true,
 		'show_tagcloud' 	=> true,
-		'rewrite' => array('slug' => 'deporte', 'with_front' => true)
+		'rewrite' => array('slug' => 'deportes', 'with_front' => true)
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'deporte', array( 'pronosticos','page' ), $args );
+	register_taxonomy( 'deportes', array( 'pronostico' ), $args );
 }
 add_action( 'init', 'taxonomia_tipo_deporte' );
-
-// Creando taxonomia, para pronosticos.
-/* 
-function taxonomia_tipo_equipos() {
-	$labels = array(
-		'name'                => _x( 'equipos', 'taxonomy general name', 'apuestanweb-lang' ),
-		'singular_name'       => _x( 'equipos', 'taxonomy singular name', 'apuestanweb-lang' ),
-		'search_items'        => __( 'Buscar equipos', 'apuestanweb-lang' ),
-		'all_items'           => __( 'Todos los tipos de equipos', 'apuestanweb-lang' ),
-		'parent_item'         => __( 'equipos padre', 'apuestanweb-lang' ),
-		'parent_item_colon'   => __( 'equipos Padre:', 'apuestanweb-lang' ),
-		'edit_item'           => __( 'Editar equipos', 'apuestanweb-lang' ),
-		'update_item'         => __( 'Editar equipos', 'apuestanweb-lang' ),
-		'add_new_item'        => __( 'Agregar nuevo equipos', 'apuestanweb-lang' ),
-		'new_ite
-	$args = array(
-		'public' 			=> true,
-		'hierarchical'      => true,
-		'labels'            => $labels,
-		'show_ui'           => true,
-		'show_admin_column' => true,
-		'query_var'         => true,
-		'show_in_rest'      => true,
-		'show_in_nav_menus' => true,
-		'show_tagcloud' 	=> true,
-		'rewrite' => array('slug' => 'equipos', 'with_front' => true)
-	);
-	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'equipos', array( 'pronosticos' ), $args );
-}
-add_action( 'init', 'taxonomia_tipo_equipos' );m_name'       => __( 'Nuevo equipos', 'apuestanweb-lang' ),
-		'menu_name'           => __( 'equipos', 'apuestanweb-lang' ),
-	);
-
-	$args = array(
-		'public' 			=> true,
-		'hierarchical'      => true,
-		'labels'            => $labels,
-		'show_ui'           => true,
-		'show_admin_column' => true,
-		'query_var'         => true,
-		'show_in_rest'      => true,
-		'show_in_nav_menus' => true,
-		'show_tagcloud' 	=> true,
-		'rewrite' => array('slug' => 'equipos', 'with_front' => true)
-	);
-	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'equipos', array( 'pronosticos' ), $args );
-}
-add_action( 'init', 'taxonomia_tipo_equipos' ); */
-
 
 // Register CPT casas apuestas
 function cpt_casa_apuestas() {
@@ -208,7 +157,7 @@ function cpt_casa_apuestas() {
 }
 add_action( 'init', 'cpt_casa_apuestas');
 
-$pronosticos = "pronosticos";
+$pronosticos = "pronostico";
 function prepare_rest_pronosticos($data, $post, $request) {
     $_data = $data->data;
     $fields = get_post_custom($post->ID);
@@ -221,10 +170,14 @@ function prepare_rest_pronosticos($data, $post, $request) {
 add_filter("rest_prepare_{$pronosticos}", 'prepare_rest_pronosticos', 10, 3);
 $users = get_users();
 
-foreach ($users as $key => $user) {
-	$metas = get_user_meta($user->ID);
-	foreach($metas as $key => $value){
-		register_meta('user',$key,['show_in_rest'=>true]);
-	}
-}
 
+function user_meta_in_rest(){
+	foreach ($users as $key => $user) {
+		$metas = get_user_meta($user->ID);
+		foreach($metas as $key => $value){
+			register_meta('user',$key,['show_in_rest'=>true]);
+		}
+	}
+	return;
+}
+add_action( 'init', 'user_meta_in_rest');

@@ -10,7 +10,7 @@ function stars($puntuacion){
 }
 //Casas apuesta
 function shortcode_casas_apuesta($attr){ 
-    extract( shortcode_atts( array( 'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false ), $attr ) );
+    extract( shortcode_atts( array( 'paginate'=>true, 'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false ), $attr ) );
 	$casas_apuestas = new wp_query(array(
 		"post_type"=>"casaapuesta",
 		"posts_per_page" => $limit
@@ -18,24 +18,22 @@ function shortcode_casas_apuesta($attr){
 	$html = '';
 	wp_enqueue_style( 'casa_apuesta_css', get_template_directory_uri() . '/assets/css/tarjetita_casa_apuesta.css' );
 
-
-	foreach ($casas_apuestas->get_posts() as $casaApuesta) {
-		
-		$data = array(
-			'thumb' 		=> get_the_post_thumbnail_url($casaApuesta->ID,'puntuacion_casa_apuesta'),
-			'link'			=> get_the_permalink($casaApuesta->ID),
-			'tiempo_pago'	=> get_post_meta($casaApuesta->ID,'tiempo_pago_casa_apuesta')[0],
-			'slogan' 		=> get_post_meta($casaApuesta->ID,'slogan_casa_apuesta')[0],
-			'logo' 			=> get_post_meta($casaApuesta->ID,'url_logo_casa_apuesta')[0],
-			'puntuacion' 	=> get_post_meta($casaApuesta->ID,'puntuacion_casa_apuesta')[0],
-			'metodo_pago_1'	=> get_post_meta($casaApuesta->ID,'m_p_icon_1')[0],
-			'metodo_pago_2'	=> get_post_meta($casaApuesta->ID,'m_p_icon_2')[0],
-			'metodo_pago_3'	=> get_post_meta($casaApuesta->ID,'m_p_icon_3')[0],
-			'metodo_pago_4'	=> get_post_meta($casaApuesta->ID,'m_p_icon_4')[0],
-			'style'			=> $style,
-			'button'		=> $button
-		);
-		if($id && $id == $casaApuesta->ID){
+		if($id){
+			$data = array(
+				'thumb' 		=> get_the_post_thumbnail_url($id,'puntuacion_casa_apuesta'),
+				'link'			=> get_the_permalink($id),
+				'tiempo_pago'	=> get_post_meta($id,'tiempo_pago_casa_apuesta')[0],
+				'slogan' 		=> get_post_meta($id,'slogan_casa_apuesta')[0],
+				'logo' 			=> get_post_meta($id,'url_logo_casa_apuesta')[0],
+				'puntuacion' 	=> get_post_meta($id,'puntuacion_casa_apuesta')[0],
+				'metodo_pago_1'	=> get_post_meta($id,'m_p_icon_1')[0],
+				'metodo_pago_2'	=> get_post_meta($id,'m_p_icon_2')[0],
+				'metodo_pago_3'	=> get_post_meta($id,'m_p_icon_3')[0],
+				'metodo_pago_4'	=> get_post_meta($id,'m_p_icon_4')[0],
+				'style'			=> $style,
+				'button'		=> $button,
+				'model'			=> $model
+			);
 			if($model == 1){
 				$html .= casa_apuesta_1($data);
 			}
@@ -43,19 +41,41 @@ function shortcode_casas_apuesta($attr){
 				$html .= casa_apuesta_2($data);
 			}
 		}
-		if(!$id && $id != $casaApuesta->ID){
-			if($model == 1){
-				$html .= casa_apuesta_1($data);
+		if(!$id){
+			foreach ($casas_apuestas->get_posts() as $casaApuesta) {
+		
+				$data = array(
+					'thumb' 		=> get_the_post_thumbnail_url($casaApuesta->ID,'puntuacion_casa_apuesta'),
+					'link'			=> get_the_permalink($casaApuesta->ID),
+					'tiempo_pago'	=> get_post_meta($casaApuesta->ID,'tiempo_pago_casa_apuesta')[0],
+					'slogan' 		=> get_post_meta($casaApuesta->ID,'slogan_casa_apuesta')[0],
+					'logo' 			=> get_post_meta($casaApuesta->ID,'url_logo_casa_apuesta')[0],
+					'puntuacion' 	=> get_post_meta($casaApuesta->ID,'puntuacion_casa_apuesta')[0],
+					'metodo_pago_1'	=> get_post_meta($casaApuesta->ID,'m_p_icon_1')[0],
+					'metodo_pago_2'	=> get_post_meta($casaApuesta->ID,'m_p_icon_2')[0],
+					'metodo_pago_3'	=> get_post_meta($casaApuesta->ID,'m_p_icon_3')[0],
+					'metodo_pago_4'	=> get_post_meta($casaApuesta->ID,'m_p_icon_4')[0],
+					'style'			=> $style,
+					'button'		=> $button,
+					'model'			=> $model
+				);
+				if($model == 1){
+					$html .= casa_apuesta_1($data);
+				}
+				if($model == 2){
+					$html .= casa_apuesta_2($data);
+				}
 			}
-			if($model == 2){
-				$html .= casa_apuesta_2($data);
+			if($paginate){
+				$html .= '<div class="container_pagination">
+					<a href="'.home_url().'\casaapuesta/'.'" >Ver más</a>
+				</div>';
 			}
 		}
-		
-	}
+	
 	return $html;
 }
-add_shortcode('casasapuesta','shortcode_casas_apuesta');
+add_shortcode('casa_apuesta','shortcode_casas_apuesta');
 //Eleccion
 function shortcode_eleccion($attr){
 	extract( shortcode_atts( array( 'post_id' => get_the_ID() ), $attr ) );
@@ -111,7 +131,7 @@ function shortcode_eleccion($attr){
 		}
 	</style>
 	<?php
-	if($equipo_ganador):
+	
 		$html .= '<div class="short_equipo_ganador" >
 			<div>'.$eleccion.'</div>
 			
@@ -125,7 +145,7 @@ function shortcode_eleccion($attr){
 				<a style="color:white;text-decoration:none;background:#ff4141;padding:3px 10px; border-radius:5px;" href="'.$refear_link.'" >'.__('Start Now','apuestanweb-lang').'</a>
 			</div>
 		</div>';
-	endif;
+	
 
 	return $html;
 }
@@ -134,7 +154,7 @@ add_shortcode('eleccion','shortcode_eleccion');
 function shortcode_pronosticos($attr){
 	extract( shortcode_atts( array( 'deporte' => false, 'rank' => 0, 'model'=> 1 ), $attr ) );
 	$terms = get_terms( array(
-		'taxonomy' => 'deporte',
+		'taxonomy' => 'deportes',
 		'hide_empty' => true,
 	) );
 	$current_user = wp_get_current_user();
@@ -143,7 +163,7 @@ function shortcode_pronosticos($attr){
 	wp_enqueue_script('js-tarjetitas');
 	wp_localize_script( 'js-tarjetitas', 'taxonomy_data', array(
 		'terms' => $terms,
-		'post_rest_slug' => 'pronosticos',
+		'post_rest_slug' => 'pronostico',
 		'class_container_tarjetitas' => 'container_tarjetitas_'.$model,
 		'class_delimiter' => 'container_pagination',
 		'current_user' => $current_user,
@@ -176,19 +196,29 @@ function shortcode_pronosticos($attr){
 add_shortcode('pronosticos','shortcode_pronosticos');
 //Pronostico
 function shortcode_pronostico($attr){ 
-    extract( shortcode_atts( array( 'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false, 'deporte'=>false  ), $attr ) );
-	$pronosticos = new wp_query(array(
-		"post_type"=>"pronosticos",
-		"posts_per_page" => $limit,
-		'tax_query' => array(
-			array(
-				'taxonomy' => 'deporte',
-				'field'    => 'slug',
-				'terms'    => $deporte
-			),
-		),
-	));
-	wp_enqueue_style( 'pronosticos_css', get_template_directory_uri() . '/assets/css/tarjetita_pronostico_'.$model.'.css' );
+    extract( shortcode_atts( array( 'paginate' => true,'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false, 'deporte'=>false ), $attr ) );
+
+	$pronosticos;
+	if(!$deporte){
+		$pronosticos = new wp_query(array(
+			"post_type"=>"pronostico",
+			"posts_per_page" => $limit
+		));
+	}
+	if($deporte){
+		$pronosticos = new wp_query(array(
+			"post_type"=>"pronostico",
+			"posts_per_page" => $limit,
+			'tax_query'=>array(
+				array(
+					'taxonomy' => 'deportes',
+					'field'	   => 'name',
+					'terms' => $deporte
+				)
+			)
+		));
+	}
+	wp_enqueue_style( 'pronosticos_css_unique', get_template_directory_uri() . '/assets/css/tarjetita_pronostico_'.$model.'.css' );
 	$html = '';
 	foreach ($pronosticos->get_posts() as $pronostico) {
 		
@@ -233,7 +263,18 @@ function shortcode_pronostico($attr){
 			}
 		}		
 	}
-	
+	if($paginate){
+		if(!$deporte){
+			$html .= '<div class="container_pagination">
+				<a href="'.home_url().'\pronostico/'.'" >Ver más</a>
+			</div>';
+		}
+		if($deporte){
+			$html .= '<div class="container_pagination">
+				<a href="'.home_url().'\deportes/'.$deporte.'" >Ver más</a>
+			</div>';
+		}
+	}
 	return $html;
 }
 add_shortcode('pronostico','shortcode_pronostico');
@@ -242,10 +283,10 @@ function sports_menu($attr){
 	extract( shortcode_atts( array( 'deporte' => false), $attr ) );
 	$class = '' ;
 	$html = '<div class="terms_nav">';
-	$terms = get_terms(array('taxonomy'=>'deporte','hidde_empty'=>false));
+	$terms = get_terms(array('taxonomy'=>'deportes','hidde_empty'=>false));
 	
 		foreach ($terms as $tax_term):
-			$html .= '<a class="current" href="'.home_url()."\deporte/".$tax_term->slug .'" >
+			$html .= '<a class="current" href="'.home_url()."\deportes/".$tax_term->slug .'" >
 			'.$tax_term->name.'</p>
 		</a>';
 		endforeach;
@@ -255,3 +296,92 @@ function sports_menu($attr){
 	return $html;
 }
 add_shortcode('sportsmenu','sports_menu');
+
+//Slide 
+
+function shortcode_slide($attr){
+	extract( shortcode_atts( array( 'post_type' => 'post'), $attr ) );
+	
+	$slide = '<div class="slide-contenedor" >';
+	
+	$posts = new wp_query(array(
+		"post_type"=>$post_type,
+	));
+	
+		while($posts->have_posts()): $posts->the_post();
+			$url_thumb = get_the_post_thumbnail_url(get_the_ID());
+			$slide .='<a href="'.get_the_permalink().'" class="miSlider fade" >
+			<img src="'.$url_thumb.'" alt="'.get_the_title().'"/>
+			' ;
+			
+			if($post_type=='pronostico'):
+				$nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1");
+				$img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1");
+				$resena_equipo_1 = get_post_meta(get_the_ID(),"resena_equipo_1");
+				$average_equipo_1 = get_post_meta(get_the_ID(),"average_equipo_1");
+			
+				$nombre_equipo_2 = get_post_meta(get_the_ID(),"nombre_equipo_2");
+				$img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2");
+				$resena_equipo_2 = get_post_meta(get_the_ID(),"resena_equipo_2");
+				$average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2");
+			
+				$fecha_partido = get_post_meta(get_the_ID(),"fecha_partido"); 
+				$cuota_empate_pronostico = get_post_meta(get_the_ID(),"cuota_empate_pronostico");
+				$slide .='
+					<div class="slide_item_pronostico_top">
+						<div>
+							<div>
+								<div class="item_w_img" >
+									<img loading="lazy" src="'.$img_equipo_1[0].'" />
+									<img loading="lazy" src="'.$img_equipo_2[0].'" />
+								</div>
+							</div>
+						</div>
+						<div class="date_partido" >
+							<input type="hidden" id="date_slide" value="'.$fecha_partido[0] .'">
+							<span id="slide_dias"></span><span id="slide_horas"></span><span id="slide_minutos"></span><span id="slide_segundos"></span>
+							<b>DIA</b> <b>HOR</b> <b>MIN</b> <b>SEG</b>
+						</div>
+					</div>
+					<div class="slide_item_pronostico_bottom">
+						<h2>
+							'.$nombre_equipo_1[0] .'
+						</h2>
+						<h2>
+							'.$nombre_equipo_2[0] .'
+						</h2>
+						<div class="slide_average_pronostico" >
+							<p>
+								'.ceil(1 / $average_equipo_1[0] * 100)  .'%
+							</p>
+							<p>
+								'.ceil(1 / $cuota_empate_pronostico[0] * 100) .' %
+							</p>
+							<p>
+								'.ceil(1 / $average_equipo_2[0] * 100)  .'%
+							</p>
+						</div>
+					</div>';
+			endif;
+			if($post_type=='post'):
+				$images .='<h3>'.$post->title.'</h3>';
+			endif;
+			//Cierre del miSlide fade
+			$slide .= '
+			</a>';
+		endwhile;		
+			
+	//controles	
+	$slide .= '
+	<div class="direcciones">
+		<button class="atras" id="atras" >&#10094;</button>
+		<button class="adelante" id="adelante" >&#10095;</button>
+	</div>
+	';
+	//Cierre del container_slide
+	$slide .= '</div>';	
+
+	return $slide;
+}
+
+add_shortcode('aw_slide','shortcode_slide');

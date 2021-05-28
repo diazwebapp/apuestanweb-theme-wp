@@ -1,6 +1,3 @@
-<?php global $current_user;
-	  $current_user = wp_get_current_user();
-?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 

@@ -10,7 +10,7 @@ $casas_apuestas = new wp_query(array(
         <?php if(have_posts()): ?>
             <div class="casa_apuesta_prew " >
                 <?php 
-                    echo do_shortcode('[casasapuesta id="'.$post->ID.'" ]');
+                    echo do_shortcode('[casa_apuesta id="'.$post->ID.'" ]');
                 ?>
             </div>
             <article>

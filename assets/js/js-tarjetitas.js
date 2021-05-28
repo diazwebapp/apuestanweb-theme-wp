@@ -4,6 +4,7 @@ window.addEventListener('load',()=>{
         div.setAttribute('href',post.link)
         div.classList.add(model)
         div.id = post.id
+        
         if(model == 'tarjetita_pronostico_1'){
             div.innerHTML = `<h3 class="title_pronostico" >${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</h3>
                                 
@@ -166,11 +167,11 @@ window.addEventListener('load',()=>{
             const {term,loader,delimiter} = create(params_object,i)
             
             if(term != undefined || term != false){  
-                let exist = params_object.init.find(term => term.term_id == term.term_id)
+                const exist = params_object.init.find(term => term.term_id == term.term_id)
                 if(!exist){
                     params_object.init.push({term,limit:1})
                     if(delimiter <= window.innerHeight){
-                        params_object.init[i].limit++
+                        params_object.init[i].limit+=2
                     }
                     get_data({...params_object,
                         term,
@@ -179,10 +180,10 @@ window.addEventListener('load',()=>{
                         init:params_object.init[i].limit
                     })
                 }
-                if(exist){
+                if(term && exist){
                     if(parseInt(term.count) >= exist.limit || parseInt(term.count) == 1){
                         if(delimiter <= window.innerHeight){
-                           exist.limit++
+                           exist.limit+=2
                         }
                         get_data({...params_object,
                             term,
@@ -199,9 +200,9 @@ window.addEventListener('load',()=>{
     const scroll_pagination = async(params_object)=>{
         
         let block = []
-        var lastScrollTop = 0;
+        let lastScrollTop = 0;
         
-        var st = window.pageYOffset || document.documentElement.scrollTop; 
+        let st = window.pageYOffset || document.documentElement.scrollTop; 
         if (st > lastScrollTop){
             //scroll hacia abajo
             for(let i=0;i < params_object.terms.length; i++){
@@ -210,17 +211,16 @@ window.addEventListener('load',()=>{
                 
                 if(term != undefined || term != false){
                     block[i] = false
-                    let exist = params_object.init.find(term => term.term_id == term.term_id)
+                    const exist = params_object.init.find(term => term.term_id == term.term_id)
                     if(!exist){
                         params_object.init.push({term,limit:1})
                     }
-                    if(exist){
-                        params_object.init[i] ={...exist,limit:exist.limit+1}
                     
+                    if(exist && delimiter != undefined){
+                        
                         if(scroll > delimiter &&  !block[i]){
                             block = true
-                            
-                            
+                            exist.limit++
                             if(parseInt(term.count) >= exist.limit){
                                 setTimeout(()=>{ 
                                     
@@ -231,7 +231,7 @@ window.addEventListener('load',()=>{
                                         init:params_object.init[i].limit
                                     })
                                     block = false
-                                }, 2000)
+                                }, 1000)
                             }
                         }
                     }
