@@ -2,10 +2,16 @@
     
     $pronosticos = new WP_Query(array(
         'post_type'=>'pronostico',
+        'meta_key' => 'fecha_partido',
+        'order_by' => 'meta_value',
+        'order' => 'ASC',
         'posts_per_page' => 4
     ));
    
-    $posts = new WP_Query(array('post_type'=>'post','posts_per_page' => 4));
+    $posts = new WP_Query(array(
+        'post_type'=>'post',
+        'posts_per_page' => 4
+    ));
     $current_user = wp_get_current_user();
 
     $usuarios = get_users("orderby=meta_value&meta_key=average_aciertos&order=DESC");
@@ -19,11 +25,11 @@
                 
                 $nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1")[0];
                 $img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1")[0];
-                $average_equipo_1 = ceil(1 / get_post_meta(get_the_ID(),"average_equipo_1")[0] * 100);
+                $average_equipo_1 = get_post_meta(get_the_ID(),"average_equipo_1")[0] ;
 
                 $nombre_equipo_2 = get_post_meta(get_the_ID(),"nombre_equipo_2")[0];
                 $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2")[0];
-                $average_equipo_2 = ceil(1 / get_post_meta(get_the_ID(),"average_equipo_2")[0] * 100);
+                $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2")[0] ;
 
                 $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico")[0];
                 $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido")[0];
@@ -91,7 +97,7 @@
 
                             <div>
                                 <b><?php echo $acceso_pronostico; ?></b>
-                                <p><?php echo $fecha_partido ?></p>
+                                <p><?php echo date("d-m-Y", $fecha_partido) ?></p>
                             </div>
                         </a>
                     <?php endwhile; ?>

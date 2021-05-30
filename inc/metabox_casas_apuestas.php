@@ -14,6 +14,7 @@ function func_casa_apuesta($post){
     $puntuacion = get_post_meta($post->ID,'puntuacion_casa_apuesta')[0];
     $tiempo_pago = get_post_meta($post->ID,'tiempo_pago_casa_apuesta')[0];
     $url_logo = get_post_meta($post->ID,'url_logo_casa_apuesta')[0];
+    $link = get_post_meta($post->ID,'link')[0];
 
     $metodo_pago_1= get_post_meta($post->ID,'m_p_icon_1')[0];
     $metodo_pago_2= get_post_meta($post->ID,'m_p_icon_2')[0];
@@ -77,6 +78,11 @@ function func_casa_apuesta($post){
         <div >
             <label for="slogan_casa_apuesta">Slogan:</label>
             <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo $slogan  ?>" >
+        </div>
+
+        <div >
+            <label for="link">Link referido:</label>
+            <input type="link" name="link" id="link" value="<?php echo $link ?>" >
         </div>
 
         <div >
@@ -149,6 +155,10 @@ function ca_save_meta_boxes( $post_id ) {
     // 8- metodo de pago 4
 	$m_p_icon_4 = sanitize_post( $_POST['m_p_icon_4'] );
 	update_post_meta( $post_id, 'm_p_icon_4', $m_p_icon_4 );
+
+    // 8- metodo de pago 4
+	$link = sanitize_post( $_POST['link'] );
+	update_post_meta( $post_id, 'link', $link );
     return true;
 }
 add_action( 'save_post', 'ca_save_meta_boxes' );

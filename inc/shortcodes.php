@@ -10,7 +10,7 @@ function stars($puntuacion){
 }
 //Casas apuesta
 function shortcode_casas_apuesta($attr){ 
-    extract( shortcode_atts( array( 'paginate'=>true, 'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false ), $attr ) );
+    extract( shortcode_atts( array( 'paginate'=>true, 'limit' => -1, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false ), $attr ) );
 	$casas_apuestas = new wp_query(array(
 		"post_type"=>"casaapuesta",
 		"posts_per_page" => $limit
@@ -30,6 +30,7 @@ function shortcode_casas_apuesta($attr){
 				'metodo_pago_2'	=> get_post_meta($id,'m_p_icon_2')[0],
 				'metodo_pago_3'	=> get_post_meta($id,'m_p_icon_3')[0],
 				'metodo_pago_4'	=> get_post_meta($id,'m_p_icon_4')[0],
+				'refear_link'	=> get_post_meta($id,'link')[0],
 				'style'			=> $style,
 				'button'		=> $button,
 				'model'			=> $model
@@ -55,6 +56,7 @@ function shortcode_casas_apuesta($attr){
 					'metodo_pago_2'	=> get_post_meta($casaApuesta->ID,'m_p_icon_2')[0],
 					'metodo_pago_3'	=> get_post_meta($casaApuesta->ID,'m_p_icon_3')[0],
 					'metodo_pago_4'	=> get_post_meta($casaApuesta->ID,'m_p_icon_4')[0],
+					'refear_link'	=> get_post_meta($casaApuesta->ID,'link')[0],
 					'style'			=> $style,
 					'button'		=> $button,
 					'model'			=> $model
@@ -133,10 +135,10 @@ function shortcode_eleccion($attr){
 	<?php
 	if($equipo_ganador):
 		$html .= '<div class="short_equipo_ganador" >
-			<div>'.$eleccion.'</div>
+			<div></div>
 			
 			<div>
-				<b style="color:grey;">'.$equipo_ganador.'</b>
+				<b style="color:grey;">'.$eleccion.'</b>
 			</div>
 
 			<div>
@@ -196,11 +198,14 @@ function shortcode_pronosticos($attr){
 add_shortcode('pronosticos','shortcode_pronosticos');
 //Pronostico
 function shortcode_pronostico($attr){ 
-    extract( shortcode_atts( array( 'paginate' => true,'limit' => false, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false, 'deporte'=>false  ), $attr ) );
+    extract( shortcode_atts( array( 'paginate' => true,'limit' => -1, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false, 'deporte'=>false  ), $attr ) );
 	$pronosticos;
 	if(!$deporte){
 		$pronosticos = new wp_query(array(
 			"post_type"=>"pronostico",
+			'meta_key' => 'fecha_partido',
+			'order_by' => 'meta_value',
+			'order' => 'ASC',
 			"posts_per_page" => $limit
 		));
 	}
@@ -208,6 +213,9 @@ function shortcode_pronostico($attr){
 		$pronosticos = new wp_query(array(
 			"post_type"=>"pronostico",
 			"posts_per_page" => $limit,
+			'meta_key' => 'fecha_partido',
+			'order_by' => 'meta_value',
+			'order' => 'ASC',
 			'tax_query'=>array(
 				array(
 					'taxonomy' => 'deportes',
@@ -217,9 +225,10 @@ function shortcode_pronostico($attr){
 			)
 		));
 	}
+	
 	wp_enqueue_style( 'pronosticos_css', get_template_directory_uri() . '/assets/css/tarjetita_pronostico_'.$model.'.css' );
 	$html = '';
-	if(!$id){
+	
 		foreach ($pronosticos->get_posts() as $pronostico) {
 		
 			$data = array(
@@ -234,6 +243,7 @@ function shortcode_pronostico($attr){
 				'average_equipo_2' 		=> get_post_meta($pronostico->ID,"average_equipo_2")[0],
 			
 				'fecha_partido' 			=> get_post_meta($pronostico->ID,"fecha_partido")[0],
+				'hora_partido' 			=> get_post_meta($pronostico->ID,"hora_partido")[0],
 				'cuota_empate_pronostico' 	=> get_post_meta($pronostico->ID,"cuota_empate_pronostico")[0],
 				'puntuacion' 				=> get_post_meta($pronostico->ID,'puntuacion_p')[0],
 				'link'			=> get_the_permalink($pronostico->ID),
@@ -261,57 +271,20 @@ function shortcode_pronostico($attr){
 				if($model == 'vip'){
 					$html .= pronostico_vip($data);
 				}
-			}		
+				if($paginate){
+					if(!$deporte){
+						$html .= '<div class="container_pagination">
+							<a href="'.home_url().'\pronostico/'.'" >Ver más</a>
+						</div>';
+					}
+					if($deporte){
+						$html .= '<div class="container_pagination">
+							<a href="'.home_url().'\deportes/'.$deporte.'" >Ver más</a>
+						</div>';
+					}
+				}	
+			}	
 		}
-	
-		if($paginate){
-			if(!$deporte){
-				$html .= '<div class="container_pagination">
-					<a href="'.home_url().'\pronostico/'.'" >Ver más</a>
-				</div>';
-			}
-			if($deporte){
-				$html .= '<div class="container_pagination">
-					<a href="'.home_url().'\deportes/'.$deporte.'" >Ver más</a>
-				</div>';
-			}
-		}
-	}
-	if($id){
-		foreach ($pronosticos->get_posts() as $pronostico) {
-		
-			$data = array(
-				'nombre_equipo_1' 			=> get_post_meta($id,"nombre_equipo_1")[0],
-				'img_equipo_1' 			=> get_post_meta($id,"img_equipo_1")[0],
-				'resena_equipo_1' 			=> get_post_meta($id,"resena_equipo_1")[0],
-				'average_equipo_1' 		=> get_post_meta($id,"average_equipo_1")[0],
-			
-				'nombre_equipo_2' 			=> get_post_meta($id,"nombre_equipo_2")[0],
-				'img_equipo_2' 			=> get_post_meta($id,"img_equipo_2")[0],
-				'resena_equipo_2' 			=> get_post_meta($id,"resena_equipo_2")[0],
-				'average_equipo_2' 		=> get_post_meta($id,"average_equipo_2")[0],
-			
-				'fecha_partido' 			=> get_post_meta($id,"fecha_partido")[0],
-				'cuota_empate_pronostico' 	=> get_post_meta($id,"cuota_empate_pronostico")[0],
-				'puntuacion' 				=> get_post_meta($id,'puntuacion_p')[0],
-				'link'			=> get_the_permalink($id),
-				'button'		=> $button,
-				'style'			=> $style
-			);
-			if($id && $id == $pronostico->ID){
-				if($model == 1){
-					$html .= pronostico_1($data);
-				}
-				if($model == 2){
-					$html .= pronostico_2($data);
-				}
-				if($model == 'vip'){
-					$html .= pronostico_vip($data);
-				}
-			}
-				
-		}
-	}
 	
 	return $html;
 }
@@ -346,11 +319,14 @@ function shortcode_slide($attr){
 	
 	$posts = new wp_query(array(
 		"post_type"=>$post_type,
+        'meta_key' => 'fecha_partido',
+        'order_by' => 'meta_value',
+        'order' => 'ASC',
 	));
 	
 		while($posts->have_posts()): $posts->the_post();
 			$url_thumb = get_the_post_thumbnail_url(get_the_ID());
-			$slide .='<a href="'.get_the_permalink().'" class="miSlider fade" >
+			$slide .='<a href="'.get_permalink().'" class="miSlider fade" >
 			<img src="'.$url_thumb.'" alt="'.get_the_title().'"/>
 			' ;
 			
@@ -378,7 +354,7 @@ function shortcode_slide($attr){
 							</div>
 						</div>
 						<div class="date_partido" >
-							<input type="hidden" id="date_slide" value="'.$fecha_partido[0] .'">
+							<input type="hidden" id="date_slide" value="'.date("Y-m-d", $fecha_partido[0]) .'">
 							<span id="slide_dias"></span><span id="slide_horas"></span><span id="slide_minutos"></span><span id="slide_segundos"></span>
 							<b>DIA</b> <b>HOR</b> <b>MIN</b> <b>SEG</b>
 						</div>
@@ -392,13 +368,13 @@ function shortcode_slide($attr){
 						</h2>
 						<div class="slide_average_pronostico" >
 							<p>
-								'.ceil(1 / $average_equipo_1[0] * 100)  .'%
+								'. $average_equipo_1[0] .'%
 							</p>
 							<p>
-								'.ceil(1 / $cuota_empate_pronostico[0] * 100) .' %
+								'. $cuota_empate_pronostico[0] .' %
 							</p>
 							<p>
-								'.ceil(1 / $average_equipo_2[0] * 100)  .'%
+								'. $average_equipo_2[0] .'%
 							</p>
 						</div>
 					</div>';
@@ -413,10 +389,9 @@ function shortcode_slide($attr){
 			
 	//controles	
 	$slide .= '
-	<div class="direcciones">
+	
 		<button class="atras" id="atras" >&#10094;</button>
 		<button class="adelante" id="adelante" >&#10095;</button>
-	</div>
 	';
 	//Cierre del container_slide
 	$slide .= '</div>';	

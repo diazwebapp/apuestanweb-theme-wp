@@ -1,7 +1,8 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-
 get_header();
+
+$current_user = wp_get_current_user();
 
 $author_posts = new wp_Query(array(
     'post_type' => $post->post_type,
@@ -23,10 +24,23 @@ $author_posts = new wp_Query(array(
                 echo do_shortcode('[pronostico paginate="'.false.'" id="'.$post->ID.'" ]'); ?>
 
                 <article>
-                    <?php __(the_content(),'apuestanweb-lang') ?>
+                    <?php 
+                        if($current_user->ID != 0 ):
+                            if($current_user->roles[0] == 'vip' || $current_user->roles[0] == 'administrator' || $current_user->roles[0] == 'editor' || $current_user->roles[0] == 'author'):
+                                __(the_content(),'apuestanweb-lang');
+                                echo do_shortcode('[eleccion]'); 
+                            else:
+                                    echo 'contenido bloqueado';
+                            endif;
+                        endif;
+
+                        if($current_user->ID == 0 ):
+                            echo 'contenido bloqueado';
+                        endif;
+                    ?>
                 </article>
                                   
-            <?php echo do_shortcode('[eleccion]'); 
+            <?php 
         
             set_query_var('data_card_author',array('post'=>$post,'pronosticos'=>$author_posts));
             get_template_part('components/card_author');

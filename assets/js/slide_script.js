@@ -59,6 +59,8 @@ const SLIDE_ITEMS = document.querySelectorAll('.slide_item_pronostico_top');
 
 /**
  * Method that updates the countdown and the sample
+ *  const date = new Date(parseInt(`${post.fecha_partido}${0}${0}${0}`))
+        post.fecha_partido = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
  */
 function updateCountdown(html_element) {
     const INPUT_DATE = html_element.querySelector('#date_slide');

@@ -168,10 +168,10 @@ function prepare_rest_pronosticos($data, $post, $request) {
     return $data;
 }
 add_filter("rest_prepare_{$pronosticos}", 'prepare_rest_pronosticos', 10, 3);
-$users = get_users();
-
 
 function user_meta_in_rest(){
+	$users = get_users();
+
 	foreach ($users as $key => $user) {
 		$metas = get_user_meta($user->ID);
 		foreach($metas as $key => $value){

@@ -5,7 +5,6 @@
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
-    margin-bottom: 10px;
 }
 .slide-contenedor > .filter_slide{
     position: absolute;
@@ -112,48 +111,25 @@
     transition: 1s;
 }
 
-.direcciones{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
-    z-index: 3;
-}
 
-.direcciones button{
+.slide-contenedor button{
     color: #fff;
-    display: inline-block;
     padding: 20px;
     text-decoration: none;
     background: transparent;
+    z-index: 100;
+    position: absolute;
+    top:45%;
 }
-
-.direcciones button:hover{
+.slide-contenedor button.atras{
+    left:10px;
+}
+.slide-contenedor button.adelante{
+    right:10px;
+}
+.slide-contenedor button:hover{
     background: rgba(0, 0, 0, .5);
     transition: .3s;
-}
-
-.barras{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom:15px;
-}
-
-.barra{
-    cursor: pointer;
-    height:2px;
-    width: 25px;
-    margin: 0 2px;
-    background: #dcdde1;
-    display: inline-block;
-    margin-left: 3px;
 }
 
 .active{

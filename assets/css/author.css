@@ -27,7 +27,7 @@
 	border-left:1px solid var(--shadow);
 	border-bottom:1px solid var(--shadow);
 }
-div:first-child,.card_author > div:nth-child(3){
+.card_author > div:first-child,.card_author > div:nth-child(3){
 	text-align: center;
 }
 .card_author img{

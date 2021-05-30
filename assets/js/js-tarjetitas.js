@@ -3,9 +3,11 @@ window.addEventListener('load',()=>{
         const div = document.createElement('a')
         div.setAttribute('href',post.link)
         div.classList.add(model)
-        div.id = post.id
-        
+        div.id = post.id 
+        const date = new Date(parseInt(`${post.fecha_partido}${0}${0}${0}`))
+        post.fecha_partido = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
         if(model == 'tarjetita_pronostico_1'){
+
             div.innerHTML = `<h3 class="title_pronostico" >${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</h3>
                                 
             ${post.acceso_pronostico.toString().toLowerCase() == 'vip'?`<b data="${post.acceso_pronostico}" class="sticker_tarjetita" ></b>`:''}
@@ -17,7 +19,8 @@ window.addEventListener('load',()=>{
                 </div>
                 <div>
                     <p>${post.fecha_partido}</p>
-                    <span>${post.hora_partido}</span>
+                    <br/>
+                    <p>${post.hora_partido}</p>
                 </div>
                 <div>
                     <img loading="lazy" src="${post.img_equipo_2}" alt="${post.nombre_equipo_2}"/>   
@@ -26,11 +29,12 @@ window.addEventListener('load',()=>{
             </div>
             <div class="average_pronostico" >
            
-                <p>${post.average_equipo_1}</p> <p>${post.cuota_empate_pronostico}</p> <p>${post.average_equipo_2}</p>
+                <p>${post.average_equipo_1}%</p> <p>${post.cuota_empate_pronostico}%</p> <p>${post.average_equipo_2}%</p>
                 
             </div>`
         }
         if(model == 'tarjetita_pronostico_2'){
+
             div.innerHTML = `
            
                 <div>
@@ -61,7 +65,7 @@ window.addEventListener('load',()=>{
                 <div>
                     <small>
                         
-                        ${post.nombre_equipo_1} ${post.average_equipo_1} vs ${post.nombre_equipo_2} ${post.average_equipo_2} | ${post.fecha_partido}
+                        ${post.nombre_equipo_1} ${post.average_equipo_1}% vs ${post.nombre_equipo_2} ${post.average_equipo_2}% | ${post.fecha_partido}
                         
                     </small>
                     <h2>
@@ -79,7 +83,7 @@ window.addEventListener('load',()=>{
                 ${post.excerpt.rendered}
                 </div>
                 <div>
-                    <img src="http://localhost:5000/wp-content/plugins/ultimate-member/assets/img/default_avatar.jpg">
+                    <img src="${user.avatar_urls['96']}">
 
                     <p>${user.name}</p>
                     <p style="display:inline-block;margin:5px;font-size:14px;background:lightgreen;padding:5px 10px;border-radius:4px;color:black;">
@@ -130,9 +134,12 @@ window.addEventListener('load',()=>{
             const posts = await req_posts.json()
             const requser = await fetch(`/wp-json/wp/v2/users`)
             const users = await requser.json()
-            
-            posts.length > 0 ? posts.map(async post=>{
-                const user = users.find(user => parseInt(user.id) === parseInt(post.author)) 
+            posts.sort(function(a,b){
+                return a.fecha_partido - b.fecha_partido
+            })
+            posts.length > 0 ? posts.map(async (post,i)=>{
+                const user = users.find(user => parseInt(user.id) === parseInt(post.author))
+                
                 if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
                     const div = create_tarjetita(post,model,current_user,user)
                     insert_tajetita_to_container(model,container_tarjetitas,div,loader)

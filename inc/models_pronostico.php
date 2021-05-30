@@ -14,8 +14,9 @@ function pronostico_1($data){
                         <p>'.$data['nombre_equipo_1'].'</p>  
                     </div>
                     <div>
-                        <p>'.$data['fecha_partido'].'</p>
-                        <span>'.$data['hora_partido'].'</span>
+                        <p>'.date('d-m-Y',$data['fecha_partido']).'</p>
+                        <br />
+                        <p>'.$data['hora_partido'].'</p>
                     </div>
                     <div>
                         <img loading="lazy" src="'.$data['img_equipo_2'].'" alt="'.$data['nombre_equipo_2'].'"/>   
@@ -57,7 +58,7 @@ function pronostico_2($data){
     $html = '
         <div class="tarjetita_pronostico_2" style="'.$data['style'].'">
             <div>
-                <b>22:00</b>
+                <b>'.$data['hora_partido'].'</b>
                 <div>
                     
                     <img loading="lazy" src="'.$data['img_equipo_1'].'" alt="'.$data['nombre_equipo_1'].'"/>
@@ -72,6 +73,7 @@ function pronostico_2($data){
             </div>
             <div>
                 <b>'.$data['acceso_pronostico'].'</b>
+                <b>'. date('d-m-Y',$data['fecha_partido']).'</b>
                 <a class="btn_outline" href="'.$data['link'].'" >'. $button .'</a>
             </div> 
         </div> ';
