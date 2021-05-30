@@ -6,7 +6,7 @@ get_header();
 <main>
 	<section>
 		<!-- Slide -->
-		<?php if(have_posts()){ echo do_shortcode('[aw_slide]');} ?>
+		<?php if(have_posts()){ echo do_shortcode('[aw_slide post_type="pronostico" ]');} ?>
 
 		<!-- Navegacion de deportes -->
 		<?php echo do_shortcode('[sportsmenu taxonomy="category" ]'); ?>
