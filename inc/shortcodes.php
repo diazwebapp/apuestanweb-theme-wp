@@ -465,7 +465,7 @@ function shortcode_banner_top($attr){
 						</p>
 					</div>
 					<div class="img_container" >
-						'.$img_url.'
+						'.$imgage.'
 					</div>
 				</a>
 				';
