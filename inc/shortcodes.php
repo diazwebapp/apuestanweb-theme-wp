@@ -456,8 +456,8 @@ function shortcode_banner_top($attr){
 						overflow:hidden;
 					}
 					.img_container img{
-						width:100%;
-						height:100%;
+						width:98%;
+						height:98%;
 						object-fit:contain;
 					}
 				</style>
