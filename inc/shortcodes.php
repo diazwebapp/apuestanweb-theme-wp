@@ -469,7 +469,7 @@ function shortcode_banner_top($attr){
 					</div>
 				</a>
 				';
-		endif;
+	endif;
 	
 	return $html;
 }
