@@ -6,7 +6,7 @@ function wpdocs_register_my_custom_menu_page() {
 		'manage_options',
 		'custompage',
 		'func_custon_admin_page',
-		get_template_directory_uri(). '/assets/images/icon2.png',
+		get_template_directory_uri(). '/assets/images/icon.webp',
 		6
 	);
 }

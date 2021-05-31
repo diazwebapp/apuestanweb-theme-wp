@@ -21,5 +21,9 @@
 		 get_template_part('components/navigation_mobile') ?>
 
 		<div style="height:calc(var(--height-header) * 2);"></div>
+
+	<?php if(is_active_sidebar('top_widget')) :
+        dynamic_sidebar('top_widget');
+    endif;
 			
 	

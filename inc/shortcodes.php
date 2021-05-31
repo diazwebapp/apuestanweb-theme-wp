@@ -407,55 +407,70 @@ function shortcode_banner_top($attr){
 		'bg_img_url' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
 		'title_content' => 'titulo',
 		'text_content' => 'Texto del banner',
-		'url' => 'http://diazwebapp.ga'
+		'url' => 'http://diazwebapp.ga',
+		'slug_page' => ''
 	), $attr ) );
-	$html = '
-	<style>
-		.top_banner{
-			width:100%;
-			display:flex;
-			flex-flow:row wrap;
-			justify-content:space-around;
-			align-items:center;
-			background-image:url('.$bg_img_url.');
-			background-position:center center;
-			background-size:cover;
-		}
-		
-		.text_content p, .text_content b{
-			width:100%;
-			color:white;
-			padding:10px;
-		}
-		.text_content p{
-			padding:20px;
-		}
-		.img_container{
-			width:200px;
-			height:200px;
-			overflow:hidden;
-			display:grid;
-			place-items:center;
-			place-content:center;
-		}
-		.img_container img{
-			width:90%;
-			height:90%;
-			object-fit:contain;
-		}
-	</style>
-	<a href="'.$url.'" target="blank" class="top_banner" >
-		<div class="text_content" >
-			<b>'.$title_content.'</b>
-			<p>
-				'.$text_content.'
-			</p>
-		</div>
-		<div class="img_container" >
-			<img loading="lazy" src="'.$img_url.'" />
-		</div>
-	</a>
-	';
+	
+	global $pagename;
+
+	if(strtolower($pagename) == strtolower($slug_page)):
+		$html = '
+				<style>
+					.top_banner{
+						width:100%;
+						height:200px;
+						display:flex;
+						flex-flow:row wrap;
+						justify-content:space-between;
+						align-items:center;
+						background-image:url('.$bg_img_url.');
+						background-position:center center;
+						background-size:cover;
+						padding:0 2%;
+					}
+					@medi(min-width:640px){
+						.top_banner{
+							padding:0 5px;
+						}
+					}
+					@medi(min-width:960px){
+						.top_banner{
+							padding:0 10px;
+						}
+					}
+					.text_content p, .text_content b{
+						width:100%;
+						color:white;
+						padding:10px;
+					}
+					.text_content p{
+						padding:20px;
+					}
+					.img_container{
+						width:200px;
+						height:200px;
+						overflow:hidden;
+					}
+					.img_container img{
+						width:100%;
+						height:100%;
+						object-fit:contain;
+					}
+				</style>
+				<a href="'.$url.'" target="blank" class="top_banner" >
+					<div class="text_content" >
+						<b>'.$title_content.' - '.$pagename.'</b>
+						<p>
+							'.$text_content.'
+						</p>
+					</div>
+					<div class="img_container" >
+						<img loading="lazy" src="'.$img_url.'" />
+					</div>
+				</a>
+				';
+		endif;
+	
 	return $html;
 }
 

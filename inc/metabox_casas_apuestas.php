@@ -21,19 +21,19 @@ function func_casa_apuesta($post){
     $metodo_pago_3= get_post_meta($post->ID,'m_p_icon_3')[0];
     $metodo_pago_4= get_post_meta($post->ID,'m_p_icon_4')[0]; ?>
     <style>
-    .adm_meta_ca > div{
-        margin:0 5px;
-        width:250px;
-        display:grid;
-        grid-template-columns:1fr;
-    }
-    .adm_meta_ca > .upload_img{
-        width:130px;
-        overflow:hidden;
-    }
-    .adm_meta_ca > div > *{
-        width:90%;
-    }
+        .adm_meta_ca > div{
+            margin:0 5px;
+            width:250px;
+            display:grid;
+            grid-template-columns:1fr;
+        }
+        .adm_meta_ca > .upload_img{
+            width:130px;
+            overflow:hidden;
+        }
+        .adm_meta_ca > div > *{
+            width:90%;
+        }
     </style>
 	<div class="adm_meta_ca" style="display:flex;flex-flow:row wrap;align-items:flex-start;align-content:flex-start;" >
         <div class="upload_img" >

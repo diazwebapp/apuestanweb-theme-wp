@@ -36,7 +36,7 @@ function custom_post_type_pronostico() {
 		'description'           => __( 'Post Type Description', 'apuestanweb-lang' ),
 		'labels'                => $labels,
 		'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt','author','post_meta' ),
-		'taxonomies'            => true,
+		'taxonomies'            => array('deportes'),
 		'hierarchical'          => false,
 		'public'                => true,
 		'show_ui'               => true,

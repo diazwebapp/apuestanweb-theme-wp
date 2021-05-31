@@ -1,12 +1,6 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-get_header(); 
-
-
-    if(is_active_sidebar('top_widget')) :
-        dynamic_sidebar('top_widget');
-    endif;
-    
+get_header();   
 ?>
 
 <main>
