@@ -20,5 +20,6 @@
 		endif;
 		 get_template_part('components/navigation_mobile') ?>
 
-		<div style="height:calc(var(--height-header) * 2.1);"></div>		
+		<div style="height:calc(var(--height-header) * 2);"></div>
+			
 	

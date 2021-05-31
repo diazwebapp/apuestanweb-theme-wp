@@ -1,7 +1,6 @@
 @import './navigation.css';
 @import './sidebar.css';
 @import './tarjetita_post.css';
-@import './banner.css';
 @import './author.css';
 
 /* -------------------------------------------------------------------------- */
@@ -124,6 +123,13 @@ main > section > article{
 }
 .btn_outline_white{
 	border:2px solid white;
+}
+/**Top banner widget*/
+.top_banner_widget{
+	width:100%;
+	max-width: var(--max-width);
+	margin:10px auto;
+	background: var(--bg-page);
 }
 /********Sub header bar **************/
 .sports_bar{

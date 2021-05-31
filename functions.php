@@ -111,17 +111,15 @@ function widgets_apuestanweb(){
 		'name' => __('Apuestanweb Sidebar','apuestanweb-lang'),
 		'before_widget' => '<div class="aside_widgets" >',
 		'after_widget' => '</div>',
-		'before_title' => '<h2>',
-		'after_title' => '</h2>'
+		'before_title' => '<p>',
+		'after_title' => '</p>'
 	));
 
 	register_sidebar(array(
 		'id' => 'top_widget',
 		'name' => __('Apuestanweb top banner','apuestanweb-lang'),
-		'before_widget' => '<div class="aside_widgets" >',
-		'after_widget' => '</div>',
-		'before_title' => '<h2>',
-		'after_title' => '</h2>'
+		'before_widget' => '<div class="top_banner_widget" >',
+		'after_widget' => '</div>'
 	));
 }
 
