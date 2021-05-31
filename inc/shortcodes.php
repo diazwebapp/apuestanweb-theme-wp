@@ -405,7 +405,7 @@ function shortcode_banner_top($attr){
 	extract( shortcode_atts( array( 
 		'image' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
 		'bg_img_url' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
-		'title_content' => 'titulo',
+		'title_content' => $pagename,
 		'text_content' => 'Texto del banner',
 		'url' => 'http://diazwebapp.ga',
 		'slug_page' => ''
@@ -446,6 +446,9 @@ function shortcode_banner_top($attr){
 					.text_content p{
 						padding:20px;
 					}
+					.text_content b{
+						font-size:21px;
+					}
 					.img_container{
 						width:200px;
 						height:200px;
@@ -459,7 +462,7 @@ function shortcode_banner_top($attr){
 				</style>
 				<a href="'.$url.'" target="blank" class="top_banner" >
 					<div class="text_content" >
-						<b>'.$title_content.' - '.$pagename.'</b>
+						<b>'.$title_content.'</b>
 						<p>
 							'.$text_content.'
 						</p>
