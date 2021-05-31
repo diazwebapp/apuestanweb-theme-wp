@@ -402,6 +402,7 @@ add_shortcode('aw_slide','shortcode_slide');
 
 //Banner top
 function shortcode_banner_top($attr){
+	global $pagename;
 	extract( shortcode_atts( array( 
 		'image' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
 		'bg_img_url' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
@@ -411,9 +412,9 @@ function shortcode_banner_top($attr){
 		'slug_page' => ''
 	), $attr ) );
 	
-	global $pagename;
 
 	if(strtolower($pagename) == strtolower($slug_page)):
+		
 		$html = '
 				<style>
 					.top_banner{
@@ -468,7 +469,7 @@ function shortcode_banner_top($attr){
 						</p>
 					</div>
 					<div class="img_container" >
-						'.$imgage.'
+						'.$image.'
 					</div>
 				</a>
 				';
