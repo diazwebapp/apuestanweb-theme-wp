@@ -403,7 +403,7 @@ add_shortcode('aw_slide','shortcode_slide');
 //Banner top
 function shortcode_banner_top($attr){
 	extract( shortcode_atts( array( 
-		'img_url' => get_template_directory_uri() . '/assets/images/basketball.webp',
+		'image' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
 		'bg_img_url' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
 		'title_content' => 'titulo',
 		'text_content' => 'Texto del banner',
@@ -465,7 +465,7 @@ function shortcode_banner_top($attr){
 						</p>
 					</div>
 					<div class="img_container" >
-						<img loading="lazy" src="'.$img_url.'" />
+						'.$img_url.'
 					</div>
 				</a>
 				';
