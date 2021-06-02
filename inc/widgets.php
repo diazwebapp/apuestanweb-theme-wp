@@ -1,0 +1,28 @@
+<?php
+//Activando widgets
+function widgets_apuestanweb(){
+	register_sidebar(array(
+		'id' => 'primary_widget',
+		'name' => __('Apuestanweb Sidebar','apuestanweb-lang'),
+		'before_widget' => '<div class="aside_widgets" >',
+		'after_widget' => '</div>',
+		'before_title' => '<p>',
+		'after_title' => '</p>'
+	));
+
+	register_sidebar(array(
+		'id' => 'top_widget',
+		'name' => __('Apuestanweb top banner','apuestanweb-lang'),
+		'before_widget' => '<div class="top_banner_widget" >',
+		'after_widget' => '</div>'
+	));
+
+	register_sidebar(array(
+		'id' => 'bottom_widget',
+		'name' => __('Apuestanweb bottom banner','apuestanweb-lang'),
+		'before_widget' => '<div class="bottom_banner_widget" >',
+		'after_widget' => '</div>'
+	));
+}
+
+add_action('widgets_init','widgets_apuestanweb');

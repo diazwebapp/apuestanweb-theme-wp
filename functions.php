@@ -4,6 +4,8 @@ require_once('inc/cpt_tax.php' );
 require_once('inc/metabox_casas_apuestas.php' );
 //include shortcodes
 require_once('inc/shortcodes.php');
+//widgets
+require_once('inc/widgets.php');
 require_once('admin_theme/admin_theme.php');
 
 function apuestanweb_load_css_files() {
@@ -104,30 +106,10 @@ if(function_exists('add_theme_support')){
 	add_action( 'after_setup_theme', 'apuestanweb_setup' );
 }
 
-//Activando widgeths
-function widgets_apuestanweb(){
-	register_sidebar(array(
-		'id' => 'primary_widget',
-		'name' => __('Apuestanweb Sidebar','apuestanweb-lang'),
-		'before_widget' => '<div class="aside_widgets" >',
-		'after_widget' => '</div>',
-		'before_title' => '<p>',
-		'after_title' => '</p>'
-	));
-
-	register_sidebar(array(
-		'id' => 'top_widget',
-		'name' => __('Apuestanweb top banner','apuestanweb-lang'),
-		'before_widget' => '<div class="top_banner_widget" >',
-		'after_widget' => '</div>'
-	));
-}
-
-add_action('widgets_init','widgets_apuestanweb');
 
 function my_login_redirect($user_name, $user) {
 	foreach($user->roles as $rol){
-		if($rol !== 'administrator'){
+		if($rol !== 'administrator' || $rol !== 'editor' || $rol !== 'author'){
 			wp_redirect(home_url());
 			exit;
 		}

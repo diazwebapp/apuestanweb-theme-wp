@@ -2,10 +2,10 @@
 function casa_apuesta_1($data){
     $button;
     if($data['button']){
-        $button .= '<a class="btn_outline" href="'.$data['refear_link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
+        $button .= '<a class="btn_outline_blue" href="'.$data['refear_link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
     }
     if(!$data['button']){
-        $button .= '<a class="btn_outline" href="'.$data['refear_link'].'" >'. __('Offert Now','apuestanweb-lang') .'</a>';
+        $button .= '<a class="btn_outline_blue" href="'.$data['refear_link'].'" >'. __('Offert Now','apuestanweb-lang') .'</a>';
     }
     $html = '<div class="tarjeta_casa_apuesta_'.$data['model'].'" style="'.$data['style'].'">
         <div>

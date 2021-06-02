@@ -39,10 +39,7 @@
 	height:100%;
 	object-fit: cover;
 }
-.tarjeta_casa_apuesta_1 .btn_outline{
-	color: var(--secondary-color);
-	border-color: var(--secondary-color);
-}
+
 .tarjeta_casa_apuesta_1 > div:first-child div{
 	position: absolute;
 	z-index: 10;
@@ -86,6 +83,7 @@
 	height: 100px;
 	background:var(--bg-tarjetitas);
 	display: grid;
+	grid-template-columns: 1fr;
 	place-content: center;
 	place-items: center;
 }
@@ -95,7 +93,7 @@
 }
 .tarjeta_casa_apuesta_1 > div:last-child a{
 	margin:5px 0;
-	width: 90%;
+	width: max-content;
 }
 /* Tarjeta casas apuestas horizontal */
 .tarjeta_casa_apuesta_2{

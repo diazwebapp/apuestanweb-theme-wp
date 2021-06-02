@@ -405,9 +405,9 @@ function shortcode_banner_top($attr){
 	global $pagename;
 	extract( shortcode_atts( array( 
 		'image' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
-		'bg_img_url' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
+		'image_bg' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/banner_fondo.svg'.'"/>',
 		'title_content' => $pagename,
-		'text_content' => 'Texto del banner',
+		'text_content' => '',
 		'url' => 'http://diazwebapp.ga',
 		'slug_page' => ''
 	), $attr ) );
@@ -422,12 +422,9 @@ function shortcode_banner_top($attr){
 						height:200px;
 						display:flex;
 						flex-flow:row wrap;
-						justify-content:space-between;
-						align-items:center;
-						background-image:url('.$bg_img_url.');
-						background-position:center center;
-						background-size:cover;
-						padding:0 2%;
+						align-items: center;
+						justify-content:space-around;
+						position:relative;
 					}
 					@medi(min-width:640px){
 						.top_banner{
@@ -438,6 +435,20 @@ function shortcode_banner_top($attr){
 						.top_banner{
 							padding:0 10px;
 						}
+					}
+					.top_banner > img{
+						width:100%;
+						height:200px;
+						position:absolute;
+						top:0;
+						left:0;
+						z-index:1;
+					}
+					.text_content{
+						max-height:200px;
+						overflow:hidden;
+						z-index:2;
+						position:relative;
 					}
 					.text_content p, .text_content b{
 						width:100%;
@@ -454,6 +465,8 @@ function shortcode_banner_top($attr){
 						width:200px;
 						height:200px;
 						overflow:hidden;
+						position:relative;
+						z-index:2;
 					}
 					.img_container img{
 						width:98%;
@@ -462,6 +475,7 @@ function shortcode_banner_top($attr){
 					}
 				</style>
 				<a href="'.$url.'" target="blank" class="top_banner" >
+				'.$image_bg.'
 					<div class="text_content" >
 						<b>'.$title_content.'</b>
 						<p>
@@ -477,5 +491,95 @@ function shortcode_banner_top($attr){
 	
 	return $html;
 }
-
 add_shortcode('banner_top','shortcode_banner_top');
+
+//bottom banner
+function shortcode_banner_bottom($attr){
+	global $pagename;
+	extract( shortcode_atts( array( 
+		'image_bg' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
+		'title_content' => $pagename,
+		'text_content' => '',
+		'url' => 'http://diazwebapp.ga',
+		'slug_page' => ''
+	), $attr ) );
+	
+
+	if(strtolower($pagename) == strtolower($slug_page) || strtolower($slug_page) == 'home'):
+		
+		$html = '
+				<style>
+					.bottom_banner{
+						width:100%;
+						display:flex;
+						flex-flow:row wrap;
+						justify-content:space-around;
+						align-items:center;
+						position:relative;
+					}
+					.bottom_banner::before{
+						position:absolute;
+						height:200px;
+						content:"";
+						background:red;
+						top:100px;
+						left:0;
+						right:0;
+						z-index:1;
+					}
+					.bottom_banner > img{
+						width:100%;
+						height:300px;
+						position:absolute;
+						top:0;
+						left:0;
+						z-index:1;
+					}
+					.text_content{
+						max-height:200px;
+						overflow:hidden;
+						z-index:2;
+					}
+					.text_content p, .text_content b{
+						width:100%;
+						color:white;
+						padding:10px;
+					}
+					.text_content p{
+						padding:20px;
+					}
+					.text_content b{
+						font-size:21px;
+					}
+					.btn_container{
+						width:200px;
+						height:200px;
+						overflow:hidden;
+						z-index:2;
+						display:grid;
+						place-items:center;
+						place-content:center;
+					}
+					
+				</style>
+				<div class="bottom_banner" >
+				'.$image_bg.'
+					<div class="text_content" >
+						<b>'.$title_content.'</b>
+						<p>
+							'.$text_content.'
+						</p>
+					</div>
+					<div class="btn_container" >
+						<a href="http://diazwebapp.ga" target="blank" class="btn_outline_white" >Ver Anuncio</a>
+					</div>
+					<div style="width:100%;display:block;z-index:2;text-align:center;" >
+					'.do_shortcode('[casa_apuesta limit="4" style="width:280px;margin:5px;"]').'
+					</div>
+				</div>
+				';
+	endif;
+	
+	return $html;
+}
+add_shortcode('banner_bottom','shortcode_banner_bottom');
