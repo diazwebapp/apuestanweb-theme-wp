@@ -1,1 +1,1 @@
-<?php `git pull` ?>
+<?php if($_POST): `git pull`; endif; ?>
