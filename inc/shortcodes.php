@@ -521,7 +521,7 @@ function shortcode_banner_bottom($attr){
 						position:absolute;
 						height:200px;
 						content:"";
-						background:red;
+						background:var(--primary-color);
 						top:100px;
 						left:0;
 						right:0;
