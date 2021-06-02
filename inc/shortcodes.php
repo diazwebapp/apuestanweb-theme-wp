@@ -405,9 +405,9 @@ function shortcode_banner_top($attr){
 	global $pagename;
 	extract( shortcode_atts( array( 
 		'image' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
-		'image_bg' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/banner_fondo.svg'.'"/>',
-		'title_content' => $pagename,
-		'text_content' => '',
+		'image_bg' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
+		'title' => $pagename,
+		'content' => '',
 		'url' => 'http://diazwebapp.ga',
 		'slug_page' => ''
 	), $attr ) );
@@ -475,15 +475,15 @@ function shortcode_banner_top($attr){
 					}
 				</style>
 				<a href="'.$url.'" target="blank" class="top_banner" >
-				'.$image_bg.'
+					<img src="'.$image_bg.'" />
 					<div class="text_content" >
-						<b>'.$title_content.'</b>
+						<b>'.$title.'</b>
 						<p>
-							'.$text_content.'
+							'.$content.'
 						</p>
 					</div>
 					<div class="img_container" >
-						'.$image.'
+						<img src="'.$image.'" />
 					</div>
 				</a>
 				';
@@ -497,9 +497,9 @@ add_shortcode('banner_top','shortcode_banner_top');
 function shortcode_banner_bottom($attr){
 	global $pagename;
 	extract( shortcode_atts( array( 
-		'image_bg' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
-		'title_content' => $pagename,
-		'text_content' => '',
+		'image_bg' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
+		'title' => $pagename,
+		'content' => '',
 		'url' => 'http://diazwebapp.ga',
 		'slug_page' => ''
 	), $attr ) );
@@ -563,11 +563,11 @@ function shortcode_banner_bottom($attr){
 					
 				</style>
 				<div class="bottom_banner" >
-				'.$image_bg.'
+					<img src="'.$image_bg.'" />
 					<div class="text_content" >
-						<b>'.$title_content.'</b>
+						<b>'.$title.'</b>
 						<p>
-							'.$text_content.'
+							'.$content.'
 						</p>
 					</div>
 					<div class="btn_container" >
