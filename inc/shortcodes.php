@@ -404,7 +404,7 @@ add_shortcode('aw_slide','shortcode_slide');
 function shortcode_banner_top($attr){
 	global $pagename;
 	extract( shortcode_atts( array( 
-		'image' => '<img loading="lazy" src="'.get_template_directory_uri() . '/assets/images/basketball.webp'.'"/>',
+		'image' => get_template_directory_uri() . '/assets/images/basketball.webp',
 		'image_bg' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
 		'title' => $pagename,
 		'content' => '',
