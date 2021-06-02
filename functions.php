@@ -109,7 +109,15 @@ if(function_exists('add_theme_support')){
 
 function my_login_redirect($user_name, $user) {
 	foreach($user->roles as $rol){
-		if($rol !== 'administrator' || $rol !== 'editor' || $rol !== 'author'){
+		if($rol !== 'administrator'){
+			wp_redirect(home_url());
+			exit;
+		}
+		if($rol !== 'editor'){
+			wp_redirect(home_url());
+			exit;
+		}
+		if($rol !== 'author'){
 			wp_redirect(home_url());
 			exit;
 		}
