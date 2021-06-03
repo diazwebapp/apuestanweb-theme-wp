@@ -23,6 +23,27 @@ function widgets_apuestanweb(){
 		'before_widget' => '<div class="bottom_banner_widget" >',
 		'after_widget' => '</div>'
 	));
+
+	register_sidebar(array(
+		'id' => 'footer_widget',
+		'name' => __('Apuestanweb footer widget','apuestanweb-lang'),
+		'before_widget' => '<div class="aw_footer_widget" >',
+		'after_widget' => '</div>'
+	));
+
+	register_sidebar(array(
+		'id' => 'footer_widget_2',
+		'name' => __('Apuestanweb footer widget 2','apuestanweb-lang'),
+		'before_widget' => '<div class="aw_footer_widget_2" >',
+		'after_widget' => '</div>'
+	));
+
+	register_sidebar(array(
+		'id' => 'footer_widget_3',
+		'name' => __('Apuestanweb footer widget 3','apuestanweb-lang'),
+		'before_widget' => '<div class="aw_footer_widget_3" >',
+		'after_widget' => '</div>'
+	));
 }
 
 add_action('widgets_init','widgets_apuestanweb');

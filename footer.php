@@ -2,14 +2,23 @@
     dynamic_sidebar('bottom_widget');
 endif; ?>
 	
-		<footer>
+		<footer class="aw_footer" >
 		
-			<div>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ab commodi dignissimos, saepe aliquam distinctio omnis laborum blanditiis cum deserunt?
-					Lorem ipsum 
-				</p>
-			</div>
+		<?php if(is_active_sidebar('footer_widget')) :
+			dynamic_sidebar('footer_widget');
+		endif; ?>
+		
+		<div style="min-width:100%;width:100%;display:block;" ></div>
+
+		<?php if(is_active_sidebar('footer_widget_2')) :
+			dynamic_sidebar('footer_widget_2');
+		endif; ?>
+
+		<div style="min-width:100%;width:100%;display:block;" ></div>
+
+		<?php if(is_active_sidebar('footer_widget_3')) :
+			dynamic_sidebar('footer_widget_3');
+		endif; ?>
 			
 		</footer><!-- #site-footer -->
 		<?php wp_footer(); ?>

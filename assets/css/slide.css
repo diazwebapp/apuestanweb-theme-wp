@@ -92,6 +92,7 @@
     color: rgb(70, 70, 70);
     font-weight: bold;
     width: 100%;
+    text-align:center;
 }
 .miSlider > h3{
 	position: absolute;

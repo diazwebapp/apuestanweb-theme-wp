@@ -47,6 +47,8 @@
 	width: 95%;
 	border:1px solid var(--bg-average) ;
 	padding-bottom: 5px;
+	height:185px;
+	max-height:185px;
 }
 
 .tarjetita_pronostico_1 p{
