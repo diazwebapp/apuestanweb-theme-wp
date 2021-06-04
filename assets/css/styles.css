@@ -214,7 +214,7 @@ footer.aw_footer{
 	position:relative;
 	max-width: var(--max-width);
 	margin:0 auto;
-	background: var(--font-color);
+	background: var(--secondary-color);
 	box-shadow: 0px 0px 2px var(--shadow);
 }
 footer.aw_footer *{
@@ -222,33 +222,37 @@ footer.aw_footer *{
 }
 
 .aw_footer .widget_1,.aw_footer .widget_2,.aw_footer .widget_3,.aw_footer .widget_4{
-	min-width:100%;width:100%;display:grid;grid-template-columns: 1fr;
-	place-content: center;
+	width:100%;display:grid;grid-template-columns: 1fr;
 	gap:10px;
 	padding:10px;
+}
+
+.aw_footer .widget_1{
+	grid-template-columns: repeat(2,1fr);
 }
 .aw_footer .widget_3,.aw_footer .widget_4,.aw_footer .widget_3 *,.aw_footer .widget_4 *{
 	background: var(--bg-page);
 	color: var(--font-color);
 }
-.aw_footer .widget_2, .aw_footer .widget_2 *{
+.aw_footer .widget_2, .aw_footer .widget_2 *,.aw_footer .widget_3,.aw_footer .widget_3 *,.aw_footer .widget_4{
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
 }
 .aw_footer .widget_2 div *{
 	margin: 0 5px;
 }
+
 .aw_footer .widget_2 div li,.aw_footer .widget_1 .widgettitle{
 	width:max-content;
-	border-bottom: 1px solid var(--primary-color);
+	border-bottom: 2px solid var(--primary-color);
 	text-transform: uppercase;
 }
 
 .aw_footer_widget_2 .fa, .aw_footer_widget_2 .fab, .aw_footer_widget_2 .fad, .aw_footer_widget_2 .fal, .aw_footer_widget_2 .far, .aw_footer_widget_2 .fas{
 	position: relative;
-	border:1px solid var(--primary-color);
+	border:2px solid var(--primary-color);
 	border-radius: 5px;
 	padding: 5px;
 }
@@ -307,17 +311,10 @@ footer.aw_footer *{
 *::-webkit-scrollbar-thumb{
 	background-color:var(--primary-color);
 }
-@media (min-width:512px){
-	.aw_footer .widget_1{
-		grid-template-columns: repeat(2,1fr);
-	}
-}
+
 @media (min-width:720px){
 	.aw_footer .widget_1{
 		grid-template-columns: repeat(3,1fr);
-	}
-	.aw_footer .widget_4{
-		grid-template-columns: 300px 1fr;
 	}
 }
 
@@ -326,7 +323,7 @@ footer.aw_footer *{
 		top:calc(var(--height-header) / 7);
 	}
 	.aw_footer .widget_1{
-		grid-template-columns: repeat(3,1fr);
+		grid-template-columns: repeat(4,1fr);
 	}
 }
 @media(min-width:1024px){
@@ -339,6 +336,10 @@ footer.aw_footer *{
 	}
 	.aw_footer .widget_1{
 		grid-template-columns: repeat(3,1fr);
+	}
+	.aw_footer .widget_2, .aw_footer .widget_2 *,.aw_footer .widget_3,.aw_footer .widget_3 *,.aw_footer .widget_4{
+		flex-flow: row;
+		justify-content: flex-start;
 	}
 }
 
