@@ -240,6 +240,9 @@ footer.aw_footer *{
 	justify-content: center;
 	align-items: center;
 }
+.aw_footer li{
+	margin: 10px auto;
+}
 .aw_footer .widget_2 div *{
 	margin: 0 5px;
 }
@@ -255,6 +258,7 @@ footer.aw_footer *{
 	border:2px solid var(--primary-color);
 	border-radius: 5px;
 	padding: 5px;
+	font-size: 26px;
 }
 .aw_footer_widget_2 .fa a, .aw_footer_widget_2 .fab a, .aw_footer_widget_2 .fad a, .aw_footer_widget_2 .fal a, .aw_footer_widget_2 .far a, .aw_footer_widget_2 .fas a{
 	position:absolute;
