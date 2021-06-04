@@ -325,7 +325,9 @@ footer.aw_footer *{
 	#theme_mode_header {
 		top:calc(var(--height-header) / 7);
 	}
-	
+	.aw_footer .widget_1{
+		grid-template-columns: repeat(3,1fr);
+	}
 }
 @media(min-width:1024px){
 	:root{
@@ -335,7 +337,9 @@ footer.aw_footer *{
 		grid-template-columns: 960px;
 		gap:10px;
 	}
-	
+	.aw_footer .widget_1{
+		grid-template-columns: repeat(3,1fr);
+	}
 }
 
 @media(min-width:1280px){
