@@ -405,7 +405,7 @@ function shortcode_banner_top($attr){
 	global $pagename;
 	extract( shortcode_atts( array( 
 		'image' => get_template_directory_uri() . '/assets/images/basketball.webp',
-		'image_bg' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
+		'image_bg' => get_template_directory_uri() . '/assets/images/banner_fondo.webp',
 		'title' => $pagename,
 		'content' => '',
 		'url' => 'http://diazwebapp.ga',
@@ -497,7 +497,7 @@ add_shortcode('banner_top','shortcode_banner_top');
 function shortcode_banner_bottom($attr){
 	global $pagename;
 	extract( shortcode_atts( array( 
-		'image_bg' => get_template_directory_uri() . '/assets/images/banner_fondo.svg',
+		'image_bg' => get_template_directory_uri() . '/assets/images/banner_fondo.webp',
 		'title' => $pagename,
 		'content' => '',
 		'url' => 'http://diazwebapp.ga',
