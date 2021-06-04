@@ -47,52 +47,19 @@
                             </div>
 
                             <div class="item_w_eq">
-                            <?php  //verificando si no es free y tienen rl rango necesario
-                            
-                                        if($acceso_pronostico !== 'free'):
-                                            
-                                            if($acceso_pronostico == $current_user->roles[0] || $current_user->roles[0] == 'administrator' || $current_user->roles[0] == 'author' || $current_user->roles[0] == 'editor'){ ?>
-                                                    <p class="<?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?>"><?php echo $nombre_equipo_1 ?></p>                                    
-                                                    <p class="<?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?>" ><?php echo $nombre_equipo_2 ?></p> 
-                                            <?php }else{ ?>
-                                                <p ><?php echo $nombre_equipo_1 ?></p>                                    
-                                                <p ><?php echo $nombre_equipo_2 ?></p>
-                                            <?php }
-                                        else: ?>
-                                            <p ><?php echo $nombre_equipo_1 ?></p>                                    
-                                            <p ><?php echo $nombre_equipo_2 ?></p> 
-                                    <?php endif; ?>                  
+                            <p class="<?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?>"><?php echo $nombre_equipo_1 ?></p>                                    
+                            <p class="<?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?>" ><?php echo $nombre_equipo_2 ?></p> 
+                                                           
                             </div>
 
-                            <div class="item_w_av <?php
-                                        if($acceso_pronostico !== 'free'):
-                                            if($current_user->roles[0] != 'administrator' && $current_user->roles[0] != 'author' && $current_user->roles[0] != 'editor'){
-                                                if($acceso_pronostico != $current_user->roles[0]):
-                                                    echo 'block_content';
-                                                endif;
-                                            }
-                                        endif;
-                                    ?>">
-                                    
-                                    <?php  
-                                        if($acceso_pronostico !== 'free' || $acceso_pronostico == null):
-                                            if($acceso_pronostico == $current_user->roles[0] || $current_user->roles[0] == 'administrator' || $current_user->roles[0] == 'author' || $current_user->roles[0] == 'editor'): ?>
-                                                <p class=" <?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?> ">
+                            <div class="item_w_av">
+                                <p class="<?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?> ">
                                                     <?php echo $average_equipo_1 ?>
-                                                </p>
-                                                <p class=" <?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?> ">
+                                </p>
+                                <p class="<?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?> ">
                                                     <?php echo $average_equipo_2 ?>
-                                                </p>     
-                                        <?php endif;
-                                           
-                                        else: ?>
-                                            <p>
-                                                <?php echo $average_equipo_1 ?>
-                                            </p>
-                                            <p>
-                                                <?php echo $average_equipo_2 ?>
-                                            </p>
-                                <?php endif; ?>
+                                </p>     
+                                        
                             </div>
 
                             <div>
