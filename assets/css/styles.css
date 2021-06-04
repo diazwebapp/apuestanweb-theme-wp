@@ -248,7 +248,7 @@ footer.aw_footer *{
 .widget_2 .aw_footer_widget_2 .menu a{
 	border-bottom: unset;
 }
-.aw_footer_widget_2 li,.aw_footer_widget_2 .fa, .aw_footer_widget_2 .fab, .aw_footer_widget_2 .fad, .aw_footer_widget_2 .fal, .aw_footer_widget_2 .far, .aw_footer_widget_2 .fas{
+.aw_footer_widget_2 .fa, .aw_footer_widget_2 .fab, .aw_footer_widget_2 .fad, .aw_footer_widget_2 .fal, .aw_footer_widget_2 .far, .aw_footer_widget_2 .fas{
 	position: relative;
 	border:1px solid var(--primary-color);
 	border-radius: 5px;
