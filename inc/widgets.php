@@ -44,6 +44,13 @@ function widgets_apuestanweb(){
 		'before_widget' => '<div class="aw_footer_widget_3" >',
 		'after_widget' => '</div>'
 	));
+
+	register_sidebar(array(
+		'id' => 'footer_widget_4',
+		'name' => __('Apuestanweb footer widget 4','apuestanweb-lang'),
+		'before_widget' => '<div class="aw_footer_widget_4" >',
+		'after_widget' => '</div>'
+	));
 }
 
 add_action('widgets_init','widgets_apuestanweb');
