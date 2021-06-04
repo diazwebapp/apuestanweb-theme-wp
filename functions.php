@@ -181,5 +181,32 @@ function statics_user($user_id){
 	update_user_meta( $user_id, 'pronosticos_realizados', $total_p );
 
 }
- 
+
+function dcms_form_login_config() {
+	$redirect_login = get_home_url();
+	$redirect_logout = get_home_url();
+
+	if ( ! is_user_logged_in() ):
+		$args = array(
+		    'echo'            => false,
+		    'redirect'        => $redirect_login,
+		  );
+		  return wp_login_form( $args );
+	else:
+		$current_user = wp_get_current_user();
+		$url_logout = wp_logout_url( $redirect_logout );
+
+		$str = get_avatar($current_user->user_email, 24).' ';
+		$str .= 'Hola '.$current_user->display_name.'<br>';
+		$str .= '<a href="' . $url_logout . '">Desconectarse</a>';
+
+		return $str;
+	endif;
+}
+
+function dcms_add_shortcode_login(){
+	add_shortcode( 'dcms_form_login', 'dcms_form_login_config' );
+}
+add_action( 'init', 'dcms_add_shortcode_login' );
+
 ?>

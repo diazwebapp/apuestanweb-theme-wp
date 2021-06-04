@@ -107,6 +107,7 @@
 	width: 100% !important;
 	background: var(--bg-page);
 	height:max-content;
+	max-height: unset;
 }
 .single_pronostico img{
 	width:20vmin !important;

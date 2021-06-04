@@ -32,4 +32,12 @@ endif; ?>
 		</footer><!-- #site-footer -->
 		<?php wp_footer(); ?>
 	</body>
+	<?php
+		if(!is_user_logged_in()){ ?>
+			<div id="aw_modal_effect" ></div>
+			<div style="dispay:none;"  id="aw_modal_login" >
+				<?php echo do_shortcode('[dcms_form_login]'); ?>
+			</div>
+		<?php }
+	?>
 </html>

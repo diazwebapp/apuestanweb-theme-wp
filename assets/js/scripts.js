@@ -10,7 +10,62 @@ window.addEventListener('load',()=>{
     const menu_mobile_bg = document.querySelector('.menu_mobile_bg')
     const canvas = document.getElementById('grafics')
     const html_head = document.querySelector('head')
+    const aw_btn_login = document.querySelectorAll('#aw_btn_login')
+    const aw_modal_login = document.querySelector('#aw_modal_login')
+    const aw_modal_effect = document.querySelector('#aw_modal_effect')
+    aw_btn_login.forEach(btn=>{
+        btn.style.cursor = 'pointer'
+        btn.addEventListener('click',()=>{
+            aw_modal_effect.addEventListener('click',()=>{
+                aw_modal_effect.style.display = 'none'
+                aw_modal_login.style.display = 'none'
+            })
+            aw_modal_effect.style.display = 'block'
+            aw_modal_login.style.display = 'flex'
+            const recovery = aw_modal_login.querySelector('form .recovery')
+            const logo = aw_modal_login.querySelector('.logo')
+            
+            if(!recovery){
+                aw_modal_login.querySelector('form').innerHTML += `<p class="recovery">
+				<a href="http://localhost:5000/wp-login.php?action=register">Registro</a>
+                 | 
+                <a href="http://localhost:5000/wp-login.php?action=lostpassword">¿Has olvidado tu contraseña?</a>
+			</p>`
+            }
+            if(!logo){
+                aw_modal_login.innerHTML += `<p class="logo">
+				<img src="/wp-content/themes/apuestanweb-theme-wp/assets/images/hh2.png" alt="Apuestanweb logo" />
+			</p>`
+            }
+            const input_login = aw_modal_login.querySelector('#user_login')
+            const input_pass = aw_modal_login.querySelector('#user_pass')
 
+            function label_focus(style,css_selector){
+                if(style=='topUp'){
+                    const label = aw_modal_login.querySelector(`${'.'+css_selector} label`)
+                    label.style.top = "-30px"
+                }
+                if(style=='topDown'){
+                    const label = aw_modal_login.querySelector(`${'.'+css_selector} label`)
+                    label.style.top = "0"
+                }
+            }
+
+            input_login.addEventListener('focusin',()=>{
+                label_focus('topUp','login-username')
+            })
+            input_login.addEventListener('focusout',()=>{
+                label_focus('topDown','login-username')
+            })
+
+            input_pass.addEventListener('focusin',()=>{
+                label_focus('topUp','login-password')
+            })
+            input_pass.addEventListener('focusout',()=>{
+                label_focus('topDown','login-password')
+            })
+        })
+    })
     if(html_head){
         const btn_theme_mode_header = document.createElement('button')
         btn_theme_mode_header.setAttribute('id','theme_mode_header')
