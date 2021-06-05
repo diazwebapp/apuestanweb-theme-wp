@@ -13,63 +13,66 @@
         'posts_per_page' => 4
     ));
     $current_user = wp_get_current_user();
+    foreach (get_users() as $key => $user) {
+        statics_user($user->ID);
+    }
 
     $usuarios = get_users("orderby=meta_value&meta_key=average_aciertos&order=DESC");
 ?>
 <aside>
 <?php if($pronosticos->have_posts() && count($pronosticos->posts) > 0): ?>
-<div class="aside_widgets">
-    <p ><?php echo __('Ultimos Pronosticos','apuestanweb-lang') ?></p>
-    <ul>
-        <?php while($pronosticos->have_posts()): $pronosticos->the_post();
-                
-                $nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1")[0];
-                $img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1")[0];
-                $average_equipo_1 = get_post_meta(get_the_ID(),"average_equipo_1")[0] ;
+    <div class="aside_widgets">
+        <p ><?php echo __('Ultimos Pronosticos','apuestanweb-lang') ?></p>
+        <ul>
+            <?php while($pronosticos->have_posts()): $pronosticos->the_post();
+                    
+                    $nombre_equipo_1 = get_post_meta(get_the_ID(),"nombre_equipo_1")[0];
+                    $img_equipo_1 = get_post_meta(get_the_ID(),"img_equipo_1")[0];
+                    $average_equipo_1 = get_post_meta(get_the_ID(),"average_equipo_1")[0] ;
 
-                $nombre_equipo_2 = get_post_meta(get_the_ID(),"nombre_equipo_2")[0];
-                $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2")[0];
-                $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2")[0] ;
+                    $nombre_equipo_2 = get_post_meta(get_the_ID(),"nombre_equipo_2")[0];
+                    $img_equipo_2 = get_post_meta(get_the_ID(),"img_equipo_2")[0];
+                    $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2")[0] ;
 
-                $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico")[0];
-                $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido")[0];
-               ?>
-                        <a href="<?php the_permalink() ?>" class="item_w_pronostico" >
-                            <div class="item_w_img" >
-                                
-                                <div>
-                                    <img loader="lazy" src="<?php if($img_equipo_1){ echo $img_equipo_1;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                    $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico")[0];
+                    $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido")[0];
+                ?>
+                            <a href="<?php the_permalink() ?>" class="item_w_pronostico" >
+                                <div class="item_w_img" >
+                                    
+                                    <div>
+                                        <img loader="lazy" src="<?php if($img_equipo_1){ echo $img_equipo_1;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                                    </div>
+                                    <div>
+                                        <img loader="lazy" src="<?php if($img_equipo_2){ echo $img_equipo_2;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                                    </div>
+                                    
                                 </div>
-                                <div>
-                                    <img loader="lazy" src="<?php if($img_equipo_2){ echo $img_equipo_2;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+
+                                <div class="item_w_eq">
+                                <p class="<?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?>"><?php echo $nombre_equipo_1 ?></p>                                    
+                                <p class="<?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?>" ><?php echo $nombre_equipo_2 ?></p> 
+                                                            
                                 </div>
-                                
-                            </div>
 
-                            <div class="item_w_eq">
-                            <p class="<?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?>"><?php echo $nombre_equipo_1 ?></p>                                    
-                            <p class="<?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?>" ><?php echo $nombre_equipo_2 ?></p> 
-                                                           
-                            </div>
+                                <div class="item_w_av">
+                                    <p class="<?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?> ">
+                                                        <?php echo $average_equipo_1 ?>
+                                    </p>
+                                    <p class="<?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?> ">
+                                                        <?php echo $average_equipo_2 ?>
+                                    </p>     
+                                            
+                                </div>
 
-                            <div class="item_w_av">
-                                <p class="<?php if($average_equipo_2 < $average_equipo_1){echo "bolder flechita" ;} ?> ">
-                                                    <?php echo $average_equipo_1 ?>
-                                </p>
-                                <p class="<?php if($average_equipo_2 > $average_equipo_1){echo "bolder flechita" ;} ?> ">
-                                                    <?php echo $average_equipo_2 ?>
-                                </p>     
-                                        
-                            </div>
-
-                            <div>
-                                <b><?php echo $acceso_pronostico; ?></b>
-                                <p><?php echo date("d-m-Y", $fecha_partido) ?></p>
-                            </div>
-                        </a>
-                    <?php endwhile; ?>
-    </ul>
-</div>
+                                <div>
+                                    <b><?php echo $acceso_pronostico; ?></b>
+                                    <p><?php echo date("d-m-Y", $fecha_partido) ?></p>
+                                </div>
+                            </a>
+                        <?php endwhile; ?>
+        </ul>
+    </div>
 <?php endif; ?>
 
 <?php if($usuarios != false): $cont = 0; ?>
@@ -80,7 +83,6 @@
              <?php  
                 foreach ($usuarios as $user ) :
                     
-                    statics_user($user->ID);
                     
                     if($user->roles[0] == 'administrator' || $user->roles[0] == 'author' || $user->roles[0] == 'editor' ):
                         $cont++; ?>
