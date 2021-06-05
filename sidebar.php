@@ -14,6 +14,7 @@
     ));
     $current_user = wp_get_current_user();
     foreach (get_users() as $key => $user) {
+        rest_get_avatar_urls ($user->ID);
         statics_user($user->ID);
     }
 
