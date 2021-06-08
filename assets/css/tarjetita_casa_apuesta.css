@@ -87,6 +87,9 @@
 	place-content: center;
 	place-items: center;
 }
+.tarjeta_casa_apuesta_1 > div:last-child h3{
+	color:var(--font-color);
+}
 .tarjeta_casa_apuesta_1 > div:last-child .stars_content{
 	color: gold;
 	position: absolute;

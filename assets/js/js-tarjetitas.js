@@ -1,10 +1,42 @@
 window.addEventListener('load',()=>{
+    const local_date = get_date({format:'date'})
+    function get_date ({date,format}){
+        if(format == 'time'){
+            if(date){
+                return new Date(date)
+            }
+            if(!date){
+                return new Date(date)
+            }
+        }
+        if(format == 'fecha'){
+            if(date){
+                const new_date = new Date(date)
+                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear()
+            }
+            if(!date){
+                const new_date = new Date()
+                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear()
+            }
+        }
+        if(format == 'fecha_hora'){
+            if(date){
+                const new_date = new Date(date)
+                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear() + " " + new_date.getUTCHours() + ":" + new_date.getUTCMinutes()
+            }
+            if(!date){
+                const new_date = new Date()
+                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear() + " " + new_date.getUTCHours() + ":" + new_date.getUTCMinutes()
+            }
+        }
+    }
+
     const create_tarjetita = (post,model,current_user,user)=>{
         const div = document.createElement('a')
         div.setAttribute('href',post.link)
         div.classList.add(model)
         div.id = post.id 
-        const date = new Date(parseInt(`${post.fecha_partido}${0}${0}${0}`))
+        let date = new Date(post.fecha_partido)
         post.fecha_partido = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
         if(model == 'tarjetita_pronostico_1'){
 
@@ -128,6 +160,7 @@ window.addEventListener('load',()=>{
     }
     const get_data = async ({rank,model,term,post_rest_slug,container_tarjetitas,loader,init,current_user=false})=>{
        
+        
         if(loader) loader.innerHTML = "<b>Loading data....</b>"
         try{
             const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
@@ -135,21 +168,25 @@ window.addEventListener('load',()=>{
             const requser = await fetch(`/wp-json/wp/v2/users`)
             const users = await requser.json()
             posts.sort(function(a,b){
-                return a.fecha_partido - b.fecha_partido
+                let date_a = new Date(a.fecha_partido)
+                let date_b = new Date(b.fecha_partido)
+                return date_a.getTime() - date_b.getTime()
             })
-            posts.length > 0 ? posts.map(async (post,i)=>{
+           
+            posts.length > 0 ? posts.map(async (post)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
+                // condicional comparativo fecha del partido con fecha actual
+                    if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
+                        const div = create_tarjetita(post,model,current_user,user)
+                        insert_tajetita_to_container(model,container_tarjetitas,div,loader)
+                        return
+                    } 
+                    if(!rank || parseInt(rank) == 0 && parseInt(user.id) == parseInt(post.author)){
+                        const div = create_tarjetita(post,model,current_user,user)
+                        insert_tajetita_to_container(model,container_tarjetitas,div,loader)
+                        return
+                    } 
                 
-                if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
-                    const div = create_tarjetita(post,model,current_user,user)
-                    insert_tajetita_to_container(model,container_tarjetitas,div,loader)
-                    return
-                } 
-                if(!rank || parseInt(rank) == 0 && parseInt(user.id) == parseInt(post.author)){
-                    const div = create_tarjetita(post,model,current_user,user)
-                    insert_tajetita_to_container(model,container_tarjetitas,div,loader)
-                    return
-                }  
             }): loader? loader.innerHTML = "No data fetch":null
         }catch(err){
             console.log(err)

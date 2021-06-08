@@ -110,25 +110,6 @@ if(function_exists('add_theme_support')){
 	add_action( 'after_setup_theme', 'apuestanweb_setup' );
 }
 
-
-function my_login_redirect($user_name, $user) {
-	foreach($user->roles as $rol){
-		if($rol !== 'administrator'){
-			wp_redirect(home_url());
-			exit;
-		}
-		if($rol !== 'editor'){
-			wp_redirect(home_url());
-			exit;
-		}
-		if($rol !== 'author'){
-			wp_redirect(home_url());
-			exit;
-		}
-	}
-}
-add_action( 'wp_login', 'my_login_redirect', 10, 3 );
-
 // Accedemos a la variable global creada por WordPress
 global $wp_roles;
 // Añadimos un nuevo rol para este tipo de usuarios
@@ -141,8 +122,35 @@ $wp_roles->add_role('VIP', 'VIP', array(
 
 remove_role('vip');
 
-//Extrae estadisticas del autor
-function statics_user($user_id){
+
+function aw_form_login_config() {
+	$redirect_login = get_home_url();
+	$redirect_logout = get_home_url();
+
+	if ( ! is_user_logged_in() ):
+		$args = array(
+		    'echo'            => false,
+		    'redirect'        => $redirect_login,
+		  );
+		  return wp_login_form( $args );
+	else:
+		$current_user = wp_get_current_user();
+		$url_logout = wp_logout_url( $redirect_logout );
+
+		$str = get_avatar($current_user->user_email, 24).' ';
+		$str .= 'Hola '.$current_user->display_name.'<br>';
+		$str .= '<a href="' . $url_logout . '">Desconectarse</a>';
+
+		return $str;
+	endif;
+}
+
+function aw_add_shortcode_login(){
+	add_shortcode( 'aw_form_login', 'aw_form_login_config' );
+}
+add_action( 'init', 'aw_add_shortcode_login' );
+
+function check_values($post_ID, $post_after, $post_before){
 	$total_p = 0; 
 	$total_s=0; 
 	$total_f=0;
@@ -151,7 +159,7 @@ function statics_user($user_id){
 
 	
 	$author_posts = new wp_Query(array(
-		'author' => $user_id,
+		'author' => $post_before->post_author,
 		'posts_per_page' => 1000,
 		'post_type' => 'pronostico'
 	));
@@ -174,39 +182,11 @@ function statics_user($user_id){
 		$total_av = ceil($total_s / $total_c * 100);
 	}
 
-	update_user_meta( $user_id, 'average_aciertos', $total_av );
-	update_user_meta( $user_id, 'pronosticos_completados', $total_c );
-	update_user_meta( $user_id, 'pronosticos_acertados', $total_s );
-	update_user_meta( $user_id, 'pronosticos_no_acertados', $total_f );
-	update_user_meta( $user_id, 'pronosticos_realizados', $total_p );
-
+	update_user_meta( $post_before->post_author, 'average_aciertos', $total_av );
+	update_user_meta( $post_before->post_author, 'pronosticos_completados', $total_c );
+	update_user_meta( $post_before->post_author, 'pronosticos_acertados', $total_s );
+	update_user_meta( $post_before->post_author, 'pronosticos_no_acertados', $total_f );
+	update_user_meta( $post_before->post_author, 'pronosticos_realizados', $total_p );
 }
-
-function dcms_form_login_config() {
-	$redirect_login = get_home_url();
-	$redirect_logout = get_home_url();
-
-	if ( ! is_user_logged_in() ):
-		$args = array(
-		    'echo'            => false,
-		    'redirect'        => $redirect_login,
-		  );
-		  return wp_login_form( $args );
-	else:
-		$current_user = wp_get_current_user();
-		$url_logout = wp_logout_url( $redirect_logout );
-
-		$str = get_avatar($current_user->user_email, 24).' ';
-		$str .= 'Hola '.$current_user->display_name.'<br>';
-		$str .= '<a href="' . $url_logout . '">Desconectarse</a>';
-
-		return $str;
-	endif;
-}
-
-function dcms_add_shortcode_login(){
-	add_shortcode( 'dcms_form_login', 'dcms_form_login_config' );
-}
-add_action( 'init', 'dcms_add_shortcode_login' );
-
+add_action( 'post_updated', 'check_values', 10, 3 );
 ?>

@@ -1,7 +1,13 @@
 <div class="menu_mobile_bg"></div>
 <div class="menu_mobile" >
 
-<b class="title_nav" >Apuestanweb</b>
+<b class="title_nav" >
+    Apuestanweb
+    <button id="theme_mode_header" class="btn_light" >
+        <span>☀</span>
+        <span>☪</span>
+    </button>
+</b>
 <?php
     //Mobile menu
         if ( has_nav_menu( 'mobile' ) ) {

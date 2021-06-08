@@ -1,10 +1,9 @@
-
-
 .slide-contenedor{
     width: 100%;
     position: relative;
     overflow: hidden;
     border-radius: var(--radius);
+    margin-bottom: 10px;
 }
 .slide-contenedor > .filter_slide{
     position: absolute;
@@ -18,7 +17,7 @@
     height: 100%;
 }
 .miSlider{
-    height: 380px;
+    height: 280px;
     width: 100%;
 }
 .miSlider > .slide_item_pronostico_bottom,.miSlider > .slide_item_pronostico_top{
@@ -141,7 +140,18 @@
     animation-name: fade;
     animation-duration: .5s;    
 }
-
+@media(min-width:768px){
+    .miSlider{
+        height: 480px;
+        width: 100%;
+    }
+}
+@media(min-width:1080px){
+    .miSlider{
+        height: 380px;
+        width: 100%;
+    }
+}
 @keyframes fade {
     from {opacity: .4;}
     to{opacity:1;}

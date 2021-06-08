@@ -12,18 +12,14 @@
         'post_type'=>'post',
         'posts_per_page' => 4
     ));
-    $current_user = wp_get_current_user();
-    foreach (get_users() as $key => $user) {
-        rest_get_avatar_urls ($user->ID);
-        statics_user($user->ID);
-    }
+    $current_user = wp_get_current_user();    
 
     $usuarios = get_users("orderby=meta_value&meta_key=average_aciertos&order=DESC");
 ?>
 <aside>
 <?php if($pronosticos->have_posts() && count($pronosticos->posts) > 0): ?>
     <div class="aside_widgets">
-        <p ><?php echo __('Ultimos Pronosticos','apuestanweb-lang') ?></p>
+        <p><?php echo __('Ultimos Pronosticos','apuestanweb-lang') ?></p>
         <ul>
             <?php while($pronosticos->have_posts()): $pronosticos->the_post();
                     
@@ -68,7 +64,7 @@
 
                                 <div>
                                     <b><?php echo $acceso_pronostico; ?></b>
-                                    <p><?php echo date("d-m-Y", $fecha_partido) ?></p>
+                                    <p><?php echo $fecha_partido ?></p>
                                 </div>
                             </a>
                         <?php endwhile; ?>
@@ -90,14 +86,14 @@
                         
                         <a href="<?php echo home_url()."\user/".$user->user_login?>" class="aside_item_usuarios">
                             <div>
-                                <?php echo $cont; ?>
+                                <?php echo $user->ID; ?>
                             </div>
                             <div>
                                 <?php echo get_avatar( get_the_author_meta('email'), '80' ); ?>
                             </div>
                             <div>
                                 <h4><?php echo $user->display_name ?></h4>
-                                <p><?php echo get_the_author_meta('pronosticos_acertados') .'-'.get_the_author_meta('pronosticos_no_acertados').' ('.get_the_author_meta('average_aciertos').') '.'T'. get_the_author_meta('pronosticos_completados')?></p>
+                                <p><?php echo get_the_author_meta('pronosticos_acertados',$user->ID) .'-'.get_the_author_meta('pronosticos_no_acertados',$user->ID).' ('.get_the_author_meta('average_aciertos',$user->ID).') '.'T'. get_the_author_meta('pronosticos_completados',$user->ID)?></p>
                                
                             </div>
                         </a>

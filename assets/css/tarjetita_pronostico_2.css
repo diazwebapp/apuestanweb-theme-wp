@@ -14,8 +14,9 @@
 .container_tarjetitas_2 > .sub_title{
 	grid-column:1 / span 1;
     text-align: left;
-    background: var(--bg-page);
-    border-bottom:1px solid var(--shadow) ;
+    background: var(--bg-tarjetitas);
+    border-bottom:1px solid ;
+    border-color:var(--shadow);
     color:var(--primary-color);
     padding: 5px 20px;
 }

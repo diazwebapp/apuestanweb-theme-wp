@@ -1,0 +1,56 @@
+:root{
+	/*Colores 2*/
+	--bg-app-dark:rgb(31, 31, 31);
+	--bg-page-dark:rgb(46, 46, 46);
+    --bg-tarjetitas-dark:rgb(44, 43, 43);
+	--shadow-dark:rgba(0,0,0, .3);
+	--bg-average-dark:rgba(30, 115, 191, .25);
+	--font-color-dark:rgb(230, 230, 230);
+	--font-color-2-dark:rgb(128, 128, 128);
+	--color-sub-title-dark:rgb(255, 255, 255);
+	--color-title-sidebar-dark:rgb(30,115,191);
+	--bg-sub-title-dark:rgb(4, 58, 105);
+	--shadow-length-dark: 36px ;
+}
+
+/*Background app*/
+.dark_mode{
+	background: var(--bg-app-dark);
+}
+/*Background components*/
+
+.dark_mode .container_tarjetitas_2,.dark_mode article,.dark_mode .aside_widgets,.dark_mode .sports_bar > ul,.dark_mode .tarjetita_pronostico_2,.dark_mode .card_author{
+    background: var(--bg-page-dark);
+}
+.dark_mode .container_tarjetitas_2 .sub_title,.dark_mode .tarjetita_pronostico_1,.dark_mode .aside_widgets > ul > a:nth-child(2n){
+    background:var(--bg-tarjetitas-dark);
+}
+.dark_mode .aside_widgets > p{
+    background:var(--bg-page-dark);
+}
+.dark_mode .menu_mobile{
+	background:var(--bg-app-dark);
+}
+.dark_mode .menu_mobile button{
+    background:var(--font-color-dark);
+}
+.dark_mode #aw_modal_login{
+	background:var(--bg-page-dark);
+}
+/*fuentes*/
+.dark_mode *{
+    color:var(--font-color-dark);
+}
+.dark_mode .menu_mobile button span{
+    color:var(--bg-app-dark);
+}
+.dark_mode .sports_bar > ul *{
+    color:var(--primary-color);
+    text-shadow: .8px .8px black;
+}
+.dark_mode .tarjetita_pronostico_1 *{
+    color:var(--font-color-dark);
+}
+.dark_mode .sports_bar > ul *, .dark_mode .menu_mobile li{
+    border-color: var(--shadow-dark);
+}

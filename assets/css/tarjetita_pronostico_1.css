@@ -28,7 +28,6 @@
 	grid-template-columns: 1fr;
 	border-radius:var(--radius);
 	overflow: hidden;
-	background:var(--bg-page);
 	place-content: center;
 	place-items: center;
 	padding:0;
@@ -47,12 +46,12 @@
 	width: 95%;
 	border:1px solid var(--bg-average) ;
 	padding-bottom: 5px;
-	height:185px;
-	max-height:185px;
+	height:190px;
+	max-height:190px;
+	overflow: hidden;
 }
 
 .tarjetita_pronostico_1 p{
-	color: var(--font-color);
 	text-align: center;
 	word-break: break-all;
 }
@@ -91,14 +90,22 @@
 	place-content: center;
 	place-items: center;
 }
+.tarjetita_pronostico_1 .average_pronostico{
+	position: absolute;
+	bottom: 3px;
+	width:94%;
+	left:3%;
+}
 .equipos_pronostico p{
-	max-height:64px;
+	height:42px;
 	overflow-y: hidden;
+	margin-top:5px;
 }
 .average_pronostico p{
 	background-color: var(--bg-average);
-	padding:0 20%;
+	padding:0 10%;
 	font-weight: bold;
+	height:24px;
 }
 
 /*tarjetita en pagina unica */
@@ -118,7 +125,6 @@
 	font-size: 18px;
 	height: unset !important;
 	background: var(--bg-sub-title) !important;
-	color: var(--color-sub-title) ;
 }
 .single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
 	width: 98%;
@@ -130,7 +136,6 @@
 .single_pronostico .equipos_pronostico p{
 	font-size: unset;
 	font-weight: bold;
-	height: 25px;
 	word-break: break-all;
 }
 
