@@ -165,16 +165,22 @@ window.addEventListener('load',()=>{
         try{
             const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
             const posts = await req_posts.json()
+
             const requser = await fetch(`/wp-json/wp/v2/users`)
             const users = await requser.json()
+
+            const reqtaxonomy = await fetch(`/wp-json/wp/v2/deportes`)
+            const deportes = await reqtaxonomy.json()
+
             posts.sort(function(a,b){
                 let date_a = new Date(a.fecha_partido)
                 let date_b = new Date(b.fecha_partido)
                 return date_a.getTime() - date_b.getTime()
             })
-           
+           console.log(deportes[0].id)
             posts.length > 0 ? posts.map(async (post)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
+                const deporte = deportes.find(term => parseInt(term.id) === parseInt(post.deportes[0]))
                 // condicional comparativo fecha del partido con fecha actual
                     if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
                         const div = create_tarjetita(post,model,current_user,user)
