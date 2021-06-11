@@ -1,56 +1,56 @@
 :root{
 	/*Colores*/
-	--bg-app-white:rgb(245, 245, 245);
-	--bg-page-white:rgba(255, 255, 255, 1);
-	--bg-tarjetitas-white:rgb(250, 250, 250);
-	--shadow-white:rgba(0,0,0, .12);
-	--bg-average-white:rgba(30, 115, 191, .25);
-	--font-color-white:#484848;
-	--font-color-2-white:#808080;
-	--color-sub-title-white:#fff;
-	--color-title-sidebar-white:rgb(30,115,191);
-	--bg-sub-title-white:#043a69;
+	--bg-app:rgb(245, 245, 245);
+	--bg-page:rgba(255, 255, 255, 1);
+	--bg-tarjetitas:rgb(250, 250, 250);
+	--shadow:rgba(0,0,0, .12);
+	--bg-average:rgba(30, 115, 191, .25);
+	--font-color:#484848;
+	--font-color-2:#808080;
+	--color-sub-title:#fff;
+	--color-title-sidebar:rgb(30,115,191);
+	--bg-sub-title:#043a69;
 	--shadow-length: 36px ;
 }
 
 /*Background app*/
 .white_mode{
-	background: var(--bg-app-white);
+	background: var(--bg-app);
 }
 /*Background components*/
 
 .white_mode .container_tarjetitas_2,.white_mode article,.white_mode .aside_widgets,.white_mode .sports_bar > ul,.white_mode .tarjetita_pronostico_2,.white_mode .card_author{
-    background: var(--bg-page-white);
+    background: var(--bg-page);
 }
 .white_mode .container_tarjetitas_2 .sub_title,.white_mode .tarjetita_pronostico_1,.white_mode .aside_widgets > ul > a:nth-child(2n){
-    background:var(--bg-tarjetitas-white);
+    background:var(--bg-tarjetitas);
 }
 .white_mode .aside_widgets > p{
-    background:var(--bg-page-white);
+    background:var(--bg-page);
 }
 .white_mode .menu_mobile{
-	background:var(--bg-app-white);
+	background:var(--bg-app);
 }
 .white_mode .menu_mobile button{
-    background:var(--font-color-white);
+    background:var(--font-color);
 }
 .white_mode #aw_modal_login{
-	background:var(--bg-page-white);
+	background:var(--bg-page);
 }
 /*fuentes*/
 .white_mode *{
-    color:var(--font-color-white);
+    color:var(--font-color);
 }
 .white_mode .menu_mobile button span{
-    color:var(--bg-app-white);
+    color:var(--bg-app);
 }
 .white_mode .sports_bar > ul *{
     color:var(--primary-color);
     text-shadow: .8px .8px black;
 }
 .white_mode .tarjetita_pronostico_1 *{
-    color:var(--font-color-white);
+    color:var(--font-color);
 }
 .white_mode .sports_bar > ul *, .white_mode .menu_mobile li{
-    border-color: var(--shadow-white);
+    border-color: var(--shadow);
 }

@@ -3,6 +3,7 @@
 @import './tarjetita_post.css';
 @import './author.css';
 @import './dark_mode.css';
+@import './default_mode.css';
 
 
 /* -------------------------------------------------------------------------- */
@@ -11,7 +12,7 @@
 /* -------------------------------------------------------------------------- */
 :root{	
 	--height-header:63px;
-	--radius:1px;
+	--radius:5px;
 	--index-header:900000;
 	--padding-horizontal:0;
 	--max-width: 1173px;
@@ -28,7 +29,6 @@
 	text-decoration: none;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	outline: none;
-	transition: all .5s ease;
 }
 body{
 	background: var(--bg-app);

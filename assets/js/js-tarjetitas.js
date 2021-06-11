@@ -31,7 +31,7 @@ window.addEventListener('load',()=>{
         }
     }
 
-    const create_tarjetita = (post,model,current_user,user)=>{
+    const create_tarjetita = (post,model,current_user,user,deporte)=>{
         const div = document.createElement('a')
         div.setAttribute('href',post.link)
         div.classList.add(model)
@@ -40,7 +40,7 @@ window.addEventListener('load',()=>{
         post.fecha_partido = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
         if(model == 'tarjetita_pronostico_1'){
 
-            div.innerHTML = `<h3 class="title_pronostico" >${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</h3>
+            div.innerHTML = `<h3 class="title_pronostico" >${deporte.name}</h3>
                                 
             ${post.acceso_pronostico.toString().toLowerCase() == 'vip'?`<b data="${post.acceso_pronostico}" class="sticker_tarjetita" ></b>`:''}
         
@@ -177,18 +177,18 @@ window.addEventListener('load',()=>{
                 let date_b = new Date(b.fecha_partido)
                 return date_a.getTime() - date_b.getTime()
             })
-           console.log(deportes[0].id)
+           
             posts.length > 0 ? posts.map(async (post)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
                 const deporte = deportes.find(term => parseInt(term.id) === parseInt(post.deportes[0]))
                 // condicional comparativo fecha del partido con fecha actual
                     if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
-                        const div = create_tarjetita(post,model,current_user,user)
+                        const div = create_tarjetita(post,model,current_user,user,deporte)
                         insert_tajetita_to_container(model,container_tarjetitas,div,loader)
                         return
                     } 
                     if(!rank || parseInt(rank) == 0 && parseInt(user.id) == parseInt(post.author)){
-                        const div = create_tarjetita(post,model,current_user,user)
+                        const div = create_tarjetita(post,model,current_user,user,deporte)
                         insert_tajetita_to_container(model,container_tarjetitas,div,loader)
                         return
                     } 

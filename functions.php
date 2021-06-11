@@ -114,13 +114,13 @@ if(function_exists('add_theme_support')){
 global $wp_roles;
 // Añadimos un nuevo rol para este tipo de usuarios
 
-$wp_roles->add_role('VIP', 'VIP', array(
+$wp_roles->add_role('vip', 'vip', array(
 	'read' => true, // Les damos permisos de lectura (como a los suscriptores)
 	'edit_posts' => false, // No tienen permisos suficientes para editar entradas
 	'delete_posts' => false, // No tienen permisos suficientes para eliminar entradas
   ));
 
-remove_role('vip');
+remove_role('VIP');
 
 
 function aw_form_login_config() {

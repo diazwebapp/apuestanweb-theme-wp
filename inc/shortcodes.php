@@ -178,19 +178,21 @@ function shortcode_pronosticos($attr){
 		if( $terms && !is_wp_error( $terms)):
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
 			foreach ($terms as $term) :
-				if($deporte && $deporte == $term->name):
-					$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
-					<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
-					
-				</article>
-				<div class="container_pagination" ></div>';
-				endif;
-				if(!$deporte) :
-					$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
-					<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
-				
+				if($term->parent == 0):
+					if($deporte && $deporte == $term->name):
+						$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
+						<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
+						
 					</article>
 					<div class="container_pagination" ></div>';
+					endif;
+					if(!$deporte) :
+						$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
+						<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
+					
+						</article>
+						<div class="container_pagination" ></div>';
+					endif;
 				endif;
 	 	endforeach; endif;
 		return $html ;
