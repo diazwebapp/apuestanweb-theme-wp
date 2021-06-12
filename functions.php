@@ -189,4 +189,6 @@ function check_values($post_ID, $post_after, $post_before){
 	update_user_meta( $post_before->post_author, 'pronosticos_realizados', $total_p );
 }
 add_action( 'post_updated', 'check_values', 10, 3 );
+
+
 ?>

@@ -122,7 +122,7 @@ window.addEventListener('load',()=>{
                 let n_fallidos = canvas.attributes.data_failed.value
                 var ctx = canvas.getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'pie',
+                    type: 'line',
                     data: {
                         labels: ['Acertados', 'Fallidos',],
                         datasets: [{
@@ -140,11 +140,7 @@ window.addEventListener('load',()=>{
                         }]
                     },
                     options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
+                        
                     }
                 });
                 

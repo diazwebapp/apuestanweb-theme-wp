@@ -43,7 +43,7 @@ function shortcode_casas_apuesta($attr){
 			}
 		}
 		if(!$id){
-			foreach ($casas_apuestas->get_posts() as $casaApuesta) {
+			foreach ($casas_apuestas->get_posts() as $casaApuesta) :
 		
 				$data = array(
 					'thumb' 		=> get_the_post_thumbnail_url($casaApuesta->ID,'puntuacion_casa_apuesta'),
@@ -67,7 +67,7 @@ function shortcode_casas_apuesta($attr){
 				if($model == 2){
 					$html .= casa_apuesta_2($data);
 				}
-			}
+			endforeach;
 			if($paginate == 'yes'){
 				$html .= '<div class="container_pagination">
 					<a href="'.home_url().'\casaapuesta/'.'" >Ver más</a>
@@ -402,6 +402,70 @@ function shortcode_slide($attr){
 }
 add_shortcode('aw_slide','shortcode_slide');
 
+//posts
+function shortcode_posts($attr){ 
+    extract( shortcode_atts( array( 'paginate'=>'no', 'limit' => -1, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false ), $attr ) );
+	$posts = new wp_query(array(
+		"post_type"=>"post",
+		"posts_per_page" => $limit
+	));
+	$html = '';
+	wp_enqueue_style( 'casa_apuesta_css', get_template_directory_uri() . '/assets/css/tarjetita_casa_apuesta.css' );
+
+		if($id){
+			$data = array(
+				'thumb' 		=> get_the_post_thumbnail_url($id,'puntuacion_casa_apuesta'),
+				'link'			=> get_the_permalink($id),
+				'tiempo_pago'	=> get_post_meta($id,'tiempo_pago_casa_apuesta')[0],
+				'slogan' 		=> get_post_meta($id,'slogan_casa_apuesta')[0],
+				'logo' 			=> get_post_meta($id,'url_logo_casa_apuesta')[0],
+				'puntuacion' 	=> get_post_meta($id,'puntuacion_casa_apuesta')[0],
+				'metodo_pago_1'	=> get_post_meta($id,'m_p_icon_1')[0],
+				'metodo_pago_2'	=> get_post_meta($id,'m_p_icon_2')[0],
+				'metodo_pago_3'	=> get_post_meta($id,'m_p_icon_3')[0],
+				'metodo_pago_4'	=> get_post_meta($id,'m_p_icon_4')[0],
+				'refear_link'	=> get_post_meta($id,'link')[0],
+				'style'			=> $style,
+				'button'		=> $button,
+				'model'			=> $model
+			);
+			if($model == 1){
+				$html .= casa_apuesta_1($data);
+			}
+		}
+		if(!$id){
+			foreach ($posts->get_posts() as $post) :
+		
+				$data = array(
+					'thumb' 		=> get_the_post_thumbnail_url($post->ID,'puntuacion_casa_apuesta'),
+					'link'			=> get_the_permalink($post->ID),
+					'tiempo_pago'	=> get_post_meta($post->ID,'tiempo_pago_casa_apuesta')[0],
+					'slogan' 		=> get_post_meta($post->ID,'slogan_casa_apuesta')[0],
+					'logo' 			=> get_post_meta($post->ID,'url_logo_casa_apuesta')[0],
+					'puntuacion' 	=> get_post_meta($post->ID,'puntuacion_casa_apuesta')[0],
+					'metodo_pago_1'	=> get_post_meta($post->ID,'m_p_icon_1')[0],
+					'metodo_pago_2'	=> get_post_meta($post->ID,'m_p_icon_2')[0],
+					'metodo_pago_3'	=> get_post_meta($post->ID,'m_p_icon_3')[0],
+					'metodo_pago_4'	=> get_post_meta($post->ID,'m_p_icon_4')[0],
+					'refear_link'	=> get_post_meta($post->ID,'link')[0],
+					'style'			=> $style,
+					'button'		=> $button,
+					'model'			=> $model
+				);
+				if($model == 1){
+					$html .= casa_apuesta_1($data);
+				}
+			endforeach;
+			if($paginate == 'yes'){
+				$html .= '<div class="container_pagination">
+					<a href="'.home_url().'\blog/'.'" >Ver más</a>
+				</div>';
+			}
+		}
+	
+	return $html;
+}
+add_shortcode('casa_apuesta','shortcode_posts');
 //Banner top
 function shortcode_banner_top($attr){
 	global $pagename;

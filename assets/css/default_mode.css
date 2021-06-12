@@ -40,6 +40,7 @@
 /*fuentes*/
 .white_mode *{
     color:var(--font-color);
+	transition: all .3s ease;
 }
 .white_mode .menu_mobile button span{
     color:var(--bg-app);

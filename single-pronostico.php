@@ -10,6 +10,11 @@ $author_posts = new wp_Query(array(
     'post_not_in' => array( $post->ID )
 ));
 
+function content_action($content){
+    $content .= "[eleccion]";
+    return $content;
+}
+add_action('the_content','content_action');
 ?>
 
 <main>
@@ -18,12 +23,7 @@ $author_posts = new wp_Query(array(
                 echo do_shortcode('[pronostico paginate="'.false.'" id="'.$post->ID.'" ]'); ?>
                 <article>
                     <?php 
-                        if($current_user->roles[0] == 'vip'){
-                            __(the_content(),'apuestanweb-lang');
-                            echo do_shortcode('[eleccion]'); 
-                        }else{
-                            echo "<h1>No tienes acceso</h1>"
-                        }
+                        __(the_content(),'apuestanweb-lang');
                     ?>
                 </article>
         <?php  

@@ -9,7 +9,7 @@ add_meta_box(
 );
 
 function func_casa_apuesta($post){ 
-    wp_nonce_field( 'grabar_meta', 'casaapuesta_nonce' ); 
+    wp_nonce_field( 'casaapuesta_nonce', 'casaapuesta_nonce' ); 
     $slogan = get_post_meta($post->ID,'slogan_casa_apuesta')[0];
     $puntuacion = get_post_meta($post->ID,'puntuacion_casa_apuesta')[0];
     $tiempo_pago = get_post_meta($post->ID,'tiempo_pago_casa_apuesta')[0];
@@ -35,6 +35,7 @@ function func_casa_apuesta($post){
             width:90%;
         }
     </style>
+  
 	<div class="adm_meta_ca" style="display:flex;flex-flow:row wrap;align-items:flex-start;align-content:flex-start;" >
         <div class="upload_img" >
             <button id="btn_lca">Subir logo</button>
@@ -76,12 +77,12 @@ function func_casa_apuesta($post){
         </div>
 
         <div >
-            <label for="slogan_casa_apuesta">Slogan:</label>
+            <label for="slogan_casa_apuesta">Bono:</label>
             <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo $slogan  ?>" >
         </div>
 
         <div >
-            <label for="link">Link referido:</label>
+            <label for="link">Link:</label>
             <input type="link" name="link" id="link" value="<?php echo $link ?>" >
         </div>
 
@@ -110,8 +111,12 @@ add_action("admin_enqueue_scripts", "aw_admin");
  * @return bool|int
  */
 function ca_save_meta_boxes( $post_id ) {
-	// Comprueba que el tipo de post es pronostico.
+	// Comprueba que el tipo de post es casaapuesta.
 	if ( isset( $_POST ) && 'casaapuesta' !== $_POST['post_type'] ) {
+		return $post_id;
+	}
+    // Comprueba que el nonce es correcto para evitar ataques CSRF.
+	if ( ! isset( $_POST['casaapuesta_nonce'] ) || ! wp_verify_nonce( $_POST['casaapuesta_nonce'], 'casaapuesta_nonce' ) ) {
 		return $post_id;
 	}
 	// Comprueba que el usuario actual tiene permiso para editar esto
