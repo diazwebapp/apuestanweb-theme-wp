@@ -69,6 +69,7 @@
 	top:calc(65px - 20px);
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
+	color:grey;
 }
 .tarjeta_casa_apuesta_1 > div:first-child .rectangle span{
 	color:gold;

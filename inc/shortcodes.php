@@ -465,7 +465,7 @@ function shortcode_posts($attr){
 	
 	return $html;
 }
-add_shortcode('casa_apuesta','shortcode_posts');
+add_shortcode('post_cards','shortcode_posts');
 //Banner top
 function shortcode_banner_top($attr){
 	global $pagename;
