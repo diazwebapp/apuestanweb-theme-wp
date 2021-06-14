@@ -140,11 +140,16 @@ window.addEventListener('load',()=>{
         
     }
     const get_data = async ({rank,model,term,post_rest_slug,container_tarjetitas,loader,init,current_user=false})=>{
-               
-        if(loader) loader.innerHTML = "<b>Loading data....</b>"
-        let existe = container_tarjetitas.querySelector(`div`)
+        let div_container      
+        
+        if(container_tarjetitas){
+            div_container = container_tarjetitas.querySelector(`div`)
+        }
         try{
-            existe.innerHTML = 'loading...'
+            if(container_tarjetitas){
+                div_container.innerHTML = '<div class="loading" >loading...</div>'
+            }
+            
             const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
             const posts = await req_posts.json()
             
@@ -159,12 +164,15 @@ window.addEventListener('load',()=>{
                 let date_b = new Date(b.fecha_partido)
                 return date_a.getTime() - date_b.getTime()
             })
-            existe.innerHTML = ''
+            if(container_tarjetitas){
+                container_tarjetitas.style.display = 'grid'
+                div_container.innerHTML = ''
+            }
             posts.length > 0 ? posts.map(async (post,index)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
                 const deporte = deportes.find(term => parseInt(term.id) === parseInt(post.deportes[0]))
                 // condicional comparativo fecha del partido con fecha actual
-                console.log(get_date({format:'fecha',date:post.fecha_partido[0]}),local_date)
+                
                 if(get_date({format:'fecha',date:post.fecha_partido[0]}) == local_date){
                    
                     if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
@@ -178,9 +186,9 @@ window.addEventListener('load',()=>{
                         return
                     } 
                 }
-            }): existe.innerHTML = ''
+            }): existe.innerHTML = '<div class="loading">empty</div>'
         }catch(err){
-            existe.innerHTML = 'Empty'
+            existe.innerHTML = '<div class="loading">Err.</div>'
             console.log(err)
         }
     }

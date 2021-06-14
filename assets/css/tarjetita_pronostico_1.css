@@ -24,6 +24,7 @@
 /* Container tarjetitas*/
 .container_tarjetitas_1 > div{
 	width:100%;
+	height:100%;
 	display: grid;
 	grid-template-columns: 1fr;
 	border-radius:var(--radius);
@@ -31,11 +32,11 @@
 	place-content: center;
 	place-items: center;
 	padding:0;
+	position:relative;
 }
-.container_tarjetitas_1 > .sub_title{
-	grid-column:1 / span 1;
+.container_tarjetitas_1 > div .loading{
+	grid-column: 1 / span 1;
 }
-
 /* Tarjetita pronostico*/
 .tarjetita_pronostico_1{
 	border-radius: var(--radius);
@@ -49,6 +50,7 @@
 	height:190px;
 	max-height:190px;
 	overflow: hidden;
+	animation: in .5s;
 }
 
 .tarjetita_pronostico_1 p{
@@ -143,8 +145,8 @@
 	.container_tarjetitas_1 > div{
 		grid-template-columns: repeat(2,1fr);
 	}
-	.container_tarjetitas_1 > .sub_title{
-		grid-column:1 / span 2;
+	.container_tarjetitas_1 > div .loading{
+		grid-column: 1 / span 2;
 	}
 }
 
@@ -152,10 +154,18 @@
 	.container_tarjetitas_1 > div{
 		grid-template-columns: repeat(3,1fr);
 	}
-	.container_tarjetitas_1 > .sub_title{
-		grid-column:1 / span 3;
-	}
 	.single_pronostico .equipos_pronostico,.single_pronostico .average_pronostico{
 		margin: auto;
+	}
+	.container_tarjetitas_1 > div .loading{
+		grid-column: 1 / span 3;
+	}
+}
+@keyframes in{
+	0%{
+		opacity: .1;
+	}
+	100%{
+		opacity: 1;
 	}
 }
