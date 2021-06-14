@@ -1,8 +1,9 @@
 window.addEventListener('load',()=>{
     const input_date = document.getElementById('aw_filter_pronosticos')
+    const ul_btn_days = document.getElementById('aw_btn_day_filter')
     let local_date = get_date({format:'fecha'})
 
-    function get_date ({date,format}){
+    function get_date ({date,format,yesterday,tomorrow}){
         if(format == 'time'){
             if(date){
                 return new Date(date)
@@ -11,7 +12,7 @@ window.addEventListener('load',()=>{
                 return new Date(Date.now())
             }
         }
-        if(format == 'fecha'){
+        if(format == 'fecha' && !yesterday && !tomorrow){
             if(date){
                 const new_date = new Date(date)
                 return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
@@ -21,7 +22,7 @@ window.addEventListener('load',()=>{
                 return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
             }
         }
-        if(format == 'fecha_hora'){
+        if(format == 'fecha_hora'  && !yesterday && !tomorrow){
             if(date){
                 const new_date = new Date(date)
                 return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear() + " " + new_date.getHours() + ":" + new_date.getMinutes()
@@ -29,6 +30,26 @@ window.addEventListener('load',()=>{
             if(!date){
                 const new_date = new Date()
                 return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear() + " " + new_date.getHours() + ":" + new_date.getMinutes()
+            }
+        }
+        if(format == 'fecha' && yesterday){
+            if(date){
+                const new_date = new Date(date)
+                return (new_date.getDate() - 1 ) + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
+            }
+            if(!date){
+                const new_date = new Date(Date.now())
+                return (new_date.getDate() - 1 ) + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
+            }
+        }
+        if(format == 'fecha' && tomorrow){
+            if(date){
+                const new_date = new Date(date)
+                return (new_date.getDate() + 1 ) + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
+            }
+            if(!date){
+                const new_date = new Date(Date.now())
+                return (new_date.getDate() + 1 ) + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
             }
         }
     }
@@ -42,7 +63,7 @@ window.addEventListener('load',()=>{
         post.fecha_partido = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
         if(model == 'tarjetita_pronostico_1'){
 
-            div.innerHTML = `<h3 class="title_pronostico" >${deporte.name}</h3>
+            div.innerHTML = `<h3 class="title_pronostico" >${deporte[0].name} ${deporte[1]?deporte[1].name:''}</h3>
                                 
             ${post.acceso_pronostico.toString().toLowerCase() == 'vip'?`<b data="${post.acceso_pronostico}" class="sticker_tarjetita" ></b>`:''}
         
@@ -165,12 +186,13 @@ window.addEventListener('load',()=>{
                 return date_a.getTime() - date_b.getTime()
             })
             if(container_tarjetitas){
-                container_tarjetitas.style.display = 'grid'
                 div_container.innerHTML = ''
             }
             posts.length > 0 ? posts.map(async (post,index)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
-                const deporte = deportes.find(term => parseInt(term.id) === parseInt(post.deportes[0]))
+                const deporte = post.deportes.map((id_deporte)=>{
+                    return deportes.find(current_term=>current_term.id==id_deporte)
+                })
                 // condicional comparativo fecha del partido con fecha actual
                 
                 if(get_date({format:'fecha',date:post.fecha_partido[0]}) == local_date){
@@ -186,10 +208,10 @@ window.addEventListener('load',()=>{
                         return
                     } 
                 }
-            }): existe.innerHTML = '<div class="loading">empty</div>'
+            }): div_container.innerHTML = '<div class="loading">empty</div>'
         }catch(err){
-            existe.innerHTML = '<div class="loading">Err.</div>'
-            console.log(err)
+            if(container_tarjetitas) div_container.innerHTML = '<div class="loading">Err.</div>'
+            
         }
     }
     function create(params_object,i){
@@ -210,7 +232,7 @@ window.addEventListener('load',()=>{
         for(let i=0; i < params_object.terms.length;i++){
             const {term,loader,delimiter} = create(params_object,i)
             if(term != undefined || term != false){  
-                const exist = params_object.init.find(term => term.term_id == term.term_id)
+                //const exist = params_object.init.find(term => term.term_id == term.term_id)
                 
                     
                     params_object.init.push({term,limit:1})
@@ -309,12 +331,51 @@ window.addEventListener('load',()=>{
             rank:taxonomy_data.rank,
             model:taxonomy_data.model
         }
-        if(input_date){
+        if(input_date && ul_btn_days){
+            const btns = ul_btn_days.querySelectorAll('button')
+            
+            for (let i=0; i<btns.length; i++) {
+                btns[i].id = 'day_'+i
+                btns[i].addEventListener('click',()=>{
+                    click_btn(btns[i],btns)
+                })
+                if(btns[i].id == 'day_1'){
+                    btns[i].style.borderBottom = '2px solid red'
+                }
+            }
             input_date.addEventListener('change',(e)=>{
                 local_date = get_date({format:'fecha',date:e.target.value+' 0:0:0'})
                 filter_set(params_object)
+                for (let i=0; i<btns.length; i++) {
+                    btns[i].style.borderBottom = ''
+                }
             })
+            
+            function click_btn(btn,btns){
+                for (let i=0; i<btns.length; i++) {
+                    btns[i].id = 'day_'+i
+                    btns[i].style.borderBottom = ''
+
+                    if(btns[i].id == btn.id){
+                        btns[i].style.borderBottom = '2px solid red'
+                    }
+                }
+                if(btn.id == 'day_0'){
+                    local_date = get_date({format:'fecha',yesterday:true})
+                    filter_set(params_object)
+                }
+                if(btn.id == 'day_1'){
+                    local_date = get_date({format:'fecha'})
+                    filter_set(params_object)
+                }
+                if(btn.id == 'day_2'){
+                    local_date = get_date({format:'fecha',tomorrow:true})
+                    console.log(local_date)
+                    filter_set(params_object)
+                }
+            }
         }
+  
         initial_set(params_object)
         document.addEventListener('scroll',()=>{scroll_pagination(params_object)}
         )
