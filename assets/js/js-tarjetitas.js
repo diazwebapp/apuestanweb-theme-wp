@@ -160,13 +160,11 @@ window.addEventListener('load',()=>{
                 return date_a.getTime() - date_b.getTime()
             })
             existe.innerHTML = ''
+            console.log(posts.length)
             posts.length > 0 ? posts.map(async (post,index)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
                 const deporte = deportes.find(term => parseInt(term.id) === parseInt(post.deportes[0]))
                 // condicional comparativo fecha del partido con fecha actual
-                console.log(get_date({format:'fecha',date:post.fecha_partido[0]}),local_date)
-                if(get_date({format:'fecha',date:post.fecha_partido[0]}) == local_date){
-                   
                     if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
                         const div = create_tarjetita(post,model,current_user,user,deporte)
                         insert_tajetita_to_container(model,container_tarjetitas,div,loader,index)
@@ -177,7 +175,7 @@ window.addEventListener('load',()=>{
                         insert_tajetita_to_container(model,container_tarjetitas,div,loader,index)
                         return
                     } 
-                }
+                
             }): existe.innerHTML = ''
         }catch(err){
             existe.innerHTML = 'Empty'
@@ -199,16 +197,16 @@ window.addEventListener('load',()=>{
     }   
     const initial_set=async(params_object)=>{
         
-        for(let i=0; i <= params_object.terms.length;i++){
+        for(let i=0; i < params_object.terms.length;i++){
             const {term,loader,delimiter} = create(params_object,i)
             
             if(term != undefined || term != false){  
                 const exist = params_object.init.find(term => term.term_id == term.term_id)
-                if(!exist){
+                
                     
                     params_object.init.push({term,limit:1})
                     if(delimiter <= window.innerHeight){
-                        params_object.init[i].limit+=5
+                        params_object.init[i].limit+=2
                     }
                     get_data({...params_object,
                         term,
@@ -216,21 +214,7 @@ window.addEventListener('load',()=>{
                         delimiter:loader,
                         init:params_object.init[i].limit
                     })
-                }
-                if(term && exist){
-                    
-                    if(parseInt(term.count) >= exist.limit || parseInt(term.count) == 1){
-                        if(delimiter <= window.innerHeight){
-                           exist.limit+=5
-                        }
-                        get_data({...params_object,
-                            term,
-                            container_tarjetitas:params_object.container_tarjetitas[i],
-                            delimiter:loader,
-                            init:exist.limit
-                        })
-                    }
-                }
+                
             }
         }
         
@@ -269,7 +253,7 @@ window.addEventListener('load',()=>{
         let st = window.pageYOffset || document.documentElement.scrollTop; 
         if (st > lastScrollTop){
             //scroll hacia abajo
-            for(let i=0;i <= params_object.terms.length; i++){
+            for(let i=0;i < params_object.terms.length; i++){
                 
                 const {term,loader,scroll,delimiter} = create(params_object,i)
                 
