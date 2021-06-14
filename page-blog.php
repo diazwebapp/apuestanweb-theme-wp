@@ -17,7 +17,7 @@ $posts = new wp_query(array(
 		<!-- Navegacion de deportes -->
 		<?php echo do_shortcode('[sportsmenu taxonomy="category" ]'); ?>
 		<!-- Listado de posts -->
-        <article class="container_posts">
+        <article class="container_posts_1">
 			<?php
 
 				while($posts->have_posts()): $posts->the_post(); 

@@ -96,7 +96,7 @@ function taxonomia_tipo_deporte() {
 		'rewrite' => array('slug' => 'deportes', 'with_front' => true)
 	);
 	// Nombre de taxonomia, post type al que se aplica y argumentos.
-	register_taxonomy( 'deportes', array( 'pronostico' ), $args );
+	register_taxonomy( 'deportes', array( 'pronostico', 'post' ), $args );
 }
 add_action( 'init', 'taxonomia_tipo_deporte' );
 

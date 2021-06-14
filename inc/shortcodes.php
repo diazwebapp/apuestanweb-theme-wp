@@ -2,6 +2,7 @@
 //short_code
 require __DIR__ .'/models_casa_apuesta.php' ;
 require __DIR__ .'/models_pronostico.php' ;
+require __DIR__ .'/models_posts.php' ;
 
 function stars($puntuacion){
 	$stars = '';
@@ -174,7 +175,7 @@ function shortcode_pronosticos($attr){
 	) );
 
 		
-		$html = '';
+		$html = '<div><b>Filtrar</b> <input type="date" style="background:transparent;border:1px solid var(--shadow);padding:5px;" id="aw_filter_pronosticos"/></div>';
 		if( $terms && !is_wp_error( $terms)):
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
 			foreach ($terms as $term) :
@@ -182,14 +183,14 @@ function shortcode_pronosticos($attr){
 					if($deporte && $deporte == $term->name):
 						$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
 						<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
-						
+						<div> </div>
 					</article>
 					<div class="container_pagination" ></div>';
 					endif;
 					if(!$deporte) :
 						$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
 						<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
-					
+						<div></div>
 						</article>
 						<div class="container_pagination" ></div>';
 					endif;
@@ -404,68 +405,53 @@ add_shortcode('aw_slide','shortcode_slide');
 
 //posts
 function shortcode_posts($attr){ 
-    extract( shortcode_atts( array( 'paginate'=>'no', 'limit' => -1, 'style'=>false, 'model'=>'1', 'button'=>false, 'id'=>false ), $attr ) );
-	$posts = new wp_query(array(
-		"post_type"=>"post",
-		"posts_per_page" => $limit
-	));
-	$html = '';
-	wp_enqueue_style( 'casa_apuesta_css', get_template_directory_uri() . '/assets/css/tarjetita_casa_apuesta.css' );
-
-		if($id){
+    extract( shortcode_atts( array( 'paginate'=>'no', 'limit' => -1, 'model'=>1, 'deporte'=>'all' ), $attr ) );
+	$posts;
+	if($deporte=='all'){
+		$posts = new wp_query(array(
+			"post_type"=>"post"
+		));
+	}
+	if($deporte!='all'){
+		$posts = new wp_query(array(
+			"post_type"=>"post",
+			"posts_per_page" => $limit,
+			'tax_query'=>array(
+				array(
+					'taxonomy' => 'deportes',
+					'field'	   => 'name',
+					'terms' => $deporte
+				)
+			)
+		));
+	}
+	$html = '<div class="container_posts_'.$model.'" >';
+		foreach ($posts->get_posts() as $post) :
+	
 			$data = array(
-				'thumb' 		=> get_the_post_thumbnail_url($id,'puntuacion_casa_apuesta'),
-				'link'			=> get_the_permalink($id),
-				'tiempo_pago'	=> get_post_meta($id,'tiempo_pago_casa_apuesta')[0],
-				'slogan' 		=> get_post_meta($id,'slogan_casa_apuesta')[0],
-				'logo' 			=> get_post_meta($id,'url_logo_casa_apuesta')[0],
-				'puntuacion' 	=> get_post_meta($id,'puntuacion_casa_apuesta')[0],
-				'metodo_pago_1'	=> get_post_meta($id,'m_p_icon_1')[0],
-				'metodo_pago_2'	=> get_post_meta($id,'m_p_icon_2')[0],
-				'metodo_pago_3'	=> get_post_meta($id,'m_p_icon_3')[0],
-				'metodo_pago_4'	=> get_post_meta($id,'m_p_icon_4')[0],
-				'refear_link'	=> get_post_meta($id,'link')[0],
-				'style'			=> $style,
-				'button'		=> $button,
-				'model'			=> $model
+				'thumb' 		=> get_the_post_thumbnail_url($post->ID,'post'),
+				'link'			=> get_the_permalink($post->ID),
+				'model'			=> $model,
+				'deporte'			=> $deporte,
 			);
-			if($model == 1){
-				$html .= casa_apuesta_1($data);
+			if($model==1){
+				$html .= post_1($data,$post);
 			}
+			if($model==2){
+				$html .= post_2($data,$post);
+			}
+		endforeach;
+	$html .= '</div>';
+		if($paginate == 'yes'){
+			$html .= '<div class="container_pagination">
+				<a href="'.home_url().'\blog/'.'" >Ver más</a>
+			</div>';
 		}
-		if(!$id){
-			foreach ($posts->get_posts() as $post) :
 		
-				$data = array(
-					'thumb' 		=> get_the_post_thumbnail_url($post->ID,'puntuacion_casa_apuesta'),
-					'link'			=> get_the_permalink($post->ID),
-					'tiempo_pago'	=> get_post_meta($post->ID,'tiempo_pago_casa_apuesta')[0],
-					'slogan' 		=> get_post_meta($post->ID,'slogan_casa_apuesta')[0],
-					'logo' 			=> get_post_meta($post->ID,'url_logo_casa_apuesta')[0],
-					'puntuacion' 	=> get_post_meta($post->ID,'puntuacion_casa_apuesta')[0],
-					'metodo_pago_1'	=> get_post_meta($post->ID,'m_p_icon_1')[0],
-					'metodo_pago_2'	=> get_post_meta($post->ID,'m_p_icon_2')[0],
-					'metodo_pago_3'	=> get_post_meta($post->ID,'m_p_icon_3')[0],
-					'metodo_pago_4'	=> get_post_meta($post->ID,'m_p_icon_4')[0],
-					'refear_link'	=> get_post_meta($post->ID,'link')[0],
-					'style'			=> $style,
-					'button'		=> $button,
-					'model'			=> $model
-				);
-				if($model == 1){
-					$html .= casa_apuesta_1($data);
-				}
-			endforeach;
-			if($paginate == 'yes'){
-				$html .= '<div class="container_pagination">
-					<a href="'.home_url().'\blog/'.'" >Ver más</a>
-				</div>';
-			}
-		}
 	
 	return $html;
 }
-add_shortcode('post_cards','shortcode_posts');
+add_shortcode('aw_post_cards','shortcode_posts');
 //Banner top
 function shortcode_banner_top($attr){
 	global $pagename;
@@ -649,3 +635,40 @@ function shortcode_banner_bottom($attr){
 	return $html;
 }
 add_shortcode('banner_bottom','shortcode_banner_bottom');
+
+function aw_block(){
+	$html = '<div style="text-align: center;" >
+		<h1>Acceso Denegado</h1>
+		<a href="http://facebook.com"><h3>Adquiera Su membresia <b style="color:gold;" >VIP</b></h3></a>
+		<div style="position: relative;width:250px;height:250px;margin:auto;" class="candado_svg" >
+			<?xml version="1.0" encoding="iso-8859-1"?>
+			<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+			<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				viewBox="0 0 512 512"  xml:space="preserve">
+			<g>
+				<g>
+					<path d="M405.333,170.667v-21.333C405.333,67.008,338.347,0,256,0S106.667,67.008,106.667,149.333v21.333
+						c-35.285,0-64,28.715-64,64V448c0,35.285,28.715,64,64,64h298.667c35.285,0,64-28.715,64-64V234.667
+						C469.333,199.381,440.619,170.667,405.333,170.667z M149.333,149.333c0-58.816,47.851-106.667,106.667-106.667
+						s106.667,47.851,106.667,106.667v21.333H149.333V149.333z M426.667,448c0,11.776-9.579,21.333-21.333,21.333H106.667
+						c-11.755,0-21.333-9.557-21.333-21.333V234.667c0-11.776,9.579-21.333,21.333-21.333h298.667c11.755,0,21.333,9.557,21.333,21.333
+						V448z"/>
+				</g>
+			</g>
+			<g>
+				<g>
+					<path d="M256,245.333c-35.285,0-64,28.715-64,64c0,27.776,17.899,51.243,42.667,60.075v35.925
+						c0,11.797,9.557,21.333,21.333,21.333c11.776,0,21.333-9.536,21.333-21.333v-35.925C302.101,360.576,320,337.109,320,309.333
+						C320,274.048,291.285,245.333,256,245.333z M256,330.667c-11.755,0-21.333-9.557-21.333-21.333S244.245,288,256,288
+						c11.755,0,21.333,9.557,21.333,21.333S267.755,330.667,256,330.667z"/>
+				</g>
+			</g>
+
+			</svg>
+
+		</div>
+		<p>El contenido al que intenta acceder es solo para usuarios VIP!</p>
+	</div>';
+	return $html;
+}
+add_shortcode('aw_block','aw_block');

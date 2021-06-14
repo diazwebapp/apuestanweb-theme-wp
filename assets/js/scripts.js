@@ -122,7 +122,7 @@ window.addEventListener('load',()=>{
                 let n_fallidos = canvas.attributes.data_failed.value
                 var ctx = canvas.getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: ['Acertados', 'Fallidos',],
                         datasets: [{

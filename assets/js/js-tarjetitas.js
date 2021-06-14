@@ -1,32 +1,34 @@
 window.addEventListener('load',()=>{
-    const local_date = get_date({format:'date'})
+    const input_date = document.getElementById('aw_filter_pronosticos')
+    let local_date = get_date({format:'fecha'})
+
     function get_date ({date,format}){
         if(format == 'time'){
             if(date){
                 return new Date(date)
             }
             if(!date){
-                return new Date(date)
+                return new Date(Date.now())
             }
         }
         if(format == 'fecha'){
             if(date){
                 const new_date = new Date(date)
-                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear()
+                return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
             }
             if(!date){
                 const new_date = new Date()
-                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear()
+                return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear()
             }
         }
         if(format == 'fecha_hora'){
             if(date){
                 const new_date = new Date(date)
-                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear() + " " + new_date.getUTCHours() + ":" + new_date.getUTCMinutes()
+                return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear() + " " + new_date.getHours() + ":" + new_date.getMinutes()
             }
             if(!date){
                 const new_date = new Date()
-                return new_date.getUTCDate() + "-mes:" + (new_date.getUTCMonth()+1) + "-" + new_date.getUTCFullYear() + " " + new_date.getUTCHours() + ":" + new_date.getUTCMinutes()
+                return new_date.getDate() + "-" + (new_date.getMonth()+1) + "-" + new_date.getFullYear() + " " + new_date.getHours() + ":" + new_date.getMinutes()
             }
         }
     }
@@ -132,40 +134,20 @@ window.addEventListener('load',()=>{
         }
         return div
     }
-    const insert_tajetita_to_container = (model,container_tarjetitas,div,loader)=>{
-        let existe = container_tarjetitas.querySelectorAll(`${'.'+model}`)
+    const insert_tajetita_to_container = (model,container_tarjetitas,div,loader,index)=>{
+        let existe = container_tarjetitas.querySelector(`div`)
+        existe.append(div)
         
-        if(existe.length < 1){
-            container_tarjetitas.append(div)
-        }
-        if(existe.length == 1){
-            for(data of existe){
-                if(parseInt(data.id) !== parseInt(div.id)){
-                    container_tarjetitas.append(div)
-                }
-            }
-        }
-        if(existe.length > 1){
-            existe.forEach(html=>{
-                if(parseInt(html.id) !== parseInt(div.id)){
-                    container_tarjetitas.append(div)
-                }
-                if(parseInt(html.id) === parseInt(div.id)){
-                    existe[0].remove()
-                }
-            })
-        }
-    
-        if(loader) loader.innerHTML = "" 
     }
     const get_data = async ({rank,model,term,post_rest_slug,container_tarjetitas,loader,init,current_user=false})=>{
-       
-        
+               
         if(loader) loader.innerHTML = "<b>Loading data....</b>"
+        let existe = container_tarjetitas.querySelector(`div`)
         try{
+            existe.innerHTML = 'loading...'
             const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
             const posts = await req_posts.json()
-
+            
             const requser = await fetch(`/wp-json/wp/v2/users`)
             const users = await requser.json()
 
@@ -177,24 +159,28 @@ window.addEventListener('load',()=>{
                 let date_b = new Date(b.fecha_partido)
                 return date_a.getTime() - date_b.getTime()
             })
-           
-            posts.length > 0 ? posts.map(async (post)=>{
+            existe.innerHTML = ''
+            posts.length > 0 ? posts.map(async (post,index)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
                 const deporte = deportes.find(term => parseInt(term.id) === parseInt(post.deportes[0]))
                 // condicional comparativo fecha del partido con fecha actual
+                console.log(get_date({format:'fecha',date:post.fecha_partido[0]}),local_date)
+                if(get_date({format:'fecha',date:post.fecha_partido[0]}) == local_date){
+                   
                     if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
                         const div = create_tarjetita(post,model,current_user,user,deporte)
-                        insert_tajetita_to_container(model,container_tarjetitas,div,loader)
+                        insert_tajetita_to_container(model,container_tarjetitas,div,loader,index)
                         return
                     } 
                     if(!rank || parseInt(rank) == 0 && parseInt(user.id) == parseInt(post.author)){
                         const div = create_tarjetita(post,model,current_user,user,deporte)
-                        insert_tajetita_to_container(model,container_tarjetitas,div,loader)
+                        insert_tajetita_to_container(model,container_tarjetitas,div,loader,index)
                         return
                     } 
-                
-            }): loader? loader.innerHTML = "No data fetch":null
+                }
+            }): existe.innerHTML = ''
         }catch(err){
+            existe.innerHTML = 'Empty'
             console.log(err)
         }
     }
@@ -213,15 +199,16 @@ window.addEventListener('load',()=>{
     }   
     const initial_set=async(params_object)=>{
         
-        for(let i=0; i < params_object.terms.length;i++){
+        for(let i=0; i <= params_object.terms.length;i++){
             const {term,loader,delimiter} = create(params_object,i)
             
             if(term != undefined || term != false){  
                 const exist = params_object.init.find(term => term.term_id == term.term_id)
                 if(!exist){
+                    
                     params_object.init.push({term,limit:1})
                     if(delimiter <= window.innerHeight){
-                        params_object.init[i].limit+=2
+                        params_object.init[i].limit+=5
                     }
                     get_data({...params_object,
                         term,
@@ -231,9 +218,10 @@ window.addEventListener('load',()=>{
                     })
                 }
                 if(term && exist){
+                    
                     if(parseInt(term.count) >= exist.limit || parseInt(term.count) == 1){
                         if(delimiter <= window.innerHeight){
-                           exist.limit+=2
+                           exist.limit+=5
                         }
                         get_data({...params_object,
                             term,
@@ -247,6 +235,32 @@ window.addEventListener('load',()=>{
         }
         
     }
+    const filter_set=async(params_object)=>{
+        
+        for(let i=0; i <= params_object.terms.length;i++){
+            const {term,loader,delimiter} = create(params_object,i)
+            
+            if(term != undefined || term != false){  
+                
+                const exist = params_object.init.find(term => term.term_id == term.term_id)
+                
+                if(term){
+                    
+                        if(delimiter <= window.innerHeight){
+                           exist.limit+=5
+                        }
+                        get_data({...params_object,
+                            term,
+                            container_tarjetitas:params_object.container_tarjetitas[i],
+                            delimiter:loader,
+                            init:exist.limit
+                        })
+                    
+                } 
+            }
+        }
+        
+    }
     const scroll_pagination = async(params_object)=>{
         
         let block = []
@@ -255,7 +269,7 @@ window.addEventListener('load',()=>{
         let st = window.pageYOffset || document.documentElement.scrollTop; 
         if (st > lastScrollTop){
             //scroll hacia abajo
-            for(let i=0;i < params_object.terms.length; i++){
+            for(let i=0;i <= params_object.terms.length; i++){
                 
                 const {term,loader,scroll,delimiter} = create(params_object,i)
                 
@@ -292,7 +306,7 @@ window.addEventListener('load',()=>{
     }
     if(taxonomy_data){
 
-        const params_object = {
+        let params_object = {
             terms:Array.isArray(taxonomy_data.terms)?taxonomy_data.terms:Object.values(taxonomy_data.terms),
             post_rest_slug: taxonomy_data.post_rest_slug,
             container_tarjetitas:document.querySelectorAll(`.${taxonomy_data.class_container_tarjetitas}`),
@@ -302,7 +316,12 @@ window.addEventListener('load',()=>{
             rank:taxonomy_data.rank,
             model:taxonomy_data.model
         }
-        
+        if(input_date){
+            input_date.addEventListener('change',(e)=>{
+                local_date = get_date({format:'fecha',date:e.target.value+' 0:0:0'})
+                filter_set(params_object)
+            })
+        }
         initial_set(params_object)
         document.addEventListener('scroll',()=>{scroll_pagination(params_object)}
         )

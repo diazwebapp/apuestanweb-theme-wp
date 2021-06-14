@@ -8,13 +8,12 @@ get_header();
 		<article>
 		<!-- Slide -->
 		<?php
-		
 		 if(have_posts()){ echo do_shortcode('[aw_slide post_type="pronostico" ]');} ?>
 
 		<!-- Navegacion de deportes -->
 		<?php echo do_shortcode('[sportsmenu taxonomy="category" ]'); ?>
 		<!-- Listado de posts -->
-        <article class="container_posts">
+        <article class="container_posts_1">
 			<?php
 
 				while(have_posts()): the_post(); 

@@ -150,45 +150,47 @@ function aw_add_shortcode_login(){
 }
 add_action( 'init', 'aw_add_shortcode_login' );
 
-function check_values($post_ID, $post_after, $post_before){
+function check_values(){
 	$total_p = 0; 
 	$total_s=0; 
 	$total_f=0;
 	$total_c = 0;
 	$total_av = 0;
-
+	$users = get_users();
 	
-	$author_posts = new wp_Query(array(
-		'author' => $post_before->post_author,
-		'posts_per_page' => 1000,
-		'post_type' => 'pronostico'
-	));
-
-	$total_p = $author_posts->post_count; 
-
-	while($author_posts->have_posts()) : $author_posts->the_post();
-		$state = get_post_meta(get_the_ID(),'estado_pronostico');
-		if($state[0] == 'acertado'){
-			$total_s++;
+	foreach($users as $user){
+		$author_posts = new wp_Query(array(
+			'author' => $user->ID,
+			'posts_per_page' => 1000,
+			'post_type' => 'pronostico'
+		));
+	
+		$total_p = $author_posts->post_count; 
+	
+		while($author_posts->have_posts()) : $author_posts->the_post();
+			$state = get_post_meta(get_the_ID(),'estado_pronostico');
+			if($state[0] == 'acertado'){
+				$total_s++;
+			}
+			if($state[0] == 'no_acertado'){
+				$total_f++;
+			}
+		endwhile;
+		//Calculamos los pronosticos completados sumando los success y failed
+		$total_c = $total_s+$total_f;
+		// si el total completados es mayor a cero calculamos el average para que no de errores
+		if($total_c > 0){
+			$total_av = ceil($total_s / $total_c * 100);
 		}
-		if($state[0] == 'no_acertado'){
-			$total_f++;
-		}
-	endwhile;
-	//Calculamos los pronosticos completados sumando los success y failed
-	$total_c = $total_s+$total_f;
-	// si el total completados es mayor a cero calculamos el average para que no de errores
-	if($total_c > 0){
-		$total_av = ceil($total_s / $total_c * 100);
+		
+			update_user_meta( $user->ID, 'average_aciertos', $total_av );
+			update_user_meta( $user->ID, 'pronosticos_completados', $total_c );
+			update_user_meta( $user->ID, 'pronosticos_acertados', $total_s );
+			update_user_meta( $user->ID, 'pronosticos_no_acertados', $total_f );
+			update_user_meta( $user->ID, 'pronosticos_realizados', $total_p );
 	}
-
-	update_user_meta( $post_before->post_author, 'average_aciertos', $total_av );
-	update_user_meta( $post_before->post_author, 'pronosticos_completados', $total_c );
-	update_user_meta( $post_before->post_author, 'pronosticos_acertados', $total_s );
-	update_user_meta( $post_before->post_author, 'pronosticos_no_acertados', $total_f );
-	update_user_meta( $post_before->post_author, 'pronosticos_realizados', $total_p );
 }
-add_action( 'post_updated', 'check_values', 10, 3 );
+add_action( 'save_post', 'check_values', 10, 3 );
 
 
 ?>

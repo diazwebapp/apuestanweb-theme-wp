@@ -22,7 +22,7 @@
 	line-height: 20px;
 }
 /* Container tarjetitas*/
-.container_tarjetitas_1{
+.container_tarjetitas_1 > div{
 	width:100%;
 	display: grid;
 	grid-template-columns: 1fr;
@@ -140,7 +140,7 @@
 }
 
 @media(min-width:640px){
-	.container_tarjetitas_1{
+	.container_tarjetitas_1 > div{
 		grid-template-columns: repeat(2,1fr);
 	}
 	.container_tarjetitas_1 > .sub_title{
@@ -149,7 +149,7 @@
 }
 
 @media(min-width:860px){
-	.container_tarjetitas_1{
+	.container_tarjetitas_1 > div{
 		grid-template-columns: repeat(3,1fr);
 	}
 	.container_tarjetitas_1 > .sub_title{
