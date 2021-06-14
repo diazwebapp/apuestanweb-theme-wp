@@ -175,7 +175,7 @@ function shortcode_pronosticos($attr){
 	) );
 
 		
-		$html = '';
+		$html = '<div><b>Filtrar : </b> <input type="date" style="background:transparent;border:1px solid var(--shadow);padding:5px;" id="aw_filter_pronosticos"/></div>';
 		if( $terms && !is_wp_error( $terms)):
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
 			foreach ($terms as $term) :
