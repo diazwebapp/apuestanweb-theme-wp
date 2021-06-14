@@ -201,14 +201,13 @@ window.addEventListener('load',()=>{
         
         for(let i=0; i <= params_object.terms.length;i++){
             const {term,loader,delimiter} = create(params_object,i)
-            
             if(term != undefined || term != false){  
                 const exist = params_object.init.find(term => term.term_id == term.term_id)
-                if(!exist){
+                
                     
                     params_object.init.push({term,limit:1})
                     if(delimiter <= window.innerHeight){
-                        params_object.init[i].limit+=5
+                        params_object.init[i].limit+=2
                     }
                     get_data({...params_object,
                         term,
@@ -216,21 +215,7 @@ window.addEventListener('load',()=>{
                         delimiter:loader,
                         init:params_object.init[i].limit
                     })
-                }
-                if(term && exist){
-                    
-                    if(parseInt(term.count) >= exist.limit || parseInt(term.count) == 1){
-                        if(delimiter <= window.innerHeight){
-                           exist.limit+=5
-                        }
-                        get_data({...params_object,
-                            term,
-                            container_tarjetitas:params_object.container_tarjetitas[i],
-                            delimiter:loader,
-                            init:exist.limit
-                        })
-                    }
-                }
+                
             }
         }
         
