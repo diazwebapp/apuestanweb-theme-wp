@@ -5,12 +5,12 @@
         'meta_key' => 'fecha_partido',
         'order_by' => 'meta_value',
         'order' => 'ASC',
-        'posts_per_page' => 4
+        'posts_per_page' => 10
     ));
    
     $posts = new WP_Query(array(
         'post_type'=>'post',
-        'posts_per_page' => 4
+        'posts_per_page' => 10
     ));
     $current_user = wp_get_current_user();    
 
@@ -20,6 +20,7 @@
 <?php if($pronosticos->have_posts() && count($pronosticos->posts) > 0): ?>
     <div class="aside_widgets">
         <p><?php echo __('Last Forecast','apuestanweb-lang') ?></p>
+        <button class="btn_more" ><?php echo __('View more','apuestanweb-lang'); ?></button>
         <ul>
             <?php while($pronosticos->have_posts()): $pronosticos->the_post();
                     
@@ -105,6 +106,7 @@
 
 <div class="aside_widgets">
     <p ><?php echo __('Last Posts','apuestanweb-lang') ?></p>
+    <button class="btn_more" ><?php echo __('View more','apuestanweb-lang'); ?></button>
     <ul>
         <?php 
             while($posts->have_posts()):

@@ -78,7 +78,7 @@ function func_casa_apuesta($post){
         </div>
 
         <div >
-            <label for="slogan_casa_apuesta">Bono:</label>
+            <label for="slogan_casa_apuesta">Slogan:</label>
             <input type="text" name="slogan_casa_apuesta" id="slogan_casa_apuesta" value="<?php echo $slogan  ?>" >
         </div>
 
@@ -170,6 +170,11 @@ function ca_save_meta_boxes( $post_id ) {
     // 8- metodo de pago 4
 	$link = sanitize_post( $_POST['link'] );
 	update_post_meta( $post_id, 'link', $link );
+
+    // 3- bono
+	$bono_casa_apuesta = sanitize_post( $_POST['bono_casa_apuesta'] );
+	update_post_meta( $post_id, 'bono_casa_apuesta', $bono_casa_apuesta );
+
     return true;
 }
 add_action( 'save_post', 'ca_save_meta_boxes' );

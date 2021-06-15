@@ -2,7 +2,7 @@ window.addEventListener('load',()=>{
     const input_date = document.getElementById('aw_filter_pronosticos')
     const ul_btn_days = document.getElementById('aw_btn_day_filter')
     let local_date = get_date({format:'fecha'})
-
+//04141426888
     function get_date ({date,format,yesterday,tomorrow}){
         if(format == 'time'){
             if(date){
@@ -178,7 +178,7 @@ window.addEventListener('load',()=>{
             <div class="recompensa">
                 <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
                 <p class="cuota">${post.cuota_empate_pronostico}%</p>
-                <p class="bono">${casa_apuesta.bono_casa_apuesta}</p>
+                <p class="bono">${casa_apuesta.bono_casa_apuesta}$</p>
             </div>
             <div class="btn_card" >
                 <button>Apuesta Ya!</button>
