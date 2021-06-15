@@ -19,7 +19,7 @@
 <aside>
 <?php if($pronosticos->have_posts() && count($pronosticos->posts) > 0): ?>
     <div class="aside_widgets">
-        <p><?php echo __('Ultimos Pronosticos','apuestanweb-lang') ?></p>
+        <p><?php echo __('Last Forecast','apuestanweb-lang') ?></p>
         <ul>
             <?php while($pronosticos->have_posts()): $pronosticos->the_post();
                     
@@ -104,7 +104,7 @@
 <?php endif; ?>
 
 <div class="aside_widgets">
-    <p ><?php echo __('Posts Recientes','apuestanweb-lang') ?></p>
+    <p ><?php echo __('Last Posts','apuestanweb-lang') ?></p>
     <ul>
         <?php 
             while($posts->have_posts()):

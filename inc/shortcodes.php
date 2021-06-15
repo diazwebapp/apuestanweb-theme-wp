@@ -83,12 +83,10 @@ add_shortcode('casa_apuesta','shortcode_casas_apuesta');
 function shortcode_eleccion($attr){
 	extract( shortcode_atts( array( 'post_id' => get_the_ID() ), $attr ) );
 	
-	$html = '';
 	$puntuacion = get_post_meta($post_id,'puntuacion_p')[0];
 	$refear_link = get_post_meta($post_id,"refear_link")[0];
-	$equipo_ganador = get_post_meta($post_id,"equipo_ganador")[0];
-	$eleccion = get_post_meta($post_id,"eleccion")[0]; ?>
-	<style>
+	$eleccion = get_post_meta($post_id,"eleccion")[0]; 
+	$html = "<style>
 		.short_equipo_ganador{
 			width:100%;
 			display:flex;
@@ -132,9 +130,9 @@ function shortcode_eleccion($attr){
 				min-width:350px;
 			}
 		}
-	</style>
-	<?php
-	if($equipo_ganador):
+	</style>";
+	
+	
 		$html .= '<div class="short_equipo_ganador" >
 			<div></div>
 			
@@ -145,10 +143,10 @@ function shortcode_eleccion($attr){
 			<div>
 				<b style="color:white;">'.__('Level','apuestanweb-lang').'</b>
 				<div style="position:relative;"><span style="color:gold;position:absolute;" >'.stars($puntuacion).'</span><span style="color:white;" >✭✭✭✭✭</span></div>
-				<a style="color:white;text-decoration:none;background:#ff4141;padding:3px 10px; border-radius:5px;" href="'.$refear_link.'" >'.__('Start Now','apuestanweb-lang').'</a>
+				<a style="color:white;text-decoration:none;background:#ff4141;padding:3px 10px; border-radius:5px;" href="'.home_url().'\casaapuesta/'.$refear_link.'" >'.__('Start Now','apuestanweb-lang').'</a>
 			</div>
 		</div>';
-	endif;
+	
 
 	return $html;
 }
@@ -191,14 +189,14 @@ function shortcode_pronosticos($attr){
 				if($term->parent == 0):
 					if($deporte && $deporte == $term->name):
 						$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
-						<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
+						<b class="sub_title" >'. __("Forecast: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
 						<div> </div>
 					</article>
 					<div class="container_pagination" ></div>';
 					endif;
 					if(!$deporte) :
 						$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
-						<b class="sub_title" >'. __("Pronósticos: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
+						<b class="sub_title" >'. __("Forecast: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
 						<div></div>
 						</article>
 						<div class="container_pagination" ></div>';

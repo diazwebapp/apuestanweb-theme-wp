@@ -170,28 +170,3 @@
 	}
 }
 
-/**************other styles********/
-.aw_container_filter_pronosticos{
-	max-width:max-content;
-	margin:10px 5px;
-	align-items: center;
-	background: var(--bg-app);
-}
-.aw_container_filter_pronosticos,.aw_container_filter_pronosticos > ul{
-	display:flex;
-	flex-flow: row wrap;
-}
-
-.aw_container_filter_pronosticos > ul,.aw_container_filter_pronosticos > ul button, .aw_container_filter_pronosticos > input{
-	border:1px solid var(--shadow);
-	margin:5px;
-	background: transparent;
-	text-transform: uppercase;
-}
-
-.aw_container_filter_pronosticos > ul button{
-	border:unset;
-	cursor: pointer;
-	padding: 0 10px;
-	overflow: hidden;
-}

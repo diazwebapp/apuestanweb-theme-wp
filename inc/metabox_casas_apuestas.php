@@ -11,6 +11,7 @@ add_meta_box(
 function func_casa_apuesta($post){ 
     wp_nonce_field( 'casaapuesta_nonce', 'casaapuesta_nonce' ); 
     $slogan = get_post_meta($post->ID,'slogan_casa_apuesta')[0];
+    $bono = get_post_meta($post->ID,'bono_casa_apuesta')[0];
     $puntuacion = get_post_meta($post->ID,'puntuacion_casa_apuesta')[0];
     $tiempo_pago = get_post_meta($post->ID,'tiempo_pago_casa_apuesta')[0];
     $url_logo = get_post_meta($post->ID,'url_logo_casa_apuesta')[0];
@@ -89,6 +90,11 @@ function func_casa_apuesta($post){
         <div >
             <label for="tiempo_pago_casa_apuesta">Pago en:</label>
             <input type="number" name="tiempo_pago_casa_apuesta" id="tiempo_pago_casa_apuesta" value="<?php echo esc_attr( $tiempo_pago) ?>" >
+        </div>
+
+        <div >
+            <label for="bono_casa_apuesta">Bono:</label>
+            <input type="number" name="bono_casa_apuesta" id="bono_casa_apuesta" value="<?php echo $bono ?>" >
         </div>
     </div>
 <?php } 
