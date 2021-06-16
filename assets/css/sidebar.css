@@ -31,8 +31,10 @@ aside{
 
 .aside_widgets > .btn_more{
 	z-index:2;position:absolute;bottom:0;
-	padding:10px;width:100%;background:rgba(0,0,0, .4);
+	padding:5px;width:100%;background:rgba(0,0,0, .7);
 	display: none;
+	font-weight: bold;
+	font-size: 21px;
 }
 .aside_widgets > .btn_more:focus + ul{
 	max-height: max-content;
