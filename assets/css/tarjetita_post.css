@@ -8,6 +8,7 @@
 	background:var(--bg-page);
 	gap:5px;
 	padding:5px;
+	justify-content: space-around;
 }
 
 /* Tarjetita post*/

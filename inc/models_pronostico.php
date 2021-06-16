@@ -1,5 +1,6 @@
 <?php 
 function pronostico_1($data){
+    $fecha_partido = new DateTime($data['fecha_partido']) ;
     $button;
     if($data['button']){
         $button .= '<a class="btn_outline" href="'.$data['link'].'" >'. __($data['button'],'apuestanweb-lang') .'</a>';
@@ -14,7 +15,7 @@ function pronostico_1($data){
                         <p>'.$data['nombre_equipo_1'].'</p>  
                     </div>
                     <div>
-                        <p>'.date('d-m-Y',$data['fecha_partido']).'</p>
+                        <p>'.$fecha_partido->format('d-m-Y').'</p>
                         <br />
                         <p>'.$data['hora_partido'].'</p>
                     </div>

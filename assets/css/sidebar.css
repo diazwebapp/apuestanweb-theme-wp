@@ -16,6 +16,7 @@ aside{
 	height: max-content;
 	overflow: hidden;
 	margin: 5px;
+	position: relative;
 }
 .aside_widgets > p{
 	border-bottom: 1px solid var(--shadow);
@@ -27,9 +28,28 @@ aside{
 	font-weight:bold;
 	font-size: 16px;
 }
+
+.aside_widgets > .btn_more{
+	z-index:2;position:absolute;bottom:0;
+	padding:10px;width:100%;background:rgba(0,0,0, .4);
+	display: none;
+}
+.aside_widgets > .btn_more:focus + ul{
+	max-height: max-content;
+	z-index:2;
+}
+.aside_widgets > .btn_more:focus{
+	z-index: -1;
+}
 .aside_widgets > ul{
 	width:100%;
+	max-height: 310px;
+	overflow-y: hidden;
+	transition: all 1s ease;
+	position: relative;
+	z-index:1;
 }
+
 .aside_widgets > ul > a:nth-child(2n){
 	background: var(--bg-tarjetitas);
 }
@@ -38,10 +58,13 @@ aside{
 	position: relative;
 	display: grid;
 	grid-template-columns: 80px 1fr 40px 100px;
-	margin: 5px auto;
+	margin: 1px auto;
 	padding:10px 0;
 	gap: 5px;
 	width:100%;
+	height: 77.5px;
+	min-height: 77.5px;
+	max-height: 77.5px;
 }
 /*pronostico*/
 
@@ -109,14 +132,16 @@ aside{
 	display: grid;
 	grid-template-columns: 100px 1fr;
 	gap: 2px;
-	max-height: 90px;
+	height: 77.5px;
+	min-height: 77.5px;
+	max-height: 77.5px;
 	padding: 0 5px;
 	overflow: hidden;
 }
 
 .aside_widgets > ul > .aside_item_post > div > img{
 	width:100px;
-	height:88px;
+	height:75px;
 	object-fit: contain;
 }
 .aside_widgets > ul > .aside_item_post > div > h4{
@@ -124,7 +149,7 @@ aside{
 	overflow: hidden;
 }
 .aside_widgets > ul > .aside_item_post > div > p{
-	height: 68px;
+	height: 55px;
 	text-align: justify;
 }
 /*usuarios*/

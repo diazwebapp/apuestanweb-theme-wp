@@ -1,0 +1,114 @@
+.container_tarjetitas_3 > div{
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 300px;
+    gap: 2.5px;
+    place-items: center;
+    place-content: center;
+}
+.tarjetita_pronostico_3{
+    width:98%;
+    height:98%;
+    border-radius: 5px;
+    border: 1px solid var(--shadow);
+    background: var(--bg-tarjetitas);
+}
+.tarjetita_pronostico_3 .enfrentamiento{
+    display: grid;
+    grid-template-columns: 80px 1fr 100px;
+    grid-template-rows: 120px;
+}
+.tarjetita_pronostico_3 .enfrentamiento > div{
+    display: grid;
+    grid-template-rows: 60px 60px;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    position: relative;
+}
+.tarjetita_pronostico_3 .enfrentamiento > div:last-child{
+    border-left: 1px solid var(--shadow);
+}
+
+.tarjetita_pronostico_3 .enfrentamiento .img_equipos > img, .tarjetita_pronostico_3 .recompensa > img{
+    width:55px;
+    height:55px;
+    background: white;
+    padding:5px;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: 0px 0px 5px var(--shadow);
+}
+.tarjetita_pronostico_3 .enfrentamiento >div p{
+    padding: 0 5px;
+}
+.tarjetita_pronostico_3 .fecha_partido,.tarjetita_pronostico_3 .eleccion_partido,.tarjetita_pronostico_3 .recompensa > p{
+    text-align: center;
+}
+.tarjetita_pronostico_3 .recompensa > p{
+    border:1px solid var(--shadow);
+    width:100%;height:60%;
+    line-height: 2;
+}
+.tarjetita_pronostico_3 .recompensa{
+    display: grid;
+    grid-template-columns: 70px 1fr 1fr;
+    grid-template-rows: 60px;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    position: relative;
+    gap:10px;
+    padding: 0 20px;
+}
+.tarjetita_pronostico_3 .eleccion_partido,.tarjetita_pronostico_3 .btn_card{
+    display: grid;
+    place-content: center;
+    place-items: center;
+    padding:5px;
+}
+.tarjetita_pronostico_3 .btn_card button{
+    background: var(--primary-color);
+    padding:5px 10px;
+    color:white;
+    font-weight: bold;
+}
+@media(min-width: 400px){
+    .container_tarjetitas_3 > div{
+        grid-template-columns: repeat(1,90%);
+    }
+}
+@media(min-width: 520px){
+    .container_tarjetitas_3 > div{
+        grid-template-columns: repeat(2,80%);
+    }
+}
+@media(min-width: 520px){
+    .container_tarjetitas_3 > div{
+        grid-template-columns: repeat(2,1fr);
+        gap:1px;
+    }
+}
+@media(min-width: 640px){
+    .container_tarjetitas_3 > div{
+        gap:5px;
+    }
+}
+@media(min-width: 720px){
+    .container_tarjetitas_3 > div{
+        gap:10%;
+    }
+}
+
+@media(min-width: 860px){
+    .container_tarjetitas_3 > div{
+        grid-template-columns: repeat(3,1fr);
+        gap:1px;
+    }
+}
+@media(min-width: 1280px){
+    .container_tarjetitas_3 > div{
+        grid-template-columns: repeat(2,42%);
+        gap:10%;
+    }
+}

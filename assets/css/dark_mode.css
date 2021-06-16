@@ -19,24 +19,20 @@
 }
 /*Background components*/
 
-.dark_mode .container_tarjetitas_2,.dark_mode .container_posts_2,.dark_mode article,.dark_mode .aside_widgets,.dark_mode .sports_bar > ul,.dark_mode .tarjetita_pronostico_2,.dark_mode .card_author,.dark_mode .tarjeta_casa_apuesta_2{
+.dark_mode main > section > article,.dark_mode .container_tarjetitas_2,.dark_mode .container_posts_2,.dark_mode article,.dark_mode .aside_widgets,.dark_mode .sports_bar > ul,.dark_mode .tarjetita_pronostico_2,.dark_mode .card_author,.dark_mode .tarjeta_casa_apuesta_2,.dark_mode .aside_widgets > p,.dark_mode #aw_modal_login{
     background: var(--bg-page-dark);
 }
-.dark_mode .container_tarjetitas_2 .sub_title,.dark_mode .tarjetita_pronostico_1,.dark_mode .aside_widgets > ul > a:nth-child(2n),.dark_mode .tarjeta_casa_apuesta_2:nth-child(2n){
+.dark_mode .container_tarjetitas_2 .sub_title,.dark_mode .tarjetita_pronostico_1,.dark_mode .aside_widgets > ul > a:nth-child(2n),.dark_mode .tarjeta_casa_apuesta_2:nth-child(2n),.dark_mode .tarjetita_pronostico_3{
     background:var(--bg-tarjetitas-dark);
 }
-.dark_mode .aside_widgets > p{
-    background:var(--bg-page-dark);
-}
-.dark_mode .menu_mobile{
+
+.dark_mode .menu_mobile,.dark_mode .aw_container_filter_pronosticos{
 	background:var(--bg-app-dark);
 }
 .dark_mode .menu_mobile button{
     background:var(--font-color-dark);
 }
-.dark_mode #aw_modal_login{
-	background:var(--bg-page-dark);
-}
+
 /*fuentes*/
 
 .dark_mode *{

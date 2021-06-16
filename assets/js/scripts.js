@@ -1,4 +1,4 @@
-window.addEventListener('load',()=>{
+document.addEventListener('DOMContentLoaded',()=>{
     const btn_menu_mobile = document.querySelector('#btn_menu_mobile')
     const menu_mobile = document.querySelector('.menu_mobile')
     const menu_mobile_bg = document.querySelector('.menu_mobile_bg')
@@ -7,6 +7,7 @@ window.addEventListener('load',()=>{
     const aw_btn_login = document.querySelectorAll('#aw_btn_login')
     const aw_modal_login = document.querySelector('#aw_modal_login')
     const aw_modal_effect = document.querySelector('#aw_modal_effect')
+    const btn_more = document.querySelectorAll('.btn_more')
     const body = document.querySelector('body')
     if(aw_modal_login){
         const login_form = aw_modal_login.querySelector('form')
@@ -157,5 +158,15 @@ window.addEventListener('load',()=>{
             menu_mobile.style.left = '0%'
             return
         }
-    }    
+    }
+    //Boton que expande los post y los pronosticos en el sidebar
+    if(btn_more.length > 0){
+        btn_more.forEach(more=>{
+            const container_items = more.parentElement.querySelector('ul')
+            const items = container_items.querySelectorAll('a')
+            if(items.length > 4){
+                more.style.display = 'block'
+            }
+        })
+    }
 })
