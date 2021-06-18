@@ -374,13 +374,26 @@ footer.aw_footer *{
 	flex-flow: row wrap;
 }
 
-.aw_container_filter_pronosticos > ul,.aw_container_filter_pronosticos > ul button, .aw_container_filter_pronosticos > input{
-	border:1px solid var(--shadow);
+.aw_container_filter_pronosticos > ul{
 	margin:5px;
 	background: transparent;
-	text-transform: uppercase;
 }
-
+.aw_container_filter_pronosticos > ul button, .aw_container_filter_pronosticos span{
+	border:1px solid var(--shadow);
+	text-transform: uppercase;
+	position: relative;
+}
+.aw_container_filter_pronosticos span{
+	overflow: hidden;
+	width:30px;
+	height:30px;
+}
+.aw_container_filter_pronosticos input{
+	width:100px;
+	position:absolute;
+	left:-70px;
+	top:0;
+}
 .aw_container_filter_pronosticos > ul button{
 	border:unset;
 	cursor: pointer;

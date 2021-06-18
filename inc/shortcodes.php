@@ -181,7 +181,9 @@ function shortcode_pronosticos($attr){
 				<button>'.__('today','apuestanweb-lang').'</button>
 				<button>'.__('tomorrow','apuestanweb-lang').'</button>
 			</ul>
+			<span>
 			<input type="date" style="background:transparent;border:1px solid var(--shadow);padding:5px;" id="aw_filter_pronosticos"/>
+			</span>
 		</div>';
 		if( $terms && !is_wp_error( $terms)):
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
