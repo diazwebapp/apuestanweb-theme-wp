@@ -20,9 +20,7 @@
 	margin-bottom: 10px;
 	padding: 10px;
 }
-.card_author > div:nth-child(2) p{
-    color: var(--shadow) !important;
-}
+
 .card_author > div:nth-child(4){
 	border-left:1px solid var(--shadow);
 	border-bottom:1px solid var(--shadow);

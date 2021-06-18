@@ -20,7 +20,7 @@
 <?php if($pronosticos->have_posts() && count($pronosticos->posts) > 0): ?>
     <div class="aside_widgets">
         <p><?php echo __('Last Forecast','apuestanweb-lang') ?></p>
-        <button class="btn_more" ><?php echo __('View more','apuestanweb-lang'); ?></button>
+        <button class="btn_more" ><?php echo __('Ver más','apuestanweb-lang'); ?></button>
         <ul>
             <?php while($pronosticos->have_posts()): $pronosticos->the_post();
                     
@@ -94,7 +94,7 @@
                             </div>
                             <div>
                                 <h4><?php echo $user->display_name ?></h4>
-                                <p><?php echo get_the_author_meta('pronosticos_acertados',$user->ID) .'-'.get_the_author_meta('pronosticos_no_acertados',$user->ID).' ('.get_the_author_meta('average_aciertos',$user->ID).') '.'T'. get_the_author_meta('pronosticos_completados',$user->ID)?></p>
+                                <p><?php echo get_the_author_meta('pronosticos_acertados',$user->ID) .'-'.get_the_author_meta('pronosticos_no_acertados',$user->ID).' ('.get_the_author_meta('average_aciertos',$user->ID).'%) '.'T'. get_the_author_meta('pronosticos_completados',$user->ID)?></p>
                                
                             </div>
                         </a>
@@ -106,7 +106,7 @@
 
 <div class="aside_widgets">
     <p ><?php echo __('Last Posts','apuestanweb-lang') ?></p>
-    <button class="btn_more" ><?php echo __('View more','apuestanweb-lang'); ?></button>
+    <button class="btn_more" ><?php echo __('Ver más','apuestanweb-lang'); ?></button>
     <ul>
         <?php 
             while($posts->have_posts()):

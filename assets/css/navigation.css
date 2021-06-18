@@ -169,11 +169,23 @@ nav #btn_menu_mobile > button{
 	overflow-x: auto;
 	overflow-y: hidden;
 }
-
+.terms_nav::-webkit-scrollbar{
+	width: 100px;
+	height: 10px;
+}
+.terms_nav::-webkit-scrollbar-thumb{
+	width:100px;
+	max-width: 100px;
+	cursor: pointer;
+	border-radius: 5px;
+}
 .terms_nav > a{
 	text-transform: uppercase;
 	padding: 5px ;
 	font-weight:bold;
+	width:max-content;
+	min-width: max-content;
+	margin: 0 5px;
 }
 .terms_nav > a.current{
 	border-bottom: 2px solid var(--primary-color);

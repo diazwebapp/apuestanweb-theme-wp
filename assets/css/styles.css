@@ -35,6 +35,7 @@ body{
 }
 body *{
 	color:var(--font-color);
+	transition: all .3s ease;
 }
 button{
 	cursor: pointer;
@@ -394,7 +395,26 @@ footer.aw_footer *{
 *::-webkit-scrollbar-thumb{
 	background-color:var(--primary-color);
 }
-
+/***Wordpres native styles ********/
+.aside_widgets .search-form{
+    padding: 5px;
+}
+.aside_widgets .search-form label,.aside_widgets .search-form input{
+    width:100%;
+    display:block;
+	padding: 5px;
+	margin: 5px 0;
+}
+.aside_widgets .search-form input{
+    outline: none;
+    background: transparent;
+    box-shadow: 0px 0px 2px var(--font-color);
+}
+.aside_widgets .search-form input[type='submit']{
+	width:calc(100% - 10px);
+	margin: auto;
+	cursor:pointer;
+}
 @media (min-width:720px){
 	.aw_footer .widget_1{
 		grid-template-columns: repeat(3,1fr);

@@ -31,10 +31,11 @@ aside{
 
 .aside_widgets > .btn_more{
 	z-index:2;position:absolute;bottom:0;
-	padding:5px;width:100%;background:rgba(0,0,0, .7);
+	padding:8px;width:100%;background:var(--secondary-color);
 	display: none;
 	font-weight: bold;
-	font-size: 21px;
+	font-size: 19px;
+	color:white;
 }
 .aside_widgets > .btn_more:focus + ul{
 	max-height: max-content;
@@ -144,7 +145,7 @@ aside{
 .aside_widgets > ul > .aside_item_post > div > img{
 	width:100px;
 	height:75px;
-	object-fit: contain;
+	object-fit: cover;
 }
 .aside_widgets > ul > .aside_item_post > div > h4{
 	height: 20px;

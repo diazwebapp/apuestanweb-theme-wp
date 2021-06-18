@@ -39,16 +39,17 @@
     margin: auto;
     box-shadow: 0px 0px 5px var(--shadow);
 }
-.tarjetita_pronostico_3 .enfrentamiento >div p{
+.tarjetita_pronostico_3 .enfrentamiento > div p{
     padding: 0 5px;
-}
-.tarjetita_pronostico_3 .fecha_partido,.tarjetita_pronostico_3 .eleccion_partido,.tarjetita_pronostico_3 .recompensa > p{
     text-align: center;
 }
-.tarjetita_pronostico_3 .recompensa > p{
-    border:1px solid var(--shadow);
-    width:100%;height:60%;
-    line-height: 2;
+.tarjetita_pronostico_3 .fecha_partido,.tarjetita_pronostico_3 .eleccion_partido,.tarjetita_pronostico_3 .recompensa > div p{
+    text-align: center;
+}
+.tarjetita_pronostico_3 .recompensa > div{
+    width:100%;
+    text-align: center;
+    line-height: 1.5;
 }
 .tarjetita_pronostico_3 .recompensa{
     display: grid;
@@ -60,6 +61,16 @@
     position: relative;
     gap:10px;
     padding: 0 20px;
+}
+.tarjetita_pronostico_3 .recompensa div div{
+    margin: auto;
+    padding:3px 5px;
+    border-radius:4px;
+    overflow: hidden;
+}
+.tarjetita_pronostico_3 .recompensa .bono div{
+    background: var(--secondary-color);
+    color: white;
 }
 .tarjetita_pronostico_3 .eleccion_partido,.tarjetita_pronostico_3 .btn_card{
     display: grid;

@@ -181,6 +181,19 @@ function prepare_rest_casaapuestas($data, $post, $request) {
 }
 add_filter("rest_prepare_{$casaapuestas}", 'prepare_rest_casaapuestas', 10, 3);
 
+$pages = "page";
+function prepare_rest_pages($data, $post, $request) {
+    $_data = $data->data;
+    $fields = get_post_custom($post->ID);
+    foreach ($fields as $key => $value){
+        $_data[$key] = get_post_meta($post->ID,$key);
+    }
+    $data->data = $_data;
+    return $data;
+}
+add_filter("rest_prepare_{$pages}", 'prepare_rest_pages', 10, 3);
+
+
 function user_meta_in_rest(){
 	$users = get_users();
 

@@ -55,7 +55,10 @@ window.addEventListener('load',()=>{
     }
 
     const create_tarjetita = ({post,model,current_user='',user,deporte,casa_apuesta=''})=>{
-        const div = document.createElement('a')
+        let div = document.createElement('a')
+        if(model=='tarjetita_pronostico_3'){
+            div = document.createElement('div')
+        }
         div.setAttribute('href',post.link)
         div.classList.add(model)
         div.id = post.id 
@@ -166,8 +169,10 @@ window.addEventListener('load',()=>{
                     <p>${post.nombre_equipo_2}</p>
                 </div>
                 <div>
-                    <p>${post.fecha_partido}</p>
-                    <p>${post.hora_partido}</p>
+                    <span style="grid-row:1 / span 2;text-aling:center;" >
+                        <p>${post.fecha_partido}</p>
+                        <p>${post.hora_partido}</p>
+                    </span>
                 </div>
             </div>
             
@@ -177,11 +182,17 @@ window.addEventListener('load',()=>{
             </div>
             <div class="recompensa">
                 <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
-                <p class="cuota">${post.cuota_empate_pronostico}%</p>
-                <p class="bono">${casa_apuesta.bono_casa_apuesta}$</p>
+                <div class="cuota">
+                    <b>Cuota</b>
+                    <div>${post.cuota_empate_pronostico}%</div>
+                </div>
+                <div class="bono">
+                    <b>Bono</b>
+                    <div>${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}$</div>
+                </div>
             </div>
             <div class="btn_card" >
-                <button>Apuesta Ya!</button>
+                <a href="${post.link}" ><button>Ver Análisis</button></a>
             </div>
         `
         }
