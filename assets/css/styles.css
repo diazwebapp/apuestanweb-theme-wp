@@ -373,7 +373,11 @@ footer.aw_footer *{
 	display:flex;
 	flex-flow: row wrap;
 }
-
+/*
+	1 globo tr $0.4
+	1 caja (madera / carton) $3
+	2 papel grepé (colores distintos) $1
+*/
 .aw_container_filter_pronosticos > ul{
 	margin:5px;
 	background: transparent;

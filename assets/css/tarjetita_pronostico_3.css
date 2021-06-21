@@ -15,22 +15,19 @@
 }
 .tarjetita_pronostico_3 .enfrentamiento{
     display: grid;
-    grid-template-columns: 80px 1fr 100px;
-    grid-template-rows: 120px;
+    grid-template-columns: 60px 1fr 60px;
+    grid-template-rows: 60px;
+    place-items: center;
+    place-content: center;
 }
 .tarjetita_pronostico_3 .enfrentamiento > div{
-    display: grid;
-    grid-template-rows: 60px 60px;
-    place-content: center;
-    place-items: center;
-    overflow: hidden;
-    position: relative;
+    text-align: center;
 }
 .tarjetita_pronostico_3 .enfrentamiento > div:last-child{
-    border-left: 1px solid var(--shadow);
+    grid-column: 1 / span 3;
+    padding: 5px 0;
 }
-
-.tarjetita_pronostico_3 .enfrentamiento .img_equipos > img, .tarjetita_pronostico_3 .recompensa > img{
+.tarjetita_pronostico_3 .enfrentamiento img, .tarjetita_pronostico_3 .recompensa img{
     width:55px;
     height:55px;
     background: white;
@@ -39,40 +36,52 @@
     margin: auto;
     box-shadow: 0px 0px 5px var(--shadow);
 }
-.tarjetita_pronostico_3 .enfrentamiento > div p{
-    padding: 0 5px;
-    text-align: center;
+
+.tarjetita_pronostico_3 .eleccion_partido, .tarjetita_pronostico_3 .recompensa{
+    width:95%;
+    margin: auto;
 }
-.tarjetita_pronostico_3 .fecha_partido,.tarjetita_pronostico_3 .eleccion_partido,.tarjetita_pronostico_3 .recompensa > div p{
-    text-align: center;
-}
-.tarjetita_pronostico_3 .recompensa > div{
-    width:100%;
-    text-align: center;
-    line-height: 1.5;
-}
-.tarjetita_pronostico_3 .recompensa{
+
+.tarjetita_pronostico_3 .recompensa,.tarjetita_pronostico_3 .eleccion_partido{
     display: grid;
-    grid-template-columns: 70px 1fr 1fr;
-    grid-template-rows: 60px;
+    grid-template-columns: repeat(3,1fr);
     place-content: center;
     place-items: center;
-    overflow: hidden;
-    position: relative;
-    gap:10px;
-    padding: 0 20px;
+    gap:5px;
 }
-.tarjetita_pronostico_3 .recompensa div div{
+.tarjetita_pronostico_3 .eleccion_partido{
+    grid-template-columns: 1fr 60px;
+    grid-template-rows: 60px;
+}
+.tarjetita_pronostico_3 .eleccion_partido b{
+    overflow: hidden;
+    height: 25px;
+    word-break: break-all;
+    border-bottom: 3px solid var(--primary-color);
+}
+.tarjetita_pronostico_3 .eleccion_partido img{
+    grid-column:  1 / span 2;
+}
+.tarjetita_pronostico_3 .recompensa p,.tarjetita_pronostico_3 .recompensa input,.tarjetita_pronostico_3 .eleccion_partido p{
     margin: auto;
     padding:3px 5px;
     border-radius:4px;
     overflow: hidden;
-}
-.tarjetita_pronostico_3 .recompensa .bono div{
+    width:60px;
+    height:30px;
+    text-align: center;
+    margin: 2px;
+    line-height: 1.5;
+    border:1px solid black;
     background: var(--secondary-color);
     color: white;
 }
-.tarjetita_pronostico_3 .eleccion_partido,.tarjetita_pronostico_3 .btn_card{
+
+.tarjetita_pronostico_3 .recompensa input{
+    background: white;
+    color: black;
+}
+.tarjetita_pronostico_3 .btn_card{
     display: grid;
     place-content: center;
     place-items: center;
@@ -86,40 +95,36 @@
 }
 @media(min-width: 400px){
     .container_tarjetitas_3 > div{
-        grid-template-columns: repeat(1,90%);
+        grid-template-columns: repeat(1,80%);
     }
 }
-@media(min-width: 520px){
-    .container_tarjetitas_3 > div{
-        grid-template-columns: repeat(2,80%);
-    }
-}
-@media(min-width: 520px){
+@media(min-width: 512px){
     .container_tarjetitas_3 > div{
         grid-template-columns: repeat(2,1fr);
         gap:1px;
     }
 }
-@media(min-width: 640px){
-    .container_tarjetitas_3 > div{
-        gap:5px;
-    }
-}
-@media(min-width: 720px){
+@media(min-width: 600px){
     .container_tarjetitas_3 > div{
         gap:10%;
     }
 }
-
-@media(min-width: 860px){
+@media(min-width: 710px){
     .container_tarjetitas_3 > div{
         grid-template-columns: repeat(3,1fr);
         gap:1px;
     }
 }
+@media(min-width: 960px){
+    .container_tarjetitas_3 > div{
+        grid-template-columns: repeat(4,1fr);
+        gap:1%;
+    }
+}
+
 @media(min-width: 1280px){
     .container_tarjetitas_3 > div{
-        grid-template-columns: repeat(2,42%);
-        gap:10%;
+        grid-template-columns: repeat(3,1fr);
+        gap:2%;
     }
 }

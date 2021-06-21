@@ -1,8 +1,16 @@
+function calc_cuota(e,params) {
+    const valor = e.value
+    const {id,cuota} = params
+    const div = document.getElementById('bono'+id)
+    const gana = parseFloat(valor) / parseFloat(cuota) + parseFloat(valor) 
+    div.innerHTML = gana != 'NaN' ? gana:0
+}
 window.addEventListener('load',()=>{
     const input_date = document.getElementById('aw_filter_pronosticos')
     const ul_btn_days = document.getElementById('aw_btn_day_filter')
     let local_date = get_date({format:'fecha'})
 //04141426888
+    
     function get_date ({date,format,yesterday,tomorrow}){
         if(format == 'time'){
             if(date){
@@ -158,42 +166,47 @@ window.addEventListener('load',()=>{
             `
         }
         if(model == 'tarjetita_pronostico_3'){
+            
             div.innerHTML = `
             <div class="enfrentamiento">
-                <div class="img_equipos">
-                    <img src="${post.img_equipo_1}" />
-                    <img src="${post.img_equipo_2}" />
-                </div>
-                <div>
-                    <p>${post.nombre_equipo_1}</p>
-                    <p>${post.nombre_equipo_2}</p>
-                </div>
-                <div>
-                    <span style="grid-row:1 / span 2;text-aling:center;" >
-                        <p>${post.fecha_partido}</p>
-                        <p>${post.hora_partido}</p>
-                    </span>
-                </div>
-            </div>
-            
-            <div class="eleccion_partido" >
-                ${post.acceso_pronostico.toString().toLowerCase() != 'vip'?`<b>${post.eleccion}</b>`:'<img width="50" height="50" src="/wp-content/themes/apuestanweb-theme-wp/assets/images/candado.svg" alt=""></img>'}
                 
-            </div>
-            <div class="recompensa">
-                <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
-                <div class="cuota">
-                    <b>Cuota</b>
-                    <div>${post.cuota_empate_pronostico}%</div>
+                    <img src="${post.img_equipo_1}" />
+                
+                <div>
+                    <p>${post.fecha_partido}</p>
+                    <p>${post.hora_partido}</p>
                 </div>
-                <div class="bono">
-                    <b>Bono</b>
-                    <div>${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}$</div>
+                
+                    <img src="${post.img_equipo_2}" />
+                
+
+                <div>
+                    ${post.nombre_equipo_1} vs ${post.nombre_equipo_2}
                 </div>
-            </div>
-            <div class="btn_card" >
-                <a href="${post.link}" ><button>Ver Análisis</button></a>
-            </div>
+
+                </div>
+                
+                <div class="eleccion_partido" >
+                    ${post.acceso_pronostico.toString().toLowerCase() != 'vip'?(
+                        `<b>${post.eleccion}</b>
+                        <p>${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}$</p>`
+                        ):'<img width="50" height="50" src="/wp-content/themes/apuestanweb-theme-wp/assets/images/candado.svg" alt=""></img>'}
+                </div>
+                    
+                <div class="recompensa">
+                    <div>
+                        <small>Apuesta</small>
+                        <input onkeyup="calc_cuota(this,{id:${post.id},cuota:${post.cuota_empate_pronostico}})" type="number" step="0.1" value="10" />
+                    </div>
+                    <div>
+                        <small>Gana</small>
+                        <p id="bono${post.id}" >${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}$</p>
+                    </div>
+                        <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
+                </div>
+                <div class="btn_card" >
+                    <a href="${post.link}" ><button>Ver Análisis</button></a>
+                </div>
         `
         }
         return div
