@@ -4,6 +4,7 @@ function calc_cuota(e,params) {
     const div = document.getElementById('bono'+id)
     const gana = parseFloat(valor) / parseFloat(cuota) + parseFloat(valor) 
     div.innerHTML = gana != 'NaN' ? gana:0
+    div.innerHTML += "$"
 }
 window.addEventListener('load',()=>{
     const input_date = document.getElementById('aw_filter_pronosticos')
@@ -200,7 +201,7 @@ window.addEventListener('load',()=>{
                     </div>
                     <div>
                         <small>Gana</small>
-                        <p id="bono${post.id}" >${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}$</p>
+                        <p id="bono${post.id}" >${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</p>
                     </div>
                         <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
                 </div>
