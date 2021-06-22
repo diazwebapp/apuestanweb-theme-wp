@@ -3,8 +3,7 @@ function calc_cuota(e,params) {
     const {id,cuota} = params
     const div = document.getElementById('bono'+id)
     const gana = parseFloat(valor) / parseFloat(cuota) + parseFloat(valor) 
-    div.innerHTML = gana != 'NaN' ? gana:0
-    div.innerHTML += "$"
+    div.innerHTML = gana.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})
 }
 window.addEventListener('load',()=>{
     const input_date = document.getElementById('aw_filter_pronosticos')
@@ -179,7 +178,6 @@ window.addEventListener('load',()=>{
                 </div>
                 
                     <img src="${post.img_equipo_2}" />
-                
 
                 <div>
                     ${post.nombre_equipo_1} vs ${post.nombre_equipo_2}
@@ -190,7 +188,7 @@ window.addEventListener('load',()=>{
                 <div class="eleccion_partido" >
                     ${post.acceso_pronostico.toString().toLowerCase() != 'vip'?(
                         `<b>${post.eleccion}</b>
-                        <p>${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}$</p>`
+                        <p>$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</p>`
                         ):'<img width="50" height="50" src="/wp-content/themes/apuestanweb-theme-wp/assets/images/candado.svg" alt=""></img>'}
                 </div>
                     
@@ -201,7 +199,7 @@ window.addEventListener('load',()=>{
                     </div>
                     <div>
                         <small>Gana</small>
-                        <p id="bono${post.id}" >${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</p>
+                        <p id="bono${post.id}" >$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</p>
                     </div>
                         <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
                 </div>
