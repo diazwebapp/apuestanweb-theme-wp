@@ -1,7 +1,7 @@
 .container_tarjetitas_3 > div{
     display:grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: 280px;
+    grid-auto-rows: 290px;
     gap: 2.5px;
     place-items: center;
     place-content: center;
@@ -15,8 +15,8 @@
 }
 .tarjetita_pronostico_3 .enfrentamiento{
     display: grid;
-    grid-template-columns: 60px 1fr 60px;
-    grid-template-rows: 60px;
+    grid-template-columns: 80px 1fr 80px;
+    grid-template-rows: 80px;
     place-items: center;
     place-content: center;
 }
@@ -34,7 +34,7 @@
     padding:5px;
     border-radius: 50%;
     margin: auto;
-    box-shadow: 0px 0px 5px var(--shadow);
+    box-shadow: 0px 0px 10px var(--shadow);
 }
 
 .tarjetita_pronostico_3 .eleccion_partido, .tarjetita_pronostico_3 .recompensa{
@@ -44,13 +44,13 @@
 
 .tarjetita_pronostico_3 .recompensa,.tarjetita_pronostico_3 .eleccion_partido{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: 1fr 1fr 60px;
     place-content: center;
     place-items: center;
     gap:5px;
 }
 .tarjetita_pronostico_3 .eleccion_partido{
-    grid-template-columns: 1fr 70px;
+    grid-template-columns: 1fr 60px;
     grid-template-rows: 60px;
 }
 .tarjetita_pronostico_3 .eleccion_partido b{
@@ -58,6 +58,8 @@
     height: 25px;
     word-break: break-all;
     border-bottom: 3px solid var(--primary-color);
+    width:100%;
+    min-width:80px;
 }
 .tarjetita_pronostico_3 .eleccion_partido img{
     grid-column:  1 / span 2;
@@ -67,19 +69,32 @@
     padding:3px 5px;
     border-radius:4px;
     overflow: hidden;
-    width:70px;
     height:30px;
     text-align: center;
     margin: 2px;
     line-height: 1.5;
-    border:1px solid black;
+    box-shadow: 0px 0px 3px black;
     background: var(--secondary-color);
     color: white;
+    font-weight: bold;
 }
-
+.tarjetita_pronostico_3 .eleccion_partido p{
+    width:60px;
+}
+.tarjetita_pronostico_3 .recompensa div{
+    text-align: center;
+}
+.tarjetita_pronostico_3 .recompensa p{
+    width: 80px;
+}
 .tarjetita_pronostico_3 .recompensa input{
     background: white;
     color: black;
+    border: unset;
+    border-bottom: 2px solid black;
+    box-shadow: unset;
+    border-radius: unset;
+    width: 60px;
 }
 .tarjetita_pronostico_3 .btn_card{
     display: grid;
@@ -119,13 +134,13 @@
 @media(min-width: 960px){
     .container_tarjetitas_3 > div{
         grid-template-columns: repeat(4,1fr);
-        gap:1%;
+        gap:2px;
     }
 }
 
 @media(min-width: 1280px){
     .container_tarjetitas_3 > div{
         grid-template-columns: repeat(3,1fr);
-        gap:2%;
+        gap:1%;
     }
 }

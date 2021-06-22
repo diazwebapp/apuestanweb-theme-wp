@@ -68,7 +68,7 @@ header{
 }
 
 .container,main,nav{
-	width:100%;
+	width:99%;
 	padding:var(--padding-horizontal);
 	max-width: var(--max-width);
 	position:relative;
@@ -383,7 +383,6 @@ footer.aw_footer *{
 	background: transparent;
 }
 .aw_container_filter_pronosticos > ul button, .aw_container_filter_pronosticos span{
-	border:1px solid var(--shadow);
 	text-transform: uppercase;
 	position: relative;
 }
@@ -397,12 +396,18 @@ footer.aw_footer *{
 	position:absolute;
 	left:-70px;
 	top:0;
+	border: unset;
+	outline: unset;
+	background: transparent;
+	padding:5px;
 }
 .aw_container_filter_pronosticos > ul button{
 	border:unset;
 	cursor: pointer;
-	padding: 0 10px;
+	padding: 0 7px;
 	overflow: hidden;
+	background: transparent;
+	border-right: 1px solid black;
 }
 *::-webkit-scrollbar{
 	background:transparent;

@@ -3,7 +3,7 @@ function calc_cuota(e,params) {
     const {id,cuota} = params
     const div = document.getElementById('bono'+id)
     const gana = parseFloat(valor) / parseFloat(cuota) + parseFloat(valor) 
-    div.innerHTML = gana.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})
+    div.innerHTML = valor != '' ? gana.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2}):0
 }
 window.addEventListener('load',()=>{
     const input_date = document.getElementById('aw_filter_pronosticos')
@@ -173,7 +173,7 @@ window.addEventListener('load',()=>{
                     <img src="${post.img_equipo_1}" />
                 
                 <div>
-                    <p>${post.fecha_partido}</p>
+                    <small>${post.fecha_partido}</small>
                     <p>${post.hora_partido}</p>
                 </div>
                 
@@ -195,7 +195,7 @@ window.addEventListener('load',()=>{
                 <div class="recompensa">
                     <div>
                         <small>Apuesta</small>
-                        <input onkeyup="calc_cuota(this,{id:${post.id},cuota:${post.cuota_empate_pronostico}})" type="number" step="0.1" value="10" />
+                        <input onkeyup="calc_cuota(this,{id:${post.id},cuota:${post.cuota_empate_pronostico}})" onchange="calc_cuota(this,{id:${post.id},cuota:${post.cuota_empate_pronostico}})" type="number" step="0.1" value="10" />
                     </div>
                     <div>
                         <small>Gana</small>
