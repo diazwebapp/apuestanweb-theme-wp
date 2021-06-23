@@ -174,12 +174,12 @@ window.addEventListener('load',()=>{
                 
                 <div>
                     <small>${post.fecha_partido}</small>
-                    <small>${post.hora_partido}</small>
+                    <div><small>${post.hora_partido}</small></div>
                 </div>
                 
                     <img src="${post.img_equipo_2}" />
 
-                <div>
+                <div class="equipos" >
                     <small>${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</small>
                 </div>
 
