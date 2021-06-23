@@ -15,14 +15,9 @@ function apuestanweb_load_css_files() {
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_css_files' );
 
 function apuestanweb_load_scripts() {
-		wp_register_script( 'chart', get_template_directory_uri(). '/assets/js/chart.js');
-		wp_enqueue_script( 'chart' );
 	
 		wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/scripts.js');
 		wp_enqueue_script( 'theme_scripts' );
-
-		wp_register_script( 'fa_scripts',  get_template_directory_uri() . '/assets/css/fa/js/all.min.js');
-		wp_enqueue_style( 'fa_scripts' );
 			
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_scripts' );

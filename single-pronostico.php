@@ -2,6 +2,9 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 get_header();
 
+wp_register_script( 'chart', get_template_directory_uri(). '/assets/js/chart.js');
+wp_enqueue_script( 'chart' );
+
 $current_user = wp_get_current_user();
 
 $author_posts = new wp_Query(array(
