@@ -201,7 +201,10 @@ window.addEventListener('load',()=>{
                         <small>Gana</small>
                         <b id="bono${post.id}" >$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</b>
                     </div>
+                    <div class="logo_casa_apuesta" >
                         <img loading="lazy" src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
+                        <a href="${casa_apuesta.link}" >Juega ya!</a>
+                    </div>
                 </div>
                 <div class="btn_card" >
                     <a href="${post.link}" ><button>Ver Análisis</button></a>
