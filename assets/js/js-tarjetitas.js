@@ -174,32 +174,32 @@ window.addEventListener('load',()=>{
                 
                 <div>
                     <small>${post.fecha_partido}</small>
-                    <p>${post.hora_partido}</p>
+                    <small>${post.hora_partido}</small>
                 </div>
                 
                     <img src="${post.img_equipo_2}" />
 
                 <div>
-                    ${post.nombre_equipo_1} vs ${post.nombre_equipo_2}
+                    <small>${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</small>
                 </div>
 
                 </div>
                 
                 <div class="eleccion_partido" >
                     ${post.acceso_pronostico.toString().toLowerCase() != 'vip'?(
-                        `<b>${post.eleccion}</b>
-                        <p>$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</p>`
+                        `<p>${post.eleccion}</p>
+                        <b>${post.cuota_eleccion}</b>`
                         ):'<img width="50" height="50" src="/wp-content/themes/apuestanweb-theme-wp/assets/images/candado.svg" alt=""></img>'}
                 </div>
                     
                 <div class="recompensa">
                     <div>
                         <small>Apuesta</small>
-                        <input onkeyup="calc_cuota(this,{id:${post.id},cuota:${post.cuota_empate_pronostico}})" onchange="calc_cuota(this,{id:${post.id},cuota:${post.cuota_empate_pronostico}})" type="number" step="0.1" value="10" />
+                        <input onkeyup="calc_cuota(this,{id:${post.id},cuota:${post.cuota_eleccion}})" onchange="calc_cuota(this,{id:${post.id},cuota:${post.cuota_empate_pronostico}})" type="number" step="0.1" value="10" />
                     </div>
                     <div>
                         <small>Gana</small>
-                        <p id="bono${post.id}" >$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</p>
+                        <b id="bono${post.id}" >$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</b>
                     </div>
                         <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
                 </div>
