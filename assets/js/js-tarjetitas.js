@@ -150,7 +150,7 @@ window.addEventListener('load',()=>{
                 ${post.excerpt.rendered}
                 </div>
                 <div>
-                    <img src="${user.avatar_urls['96']}">
+                    <img loading="lazy" src="${user.avatar_urls['96']}">
 
                     <p>${user.name}</p>
                     <p style="display:inline-block;margin:5px;font-size:14px;background:lightgreen;padding:5px 10px;border-radius:4px;color:black;">
@@ -170,14 +170,14 @@ window.addEventListener('load',()=>{
             div.innerHTML = `
             <div class="enfrentamiento">
                 
-                    <img src="${post.img_equipo_1}" />
+                    <img loading="lazy" src="${post.img_equipo_1}" />
                 
                 <div>
                     <small>${post.fecha_partido}</small>
                     <div><small>${post.hora_partido}</small></div>
                 </div>
                 
-                    <img src="${post.img_equipo_2}" />
+                    <img loading="lazy" src="${post.img_equipo_2}" />
 
                 <div class="equipos" >
                     <small>${post.nombre_equipo_1} vs ${post.nombre_equipo_2}</small>
@@ -189,7 +189,7 @@ window.addEventListener('load',()=>{
                     ${post.acceso_pronostico.toString().toLowerCase() != 'vip'?(
                         `<p>${post.eleccion}</p>
                         <b>${post.cuota_eleccion}</b>`
-                        ):'<img width="50" height="50" src="/wp-content/themes/apuestanweb-theme-wp/assets/images/candado.svg" alt=""></img>'}
+                        ):'<img loading="lazy" width="50" height="50" src="/wp-content/themes/apuestanweb-theme-wp/assets/images/candado.svg" alt=""></img>'}
                 </div>
                     
                 <div class="recompensa">
@@ -201,7 +201,7 @@ window.addEventListener('load',()=>{
                         <small>Gana</small>
                         <b id="bono${post.id}" >$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</b>
                     </div>
-                        <img src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
+                        <img loading="lazy" src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
                 </div>
                 <div class="btn_card" >
                     <a href="${post.link}" ><button>Ver Análisis</button></a>

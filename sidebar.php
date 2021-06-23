@@ -39,10 +39,10 @@
                                 <div class="item_w_img" >
                                     
                                     <div>
-                                        <img loader="lazy" src="<?php if($img_equipo_1){ echo $img_equipo_1;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                                        <img loading="lazy" src="<?php if($img_equipo_1){ echo $img_equipo_1;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
                                     </div>
                                     <div>
-                                        <img loader="lazy" src="<?php if($img_equipo_2){ echo $img_equipo_2;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
+                                        <img loading="lazy" src="<?php if($img_equipo_2){ echo $img_equipo_2;}else{ echo get_template_directory_uri(). '/assets/images/icon.png'; } ?> " />
                                     </div>
                                     
                                 </div>
@@ -118,7 +118,7 @@
                         <?php if(has_post_thumbnail()) : 
                                 the_post_thumbnail();
                             else : ?> 
-                            <img loader="lazy" src="<?php echo get_template_directory_uri(). '/assets/images/hp.png'; ?>" alt="">
+                            <img loading="lazy" src="<?php echo get_template_directory_uri(). '/assets/images/hp.png'; ?>" alt="">
                         <?php endif; ?>
                     </div>
                     <div>

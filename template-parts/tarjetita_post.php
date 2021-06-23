@@ -3,7 +3,7 @@
         <?php if(has_post_thumbnail()) : 
                     the_post_thumbnail();
                 else : ?> 
-                <img src="<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>" alt="">
+                <img loading="lazy" src="<?php echo get_template_directory_uri(). '/assets/images/hh2.png'; ?>" alt="">
         <?php endif; ?>
     </div>
     <p><?php if($post->post_excerpt == "" || !$post->post_excerpt){ echo $post->post_title ;}else{ echo $post->post_excerpt; }?></p>

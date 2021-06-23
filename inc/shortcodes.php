@@ -339,7 +339,7 @@ function shortcode_slide($attr){
 		while($posts->have_posts()): $posts->the_post();
 			$url_thumb = get_the_post_thumbnail_url(get_the_ID());
 			$slide .='<a href="'.get_permalink().'" class="miSlider fade" >
-			<img src="'.$url_thumb.'" alt="'.get_the_title().'"/>
+			<img loading="lazy" src="'.$url_thumb.'" alt="'.get_the_title().'"/>
 			' ;
 			
 			if($post_type=='pronostico'):
@@ -536,7 +536,7 @@ function shortcode_banner_top($attr){
 					}
 				</style>
 				<a href="'.$url.'" target="blank" class="top_banner" >
-					<img src="'.$image_bg.'" />
+					<img loading="lazy" src="'.$image_bg.'" />
 					<div class="text_content" >
 						<b>'.$title.'</b>
 						<p>
@@ -544,7 +544,7 @@ function shortcode_banner_top($attr){
 						</p>
 					</div>
 					<div class="img_container" >
-						<img src="'.$image.'" />
+						<img loading="lazy" src="'.$image.'" />
 					</div>
 				</a>
 				';
@@ -624,7 +624,7 @@ function shortcode_banner_bottom($attr){
 					
 				</style>
 				<div class="bottom_banner" >
-					<img src="'.$image_bg.'" />
+					<img loading="lazy" src="'.$image_bg.'" />
 					<div class="text_content" >
 						<b>'.$title.'</b>
 						<p>

@@ -9,9 +9,9 @@ function casa_apuesta_1($data){
     }
     $html = '<div class="tarjeta_casa_apuesta_'.$data['model'].'" style="'.$data['style'].'">
         <div>
-            <img src="'.$data['thumb'].'" />
+            <img loading="lazy" src="'.$data['thumb'].'" />
             <a href="'.$data['link'].'" class="circle" >
-                <img src="'.$data['logo'].'" />
+                <img loading="lazy" src="'.$data['logo'].'" />
             </a>
             <div class="rectangle" >'.$data['puntuacion'] .' / 5 ' .'<span >✭</span></div>
         </div>
@@ -33,22 +33,22 @@ function casa_apuesta_2($data){
         $button .= '<a class="btn_outline refer" href="'.$data['refear_link'].'" >'. __('Offert Now','apuestanweb-lang') .'</a>';
     }
     if($data['metodo_pago_1']): 
-        $metodos_pago .= '<img loading="lazy" src="'. $data['metodo_pago_1'] .'" >';
+        $metodos_pago .= '<img loading="lazy" loading="lazy" src="'. $data['metodo_pago_1'] .'" >';
     endif; 
     if($data['metodo_pago_2']): 
-        $metodos_pago .= '<img loading="lazy" src="'. $data['metodo_pago_2'] .'" >';
+        $metodos_pago .= '<img loading="lazy" loading="lazy" src="'. $data['metodo_pago_2'] .'" >';
     endif; 
     if($data['metodo_pago_3']): 
-        $metodos_pago .= '<img loading="lazy" src="'. $data['metodo_pago_3'] .'" >';
+        $metodos_pago .= '<img loading="lazy" loading="lazy" src="'. $data['metodo_pago_3'] .'" >';
     endif; 
     if($data['metodo_pago_4']): 
-        $metodos_pago .= '<img loading="lazy" src="'. $data['metodo_pago_4'] .'" >';
+        $metodos_pago .= '<img loading="lazy" loading="lazy" src="'. $data['metodo_pago_4'] .'" >';
     endif; 
 
     $html = ' <div class="tarjeta_casa_apuesta_'.$data['model'].'" style="'.$data['style'].'">
         <div>
             <a href="'.$data['link'].'" class="casa_apuesta_img_especial">
-                <img loading="lazy" src="'.$data['logo'].'">
+                <img loading="lazy" loading="lazy" src="'.$data['logo'].'">
             </a>
             <div>
                 <b>'.__($data['slogan'],'apuestanweb-lang') .'</b>

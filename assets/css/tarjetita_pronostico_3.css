@@ -20,6 +20,7 @@
 }
 .tarjetita_pronostico_3 .enfrentamiento > div{
     text-align: center;
+    padding-top:10px;
 }
 .tarjetita_pronostico_3 .enfrentamiento > div:last-child{
     grid-column: 1 / span 3;
@@ -157,14 +158,12 @@
 }
 @media(min-width: 960px){
     .container_tarjetitas_3 > div{
-        grid-template-columns: repeat(4,1fr);
-        gap:2px;
+        gap:2%;
     }
 }
 
 @media(min-width: 1280px){
     .container_tarjetitas_3 > div{
-        grid-template-columns: repeat(3,1fr);
-        gap:1%;
+        gap:1px;
     }
 }
