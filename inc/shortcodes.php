@@ -324,8 +324,8 @@ add_shortcode('sportsmenu','sports_menu');
 
 function shortcode_slide($attr){
 	extract( shortcode_atts( array( 'post_type' => 'post'), $attr ) );
-	wp_enqueue_style( 'aw_slide', get_template_directory_uri() . '/assets/css/slide.css' );
-	wp_register_script( 'aw_slide_scripts', get_template_directory_uri(). '/assets/js/slide_script.js');
+	wp_enqueue_style( 'aw_slide', get_template_directory_uri() . '/assets/css/aw_slide.css' );
+	wp_register_script( 'aw_slide_scripts', get_template_directory_uri(). '/assets/js/aw_slide_script.js');
 	wp_enqueue_script( 'aw_slide_scripts' );
 	$slide = '<div class="slide-contenedor" >';
 	

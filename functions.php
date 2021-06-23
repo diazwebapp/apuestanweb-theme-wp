@@ -10,13 +10,13 @@ require_once('admin_theme/admin_theme.php');
 
 function apuestanweb_load_css_files() {
 	
-	wp_enqueue_style( 'apuestanweb-style', get_template_directory_uri() . '/assets/css/styles.css' );
+	wp_enqueue_style( 'apuestanweb-style', get_template_directory_uri() . '/assets/css/aw_styles.css' );
 }
 add_action( 'wp_enqueue_scripts', 'apuestanweb_load_css_files' );
 
 function apuestanweb_load_scripts() {
 	
-		wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/scripts.js');
+		wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/aw_scripts.js');
 		wp_enqueue_script( 'theme_scripts' );
 			
 }
