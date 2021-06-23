@@ -14,7 +14,8 @@ $casas_apuestas = new wp_query(array(
                 ?>
             </div>
             <article>
-                <?php __(the_content(),'apuestanweb-lang') ?>
+                <?php __(the_content(),'apuestanweb-lang');
+                 ?>
             </article>
         <?php endif;?>
         

@@ -72,10 +72,10 @@ window.addEventListener('load',()=>{
         div.id = post.id 
         let date = new Date(post.fecha_partido)
         post.fecha_partido = date.getDate() + '-' + (date.getMonth()+1) + '-' + date.getFullYear()
-       
+        
         if(model == 'tarjetita_pronostico_1'){
-
-            div.innerHTML = `<h3 class="title_pronostico" >${deporte[0].name} ${deporte[1]?deporte[1].name:''}</h3>
+            
+            div.innerHTML = `<h3 class="title_pronostico" >${post._embedded["wp:term"][0][0]?post._embedded["wp:term"][0][0].name:''} ${post._embedded["wp:term"][0][1]?post._embedded["wp:term"][0][1].name : ''}</h3>
                                 
             ${post.acceso_pronostico.toString().toLowerCase() == 'vip'?`<b data="${post.acceso_pronostico}" class="sticker_tarjetita" ></b>`:''}
         
@@ -210,7 +210,7 @@ window.addEventListener('load',()=>{
         }
         return div
     }
-    const insert_tajetita_to_container = (model,container_tarjetitas,div,loader,index)=>{
+    const insert_tajetita_to_container = (container_tarjetitas,div)=>{
         let existe = container_tarjetitas.querySelector(`div`)
         existe.append(div)
         
@@ -226,18 +226,15 @@ window.addEventListener('load',()=>{
                 div_container.innerHTML = '<div class="loading" >loading...</div>'
             }
             
-            const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}`)
+            const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}&_embed=true`)
             const posts = await req_posts.json()
             
             const requser = await fetch(`/wp-json/wp/v2/users`)
             const users = await requser.json()
 
-            const reqtaxonomy = await fetch(`/wp-json/wp/v2/deportes`)
-            const deportes = await reqtaxonomy.json()
-
             const casa_apuestas_req = await fetch(`/wp-json/wp/v2/casaapuesta`)
             const casas_apuestas = await casa_apuestas_req.json()
-
+            
             posts.sort(function(a,b){
                 let date_a = new Date(a.fecha_partido)
                 let date_b = new Date(b.fecha_partido)
@@ -251,21 +248,18 @@ window.addEventListener('load',()=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
                 const casa_apuesta = casas_apuestas.find(casa => casa.slug == post.refear_link)
                 
-                const deporte = post.deportes.map((id_deporte)=>{
-                    return deportes.find(current_term=>current_term.id==id_deporte)
-                })
                 // condicional comparativo fecha del partido con fecha actual
                 
                 if(get_date({format:'fecha',date:post.fecha_partido[0]}) == local_date){
                    
                     if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
-                        const div = create_tarjetita({post,model,current_user,user,deporte,casa_apuesta})
-                        insert_tajetita_to_container(model,container_tarjetitas,div,loader,index)
+                        const div = create_tarjetita({post,model,current_user,user,casa_apuesta})
+                        insert_tajetita_to_container(container_tarjetitas,div)
                         return
                     } 
                     if(!rank || parseInt(rank) == 0 && parseInt(user.id) == parseInt(post.author)){
-                        const div = create_tarjetita({post,model,current_user,user,deporte,casa_apuesta})
-                        insert_tajetita_to_container(model,container_tarjetitas,div,loader,index)
+                        const div = create_tarjetita({post,model,current_user,user,casa_apuesta})
+                        insert_tajetita_to_container(container_tarjetitas,div)
                         return
                     } 
                 }

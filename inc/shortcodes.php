@@ -189,7 +189,7 @@ function shortcode_pronosticos($attr){
 			// get taxonomies by post type, and print loop content filtred by term taxonomi
 			foreach ($terms as $term) :
 				if($term->parent == 0):
-					if($deporte && $deporte == $term->name):
+					if($deporte && $deporte == $term->slug): 
 						$html .= '<article termid="'. $term->term_id . '" class="container_tarjetitas_'.$model.'" >
 						<b class="sub_title" >'. __("Forecast: ". strtoupper($term->name)."", 'apuestanweb-lang') .'</b>
 						<div> </div>
