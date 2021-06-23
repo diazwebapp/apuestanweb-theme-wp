@@ -160,7 +160,7 @@ function shortcode_pronosticos($attr){
 	) );
 	$current_user = wp_get_current_user();
 	wp_enqueue_style( 'pronosticos_css', get_template_directory_uri() . '/assets/css/tarjetita_pronostico_'.$model.'.css' );
-	wp_register_script('js-tarjetitas', get_template_directory_uri(). '/assets/js/js-tarjetitas.js', '1', true );
+	wp_register_script('js-tarjetitas', get_template_directory_uri(). '/assets/js/aw_js-tarjetitas.js', '1', true );
 	wp_enqueue_script('js-tarjetitas');
 	wp_localize_script( 'js-tarjetitas', 'taxonomy_data', array(
 		'terms' => $terms,
