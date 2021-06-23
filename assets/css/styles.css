@@ -4,7 +4,15 @@
 @import './author.css';
 @import './dark_mode.css';
 @import './default_mode.css';
+@font-face {
 
+	font-family: Aguafina Script-Regular;
+	
+	src: url(../fonts/GTWalsheimPro-Regular.woff2);
+	
+	font-weight: normal;
+	
+	}
 
 /* -------------------------------------------------------------------------- */
 
@@ -27,7 +35,7 @@
 	list-style: none;
 	scroll-behavior: smooth;
 	text-decoration: none;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family:Aguafina Script-Regular;
 	outline: none;
 }
 body{
