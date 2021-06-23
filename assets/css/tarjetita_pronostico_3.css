@@ -145,8 +145,8 @@
     font-size: 12px;
     font-weight: bold;
     color:white;
-    bottom: -10px;
-    padding: 4px 0;
+    bottom: -12px;
+    padding: 5px 0;
 }
 .tarjetita_pronostico_3 .btn_card{
     display: grid;
@@ -159,7 +159,7 @@
     color:white;
 }
 .tarjetita_pronostico_3 .btn_card button{
-    padding:5px 10px;
+    padding:5px 20px;
     font-weight: bold;
 }
 @media(min-width: 400px){
