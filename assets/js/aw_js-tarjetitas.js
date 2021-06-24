@@ -219,7 +219,7 @@ window.addEventListener('load',()=>{
         existe.append(div)
         
     }
-    const get_data = async ({rank,model,term,post_rest_slug,container_tarjetitas,loader,init,current_user=false})=>{
+    const get_data = async ({rank,model,term,post_rest_slug,container_tarjetitas,init})=>{
         let div_container      
         
         if(container_tarjetitas){
@@ -284,12 +284,12 @@ window.addEventListener('load',()=>{
             loader = params_object.delimiter[i]            
         }
         
-        return {termid, term, scroll, delimiter, loader}
+        return {termid, term, scroll, delimiter}
     }   
     const initial_set=async(params_object)=>{
         
         for(let i=0; i < params_object.terms.length;i++){
-            const {term,loader,delimiter} = create(params_object,i)
+            const {term,delimiter} = create(params_object,i)
             if(term != undefined || term != false){  
                 //const exist = params_object.init.find(term => term.term_id == term.term_id)
                 
@@ -301,7 +301,6 @@ window.addEventListener('load',()=>{
                     get_data({...params_object,
                         term,
                         container_tarjetitas:params_object.container_tarjetitas[i],
-                        delimiter:loader,
                         init:params_object.init[i].limit
                     })
                 
@@ -326,7 +325,6 @@ window.addEventListener('load',()=>{
                         get_data({...params_object,
                             term,
                             container_tarjetitas:params_object.container_tarjetitas[i],
-                            delimiter:loader,
                             init:exist.limit
                         })
                     
@@ -345,7 +343,7 @@ window.addEventListener('load',()=>{
             //scroll hacia abajo
             for(let i=0;i < params_object.terms.length; i++){
                 
-                const {term,loader,scroll,delimiter} = create(params_object,i)
+                const {term,scroll,delimiter} = create(params_object,i)
                 
                 if(term != undefined || term != false){
                     block[i] = false
@@ -365,7 +363,6 @@ window.addEventListener('load',()=>{
                                     get_data({...params_object,
                                         term:term,
                                         container_tarjetitas:params_object.container_tarjetitas[i],
-                                        delimiter:loader,
                                         init:params_object.init[i].limit
                                     })
                                     block = false
