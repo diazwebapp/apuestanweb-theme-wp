@@ -2,9 +2,8 @@
 
 <main>
 	<section>
-       
         <!-- Taxonomy Navegacion -->
-		<?php echo do_shortcode('[sportsmenu taxonomy="deportes" ]'); ?>
+		<?php echo do_shortcode('[sportsmenu taxonomy="deportes" term="'.$term.'"]'); ?>
             <?php ?>
 
             <?php  if($term !=='' && $term){

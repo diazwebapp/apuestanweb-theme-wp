@@ -62,7 +62,7 @@ window.addEventListener('load',()=>{
         }
     }
 
-    const create_tarjetita = ({post,model,current_user='',user,deporte,casa_apuesta=''})=>{
+    const create_tarjetita = ({post,model,user,casa_apuesta=''})=>{
         let div = document.createElement('a')
         if(model=='tarjetita_pronostico_3'){
             div = document.createElement('div')
@@ -166,7 +166,8 @@ window.addEventListener('load',()=>{
             `
         }
         if(model == 'tarjetita_pronostico_3'){
-            
+            let gana = 10 / post.cuota_eleccion + 10
+            gana.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})
             div.innerHTML = `
             <div class="enfrentamiento">
                 
@@ -199,11 +200,11 @@ window.addEventListener('load',()=>{
                     </div>
                     <div>
                         <small>Gana</small>
-                        <b id="bono${post.id}" >$${casa_apuesta.bono_casa_apuesta?casa_apuesta.bono_casa_apuesta:0}</b>
+                        <b id="bono${post.id}" >${gana.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2})}</b>
                     </div>
                     <div class="logo_casa_apuesta" >
                         <img loading="lazy" src="${casa_apuesta.url_logo_casa_apuesta}" alt="${casa_apuesta.title}" ?>
-                        <a href="${casa_apuesta.link}" >Juega ya!</a>
+                        <a href="/${casa_apuesta.slug}" >Juega ya!</a>
                     </div>
                 </div>
                 <div class="btn_card" >
@@ -247,7 +248,7 @@ window.addEventListener('load',()=>{
                 div_container.innerHTML = ''
             }
 
-            posts.length > 0 ? posts.map(async (post,index)=>{
+            posts.length > 0 ? posts.map(async (post)=>{
                 const user = users.find(user => parseInt(user.id) === parseInt(post.author))
                 const casa_apuesta = casas_apuestas.find(casa => casa.slug == post.refear_link)
                 
@@ -256,12 +257,12 @@ window.addEventListener('load',()=>{
                 if(get_date({format:'fecha',date:post.fecha_partido[0]}) == local_date){
                    
                     if(parseInt(post.puntuacion_p) >= parseInt(rank) && parseInt(user.id) == parseInt(post.author)){
-                        const div = create_tarjetita({post,model,current_user,user,casa_apuesta})
+                        const div = create_tarjetita({post,model,user,casa_apuesta})
                         insert_tajetita_to_container(container_tarjetitas,div)
                         return
                     } 
                     if(!rank || parseInt(rank) == 0 && parseInt(user.id) == parseInt(post.author)){
-                        const div = create_tarjetita({post,model,current_user,user,casa_apuesta})
+                        const div = create_tarjetita({post,model,user,casa_apuesta})
                         insert_tajetita_to_container(container_tarjetitas,div)
                         return
                     } 

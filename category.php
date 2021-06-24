@@ -9,7 +9,7 @@ get_header();
 		<!-- Taxonomy Navegacion -->
 		<?php echo do_shortcode('[sportsmenu taxonomy="category" ]'); ?>
 		<!-- Listado de posts -->
-        <article class="container_posts">
+        <article class="container_posts_1">
 		<?php
 
 			while(have_posts()): the_post(); 
