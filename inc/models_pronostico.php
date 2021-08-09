@@ -15,7 +15,7 @@ function pronostico_1($data){
                         <p>'.$data['nombre_equipo_1'].'</p>  
                     </div>
                     <div>
-                        <p>'.$fecha_partido->format('d-m-Y').'</p>
+                        <p>'.$fecha_partido->format('d-M-Y').'</p>
                         <br />
                         <p>'.$data['hora_partido'].'</p>
                     </div>

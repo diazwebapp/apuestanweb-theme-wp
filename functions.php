@@ -1,4 +1,5 @@
 <?php
+define( 'PATH_IMP_SCRIPT', get_template_directory_uri(__FILE__) );
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 require_once('inc/cpt_tax.php' );
 require_once('inc/metabox_casas_apuestas.php' );
@@ -7,6 +8,8 @@ require_once('inc/shortcodes.php');
 //widgets
 require_once('inc/widgets.php');
 require_once('admin_theme/admin_theme.php');
+//rest api
+require_once('rest_api/rest_api_init.php');
 
 function apuestanweb_load_css_files() {
 	

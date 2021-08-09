@@ -8,6 +8,7 @@ get_header();
 		<article>
 		<!-- Slide -->
 		<?php
+		
 		 if(have_posts()){ echo do_shortcode('[aw_slide post_type="pronostico" ]');} ?>
 
 		<!-- Navegacion de deportes -->

@@ -252,7 +252,7 @@ footer.aw_footer *{
 
 .aw_footer .widget_2 div li,.aw_footer .widget_1 .widgettitle{
 	width:max-content;
-	border-bottom: 2px solid var(--primary-color);
+	border-bottom: 3px solid var(--primary-color);
 	text-transform: uppercase;
 }
 
@@ -303,7 +303,6 @@ footer.aw_footer *{
 }
 .container_pagination > span, .container_pagination > a{
 	padding: 5px 20px;
-	background: var(--bg-page);
 	border:1px solid var(--secondary-color);
 	box-shadow: 0px 0px 15px var(--bg-average);
 	margin:0 5px;

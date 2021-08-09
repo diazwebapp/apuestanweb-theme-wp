@@ -169,7 +169,8 @@ function shortcode_pronosticos($attr){
 		'class_delimiter' => 'container_pagination',
 		'current_user' => $current_user,
 		'rank' => $rank,
-		'model' => 'tarjetita_pronostico_'.$model
+		'model' => 'tarjetita_pronostico_'.$model,
+		'rest_api_path' => esc_url_raw( rest_url() )
 	) );
 
 		
@@ -381,13 +382,13 @@ function shortcode_slide($attr){
 						</h2>
 						<div class="slide_average_pronostico" >
 							<p>
-								'. $average_equipo_1[0] .'%
+								'. $average_equipo_1[0] .'
 							</p>
 							<p>
-								'. $cuota_empate_pronostico[0] .' %
+								'. $cuota_empate_pronostico[0] .' 
 							</p>
 							<p>
-								'. $average_equipo_2[0] .'%
+								'. $average_equipo_2[0] .'
 							</p>
 						</div>
 					</div>';
@@ -682,3 +683,104 @@ function aw_block(){
 	return $html;
 }
 add_shortcode('aw_block','aw_block');
+//Shortcode promos
+function shortcode_promos($attr){ 
+	global $wpdb;
+    extract( shortcode_atts( array( 
+		'post_type'=>'pronostico'
+	 ), $attr ) );
+	 $query_promos = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts where post_type='promos' AND post_status='publish' ORDER BY ID DESC");
+	 $query_pronosticos = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}posts where post_type='{$post_type}' AND post_status='publish' LIMIT 5");
+
+	$html;
+	if(count($query_promos) > 0):
+		foreach($query_promos as $promo):
+			$background_color=get_post_meta($promo->ID,'background_color',true);
+			$title_color=get_post_meta($promo->ID,'title_color',true);
+			$list_item_border_color=get_post_meta($promo->ID,'list_item_border_color',true);
+			$bono=get_post_meta($promo->ID,'bono',true);
+			$refear_link=get_post_meta($promo->ID,'refear_link',true);
+			$html .= "
+			<style>
+				#prev_shortcode{
+					grid-column: 1 / span 6;
+					box-shadow:0px 0px 1px black;
+					border-radius:3px;
+					padding:10px;
+					background-color:{$background_color}
+					margin:10px auto;
+				}
+				#prev_shortcode > .title_promo{
+					width:100%;
+					padding: 10px 0;
+					text-align:center;
+					background-color:{$border_list_color}
+				}
+				#prev_shortcode > .title_promo > b{
+					font-size:22px;
+					text-transform:uppercase;
+					color:{$title_color};
+				}
+				#prev_shortcode > .list_pronosticos > .list_item_pronostico{
+					display:grid;
+					grid-template-columns:1fr 50px 50px;
+					grid-template-rows:25px 25px;
+					align-items:center;
+					border-bottom:2px solid {$list_item_border_color};
+				}
+				#prev_shortcode > .list_pronosticos > .list_item_pronostico .enfrentamiento{
+					grid-column: 1 / 2;
+					grid-row:1 / 2
+				}
+				#prev_shortcode > .list_pronosticos > .list_item_pronostico .eleccion{
+					grid-column: 1 / 2;
+					grid-row:2 / 3
+				}
+				#prev_shortcode > .list_pronosticos > .list_item_pronostico .cuota{
+					grid-column: 2 / 3;
+					grid-row:1 / 3
+				}
+				#prev_shortcode > .list_pronosticos > .list_item_pronostico .ganancia{
+					grid-column: 3 / 4;
+					grid-row:1 / 3
+				}
+				#prev_shortcode > .list_pronosticos > .list_item_pronostico .cuota,
+				#prev_shortcode > .list_pronosticos > .list_item_pronostico .eleccion{
+					place-items:center;
+					place-content:center;
+				}
+			</style>
+
+			<div id='prev_shortcode'>
+				<div class='title_promo'>
+					<b>{$promo->post_title}</b>
+				</div>
+				<div class='list_pronosticos'>
+			";
+		endforeach;
+
+		foreach($query_pronosticos as $pronostico):
+			$nombre_equipo_1 = get_post_meta($pronostico->ID,'nombre_equipo_1',true);
+			$nombre_equipo_2 = get_post_meta($pronostico->ID,'nombre_equipo_2',true);
+			$eleccion = get_post_meta($pronostico->ID,'eleccion',true);
+			$cuota_eleccion = get_post_meta($pronostico->ID,'cuota_eleccion',true);
+			$recompensa = intval($bono / $cuota_eleccion + $bono) ;
+			$html .= "
+					<div class='list_item_pronostico'>
+						<p class='enfrentamiento' >{$nombre_equipo_1} vs {$nombre_equipo_1}</p>
+						<p class='eleccion' >{$eleccion}</p>
+						<div class='cuota'>{$cuota_eleccion}</div>
+						<div class='ganancia'>{$recompensa}</div>
+					</div>
+			";
+		endforeach;
+
+		$html .= "
+				</div>
+			</div>
+			";
+		
+		return $html;
+	endif;
+}
+add_shortcode('aw_promos_card','shortcode_promos');

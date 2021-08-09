@@ -33,7 +33,7 @@
                     $average_equipo_2 = get_post_meta(get_the_ID(),"average_equipo_2")[0] ;
 
                     $acceso_pronostico = get_post_meta(get_the_ID(),"acceso_pronostico")[0];
-                    $fecha_partido = get_post_meta(get_the_ID(),"fecha_partido")[0];
+                    $fecha_partido = new DateTime(get_post_meta(get_the_ID(),"fecha_partido")[0]);
                 ?>
                             <a href="<?php the_permalink() ?>" class="item_w_pronostico" >
                                 <div class="item_w_img" >
@@ -65,7 +65,7 @@
 
                                 <div>
                                     <b><?php echo $acceso_pronostico; ?></b>
-                                    <p><?php echo $fecha_partido ?></p>
+                                    <p><?php echo $fecha_partido->format('d-M-Y h:i') ?></p>
                                 </div>
                             </a>
                         <?php endwhile; ?>

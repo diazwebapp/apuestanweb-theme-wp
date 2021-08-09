@@ -230,13 +230,13 @@ window.addEventListener('load',()=>{
                 div_container.innerHTML = '<div class="loading" >loading...</div>'
             }
             
-            const req_posts = await fetch(`/wp-json/wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}&_embed=true`)
+            const req_posts = await fetch(`${taxonomy_data.rest_api_path}wp/v2/${post_rest_slug}?per_page=${parseInt(init) > parseInt(term.count)?term.count:init}&${term.taxonomy}=${term.term_id}&_embed=true`)
             const posts = await req_posts.json()
             
-            const requser = await fetch(`/wp-json/wp/v2/users`)
+            const requser = await fetch(`${taxonomy_data.rest_api_path}wp/v2/users`)
             const users = await requser.json()
 
-            const casa_apuestas_req = await fetch(`/wp-json/wp/v2/casaapuesta`)
+            const casa_apuestas_req = await fetch(`${taxonomy_data.rest_api_path}wp/v2/casaapuesta`)
             const casas_apuestas = await casa_apuestas_req.json()
             
             posts.sort(function(a,b){

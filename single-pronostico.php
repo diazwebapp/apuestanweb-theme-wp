@@ -25,9 +25,8 @@ add_action('the_content','content_action');
         <?php if(have_posts()):
                 echo do_shortcode('[pronostico paginate="'.false.'" id="'.$post->ID.'" ]'); ?>
                 <article>
-                    <?php 
-                        __(the_content(),'apuestanweb-lang');
-                    ?>
+                    <?php the_content() ?>
+                    <?php echo do_shortcode("[aw_promos_card]") ?>
                 </article>
                 <div class="card_author <?php if($post->post_type == 'pronosticos'): echo 'card_author_pronostico'; else: echo 'card_author_post'; endif; ?>">
                
@@ -53,8 +52,6 @@ add_action('the_content','content_action');
                 </div>
         <?php  
         
-            /* set_query_var('data_card_author',array('post'=>$post,'pronosticos'=>$author_posts));
-            get_template_part('components/card_author'); */
         endif; ?>
     </section>
 

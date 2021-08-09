@@ -99,14 +99,14 @@ function func_casa_apuesta($post){
     </div>
 <?php } 
 //cargando el js
-function aw_admin(){
+function aw_admin_casa_apuesta(){
     wp_enqueue_media();
-    wp_register_script( 'theme_scripts', get_template_directory_uri(). '/assets/js/scripts_admin.js');
-		wp_enqueue_script( 'theme_scripts' );
+    wp_register_script( 'casa_apuesta_admin', get_template_directory_uri(). '/assets/js/mb_casa_apuesta.js');
+		wp_enqueue_script( 'casa_apuesta_admin' );
 }
 
 // Enqueu script
-add_action("admin_enqueue_scripts", "aw_admin");
+add_action("admin_enqueue_scripts", "aw_admin_casa_apuesta");
 
 //guardando datos de los meta
 /**

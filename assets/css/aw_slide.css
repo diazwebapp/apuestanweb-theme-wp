@@ -83,6 +83,7 @@
 	grid-template-columns: repeat(3,1fr);
 	width:250px;
 	gap:20px;
+    padding: 2px 0px 0px 0px;
 }
 .miSlider > .slide_item_pronostico_bottom .slide_average_pronostico p{
 	background-color: whitesmoke;
