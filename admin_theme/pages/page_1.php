@@ -122,10 +122,10 @@ function aw_cpanel_page_1(){ ?>
         </thead>
         <tbody>
             <tr>
-                <td class="id">id</td>
-                <td class="titulo">titulo</td>
-                <td class="status">status</td>
-                <td class="promos_table_actions">acciones</td>
+                <td class="id">..</td>
+                <td class="titulo">..</td>
+                <td class="status">..</td>
+                <td class="promos_table_actions">..</td>
             </tr>
         </tbody>
     </table>
