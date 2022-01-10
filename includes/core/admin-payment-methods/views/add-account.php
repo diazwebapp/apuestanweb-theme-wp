@@ -64,6 +64,9 @@ function add_account($method){
     $form_new_account = str_replace("{data}",$datalist_items,$form_new_account);
     return $form_new_account;
 }
-wp_enqueue_script('admin-js',get_template_directory_uri() . '/assets/js/admin.js');
-$data = json_encode($form_metadata);
-wp_add_inline_script( 'admin-js', 'const php_form_metadata='.$data, 'before' );
+add_action( 'admin_enqueue_scripts', function(){
+    global $form_metadata;
+    wp_enqueue_script('admin-js',get_template_directory_uri() . '/assets/js/admin.js');
+    $data = json_encode($form_metadata);
+    wp_add_inline_script( 'admin-js', 'const php_form_metadata='.$data, 'before' );
+} );

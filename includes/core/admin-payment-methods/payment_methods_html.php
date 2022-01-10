@@ -27,7 +27,7 @@ function panel_payment_methods(){
                 <div class="wrap" >
                     <div id="dashboard-widgets-wrap">
                         '.$list_payment_methods.'
-                        <div id="dashboard-widgets" class="metabox-holder">
+                        <div id="dashboard-widgets" class="aw-metabox-holder">
                             <div class="aw-container">
                                 <h2>add account</h2>
                                 '.$form_new_account.'
@@ -44,11 +44,13 @@ function panel_payment_methods(){
             </div>';
   return $html;
 }
+add_action( 'admin_enqueue_scripts', function(){
 
-wp_enqueue_script('admin-js',get_template_directory_uri() . '/assets/js/admin.js');
-wp_enqueue_style('admin-css');
-
-$data = json_encode([
-    "rest_url"=>rest_url()]);
-wp_add_inline_script( 'admin-js', 'const php='.$data, 'before' );
+    wp_enqueue_script('admin-js',get_template_directory_uri() . '/assets/js/admin.js');
+    wp_enqueue_style('admin-css');
+    
+    $data = json_encode([
+        "rest_url"=>rest_url()]);
+    wp_add_inline_script( 'admin-js', 'const php='.$data, 'before' );
+} );
 ?>

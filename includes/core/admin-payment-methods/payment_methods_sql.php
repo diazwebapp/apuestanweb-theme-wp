@@ -12,7 +12,7 @@ $payment_methods = [
 function create_payment_table(){
 
     $sql = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS." (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `id` INT(11) NOT NULL AUTO_INCREMENT,
         `bank_name` TEXT,
         `country_code` TEXT,
         `payment_method` TEXT,
@@ -21,13 +21,15 @@ function create_payment_table(){
         `status` BOOLEAN,
         UNIQUE KEY id (id)
     );";
+
     $sql_meta = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS_META." (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `id` INT(11) NOT NULL AUTO_INCREMENT,
         `key` TEXT,
         `value` TEXT,
         `payment_account` INT(11),
         UNIQUE KEY id (id)
     );";
+    
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
     dbDelta($sql_meta);

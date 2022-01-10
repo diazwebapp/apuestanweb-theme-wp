@@ -1,7 +1,8 @@
 <?php
+global $str;
 
 function aw_register_form($attr=array()){
-    $str = '';
+    
 
 	if (!IHCACTIVATEDMODE){
 		$str .= ihc_public_notify_trial_version();
@@ -54,7 +55,9 @@ function aw_register_form($attr=array()){
         $obj_form->setVariable($args);//setting the object variables
         
         $str .= '<style>
-		#aw-container-register-form{display:none;} 
+		#aw-container-register-form{
+            display:none;
+        }
 		
 		.form-group input, .input-group-text{font-size:2.5rem !important;}
 		.card-title{font-size:3.3rem !important;}
@@ -114,13 +117,27 @@ function aw_register_form($attr=array()){
             width:100%;
         }
         </style>';
-
+        
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
-        wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
+        $str .= '<template id="temp"><div>
+            <label></label>
+            <input type="radio" onChange="aw_change_register_payment_method(this)"/>
+        </div></template>';
         return $str;
     }else{
         
       return "<h2>Yá estás registrado</h2>";
     }
+
+    
+    
 }
-add_shortcode( 'aw-register-form', 'aw_register_form' );
+add_action( 'wp_enqueue_scripts', function(){
+        wp_enqueue_script( 'forms-fix', get_template_directory_uri() . '/assets/js/forms_fix.js', [], null, true);
+
+        $data = json_encode(ihc_get_active_payments_services());
+        wp_add_inline_script( 'forms-fix', 'const php_payment_services='.$data, 'before' );
+    });
+
+
+add_shortcode( 'aw-register-form', 'aw_register_form');

@@ -59,10 +59,10 @@ window.addEventListener("load",()=>{
     if(container_register_form){
       const register_form = container_register_form.querySelector("form")
       const div_register_social = register_form.querySelectorAll("div.ihc-sm-item")
-      const div_register_payments = register_form.querySelectorAll(".ihc-js-select-payment")
+      //const div_register_payments = register_form.querySelectorAll(".ihc-js-select-payment")
       const register_form_divs = register_form.querySelectorAll("div")
       const register_countries = register_form.querySelectorAll("select#ihc_country_field option");
-      const product_subtotal_table = register_form.querySelector("table.ihc-subtotal-table")
+      //const product_subtotal_table = register_form.querySelector("table.ihc-subtotal-table")
       const checkout_session = register_form.querySelector("div.ihc-js-checkout-session")
       const checkout_button = register_form.querySelector("div#ihc-checout-page-purchase-button-section")
       const product_name = register_form.querySelector("div.ihc-product-name")
@@ -73,7 +73,8 @@ window.addEventListener("load",()=>{
       const discount_input = register_form.querySelector("input#ihc-discount") 
       const discount_title = register_form.querySelector("div.ihc-checkout-page-additional-info") 
       const discount_button = register_form.querySelector("button#ihc-apply-discount") 
-           
+      
+      
       const tos = register_form.querySelector("div.ihc-tos-wrap")
 
       //Create select
@@ -194,17 +195,57 @@ window.addEventListener("load",()=>{
           }
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
-          div_register_payments.forEach(payment=>{
-            div_payment_field.appendChild(payment) //payments
-          })
+          
           //add term conditions
           const tos_field = register_form.querySelector("section#terms")
           tos_field.appendChild(tos)
+          
           div_payment_field.appendChild(checkout_session) //add checkout session
           div_payment_field.appendChild(checkout_button) //add checkout button
-
+          
+          
+          //div_register_payments
+          let payment_methods_array = Object.entries(php_payment_services)
+          let template = document.querySelector("#temp")
+          if(template){
+            let label = template.content.querySelector('label')
+            let input = template.content.querySelector('input')
+            for(let i = 0; i < payment_methods_array.length; i++){
+              label.textContent = payment_methods_array[i][1]
+              label.setAttribute('for',payment_methods_array[i][0])
+              input.value = payment_methods_array[i][0]
+              input.name = "aw-payment-radio"
+              input.id = payment_methods_array[i][0]
+              
+              if(payment_methods_array[i][0] == 'paypal_express_checkout'){
+                input.checked = true
+                aw_default_register_payment_method(register_form,payment_methods_array[i][0])
+              }
+              let clone = document.importNode(template.content,true)
+              div_payment_field.appendChild(clone)
+            }
+          }
         }
-      
-    }
+        
+      }
       
 })
+function aw_default_register_payment_method(register_form,method){
+
+  const ihc_payment_gateway_input = register_form.querySelector("input[name=ihc_payment_gateway]")
+  const ihc_payment_selected_input = register_form.querySelector("input[name=payment_selected]")
+  if(ihc_payment_gateway_input && ihc_payment_selected_input){
+    ihc_payment_gateway_input.value = method
+    ihc_payment_selected_input.value = method
+  }
+}
+
+function aw_change_register_payment_method(e){
+
+  const ihc_payment_gateway_input = document.querySelector("input[name=ihc_payment_gateway]")
+  const ihc_payment_selected_input = document.querySelector("input[name=payment_selected]")
+  if(ihc_payment_gateway_input && ihc_payment_selected_input){
+    ihc_payment_gateway_input.value = e.value
+    ihc_payment_selected_input.value = e.value
+  }
+}

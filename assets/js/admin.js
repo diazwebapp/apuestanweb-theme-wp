@@ -14,7 +14,7 @@ window.addEventListener("load",()=>{
         }
     }
     if(form_add_account){ // verificamos que exista el formulario en el dom
-        form_add_account.addEventListener('submit',e=>{
+        form_add_account.addEventListener('submit',async e=>{
             e.preventDefault() //Evitamos que recarge la pagina
             const inputs = e.target.querySelectorAll('input') //extraemos los datos por defecto del formulario
             let account_data = {}
@@ -31,8 +31,8 @@ window.addEventListener("load",()=>{
                 }
             })
             const {payment_method} = e.target // extraemos el metodo de pago para recargar la tabla de cuentas
-            insert_account({account_data,metadata:account_metadata})
-            get_payment_accounts({method:payment_method.value})
+            await insert_account({account_data,metadata:account_metadata})
+            await get_payment_accounts({method:payment_method.value})
         })
     }
 })
@@ -52,22 +52,31 @@ const replace_form_metas = ({form,method})=>{
 }
 
 const insert_account = async({account_data,metadata})=>{
-    const req = await fetch(php.rest_url+'aw-admin/payment-accounts',{
-        method:"POST",
-        body:JSON.stringify({account_data,metadata}),
-        headers:{
-            "Content-type": "application/json"
-        }
-    })
-    await req.text()
+    try {
+        
+        const req = await fetch(php.rest_url+'aw-admin/payment-accounts',{
+            method:"POST",
+            body:JSON.stringify({account_data,metadata}),
+            headers:{
+                "Content-type": "application/json"
+            }
+        })
+        await req.json()
+    } catch (error) {
+        return console.log(error)
+    }
 }
 const get_payment_accounts = async({method})=>{
     const c_table = document.querySelector("#aw-container-table")
-    const req = await fetch(php.rest_url+'aw-admin/payment-accounts?method='+method)
-    const {data} = await req.json()
-    if(c_table){
-        c_table.innerHTML = ""
-        c_table.innerHTML = data
+    try {
+        const req = await fetch(php.rest_url+'aw-admin/payment-accounts?method='+method)
+        const {data} = await req.json()
+        if(c_table){
+            c_table.innerHTML = ""
+            c_table.innerHTML = data
+        }
+    } catch (error) {
+        return console.log(error)
     }
     
 }

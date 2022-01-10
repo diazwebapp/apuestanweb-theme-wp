@@ -24,6 +24,7 @@ function print_accounts($method){
                         ';
     
     $tr = "";
+    global $th;
     foreach($accounts as $key => $account):
         $tr .= '<tr>
         <td>'.($key+1).'</td>
@@ -32,7 +33,7 @@ function print_accounts($method){
         <td>'.$account->payment_method.'</td>
         <td>'.$account->dni.'</td>
         <td>'.$account->titular.'</td>
-        <td>'.$account->status.'</td>';
+        <td><div class="'.($account->status == 1? "enable":"disable").'" ></div></td>';
         $th = "";
         foreach ($account->metas as $key => $meta) :
             $tr .= '<td>'.$meta->value.'</td>';

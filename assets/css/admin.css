@@ -15,7 +15,7 @@ button.method-item{
 button.active{
     background:limegreen;
 }
-.metabox-holder{
+.aw-metabox-holder{
     display: flex;
     align-items: flex-start;
 }
@@ -54,16 +54,34 @@ button.active{
 }
 .table-accounts thead th, .table-accounts tbody td{
     text-align: center;
-    padding:0px 20px;
+    padding:10px 20px;
     word-wrap: unset;
     min-width:100px;
 }
-.table-accounts thead th:first-child, .table-accounts tbody td:first-child{
+.table-accounts thead th:first-child,
+.table-accounts tbody td:first-child,
+.table-accounts thead th:nth-child(3),
+.table-accounts tbody td:nth-child(3),
+.table-accounts thead th:nth-child(7),
+.table-accounts tbody td:nth-child(7){
     min-width: 20px;
     max-width: 20px;
+    overflow: hidden;
+    padding-left:0 ;
+    padding-right: 0;
 }
-.table-accounts thead th{
-    padding:3px 20px;
+.enable,.disable{
+    min-width: 10px;
+    min-height: 10px;
+    width:10px;
+    height:10px;
+    border-radius: 50%;
+}
+.enable{
+    background-color: lightgreen;
+}
+.disable{
+    background: red;
 }
 .table-accounts tbody tr{
     background:rgb(231, 231, 231);
