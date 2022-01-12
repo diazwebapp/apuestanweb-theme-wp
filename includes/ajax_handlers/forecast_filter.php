@@ -48,7 +48,7 @@ function filter_forecast() {
     
     wp_reset_query( );
     $query = new WP_Query( $args );
-    var_dump(count($query->get_posts()));
+    
 	// print_r($query);
 	if ( $query->have_posts() ) :
     

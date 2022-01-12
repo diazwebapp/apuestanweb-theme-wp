@@ -9,3 +9,9 @@ function get_countries_for_carbonmeta(){
     endforeach;
     return $select;
 }
+
+function get_countries_json(){
+    global $country_json_file;
+    $parse_countries = json_decode($country_json_file);
+    return $parse_countries;
+}

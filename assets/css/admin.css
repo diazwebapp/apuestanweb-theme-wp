@@ -1,0 +1,73 @@
+.menu-payment-methods{
+    width:100%;
+    display:flex;
+    justify-content: flex-start;
+}
+button.method-item{
+    background:transparent;
+    border: none;
+    border-bottom:1px solid blueviolet;
+    border-radius: 3px;
+    margin: 0 5px;
+    line-height: 2;
+    width:150px;
+}
+button.active{
+    background:limegreen;
+}
+.metabox-holder{
+    display: flex;
+    align-items: flex-start;
+}
+.aw-container{
+    width: 300px;
+    padding:10px;
+}
+.aw-container:nth-child(2){
+    width: calc(100% - 300px);
+}
+.aw-add-account-form,.form-group{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.form-group,.form-group input{
+    margin:2px auto;
+    width: 100%;
+}
+.aw-container-table{
+    overflow-x: auto;
+    margin: auto;
+}
+.table-accounts{
+    width:100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(37, 37, 37);
+    overflow: hidden;
+}
+.table-accounts thead{
+    background:rgb(4, 2, 73);
+}
+.table-accounts thead th{
+    text-transform: uppercase;
+    color:white;
+}
+.table-accounts thead th, .table-accounts tbody td{
+    text-align: center;
+    padding:0px 20px;
+    word-wrap: unset;
+    min-width:100px;
+}
+.table-accounts thead th:first-child, .table-accounts tbody td:first-child{
+    min-width: 20px;
+    max-width: 20px;
+}
+.table-accounts thead th{
+    padding:3px 20px;
+}
+.table-accounts tbody tr{
+    background:rgb(231, 231, 231);
+} 
+.table-accounts tbody tr:nth-child(2n){
+    background:rgb(238, 238, 238);
+} 
