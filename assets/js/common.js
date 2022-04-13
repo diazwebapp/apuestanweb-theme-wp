@@ -109,9 +109,9 @@ function updateCountdown(html_element) {
     // Thanks Pablo Monteserín (https://pablomonteserin.com/cuenta-regresiva/)
 
     // Render
-    if(SPAN_DAYS)   SPAN_DAYS.textContent = REMAINING_DAYS+': ';
-    if(SPAN_HOURS)  SPAN_HOURS.textContent = REMAINING_HOURS+': ';
-    if( SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES+': ';
+    if(SPAN_DAYS)   SPAN_DAYS.textContent = REMAINING_DAYS;
+    if(SPAN_HOURS)  SPAN_HOURS.textContent = REMAINING_HOURS;
+    if(SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES;
     if(SPAN_SECONDS)    SPAN_SECONDS.textContent = REMAINING_SECONDS;
 }
 

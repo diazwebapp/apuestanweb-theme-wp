@@ -71,9 +71,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div class='date_item_pronostico_top'>
                         <input type='hidden' id='date' value='$time' />
-                        <span id='date_horas' ></span>
-                        <span id='date_minutos' ></span>
-                        <span id='date_segundos' ></span>
+                        <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
