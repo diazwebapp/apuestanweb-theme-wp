@@ -1,65 +1,5 @@
 $(document).ready(function () {
 
-    $('.subscribe-block button').on('click', function (event) {
-        event.preventDefault();
-        var email = $('.subscribe-block input').val();
-        var data = {
-            'action': 'subscribe_mailchimp',
-            'postmail': email,
-        };
-        if (email) {
-            $.ajax({
-                url: custom_ajax_url,
-                data: data,
-                type: 'POST',
-                success: function (data) {
-                    if (data === '1') {
-                        $('.subscribe-block input').val('');
-                        alert('Вы успешно подписались! Спасибо!');
-                    } else {
-                        alert('Ошибка, попробуйте еще раз.');
-                    }
-                }
-            });
-        } else {
-            alert('Введите валидную почту.');
-        }
-    });
-
-    $('.set_rating input').change(function () {
-        var $radio = $(this);
-        $('.set_rating .selected').removeClass('selected');
-        $radio.closest('label').addClass('selected');
-
-    });
-
-    /*category.php*/
-    var selector_category = $('button.loadmore.cat');
-    $(selector_category).click(function (e) {
-        e.preventDefault();
-        $(this).text('Загружаю...');
-        var data = {
-            'action': 'loadmore_categories',
-            'query': posts,
-            'page': current_page
-        };
-        $.ajax({
-            url: ajaxurl,
-            data: data,
-            type: 'POST',
-            success: function (data) {
-                if (data) {
-                    $(selector_category).text("Загрузить еще");
-                    current_page++;
-                    $('.flex2').append(data);
-                    if (current_page == max_pages) $(selector_category).remove();
-                } else {
-                    $(selector_category).remove();
-                }
-            }
-        });
-    });
-
 
     /*archive-forecast.php*/
     var selector_category_f = $('button.loadmore.forecasts');
@@ -93,38 +33,7 @@ $(document).ready(function () {
         });
     });
 
-    /*load posts*/
-    var selector_loadmore_posts = $('button.loadmore.posts');
-    $(selector_loadmore_posts).click(function (e) {
-        e.preventDefault();
-        $(this).text('loading...');
-        var data = {
-            'action': 'loadmore_posts',
-            'query': posts,
-            'page': current_page,
-            'model': model,
-            "link" : link,
-            "text_link" : text_link,
-            "vip_link" : vip_link,
-            "text_vip_link" : text_vip_link,
-            'vip':vip,
-            'unlock':unlock,
-            'cpt':cpt
-        };
-        
-        $.ajax({
-            url: ajaxurl,
-            data: data,
-            type: 'POST',
-            success: function (data) {
-                if (data) {
-                    $(selector_loadmore_posts).text("ver más");
-                    current_page++;
-                    $('#posts_list').append(data);
-                    } 
-            }
-        });
-    });
+    
     let filter_forecast = $('select#element_select_forecasts');
     $(filter_forecast).change(e => filter(e));
     function filter(e){
@@ -167,4 +76,52 @@ function test(param){
         result.innerHTML = parseFloat(cuote.value) * parseFloat(amount)
     }
 }
-/*archive-forecast.php*/
+
+// DOM for render
+const date_items = document.querySelectorAll('.date_item_pronostico_top');
+
+//===
+// FUNCTIONS
+//===
+
+function updateCountdown(html_element) {
+    const INPUT_DATE = html_element.querySelector('#date');
+    const SPAN_DAYS = html_element.querySelector('#date_dias');
+    const SPAN_HOURS = html_element.querySelector('#date_horas');
+    const SPAN_MINUTES = html_element.querySelector('#date_minutos');
+    const SPAN_SECONDS = html_element.querySelector('#date_segundos');
+
+    const DATE_TARGET = new Date(INPUT_DATE.value);
+
+    // Milliseconds for the calculations
+    const MILLISECONDS_OF_A_SECOND = 1000;
+    const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
+    const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
+    const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24
+
+    // Calcs
+    const NOW = new Date()
+    const DURATION = DATE_TARGET - NOW;
+    const REMAINING_DAYS = Math.floor(DURATION / MILLISECONDS_OF_A_DAY);
+    const REMAINING_HOURS = Math.floor((DURATION % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR);
+    const REMAINING_MINUTES = Math.floor((DURATION % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE);
+    const REMAINING_SECONDS = Math.floor((DURATION % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND);
+    // Thanks Pablo Monteserín (https://pablomonteserin.com/cuenta-regresiva/)
+
+    // Render
+    if(SPAN_DAYS)   SPAN_DAYS.textContent = REMAINING_DAYS+': ';
+    if(SPAN_HOURS)  SPAN_HOURS.textContent = REMAINING_HOURS+': ';
+    if( SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES+': ';
+    if(SPAN_SECONDS)    SPAN_SECONDS.textContent = REMAINING_SECONDS;
+}
+
+//===
+// INIT
+//===
+
+date_items.forEach(item=>{
+    setInterval(()=>{
+        updateCountdown(item)
+    },1000)
+})
+
