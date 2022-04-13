@@ -1,43 +1,68 @@
-<?php if(is_active_sidebar('bottom_widget')) :
-    dynamic_sidebar('bottom_widget');
-endif; ?>
-	
-		<footer class="aw_footer" >
-		
-		<?php if(is_active_sidebar('footer_widget')) :
-			echo '<div class="widget_1" >';
-			dynamic_sidebar('footer_widget');
-			echo '</div>';
-		endif; ?>
-
-		<?php if(is_active_sidebar('footer_widget_2')) :
-			echo '<div class="widget_2" >';
-			dynamic_sidebar('footer_widget_2');
-			echo '</div>';
-		endif; ?>
-
-		<?php if(is_active_sidebar('footer_widget_3')) :
-			echo '<div class="widget_3" >';
-			dynamic_sidebar('footer_widget_3');
-			echo '</div>';
-		endif; ?>
-		
-
-		<?php if(is_active_sidebar('footer_widget_4')) :
-			echo '<div class="widget_4" style="border-top:1px solid var(--primary-color);" >';
-			dynamic_sidebar('footer_widget_4');
-			echo '</div>';
-		endif; ?>
-			
-		</footer><!-- #site-footer -->
-		<?php wp_footer(); ?>
-	</body>
-	<?php
-		if(!is_user_logged_in()){ ?>
-			<div id="aw_modal_effect" ></div>
-			<div style="dispay:none;"  id="aw_modal_login" >
-				<?php echo do_shortcode('[aw_form_login]'); ?>
-			</div>
-		<?php }
-	?>
+<?php
+$logo = get_template_directory_uri() . '/assets/img/logo.svg';
+?>
+<footer class="footer">
+<div class="container">
+            <div class="row align-items-center form-row">
+                <div class="col-lg-2 col-6 mt_20">
+                <?php if ( carbon_get_theme_option( 'logo' ) )
+					$logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
+				?>
+                    <!--logo start-->
+                    <a href="index.html">
+                        <img src="<?php echo $logo; ?>" class="img-fluid" alt="Apuestanweb">
+                    </a>
+                    <!--logo end-->
+                </div>
+                <div class="col-lg-8 footer_menu_col mt_20">
+                    <!--menu start-->
+                    <ul class="menu" >
+                        <?php
+                        
+                            if ( get_key() ):
+                                $ret = strip_tags( wp_nav_menu( array(
+                                    'theme_location' => 'top',
+                                    'echo'           => false
+                                ) ), '<li><a>' );
+                                if ( $ret ):
+                                    echo $ret;
+                                else:
+                                    echo "";
+                                endif;
+                            else:
+                                echo notice();
+                            endif;
+                         // echo apply_filters( 'the_content', carbon_get_theme_option( 'pod_logo' ) ); 
+                         ?>
+                    </ul>
+                    <!--menu end-->
+                </div>
+                <div class="col-lg-2 col-6 mt_20 text-right">
+                    <div class="social_icons">
+                        <a href="#">
+                            <i class="fab fa-facebook"></i>
+                        </a>                        
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>                        
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <p class="copyright"><?php echo carbon_get_theme_option( 'copy' ); ?></p>
+                </div>
+            </div>
+        </div>
+    
+            
+</footer>
+<?php wp_footer();
+$footer_code = carbon_get_theme_option( 'footer_code' );
+if ( $footer_code ) {
+    echo $footer_code;
+}
+?>
+</body>
 </html>

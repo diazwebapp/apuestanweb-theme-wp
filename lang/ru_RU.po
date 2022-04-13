@@ -1,0 +1,988 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Project-Id-Version: jBetting\n"
+"POT-Creation-Date: 2021-04-29 10:54+0300\n"
+"PO-Revision-Date: 2021-04-29 11:33+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: ru_RU\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:4
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+#: 404.php:5
+msgid "The page you went to was not found"
+msgstr "Страница на которую Вы перешли не найдена"
+
+#: archive-bk.php:26 taxonomy-bk_type.php:39
+msgid "№"
+msgstr "№"
+
+#: archive-bk.php:27 includes/core/meta-fields.php:66
+#: includes/core/post-type.php:6 includes/core/post-type.php:7
+#: includes/core/post-type.php:8 includes/core/post-type.php:9
+#: includes/core/post-type.php:35 includes/core/post-type.php:36
+#: includes/shortcodes/shortcode-table.php:33 taxonomy-bk_type.php:40
+msgid "Bookmaker"
+msgstr "Букмекер"
+
+#: archive-bk.php:28 includes/shortcodes/shortcode-table.php:34
+#: taxonomy-bk_type.php:41
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: archive-bk.php:29 includes/core/meta-fields.php:71
+#: includes/core/meta-fields.php:141 includes/core/post-type.php:179
+#: includes/core/post-type.php:180 includes/core/post-type.php:181
+#: includes/core/post-type.php:182 includes/core/post-type.php:208
+#: includes/core/post-type.php:209 includes/shortcodes/shortcode-table.php:35
+#: taxonomy-bk_type.php:42
+msgid "Bonus"
+msgstr "Бонус"
+
+#: archive-bk.php:30 includes/shortcodes/shortcode-table.php:36
+#: taxonomy-bk_type.php:43
+msgid "Reviews"
+msgstr "Отзывы"
+
+#: archive-bk.php:68 archive-forecast.php:46 index.php:40
+#: taxonomy-bk_type.php:72
+msgid "Load more"
+msgstr "Загрузить еще"
+
+#: category.php:39 taxonomy-league.php:41
+msgid "&laquo;"
+msgstr "&laquo;"
+
+#: category.php:40 taxonomy-league.php:42
+msgid "&raquo;"
+msgstr "&raquo;"
+
+#: comments.php:28
+msgid "Discussion"
+msgstr "Обсуждение"
+
+#: comments.php:43
+msgid "Published by"
+msgstr "Дата"
+
+#: comments.php:53
+msgid "Comments not found"
+msgstr "Комментарии не найдены"
+
+#: comments.php:55
+msgid "Leave comment"
+msgstr "Оставить комментарий"
+
+#: comments.php:57
+msgid "Comment*"
+msgstr "Комментарий*"
+
+#: comments.php:59 single-bk.php:122
+msgid "Name"
+msgstr "Имя"
+
+#: comments.php:60 single-bk.php:123
+msgid "Email"
+msgstr "Почта"
+
+#: comments.php:61
+msgid "Site"
+msgstr "Сайт"
+
+#: comments.php:62
+msgid "Send"
+msgstr "Отправить"
+
+#: comments.php:66
+msgid ""
+"Comment added successfully! After moderation, it will definitely be "
+"published."
+msgstr "Комментарий успешно добавлен! После модерации он будет опубликован."
+
+#: functions.php:41
+msgid "Top menu"
+msgstr "Верхнее меню"
+
+#: functions.php:133
+msgid "Your theme is not activated, functionality is limited."
+msgstr "Шаблон не активирован, функционал ограничен."
+
+#: functions.php:177
+msgid "Online bookmaker"
+msgstr "Онлайн букмекер"
+
+#: header.php:20 header.php:46
+msgid "Create a menu so that it appears here"
+msgstr "Создайте новое меню чтобы оно появилось тут"
+
+#: includes/core/activation.php:7
+msgid "Activation"
+msgstr "Активация"
+
+#: includes/core/activation.php:13
+msgid "Theme Activation"
+msgstr "Активация шаблона"
+
+#: includes/core/activation.php:15
+msgid ""
+"Your theme is already activated. You can unlink a license to link to another "
+"domain."
+msgstr ""
+"Ваш шаблон уже активирован, Вы можете отвязать лицензию чтобы перенести её "
+"на другой домен."
+
+#: includes/core/activation.php:17
+msgid ""
+"Your theme is not yet activated. After activation, the full functionality of "
+"the template will be available."
+msgstr ""
+"Шаблон не активирован. После активации Вам станет доступен полный функционал."
+
+#: includes/core/activation.php:68
+msgid ""
+"Enter the activation key for the template you received when purchasing this "
+"template."
+msgstr ""
+"Введите ключ активации шаблона который Вы получили на почту при покупке."
+
+#: includes/core/activation.php:69
+msgid "After activacion refresh page =)."
+msgstr "Обновите страницу после активации =)"
+
+#: includes/core/breadcrumbs.php:7 includes/core/breadcrumbs.php:10
+msgid "Home"
+msgstr "Главная"
+
+#: includes/core/breadcrumbs.php:14
+msgid "Search result for"
+msgstr "Результаты поиска для"
+
+#: includes/core/breadcrumbs.php:15
+msgid "Tags"
+msgstr "Теги"
+
+#: includes/core/breadcrumbs.php:16
+msgid "Author articles"
+msgstr "Автор"
+
+#: includes/core/breadcrumbs.php:17
+msgid "Error 404"
+msgstr "Ошибка 404"
+
+#: includes/core/breadcrumbs.php:18
+msgid "Page"
+msgstr "Страница"
+
+#: includes/core/breadcrumbs.php:19
+msgid "Comment page"
+msgstr "Комментарий"
+
+#: includes/core/meta-fields.php:13
+msgid "General settings"
+msgstr "Общие настройки"
+
+#: includes/core/meta-fields.php:14
+msgid "Site logo(134*30)"
+msgstr "Логотип(134*30)"
+
+#: includes/core/meta-fields.php:15
+msgid "Site color style"
+msgstr "Цветовая схема шаблона"
+
+#: includes/core/meta-fields.php:20
+msgid "MailChimp integration"
+msgstr "MailChimp интеграция"
+
+#: includes/core/meta-fields.php:21
+msgid "List ID"
+msgstr "List ID"
+
+#: includes/core/meta-fields.php:22
+msgid "Api key"
+msgstr "Api key"
+
+#: includes/core/meta-fields.php:23
+msgid "Server name API"
+msgstr "Server name API"
+
+#: includes/core/meta-fields.php:24
+msgid ""
+"Background of the block with the main information inside the BC overview "
+"(for unspecified ones)"
+msgstr "Фон блока с основной информацией внутри обзора БК (для неуказанных)"
+
+#: includes/core/meta-fields.php:26
+msgid "Footer"
+msgstr "Футер"
+
+#: includes/core/meta-fields.php:27
+msgid "Text on logo"
+msgstr "Текст под логотипом"
+
+#: includes/core/meta-fields.php:28
+msgid "Right text"
+msgstr "Текст справа"
+
+#: includes/core/meta-fields.php:29
+msgid "Copyrighting"
+msgstr "Копирайты"
+
+#: includes/core/meta-fields.php:30
+msgid "Footer code"
+msgstr "Код в футере"
+
+#: includes/core/meta-fields.php:33 includes/core/meta-fields.php:103
+#: includes/core/post-type.php:63 includes/core/post-type.php:64
+#: includes/core/post-type.php:65 includes/core/post-type.php:66
+#: includes/core/post-type.php:92 includes/core/post-type.php:93
+#: includes/widgets/widget-top-forecasts.php:41
+#: includes/widgets/widget-top-forecasts.php:73 includes/widgets_area.php:15
+msgid "Forecast"
+msgstr "Прогноз"
+
+#: includes/core/meta-fields.php:34
+msgid "H1 on forecast archive page"
+msgstr "H1 на странице архива прогнозов"
+
+#: includes/core/meta-fields.php:35
+msgid "Forecast count per load"
+msgstr "Количество прогнозов на одну прогрузку"
+
+#: includes/core/meta-fields.php:36
+msgid "Text before forecast list"
+msgstr "Текст до списка прогнозов"
+
+#: includes/core/meta-fields.php:37
+msgid "Text after forecast list"
+msgstr "Текст после списка прогнозов"
+
+#: includes/core/meta-fields.php:39 includes/widgets/widget-top-bk.php:27
+msgid "Bookmakers"
+msgstr "Букмкер"
+
+#: includes/core/meta-fields.php:40
+msgid "H1 on archive bookmaker page"
+msgstr "H1 на странице архива букмекеров"
+
+#: includes/core/meta-fields.php:41
+msgid "Bookmakers count per load"
+msgstr "Количество букмекеров за одну загрузку"
+
+#: includes/core/meta-fields.php:42
+msgid "Text before bookmakers list"
+msgstr "Текст перед список букмекеров"
+
+#: includes/core/meta-fields.php:43
+msgid "Text after bookmakers list"
+msgstr "Текст после списка букмекеров"
+
+#: includes/core/meta-fields.php:48
+msgid "Review fields"
+msgstr "Поля отзыва"
+
+#: includes/core/meta-fields.php:50
+msgid "User rating"
+msgstr "Рейтинг"
+
+#: includes/core/meta-fields.php:51
+msgid "Positive"
+msgstr "Плюсы"
+
+#: includes/core/meta-fields.php:52
+msgid "Negative"
+msgstr "Минусы"
+
+#: includes/core/meta-fields.php:56
+msgid "Category fields"
+msgstr "Поля категорий"
+
+#: includes/core/meta-fields.php:59 includes/core/meta-fields.php:164
+#: includes/core/meta-fields.php:173
+msgid "Custom H1"
+msgstr "Произвольный H1"
+
+#: includes/core/meta-fields.php:60
+msgid "Text before post list"
+msgstr "Текст до списка прогнозов"
+
+#: includes/core/meta-fields.php:61
+msgid "Text after post list"
+msgstr "Текст после списка прогнозов"
+
+#: includes/core/meta-fields.php:68 includes/core/meta-fields.php:97
+#: includes/core/meta-fields.php:105 includes/core/meta-fields.php:143
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Container.php:727
+msgid "General"
+msgstr "Общие"
+
+#: includes/core/meta-fields.php:69
+msgid "Refferal link"
+msgstr "Реферальная ссылка"
+
+#: includes/core/meta-fields.php:70
+msgid "Rating(1,2,3,4,5)"
+msgstr "Рейтинг(1,2,3,4,5)"
+
+#: includes/core/meta-fields.php:72 includes/core/meta-fields.php:151
+msgid "Bonus ammount"
+msgstr "Сумма бонуса"
+
+#: includes/core/meta-fields.php:73
+msgid "Bonus ammount for table"
+msgstr "Сумма бонуса для таблицы"
+
+#: includes/core/meta-fields.php:74
+msgid "Transparent logo(.png)"
+msgstr "Прозрачный логотип(.png)"
+
+#: includes/core/meta-fields.php:75
+msgid "Background of the block with basic information inside the BC overview"
+msgstr "Transparent logo(.png)"
+
+#: includes/core/meta-fields.php:76 single-bk.php:39
+msgid "General information"
+msgstr "Фон блока с основной информацией внутри обзора БК"
+
+#: includes/core/meta-fields.php:79
+msgid "Parameter"
+msgstr "Параметр"
+
+#: includes/core/meta-fields.php:80
+msgid "Value"
+msgstr "Значение"
+
+#: includes/core/meta-fields.php:85 includes/core/meta-fields.php:89
+msgid "Pros"
+msgstr "Преимущества"
+
+#: includes/core/meta-fields.php:86
+msgid "Pros(<=4)"
+msgstr "Преимущества(<=4)"
+
+#: includes/core/meta-fields.php:95 includes/core/post-type.php:120
+#: includes/core/post-type.php:121 includes/core/post-type.php:122
+#: includes/core/post-type.php:123 includes/core/post-type.php:149
+#: includes/core/post-type.php:150
+msgid "Team"
+msgstr "Команды"
+
+#: includes/core/meta-fields.php:98
+msgid "Team logo(square .png)"
+msgstr "Логотип команды(квадратное .png)"
+
+#: includes/core/meta-fields.php:106
+msgid "Forecast date"
+msgstr "Дата прогноза"
+
+#: includes/core/meta-fields.php:111
+msgid "Tile prediction coefficient"
+msgstr "Коэффициент прогноза"
+
+#: includes/core/meta-fields.php:112
+msgid "Link 'Make a Bet'"
+msgstr "Ссылка 'Сделать ставку'"
+
+#: includes/core/meta-fields.php:113 loop/forecast.php:78
+#: single-forecast.php:66
+msgid "1"
+msgstr "П1"
+
+#: includes/core/meta-fields.php:114 single-forecast.php:67
+msgid "X"
+msgstr "Х"
+
+#: includes/core/meta-fields.php:115 loop/forecast.php:86
+#: single-forecast.php:68
+msgid "2"
+msgstr "П2"
+
+#: includes/core/meta-fields.php:116
+msgid "Forecast background (For inline, widgets and forecast shortcode)"
+msgstr "Фон прогноза (для встроенных, виджетов и шорткода прогноза)"
+
+#: includes/core/meta-fields.php:117
+msgid "Bets"
+msgstr "Ставки"
+
+#: includes/core/meta-fields.php:120
+msgid "Bet text"
+msgstr "Текст ставки"
+
+#: includes/core/meta-fields.php:123
+msgid "Who is playing against whom?"
+msgstr "Кто с кем играет?"
+
+#: includes/core/meta-fields.php:124
+msgid "Select team 1"
+msgstr "Выберите команду 1"
+
+#: includes/core/meta-fields.php:131
+msgid "Select team 2"
+msgstr "Выберите команду 2"
+
+#: includes/core/meta-fields.php:144
+msgid "Select the bookmaker to which the bonus belongs"
+msgstr "Выберите букмекера к которому относится бонус"
+
+#: includes/core/meta-fields.php:152
+msgid "Link 'Claim bonus'"
+msgstr "Ссылка 'Получить бонус'"
+
+#: includes/core/meta-fields.php:153
+msgid "Short description for widget"
+msgstr "Короткое описание для виджета"
+
+#: includes/core/meta-fields.php:154
+msgid "Medium description for shortcode"
+msgstr "Среднее описание для шорткода"
+
+#: includes/core/meta-fields.php:159 includes/core/taxonomy.php:6
+#: includes/core/taxonomy.php:7 includes/core/taxonomy.php:8
+msgid "League"
+msgstr "Лига"
+
+#: includes/core/meta-fields.php:162
+msgid "League picture, square .png"
+msgstr "Картинка лиги, квадратное .png"
+
+#: includes/core/meta-fields.php:163
+msgid "Sidebar background(if using 283*73)"
+msgstr "Фон боковой панели (при использовании 283 * 73)"
+
+#: includes/core/meta-fields.php:165 includes/core/meta-fields.php:174
+msgid "Text before list"
+msgstr "Текст до списка"
+
+#: includes/core/meta-fields.php:166 includes/core/meta-fields.php:175
+msgid "Text after list"
+msgstr "Текст после списка"
+
+#: includes/core/meta-fields.php:170
+msgid "Bookmaker type"
+msgstr "Тип букмекера"
+
+#: includes/core/post-type.php:10 includes/core/post-type.php:67
+#: includes/core/post-type.php:124 includes/core/post-type.php:183
+msgid "Archive"
+msgstr "Archive"
+
+#: includes/core/post-type.php:11 includes/core/post-type.php:68
+#: includes/core/post-type.php:125 includes/core/post-type.php:184
+msgid "Attributes"
+msgstr "Attributes"
+
+#: includes/core/post-type.php:12 includes/core/post-type.php:69
+#: includes/core/post-type.php:126 includes/core/post-type.php:185
+#: includes/core/taxonomy.php:11 includes/core/taxonomy.php:51
+msgid "Parent Item:"
+msgstr "Parent Item:"
+
+#: includes/core/post-type.php:13 includes/core/post-type.php:14
+msgid "All bookmakers"
+msgstr "All bookmakers"
+
+#: includes/core/post-type.php:15 includes/core/post-type.php:16
+#: includes/core/post-type.php:72 includes/core/post-type.php:73
+#: includes/core/post-type.php:129 includes/core/post-type.php:130
+#: includes/core/post-type.php:188 includes/core/post-type.php:189
+msgid "Add"
+msgstr "Add"
+
+#: includes/core/post-type.php:17 includes/core/post-type.php:74
+#: includes/core/post-type.php:131
+msgid "Edit"
+msgstr "Изменить"
+
+#: includes/core/post-type.php:18
+msgid "Update bookmaker"
+msgstr "Update"
+
+#: includes/core/post-type.php:19 includes/core/post-type.php:20
+#: includes/core/post-type.php:76 includes/core/post-type.php:77
+#: includes/core/post-type.php:133 includes/core/post-type.php:134
+#: includes/core/post-type.php:192 includes/core/post-type.php:193
+msgid "View"
+msgstr "Посмотреть"
+
+#: includes/core/post-type.php:21 includes/core/post-type.php:78
+#: includes/core/post-type.php:135 includes/core/post-type.php:194
+msgid "Find"
+msgstr "Поиск"
+
+#: includes/core/post-type.php:22 includes/core/post-type.php:23
+#: includes/core/post-type.php:79 includes/core/post-type.php:80
+#: includes/core/post-type.php:136 includes/core/post-type.php:137
+#: includes/core/post-type.php:195 includes/core/post-type.php:196
+#: includes/shortcodes/shortcode-forecasts.php:71
+#: includes/shortcodes/shortcode-table.php:109
+msgid "Nothing found"
+msgstr "Ничего не найдено..."
+
+#: includes/core/post-type.php:24 includes/core/post-type.php:81
+#: includes/core/post-type.php:138 includes/core/post-type.php:197
+msgid "Thumbnail"
+msgstr "Миниатюра"
+
+#: includes/core/post-type.php:25 includes/core/post-type.php:82
+#: includes/core/post-type.php:139 includes/core/post-type.php:198
+msgid "Set Thumbnail"
+msgstr "Установить миниатюру"
+
+#: includes/core/post-type.php:26 includes/core/post-type.php:83
+#: includes/core/post-type.php:140 includes/core/post-type.php:199
+msgid "Delete Thumbnail"
+msgstr "Удалить миниатюру"
+
+#: includes/core/post-type.php:27 includes/core/post-type.php:84
+#: includes/core/post-type.php:141 includes/core/post-type.php:200
+msgid "Use as Thumbnail"
+msgstr "Использовать как миниатюру"
+
+#: includes/core/post-type.php:28 includes/core/post-type.php:85
+#: includes/core/post-type.php:142 includes/core/post-type.php:201
+msgid "Paste"
+msgstr "Вставить"
+
+#: includes/core/post-type.php:29 includes/core/post-type.php:86
+#: includes/core/post-type.php:143 includes/core/post-type.php:202
+msgid "Uploaded to this item"
+msgstr "Добавлено в этот элемент"
+
+#: includes/core/post-type.php:30 includes/core/post-type.php:87
+#: includes/core/post-type.php:144 includes/core/post-type.php:203
+#: includes/core/taxonomy.php:24 includes/core/taxonomy.php:64
+msgid "Items list"
+msgstr "Навигация списка"
+
+#: includes/core/post-type.php:31 includes/core/post-type.php:88
+#: includes/core/post-type.php:145 includes/core/post-type.php:204
+#: includes/core/taxonomy.php:25 includes/core/taxonomy.php:65
+msgid "Items list navigation"
+msgstr "Навигация списка"
+
+#: includes/core/post-type.php:32 includes/core/post-type.php:89
+#: includes/core/post-type.php:146 includes/core/post-type.php:205
+msgid "Filter items list"
+msgstr "Фильтр"
+
+#: includes/core/post-type.php:70 includes/core/post-type.php:71
+#: includes/core/post-type.php:127 includes/core/post-type.php:128
+#: includes/core/post-type.php:186 includes/core/post-type.php:187
+#: includes/core/taxonomy.php:9
+msgid "All"
+msgstr "Все"
+
+#: includes/core/post-type.php:75
+msgid "Update casino"
+msgstr "Обновить"
+
+#: includes/core/post-type.php:132 includes/core/post-type.php:190
+#: includes/core/post-type.php:191
+msgid "Update"
+msgstr "Обновить"
+
+#: includes/core/taxonomy.php:10 includes/core/taxonomy.php:50
+msgid "Parent Item"
+msgstr "Родитель:"
+
+#: includes/core/taxonomy.php:12 includes/core/taxonomy.php:52
+msgid "New Item Name"
+msgstr "Имя нового элемента"
+
+#: includes/core/taxonomy.php:13 includes/core/taxonomy.php:53
+msgid "Add New Item"
+msgstr "Добавить новый"
+
+#: includes/core/taxonomy.php:14 includes/core/taxonomy.php:54
+msgid "Edit Item"
+msgstr "Изменить"
+
+#: includes/core/taxonomy.php:15 includes/core/taxonomy.php:55
+msgid "Update Item"
+msgstr "Обновить"
+
+#: includes/core/taxonomy.php:16 includes/core/taxonomy.php:56
+msgid "View Item"
+msgstr "Посмотреть"
+
+#: includes/core/taxonomy.php:17 includes/core/taxonomy.php:57
+msgid "Separate items with commas"
+msgstr "Разделитель"
+
+#: includes/core/taxonomy.php:18 includes/core/taxonomy.php:58
+msgid "Add or remove items"
+msgstr "Добавить или удалить элементы"
+
+#: includes/core/taxonomy.php:19 includes/core/taxonomy.php:59
+msgid "Choose from the most used"
+msgstr "Choose from the most used"
+
+#: includes/core/taxonomy.php:20 includes/core/taxonomy.php:60
+msgid "Popular Items"
+msgstr "Popular Items"
+
+#: includes/core/taxonomy.php:21 includes/core/taxonomy.php:61
+msgid "Search Items"
+msgstr "Search Items"
+
+#: includes/core/taxonomy.php:22 includes/core/taxonomy.php:62
+msgid "Not Found"
+msgstr "Ничего не найдено"
+
+#: includes/core/taxonomy.php:23 includes/core/taxonomy.php:63
+msgid "No items"
+msgstr "No items"
+
+#: includes/core/taxonomy.php:46 includes/core/taxonomy.php:47
+#: includes/core/taxonomy.php:48
+msgid "Boomkaker type"
+msgstr "Тип букмекера"
+
+#: includes/core/taxonomy.php:49
+msgid "All type"
+msgstr "Все типы"
+
+#: includes/libs/carbon-fields/core/Libraries/Plugin_Update_Warning/Plugin_Update_Warning.php:69
+#, php-format
+msgid ""
+"The new version of Carbon Fields is a major update. Please make sure you "
+"have a full backup before updating and test any add-ons or custom "
+"functionality.\n"
+"Developers should review the upgrade guide on %1$s."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:287
+msgid "The parent must be 'array', 'string' or 'null'."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:316
+msgid "The position of inner blocks must be 'above' or 'below'."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:334
+msgid "The template must be an 'array' or 'null'."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:352
+msgid "The template lock must be 'all', 'insert', 'false' or 'null'."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:370
+msgid "The allowed blocks must be an 'array' or 'null'."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:437
+msgid "'render_callback' is required for the blocks."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Block_Container.php:441
+msgid "'render_callback' must be a callable."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Container/Theme_Options_Container.php:207
+msgid "Settings saved."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Field/Footer_Scripts_Field.php:20
+msgid ""
+"If you need to add scripts to your footer (like Google Analytics tracking "
+"code), you should enter them in this box."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Field/Gravity_Form_Field.php:47
+msgid "No form"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Field/Header_Scripts_Field.php:20
+msgid "If you need to add scripts to your header, you should enter them here."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Field/Sidebar_Field.php:74
+msgctxt "sidebar"
+msgid "Add New"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:69
+msgid "Please enter a name for the sidebar."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:72
+msgid "Unknown action attempted."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:102
+msgid "Sidebar with the same ID is already registered."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:112
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:142
+msgid ""
+"Failed to update option storing your custom sidebars. Please contact support."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:137
+msgid "Sidebar not found."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:181
+msgid "Add Sidebar"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:182
+msgid "Please enter the name of the new sidebar:"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/Libraries/Sidebar_Manager/Sidebar_Manager.php:183
+msgid "Are you sure you wish to remove this sidebar?"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:398
+msgid "No option names provided"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:409
+msgid "Theme Options updated."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:431
+msgid "Sorry, you are not allowed to read blocks of this post."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:441
+msgid "Sorry, you are not allowed to read blocks as this user."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:462
+msgid "The requested type: ID or URL."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:467
+msgid "The ID / URL of the attachment"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:484
+msgid "The name of the block."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:489
+msgid "The content of the block."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:493
+msgid "ID of the post context."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/core/REST_API/Router.php:524
+msgid "Invalid block."
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/templates/Container/common/options-page.php:43
+msgid "Actions"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/templates/Container/common/options-page.php:52
+msgid "Save Changes"
+msgstr ""
+
+#: includes/libs/carbon-fields/vendor/htmlburger/carbon-fields/templates/Container/widget.php:4
+msgid "No options are available for this widget."
+msgstr ""
+
+#: includes/shortcodes/shortcode-news.php:53
+msgid "No news"
+msgstr "Нет новостей"
+
+#: includes/shortcodes/shortcode-single-bonus.php:22
+#: includes/widgets/widget-bonuses.php:56
+msgid "GET BONUS"
+msgstr "ПОЛУЧИТЬ БОНУС"
+
+#: includes/shortcodes/shortcode-single-bonus.php:26
+msgid "Enter ID"
+msgstr "Введите ID"
+
+#: includes/shortcodes/shortcode-table.php:102 loop/bookmaker-table.php:25
+msgid "REVIEW"
+msgstr "ОТЗЫВЫ"
+
+#: includes/shortcodes/shortcode-table.php:103
+#: includes/widgets/widget-top-forecasts.php:76 loop/bookmaker-table.php:26
+#: single-forecast.php:74 single-forecast.php:91
+msgid "BET"
+msgstr "НА САЙТ"
+
+#: includes/widgets/widget-bonuses.php:8
+msgid "BONUSES"
+msgstr "БОНУСЫ"
+
+#: includes/widgets/widget-bonuses.php:24
+msgid "Bonuses"
+msgstr "Бонусы"
+
+#: includes/widgets/widget-bonuses.php:93
+#: includes/widgets/widget-leagues.php:79
+#: includes/widgets/widget-subscribe.php:48
+#: includes/widgets/widget-top-bk.php:95
+#: includes/widgets/widget-top-forecasts.php:119
+msgid "Widget title"
+msgstr "Заголовок виджета"
+
+#: includes/widgets/widget-bonuses.php:99
+#: includes/widgets/widget-top-bk.php:101
+msgid "Count"
+msgstr "Количество"
+
+#: includes/widgets/widget-bonuses.php:105
+msgid "List of bonus IDs for withdrawal (comma separated)"
+msgstr "Список для вывода(через запятую)"
+
+#: includes/widgets/widget-leagues.php:8
+msgid "Legue"
+msgstr "Лиги"
+
+#: includes/widgets/widget-leagues.php:85
+msgid "League list (Ids list)"
+msgstr "Список id"
+
+#: includes/widgets/widget-subscribe.php:8
+msgid "SUBSCRIBE MAILCHIMP"
+msgstr "ПОДПИСКА MAILCHIMP"
+
+#: includes/widgets/widget-subscribe.php:18
+msgid "Your email"
+msgstr "Почта"
+
+#: includes/widgets/widget-subscribe.php:19
+msgid "Subscribe"
+msgstr "Подписаться"
+
+#: includes/widgets/widget-top-bk.php:10
+msgid "TOP BOOKMAKERS"
+msgstr "ТОП БУКМЕКЕРЫ"
+
+#: includes/widgets/widget-top-bk.php:58
+msgid "All list"
+msgstr "Полный список"
+
+#: includes/widgets/widget-top-bk.php:107
+msgid "Link to full list"
+msgstr "Полный список"
+
+#: includes/widgets/widget-top-forecasts.php:10
+#: includes/widgets/widget-top-forecasts.php:23
+msgid "TOP FORECAST"
+msgstr "ТОП ПРОГНОЗЫ"
+
+#: includes/widgets/widget-top-forecasts.php:43
+#: includes/widgets/widget-top-forecasts.php:75
+msgid "FORECAST"
+msgstr "ПРОГНОЗ"
+
+#: includes/widgets/widget-top-forecasts.php:44
+msgid "PLACE A BET"
+msgstr "СДЕЛАТЬ СТАВКУ"
+
+#: includes/widgets/widget-top-forecasts.php:125
+msgid "Forecast IDs(if needed)"
+msgstr "Список id прогнозов (если нужно)"
+
+#: includes/widgets_area.php:4
+msgid "Homepage"
+msgstr "Главная"
+
+#: includes/widgets_area.php:10 includes/widgets_area.php:43
+msgid "Right on the main"
+msgstr "Справа на главной"
+
+#: includes/widgets_area.php:21
+msgid "Right pages of the forecast"
+msgstr "Справа на странице прогнозов "
+
+#: includes/widgets_area.php:26
+msgid "Bookmaker review"
+msgstr "Обзор букмекера"
+
+#: includes/widgets_area.php:32
+msgid "On the right in the bookmaker review"
+msgstr "Справа на странице обзора казино"
+
+#: includes/widgets_area.php:37
+msgid "Category and Inner"
+msgstr "Категория и внутряк"
+
+#: search.php:6
+msgid "Search results"
+msgstr "Результаты поиска"
+
+#: single-bk.php:34
+msgid "VISIT SITE"
+msgstr "НА САЙТ"
+
+#: single-bk.php:73
+msgid "Player reviews about bookmaker"
+msgstr "Отзывы игроков о букмекере"
+
+#: single-bk.php:86
+msgid "Date: "
+msgstr "Дата: "
+
+#: single-bk.php:103
+msgid "Rate bookmaker "
+msgstr "Оценить букмекера "
+
+#: single-bk.php:125
+msgid "Pros: "
+msgstr "Плюсы: "
+
+#: single-bk.php:126
+msgid "Cons: "
+msgstr "Минусы: "
+
+#: single-bk.php:130
+msgid "By clicking the button \"Post a review\", you consent to the processing"
+msgstr "Нажимая \"Отправить\" вы соглашаетесь на политику обработки"
+
+#: single-bk.php:131
+msgid "personal data"
+msgstr "персональных данных"
+
+#: single-bk.php:134
+msgid "Post a review"
+msgstr "Отправить"
+
+#. Theme Name of the plugin/theme
+msgid "jBetting"
+msgstr "jBetting"
+
+#. Theme URI of the plugin/theme
+msgid "https://jbetting.ru/"
+msgstr "https://jbetting.ru/"
+
+#. Description of the plugin/theme
+msgid "Betting theme"
+msgstr "Betting theme"
+
+#. Author of the plugin/theme
+msgid "TheJema"
+msgstr "TheJema"
+
+#. Author URI of the plugin/theme
+msgid "https://thejema.com/shop"
+msgstr "https://thejema.com/shop"

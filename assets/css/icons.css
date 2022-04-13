@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'apuestan';
+  src:  url('fonts/apuestan.eot?v99hpt');
+  src:  url('fonts/apuestan.eot?v99hpt#iefix') format('embedded-opentype'),
+    url('fonts/apuestan.ttf?v99hpt') format('truetype'),
+    url('fonts/apuestan.woff?v99hpt') format('woff'),
+    url('fonts/apuestan.svg?v99hpt#apuestan') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'apuestan' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ranking:before {
+  content: "\e900";
+}
+.icon-s2:before {
+  content: "\e901";
+  color: #fff;
+}
+.icon-s10:before {
+  content: "\e902";
+}
+.icon-s11:before {
+  content: "\e903";
+}
+.icon-s12:before {
+  content: "\e904";
+  color: #fff;
+}
+.icon-s31:before {
+  content: "\e905";
+  color: #e4e6e8;
+}
+.icon-s46:before {
+  content: "\e906";
+}
+.icon-s48:before {
+  content: "\e907";
+}
+.icon-cup:before {
+  content: "\e908";
+  color: #e4e6e8;
+}
+.icon-ei3:before {
+  content: "\e909";
+  color: #abaeb1;
+}
+.icon-ei4:before {
+  content: "\e90a";
+  color: #abaeb1;
+}
+.icon-football:before {
+  content: "\e90b";
+  color: #fff;
+}
+.icon-icon1:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-icon2:before {
+  content: "\e90d";
+  color: #fff;
+}
+.icon-icon3:before {
+  content: "\e90e";
+  color: #fff;
+}
+.icon-icon4:before {
+  content: "\e90f";
+  color: #fff;
+}
+.icon-icon5:before {
+  content: "\e910";
+  color: #fff;
+}
+.icon-icon6:before {
+  content: "\e911";
+  color: #fff;
+}
+.icon-icon7:before {
+  content: "\e912";
+  color: #fff;
+}
+.icon-icon9:before {
+  content: "\e913";
+  color: #ffd826;
+}
+.icon-NBA:before {
+  content: "\e914";
+  color: #fff;
+}
+.icon-twitter:before {
+  content: "\ea96";
+  color: #fff;
+}
+.icon-skype:before {
+  content: "\eac5";
+}
+.icon-paypal:before {
+  content: "\ead8";
+  color: #fff;
+}
+.icon-facebook2:before {
+  content: "\ea91";
+  color: #fff;
+}
+.icon-instagram:before {
+  content: "\ea92";
+  color: #fff;
+}
