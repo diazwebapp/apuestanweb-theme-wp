@@ -28,7 +28,7 @@ function crb_attach_theme_options()
                         )
                     ))->set_min(1)->set_max(1),
                 //Landing page de planes por defecto
-                Field::make('association', 'page_buy', __("Select buy page", "jbetting"))
+                Field::make('association', 'page_memberships', __("Select membership page", "jbetting"))
                     ->set_types(array(
                         array(
                             'type' => 'post',
