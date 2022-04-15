@@ -112,7 +112,7 @@ function shortcode_parley($atts)
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
                 <br/>
-                <button class='loadmore forecasts btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
+                <button class='loadmore forecastss btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
                 <br/>
             </div>";
         endif;
