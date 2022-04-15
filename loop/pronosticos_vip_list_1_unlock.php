@@ -105,7 +105,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
             <img src='$avatar' class='img-flud' alt=''>
         </div>
         <div class='vip_left_text'>
-            <a href='$link_profile' ><h5>$display_name</h5><a>
+            <a href='$link_profile' ><h5>$display_name</h5></a>
             <div class='pick_box'>
                 <img src='$flechita_indicadora' class='img-fluid' alt=''>
                 <p>$acerted - $failed Ult $rank picks</p>
@@ -115,7 +115,13 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     <img style='width:24px;height:24px;object-fit:contain;' src='$logo_league_src' class='pplay_icon d-sm-none' alt='' >
     <p class='game_time d-sm-none d-flex align-items-center justify-content-between'>
         <span>$league</span>
-        <span>$fecha $hora</span>
+        
+        <span class='date_item_pronostico_top'>
+                <span style='margin: 0 5px;'>$fecha</span>
+                <input type='hidden' id='date' value='$time' />
+                <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+        </span>
+
     </p>
     <div class='rating d-sm-none'>";
     echo draw_rating($rating_ceil); 
@@ -153,7 +159,11 @@ echo "    </div>
             </div>
             <div class='d-lg-block d-none'> 
                 <div class='league_box_wrapper align-items-center'>
-                    <p class='d-lg-block d-none mr_30'>$fecha $hora</p>
+                    <p class='d-lg-block d-none mr_30'>$fecha </p>
+                    <div class='date_item_pronostico_top'>
+                        <input type='hidden' id='date' value='$time' />
+                        <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                    </div>
                     <div class='league_box2'>
                         <img style='width:24px;height:24px;object-fit:contain;' src='$coronita' class='img-fluid img_30' alt=''>
                         <img style='width:24px;height:24px;object-fit:contain;' src='$logo_sport_src' class='img-fluid' alt=''>

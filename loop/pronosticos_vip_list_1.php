@@ -100,7 +100,13 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     </div>
                 </div>
                 <p class='d-lg-none d-block vip_mobile_p'><span>Análisis:</span> Lorem ipsum dolor sit amet, conset etur sadipscing elitr, sed diam no numy sit eirmod…</p>
-                <p class='d-lg-block d-none'>$fecha $hora</p>
+                <p class='d-lg-block d-none'>
+                    <span style='margin:0 5px;'>$fecha</span>
+                </p>
+                <div class='date_item_pronostico_top'>
+                    <input type='hidden' id='date' value='$time' />
+                    <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                </div>
             </div>
             <div class='d-lg-block d-none'> 
                 <div class='league_box_wrapper'>
