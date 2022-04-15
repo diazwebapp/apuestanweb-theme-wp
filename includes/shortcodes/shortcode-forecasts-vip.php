@@ -89,7 +89,7 @@ function shortcode_forecast_vip($atts)
     }
 
     set_query_var( 'params', [
-        "vip_link" => $vip_link,
+        "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $text_vip_link
     ] );
 

@@ -53,15 +53,16 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
                                 </div>
                                 <div class='event_top_middle'>
-                                    <p class='p2'>$hora <br> <span>$fecha</span></p>
+                                    <div class='date_item_pronostico_top'>
+                                        <input type='hidden' id='date' value='$time' />
+                                        <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                                    </div>
+                                    <p class='p2'><span>$fecha</span></p>
                                 </div>
                                 <div class='event_top_right'>
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                 </div>
                             </div>
-                            <p class='p3' >
-                                {$fecha}
-                            </p>
                         </div>
                     
                         <div class='event2_box3_middle'>
@@ -97,7 +98,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </div>
                                 <div class='event_top_middle'>
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
-                                    <p class='p2'>$hora <br> <span>$fecha</span></p>
+                                    <div class='date_item_pronostico_top'>
+                                        <input type='hidden' id='date' value='$time' />
+                                        <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                                    </div>
+                                    <p class='p2'><span>$fecha</span></p>
                                 </div>
                                 <div class='event_top_right'>
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >

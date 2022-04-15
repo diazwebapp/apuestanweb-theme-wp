@@ -38,8 +38,11 @@ if ($sport_term) {
 echo "<div class='prediction_box'>
             <div class='d-flex align-items-center justify-content-between'>
                 <p class='game_name {$sport['class']}'>{$sport['name']}</p>
+                <div class='date_item_pronostico_top'>
+                    <input type='hidden' id='date' value='$time' />
+                    <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                </div>
                 <p>
-                    <span class='time'>$hora</span>
                     <span class='date'>$fecha</span>
                 </p>
             </div> 
