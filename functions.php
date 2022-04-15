@@ -143,9 +143,9 @@ add_action('init', function(){
         define('PERMALINK_VIP',get_the_permalink($page_id_vip));
     endif;
     //buy page
-    $page_id_buy = isset(carbon_get_theme_option('page_buy')[0]) ? carbon_get_theme_option('page_buy')[0]['id']: "#";
+    $page_id_buy = isset(carbon_get_theme_option('page_memberships')[0]) ? carbon_get_theme_option('page_memberships')[0]['id']: "#";
     if($page_id_buy):
-        define('PERMALINK_BUY',get_the_permalink($page_id_buy));
+        define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
     endif;
 
     //profile page

@@ -11,7 +11,6 @@ function shortcode_banner($atts)
         'src_bg' => false,
         'link' => false,
         'text_link' => false,
-        'vip_link' => false,
         'text_vip_link' => false
     ), $atts));
     $ret = '';
@@ -64,8 +63,9 @@ function shortcode_banner($atts)
         "title" => $title,
         'link' => $link,
         'text_link' => $text_link,
-        'vip_link' => $vip_link,
-        'text_vip_link' => $text_vip_link
+        "vip_link" => PERMALINK_VIP,
+        'text_vip_link' => $text_vip_link,
+        'memberships_page' => PERMALINK_MEMBERSHIPS
     ]);
 
     if($model):

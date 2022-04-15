@@ -12,15 +12,7 @@ $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all')
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 $bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
 
-//Componente si es vip
-$vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
-                    <p>{$params['text_vip_link']}</p>
-                </a>";
-if(!$vip)
-    $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
-                        <img src='{$bookmaker['logo']}' alt='{$bookmaker['name']}'>
-                        <p>Haz una apuesta</p>
-                    </a>";
+
 //Liga y deporte
 $sport = '';
 $league = "";
@@ -121,7 +113,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             </div>
         </div>
         <div class='vip_right_btn'>
-            <a href='{$params['vip_link']}'>
+            <a href='{$params['memberships_page']}'>
                 <img style='width:28px;height:28px;object-fit:contain;' src='".get_template_directory_uri( ) . '/assets/img/lock.png' ."' class='img-fluid' alt=''>
                 {$params['text_vip_link']}
             </a>
