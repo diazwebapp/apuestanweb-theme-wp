@@ -74,7 +74,19 @@
 						<?php echo do_shortcode("[predictions]") ?>					
 							
 						<div class="single_event_content">
-						
+						<div class="vip_box v2">
+                            <div class="row align-items-center">
+                                <div class="col-md-9">
+                                    <img src="<?php echo get_template_directory_uri() . '/assets/img/event-logo.svg' ?>" class="logo_dark" alt="">
+                                    <h4>CONVIERTE EN MIEMBRO PREMIUM</h4>
+                                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam no numy sit eirmod…</p>
+                                    <a href="#">Quiero ser VIP</a>
+                                </div>
+                                <div class="col-md-3 d-none d-md-block">
+                                    <img src="img/value.png" class="w-100" alt="">
+                                </div>
+                            </div>
+                        </div>
 							<?php
                                 the_content();
                                 wp_reset_query();

@@ -154,10 +154,14 @@ add_action('init', function(){
         define('PERMALINK_PROFILE',get_the_permalink($page_id_profile));
     endif;
 });
-add_filter('nav_menu_css_class','special_nav_class',10,2);
-    function special_nav_class($classes,$item){
-        if(in_array('current-menu-item',$classes)){
-            $classes[] = 'active';
+
+
+// active code menu
+    function active_menu( $classes, $item ) {
+        $classes['class'] = "nav-link"; // Add class to every "<a>" tags
+        if ( in_array('current-page-ancestor', $item->classes) || in_array('current-menu-item', $item->classes) ) {
+            $classes['class'] = 'nav-link active'; // Add class to current menu item's "<a>" tag
         }
         return $classes;
     }
+    add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 );    
