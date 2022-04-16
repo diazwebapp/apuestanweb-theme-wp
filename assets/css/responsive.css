@@ -1005,6 +1005,15 @@
 	.single_team1{
 		padding-top: 0;
 	}
+	.single_team1 p {
+		font-size: 12px;
+		position: relative;
+		top: -11px;
+	}
+	.single_event_content p{
+		font-size: 15px;
+	}
+	
 	.single_event_banner_middle {
 	    padding-top: 3rem;
 	}

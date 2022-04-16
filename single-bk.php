@@ -106,7 +106,7 @@ endfor;
                                         </div>
                                     </div>
 
-                                    <div class="review__box">
+                                    <div class="review__box text-break">
                                        <?php 
                                         if(have_posts()):
                                             while (have_posts()) {
