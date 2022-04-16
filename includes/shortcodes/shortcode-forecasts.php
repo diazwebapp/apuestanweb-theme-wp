@@ -118,7 +118,7 @@ function shortcode_forecast($atts)
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
                 <br/>
-                <button class='loadmore forecast btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
+                <button class='loadmore forecasts btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
                 <br/>
             </div>";
         endif;
