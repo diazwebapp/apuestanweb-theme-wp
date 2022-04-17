@@ -1,6 +1,5 @@
 <?php
 $params = get_query_var('params');
-$time = carbon_get_post_meta(get_the_ID(), 'data');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink();
 $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
@@ -20,6 +19,15 @@ if ($sport_term) {
         }
     }
 }
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+$datetime = new DateTime($time);
+$date = $datetime;
+$geolocation = aw_get_geolocation();
+if($geolocation->success !== false):
+    date_default_timezone_set($geolocation->timezone);
+    $datetime = new DateTime($time);
+    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+endif;
 
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 $bk = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
@@ -29,15 +37,14 @@ $html_predictions = '';
 $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title'] : '';
 $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote'] : '';
 
-if(!empty($predictions))
+if(!empty($predictions)):
         $html_predictions = "<div class='event2_box_middle_heading'>
                                 <h4>{$prediction['title']}</h4>
                                 <p>{$prediction['cuote']}</p>
-                            </div>";
-    
+                                </div>";
+endif;
+                                
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
-    $fecha = date('d M', strtotime($time)) ;
-    $hora = date('g:i a', strtotime($time));
     $content = get_the_content(get_the_ID()) ;
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
     
@@ -54,10 +61,10 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </div>
                                 <div class='event_top_middle'>
                                     <div class='date_item_pronostico_top'>
-                                        <input type='hidden' id='date' value='$time' />
+                                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
                                         <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
                                     </div>
-                                    <p class='p2'><span>$fecha</span></p>
+                                    <p class='p2'><span>".$date->format('d M')."</span></p>
                                 </div>
                                 <div class='event_top_right'>
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
@@ -99,10 +106,10 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 <div class='event_top_middle'>
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                     <div class='date_item_pronostico_top'>
-                                        <input type='hidden' id='date' value='$time' />
+                                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
                                         <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
                                     </div>
-                                    <p class='p2'><span>$fecha</span></p>
+                                    <p class='p2'><span>".$date->format('d M')."</span></p>
                                 </div>
                                 <div class='event_top_right'>
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >

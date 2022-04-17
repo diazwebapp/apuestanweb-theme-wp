@@ -8,6 +8,7 @@ $h1 = '';
 $permalink = '';
 $thumb = '';
 $alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
+
 if($query_home->have_posts()):
     while($query_home->have_posts()):
         $query_home->the_post();
@@ -38,14 +39,16 @@ endif;
     </div>
     <div class="blog_box_wrapper">
         <div class="container">
-			<?php
-				if(have_posts()):
-					while (have_posts()):
-						the_post();
-						get_template_part("loop/posts-grid_1"); 
-					endwhile; 
-				endif;
-			?>
+            <div class="row">
+                <?php
+                    if(have_posts()):
+                        while (have_posts()):
+                            the_post();
+                            get_template_part("loop/posts-grid_1"); 
+                        endwhile; 
+                    endif;
+                ?>
+            </div>
         </div>
     </div>
 </main>

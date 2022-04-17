@@ -9,8 +9,15 @@ $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all')
 $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
 $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 0;
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$fecha = date('d M', strtotime($time));
-$hora = date('g:i a', strtotime($time));
+
+$datetime = new DateTime($time);
+$date = $datetime;
+$geolocation = aw_get_geolocation();
+if($geolocation->success !== false):
+    date_default_timezone_set($geolocation->timezone);
+    $datetime = new DateTime($time);
+    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+endif;
 //Componente si es vip
 
 $vipcomponent ="<div class='plogo'>
@@ -39,11 +46,11 @@ echo "<div class='prediction_box'>
             <div class='d-flex align-items-center justify-content-between'>
                 <p class='game_name {$sport['class']}'>{$sport['name']}</p>
                 <div class='date_item_pronostico_top'>
-                    <input type='hidden' id='date' value='$time' />
+                    <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
                     <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
                 </div>
                 <p>
-                    <span class='date'>$fecha</span>
+                    <span class='date'>".$date->format('d M')."</span>
                 </p>
             </div> 
 

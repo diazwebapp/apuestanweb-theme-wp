@@ -1,14 +1,9 @@
 <?php
 $image_att = carbon_get_post_meta(get_the_ID(), 'img');
 $image_png = wp_get_attachment_url($image_att);
-$time = carbon_get_post_meta(get_the_ID(), 'data');
 $prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
 $permalink = get_the_permalink();
-if ($time) {
-    $new_format_time = date('d.m.Y H:s', strtotime($time));
-} else {
-    $new_format_time = 'n/a';
-}
+
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 
 $sport['class'] = '' ;
@@ -21,11 +16,19 @@ if ($sport_term) {
         }
     }
 }
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+
+$datetime = new DateTime($time);
+$date = $datetime;
+$geolocation = aw_get_geolocation();
+if($geolocation->success !== false):
+    date_default_timezone_set($geolocation->timezone);
+    $datetime = new DateTime($time);
+    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+endif;
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 
 if ($teams['team1']['logo'] && $teams['team2']['logo']){  
-    $fecha = date('d M', strtotime($time)) .' - '. date('g:i a', strtotime($time));
-    $hora = date('g:i a', strtotime($time));
     $content = get_the_content(get_the_ID()) ;
     echo "<a href='$permalink' ><div class='event'>
             <p class='{$sport['class']}'>{$sport['name']}</p>
@@ -40,13 +43,13 @@ if ($teams['team1']['logo'] && $teams['team2']['logo']){
             <div class='d-lg-none d-block'>
                 <div class='match_time_box'>
                     <p class='{$sport['class']}'>{$sport['name']}</p>
-                    <p>$hora</p>
+                    <p>".$date->format('g:i a')."</p>
                 </div>
             </div>
             <div class='img_logo'>
                 <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
             </div>
-            <p>$hora</p>       
+            <p>".$date->format('g:i a')."</p>       
             
     </div></a> ";
     

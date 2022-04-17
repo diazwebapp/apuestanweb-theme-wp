@@ -2,16 +2,25 @@
 $params = get_query_var('params');
 $image_att = carbon_get_post_meta(get_the_ID(), 'img');
 $image_png = wp_get_attachment_url($image_att);
-$time = carbon_get_post_meta(get_the_ID(), 'data');
 $prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
 $status = carbon_get_post_meta(get_the_ID(), 'status');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
-$fecha = date('d M', strtotime($time));
-$hora = date('g:i a', strtotime($time));
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 $bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
+
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+
+$datetime = new DateTime($time);
+$date = $datetime;
+$geolocation = aw_get_geolocation();
+if($geolocation->success !== false):
+    date_default_timezone_set($geolocation->timezone);
+    $datetime = new DateTime($time);
+    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+endif;
+
 //Componente si es vip
 $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                     <p>{$params['text_vip_link']}</p>
@@ -70,8 +79,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 <div class='d-flex align-items-center club_box'>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div class='date_item_pronostico_top'>
-                        <input type='hidden' id='date' value='$time' />
-                        <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                        <b id='date_horas'></b>h:<b id='date_minutos'></b> <b>m</b>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>

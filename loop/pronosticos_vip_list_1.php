@@ -6,7 +6,7 @@ $time = carbon_get_post_meta(get_the_ID(), 'data');
 $status = carbon_get_post_meta(get_the_ID(), 'status');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
-$fecha = date('d M', strtotime($time));
+".$date->format('d M')." = date('d M', strtotime($time));
 $hora = date('g:i a', strtotime($time));
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
@@ -93,10 +93,10 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 </div>
                 <p class='d-lg-none d-block vip_mobile_p'><span>Análisis:</span> Lorem ipsum dolor sit amet, conset etur sadipscing elitr, sed diam no numy sit eirmod…</p>
                 <p class='d-lg-block d-none'>
-                    <span style='margin:0 5px;'>$fecha</span>
+                    <span style='margin:0 5px;'>".$date->format('d M')."</span>
                 </p>
                 <div class='date_item_pronostico_top'>
-                    <input type='hidden' id='date' value='$time' />
+                    <input type='hidden' id='date' value=".$date->format('Y-m-d h:i:s')." />
                     <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
                 </div>
             </div>

@@ -87,15 +87,25 @@ function crb_attach_theme_options()
                         ->add_fields(array(
                             Field::make('text', 'feacture', __("feacture text", "jbetting")),
                         )),
-
+                    Field::make('complex', 'country', __("Country", "jbetting"))
+                        ->set_layout("tabbed-horizontal")
+                        ->add_fields(array(
+                            Field::make('text', 'bonus', __("Bonus slogan", "jbetting")),
+                            Field::make('text', 'ref', __("Refear link", "jbetting")),
+                            Field::make('select', 'country_code', __("country code", "jbetting"))
+                                ->add_options(array(
+                                    'VE' => 'VE',
+                                    'CO' => 'CO'
+                                )),
+                        )),
                 )
         );
-
+        
         Container::make('post_meta', __("Team", "jbetting"))
             ->where('post_type', '=', 'team')
             ->add_tab(__("General", "jbetting"), array(
                 Field::make('image', 'team_logo', __("Team logo(square .png)", "jbetting")),
-                Field::make('text', 'acronimo', __("acronimo", "jbetting")),
+                Field::make('text', 'acronimo', __("acronimo", "jbetting"))
             ));
 
 

@@ -1,5 +1,5 @@
 <?php
-
+$params = get_query_var( 'params' );
 $image_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
 if($image_att):
     $image_png = wp_get_attachment_url($image_att);
@@ -24,7 +24,7 @@ $stars = draw_rating($rating_ceil);
 
 echo "<div class='col-4'>
     <div class='bonus_box'>
-        <div class='number_text'>1</div>
+        <div class='number_text'>".$params['count']."</div>
         <div class='bonus_top'>
             <div class='d-flex align-items-center justify-content-between'>
                 <img src='$image_png' alt=''>

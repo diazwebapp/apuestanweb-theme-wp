@@ -7,19 +7,24 @@ $event_bg = wp_get_attachment_url($event_bg_att);
 if($event_bg)
     $slide_bg = $event_bg;
 
-$time = carbon_get_post_meta(get_the_ID(), 'data');
+
 $prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
 $link = carbon_get_post_meta(get_the_ID(), 'link');
-$fecha = date('d M', strtotime($time));
-$hora = date('g:i a', strtotime($time));
+
 $permalink = get_the_permalink();
 $cross_img = get_template_directory_uri(  ) . '/assets/img/cross.png';
 
-if ($time) {
-    $new_format_time = date('d.m.Y H:s', strtotime($time));
-} else {
-    $new_format_time = 'n/a';
-}
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+
+$datetime = new DateTime($time);
+$date = $datetime;
+$geolocation = aw_get_geolocation();
+if($geolocation->success !== false):
+    date_default_timezone_set($geolocation->timezone);
+    $datetime = new DateTime($time);
+    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+endif;
+
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 
 $sport['name'] = '';
@@ -52,7 +57,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     echo '<div class="slider__single--box">
     <div class="slider__box--top">
         <p>'.$sport['name'].'</p>
-        <p>'.$hora.'</p>
+        <p>'.$date->format('g:i a').'</p>
     </div>
     <div class="slider__box--main">
         <div class="slider__main--menu">

@@ -8,7 +8,7 @@ $status = carbon_get_post_meta(get_the_ID(), 'status');
 $link = carbon_get_post_meta(get_the_ID(), 'link');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
-$fecha = date('d M', strtotime($time));
+".$date->format('d M')." = date('d M', strtotime($time));
 $hora = date('g:i a', strtotime($time));
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
@@ -117,8 +117,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
         <span>$league</span>
         
         <span class='date_item_pronostico_top'>
-                <span style='margin: 0 5px;'>$fecha</span>
-                <input type='hidden' id='date' value='$time' />
+                <span style='margin: 0 5px;'>".$date->format('d M')."</span>
+                <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
                 <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
         </span>
 
@@ -159,9 +159,9 @@ echo "    </div>
             </div>
             <div class='d-lg-block d-none'> 
                 <div class='league_box_wrapper align-items-center'>
-                    <p class='d-lg-block d-none mr_30'>$fecha </p>
+                    <p class='d-lg-block d-none mr_30'>".$date->format('d M')." </p>
                     <div class='date_item_pronostico_top'>
-                        <input type='hidden' id='date' value='$time' />
+                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
                         <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
                     </div>
                     <div class='league_box2'>

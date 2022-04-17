@@ -164,4 +164,27 @@ add_action('init', function(){
         }
         return $classes;
     }
-    add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 );    
+    add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
+//ip del cliente
+function aw_get_geolocation() {
+    $ip = false;
+    $geolocation = [
+        "success" => false,
+        "message" => "reserved range"
+    ];
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+      $ip = $_SERVER['HTTP_CLIENT_IP'];
+          
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+      
+    $ip = $_SERVER['REMOTE_ADDR'];
+    
+    $response = wp_remote_get("https://ipwhois.app/json/{$ip}",array('timeout'=>10));
+    
+    if(!is_wp_error( $response )):
+        $geolocation =wp_remote_retrieve_body( $response );
+        return json_decode($geolocation);
+    endif;
+    return json_decode(json_encode($geolocation));
+  }   

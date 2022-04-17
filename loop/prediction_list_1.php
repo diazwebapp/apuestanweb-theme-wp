@@ -9,7 +9,7 @@ $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all')
 $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
 $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 0;
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$fecha = date('d M', strtotime($time));
+".$date->format('d M')." = date('d M', strtotime($time));
 $hora = date('g:i a', strtotime($time));
 //Componente si es vip
 
@@ -42,7 +42,7 @@ echo "<div class='prediction_box'>
                 <p class='game_name'><img src='{$sport['logo']}' alt='{$sport['name']}'>{$sport['name']}</p>
                 <p>
                     <span class='time'>$hora</span>
-                    <span class='date'>$fecha</span>
+                    <span class='date'>".$date->format('d M')."</span>
                 </p>
             </div> 
 
