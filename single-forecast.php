@@ -73,7 +73,7 @@
 
 						<?php echo do_shortcode("[predictions]") ?>					
 							
-						<div class="single_event_content">
+						<div class="single_event_content text-break">
 						
 							<?php
                                 the_content();

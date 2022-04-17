@@ -24,7 +24,7 @@ $sidebar=false;
                             $author_id =  get_the_author_meta('ID') ;
                             $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
                             ?>
-                                    <h2 class="blog_title"><?php echo $title ?></h2>
+                                    <h1 class="blog_title"><?php echo $title ?></h1>
                                     <p class="mt_30 author_text">Por <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a> <?php echo $fecha ?></p>
                                     <img src="<?php echo $thumbnail_url ?>" class="single_img" alt="">
                                     <div class="text_box2">
