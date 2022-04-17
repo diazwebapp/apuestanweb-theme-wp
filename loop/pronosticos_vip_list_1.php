@@ -2,16 +2,24 @@
 $params = get_query_var('params');
 $image_att = carbon_get_post_meta(get_the_ID(), 'img');
 $image_png = wp_get_attachment_url($image_att);
-$time = carbon_get_post_meta(get_the_ID(), 'data');
 $status = carbon_get_post_meta(get_the_ID(), 'status');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
-".$date->format('d M')." = date('d M', strtotime($time));
-$hora = date('g:i a', strtotime($time));
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 $bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
 
+//configurando zona horaria
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+
+$datetime = new DateTime($time);
+$date = $datetime;
+$geolocation = aw_get_geolocation();
+if($geolocation->success !== false):
+    date_default_timezone_set($geolocation->timezone);
+    $datetime = new DateTime($time);
+    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+endif;
 
 //Liga y deporte
 $sport = '';
