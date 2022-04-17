@@ -60,6 +60,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
                                 </div>
                                 <div class='event_top_middle'>
+                                <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                     <div class='date_item_pronostico_top'>
                                         <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
                                         <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
@@ -70,6 +71,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                 </div>
                             </div>
+                            <p class='p3' >
+                            {$teams['team1']['name']} vs {$teams['team2']['name']}
+                            </p>
                         </div>
                     
                         <div class='event2_box3_middle'>
@@ -131,8 +135,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 <div class='event_btn_img'>
                                     <img src='{$bk['logo']}' class='img-fluid' alt=''>
                                 </div>
-                                <div class='event_btn'>
-                                    <a href='{$bk['ref_link']}'>Juega ahora</a>
+                                <div >
+                                    <a href='{$bk['ref_link']}' class='button'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
