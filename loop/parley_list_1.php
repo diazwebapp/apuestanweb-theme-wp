@@ -61,6 +61,10 @@ echo "<div class='parley_wrapper'>
                             </div>
                         </div>
                     </div>
+                    <div class='parley_match2 parley_match d-lg-block d-none'>
+                        <p>$fecha</p>
+                        <p class='p2'>$hora</p>
+                    </div>                   
                     <div class='parley_match_time'>
                         <div class='parley_flag'>
                             <div class='parley_team'>
@@ -74,10 +78,6 @@ echo "<div class='parley_wrapper'>
                             <div class='parley_match'>
                                 <p>{$teams['team1']['name']}</p>
                                 <p class='p2'>{$teams['team2']['name']}</p>
-                            </div>
-                            <div class='parley_match2 parley_match d-lg-block d-none'>
-                                <p>$fecha</p>
-                                <p class='p2'>$hora</p>
                             </div>
                             <div class='d-lg-none d-block'>
                                 <div class='parley_right_first'>

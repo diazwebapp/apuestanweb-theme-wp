@@ -23,7 +23,7 @@
 }
 @media (min-width: 1200px) and (max-width: 1409.98px){
 	.event2_box_middle_content {
-	    padding: 57px 30px 15px 30px;
+	    padding: 30px 30px 25px 30px;
 	}
 	.event2_header_wrapper ul li a{
 		font-size: 1.7rem
@@ -41,7 +41,7 @@
 	    padding: 1.5rem;
 	}
 	.top_box2 .top_serial img {
-	    max-width: 6.7rem;
+	    max-width: 10rem;
 	}
 
 	/*vip area*/
@@ -1967,7 +1967,7 @@
 	    top: 20rem;
 	}
 	.event2_box_middle_content {
-	    padding: 3.7rem 6rem 1.5rem 6rem;
+	    padding: 3.7rem 6rem 3.7rem 6rem;
 	}
 	.event_btn_box .event_btn_img {
 	    max-width: 65%;
@@ -1978,6 +1978,12 @@
 	.estad-tabs {
 		padding: 10px 1rem;
 	}
+
+	.panel-body {
+		max-height: 168px;
+		font-size: 13px;
+		padding: 0px 5px;
+	  }
 
 }
 
