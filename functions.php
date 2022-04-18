@@ -143,13 +143,14 @@ add_action('init', function(){
         define('PERMALINK_VIP',get_the_permalink($page_id_vip));
     endif;
     //buy page
-    $page_id_buy = isset(carbon_get_theme_option('page_memberships')[0]) ? carbon_get_theme_option('page_memberships')[0]['id']: "#";
+    
+    $page_id_buy = empty(get_option( 'ihc_subscription_plan_page')) ? "#":get_option( 'ihc_subscription_plan_page',0);
     if($page_id_buy):
         define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
     endif;
 
     //profile page
-    $page_id_profile = isset(carbon_get_theme_option('page_profile')[0]) ? carbon_get_theme_option('page_profile')[0]['id']: "#";
+    $page_id_profile = empty(get_option( 'ihc_inside_user_page')) ? "#":get_option( 'ihc_inside_user_page',0);
     if($page_id_profile):
         define('PERMALINK_PROFILE',get_the_permalink($page_id_profile));
     endif;

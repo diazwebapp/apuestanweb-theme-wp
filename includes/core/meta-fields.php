@@ -19,21 +19,6 @@ function crb_attach_theme_options()
                             'type' => 'post',
                             'post_type' => 'page',
                         )
-                    ))->set_min(1)->set_max(1),
-                Field::make('association', 'page_profile', __("Select profile page", "jbetting"))
-                    ->set_types(array(
-                        array(
-                            'type' => 'post',
-                            'post_type' => 'page',
-                        )
-                    ))->set_min(1)->set_max(1),
-                //Landing page de planes por defecto
-                Field::make('association', 'page_memberships', __("Select membership page", "jbetting"))
-                    ->set_types(array(
-                        array(
-                            'type' => 'post',
-                            'post_type' => 'page',
-                        )
                     ))->set_min(1)->set_max(1)
             ));
 
