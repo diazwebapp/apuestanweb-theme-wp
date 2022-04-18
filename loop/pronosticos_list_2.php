@@ -68,19 +68,20 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
         
             <div class='game_box'>
                 <div class='game_top'>
-                    <div class='d-flex align-items-center'>
-                        <span class='{$league['class']}' ><b>{$league['name']}</b></span>  
+                    <div class='d-flex align-items-center league_box1'>
+                        <i class='{$league['class']}' ></i>  
+                        {$league['name']}
                     </div>
                     <div class='d-flex align-items-center'>
-                      <span class='{$sport['class']}' ><b>{$sport['name']}</b></span>  
+                      <i class='{$sport['class']}' ></i>  
                     </div>
                 </div>
                 <a href='$permalink'  >
                 <div class='d-flex align-items-center club_box'>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
-                    <div class='date_item_pronostico_top'>
-                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                        <b id='date_horas'></b>h:<b id='date_minutos'></b> <b>m</b>
+                    <div>
+                        <p><strong>".$date->format('g:i a')."</strong></p>
+                        <p>".$date->format('d M')."</p>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>

@@ -1605,12 +1605,15 @@ footer .menu li a::before{
 	align-self: center;
 }
 .league_box1{
-	display: flex;
-	align-items: center;
+	display: grid;
+	place-items: center;
+	grid-template-columns: 24px 1fr;
+	gap:5px;
+	place-content: center;
 	margin-right: 2rem;
 }
-.league_box1 img{
-	margin-right: 1rem;
+.icon_leages b{
+	padding: 0 5px;
 }
 .img_30{
 	margin-right: 1rem;
@@ -2123,9 +2126,7 @@ footer .menu li a::before{
 	margin-bottom: 20px;
 	text-align: justify;
 }
-.single_event_content h1,h2,h3,h4,h5,h6{
-	margin-bottom: 20px;
-}
+
 .single_event_title_wrap{
 	justify-content: space-between;
 }

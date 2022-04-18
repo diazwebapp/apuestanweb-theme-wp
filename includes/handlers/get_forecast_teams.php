@@ -50,7 +50,8 @@ function setUserRating(){
         //Query Args
         $forecast_args['author'] = $user->ID;
         $forecast_args['post_type'] = 'forecast';
-        $forecast_args['post_per_page'] = -1;
+        $forecast_args['post_per_page'] = 10;
+        $forecast_args['paged'] = 1;
         $forecast_args['meta_query']     = [
             [
                 'key' => 'vip',
@@ -107,7 +108,8 @@ function get_user_stats($user_id,$vip){
     wp_reset_query();
         $forecast_args['author'] = $user_id;
         $forecast_args['post_type'] = 'forecast';
-        $forecast_args['post_per_page'] = -1;
+        $forecast_args['post_per_page'] = 10;
+        $forecast_args['paged'] = 10;
         if($vip):
             $forecast_args['meta_query']     = [
                 [
