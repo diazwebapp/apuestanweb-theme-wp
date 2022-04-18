@@ -16,6 +16,9 @@ function get_memberships(){
         return;
     endif;
     $count = 0;
+    $checkoutPage = get_option( 'ihc_checkout_page', 0 );
+    $checkoutPage = get_permalink( $checkoutPage );
+    
     foreach($memberships as $key => $value):
         $query_membership_metas = $wpdb->get_results("select meta_key,meta_value from {$wpdb->prefix}ihc_memberships_meta where membership_id={$value->id}");
         $membership_metas['button_label'] = '';
@@ -25,6 +28,7 @@ function get_memberships(){
             endif;
         endforeach;
         $count++;
+        $checkoutPage = add_query_arg( 'lid',$value->id, $checkoutPage );
         $html['tmp_menu_bar'] .= '<li class="nav-item">
                     <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-'."{$value->name}".'">'.$value->label.'</a>
                 </li>';
@@ -35,7 +39,7 @@ function get_memberships(){
                                             <p>$value->short_description</p>
                                         </div>
                                         <div class='price_btn'>
-                                            <a href='$value->name' class='button'>{$membership_metas['button_label']}</a>
+                                            <a href='$checkoutPage' class='button'>{$membership_metas['button_label']}</a>
                                         </div>
                             </div>";
         $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$value->name'>
@@ -46,7 +50,7 @@ function get_memberships(){
                                                     <p>$value->short_description</p>
                                                 </div>
                                                 <div class='price_btn'>
-                                                    <a href='$value->name' class='button'>{$membership_metas['button_label']}</a>
+                                                    <a href='$checkoutPage' class='button'>{$membership_metas['button_label']}</a>
                                                 </div>
                                             </div>
                                         </div>";

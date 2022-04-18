@@ -60,12 +60,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <!--====== BACK TO TOP ENDS ======-->
             
 </footer>
-<?php wp_footer();
-$footer_code = carbon_get_theme_option( 'footer_code' );
-if ( $footer_code ) {
-    echo $footer_code;
-}
-?>
+<?php wp_footer(); ?>
 
 </body>
 </html>
