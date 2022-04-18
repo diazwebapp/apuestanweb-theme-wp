@@ -5,7 +5,7 @@ $permalink = get_the_permalink();
 $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
 $site_logo_url = get_template_directory_uri() . '/assets/img/event-logo.png';
 $lock_image_url = get_template_directory_uri() . '/assets/img/lock.png';
-$idevent = "analisis_".get_the_ID();
+$idevent = "match_".get_the_ID();
 
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 
@@ -142,17 +142,23 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                         </div>
                    
                      
-                    <div class='event2_accordion_box accordion'>
-                        <button class='text-left' type='button' data-toggle='collapse' data-target='#$idevent' aria-expanded='false'>
-                            Ocultar análisis
-                        </button>
-                        <div id='$idevent' class='collapse card-body' >
-                            $content
+                    <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='false'>
+                        <div class='panel panel-default'>
+                        <div class='panel-heading accor_btn' role='tab' id='headingOne'>
+                            <button type='button' data-toggle='collapse' data-target='#$idevent' aria-expanded='false'>
+                                <i class='fal fa-angle-down'></i>
+                            </button>
+                        </div>
+
+                        <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
+                            <div class='panel-body'>
+                            $content 
+                            </div>
                         </div>
                     </div>
-                    
+                  </div>          
             </div>
                 
-            </div> ";
+        </div> ";
     }
 endif; 

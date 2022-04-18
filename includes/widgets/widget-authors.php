@@ -57,7 +57,7 @@ class top_authors extends WP_Widget {
                                 <h4>$display_name</h4>
                                 <p class='green'>
                                     <img src=' $flechita_indicadora' alt=''>
-                                    $acerted - $failed Ult $rank picks
+                                    $acerted - $failed, $rank Ult 10 picks
                                 </p>
                             </div>
                         </a>

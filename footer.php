@@ -55,7 +55,9 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 </div>
             </div>
         </div>
-    
+        <!--====== BACK TO TOP START ======-->
+        <a href="#" class="back-to-top"><i class="fal fa-angle-up"></i></a>
+        <!--====== BACK TO TOP ENDS ======-->
             
 </footer>
 <?php wp_footer();
@@ -64,5 +66,6 @@ if ( $footer_code ) {
     echo $footer_code;
 }
 ?>
+
 </body>
 </html>

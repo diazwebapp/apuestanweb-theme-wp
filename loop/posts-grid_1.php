@@ -17,7 +17,7 @@ endif;
 echo "<div class='col-lg-3 col-md-4 col-6 mt_30'>
     <div class='blog_box'>
         <div class='img_box'>
-            <img class='w-100' alt='$title' loading='lazy' src='$thumbnail_url'>
+        <a href='$permalink'><img class='w-100' alt='$title' loading='lazy' src='$thumbnail_url'></a>
         </div>
         <div class='desc_box' >
             <a href='$permalink'><h4>$title</h4></a>
