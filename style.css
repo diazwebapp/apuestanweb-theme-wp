@@ -1704,7 +1704,7 @@ footer .menu li a::before{
 }
 .price_box_wrapper{
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: space-between;
 }
 .price_box {
