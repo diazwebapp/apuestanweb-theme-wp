@@ -169,7 +169,7 @@ add_action('init', function(){
       
     $ip = $_SERVER['REMOTE_ADDR'];
     
-    $response = wp_remote_get("https://ipwhois.app/json/186.185.226.48",array('timeout'=>10));
+    $response = wp_remote_get("https://ipwhois.app/json/{$id}",array('timeout'=>10));
     
     if(!is_wp_error( $response )):
         $geolocation =  wp_remote_retrieve_body( $response );
