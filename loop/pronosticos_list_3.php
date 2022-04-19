@@ -22,7 +22,7 @@ if ($sport_term) {
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $datetime = new DateTime($time);
 $date = $datetime;
-$geolocation = aw_get_geolocation();
+$geolocation = json_decode(GEOLOCATION);
 if($geolocation->success !== false):
     date_default_timezone_set($geolocation->timezone);
     $datetime = new DateTime($time);
