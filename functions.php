@@ -46,6 +46,7 @@ include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
 include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
+include "includes/handlers/get_countries.php";
 
 function my_theme_remove_headlinks() {
     remove_action( 'wp_head', 'wp_generator' );
@@ -153,6 +154,29 @@ add_action('init', function(){
     $page_id_profile = empty(get_option( 'ihc_inside_user_page')) ? "#":get_option( 'ihc_inside_user_page',0);
     if($page_id_profile):
         define('PERMALINK_PROFILE',get_the_permalink($page_id_profile));
+    endif;
+    //geolocation
+    $ip = false;
+    $geolocation = [
+        "success" => false,
+        "message" => "reserved range"
+    ];
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+      $ip = $_SERVER['HTTP_CLIENT_IP'];
+          
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+      
+    $ip = $_SERVER['REMOTE_ADDR'];
+    
+    $response = wp_remote_get("https://ipwhois.app/json/186.185.226.48",array('timeout'=>10));
+    
+    if(!is_wp_error( $response )):
+        $geolocation =  wp_remote_retrieve_body( $response );
+        define("GEOLOCATION",$geolocation);
+    endif;
+    if(is_wp_error( $response )):
+        define("GEOLOCATION",json_encode($geolocation));
     endif;
 });
 

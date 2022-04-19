@@ -1,5 +1,4 @@
 <?php get_header(); 
-
 $args['post_type'] = 'post';
 $args['posts_per_page'] = 1;
 $args['paged'] = 1;
@@ -41,7 +40,9 @@ endif;
     </div>
     <div class="blog_box_wrapper">
         <div class="container">
-            <?php echo do_shortcode("[blog filter='yes' title='Lo más reciente']"); ?>
+            <?php 
+                echo do_shortcode("[blog filter='yes' title='Lo más reciente']"); 
+            ?>
         </div>
     </div>
 </main>

@@ -78,10 +78,7 @@ function crb_attach_theme_options()
                             Field::make('text', 'bonus', __("Bonus slogan", "jbetting")),
                             Field::make('text', 'ref', __("Refear link", "jbetting")),
                             Field::make('select', 'country_code', __("country code", "jbetting"))
-                                ->add_options(array(
-                                    'VE' => 'VE',
-                                    'CO' => 'CO'
-                                )),
+                                ->add_options('get_countries_for_carbonmeta'),
                         )),
                 )
         );
