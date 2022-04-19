@@ -138,6 +138,8 @@ function draw_rating($rating)
 add_action('init', function(){
     //Definimos configuraciones globales del tema
     
+    //Zona horaria
+    date_default_timezone_set(get_option('timezone_string'));
     //vip page
     $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
     if($page_id_vip):
