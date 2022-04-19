@@ -60,7 +60,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                     <div class='date_item_pronostico_top'>
                                         <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                                        <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                                        <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                                     </div>
                                     <p class='p2'><span>".$date->format('d M')."</span></p>
                                 </div>
@@ -108,7 +108,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                     <div class='date_item_pronostico_top'>
                                         <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                                        <b id='date_horas'></b>:<b id='date_minutos'></b> <b>m</b>
+                                        <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                                     </div>
                                     <p class='p2'><span>".$date->format('d M')."</span></p>
                                 </div>

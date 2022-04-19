@@ -47,7 +47,7 @@ if ($teams['team1']['logo'] && $teams['team2']['logo']){
                     </div>
                     <div class='date_item_pronostico_top'>
                         <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                        <b id='date_horas'></b>h:<b id='date_minutos'></b> <b>m</b>
+                        <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                     </div>
                 </div>
             </div>

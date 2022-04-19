@@ -53,7 +53,7 @@ echo "<div class='prediction_box'>
                     <p class='media-body text-uppercase'>{$teams['team1']['acronimo']}</p>
                 </div> 
                 <div>
-                    <p style='margin:0 5px;' >vs</p> 
+                    <p style='margin:0 5px;'>vs</p> 
                 </div>                               
                 <div class='media align-items-center'>
                     <p class='media-body text-uppercase'>{$teams['team2']['acronimo']}</p>

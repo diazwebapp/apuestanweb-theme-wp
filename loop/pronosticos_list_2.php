@@ -76,8 +76,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 <div class='d-flex align-items-center club_box'>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
-                        <p><strong>".$date->format('g:i a')."</strong></p>
-                        <p>".$date->format('d M')."</p>
+                        <div class='date_item_pronostico_top'>
+                            <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                            <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
+                        </div>
+                        <p class='p2'><span>".$date->format('d M')."</span></p>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>

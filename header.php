@@ -61,7 +61,5 @@ endif;
                 </div>
             </div>
         </div>
-		
-	
 </header>
-<span style="position:fixed;z-index:9999999;top:0;left:0;right:0;text-align:center;color:red;font-weight:bold;" ><?php echo $country ?></span>
+<span style="position:fixed;z-index:9999;top:0;left:0;right:0;text-align:center;color:red;font-weight:bold;" ><?php echo $country ?></span>
