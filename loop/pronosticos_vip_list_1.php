@@ -11,14 +11,10 @@ $bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
 
 //configurando zona horaria
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-
-$datetime = new DateTime($time);
-$date = $datetime;
-$geolocation = aw_get_geolocation();
+$geolocation = json_decode(GEOLOCATION);
+$date = new DateTime($time);
 if($geolocation->success !== false):
-    date_default_timezone_set($geolocation->timezone);
-    $datetime = new DateTime($time);
-    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 endif;
 
 //Liga y deporte
