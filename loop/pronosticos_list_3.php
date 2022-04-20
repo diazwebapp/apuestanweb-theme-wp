@@ -121,7 +121,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </div>
                             </div>
                             <p class='p3' >
-                                <a href='$permalink'  >
+                                <a href='$permalink'>
                                 {$teams['team1']['name']} vs {$teams['team2']['name']}
                                 </a>
                             </p>
@@ -136,7 +136,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             </div>
                             <div class='event_btn_box'>
                                 <div class='event_btn_img'>
+                                    <a href='{$bk['ref_link']}'>
                                     <img src='{$bk['logo']}' class='img-fluid' alt=''>
+                                    </a>
                                 </div>
                                 <div >
                                     <a href='{$bk['ref_link']}' class='button'>Juega ahora</a>
@@ -154,7 +156,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                         </div>
 
                         <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
-                            <div class='panel-body'>
+                            <div class='panel-body text-break'>
                             $content 
                             </div>
                         </div>

@@ -57,7 +57,7 @@
                             </div>
                             <div class="single_event_banner_middle">
                                 <div class="single_team1">
-                                    <img style="width:80px;height:80px;object-fit:contain;" loading="lazy" src="<?php echo $teams['team1']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team1']['name'] ?>" title="<?php echo $teams['team1']['name'] ?>">
+                                    <img loading="lazy" src="<?php echo $teams['team1']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team1']['name'] ?>" title="<?php echo $teams['team1']['name'] ?>">
                                     <p><?php echo $teams['team1']['name'] ?></p>
                                 </div>
                                 <div class="single_match_time">
@@ -65,7 +65,7 @@
                                     <h4><?php echo $time2 ?></h4>
                                 </div>
                                 <div class="single_team1">
-                                    <img style="width:80px;height:80px;object-fit:contain;" loading="lazy" src="<?php echo $teams['team2']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team2']['name'] ?>">
+                                    <img loading="lazy" src="<?php echo $teams['team2']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team2']['name'] ?>">
                                     <p><?php echo $teams['team2']['name'] ?></p>
                                 </div>
                             </div>

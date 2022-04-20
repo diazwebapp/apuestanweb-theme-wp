@@ -1005,6 +1005,11 @@
 	.single_team1{
 		padding-top: 0;
 	}
+	.single_team1 img {
+		width: 60px;
+		height: 60px;
+		object-fit: contain;
+	}
 	.single_team1 p {
 		font-size: 12px;
 		position: relative;
