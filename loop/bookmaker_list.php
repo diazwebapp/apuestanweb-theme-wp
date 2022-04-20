@@ -17,7 +17,7 @@ $bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
 $location = json_decode(GEOLOCATION);
 if($location->success == true and $bk_countries and count($bk_countries) > 0):
     foreach($bk_countries as $country):
-        if($country['country_code'] == $location->country_code):
+        if($country['country_code'] === $location->country_code):
             echo "<div class='col-lg-3 col-6 mt_30'>
                 <div class='tbox'>
                     <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='img-fluid' alt='$title  title='$title'>
@@ -29,6 +29,8 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
                     <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
                 </div>
             </div>";
+        else:
+            echo "";
         endif;
     endforeach;
 endif;

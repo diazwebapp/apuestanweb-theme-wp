@@ -67,7 +67,9 @@ class top_bk extends WP_Widget
                                         <a href="'.$country['ref'].'" class="button">Apostar</a>
                                     </div>
                                 </div>';
-                        endif;
+                            else:
+                                echo "";
+                            endif;
                     endforeach;
                 endif;
                 if(!$location->success):

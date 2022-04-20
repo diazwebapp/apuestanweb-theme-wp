@@ -71,6 +71,8 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
                     </div>
                 </div>
             </div>";
+        else:
+            echo "";
         endif;
     endforeach;
 endif;
