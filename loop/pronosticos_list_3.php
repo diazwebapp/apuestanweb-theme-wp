@@ -68,6 +68,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     <p class='p2'><span>".$date->format('d M')."</span></p>
                                 </div>
                                 <div class='event_top_right'>
+
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                 </div>
                             </div>
@@ -120,7 +121,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </div>
                             </div>
                             <p class='p3' >
+                                <a href='$permalink'  >
                                 {$teams['team1']['name']} vs {$teams['team2']['name']}
+                                </a>
                             </p>
                         </div>
                     
