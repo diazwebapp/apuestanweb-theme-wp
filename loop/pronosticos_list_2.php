@@ -11,14 +11,10 @@ $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 $bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
 
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-
-$datetime = new DateTime($time);
-$date = $datetime;
-$geolocation = aw_get_geolocation();
+$geolocation = json_decode(GEOLOCATION);
+$date = new DateTime($time);
 if($geolocation->success !== false):
-    date_default_timezone_set($geolocation->timezone);
-    $datetime = new DateTime($time);
-    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 endif;
 
 //Componente si es vip
@@ -80,8 +76,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 <div class='d-flex align-items-center club_box'>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
-                        <p><strong>".$date->format('g:i a')."</strong></p>
-                        <p>".$date->format('d M')."</p>
+                        <div class='date_item_pronostico_top'>
+                            <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                            <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
+                        </div>
+                        <p class='p2'><span>".$date->format('d M')."</span></p>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>

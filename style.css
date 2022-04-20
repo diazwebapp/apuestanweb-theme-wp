@@ -1611,9 +1611,9 @@ footer .menu li a::before{
 	display: grid;
 	place-items: center;
 	grid-template-columns: 24px 1fr;
-	gap:5px;
+	gap:2px;
 	place-content: center;
-	margin-right: 2rem;
+	margin-right: 1rem;
 }
 .icon_leages b{
 	padding: 0 5px;

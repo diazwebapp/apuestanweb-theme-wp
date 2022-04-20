@@ -17,14 +17,10 @@ if ($sport_term) {
     }
 }
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-
-$datetime = new DateTime($time);
-$date = $datetime;
-$geolocation = aw_get_geolocation();
+$geolocation = json_decode(GEOLOCATION);
+$date = new DateTime($time);
 if($geolocation->success !== false):
-    date_default_timezone_set($geolocation->timezone);
-    $datetime = new DateTime($time);
-    $date = $datetime->setTimezone(new DateTimeZone($geolocation->timezone_gmt));
+    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 endif;
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 
@@ -51,7 +47,7 @@ if ($teams['team1']['logo'] && $teams['team2']['logo']){
                     </div>
                     <div class='date_item_pronostico_top'>
                         <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                        <b id='date_horas'></b>h:<b id='date_minutos'></b> <b>m</b>
+                        <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                     </div>
                 </div>
             </div>

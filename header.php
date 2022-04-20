@@ -2,7 +2,7 @@
 $location = json_decode(GEOLOCATION);
 $country = 'n/a';
 if($location->success == true):
-    $country = $location->country;
+    $country = $location->country ."/".$location->city;
 endif;
 ?>
 <!DOCTYPE html>
@@ -35,9 +35,6 @@ endif;
                     <!--logo end-->
                 </div>
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
-                <a href="#" style="margin:0 2px;">
-                        <?php echo $country ?>
-                    </a>
                     <a href="#" class="icon_box mr_10">
                         <img src="<?php echo get_template_directory_uri() . '/assets/img/icon8.svg'?>" alt="">
                     </a>
@@ -64,6 +61,5 @@ endif;
                 </div>
             </div>
         </div>
-		
-	
 </header>
+<span style="position:fixed;z-index:9999;top:0;left:0;right:0;text-align:center;color:red;font-weight:bold;" ><?php echo $country ?></span>

@@ -80,10 +80,11 @@ function test(param){
 // DOM for render
 const date_items = document.querySelectorAll('.date_item_pronostico_top');
 
-//===
+/*
+let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+console.log(timezone);
 // FUNCTIONS
-//===
-
+*/
 function updateCountdown(html_element) {
     const INPUT_DATE = html_element.querySelector('#date');
     const SPAN_DAYS = html_element.querySelector('#date_dias');
@@ -112,6 +113,15 @@ function updateCountdown(html_element) {
     if(SPAN_HOURS)  SPAN_HOURS.textContent = REMAINING_HOURS;
     if(SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES;
     if(SPAN_SECONDS)    SPAN_SECONDS.textContent = REMAINING_SECONDS;
+
+    if(REMAINING_DAYS <= 0 && REMAINING_HOURS <= 0 && REMAINING_MINUTES <= 0){
+        let hora = DATE_TARGET.getHours() % 12
+        let minutos = DATE_TARGET.getMinutes().toString().padStart(2,'0')
+        let ampm = DATE_TARGET.getHours() > 12 ? 'pm' : 'am'
+        html_element.innerHTML = `
+                        <p class='p2'><span>${hora}:${minutos} ${ampm}</span></p>
+        `
+    }
 }
 
 //===

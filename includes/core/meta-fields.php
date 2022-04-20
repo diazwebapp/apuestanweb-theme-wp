@@ -58,6 +58,7 @@ function crb_attach_theme_options()
                 Field::make('text', 'custom_banner_top', __("Replace top banner? (shortcode only)", "jbetting")),
                 Field::make('text', 'custom_banner_bottom', __("Banner al final del post", "jbetting"))
             ));
+        
         Container::make('post_meta', __("Bookmaker", "jbetting"))
             ->where('post_type', '=', 'bk')
             ->add_tab(__("General", "jbetting"), array(
@@ -72,7 +73,7 @@ function crb_attach_theme_options()
                         ->add_fields(array(
                             Field::make('text', 'feacture', __("feacture text", "jbetting")),
                         )),
-                    Field::make('complex', 'country', __("Country", "jbetting"))
+                    Field::make('complex', 'countries', __("Country", "jbetting"))
                         ->set_layout("tabbed-horizontal")
                         ->add_fields(array(
                             Field::make('text', 'bonus', __("Bonus slogan", "jbetting")),

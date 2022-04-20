@@ -138,6 +138,8 @@ function draw_rating($rating)
 add_action('init', function(){
     //Definimos configuraciones globales del tema
     
+    //Zona horaria
+    date_default_timezone_set(get_option('timezone_string'));
     //vip page
     $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
     if($page_id_vip):
@@ -169,7 +171,7 @@ add_action('init', function(){
       
     $ip = $_SERVER['REMOTE_ADDR'];
     
-    $response = wp_remote_get("https://ipwhois.app/json/{$id}",array('timeout'=>10));
+    $response = wp_remote_get("https://ipwhois.app/json/{$ip}",array('timeout'=>10));
     
     if(!is_wp_error( $response )):
         $geolocation =  wp_remote_retrieve_body( $response );

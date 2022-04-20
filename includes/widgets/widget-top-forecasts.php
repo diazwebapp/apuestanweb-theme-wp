@@ -50,11 +50,14 @@ class top_forecasts extends WP_Widget
                     $teams = get_forecast_teams($id,["w"=>24,"h"=>24]);
                     //terms
                     $sport_term = wp_get_post_terms( $id, 'league', array( 'fields' => 'all' ) );
-                    $arr_sport  = '';
-                    if ( $sport_term ) {
+                    $sport['class'] = '' ;
+                    $sport['name'] = '';
+                    if ($sport_term) {
                         foreach ( $sport_term as $item ) {
-                            if($item->parent == 0)
-                                $arr_sport .= $item->name;                            
+                            if($item->parent == 0){
+                                $sport['class'] = carbon_get_term_meta($item->term_id, 'fa_icon_class');
+                                $sport['name'] = $item->name;
+                            }
                         }
                     }
 
@@ -70,8 +73,9 @@ class top_forecasts extends WP_Widget
                                 </div>
                             </div>
                             
-                            <div class='top_box3_right_content'>
-                                <p>$arr_sport</p>
+                            <div class='top_box3_right_content league_box1'>
+                                <i class='{$sport['class']}' ></i>
+                                {$sport['name']}
                             </div>
                        </a> ";
                 endwhile;
