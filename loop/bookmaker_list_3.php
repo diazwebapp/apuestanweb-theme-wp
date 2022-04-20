@@ -22,21 +22,29 @@ $bonus_sum_table = carbon_get_post_meta(get_the_ID(), 'bonus_sum_table') ? carbo
 $title = get_the_title(get_the_ID());             
 $stars = draw_rating($rating_ceil); 
 
-echo "<div class='col-4'>
-    <div class='bonus_box'>
-        <div class='number_text'>".$params['count']."</div>
-        <div class='bonus_top'>
-            <div class='d-flex align-items-center justify-content-between'>
-                <img src='$image_png' alt=''>
-                <div class='rating'>";
-                    echo $stars;
-echo "          </div>
-            </div>
-            <p>$bonus</p>
-        </div>
-        <div class='bonus_bottom'>
-            <a href='$permalink' ><p>Review</p></a>
-            <a href='$ref' class='button'>Obtener bono</a>
-        </div>
-    </div>
-</div>";
+$bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
+$location = json_decode(GEOLOCATION);
+if($location->success == true and $bk_countries and count($bk_countries) > 0):
+    foreach($bk_countries as $country):
+        if($country['country_code'] == $location->country_code):
+            echo "<div class='col-4'>
+                <div class='bonus_box'>
+                    <div class='number_text'>".$params['count']."</div>
+                    <div class='bonus_top'>
+                        <div class='d-flex align-items-center justify-content-between'>
+                            <img src='$image_png' alt=''>
+                            <div class='rating'>";
+                                echo $stars;
+            echo "          </div>
+                        </div>
+                        <p>{$country['bonus']}</p>
+                    </div>
+                    <div class='bonus_bottom'>
+                        <a href='$permalink' ><p>Review</p></a>
+                        <a href='{$country['ref']}' class='button'>Obtener bono</a>
+                    </div>
+                </div>
+            </div>";
+        endif;
+    endforeach;
+endif;

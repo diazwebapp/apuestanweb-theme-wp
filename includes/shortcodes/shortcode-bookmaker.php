@@ -16,8 +16,6 @@ function shortcode_bookmaker($atts)
     $args['order'] = 'DESC';
     $args['orderby'] = 'meta_value_num';
     $args['meta_key'] = '_rating';
-
-    
     
     $query = new WP_Query($args);
     if ($query->have_posts()) { 
