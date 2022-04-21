@@ -77,6 +77,14 @@ function load_forecast() {
 			var vip =  '<?php echo $vip ?>';
 			var unlock = '<?php echo $unlock ?>';
 			var cpt = '<?php echo $_POST['cpt'] ?>';
+			const date_items_2 = document.querySelectorAll('.date_item_pronostico_top');
+			if(date_items_2.length > 0){
+				date_items_2.forEach(item=>{
+					setInterval(()=>{
+						updateCountdown(item)
+					},1000)
+				})
+			}
 		</script>
 		
 	<?php  

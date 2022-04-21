@@ -89,4 +89,5 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 {$vipcomponent}
             </div>
     </div>";
+    
 endif; ?>

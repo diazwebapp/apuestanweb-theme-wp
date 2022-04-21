@@ -80,11 +80,6 @@ function test(param){
 // DOM for render
 const date_items = document.querySelectorAll('.date_item_pronostico_top');
 
-/*
-let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-console.log(timezone);
-// FUNCTIONS
-*/
 function updateCountdown(html_element) {
     const INPUT_DATE = html_element.querySelector('#date');
     const SPAN_DAYS = html_element.querySelector('#date_dias');
@@ -92,35 +87,38 @@ function updateCountdown(html_element) {
     const SPAN_MINUTES = html_element.querySelector('#date_minutos');
     const SPAN_SECONDS = html_element.querySelector('#date_segundos');
 
-    const DATE_TARGET = new Date(INPUT_DATE.value);
+    if(INPUT_DATE){
 
-    // Milliseconds for the calculations
-    const MILLISECONDS_OF_A_SECOND = 1000;
-    const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
-    const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
-    const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24
-
-    // Calcs
-    const NOW = new Date()
-    const DURATION = DATE_TARGET - NOW;
-    const REMAINING_DAYS = Math.floor(DURATION / MILLISECONDS_OF_A_DAY);
-    const REMAINING_HOURS = Math.floor((DURATION % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR);
-    const REMAINING_MINUTES = Math.floor((DURATION % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE);
-    const REMAINING_SECONDS = Math.floor((DURATION % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND);
-
-    // Render
-    if(SPAN_DAYS)   SPAN_DAYS.textContent = REMAINING_DAYS;
-    if(SPAN_HOURS)  SPAN_HOURS.textContent = REMAINING_HOURS;
-    if(SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES;
-    if(SPAN_SECONDS)    SPAN_SECONDS.textContent = REMAINING_SECONDS;
-
-    if(REMAINING_DAYS <= 0 && REMAINING_HOURS <= 0 && REMAINING_MINUTES <= 0){
-        let hora = DATE_TARGET.getHours() % 12
-        let minutos = DATE_TARGET.getMinutes().toString().padStart(2,'0')
-        let ampm = DATE_TARGET.getHours() > 12 ? 'pm' : 'am'
-        html_element.innerHTML = `
-                        <p class='p2'><span>${hora}:${minutos} ${ampm}</span></p>
-        `
+        const DATE_TARGET = new Date(INPUT_DATE.value);
+    
+        // Milliseconds for the calculations
+        const MILLISECONDS_OF_A_SECOND = 1000;
+        const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
+        const MILLISECONDS_OF_A_HOUR = MILLISECONDS_OF_A_MINUTE * 60;
+        const MILLISECONDS_OF_A_DAY = MILLISECONDS_OF_A_HOUR * 24
+    
+        // Calcs
+        const NOW = new Date()
+        const DURATION = DATE_TARGET - NOW;
+        const REMAINING_DAYS = Math.floor(DURATION / MILLISECONDS_OF_A_DAY);
+        const REMAINING_HOURS = Math.floor((DURATION % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR);
+        const REMAINING_MINUTES = Math.floor((DURATION % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE);
+        const REMAINING_SECONDS = Math.floor((DURATION % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND);
+    
+        // Render
+        if(SPAN_DAYS)   SPAN_DAYS.textContent = REMAINING_DAYS;
+        if(SPAN_HOURS)  SPAN_HOURS.textContent = REMAINING_HOURS;
+        if(SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES;
+        if(SPAN_SECONDS)    SPAN_SECONDS.textContent = REMAINING_SECONDS;
+    
+        if(REMAINING_DAYS <= 0 && REMAINING_HOURS <= 0 && REMAINING_MINUTES <= 0){
+            let hora = DATE_TARGET.getHours() % 12
+            let minutos = DATE_TARGET.getMinutes().toString().padStart(2,'0')
+            let ampm = DATE_TARGET.getHours() > 12 ? 'pm' : 'am'
+            html_element.innerHTML = `
+                            <p class='p2'><span>${hora}:${minutos} ${ampm}</span></p>
+            `
+        }
     }
 }
 
@@ -134,3 +132,6 @@ date_items.forEach(item=>{
     },1000)
 })
 
+function load_more_updateCountdown(){
+    console.log('test_count')
+}
