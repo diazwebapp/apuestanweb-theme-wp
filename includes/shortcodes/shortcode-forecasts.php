@@ -8,6 +8,7 @@ function shortcode_forecast($atts)
         'model' => 1,
         'text_vip_link' => 'VIP',
         'filter' => false,
+        'time_format' => false,
         'paginate' => false
     ), $atts));
     $ret = "";
@@ -81,7 +82,8 @@ function shortcode_forecast($atts)
 
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
-        "text_vip_link" => $text_vip_link
+        "text_vip_link" => $text_vip_link,
+        "time_format" => $time_format
     ] );
 
     $query = new WP_Query($args);
@@ -106,6 +108,7 @@ function shortcode_forecast($atts)
                 var max_pages = '<?php echo $query->max_num_pages; ?>';
                 var model = '<?php echo $model ?>';
                 //Parametros del shortcode 
+                var time_format = '<?php echo $time_format ?>'
                 var text_vip_link = '<?php echo $text_vip_link ?>'
                 var vip = 'no';
                 var unlock = 'no';
