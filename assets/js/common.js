@@ -14,7 +14,8 @@ $(document).ready(function () {
             "text_vip_link" : text_vip_link,
             'vip':vip,
             'unlock':unlock,
-            'cpt':cpt
+            'cpt':cpt,
+            "time_format" : time_format,
         };
         
         $.ajax({
@@ -47,7 +48,8 @@ $(document).ready(function () {
             "text_vip_link" : text_vip_link,
             'vip':vip,
             'unlock':unlock,
-            'cpt':cpt
+            'cpt':cpt,
+            "time_format" : time_format,
         };
        
         $.ajax({

@@ -11,6 +11,7 @@ function load_forecast() {
     $text_vip_link = $_POST['text_vip_link'];
     $vip = $_POST['vip'];
     $unlock = $_POST['unlock'];
+	$time_format = $_POST['time_format'];
 	
 	if($vip == 'yes'):
 		$args['meta_query']   = [
@@ -23,7 +24,8 @@ function load_forecast() {
 
 	set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
-        "text_vip_link" => $text_vip_link
+        "text_vip_link" => $text_vip_link,
+		"time_format" => $time_format
 	] );
 	wp_reset_query();
 	$query = new WP_Query( $args );
@@ -77,6 +79,7 @@ function load_forecast() {
 			var vip =  '<?php echo $vip ?>';
 			var unlock = '<?php echo $unlock ?>';
 			var cpt = '<?php echo $_POST['cpt'] ?>';
+			var time_format = '<?php echo $time_format ?>'
 			const date_items_2 = document.querySelectorAll('.date_item_pronostico_top');
 			if(date_items_2.length > 0){
 				date_items_2.forEach(item=>{

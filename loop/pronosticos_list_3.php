@@ -40,7 +40,13 @@ if(!empty($predictions)):
                                 <p>{$prediction['cuote']}</p>
                                 </div>";
 endif;
-                                
+$time_format_html = "<p class='p2'><span>".$date->format('g:i a')."</span></p>";
+if($params['time_format']  == 'count'):
+    $time_format_html = "<div class='date_item_pronostico_top'>
+                            <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                            <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
+                        </div>";
+endif;                              
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
     $content = get_the_content(get_the_ID()) ;
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
@@ -58,10 +64,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </div>
                                 <div class='event_top_middle'>
                                 <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
-                                    <div class='date_item_pronostico_top'>
-                                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                                        <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
-                                    </div>
+                                    $time_format_html
                                     <p class='p2'><span>".$date->format('d M')."</span></p>
                                 </div>
                                 <div class='event_top_right'>
@@ -107,10 +110,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </div>
                                 <div class='event_top_middle'>
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
-                                    <div class='date_item_pronostico_top'>
-                                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                                        <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
-                                    </div>
+                                        $time_format_html
                                     <p class='p2'><span>".$date->format('d M')."</span></p>
                                 </div>
                                 <div class='event_top_right'>

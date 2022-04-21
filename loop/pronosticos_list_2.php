@@ -57,7 +57,13 @@ $p2 = carbon_get_post_meta(get_the_ID(), 'p2');
 if (!$p2) {
     $p2 = 'n/a';
 }
-
+$time_format_html = "<p class='p2'><span>".$date->format('g:i a')."</span></p>";
+if($params['time_format']  == 'count'):
+    $time_format_html = "<div class='date_item_pronostico_top'>
+                            <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                            <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
+                        </div>";
+endif;
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
     
     echo "<div class='col-lg-4 col-md-6 mt_30'>
@@ -76,10 +82,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 <div class='d-flex align-items-center club_box'>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
-                        <div class='date_item_pronostico_top'>
-                            <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                            <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
-                        </div>
+                        $time_format_html
                         <p class='p2'><span>".$date->format('d M')."</span></p>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
