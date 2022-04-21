@@ -118,7 +118,7 @@ function updateCountdown(html_element) {
             let minutos = DATE_TARGET.getMinutes().toString().padStart(2,'0')
             let ampm = DATE_TARGET.getHours() > 12 ? 'pm' : 'am'
             html_element.innerHTML = `
-                            <p class='p2'><span>${hora}:${minutos} ${ampm}</span></p>
+                            <p class='p2'>${hora}:${minutos} ${ampm}</p>
             `
         }
     }
