@@ -40,6 +40,7 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
                             if($alt_bk['country_code'] == $location->country_code):
                                 $bookmaker['bonus'] = "alt bk";
                                 $bookmaker["ref_link"] = $country['alt_ref'];
+                            endif;
                         endforeach;
                     endif;        
                 endif;
