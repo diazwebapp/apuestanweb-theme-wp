@@ -86,14 +86,14 @@ function crb_attach_theme_options()
                         ->add_fields(array(
                             Field::make('select', 'country_code', __("country code", "jbetting"))
                                 ->add_options('get_countries_for_carbonmeta'),
+                            Field::make('association', 'bk', __("Select alternative bookmaker", "jbetting"))
+                                ->set_types(array(
+                                    array(
+                                        'type' => 'post',
+                                        'post_type' => 'bk',
+                                    )
+                                ))->set_min(1)->set_max(1),
                         )),
-                        Field::make('association', 'bk', __("Select alternative bookmaker", "jbetting"))
-                            ->set_types(array(
-                                array(
-                                    'type' => 'post',
-                                    'post_type' => 'bk',
-                                )
-                            ))->set_min(1)->set_max(1),
                 )
         );
         
