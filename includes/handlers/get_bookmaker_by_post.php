@@ -39,6 +39,7 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
                     if($bk_alternatives and count($bk_alternatives) > 0):
                         foreach($bk_alternatives as $alt_bk):
                             if($alt_bk['country_code'] == $location->country_code):
+                                var_dump($alt_bk);
                                 $bookmaker['name'] = get_the_title($alt_bk['id']);
                                 $bookmaker["bonus_sum"] = carbon_get_post_meta($alt_bk['id'], 'bonus_sum');
                                 $bookmaker["ref_link"] = carbon_get_post_meta($alt_bk['id'], 'ref');
