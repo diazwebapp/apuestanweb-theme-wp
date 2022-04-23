@@ -33,6 +33,7 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
                 if($country['country_code'] == $location->country_code): //si existe coincidencia entre pais del bk y el pais del cliente
                     $bookmaker["ref_link"] = $country['ref'];//
                     $bookmaker["bonus"] = $country['bonus'];
+                endif;
                 if($country['country_code'] != $location->country_code):
                     $alternative_bk = [];
                     if($bk_alternatives and count($bk_alternatives) > 0):
