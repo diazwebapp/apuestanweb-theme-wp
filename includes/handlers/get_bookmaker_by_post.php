@@ -31,15 +31,15 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
         if($location->success == true and $bk_countries and count($bk_countries) > 0):
             foreach($bk_countries as $country):
                 if($country['country_code'] == $location->country_code): //si existe coincidencia entre pais del bk y el pais del cliente
-                    $bookmaker["ref_link"] = 'jdhfjhfsjj';//$country['ref']
+                    $bookmaker["ref_link"] = $country['ref'];//
                     $bookmaker["bonus"] = $country['bonus'];
-                else:
+                if($country['country_code'] != $location->country_code):
                     $alternative_bk = [];
                     if($bk_alternatives and count($bk_alternatives) > 0):
                         foreach($bk_alternatives as $alt_bk):
                             if($alt_bk['country_code'] == $location->country_code):
                                 $bookmaker['bonus'] = "alt bk";
-                                $bookmaker["ref_link"] = $country['alt_ref'];
+                                $bookmaker["ref_link"] = 'jhjgjjbjv';
                             endif;
                         endforeach;
                     endif;        
