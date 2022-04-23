@@ -16,11 +16,7 @@ function aw_register_form($attr=array()){
 
         /// ROLE LEVL DETECTION
         $shortcodes_attr['role'] = (isset($attr['role'])) ? $attr['role'] : FALSE;
-        /// Autologin
-        $shortcodes_attr['autologin'] = (isset($attr['autologin'])) ? $attr['autologin'] : FALSE;
-        // MAQUETAR HTML IGUAL AL DISEÑO DE ADOBE XD
-        // IMPLEMETAR COMPROBACIONES DE INPUTS HTML5 Y JS NECESARIOS
-        // APLICAR LA MEMBRESÍA MANUALMENTE, COPIANDO PARTE DEL CODIGO QUE SE USÓ PARA ACUALIZAR O ACTIVAR MEMBRESIAS CON EL ANTERIOR ENFOQUE
+
         // SI LA MEMBRESIA NÓ ES DE PAGA LLEVAR A LA PAGINA DE GRACIAS, SI NÓ LLEVAR AL 
         
         //////////// STYLES CSS ///////////

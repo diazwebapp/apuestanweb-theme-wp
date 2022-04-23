@@ -62,7 +62,16 @@ window.addEventListener("load",()=>{
                     }
                     register_data[input.name] = input.value
                 }
+                const {country} = e.target
+                if(country.value == ''){
+                    show_toats("toastsRegisterForm",`${country.name} está vacio!`)
+                    breack = true
+                    return;
+                }
+                register_data[country.name] = country.value
+                
                 const {status,redirect_url} = await register_user(register_data)  
+                
                 if(status == 'ok'){
                     document.location = redirect_url
                 } 

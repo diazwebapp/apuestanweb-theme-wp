@@ -24,5 +24,14 @@ function register_routes(){
         'methods' => 'POST',
         'callback' => 'aw_register_new_payment'
     ]);
+    //shortcode prices
+    register_rest_route('aw-user-levels','/check-user-level',[
+        'methods' => 'POST',
+        'callback' => 'aw_check_user_level'
+    ]);
+    register_rest_route('aw-user-levels','/user-level-opeations',[
+        'methods' => 'POST',
+        'callback' => 'aw_user_level_operations'
+    ]);
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );

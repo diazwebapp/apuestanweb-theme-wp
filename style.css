@@ -1784,12 +1784,9 @@ footer .menu li a::before{
     margin-top: 6rem;
     margin-bottom: -2.5rem;
 }
-.price_box .price_btn div{
+.price_box .price_btn button{
 	font-size: 3.5rem;
-	padding: 1.5rem 6.4rem;
-	width: 100%;
 	background-color: #05CB2D;
-	box-shadow: none;
 	color:white;
 }
 .price_side_wrapper{

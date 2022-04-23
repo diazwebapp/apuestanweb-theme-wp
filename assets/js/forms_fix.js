@@ -1,7 +1,6 @@
-let aw_payment_methods = false
-const rest_uri = php_payment_services["rest_api_uri"]
+const {rest_api_uri,current_user} = php_payment_services
 window.addEventListener("load",()=>{
-
+  
     //login form
     const container_form = document.querySelector(".ihc-login-form-wrap")
     const form = document.querySelector("#ihc_login_form")
@@ -57,132 +56,111 @@ window.addEventListener("load",()=>{
     }
 
     ////////////////////Register form/////////////////////////
-    
-    const inputs = document.querySelector('#payment-select input')
-    
-      
-    // copiar al portapapeles
-    const labels = document.querySelectorAll('label.copy')
-    
-    if(labels.length>0){
-      
-      for(let label of labels){
-        label.addEventListener('click',async e =>{
-          const text_id = label.getAttribute("for")
-          const input = document.getElementById(text_id)
-          if(!navigator.clipboard){
-            input.focus()
-            input.select();
-            const result = document.execCommand('copy');
-            if (result === 'unsuccessful') {
-              console.error('Failed to copy text.');
-              return;
-            }
-            await $('.toast').toast('show')
-            return
-          }
-
-          try {
-            await navigator.clipboard.writeText(input.value)
-            await $('.toast').toast('show')
-          } catch (err) {
-            console.error('Failed to copy!', err)
-          }
-
-        })
+    const checkout_form = document.getElementById("checkout-form")
+    if(checkout_form){
+      //Seleccionamos todos los inputs de metodos de pago
+      const payment_inputs = checkout_form.querySelectorAll('#payment-select input[name=aw-payment-radio]')
+      if(payment_inputs.length > 0){
+        payment_inputs[0].checked = true
+        aw_payment_method_controller(payment_inputs[0])
+        for(let payment_input of payment_inputs){
+          payment_input.addEventListener('change',()=>aw_payment_method_controller(payment_input))
+        }        
       }
+      // Seleccionamos todos los label para copiar al portapapeles
+      const labels = checkout_form.querySelectorAll('#payment-select label.copy')
+      //Recorremos los labels y asignamos su respectiva función copy
+      if(labels.length>0){
+        
+        for(let label of labels){
+          label.addEventListener('click',async e =>{
+            const text_id = label.getAttribute("for")
+            const input = document.getElementById(text_id)
+            if(!navigator.clipboard){ //Si el navegador no soporta navigator.clipboard
+              input.focus()
+              input.select();
+              const result = document.execCommand('copy');
+              if (result === 'unsuccessful') {
+                console.error('Failed to copy text.');
+                return;
+              }
+              await $('.toast').toast('show')
+              return
+            }
+  
+            try {
+              await navigator.clipboard.writeText(input.value)
+              await $('.toast').toast('show')
+            } catch (err) {
+              console.error('Failed to copy!', err)
+            }
+  
+          })
+        }
+      }
+      const submit_btn = checkout_form.querySelector("button")
+      if(submit_btn){
+        submit_btn.disabled = false
+      }
+      checkout_form.addEventListener('submit',async (e)=>await aw_submit_checkout_form(e))
     }
+      
 })
-function aw_default_register_payment_method(register_form,method){
-
-  const ihc_payment_gateway_input = register_form.querySelector("input[name=ihc_payment_gateway]")
-  const ihc_payment_selected_input = register_form.querySelector("input[name=payment_selected]")
-  if(ihc_payment_gateway_input && ihc_payment_selected_input && method){
-    ihc_payment_gateway_input.value = method
-    ihc_payment_selected_input.value = method
-  }else if(ihc_payment_gateway_input && ihc_payment_selected_input){
-    ihc_payment_gateway_input.value = ""
-    ihc_payment_selected_input.value = ""
-    ihc_payment_gateway_input.setAttribute("required","")
-    ihc_payment_selected_input.setAttribute("required","")
-  }
-}
-
-function aw_change_register_payment_method(e){
-
-  const ihc_payment_gateway_input = document.querySelector("input[name=ihc_payment_gateway]")
-  const ihc_payment_selected_input = document.querySelector("input[name=payment_selected]")
-  
-  if(ihc_payment_gateway_input && ihc_payment_selected_input){
-    ihc_payment_gateway_input.value = e.value
-    ihc_payment_selected_input.value = e.value
-    ihc_payment_gateway_input.id = e.getAttribute('data-method')
-    ihc_payment_selected_input.id = e.getAttribute('data-method')
-  }
-}
-
-
-async function aw_register_payment(form_event) {
-  const inputs = form_event.target.querySelectorAll('input') //extraemos los datos por defecto del formulario
-  const {ihc_country} = form_event.target
-  let account_data = {}
-  for(let input of inputs){
-        account_data[input.name] = input.value
-        if(input.name == 'payment_selected'){
-          account_data["method_name"] = input.id
-        }
-  }
-  account_data["ihc_country"] = ihc_country.value
-  let breack = true
-  
-  if(account_data["user_login"] == "" || account_data["user_email"] == "" || account_data["pass1"] == ""){
-    breack = false
-    form_event.target.tos.checked = false
-    alert("faltan datos por completar")
-    return 
-  }
-  if (/\s/.test(account_data["user_login"])) {
-    breack = false
-    form_event.target.tos.checked = false
-    alert("el nombre de usuario tiene espacios en blanco")
-    return 
-  }
-  /* if(account_data["payment_selected"] == "" || account_data["ihc_payment_gateway"] == ""){
-    breack = false
-    form_event.target.tos.checked = false
-    alert("Seleccione un metodo de pago")
-    return
-  } */
-  if(account_data["pass1"].length <= 5){
-    breack = false
-    alert("Seleccione la contraseña es muy corta")
-    return
-  }
-  //creamos selector de register metas unico por payment account
-  let register_metas = form_event.target.querySelectorAll(`input[data-method="${account_data["payment_selected"]}"]`)
-  account_data["register"] = []
-  register_metas.forEach((input)=>{
-      account_data["register"].push({meta_key:input.name,name:input.name,meta_value:input.value})
-  })
-  
-  if(!form_event.target.tos.checked){
-    breack = false
-    alert("Acepte los terminos")
-    return
-  }
-  
-  if(breack){
-    try {
-      await fetch(`${rest_uri}aw-register-form/register-payment`,{
-        method:'POST',
-        body:JSON.stringify(account_data),
-        headers:{
-          "content-type":"application/json"
-        }
-      })
-    } catch (error) {
-      console.log(error)
+///////controlador de payment method inputs
+const aw_payment_method_controller = (e)=>{
+  const register_payment_inputs = document.querySelectorAll(`#payment-select input.register-input`) //Seleccionamos todos los campos que es usuario debe llenar para registrar su pago
+  if(register_payment_inputs.length > 0){
+    for(let register_payment_input of register_payment_inputs){
+      let account_id = register_payment_input.getAttribute('account-id')
+      register_payment_input.required = false
+      if(account_id == e.value){
+        register_payment_input.required = true
+      }      
     }
   }
 }
+const aw_submit_checkout_form = async (e)=>{
+  e.preventDefault()
+  //Seleccionamos todos los inputs de metodos de pago
+  const payment_inputs = e.target.querySelectorAll('#payment-select input[name=aw-payment-radio]')
+  let payment_account_id = false
+  let payment_history_metas = []
+  
+  for(let payment_input of payment_inputs){
+    if(payment_input.checked){
+      payment_account_id = payment_input.value
+    }
+  }
+  const register_payment_inputs = document.querySelectorAll(`#payment-select input.register-input`)
+  for(let register_payment_input of register_payment_inputs){
+      let attr = register_payment_input.getAttribute("account-id")
+      if(payment_account_id === attr){ //////////esto no funciona
+        let meta = {
+          meta_key: register_payment_input.name,
+          meta_value: register_payment_input.value
+        }
+        payment_history_metas.push(meta)
+      }
+  }
+  const {lid} = e.target
+  const {redirect} = await aw_checkout_activate_membership({payment_history_metas,lid:lid.value,payment_account_id})
+  if(redirect){
+    location = redirect
+  }
+}
 
+const aw_checkout_activate_membership = async({lid,payment_history_metas,payment_account_id})=>{
+  const uri = rest_api_uri + 'aw-user-levels/user-level-opeations/'
+  const req = await fetch(uri,{
+      method:'post',
+      body:JSON.stringify({current_user,lid,payment_history_metas,payment_account_id}),
+      headers:{
+          "content-type" : "application/json"
+      }
+  })
+  if(req.status == 200){
+    const resp = await req.json()
+    return resp
+  }
+  return false
+}
