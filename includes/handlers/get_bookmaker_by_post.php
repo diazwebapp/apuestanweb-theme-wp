@@ -49,7 +49,7 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
                                 //Seteamos sus nuevos valores
                                 $bookmaker['name'] = get_the_title($alt_bk['bk'][0]['id']);
                                 $bookmaker["bonus_sum"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus_sum');
-                                $bookmaker["ref_link"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'ref');
+                                $bookmaker["ref_link"] = 'Aqui';
                                 $bookmaker["bonus"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus');
                                 $logo = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'mini_img');
                                 $bookmaker['logo'] = wp_get_attachment_url($logo);
