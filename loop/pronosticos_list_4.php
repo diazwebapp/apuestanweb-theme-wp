@@ -49,21 +49,19 @@ echo "<div class='prediction_box'>
             <div class='d-flex align-items-center justify-content-between'>
                 <p class='game_name {$sport['class']}'>{$sport['name']}</p>
                 <p>
-                    <span class='time'>".$date->format('g:i a')."</span>
-                    <span class='date'>".$date->format('d M')."</span>
+                    <time>".$date->format('d M')."/".$date->format('g:i a')."</time>
+                    
                 </p>
             </div> 
 
             <div class='d-flex align-items-center justify-content-between mt_15'>
                 <div class='media align-items-center'>
                     <img src='{$teams['team1']['logo']}' class='mr_45' alt='{$teams['team1']['name']}'>
-                    <p class='media-body text-uppercase'>{$teams['team1']['acronimo']}</p>
                 </div> 
                 <div>
-                    <p style='margin:0 5px;'>vs</p> 
+                    <p style='margin:0 5px;'>{$teams['team1']['acronimo']} vs {$teams['team2']['name']}</p> 
                 </div>                               
                 <div class='media align-items-center'>
-                    <p class='media-body text-uppercase'>{$teams['team2']['acronimo']}</p>
                     <img src='{$teams['team2']['logo']}' class='ml_45' alt='{$teams['team2']['name']}'>
                 </div>
             </div>

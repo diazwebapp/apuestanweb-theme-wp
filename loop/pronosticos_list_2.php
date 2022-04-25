@@ -57,7 +57,7 @@ $p2 = carbon_get_post_meta(get_the_ID(), 'p2');
 if (!$p2) {
     $p2 = 'n/a';
 }
-$time_format_html = "<p class='p2'><span>".$date->format('g:i a')."</span></p>";
+$time_format_html = "<p><time>".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
@@ -83,11 +83,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
                         $time_format_html
-                        <p class='p2'><span>".$date->format('d M')."</span></p>
+                        <date>".$date->format('d M')."</date>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
-                <p class='team_text'>{$teams['team1']['name'] }- {$teams['team2']['name']}</p>
+                <p class='team_text'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
             </a>
                 {$vipcomponent}
             </div>

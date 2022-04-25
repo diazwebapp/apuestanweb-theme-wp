@@ -469,8 +469,8 @@ a.btn_2:hover{
    color: #00203A;
 }
 .team_box{
-	background: rgba(255, 255, 255, 0.25);
-	border-radius: 5.5rem;
+	background: #ffffff;
+	border-radius: 0.5rem;
 	backdrop-filter: blur(5rem);
 	-webkit-backdrop-filter: blur(5rem);
 	display: flex;
@@ -487,6 +487,21 @@ a.btn_2:hover{
 .team_box>img{
 	margin-top: 1.5rem;
 	height: 6.5rem;
+}
+.team_box p{
+    font-size: 1.4rem;
+    line-height: 1;
+    padding: 0.5rem 1.3rem;
+    background-color: #DDEAFD;
+    border-radius: 0.6rem;
+    color: #0558CB;
+    font-weight: 700;
+}
+.team_box strong{
+    font-size: 3.4rem;
+    line-height: 1;
+    color: #0558CB;
+    font-weight: 700;
 }
 .team_box .w-100{
 	padding-right: 0.8rem;
@@ -523,6 +538,9 @@ a.btn_2:hover{
 	display: flex;
 	align-items: center;
 }
+.event span:hover{
+	text-decoration: underline;
+}
 .event>p:first-child{
 	font-size: 2rem;
 	font-weight: 500;
@@ -553,8 +571,9 @@ a.btn_2:hover{
 .event>p>span:last-child{
 	width: 40%;
 }
-.event>p>span:first-child{
-	text-align: right;
+.event>p>span:first-child {
+    text-align: center;
+    width: 100%;
 }
 .img_logo img{
 	max-height: 4.3rem;
@@ -1821,10 +1840,15 @@ footer .menu li a::before{
     align-items: center;
     margin: 2rem 2.6rem 0 2.6rem;
     border-radius: 1rem;
+	width: 730px;
 }
 .parley_left_content{
 	display: flex;
 	align-items: center;
+	width: 32rem;
+}
+.parley_game_name_wrapper{
+	width: 15rem;
 }
 .parley_game_name{
 	display: flex;
@@ -1837,6 +1861,7 @@ footer .menu li a::before{
 	font-weight: 500;
 	padding-left: 0.5rem;
 }
+
 .parley_team{
 	height: 5rem;
 	width: 5rem;
@@ -1852,7 +1877,9 @@ footer .menu li a::before{
 	padding-left: 5rem;
 	display: flex;
 	align-items: center;
+	width: 25rem;
 }
+
 .parley_team2 {
     margin-top: -1.2rem;
 }
@@ -1860,10 +1887,13 @@ footer .menu li a::before{
 	display: flex;
 	align-items: center;
 	padding-left: 4.2rem;
+	width: 29rem;
 }
 .parley_match{
 	border-right: 0.1rem solid #E4E6E8;
 	padding-right: 3.5rem;
+	margin-bottom: 20px;
+	width: 20rem;
 }
 .parley_match p{
 	font-size: 1.4rem;
@@ -1879,29 +1909,40 @@ footer .menu li a::before{
 	border-right: none;
 	padding-left: 2.4rem;
 }
+.date-par time{
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: #0060bf;
+    margin-bottom: 10px;
+}
 .parley_right_content{
 	display: flex;
 	align-items: center;
 }
-.parley_right_first{
-	display: flex;
-	align-items: center;
+.parley_right_first {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    width: 14rem;
+	text-align: center;
 }
 .parley_right_first .p1{
 	font-size: 1.4rem;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
-	padding-right: 4.3rem;
+	padding-right: 1.3rem;
+	overflow: hidden;
 }
-.parley_right_first .p2{
-	font-size: 1.4rem;
-	line-height: 1;
-	padding: 0.5rem 1.3rem;
-	background-color: #DDEAFD;
-	border-radius: 0.6rem;
-	color: #0558CB;
-	font-weight: 700;
+.parley_right_first .p2 {
+    font-size: 1.4rem;
+    line-height: 1;
+    padding: .5rem 1.3rem;
+    background-color: #DDEAFD;
+    border-radius: 0.6rem;
+    color: #0558CB;
+    margin-left: 2rem;
+    font-weight: 700;
 }
 .question2{
 	margin-left: 3.7rem;
@@ -2068,25 +2109,27 @@ footer .menu li a::before{
 	color: #FFFFFF;
 	padding-top: 1.8rem;
 }
-.single_match_time{
-	padding-left: 10.5rem;
-	padding-right: 10.5rem;
-	text-align: center;
+.single_match_time {
+    padding-left: 10.5rem;
+    padding-right: 10.5rem;
+    text-align: center;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    color: #FFFFFF;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    grid-gap: .5rem;
+    gap: .5rem;
 }
-.single_match_time p{
-	font-size: 1.9rem;
-	line-height: 1.2;
-	color: #FFFFFF;
-	font-weight: 500;
-	width: 100px;
-}
-.single_match_time h4{
-	font-size: 2.9rem;
+.single_match_time time{
+	font-size: 2.5rem;
 	line-height: 1.2;
 	color: #FFFFFF;
 	font-weight: 700;
 	padding-top: 0.5rem;
-	width: 110%;
+	width: 100%;
 }
 .single_event_match_title_box{
 	display: flex;
@@ -2513,12 +2556,12 @@ footer .menu li a::before{
 	width: 1.4rem;
 	margin-right: 0.6rem;
 }
-.time{
-	font-size: 1.8rem;
+.prediction_box time{
+	font-size: 1.5rem;
 	margin-right: 1rem;
 	font-weight: 400;
 }
-.date{
+.prediction_box .date{
 	font-size: 1.7rem;
 	font-weight: 400;
 }
@@ -2704,8 +2747,8 @@ footer .menu li a::before{
 	font-weight: 500;
 	color: #E7ECF1;
 }
-.event_top_middle .p2{
-	font-weight: 700;
+.event_top_middle time{
+	font-weight: 400;
 	color: #FFFFFF;
 	font-size: 1.3rem;
 }
@@ -2720,6 +2763,14 @@ footer .menu li a::before{
 	font-weight: 400;
 	text-transform: uppercase;
 	text-align: center;
+}
+.event2_top_box_wrapper h2{
+    font-size: 1.6rem;
+    line-height: 1.2;
+    color: #E8EAEB;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
 }
 .event2_top_box_wrapper a{ 
 
@@ -4124,3 +4175,13 @@ a.panel-button {
 	border-radius: 20px;       /* roundness of the scroll thumb */
 	border: 3px solid #001F39;  /* creates padding around scroll thumb */
   }
+
+.container_bottom {
+    text-align: justify;
+    margin-left: 10rem;
+}  
+.container_bottom p{
+    text-align: justify;
+    line-height: 2rem;
+    margin-bottom: 2rem;
+}

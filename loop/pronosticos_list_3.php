@@ -40,7 +40,7 @@ if(!empty($predictions)):
                                 <p>{$prediction['cuote']}</p>
                                 </div>";
 endif;
-$time_format_html = "<p class='p2'><span>".$date->format('g:i a')."</span></p>";
+$time_format_html = "<p><time>".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
@@ -72,9 +72,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                 </div>
                             </div>
-                            <p class='p3' >
-                            {$teams['team1']['name']} vs {$teams['team2']['name']}
-                            </p>
+                            <h2><a href='$permalink'>                               
+                            {$teams['team1']['name']} vs {$teams['team2']['name']}                              
+                            </a> </h2>
                         </div>
                     
                         <div class='event2_box3_middle'>
@@ -110,17 +110,17 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </div>
                                 <div class='event_top_middle'>
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
-                                        $time_format_html
-                                    <p class='p2'><span>".$date->format('d M')."</span></p>
+                                        $time_format_html                                   
+                                    <span><time>".$date->format('d M')."</time></span>
                                 </div>
                                 <div class='event_top_right'>
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                 </div>
                             </div>
                             <p class='p3' >
-                                <a href='$permalink'>
-                                {$teams['team1']['name']} vs {$teams['team2']['name']}
-                                </a>
+                                <h2><a href='$permalink'>                               
+                                {$teams['team1']['name']} vs {$teams['team2']['name']}                              
+                                </a> </h2>
                             </p>
                         </div>
                     
@@ -154,7 +154,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
 
                         <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
                             <div class='panel-body text-break'>
-                            $content 
+                            <p>$content</p> 
                             </div>
                         </div>
                     </div>

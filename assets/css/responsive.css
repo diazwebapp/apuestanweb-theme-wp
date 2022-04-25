@@ -33,6 +33,9 @@
 	.container{
 		max-width: 1200px;
 	}
+	.container_bottom{
+		max-width: 800px;
+	}
 	html{
 		font-size: 56%;
 	}
@@ -512,10 +515,13 @@
 
 
 	/*parley area*/
+
 	.parley_box {
-	    flex-direction: column;
-	    padding: 3rem 2 3rem 2rem;
+		width: 48rem;
+		flex-direction: column;
+		padding: 3rem 2rem 2rem 2rem;
 	}
+
 	.parley_left_content{
 		flex-direction: column;
 		width: 100%;
@@ -523,7 +529,7 @@
 	.parley_right_content {
 	    flex-direction: column;
 	    width: 100%;
-	    align-items: end;
+	    align-items: center;
 	}
 	.parley_right_first {
 	    flex-direction: column;
@@ -539,6 +545,13 @@
 	}
 	.parley_match_time{
 		padding-left: 0;
+		margin-right: 9rem;
+	}
+	.parley_match_wrapper {
+		display: flex;
+		align-items: center;
+		padding-left: 4.2rem;
+		width: 29rem;
 	}
 	.mobile_parley_time p{
 		font-size: 1.4rem;
@@ -563,7 +576,7 @@
 	}
 	.prediction_box,
 	.vip_box.v2{
-		max-width: 100%;
+		width: 327px;
 	}
 	.event2_box_middle_content {
 	    padding: 3.7rem 2rem 1.5rem 2rem;
