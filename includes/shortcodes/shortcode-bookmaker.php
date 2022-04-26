@@ -61,7 +61,7 @@ function shortcode_bookmaker($atts)
 
                 var counters = document.querySelectorAll('#count_bk_model_3');
                 if(counters.length > 0){
-                    for(var count = 0; count <= counters.length;count++ ){
+                    for(var count = 0; count < counters.length;count++ ){
                         counters[count].textContent = count+1
                     }
                 }
