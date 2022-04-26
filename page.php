@@ -58,10 +58,12 @@ endif;
 					echo do_shortcode($custom_banner_bottom);
 					
 				if ( $faq_area ):
-					echo "<div class='container'>
+					echo "<div class='container_bottom'>
 						<div class='row'>
-							<div class='col-lg-9 mt_25'>
-								$faq_area
+							<div>
+								<p>
+									$faq_area
+								</p>
 							</div>
 						</div>
 					</div>";

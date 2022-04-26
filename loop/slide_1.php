@@ -89,11 +89,11 @@ echo "<div class='owl-item' >
                 </div>
                 <div class='col-lg-5 hero_team_col'>
                     <div class='team_box'>
-                        <img style='width:30px;height:30px; border-radius:50%;' src='{$teams['team1']['logo']}' class='img-fluid'  alt='{$teams['team1']['name']}'>
+                        <img  src='{$teams['team1']['logo']}' class='img-fluid'  alt='{$teams['team1']['name']}'>
                         <div class='w-100'>
                             <p>vs</p>
                         </div>
-                        <img style='width:30px;height:30px; border-radius:50%;' src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
+                        <img  src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
                     </div>                            
                             <div class='team_box mt_25'>
                                 <p> $p1 </p>
@@ -102,9 +102,11 @@ echo "<div class='owl-item' >
                                 </div>
                                 <p> $p2 </p>
                             </div>
-                        </div>
+                    
+
+                </div>
             </div>
-        </div>
+        </div>  
     </div>";
-    
+
 endif; 

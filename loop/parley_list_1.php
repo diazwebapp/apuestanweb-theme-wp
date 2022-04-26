@@ -60,11 +60,7 @@ echo "<div class='parley_wrapper'>
                                 <p>$fecha / $hora</p>
                             </div>
                         </div>
-                    </div>
-                    <div class='parley_match2 parley_match d-lg-block d-none'>
-                        <p>$fecha</p>
-                        <p class='p2'>$hora</p>
-                    </div>                   
+                    </div>                  
                     <div class='parley_match_time'>
                         <div class='parley_flag'>
                             <div class='parley_team'>
@@ -76,6 +72,9 @@ echo "<div class='parley_wrapper'>
                         </div>
                         <div class='parley_match_wrapper'>
                             <div class='parley_match'>
+                            <div class='date-par d-lg-block d-none'>
+                                <time>$fecha, $hora</time>
+                            </div> 
                                 <p>{$teams['team1']['name']}</p>
                                 <p class='p2'>{$teams['team2']['name']}</p>
                             </div>
@@ -96,9 +95,9 @@ echo "<div class='parley_wrapper'>
                         </div>
                     </div>
                     <div class='question2'>
-                        <button class='text-left parley_collapse_btn' type='button' data-toggle='collapse' data-target='#one{$event['id']}' aria-expanded='false'>
+                      <a href='$predictions->$permalink'>
                             Ver análisis
-                        </button>
+                        </a>
                     </div>
                 </div>  
                 </div>";
@@ -110,6 +109,7 @@ echo "<div class='parley_wrapper'>
                     </div>
                 </div>
             </div>
+
         </div>";
         }
     }

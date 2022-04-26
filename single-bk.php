@@ -78,6 +78,7 @@ endfor;
                                                 <a href="<?php echo $ref ?>">VISITAR</a>
                                             </div>
                                         </div>
+ 
                                         <div class="payment__fx">
                                             <div class="payment__wrap--lf">
                                                 <div class="payment__wrap">
@@ -101,6 +102,10 @@ endfor;
                                                 </div>
                                             </div>
                                             <div class="payment__btn">
+                                                <div class="country_box"> 
+                                                    <img class="img-fluid" src="http://localhost/betting/wp-content/uploads/2022/02/ClevelandMonogram.svg" alt="">                                          
+                                                    <p>DISPONIBLE</p>
+                                                </div>
                                                 <a href="<?php echo $ref ?>">VISITAR</a>
                                             </div>
                                         </div>

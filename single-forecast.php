@@ -60,9 +60,9 @@
                                     <img loading="lazy" src="<?php echo $teams['team1']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team1']['name'] ?>" title="<?php echo $teams['team1']['name'] ?>">
                                     <p><?php echo $teams['team1']['name'] ?></p>
                                 </div>
-                                <div class="single_match_time">
-                                    <p><?php echo $time1 ?></p>
-                                    <h4><?php echo $time2 ?></h4>
+                                <div class="single_match_time">                    
+                                    <time><?php echo $time2 ?></time>
+                                    <?php echo $time1 ?>
                                 </div>
                                 <div class="single_team1">
                                     <img loading="lazy" src="<?php echo $teams['team2']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team2']['name'] ?>">
