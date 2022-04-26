@@ -18,7 +18,7 @@ function shortcode_bookmaker($atts)
     $args['meta_key'] = '_rating';
     
     $query = new WP_Query($args);
-    if ($query->have_posts()) { 
+    if ($query->have_posts()) {
         if($model == 1): 
             $ret .=  "<div class='testimonial_area'>
                 <div class='container'>
@@ -44,21 +44,31 @@ function shortcode_bookmaker($atts)
         endif;
         
         if($model == 3):
-            $count = 0;
             $ret =  "<div style='margin:15px auto;' class='bonus_wrap'>
             <div class='row'>";
+            
             while ($query->have_posts()):
-                $count++;
-                set_query_var( 'params', [
-                    "count" => $count
-                ] );
+                
                 $query->the_post();
                 $ret .= load_template_part("loop/bookmaker_list_{$model}");
             endwhile;
             $ret .=  "</div>
             </div>";
         endif;
-        
+        ?>
+        <script>
+            document.addEventListener('DOMContentLoaded',()=>{
+
+                var counters = document.querySelectorAll('#count_bk_model_3');
+                if(counters.length > 0){
+                    for(var count = 0; count <= counters.length;count++ ){
+                        counters[count].textContent = count+1
+                    }
+                }
+
+            })
+        </script>
+        <?php
     } else {
         return '<p>no hay datos</p>';
     }
