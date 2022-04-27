@@ -35,6 +35,7 @@
 						$x1 = carbon_get_post_meta( get_the_ID(), 'p1' );
 						$x  = carbon_get_post_meta( get_the_ID(), 'x' );
 						$x2 = carbon_get_post_meta( get_the_ID(), 'p2' );
+                        
 						// datos casa de apuesta
 						$term_parent = false;
                         foreach($sport_term as $term):
