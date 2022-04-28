@@ -47,9 +47,11 @@
                         endforeach;
                         $term_link = get_term_link( $term_parent, 'league' );
 						?>
+
 						<div class="single_envent_heading">						
                             <h1 class="title_lg"><?php echo get_the_title(); ?></h1>
                         </div>
+
 
 						<div class="single_event_banner" style="background-image: url(<?php echo $img_src ?>)">
                             <div class="single_event_banner_top">

@@ -949,9 +949,7 @@ footer .menu li a::before{
 	box-shadow: 0 .5rem 3.0rem rgba(103, 108, 121, 0.33);
 }
 .game_btn.v2{
-	background: #0558CB;
-	border-color: #0558CB;
-	justify-content: center;
+	background: transparent linear-gradient(180deg, #FFC100 0%, #ab850d 54%, #d7a300 100%) 0% 0% no-repeat padding-box;	justify-content: center;
 	color: #F2E6E6;
 	font-size: 1.3rem;
 	min-height: 3rem;

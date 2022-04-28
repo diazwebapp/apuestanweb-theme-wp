@@ -135,7 +135,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             </div>
                             <div class="d-lg-block d-none"> 
                                 <div class="league_box_wrapper align-items-center">
-                                    <p class="d-lg-block d-none mr_30">'.$date->format('Y-m-d h:i:s').'</p>
+                                    <p class="d-lg-block d-none mr_30">
+                                    <time>'.$date->format('Y-m-d h:i:s').'</time>
+                                    </p>
                                     <div class="league_box1">
                                         <img src="'.$coronita.'" class="img-fluid img_30" alt="">
                                         <i class="'.$sport['class'].'"></i>
