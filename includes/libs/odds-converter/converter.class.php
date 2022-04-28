@@ -26,7 +26,7 @@ class Converter {
         if (is_numeric($iDecimal) && $iDecimal > 0) {
             $aResult[0] = "ok";
             $aResult[1] = $this->convertFractionalFromDecimal($iDecimal);
-            $aResult[2] = round(($iDecimal * 100 ) / 100, 2);
+            $aResult[2] = round(($iDecimal * 100 ) / 100, 3);
             $aResult[3] = $this->convertUsFromDecimal($iDecimal);
         }
         return $aResult;
@@ -51,14 +51,14 @@ class Converter {
     public function convertUsFromDecimal($iDecimal) {
         $iDecimal -= 1;
         if ($iDecimal < 1) {
-            return '-' . abs(round((100 / $iDecimal), 2));
+            return '-' . abs(round(100 / $iDecimal));
         } else {
-            return '+' . round(($iDecimal * 100), 2);
+            return '+' . round(($iDecimal * 100), 3);
         }
     }
 
     public function convertFractionalFromDecimal($iDecimal) {
-        $iDecimal = round(floatval($iDecimal), 2);
+        $iDecimal = round(floatval($iDecimal), 3);
         $iNumber = round(($iDecimal - 1) * 10000);
         $iDom = round(10000);
 

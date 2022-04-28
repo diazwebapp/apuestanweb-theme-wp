@@ -48,6 +48,12 @@ echo "<div class='parley_wrapper'>
                     }
                 }
             }
+            $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+            $result_cuote = $oOddsConverter->doConverting();
+            if(ODDSFORMAT):
+                $prediction['cuote'] = $result_cuote[ODDSFORMAT];
+            endif;
+
             echo "<div class='parley_box'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>

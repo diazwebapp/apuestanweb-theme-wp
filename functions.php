@@ -181,6 +181,12 @@ add_action('init', function(){
     if(is_wp_error( $response )):
         define("GEOLOCATION",json_encode($geolocation));
     endif;
+    //odds-converter
+    if(!isset($_GET['odds_format'])):
+        define('ODDSFORMAT','2');
+    else:
+        define('ODDSFORMAT',$_GET['odds_format']);
+    endif;
 });
 
 
