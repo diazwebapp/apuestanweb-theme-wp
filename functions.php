@@ -34,6 +34,7 @@ include "includes/core/meta-fields.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
+include "includes/libs/odds-converter/converter.class.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
@@ -179,6 +180,12 @@ add_action('init', function(){
     endif;
     if(is_wp_error( $response )):
         define("GEOLOCATION",json_encode($geolocation));
+    endif;
+    //odds-converter
+    if(!isset($_GET['odds_format'])):
+        define('ODDSFORMAT','2');
+    else:
+        define('ODDSFORMAT',$_GET['odds_format']);
     endif;
 });
 

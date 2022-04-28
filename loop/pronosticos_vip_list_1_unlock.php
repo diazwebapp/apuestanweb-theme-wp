@@ -59,8 +59,12 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     $prediction = '';
     $cuote = 0;
     if($predictions and count($predictions)> 0):
+        $oOddsConverter = new Converter($predictions[0]['cuote'], 'eu');
+        $result_cuote = $oOddsConverter->doConverting();
+        if(ODDSFORMAT):
+            $cuote = $result_cuote[ODDSFORMAT];
+        endif;
         $rating_ceil = $predictions[0]['tvalue'];
-        $cuote = $predictions[0]['cuote'];
         $prediction = $predictions[0]['title'];
     endif;
 

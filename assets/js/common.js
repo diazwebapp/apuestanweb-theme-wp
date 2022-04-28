@@ -37,6 +37,7 @@ $(document).ready(function () {
     
     let filter_forecast = $('select#element_select_forecasts');
     $(filter_forecast).change(e => filter(e));
+
     function filter(e){
         const date = e.target.value
         
@@ -67,7 +68,8 @@ $(document).ready(function () {
             }
         });
     };
-    
+    let select_odds = $('select#select_odds_format');
+    select_odds.change(e =>handler_odds_format(e))
 });
 function test(param){
     let current_parley = param.attributes.data.textContent
@@ -134,6 +136,7 @@ date_items.forEach(item=>{
     },1000)
 })
 
-function load_more_updateCountdown(){
-    console.log('test_count')
+function handler_odds_format(e){
+    let format = e.target.value
+    document.location = '?odds_format='+format
 }
