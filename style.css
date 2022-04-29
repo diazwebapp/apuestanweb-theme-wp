@@ -2087,9 +2087,10 @@ footer .menu li a::before{
 	width: 2.8rem;
 }
 .single_event_banner_middle{
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 80px 1fr;
+	place-items: center;
+	place-content: center;
 }
 .single_team1{
 	margin-top: 2.5rem;
