@@ -31,14 +31,19 @@ $bk = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
 
 
 $html_predictions = '';
-$prediction['title'] = isset($predictions[0]) ? $predictions[0]['title'] : '';
-$prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote'] : '';
 
 if(!empty($predictions)):
-        $html_predictions = "<div class='event2_box_middle_heading'>
-                                <h4>{$prediction['title']}</h4>
-                                <p>{$prediction['cuote']}</p>
-                                </div>";
+    $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title'] : '';
+    $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote'] : 1;
+
+    $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+    $odds_result = $oOddsConverter->doConverting();
+    $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+
+    $html_predictions = "<div class='event2_box_middle_heading'>
+                            <h4>{$prediction['title']}</h4>
+                            <p>{$prediction['cuote']}</p>
+                            </div>";
 endif;
 $time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
