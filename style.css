@@ -2088,7 +2088,7 @@ footer .menu li a::before{
 }
 .single_event_banner_middle{
 	display: grid;
-	grid-template-columns: 1fr 80px 1fr;
+	grid-template-columns: 1fr 90px 1fr;
 	place-items: center;
 	place-content: center;
 }
@@ -2108,18 +2108,9 @@ footer .menu li a::before{
 	padding-top: 1.8rem;
 }
 .single_match_time {
-    padding-left: 10.5rem;
-    padding-right: 10.5rem;
     text-align: center;
 }
-.single_match_time time{
-	font-size: 2.5rem;
-	line-height: 1.2;
-	color: #FFFFFF;
-	font-weight: 700;
-	padding-top: 0.5rem;
-	width: 100%;
-}
+
 .single_event_match_title_box{
 	display: flex;
 	align-items: center;
