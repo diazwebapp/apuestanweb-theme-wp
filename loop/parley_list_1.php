@@ -48,10 +48,9 @@ echo "<div class='parley_wrapper'>
                     }
                 }
             }
-            $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-            $result_cuote = $oOddsConverter->doConverting();
-            if(ODDSFORMAT):
-                $prediction['cuote'] = $result_cuote[ODDSFORMAT];
+                $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+                $odds_result = $oOddsConverter->doConverting();
+                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
             endif;
 
             echo "<div class='parley_box'>
