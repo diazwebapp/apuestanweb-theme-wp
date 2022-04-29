@@ -40,7 +40,7 @@ if(!empty($predictions)):
                                 <p>{$prediction['cuote']}</p>
                                 </div>";
 endif;
-$time_format_html = "<p><time datetime='".$date->format('g:i a')."' >".$date->format('g:i a')."</time></p>";
+$time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
