@@ -116,7 +116,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 <div class='event_top_middle'>
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                         $time_format_html                                   
-                                    <span><time datetime='".$date->format('Y-m-d')."'>".$date->format('d M')."</time></span>
+                                    <p><time datetime='".$date->format('Y-m-d')."'>".$date->format('d M')."</time></p>
                                 </div>
                                 <div class='event_top_right'>
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
