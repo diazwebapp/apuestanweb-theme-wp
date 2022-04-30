@@ -111,12 +111,9 @@
                                     <p><?php echo $teams['team1']['name'] ?></p>
                                 </div>
                                 <div datetime="<?php echo $date->format('Y-m-d h:i')?>" class="single_match_time">                    
-                                    <time><?php echo $date->format('d M Y')?></time>
-                                    <?php echo $date->format('g:i a')?>                             
+                                    <time><?php echo $date->format('g:i a')?></time>
+                                    <?php echo $date->format('d M Y')?>                           
                                 </div>
-
-                                    
-                                
                                 <div class="single_team1">
                                     <img loading="lazy" src="<?php echo $teams['team2']['logo'] ?>" alt="<?php echo $teams['team2']['name'] ?>">
                                     <p><?php echo $teams['team2']['name'] ?></p>
