@@ -21,10 +21,9 @@ function shortcode_predictions($atts)
             
             foreach($predictions as $prediction):
                 $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-                $result_eu = $oOddsConverter->doConverting();
-                if(ODDSFORMAT):
-                    $prediction['cuote'] = $result_eu[ODDSFORMAT];
-                endif;
+                $odds_result = $oOddsConverter->doConverting();
+                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+
                 $ret .= "<br/><div class='single_event_match_title_box'>
                             <div class='match_title_left_box'>
                                 <div class='match_title_img_box'>

@@ -35,7 +35,7 @@ if ($sport_term) {
 }
 
 //Equipos
-$teams = get_forecast_teams($id,['w'=>50,'h'=>50]);
+$teams = get_forecast_teams($id);
 
 $p1 = carbon_get_post_meta(get_the_ID(), 'p1');
 $x = carbon_get_post_meta(get_the_ID(), 'x');
@@ -48,11 +48,7 @@ $oddsp2 = new Converter($p2, 'eu');
 $p1 = $oddsp1->doConverting();
 $x = $oddsx->doConverting();
 $p2 = $oddsp2->doConverting();
-if(ODDSFORMAT):
-    $p1 = $p1[ODDSFORMAT];
-    $x = $x[ODDSFORMAT];
-    $p2 = $p2[ODDSFORMAT];
-endif;
+$p1 = $p1[$_SESSION['odds_format']]; $x = $x[$_SESSION['odds_format']]; $p2 = $p2[$_SESSION['odds_format']];
 if (!$p1) {
     $p1 = 'n/a';
 }

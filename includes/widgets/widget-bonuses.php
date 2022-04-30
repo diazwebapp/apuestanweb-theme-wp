@@ -51,8 +51,6 @@ class top_bonuses extends WP_Widget {
 						</div>';
 			endwhile;
 			echo '</div> </div> </div>';
-		} else {
-			echo 'Nothing found!';
 		}
 
 

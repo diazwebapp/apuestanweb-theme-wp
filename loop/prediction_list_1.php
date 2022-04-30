@@ -20,10 +20,8 @@ $vipcomponent ="<div class='plogo'>
                 <div class='rate'>?</div>";
 if(!$vip):
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-    $result_cuote = $oOddsConverter->doConverting();
-    if(ODDSFORMAT):
-        $prediction['cuote'] = $result_cuote[ODDSFORMAT];
-    endif;
+    $odds_result = $oOddsConverter->doConverting();
+    $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
     $vipcomponent ="<div class='plogo'>
                         <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                     </div>

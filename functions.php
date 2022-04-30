@@ -24,7 +24,6 @@ include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-top-forecasts.php";
 include "includes/widgets/widget-bonuses.php";
 include "includes/widgets/widget-subscribe.php";
-include "includes/widgets/widget-leagues.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
@@ -137,6 +136,9 @@ function draw_rating($rating)
 }
 
 add_action('init', function(){
+    if(!session_id()):
+        session_start();
+    endif;
     //Definimos configuraciones globales del tema
     
     //Zona horaria
@@ -182,10 +184,11 @@ add_action('init', function(){
         define("GEOLOCATION",json_encode($geolocation));
     endif;
     //odds-converter
-    if(!isset($_GET['odds_format'])):
-        define('ODDSFORMAT','2');
-    else:
-        define('ODDSFORMAT',$_GET['odds_format']);
+    if(!isset($_SESSION['odds_format'])):
+        $_SESSION['odds_format'] = 2;
+    endif;
+    if(isset($_GET['odds_format'])):
+        $_SESSION['odds_format'] = $_GET['odds_format'];
     endif;
 });
 

@@ -39,8 +39,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 </div>
                 <div class="col-lg-2 col-6 mt_20 text-right">
                     <select id="select_odds_format">
-                        <option value="2" <?php if(ODDSFORMAT=='2'): echo "selected"; endif; ?> >decimal</option>
-                        <option value="3" <?php if(ODDSFORMAT=='3'): echo "selected"; endif; ?> >american</option>
+                        <option value="2" <?php if($_SESSION['odds_format']=='2'): echo "selected"; endif; ?> >decimal</option>
+                        <option value="3" <?php if($_SESSION['odds_format']=='3'): echo "selected"; endif; ?> >american</option>
                     </select>
                     <!-- <div class="social_icons">
                         <a href="#">

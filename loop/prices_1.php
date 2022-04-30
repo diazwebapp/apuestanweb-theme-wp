@@ -26,17 +26,21 @@ function get_memberships(){
             if($metas->meta_key == 'button_label'):
                 $membership_metas['button_label'] = $metas->meta_value;
             endif;
+            if($metas->meta_key == 'description'):
+                $membership_metas['description'] = $metas->meta_value;
+            endif;
         endforeach;
         $count++;
         $checkoutPage = add_query_arg( 'lid',$value->id, $checkoutPage );
+        
         $html['tmp_menu_bar'] .= '<li class="nav-item">
                     <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-'."{$value->name}".'">'.$value->label.'</a>
                 </li>';
         $html['tmp_body_items'] .= "<div class='price_box price_box$count'>
                                         <h5>$value->label</h5>
-                                        <p class='price'>$value->price</p>
+                                        <p class='price'>$$value->price</p>
                                         <div class='box_p'>
-                                            <p>$value->short_description</p>
+                                            <p>{$membership_metas['description']}</p>
                                         </div>
                                         <div class='price_btn'>
                                             <a href='$checkoutPage' class='button'>{$membership_metas['button_label']}</a>
@@ -45,9 +49,9 @@ function get_memberships(){
         $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$value->name'>
                                             <div class='price_box price_box1'>
                                                 <h5>$value->label</h5>
-                                                <p class='price'>$value->price</p>
+                                                <p class='price'>$$value->price</p>
                                                 <div class='box_p'>
-                                                    <p>$value->short_description</p>
+                                                    <p>{$membership_metas['description']}</p>
                                                 </div>
                                                 <div class='price_btn'>
                                                     <a href='$checkoutPage' class='button'>{$membership_metas['button_label']}</a>
