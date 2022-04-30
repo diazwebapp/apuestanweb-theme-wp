@@ -34,6 +34,7 @@ include "includes/core/meta-fields.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
+include "includes/libs/odds-converter/converter.class.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
@@ -136,6 +137,9 @@ function draw_rating($rating)
 }
 
 add_action('init', function(){
+    if(!session_id()):
+        session_start();
+    endif;
     //Definimos configuraciones globales del tema
     
     //Zona horaria
@@ -179,6 +183,13 @@ add_action('init', function(){
     endif;
     if(is_wp_error( $response )):
         define("GEOLOCATION",json_encode($geolocation));
+    endif;
+    //odds-converter
+    if(!isset($_SESSION['odds_format'])):
+        $_SESSION['odds_format'] = 2;
+    endif;
+    if(isset($_GET['odds_format'])):
+        $_SESSION['odds_format'] = $_GET['odds_format'];
     endif;
 });
 

@@ -18,7 +18,12 @@ function shortcode_predictions($atts)
         $bk        = get_bookmaker_by_post( $id_post, ["w"=>69,"h"=>28], ["w"=>100,"h"=>50] );
         $predictions = carbon_get_post_meta($id_post, 'predictions');
         if($predictions and count($predictions)> 0):
+            
             foreach($predictions as $prediction):
+                $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+                $odds_result = $oOddsConverter->doConverting();
+                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+
                 $ret .= "<br/><div class='single_event_match_title_box'>
                             <div class='match_title_left_box'>
                                 <div class='match_title_img_box'>

@@ -1011,6 +1011,7 @@
 	}
 
 	/*single event area*/
+<<<<<<< HEAD
 	.single_match_time {
 	    padding-left: 1.5rem;
 	    padding-right: 1.5rem;
@@ -1018,10 +1019,12 @@
 	.single_team1{
 		padding-top: 0;
 	}
+=======
+	
+>>>>>>> 1c69f1192b30429135cab971d5de21f415a5aa25
 	.single_team1 img {
-		width: 60px;
-		height: 60px;
-		object-fit: contain;
+		width: 50px;
+		height: 50px;
 	}
 	.single_team1 p {
 		font-size: 12px;
@@ -1032,9 +1035,6 @@
 		font-size: 15px;
 	}
 	
-	.single_event_banner_middle {
-	    padding-top: 3rem;
-	}
 	.match_title_left_content {
 	    padding: 1.3rem 3.7rem 1.5rem 3.3rem;
 	}
