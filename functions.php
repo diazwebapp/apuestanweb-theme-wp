@@ -24,7 +24,6 @@ include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-top-forecasts.php";
 include "includes/widgets/widget-bonuses.php";
 include "includes/widgets/widget-subscribe.php";
-include "includes/widgets/widget-leagues.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
