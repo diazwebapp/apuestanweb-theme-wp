@@ -106,7 +106,7 @@
                             </div>
                             <div class="single_event_banner_middle">
                                 <div class="single_team1">
-                                    <img loading="lazy" src="<?php echo $teams['team1']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team1']['name'] ?>" title="<?php echo $teams['team1']['name'] ?>">
+                                    <img loading="lazy" src="<?php echo $teams['team1']['logo'] ?>" alt="<?php echo $teams['team1']['name'] ?>" title="<?php echo $teams['team1']['name'] ?>">
                                     <p><?php echo $teams['team1']['name'] ?></p>
                                 </div>
                                 <time datetime="<?php echo $date->format('Y-m-d h:i')?>" class="single_match_time">
@@ -115,7 +115,7 @@
                                     
                                 
                                 <div class="single_team1">
-                                    <img loading="lazy" src="<?php echo $teams['team2']['logo'] ?>" class="img-fluid" alt="<?php echo $teams['team2']['name'] ?>">
+                                    <img loading="lazy" src="<?php echo $teams['team2']['logo'] ?>" alt="<?php echo $teams['team2']['name'] ?>">
                                     <p><?php echo $teams['team2']['name'] ?></p>
                                 </div>
                             </div>

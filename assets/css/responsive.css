@@ -1011,11 +1011,14 @@
 	}
 
 	/*single event area*/
-	
+	.single_event_banner_middle{
+		grid-template-columns: 1fr 110px 1fr;
+	}
 	.single_team1 img {
 		width: 50px;
 		height: 50px;
 	}
+	
 	.single_team1 p {
 		font-size: 12px;
 		position: relative;
