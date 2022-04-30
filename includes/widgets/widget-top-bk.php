@@ -37,7 +37,7 @@ class top_bk extends WP_Widget
                         <div class="box_body">
                         ';
             while ($query->have_posts()):
-                
+                $key++;
                 $query->the_post();
                 $image_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
                 $image_png = wp_get_attachment_url($image_att);
@@ -50,7 +50,6 @@ class top_bk extends WP_Widget
                 if($location->success == true and $bk_countries and count($bk_countries) > 0):
                     foreach($bk_countries as $country):
                         if($country['country_code'] == $location->country_code):
-                            $key++;
                             echo '<div class="top_box">
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="top_serial">
@@ -74,7 +73,6 @@ class top_bk extends WP_Widget
                     endforeach;
                 endif;
                 if(!$location->success):
-                    $key++;
                     echo '<div class="top_box">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="top_serial">

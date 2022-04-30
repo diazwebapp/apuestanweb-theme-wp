@@ -24,13 +24,12 @@ $stars = draw_rating($rating_ceil);
 
 $bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
 $location = json_decode(GEOLOCATION);
-
 if($location->success == true and $bk_countries and count($bk_countries) > 0):
     foreach($bk_countries as $country):
         if($country['country_code'] == $location->country_code):
             echo "<div class='col-4'>
                 <div class='bonus_box'>
-                    <div class='number_text' id='count_bk_model_3'></div>
+                    <div class='number_text'>".$params['count']."</div>
                     <div class='bonus_top'>
                         <div class='d-flex align-items-center justify-content-between'>
                             <img src='$image_png' alt=''>
@@ -54,7 +53,7 @@ endif;
 if(!$location->success):
     echo "<div class='col-4'>
             <div class='bonus_box'>
-                <div class='number_text' id='count_bk_model_3'></div>
+                <div class='number_text'>".$params['count']."</div>
                 <div class='bonus_top'>
                     <div class='d-flex align-items-center justify-content-between'>
                         <img src='$image_png' alt=''>

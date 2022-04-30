@@ -2085,19 +2085,21 @@ footer .menu li a::before{
 	width: 2.8rem;
 }
 .single_event_banner_middle{
-	display: grid;
-	grid-template-columns: 1fr 90px 1fr;
-	place-items: center;
-	place-content: center;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
 }
 .single_team1{
-	margin-top: 2.5rem;
 	text-align: center;
+	padding-top: 2.3rem;
+	width: 100%;
+    height: 80px;
+    object-fit: contain;
 }
 .single_team1 img {
     width: 80px;
     height: 80px;
-	border-radius: 50%;
+    object-fit: contain;
 }
 .single_team1 p{
 	font-size: 2.2rem;
@@ -2106,9 +2108,27 @@ footer .menu li a::before{
 	padding-top: 1.8rem;
 }
 .single_match_time {
+    padding-left: 10.5rem;
+    padding-right: 10.5rem;
     text-align: center;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    color: #FFFFFF;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    grid-gap: .5rem;
+    gap: .5rem;
 }
-
+.single_match_time time{
+	font-size: 2.5rem;
+	line-height: 1.2;
+	color: #FFFFFF;
+	font-weight: 700;
+	padding-top: 0.5rem;
+	width: 100%;
+}
 .single_event_match_title_box{
 	display: flex;
 	align-items: center;
@@ -2359,7 +2379,7 @@ footer .menu li a::before{
 }
 .blog_title{
 	color: #00203A;
-	font-size: 3.5rem;
+	font-size: 4rem;
 	line-height: 1.2;
 	font-weight: 700;
 	font-family: "Segoe UI", sans-serif;
@@ -2385,7 +2405,7 @@ footer .menu li a::before{
 	color: #00203A;
 	line-height: 1.33;
 	font-weight: 400;
-	margin-top: 2rem;
+	margin-top: 10rem;
 	margin-bottom: 2rem;
 }
 .text_box2 h4{

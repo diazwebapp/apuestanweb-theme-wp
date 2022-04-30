@@ -21,16 +21,12 @@ $vipcomponent ="<div class='plogo'>
                 </div>
                     <a href='{$params['vip_link']}'><p>{$params['text_vip_link']}</p></a>
                 <div class='rate'>?</div>";
-if(!$vip):
-    $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-    $odds_result = $oOddsConverter->doConverting();
-    $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+if(!$vip)
     $vipcomponent ="<div class='plogo'>
                         <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                     </div>
                         <a href='$permalink'><p>{$prediction['title']}</p></a>
                     <div class='rate'>{$prediction['cuote']}</div>";
-endif;
 //leagues
 $sport['class'] = '' ;
 $sport['name'] = '';
@@ -53,7 +49,7 @@ echo "<div class='prediction_box'>
             <div class='d-flex align-items-center justify-content-between'>
                 <p class='game_name {$sport['class']}'>{$sport['name']}</p>
                 <p>
-                    <time datetime='".$date->format('Y-m-d h:i')."' >".$date->format('d M')."/".$date->format('g:i a')."</time>
+                    <time>".$date->format('d M')."/".$date->format('g:i a')."</time>
                     
                 </p>
             </div> 

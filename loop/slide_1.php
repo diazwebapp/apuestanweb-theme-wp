@@ -35,28 +35,18 @@ if ($sport_term) {
 }
 
 //Equipos
-$teams = get_forecast_teams($id);
+$teams = get_forecast_teams($id,['w'=>50,'h'=>50]);
+
 
 $p1 = carbon_get_post_meta(get_the_ID(), 'p1');
-$x = carbon_get_post_meta(get_the_ID(), 'x');
-$p2 = carbon_get_post_meta(get_the_ID(), 'p2');
-
-$oddsp1 = new Converter($p1, 'eu');
-$oddsx = new Converter($x, 'eu');
-$oddsp2 = new Converter($p2, 'eu');
-
-$p1 = $oddsp1->doConverting();
-$x = $oddsx->doConverting();
-$p2 = $oddsp2->doConverting();
-$p1 = $p1[$_SESSION['odds_format']]; $x = $x[$_SESSION['odds_format']]; $p2 = $p2[$_SESSION['odds_format']];
 if (!$p1) {
     $p1 = 'n/a';
 }
-
+$x = carbon_get_post_meta(get_the_ID(), 'x');
 if (!$x) {
     $x = 'n/a';
 }
-
+$p2 = carbon_get_post_meta(get_the_ID(), 'p2');
 if (!$p2) {
     $p2 = 'n/a';
 }
