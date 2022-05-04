@@ -1,8 +1,6 @@
 <?php
 $params = get_query_var('params');
-function get_memberships(){
-    global $wpdb;
-    $memberships = $wpdb->get_results("select * from {$wpdb->prefix}ihc_memberships");
+
     //menu
     $html['menubar'] = '<ul class="nav nav-pills" id="pills-tab">{menuitems}</ul>';
     $html['tmp_menu_bar'] = '';
@@ -12,49 +10,40 @@ function get_memberships(){
     //cuerpo mobile
     $html['cardbodymobile'] = "<div class='tab-content' id='pills-tabContent'>{bodyitemsmobile}</div>";
     $html['tmp_body_items_mobile'] = '';
-    if(count($memberships) == 0):
+    if(count($params['memberships']) == 0):
         return;
     endif;
     $count = 0;
-    $checkoutPage = get_option( 'ihc_checkout_page', 0 );
-    $checkoutPage = get_permalink( $checkoutPage );
     
-    foreach($memberships as $key => $value):
-        $query_membership_metas = $wpdb->get_results("select meta_key,meta_value from {$wpdb->prefix}ihc_memberships_meta where membership_id={$value->id}");
-        $membership_metas['button_label'] = '';
-        foreach($query_membership_metas as $key => $metas):
-            if($metas->meta_key == 'button_label'):
-                $membership_metas['button_label'] = $metas->meta_value;
-            endif;
-            if($metas->meta_key == 'description'):
-                $membership_metas['description'] = $metas->meta_value;
-            endif;
-        endforeach;
+    foreach($params['memberships'] as $id => $level):
+        $button_label = '';
+        if(isset($level['button_label']) && $level['button_label'] != ''){
+            $button_label = $level['button_label'];
+        }
         $count++;
-        $checkoutPage = add_query_arg( 'lid',$value->id, $checkoutPage );
         
         $html['tmp_menu_bar'] .= '<li class="nav-item">
-                    <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-'."{$value->name}".'">'.$value->label.'</a>
+                    <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-'."{$id}".'">'.ihc_correct_text($level['label']).'</a>
                 </li>';
         $html['tmp_body_items'] .= "<div class='price_box price_box$count'>
-                                        <h5>$value->label</h5>
-                                        <p class='price'>$$value->price</p>
+                                        <h5>".ihc_correct_text($level['label'])."</h5>
+                                        <p class='price'>$". ihc_correct_text($level['price']) ."</p>
                                         <div class='box_p'>
-                                            <p>{$membership_metas['description']}</p>
+                                            <p>". ihc_correct_text($level['description']) ."</p>
                                         </div>
                                         <div class='price_btn'>
-                                            <a href='$checkoutPage' class='button'>{$membership_metas['button_label']}</a>
+                                        ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, $params['select_payment'], TRUE ) ."
                                         </div>
                             </div>";
-        $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$value->name'>
+        $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$id'>
                                             <div class='price_box price_box1'>
-                                                <h5>$value->label</h5>
-                                                <p class='price'>$$value->price</p>
+                                                <h5>".ihc_correct_text($level['label'])."</h5>
+                                                <p class='price'>$". ihc_correct_text($level['price']) ."</p>
                                                 <div class='box_p'>
-                                                    <p>{$membership_metas['description']}</p>
+                                                    <p>". ihc_correct_text($level['description']) ."</p>
                                                 </div>
                                                 <div class='price_btn'>
-                                                    <a href='$checkoutPage' class='button'>{$membership_metas['button_label']}</a>
+                                                    ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, $params['select_payment'], TRUE ) ."
                                                 </div>
                                             </div>
                                         </div>";
@@ -62,15 +51,11 @@ function get_memberships(){
     $html['menubar'] = str_replace('{menuitems}',$html['tmp_menu_bar'],$html['menubar']);
     $html['cardbody'] = str_replace('{bodyitems}',$html['tmp_body_items'],$html['cardbody']);
     $html['cardbodymobile'] = str_replace('{bodyitemsmobile}',$html['tmp_body_items_mobile'],$html['cardbodymobile']);
-    return $html;
-}
 
 $logo =  get_template_directory_uri().'/assets/img/logo.svg';
 if ( carbon_get_theme_option( 'logo' ) ):
     $logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
 endif;
-
-$menuitems = get_memberships();
 
 echo "<div class='price_wrapper'>
 <div class='container'>
@@ -82,14 +67,14 @@ echo "<div class='price_wrapper'>
             </div>
         </div>
         <div class='col-lg-12 d-md-none d-block'>
-            ".$menuitems['menubar']."
+            ".$html['menubar']."
         </div>
         <div class='col-lg-12 d-md-none d-block'>
-            ".$menuitems['cardbodymobile']."
+            ".$html['cardbodymobile']."
         </div>
     </div>
     <div class='d-md-block d-none'>        
-        ".$menuitems['cardbody']."
+        ".$html['cardbody']."
     </div>  
 </div>
 </div>";
