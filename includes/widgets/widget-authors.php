@@ -22,7 +22,7 @@ class top_authors extends WP_Widget {
 		if ($users) {
 			echo '<div class="col-lg-12 col-md-6">
                     <div class="side_box mt_30">
-                        <div class="box_header">' . $title . '</div>
+                        <div class="box_header">' . $title . '</div>                    
                         <div class="box_body">
                         ';
 			foreach ($users->get_results() as $key => $user) {
@@ -36,8 +36,8 @@ class top_authors extends WP_Widget {
                 $key++;
                 $link = PERMALINK_PROFILE.'?profile='.$user->ID;
                 $flechita_indicadora = "";
-                $flechita_up = get_template_directory_uri(  ) . '/assets/img/love2.png';
-                $flechita_down = get_template_directory_uri(  ) . '/assets/img/love1.png';
+                $flechita_up = '<i class="fas fa-angle-up"></i>';
+                $flechita_down = '<i class="fas fa-angle-down"></i>';
                 if(floatval($acerted) > floatval($failed)):
                     $flechita_indicadora = $flechita_up;
                 endif;
@@ -55,15 +55,30 @@ class top_authors extends WP_Widget {
                             </div>
                             <div class='text_box'>
                                 <h4>$display_name</h4>
-                                <p class='green'>
-                                    <img src=' $flechita_indicadora' alt=''>
-                                    $acerted - $failed, $rank Ult 10 picks
-                                </p>
+                                <div class='statswg'>  
+                                    <table class='table'>
+                                    <thead>
+                                        <tr>                                   
+                                        <th scope='col'>W-L</th>
+                                        <th scope='col'>Profit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr> 
+                                            <td>$flechita_indicadora $acerted - $failed</td>
+                                            <td>$$rank</td>
+                                        </tr>
+                                        <tr>
+                                    </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </a>
+                        
                     </div>";
             }
-			echo '</div> </div> </div>';
+            
+			echo '<h3>Ultimos 10 picks</h3></div> </div></div>';
 		} else {
 			echo 'Nothing found!';
 		}
