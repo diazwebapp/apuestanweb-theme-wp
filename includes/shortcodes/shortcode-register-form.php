@@ -131,6 +131,12 @@ function aw_register_form($attr=array()){
                         display:inline !important;
                         width:unset !important;
                     }
+                    .ihc-tos-wrap{
+                        text-align:left !important;
+                    }
+                    .ihc-tos-wrap a{
+                        margin-left:10px;
+                    }
                     .ihc-hide-pw{
                         right:3%;
                         bottom:60px !important;
