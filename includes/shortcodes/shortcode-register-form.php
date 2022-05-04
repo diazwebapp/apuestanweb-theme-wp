@@ -118,11 +118,13 @@ function aw_register_form($attr=array()){
                     }
                     .aw-form input,.aw-form select,.aw-form .select2-container--default .select2-selection--single{
                         width:100%;
-                        border:1px solid lightblue !important;
                         padding:10px !important;
-                        border-radius:10px !important;
+                        border-radius:20px !important;
                         display:block;
                         margin:5px auto !important;
+                        background:#fff !important;
+                        border:4px solid #fff !important;
+                        box-shadow: -4px -4px 15px #e9e5e5 inset, 4px 4px 15px #ededed inset, -2px -2px 10px #ededed;
                     }
                     .aw-form .select2-container--default .select2-selection--single{
                         padding:0px !important;
