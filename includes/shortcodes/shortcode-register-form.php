@@ -124,7 +124,7 @@ function aw_register_form($attr=array()){
                         margin:5px auto !important;
                         background:#fff !important;
                         border:4px solid #fff !important;
-                        box-shadow: -4px -4px 15px #e9e5e5 inset, 4px 4px 15px #ededed inset, -2px -2px 10px #ededed;
+                        box-shadow: -4px -4px 15px #ededed inset, 4px 4px 15px #ccc inset, -4px -4px 10px #ededed, 4px 4px 10px #ccc;
                     }
                     .aw-form .select2-container--default .select2-selection--single{
                         padding:0px !important;
