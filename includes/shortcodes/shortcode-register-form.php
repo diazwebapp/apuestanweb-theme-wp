@@ -53,9 +53,9 @@ function aw_register_form($attr=array()){
                 </div>';
     $str = '';
 
-	/* if (!IHCACTIVATEDMODE){
+	if (!IHCACTIVATEDMODE){
 		$str .= ihc_public_notify_trial_version();
-	} */
+	}
 
 	$user_type = ihc_get_user_type();
 	if ($user_type=='unreg'){
