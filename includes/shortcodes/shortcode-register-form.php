@@ -121,10 +121,10 @@ function aw_register_form($attr=array()){
                         padding:10px !important;
                         border-radius:15px !important;
                         display:block;
-                        margin:5px auto !important;
+                        margin:15px auto !important;
                         background:#fff !important;
-                        border:4px solid #fff !important;
-                        box-shadow: -4px -4px 15px #ededed inset, 4px 4px 15px #ccc inset, -4px -4px 10px #ededed, 4px 4px 10px #ccc;
+                        border:3px solid #fff !important;
+                        box-shadow: -4px -4px 8px #ededed inset, 4px 4px 8px #ccc inset, -4px -4px 15px #ededed, 4px 4px 10px #ccc;
                     }
                     .aw-form .select2-container--default .select2-selection--single{
                         padding:0px !important;
@@ -142,7 +142,7 @@ function aw_register_form($attr=array()){
                     .aw-hide-pw{
                         right:3%;
                         position:absolute;
-                        top:46px;
+                        top:55px;
                     }
             </style>';
         $str .= '<div class="aw-form "><p class="title-form" >Register</p>' . $obj_form->form() . '</div>';
