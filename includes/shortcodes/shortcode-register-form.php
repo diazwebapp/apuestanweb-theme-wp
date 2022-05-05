@@ -1,4 +1,11 @@
 <?php
+add_action( 'wp_print_styles', function(){
+    wp_deregister_style( 'nice_select' );
+}, 100 );
+add_action( 'wp_print_scripts', function(){
+    wp_deregister_script( 'plugins' );
+}, 100 );
+
 
 function aw_register_form($attr=array()){
     
