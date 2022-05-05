@@ -53,9 +53,9 @@ function aw_register_form($attr=array()){
                 </div>';
     $str = '';
 
-	if (!IHCACTIVATEDMODE){
+	/* if (!IHCACTIVATEDMODE){
 		$str .= ihc_public_notify_trial_version();
-	}
+	} */
 
 	$user_type = ihc_get_user_type();
 	if ($user_type=='unreg'){
@@ -119,7 +119,7 @@ function aw_register_form($attr=array()){
                     .aw-form input,.aw-form select,.aw-form .select2-container--default .select2-selection--single{
                         width:100%;
                         padding:10px !important;
-                        border-radius:20px !important;
+                        border-radius:15px !important;
                         display:block;
                         margin:5px auto !important;
                         background:#fff !important;
@@ -139,12 +139,13 @@ function aw_register_form($attr=array()){
                     .ihc-tos-wrap a{
                         margin-left:10px;
                     }
-                    .ihc-hide-pw{
+                    .aw-hide-pw{
                         right:3%;
-                        bottom:60px !important;
+                        position:absolute;
+                        top:46px;
                     }
             </style>';
-        $str .= '<div class="aw-form '.$template.'"><p class="title-form" >Register</p>' . $obj_form->form() . '</div>';
+        $str .= '<div class="aw-form "><p class="title-form" >Register</p>' . $obj_form->form() . '</div>';
         $str = str_replace('ihc-form-create-edit',"form-row",$str);
         $str = str_replace('iump-form-text',"form-group col-md-6",$str);
         $str = str_replace('iump-labels-register','',$str);
@@ -152,8 +153,8 @@ function aw_register_form($attr=array()){
         $str = str_replace('iump-form-ihc_country',"form-group col-md-6",$str);
         $str = str_replace('iump-form-checkbox',"form-group col-md-6",$str);
         $str = str_replace('ihc-strength-wrapper','',$str);
+        $str = str_replace('ihc-hide-pw','aw-hide-pw',$str);
         $str = str_replace('<div class="iump-form-line-register iump-form-upload_image"','<div style="display:none;"',$str);
-        
         
         return $str;
     }else{
