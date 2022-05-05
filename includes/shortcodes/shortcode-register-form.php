@@ -122,9 +122,7 @@ function aw_register_form($attr=array()){
                         border-radius:15px !important;
                         display:block;
                         margin:15px auto !important;
-                        background:#fff !important;
-                        border:3px solid #fff !important;
-                        box-shadow: -4px -4px 8px #ededed inset, 4px 4px 8px #ccc inset, -4px -4px 15px #ededed, 4px 4px 10px #ccc;
+                        border:2px solid lightblue !important;
                     }
                     .aw-form .select2-container--default .select2-selection--single{
                         padding:0px !important;
