@@ -1,30 +1,23 @@
 <?php
-add_action( 'wp_print_styles', function(){
-    wp_deregister_style( 'nice_select' );
-}, 100 );
-add_action( 'wp_print_scripts', function(){
-    wp_deregister_script( 'plugins' );
-}, 100 );
-
 
 function aw_register_form($attr=array()){
     
-        $html = '<div class="container" >
+        /* $html = '<div class="container" >
                     <form class="aw-form">
                         <p class="title-form" >Register</p>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputName">Nombre</label>
-                                <input type="text" class="form-control" id="inputName" placeholder="Nombre" />
+                                <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Nombre" />
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputApellido">Apellido</label>
-                                <input type="text" class="form-control" id="inputApellido" placeholder="Apellido" />
+                                <input type="text" class="form-control form-control-lg" id="inputApellido" placeholder="Apellido" />
                             </div>
     
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                <input type="email" class="form-control form-control-lg" id="inputEmail4" placeholder="Email">
                             </div>
     
                             <div class="form-group col-md-6">
@@ -38,12 +31,12 @@ function aw_register_form($attr=array()){
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                <input type="password" class="form-control form-control-lg" id="inputPassword4" placeholder="Password">
                             </div>
                             
                             <div class="form-group col-md-6">
                                 <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                <input type="password" class="form-control form-control-lg" id="inputPassword4" placeholder="Password">
                             </div>
     
                             <div class="form-group">
@@ -57,7 +50,7 @@ function aw_register_form($attr=array()){
                         </div>
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
-                </div>';
+                </div>'; */
     $str = '';
 
 	if (!IHCACTIVATEDMODE){
@@ -114,6 +107,7 @@ function aw_register_form($attr=array()){
                         border-radius:10px;
                         padding:30px;
                         border:1px solid black;
+                        display:none;
                     }
                     .aw-form .title-form{
                         border-bottom:3px solid #ccc;
@@ -145,9 +139,9 @@ function aw_register_form($attr=array()){
                         margin-left:10px;
                     }
                     .aw-hide-pw{
-                        right:3%;
-                        position:absolute;
-                        top:55px;
+                        right:3% !important;
+                        position:absolute !important;
+                        top:30px !important;
                     }
             </style>';
         $str .= '<div class="aw-form "><p class="title-form" >Register</p>' . $obj_form->form() . '</div>';
@@ -158,9 +152,26 @@ function aw_register_form($attr=array()){
         $str = str_replace('iump-form-ihc_country',"form-group col-md-6",$str);
         $str = str_replace('iump-form-checkbox',"form-group col-md-6",$str);
         $str = str_replace('ihc-strength-wrapper','',$str);
-        $str = str_replace('ihc-hide-pw','aw-hide-pw',$str);
-        $str = str_replace('<div class="iump-form-line-register iump-form-upload_image"','<div style="display:none;"',$str);
-        
+        $str = str_replace('ihc-hide-pw','ihc-hide-pw aw-hide-pw',$str);
+        $str .= "<script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            let inputs = document.querySelectorAll('input')
+            let form = document.querySelector('.aw-form')
+            if(inputs.length > 0){
+                inputs.forEach(input=>{
+                    if(input.name === 'pass2' || input.name === 'user_login' || input.name === 'first_name' || input.name === 'last_name' || input.name === 'ihc_avatar'){
+                        if(input.name === 'ihc_avatar'){
+                            input.parentNode.parentNode.remove()
+                        }
+                        input.parentNode.remove()
+                    }
+                })
+            }
+            if(form){
+                form.style.display = 'block'
+            }
+        })
+        </script>";
         return $str;
     }else{
         

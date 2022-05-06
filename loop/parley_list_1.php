@@ -1,4 +1,5 @@
 <?php
+
 $params = get_query_var('params');
 $bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>50,"h"=>12]);
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
@@ -129,7 +130,7 @@ echo "<div class='parley_wrapper'>
                         <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
                     </div>
                     <div class='blog_select_box parley_right_content2_mb'>
-                        <select onchange='test(this)' name='apu' id='apu' data='$parley_id' >
+                        <select class='form-select' onchange='test(this)' name='apu' id='apu' data='$parley_id' >
                             <option value='10'>Apuesta $10</option>
                             <option value='15'>Apuesta $15</option>
                             <option value='20'>Apuesta $20</option>

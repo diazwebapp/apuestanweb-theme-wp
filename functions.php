@@ -102,15 +102,13 @@ function jbetting_src()
     wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
-    
+
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.4.1.min.js', array(), null, false);
     wp_enqueue_script('plugins', get_template_directory_uri() . '/assets/js/plugins.js', array(), null, false);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    wp_enqueue_script('owl_carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), '1.0.0', true);
 }
-
 
     if ('disable_gutenberg') {
         add_filter('use_block_editor_for_post_type', '__return_false', 100);
