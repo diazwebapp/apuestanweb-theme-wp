@@ -57,19 +57,19 @@ class top_authors extends WP_Widget {
                                 <h4>$display_name</h4>
                                 <div class='statswg'>  
                                     <table class='table'>
-                                    <thead>
-                                        <tr>                                   
-                                        <th scope='col'>W-L</th>
-                                        <th scope='col'>Profit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr> 
-                                            <td>$flechita_indicadora $acerted - $failed</td>
-                                            <td>$$rank</td>
-                                        </tr>
-                                        <tr>
-                                    </tbody>
+                                        <thead>
+                                            <tr>                                   
+                                            <th scope='col'>W-L</th>
+                                            <th scope='col'>Profit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr> 
+                                                <td>$flechita_indicadora $acerted - $failed</td>
+                                                <td>$$rank</td>
+                                            </tr>
+                                            <tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

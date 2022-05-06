@@ -1,56 +1,6 @@
 <?php
 
 function aw_register_form($attr=array()){
-    
-        /* $html = '<div class="container" >
-                    <form class="aw-form">
-                        <p class="title-form" >Register</p>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputName">Nombre</label>
-                                <input type="text" class="form-control form-control-lg" id="inputName" placeholder="Nombre" />
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputApellido">Apellido</label>
-                                <input type="text" class="form-control form-control-lg" id="inputApellido" placeholder="Apellido" />
-                            </div>
-    
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Email</label>
-                                <input type="email" class="form-control form-control-lg" id="inputEmail4" placeholder="Email">
-                            </div>
-    
-                            <div class="form-group col-md-6">
-                                <label for="inlineFormCustomSelectPref">Preference</label><br/>
-                                <select id="inlineFormCustomSelectPref">
-                                    <option selected>Choose...</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control form-control-lg" id="inputPassword4" placeholder="Password">
-                            </div>
-                            
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control form-control-lg" id="inputPassword4" placeholder="Password">
-                            </div>
-    
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Check me out
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </form>
-                </div>'; */
     $str = '';
 
 	if (!IHCACTIVATEDMODE){
@@ -159,10 +109,7 @@ function aw_register_form($attr=array()){
             let form = document.querySelector('.aw-form')
             if(inputs.length > 0){
                 inputs.forEach(input=>{
-                    if(input.name === 'pass2' || input.name === 'user_login' || input.name === 'first_name' || input.name === 'last_name' || input.name === 'ihc_avatar'){
-                        if(input.name === 'ihc_avatar'){
-                            input.parentNode.parentNode.remove()
-                        }
+                    if(input.name === 'user_login'){
                         input.parentNode.remove()
                     }
                 })
