@@ -62,9 +62,10 @@ function aw_register_form($attr=array()){
                     .aw-form .title-form{
                         border-bottom:3px solid #ccc;
                         font-size:3rem;
+                        padding:10px 0;
                         margin-bottom:20px;
                     }
-                    .aw-form label{
+                    .aw-form label,.aw-form .title-form{
                         color:black;
                     }
                     .aw-form input,.aw-form select,.aw-form .select2-container--default .select2-selection--single{
@@ -102,6 +103,15 @@ function aw_register_form($attr=array()){
                         position:absolute !important;
                         top:30px !important;
                     }
+                    .ihc-checkout-page-left-side {
+                        display: block !important;
+                        min-width: 300px !important;
+                        max-width: unset !important;
+                        padding: 10px 0 !important;
+                        width: 100% !important;
+                        box-sizing: border-box;
+                        vertical-align: top;
+                    }
             </style>';
         $str .= '<div class="aw-form "><p class="title-form" >Register</p>' . $obj_form->form() . '</div>';
         $str = str_replace('ihc-form-create-edit',"form-row",$str);
@@ -109,9 +119,10 @@ function aw_register_form($attr=array()){
         $str = str_replace('iump-labels-register','',$str);
         $str = str_replace('iump-form-password',"form-group col-md-6",$str);
         $str = str_replace('iump-form-ihc_country',"form-group col-md-6",$str);
-        $str = str_replace('iump-form-checkbox',"form-group col-md-6",$str);
+        $str = str_replace('iump-form-checkbox',"form-group col-md-10",$str);
         $str = str_replace('ihc-strength-wrapper','',$str);
         $str = str_replace('ihc-hide-pw','ihc-hide-pw aw-hide-pw',$str);
+        $str = str_replace('ihc-checkout-page-wrapp','form-group col-md-12',$str);
         $str .= "<script>
         document.addEventListener('DOMContentLoaded',()=>{
             let inputs = document.querySelectorAll('input')
