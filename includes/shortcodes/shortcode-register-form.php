@@ -55,15 +55,25 @@ function aw_register_form($attr=array()){
         $str .='<style>
                     .aw-form{
                         border-radius:10px;
-                        padding:30px;
+                        padding:20px;
                         border:1px solid black;
                         display:none;
+                    }
+                    .aw-form form{
+                        max-width:400px !important;
+                        min-width:250px !important;
+                        margin:0 auto;
+                        display:grid;
+                    }
+                    .aw-form form > div:nth-child(4){
+                        order:1;
                     }
                     .aw-form .title-form{
                         border-bottom:3px solid #ccc;
                         font-size:3rem;
-                        padding:10px 0;
-                        margin-bottom:20px;
+                        padding: 0 0 20px 0;
+                        margin: 0 auto 30px auto;
+                        width:90%;
                     }
                     .aw-form label,.aw-form .title-form{
                         color:black;
@@ -94,35 +104,43 @@ function aw_register_form($attr=array()){
                     }
                     .ihc-tos-wrap{
                         text-align:left !important;
+                        margin-top:30px;
+                        order:4;
                     }
                     .ihc-tos-wrap a{
                         margin-left:10px;
                     }
                     .aw-hide-pw{
-                        right:3% !important;
+                        right:1% !important;
                         position:absolute !important;
-                        top:30px !important;
+                        top:20px !important;
                     }
                     .ihc-checkout-page-one-column, .ihc-checkout-page-left-side, .ihc-checkout-page-right-side{
                         display: block !important;
-                        min-width: 300px !important;
+                        min-width: 250px !important;
                         max-width: unset !important;
                         padding: 10px 0 !important;
                         width: 100% !important;
                         box-sizing: border-box;
                         vertical-align: top;
                     }
+                    .iump-form-password{
+                        position:relative !important;
+                    }
             </style>';
         $str .= '<div class="aw-form "><p class="title-form" >Register</p>' . $obj_form->form() . '</div>';
-        $str = str_replace('ihc-form-create-edit',"form-row",$str);
-        $str = str_replace('iump-form-text',"form-group col-md-6",$str);
+        $str = str_replace('ihc-form-create-edit',"",$str);
+        $str = str_replace('iump-form-text',"",$str);
         $str = str_replace('iump-labels-register','',$str);
-        $str = str_replace('iump-form-password',"form-group col-md-6",$str);
-        $str = str_replace('iump-form-ihc_country',"form-group col-md-6",$str);
-        $str = str_replace('iump-form-checkbox',"form-group col-md-10",$str);
+        $str = str_replace('iump-form-ihc_country',"",$str);
+        $str = str_replace('iump-form-checkbox',"",$str);
         $str = str_replace('ihc-strength-wrapper','',$str);
         $str = str_replace('ihc-hide-pw','ihc-hide-pw aw-hide-pw',$str);
-        $str = str_replace('ihc-checkout-page-wrapp','form-group col-md-12',$str);
+        $str = str_replace('ihc-checkout-page-wrap','',$str);
+        $str = str_replace('iump-form-line-register ','',$str);
+        $str = str_replace('iump-submit-form','',$str);
+        
+        
         $str .= "<script>
         document.addEventListener('DOMContentLoaded',()=>{
             let inputs = document.querySelectorAll('input')
