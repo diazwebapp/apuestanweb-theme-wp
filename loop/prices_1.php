@@ -51,7 +51,7 @@ $params = get_query_var('params');
     $html['menubar'] = str_replace('{menuitems}',$html['tmp_menu_bar'],$html['menubar']);
     $html['cardbody'] = str_replace('{bodyitems}',$html['tmp_body_items'],$html['cardbody']);
     $html['cardbodymobile'] = str_replace('{bodyitemsmobile}',$html['tmp_body_items_mobile'],$html['cardbodymobile']);
-
+    
 $logo =  get_template_directory_uri().'/assets/img/logo.svg';
 if ( carbon_get_theme_option( 'logo' ) ):
     $logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
@@ -78,3 +78,19 @@ echo "<div class='price_wrapper'>
     </div>  
 </div>
 </div>";
+echo "<script>
+    document.addEventListener('DOMContentLoaded',()=>{
+        let nav_link = document.querySelectorAll('#pills-home-tab')
+        let items = document.querySelector('#pills-tabContent')
+        if(nav_link.length > 0){
+            nav_link[0].classList.add('active')
+        }
+        if(items){
+            let childs = items.querySelectorAll('div.tab-pane')
+            if(childs.length > 0){
+                childs[0].classList.add('active')
+                childs[0].classList.add('show')
+            }
+        }
+    })
+</script>";
