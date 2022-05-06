@@ -76,7 +76,16 @@ function aw_register_form($attr=array()){
                         border:2px solid lightblue !important;
                     }
                     .aw-form .select2-container--default .select2-selection--single{
-                        padding:0px !important;
+                        padding: 0 !important;
+                        height:45px !important;
+                        
+                    }
+                    .aw-form .select2-selection__rendered{
+                        height:45px;
+                        line-height:40px !important;
+                    }
+                    .aw-form .select2-selection__arrow{
+                        top:24px !important;
                     }
                     .aw-form input[type="checkbox"]{
                         display:inline !important;

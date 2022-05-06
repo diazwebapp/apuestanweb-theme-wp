@@ -17,6 +17,7 @@ $params = get_query_var('params');
     
     foreach($params['memberships'] as $id => $level):
         $button_label = '';
+        $currency = !empty(get_option( 'ihc_custom_currency_code', true )) ? get_option( 'ihc_custom_currency_code', true ) : get_option( 'ihc_currency', true );
         if(isset($level['button_label']) && $level['button_label'] != ''){
             $button_label = $level['button_label'];
         }
@@ -27,7 +28,7 @@ $params = get_query_var('params');
                 </li>';
         $html['tmp_body_items'] .= "<div class='price_box price_box$count'>
                                         <h5>".ihc_correct_text($level['label'])."</h5>
-                                        <p class='price'>$". ihc_correct_text($level['price']) ."</p>
+                                        <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
                                         <div class='box_p'>
                                             <p>". ihc_correct_text($level['description']) ."</p>
                                         </div>
@@ -38,7 +39,7 @@ $params = get_query_var('params');
         $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$id'>
                                             <div class='price_box price_box1'>
                                                 <h5>".ihc_correct_text($level['label'])."</h5>
-                                                <p class='price'>$". ihc_correct_text($level['price']) ."</p>
+                                                <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
                                                 <div class='box_p'>
                                                     <p>". ihc_correct_text($level['description']) ."</p>
                                                 </div>
