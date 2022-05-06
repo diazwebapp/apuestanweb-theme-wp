@@ -103,7 +103,7 @@ function aw_register_form($attr=array()){
                         position:absolute !important;
                         top:30px !important;
                     }
-                    .ihc-checkout-page-left-side {
+                    .ihc-checkout-page-one-column, .ihc-checkout-page-left-side, .ihc-checkout-page-right-side{
                         display: block !important;
                         min-width: 300px !important;
                         max-width: unset !important;
