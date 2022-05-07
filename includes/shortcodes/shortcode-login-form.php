@@ -163,7 +163,7 @@ function aw_login_form($attr=array()){
                     top:10%;
                     right:1%;
                 }
-                #ihc_login_form > div:nth-child(5){
+                #ihc_login_form > div:nth-child(5),.impu-form-links{
                     display:grid;
                     text-align:center;
                     order:1;
