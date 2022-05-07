@@ -168,16 +168,16 @@ function aw_login_form($attr=array()){
                     text-align:center;
                     order:1;
                 }
-                #ihc_login_form > div:nth-child(5) div:nth-child(1){
+                #ihc_login_form > div:nth-child(8) div:nth-child(1){
                     order:2;
                 }
-                #ihc_login_form > div:nth-child(5) div:nth-child(2){
+                #ihc_login_form > div:nth-child(8) div:nth-child(2){
                     margin:20px auto;
                 }
-                #ihc_login_form > div:nth-child(5) div:nth-child(2) a,.aw-login-form .title-form{
+                #ihc_login_form > div:nth-child(8) div:nth-child(2) a,.aw-login-form .title-form{
                     color:black !important;
                 }
-                #ihc_login_form > div:nth-child(5) div:nth-child(1) a,.aw-login-form .title-form{                    
+                #ihc_login_form > div:nth-child(8) div:nth-child(1) a,.aw-login-form .title-form{                    
                     text-transform:uppercase;
                 }
     </style>";
