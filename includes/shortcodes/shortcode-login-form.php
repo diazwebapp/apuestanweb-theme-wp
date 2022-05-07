@@ -160,7 +160,7 @@ function aw_login_form($attr=array()){
                     position:relative !important;
                 }
                 .ihc-hide-pw{
-                    top:10%;
+                    top:19%;
                     right:1%;
                 }
                 #ihc_login_form > div:nth-child(5),.impu-form-links{
