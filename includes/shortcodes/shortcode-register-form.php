@@ -116,13 +116,8 @@ function aw_register_form($attr=array()){
                         top:20px !important;
                     }
                     .ihc-checkout-page-one-column, .ihc-checkout-page-left-side, .ihc-checkout-page-right-side{
-                        display: block !important;
                         min-width: 250px !important;
                         max-width: unset !important;
-                        padding: 10px 0 !important;
-                        width: 100% !important;
-                        box-sizing: border-box;
-                        vertical-align: top;
                     }
                     .iump-form-password{
                         position:relative !important;
