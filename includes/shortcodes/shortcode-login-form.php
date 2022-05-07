@@ -181,7 +181,7 @@ function aw_login_form($attr=array()){
                     text-transform:uppercase;
                 }
     </style>";
-    $str = str_replace('ihc-login-form-wrap ihc-login-template-1','aw-login-form',$str);
+    $str = str_replace('ihc-login-form-wrap ihc-login-template-1','aw-login-form ',$str);
     $str = str_replace('impu-form-line-fr','form-outline mb-4',$str);
     $str = str_replace('<input','<input class="form-control form-control-lg"',$str);
     $str = str_replace('impu-form-label-fr','form-label',$str);
