@@ -163,21 +163,21 @@ function aw_login_form($attr=array()){
                     top:10%;
                     right:1%;
                 }
-                .impu-form-links{
+                #ihc_login_form > div:nth-child(5){
                     display:grid;
                     text-align:center;
                     order:1;
                 }
-                .impu-form-links div:nth-child(1){
+                #ihc_login_form > div:nth-child(5) div:nth-child(1){
                     order:2;
                 }
-                .impu-form-links div:nth-child(2){
+                #ihc_login_form > div:nth-child(5) div:nth-child(2){
                     margin:20px auto;
                 }
-                .impu-form-links div:nth-child(2) a,.aw-login-form .title-form{
+                #ihc_login_form > div:nth-child(5) div:nth-child(2) a,.aw-login-form .title-form{
                     color:black !important;
                 }
-                .impu-form-links div:nth-child(1) a,.aw-login-form .title-form{                    
+                #ihc_login_form > div:nth-child(5) div:nth-child(1) a,.aw-login-form .title-form{                    
                     text-transform:uppercase;
                 }
     </style>";
