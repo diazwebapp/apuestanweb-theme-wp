@@ -86,7 +86,7 @@ function aw_login_form($attr=array()){
 		.card-title{font-size:2.5rem !important;}
 		</style>'; 
     $str = str_replace('ihc-login-form-wrap','ihc-login-form-wrap aw-form-none ',$str);
-    wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, false);
+    //wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, false);
 	return $str;
 }
 add_shortcode( 'aw-login-form', 'aw_login_form' );
