@@ -120,7 +120,8 @@ function aw_login_form($attr=array()){
               divs.forEach(div=>{
                 div.remove()
               })
-              form.innerHTML += `${div_social}
+              form.appendChild(div_social)
+              form.innerHTML += `
                   <div class="form-group input-group">
                       <div class="input-group-prepend">
                           <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -135,7 +136,7 @@ function aw_login_form($attr=array()){
                   </div>
               `
               form.appendChild(div_lost_pass)
-              form.appendChild(div_register)
+              form.appendChild(div_submit)
               form.appendChild(div_register)
             }
         })
