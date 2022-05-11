@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       })
       if(div_social) form.appendChild(div_social)
       form.innerHTML += `
+      
           <div class="form-group input-group">
               <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       `
       form.appendChild(div_lost_pass)
       form.appendChild(div_register)
+      container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center">Create Account</h4>')
       container_form.removeAttribute("class")
       container_form.classList.add("card-body")
       container_form.classList.add("mx-auto")
