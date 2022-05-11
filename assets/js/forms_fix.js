@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       divs.forEach(div=>{
         div.remove()
       })
+      console.log(div_social)
       if(div_social){
         form.appendChild(div_social)
       }
