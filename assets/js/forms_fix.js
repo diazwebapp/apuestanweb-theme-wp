@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded",()=>{
       divs.forEach(div=>{
         div.remove()
       })
-      if(div_social) form.appendChild(div_social)
+      if(div_social){
+        form.appendChild(div_social)
+      }
       form.innerHTML += `
       
           <div class="form-group input-group">
