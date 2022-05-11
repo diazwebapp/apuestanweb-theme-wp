@@ -77,136 +77,69 @@ function aw_login_form($attr=array()){
 			$str .= '<div class="ihc-login-success">' . ihc_correct_text($msg) . '</div>';
 		}
 	}
-    /* <section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex align-items-center justify-content-center h-100">
-      <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-          class="img-fluid" alt="Phone image">
-      </div>
-      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-        <form>
-          <!-- Email input -->
-          <div class="form-outline mb-4">
-            <input type="email" id="form1Example13" class="form-control form-control-lg" />
-            <label class="form-label" for="form1Example13">Email address</label>
-          </div>
-
-          <!-- Password input -->
-          <div class="form-outline mb-4">
-            <input type="password" id="form1Example23" class="form-control form-control-lg" />
-            <label class="form-label" for="form1Example23">Password</label>
-          </div>
-
-          <div class="d-flex justify-content-around align-items-center mb-4">
-            <!-- Checkbox -->
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
-              <label class="form-check-label" for="form1Example3"> Remember me </label>
-            </div>
-            <a href="#!">Forgot password?</a>
-          </div>
-
-          <!-- Submit button -->
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-
-          <div class="divider d-flex align-items-center my-4">
-            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-          </div>
-
-          <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!"
-            role="button">
-            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
-          </a>
-          <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
-            role="button">
-            <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
-
-        </form>
-      </div>
-    </div>
-  </div>
-</section> */
-    $str .= "<style>
-                .aw-login-form{
-                    max-width:400px;
-                    margin:0 auto;
-                    border:1px solid black;
-                    border-radius:15px;
-                    padding:30px;
-                }
-                .aw-login-form .title-form{
-                    margin:0 auto 30px auto;
-                    text-align:center;
-                    font-size:2.5rem;
-                }
-                #ihc_login_form{
-                    display:grid;
-                }
-                #ihc_login_form input{
-                    height:40px;
-                    line-height:40px;
-                    border-radius:8px;
-                    padding: 0 4px !important;
-                    border: 1px solid lightblue !important;
-                    margin:10px auto;
-                }
-                #ihc_login_form input[type='submit']{
-                    background:var(--blue);
-                    max-width:150px !important;
-                    color:white;
-                }
-                .form-outline{
-                    position:relative !important;
-                }
-                .ihc-hide-pw{
-                    top:19%;
-                    right:1%;
-                }
-                #ihc_login_form > div:nth-child(5),.impu-form-links{
-                    display:grid;
-                    text-align:center;
-                    order:1;
-                }
-                .impu-form-links div:nth-child(1){
-                    order:2;
-                }
-                .impu-form-links div:nth-child(2){
-                    margin:20px auto;
-                }
-                .impu-form-links div:nth-child(2) a,.aw-login-form .title-form{
-                    color:black !important;
-                }
-                .impu-form-links div:nth-child(1) a,.aw-login-form .title-form{                    
-                    text-transform:uppercase;
-                }
-    </style>";
-    $str = str_replace('ihc-login-form-wrap ihc-login-template-1','aw-login-form ',$str);
-    $str = str_replace('impu-form-line-fr','form-outline mb-4',$str);
-    $str = str_replace('<input','<input class="form-control form-control-lg"',$str);
-    $str = str_replace('impu-form-label-fr','form-label',$str);
-    $str = str_replace('<span','<label ',$str);
-    $str = str_replace('</span','</label',$str);
-    $str .= "<script>
-        document.addEventListener('DOMContentLoaded',()=>{
-            let inputs = document.querySelectorAll('input')
-            let form = document.querySelector('.aw-login-form')
-            if(inputs.length > 0){
-                inputs.forEach(input=>{
-                    if(input.name === 'rememberme'){
-                        input.parentNode.remove()
-                    }
-                })
-            }
+    /* <div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px;">
+<h4 class="card-title mt-3 text-center">Create Account</h4>
+<p class="text-center">Get started with your free account</p>
+<p>
+  <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i> &nbsp; Login via Twitter</a>
+  <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> &nbsp; Login via facebook</a>
+</p>
+<p class="divider-text">
+      <span class="bg-light">OR</span>
+  </p>
+<form>
+<div class="form-group input-group">
+  <div class="input-group-prepend">
+      <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+   </div>
+      <input type="text" value="" id="iump_login_username" name="log" placeholder="Username">
+  </div> <!-- form-group// -->
+  <div class="form-group input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+   </div>
+      <input type="password" value="" id="iump_login_password" name="pwd" placeholder="Password">
+  </div> 
+                                                                   
+</form>
+</article>
+</div>*/
+    
+    $str .= '<script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            const form = document.querySelector("#ihc_login_form")
             if(form){
-                form.style.display = 'block'
-                let p = document.createElement('p')
-                p.textContent = 'login'
-                p.classList.add('title-form')
-                form.insertAdjacentElement('afterbegin',p)
+              const divs = form.querySelectorAll("div")
+              const div_register = form.querySelector("div.impu-form-links-reg")
+              const div_lost_pass = form.querySelector("div.impu-form-links-pass")
+              const div_social = form.querySelector("div.ihc-sm-wrapp-fe")
+              const div_submit = form.querySelector("div.impu-form-links-reg")
+              
+              
+              divs.forEach(div=>{
+                div.remove()
+              })
+              form.innerHTML += `${div_social}
+                  <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                      </div>
+                      <input type="text" value="" id="iump_login_username" name="log" placeholder="Username">
+                  </div>
+                  <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                  </div>
+                      <input type="password" value="" id="iump_login_password" name="pwd" placeholder="Password">
+                  </div>
+              `
+              form.appendChild(div_lost_pass)
+              form.appendChild(div_register)
+              form.appendChild(div_register)
             }
         })
-        </script>";
+        </script>';
 	return $str;
 }
 add_shortcode( 'aw-login-form', 'aw_login_form' );
