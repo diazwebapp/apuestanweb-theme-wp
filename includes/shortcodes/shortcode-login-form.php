@@ -80,7 +80,7 @@ function aw_login_form($attr=array()){
     
     $str .= '<style>
 		.aw-form-none{display:none} 
-		.form-group{margin:2rem auto !important;}
+		#ihc_login_form > div{margin:2rem auto !important;}
 		.form-group input, 
 		.input-group-text, 
 		.card-title{font-size:2.5rem !important;}
