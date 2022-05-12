@@ -16,6 +16,8 @@ include "includes/shortcodes/shortcode-banner-pages.php";
 include "includes/shortcodes/shortcode-leagues-menu.php";
 include "includes/shortcodes/shortcode-predictions.php";
 include "includes/shortcodes/shortcode-user-stats.php";
+include "includes/shortcodes/shortcode-register-form.php";
+include "includes/shortcodes/shortcode-login-form.php";
 /*--------------------------------------------------------------*/
 /*                         WIDGETS                              */
 /*--------------------------------------------------------------*/
@@ -24,7 +26,6 @@ include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-top-forecasts.php";
 include "includes/widgets/widget-bonuses.php";
 include "includes/widgets/widget-subscribe.php";
-include "includes/widgets/widget-leagues.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
@@ -34,6 +35,7 @@ include "includes/core/meta-fields.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
+include "includes/libs/odds-converter/converter.class.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
@@ -96,20 +98,19 @@ function jbetting_src()
 {
     wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), null);
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets/css/fontawesome.min.css', array(), null);
-    wp_enqueue_style('nice', get_template_directory_uri() . '/assets/css/nice-select.css', array(), null);
+    wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select.css', array(), null);
     wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
     wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
-    
+
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.4.1.min.js', array(), null, false);
     wp_enqueue_script('plugins', get_template_directory_uri() . '/assets/js/plugins.js', array(), null, false);
+    //wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select.min.js', array(), null, false);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    wp_enqueue_script('owl_carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), '1.0.0', true);
 }
-
 
     if ('disable_gutenberg') {
         add_filter('use_block_editor_for_post_type', '__return_false', 100);
@@ -136,6 +137,9 @@ function draw_rating($rating)
 }
 
 add_action('init', function(){
+    if(!session_id()):
+        session_start();
+    endif;
     //Definimos configuraciones globales del tema
     
     //Zona horaria
@@ -179,6 +183,13 @@ add_action('init', function(){
     endif;
     if(is_wp_error( $response )):
         define("GEOLOCATION",json_encode($geolocation));
+    endif;
+    //odds-converter
+    if(!isset($_SESSION['odds_format'])):
+        $_SESSION['odds_format'] = 2;
+    endif;
+    if(isset($_GET['odds_format'])):
+        $_SESSION['odds_format'] = $_GET['odds_format'];
     endif;
 });
 

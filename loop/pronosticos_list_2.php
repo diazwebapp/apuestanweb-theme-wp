@@ -45,20 +45,7 @@ if ($sport_term) {
     }
 }
 
-
-$p1 = carbon_get_post_meta(get_the_ID(), 'p1');
-if (!$p1) {
-    $p1 = 'n/a';
-}
-$x = carbon_get_post_meta(get_the_ID(), 'x');
-if (!$x) {
-    $x = 'n/a';
-}
-$p2 = carbon_get_post_meta(get_the_ID(), 'p2');
-if (!$p2) {
-    $p2 = 'n/a';
-}
-$time_format_html = "<p><time>".$date->format('g:i a')."</time></p>";
+$time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
@@ -84,7 +71,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
                         $time_format_html
-                        <date>".$date->format('d M')."</date>
+                        <time datetime='".$date->format('Y-m-d')."'>".$date->format('d M')."</time>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>

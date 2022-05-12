@@ -1,4 +1,5 @@
 <?php
+
 $params = get_query_var('params');
 $bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>50,"h"=>12]);
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
@@ -48,6 +49,13 @@ echo "<div class='parley_wrapper'>
                     }
                 }
             }
+            if(is_float($prediction['cuote'])):
+                $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+                $odds_result = $oOddsConverter->doConverting();
+                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+            endif;
+
+
             echo "<div class='parley_box'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
@@ -95,7 +103,7 @@ echo "<div class='parley_wrapper'>
                         </div>
                     </div>
                     <div class='question2'>
-                      <a href='$predictions->$permalink'>
+                      <a href='$permalink'>
                             Ver análisis
                         </a>
                     </div>
@@ -122,21 +130,13 @@ echo "<div class='parley_wrapper'>
                         <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
                     </div>
                     <div class='blog_select_box parley_right_content2_mb'>
-                        <select onchange='test(this)' name='apu' id='apu' data='$parley_id' style='display: none;'>
+                        <select class='form-select' onchange='test(this)' name='apu' id='apu' data='$parley_id' >
                             <option value='10'>Apuesta $10</option>
                             <option value='15'>Apuesta $15</option>
                             <option value='20'>Apuesta $20</option>
                             <option value='50'>Apuesta $50</option>
                         </select>
-                        <div class='nice-select' tabindex='0'>
-                            <span class='current'>Apuesta $10</span>
-                            <ul class='list'>
-                                <li data-value='10' class='option selected'>Apuesta $10</li>
-                                <li data-value='15' class='option'>Apuesta $15</li>
-                                <li data-value='20' class='option'>Apuesta $20</li>
-                                <li data-value='50' class='option'>Apuesta $50</li>
-                            </ul>
-                        </div>
+                        
                     </div>
                     <div class='gana_box parley_right_content2_mb'>
                     <input type='hidden' id='jscuote_$parley_id' value='$parley_cuotes'/>

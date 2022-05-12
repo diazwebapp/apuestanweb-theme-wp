@@ -18,12 +18,16 @@ $vipcomponent ="<div class='plogo'>
                 </div>
                     <a href='{$params['vip_link']}'><p>{$params['text_vip_link']}</p></a>
                 <div class='rate'>?</div>";
-if(!$vip)
+if(!$vip):
+    $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+    $odds_result = $oOddsConverter->doConverting();
+    $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
     $vipcomponent ="<div class='plogo'>
                         <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                     </div>
                         <a href='$permalink'><p>{$prediction['title']}</p></a>
                     <div class='rate'>{$prediction['cuote']}</div>";
+endif;
 //leagues
 $sport['name'] = '';
 $sport['logo'] = get_template_directory_uri() . '/assets/img/logo2.svg';
