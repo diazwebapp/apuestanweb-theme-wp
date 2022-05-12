@@ -13,8 +13,11 @@ window.addEventListener("load",()=>{
       })
       container_form.insertAdjacentHTML('afterbegin','<p class="divider-text"><span class="bg-light">OR</span></p>')
       if(div_social.length > 0){
+        container_form.insertAdjacentHTML('afterbegin','<p id="social-links" ></p>')
+        const container_social_links = container_form.querySelector('#social-links')
         div_social.forEach(social=>{
-          container_form.insertAdjacentElement('afterbegin',social)
+          const enlace = social.querySelector('a')
+          container_social_links.appendChild(enlace)
         })
       }
       container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Create Account</h4>')
