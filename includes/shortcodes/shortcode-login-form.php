@@ -105,6 +105,10 @@ function aw_login_form($attr=array()){
 			left: 0;
 			z-index: 1;
 		}
+		#social-links{
+			display:flex;
+			flex-flow:column;
+		}
 		</style>'; 
     $str = str_replace('ihc-login-form-wrap','ihc-login-form-wrap aw-form-none ',$str);
     wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
