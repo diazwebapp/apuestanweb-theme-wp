@@ -79,7 +79,7 @@ function aw_login_form($attr=array()){
 	}
     
     $str .= '<style>
-		.aw-form-none{} 
+		.aw-form-none{display:none;} 
 		#ihc_login_form > div{margin:2rem auto !important;}
 		.form-group input, 
 		.input-group-text, 
