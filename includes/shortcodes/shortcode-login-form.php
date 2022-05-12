@@ -79,14 +79,35 @@ function aw_login_form($attr=array()){
 	}
     
     $str .= '<style>
-		.aw-form-none{display:none} 
+		.aw-form-none{} 
 		#ihc_login_form > div{margin:2rem auto !important;}
 		.form-group input, 
 		.input-group-text, 
 		.card-title{font-size:2.5rem !important;}
+		.divider-text {
+			position: relative;
+			text-align: center;
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+		.divider-text span {
+			padding: 7px;
+			font-size: 12px;
+			position: relative;   
+			z-index: 2;
+		}
+		.divider-text:after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			border-bottom: 1px solid #ddd;
+			top: 55%;
+			left: 0;
+			z-index: 1;
+		}
 		</style>'; 
     $str = str_replace('ihc-login-form-wrap','ihc-login-form-wrap aw-form-none ',$str);
-    wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, false);
+    wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
 	return $str;
 }
 add_shortcode( 'aw-login-form', 'aw_login_form' );

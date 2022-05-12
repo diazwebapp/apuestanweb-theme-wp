@@ -1,19 +1,23 @@
-document.addEventListener("DOMContentLoaded",()=>{
+window.addEventListener("load",()=>{
     const container_form = document.querySelector(".ihc-login-form-wrap")
     const form = document.querySelector("#ihc_login_form")
     if(form){
       const divs = form.querySelectorAll("div")
       const div_register = form.querySelector("div.impu-form-links-reg")
       const div_lost_pass = form.querySelector("div.impu-form-links-pass")
-      const div_social = form.querySelector("div.ihc-sm-wrapp-fe")              
+      const div_social = form.querySelectorAll("div.ihc-sm-item")              
+      
       
       divs.forEach(div=>{
         div.remove()
       })
-      console.log(div_social)
-      if(div_social){
-        form.appendChild(div_social)
+      container_form.insertAdjacentHTML('afterbegin','<p class="divider-text"><span class="bg-light">OR</span></p>')
+      if(div_social.length > 0){
+        div_social.forEach(social=>{
+          container_form.insertAdjacentElement('afterbegin',social)
+        })
       }
+      container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Create Account</h4>')
       form.innerHTML += `
           <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -33,7 +37,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       `
       form.appendChild(div_lost_pass)
       form.appendChild(div_register)
-      container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black;">Create Account</h4>')
+      
       container_form.removeAttribute("class")
       container_form.classList.add("card-body")
       container_form.classList.add("mx-auto")
