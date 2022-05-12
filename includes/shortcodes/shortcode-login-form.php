@@ -83,7 +83,7 @@ function aw_login_form($attr=array()){
 		.form-group{margin:2rem auto !important;}
 		.form-group input, 
 		.input-group-text, 
-		.card-title{font-size:2.5rem !important;color:black;}
+		.card-title{font-size:2.5rem !important;}
 		</style>'; 
     $str = str_replace('ihc-login-form-wrap','ihc-login-form-wrap aw-form-none ',$str);
     wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, false);

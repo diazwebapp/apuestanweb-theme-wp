@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       `
       form.appendChild(div_lost_pass)
       form.appendChild(div_register)
-      container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center">Create Account</h4>')
+      container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black;">Create Account</h4>')
       container_form.removeAttribute("class")
       container_form.classList.add("card-body")
       container_form.classList.add("mx-auto")
