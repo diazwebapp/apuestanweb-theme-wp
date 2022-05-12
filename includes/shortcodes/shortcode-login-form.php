@@ -110,6 +110,11 @@ function aw_login_form($attr=array()){
 			flex-flow:column;
 			place-items:center;
 		}
+		#social-links a{
+			height: 30px !important;
+			width: 100% !important;
+			display: block;
+		}
 		.ihc-sm-item{
 			width:100%;
 		}
