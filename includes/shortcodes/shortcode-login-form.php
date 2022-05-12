@@ -80,10 +80,12 @@ function aw_login_form($attr=array()){
     
     $str .= '<style>
 		.aw-form-none{display:none;} 
-		#ihc_login_form > div{margin:2rem auto !important;}
-		.form-group input, 
-		.input-group-text, 
-		.card-title{font-size:2.5rem !important;}
+		#ihc_login_form > div{margin:2rem auto !important;text-align:center;}
+		.impu-form-links-reg a{
+			padding: 10px;
+		}
+		.form-group input, .input-group-text{font-size:2.5rem !important;}
+		.card-title{font-size:3.3rem !important;}
 		.divider-text {
 			position: relative;
 			text-align: center;
