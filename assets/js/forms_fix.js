@@ -17,6 +17,9 @@ window.addEventListener("load",()=>{
         const container_social_links = container_form.querySelector('#social-links')
         div_social.forEach(social=>{
           const enlace = social.querySelector('a')
+          enlace.classList.add('btn')
+          enlace.classList.add('btn-block')
+          
           container_social_links.appendChild(enlace)
         })
       }
