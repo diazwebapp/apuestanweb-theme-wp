@@ -20,7 +20,7 @@ window.addEventListener("load",()=>{
           enlace.classList.add('btn')
           enlace.classList.add('btn-block')
           
-          container_social_links.appendChild(enlace)
+          container_social_links.appendChild(social)
         })
       }
       container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Create Account</h4>')

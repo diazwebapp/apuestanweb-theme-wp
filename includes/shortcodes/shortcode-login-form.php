@@ -108,6 +108,10 @@ function aw_login_form($attr=array()){
 		#social-links{
 			display:flex;
 			flex-flow:column;
+			place-items:center;
+		}
+		.ihc-sm-item{
+			width:100%;
 		}
 		</style>'; 
     $str = str_replace('ihc-login-form-wrap','ihc-login-form-wrap aw-form-none ',$str);
