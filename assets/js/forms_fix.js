@@ -90,8 +90,8 @@ window.addEventListener("load",()=>{
       })
       if(register_form){
 
-        container_register_form.insertAdjacentHTML('afterbegin','<p class="divider-text"><span class="bg-light">OR</span></p>')
         if(div_register_social.length > 0){
+          container_register_form.insertAdjacentHTML('afterbegin','<p class="divider-text"><span class="bg-light">OR</span></p>')
           container_register_form.insertAdjacentHTML('afterbegin','<p id="social-links" ></p>')
           const container_social_links = container_register_form.querySelector('#social-links')
           div_register_social.forEach(social=>{
