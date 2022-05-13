@@ -139,7 +139,7 @@ window.addEventListener("load",()=>{
           })
           div_payment_field.appendChild(product_subtotal_table) // subtotal payment
           div_payment_field.appendChild(checkout_session) //add checkout session
-          div_payment_field.appendChild(checkout_button) //add checkout button
+          //div_payment_field.appendChild(checkout_button) //add checkout button
       }
     }
       
