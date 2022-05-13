@@ -59,6 +59,7 @@ window.addEventListener("load",()=>{
       const div_register_payments = register_form.querySelectorAll(".ihc-js-select-payment")
       const register_form_divs = register_form.querySelectorAll("div")
       const register_countries = register_form.querySelectorAll("select#ihc_country_field option");
+      const product_details_table = register_form.querySelector("table.ihc-product-details-table")
       
       //Create select
       const select_country_element = document.createElement("input")
@@ -128,6 +129,7 @@ window.addEventListener("load",()=>{
 
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
+          div_payment_field.appendChild(product_details_table)
           div_register_payments.forEach(payment=>{
             div_payment_field.appendChild(payment) //payments
           })
