@@ -123,7 +123,7 @@ window.addEventListener("load",()=>{
                     <tr>
                       <td id="product-name" style="color:black;font-weight:bold;" >
                       </td>
-                      <td id="product-description">
+                      <td id="product-price">
                     </tr>
                   </table>
 
@@ -150,9 +150,9 @@ window.addEventListener("load",()=>{
           div_country_field.appendChild(datalist_countries) //datalist
           //add product details
           const product_name_ = register_form.querySelector("td#product-name")
-          product_name_.textContent = product_name.textContent
-          const product_desc_ = register_form.querySelector("td#product-description")
-          product_desc_.textContent = product_description.textContent
+          product_name_.appendChild(product_name)
+          product_name_.appendChild(product_description)
+          const product_price_ = register_form.querySelector("td#product-price")
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
           div_register_payments.forEach(payment=>{
