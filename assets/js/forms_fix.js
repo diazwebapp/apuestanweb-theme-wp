@@ -59,10 +59,10 @@ window.addEventListener("load",()=>{
       const div_register_payments = register_form.querySelectorAll("div.iump-form-paybox")
       const register_form_divs = register_form.querySelectorAll("div")
       
-      
-        console.log(div_register_social)
-        console.log(div_register_payments)
-      
+      register_form_divs.forEach(div=>{
+        div.remove()
+      })
+      register_form.appendChild(div_register_payments)
     }
     /* form.innerHTML += `
           <div class="form-group input-group">
