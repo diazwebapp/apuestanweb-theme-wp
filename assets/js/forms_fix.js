@@ -76,8 +76,21 @@ window.addEventListener("load",()=>{
         div.remove()
       })
       
-      console.log(register_form)
+      
       if(register_form){
+
+        container_register_form.insertAdjacentHTML('afterbegin','<p class="divider-text"><span class="bg-light">OR</span></p>')
+        if(div_register_social.length > 0){
+          container_register_form.insertAdjacentHTML('afterbegin','<p id="social-links" ></p>')
+          const container_social_links = container_register_form.querySelector('#social-links')
+          div_register_social.forEach(social=>{
+            const enlace = social.querySelector('a')
+            enlace.classList.add('btn')
+            enlace.classList.add('btn-block')
+            
+            container_social_links.appendChild(social)
+          })
+        }
   
         register_form.innerHTML += `
               <div class="form-group input-group">
