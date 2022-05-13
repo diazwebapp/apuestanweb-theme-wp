@@ -65,6 +65,12 @@ window.addEventListener("load",()=>{
       const product_name = register_form.querySelector("div.ihc-product-name")
       const product_description = register_form.querySelector("div.ihc-product-description")
       const product_price = register_form.querySelector("div.ihc-product-price")
+      const product_fee_name = register_form.querySelector("div.ihc-product-main-fee-label")
+      const product_fee_amount = register_form.querySelector("span#ihc-subtotal-product-price")
+      const tos = register_form.querySelector("div.ihc-tos-wrap")
+      
+      
+      
       
       //Create select
       const select_country_element = document.createElement("input")
@@ -146,6 +152,9 @@ window.addEventListener("load",()=>{
               <section class="form-group">
                       <input type="submit" value="Register" class="btn btn-primary btn-block">
               </section>
+              <section class="form-group" id="terms">
+                <!-- dinamic terms and conditions-->
+              </section>
           `
           // add select country to form
           const div_country_field = register_form.querySelector("section#country-field")
@@ -157,11 +166,19 @@ window.addEventListener("load",()=>{
           product_name_.appendChild(product_description)
           const product_price_ = register_form.querySelector("td#product-price")
           product_price_.appendChild(product_price)
+          //add product subtotal
+          const product_fee_name_ = register_form.querySelector("td#fee-name")
+          product_fee_name_.appendChild(product_fee_name)
+          const product_fee_amount_ = register_form.querySelector("td#product-subtotal")
+          product_fee_amount_.appendChild(product_fee_amount)
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
           div_register_payments.forEach(payment=>{
             div_payment_field.appendChild(payment) //payments
           })
+          //add term conditions
+          const tos_field = register_form.querySelector("section#terms")
+          tos_field.appendChild(tos)
           div_payment_field.appendChild(checkout_session) //add checkout session
           div_payment_field.appendChild(checkout_button) //add checkout button
 
