@@ -61,15 +61,21 @@ window.addEventListener("load",()=>{
       const register_countries = register_form.querySelectorAll("select#ihc_country_field option");
       
       //Create select
-      const select_country_element = document.createElement("select")
+      const select_country_element = document.createElement("input")
       select_country_element.setAttribute("id","ihc_country_field")
       select_country_element.setAttribute("name","ihc_country")
+      select_country_element.setAttribute("list","countries")
+      //create datalist
+      const datalist_countries = document.createElement("datalist")
+      datalist_countries.setAttribute("id","countries")
       register_countries.forEach(country=>{
-        select_country_element.appendChild(country)
+        datalist_countries.appendChild(country)
       })
+      //remove form divs
       register_form_divs.forEach(div=>{
         div.remove()
       })
+      // add new items to form
       register_form.appendChild(select_country_element)
     }
     /* form.innerHTML += `
