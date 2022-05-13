@@ -75,12 +75,9 @@ window.addEventListener("load",()=>{
       register_form_divs.forEach(div=>{
         div.remove()
       })
-      // add new items to form
-      register_form.createElement("div","class")
-      register_form.appendChild(select_country_element) //select
-      register_form.appendChild(datalist_countries) //datalist
+      
     }
-    /* form.innerHTML += `
+    register_forminnerHTML += `
           <div class="form-group input-group">
               <div class="input-group-prepend">
                   <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -89,13 +86,26 @@ window.addEventListener("load",()=>{
           </div>
           <div class="form-group input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-          </div>
+                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+            </div>
               <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
           </div>
+
+          <div class="form-group input-group" id="country-field">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+            </div>
+              <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
+          </div>
+
           <div class="form-group">
                   <input type="submit" value="Login" class="btn btn-primary btn-block">
           </div>
-      ` */
+
+      `
+      // add select country to form
+      const div_country_field = register_form.querySelector("div#country-field")
+      div_country_field.appendChild(select_country_element) //select
+      div_country_field.appendChild(datalist_countries) //datalist
       
 })
