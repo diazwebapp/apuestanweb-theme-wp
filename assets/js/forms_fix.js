@@ -62,7 +62,9 @@ window.addEventListener("load",()=>{
       register_form_divs.forEach(div=>{
         div.remove()
       })
-      register_form.appendChild(div_register_payments)
+      div_register_payments.forEach(payment=>{
+        register_form.appendChild(payment)
+      })
     }
     /* form.innerHTML += `
           <div class="form-group input-group">
