@@ -60,7 +60,7 @@ window.addEventListener("load",()=>{
       const register_form_divs = register_form.querySelectorAll("div")
       const register_countries = register_form.querySelectorAll("select#ihc_country_field option");
       //const product_details_table = register_form.querySelector("table.ihc-product-details-table")
-      const product_subtotal_table = register_form.querySelector("table.ihc-subtotal-table")
+      const product_subtotal_table = register_form.querySelectorAll("table.ihc-subtotal-table td")
       const checkout_session = register_form.querySelector("div.ihc-js-checkout-session")
       const checkout_button = register_form.querySelector("div#ihc-checout-page-purchase-button-section")
       
