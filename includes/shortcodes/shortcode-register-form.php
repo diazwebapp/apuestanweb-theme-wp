@@ -116,7 +116,7 @@ function aw_register_form($attr=array()){
         </style>';
 
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
-        //wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
+        wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
         return $str;
     }else{
         

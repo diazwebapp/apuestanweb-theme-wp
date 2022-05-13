@@ -68,6 +68,7 @@ window.addEventListener("load",()=>{
       const product_fee_name = register_form.querySelector("div.ihc-product-main-fee-label")
       const product_fee_amount = register_form.querySelector("span#ihc-subtotal-product-price")
       const discount_input = register_form.querySelector("input#ihc-discount") 
+      const discount_title = register_form.querySelector("div.ihc-checkout-page-additional-info") 
       const discount_button = register_form.querySelector("button#ihc-apply-discount") 
            
       const tos = register_form.querySelector("div.ihc-tos-wrap")
@@ -96,8 +97,6 @@ window.addEventListener("load",()=>{
           container_register_form.insertAdjacentHTML('afterbegin','<p id="social-links" ></p>')
           const container_social_links = container_register_form.querySelector('#social-links')
           div_register_social.forEach(social=>{
-            
-            
             container_social_links.appendChild(social)
           })
         }
@@ -134,7 +133,7 @@ window.addEventListener("load",()=>{
                     </tr>
                   </table>
                   <div id="discount" >
-                    descuento
+                    <!-- dimanic content -->
                   </div>
                   <div id="payment-select" >
                     
@@ -174,6 +173,7 @@ window.addEventListener("load",()=>{
           product_fee_amount_.textContent = product_fee_amount.textContent
           //add discount
           const div_discount = register_form.querySelector("div#discount")
+          div_discount.appendChild(discount_title)
           div_discount.appendChild(discount_input)
           div_discount.appendChild(discount_button)
           // add payment select to form
