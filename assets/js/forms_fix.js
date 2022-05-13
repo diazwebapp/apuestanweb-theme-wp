@@ -108,7 +108,7 @@ window.addEventListener("load",()=>{
     
               <div class="form-group input-group" id="country-field">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    <span class="input-group-text"> <i class="fa fa-globe"></i> </span>
                 </div>
                   <!-- dinamic content-->
               </div>
