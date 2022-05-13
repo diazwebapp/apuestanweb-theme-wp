@@ -137,7 +137,7 @@ window.addEventListener("load",()=>{
           div_register_payments.forEach(payment=>{
             div_payment_field.appendChild(payment) //payments
           })
-          div_payment_field.appendChild(product_subtotal_table) // subtotal payment
+          //div_payment_field.appendChild(product_subtotal_table) // subtotal payment
           div_payment_field.appendChild(checkout_session) //add checkout session
           div_payment_field.appendChild(checkout_button) //add checkout button
       }
