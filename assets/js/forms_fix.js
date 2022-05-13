@@ -77,6 +77,7 @@ window.addEventListener("load",()=>{
       })
       // add new items to form
       register_form.appendChild(select_country_element)
+      register_form.appendChild(datalist_countries)
     }
     /* form.innerHTML += `
           <div class="form-group input-group">
