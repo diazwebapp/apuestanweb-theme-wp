@@ -104,6 +104,9 @@ function aw_register_form($attr=array()){
 			left: 0;
 			z-index: 1;
 		}
+        .ihc-sm-item{
+			width:100%;
+		}
         </style>';
 
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
