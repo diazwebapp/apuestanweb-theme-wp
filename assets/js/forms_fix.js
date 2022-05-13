@@ -63,6 +63,7 @@ window.addEventListener("load",()=>{
         div.remove()
       })
       div_register_payments.forEach(payment=>{
+        console.log(payment)
         register_form.appendChild(payment)
       })
     }
