@@ -97,7 +97,7 @@ window.addEventListener("load",()=>{
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                 </div>
-                  <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
+                  <!-- dinamic content-->
               </div>
     
               <div class="form-group">
