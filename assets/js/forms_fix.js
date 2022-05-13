@@ -125,6 +125,7 @@ window.addEventListener("load",()=>{
                       <td id="product-name" style="color:black;font-weight:bold;" >
                       </td>
                       <td id="product-price">
+                      </td>
                     </tr>
                   </table>
 
@@ -137,6 +138,7 @@ window.addEventListener("load",()=>{
                       <td id="fee-name" style="color:black;font-weight:bold;" >
                       </td>
                       <td id="product-subtotal">
+                      </td>
                     </tr>
                   </table>
               </section>
