@@ -54,11 +54,8 @@ function aw_register_form($attr=array()){
         $obj_form->setVariable($args);//setting the object variables
         
         $str .= '<style>
-		.aw-form-none{display:none;} 
-		#ihc_login_form > div{margin:2rem auto !important;text-align:center;}
-		.impu-form-links-reg a{
-			padding: 10px;
-		}
+		#aw-container-register-form"{display:none;} 
+		
 		.form-group input, .input-group-text{font-size:2.5rem !important;}
 		.card-title{font-size:3.3rem !important;}
 		.divider-text {
