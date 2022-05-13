@@ -78,7 +78,9 @@ window.addEventListener("load",()=>{
         datalist_countries.appendChild(country)
       })
       
-      
+      register_form_divs.forEach(div=>{
+        div.remove()
+      })
       if(register_form){
 
         container_register_form.insertAdjacentHTML('afterbegin','<p class="divider-text"><span class="bg-light">OR</span></p>')
@@ -137,6 +139,8 @@ window.addEventListener("load",()=>{
           //add product details
           const product_name_ = register_form.querySelector("td#product-name")
           product_name_.textContent = product_name.textContent
+          const product_desc_ = register_form.querySelector("td#product-description")
+          product_desc_.textContent = product_description.textContent
           // add payment select to form
           const div_payment_field = register_form.querySelector("section#payment-select")
           div_register_payments.forEach(payment=>{
@@ -146,12 +150,6 @@ window.addEventListener("load",()=>{
           div_payment_field.appendChild(checkout_button) //add checkout button
 
         }
-      //remove form divs
-      if(register_form_divs.length>0){
-        register_form_divs.forEach(div=>{
-          div.remove()
-        })
-      }
       
     }
       
