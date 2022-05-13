@@ -144,7 +144,7 @@ window.addEventListener("load",()=>{
               </section>
               
               <section class="form-group">
-                      <input type="submit" value="Login" class="btn btn-primary btn-block">
+                      <input type="submit" value="Register" class="btn btn-primary btn-block">
               </section>
           `
           // add select country to form
