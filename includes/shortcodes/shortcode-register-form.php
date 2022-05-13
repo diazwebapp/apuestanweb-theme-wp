@@ -53,6 +53,37 @@ function aw_register_form($attr=array()){
         $obj_form = new UserAddEdit();
         $obj_form->setVariable($args);//setting the object variables
         
+        $str .= '<style>
+		.aw-form-none{display:none;} 
+		#ihc_login_form > div{margin:2rem auto !important;text-align:center;}
+		.impu-form-links-reg a{
+			padding: 10px;
+		}
+		.form-group input, .input-group-text{font-size:2.5rem !important;}
+		.card-title{font-size:3.3rem !important;}
+		.divider-text {
+			position: relative;
+			text-align: center;
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+		.divider-text span {
+			padding: 7px;
+			font-size: 12px;
+			position: relative;   
+			z-index: 2;
+		}
+		.divider-text:after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			border-bottom: 1px solid #ddd;
+			top: 55%;
+			left: 0;
+			z-index: 1;
+		}
+        </style>';
+
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto"><h4 class="card-title" >Register</h4>' . $obj_form->form() . '</div></div>';
         wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
         return $str;

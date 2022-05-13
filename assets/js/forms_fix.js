@@ -114,9 +114,6 @@ window.addEventListener("load",()=>{
               </div>
 
               <div class="form-group input-group" id="payment-select">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                </div>
                   <!-- dinamic content-->
               </div>
     
