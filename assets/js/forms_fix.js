@@ -77,6 +77,7 @@ window.addEventListener("load",()=>{
       })
       
     }
+    console.log(register_form)
     if(register_form){
 
       register_form.innerHTML += `
