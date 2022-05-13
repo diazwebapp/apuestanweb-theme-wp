@@ -67,9 +67,11 @@ function aw_register_form($attr=array()){
 			margin-top: 15px;
 			margin-bottom: 15px;
 		}
+        #payment-field div, #payment-field table{
+            margin:10px auto;
+        }
         .form-group table, .form-group table tbody, .form-group table tbody tr{
             width:100%;
-            margin:10px auto;
         }
         .form-group table tbody td{
             width:50%;
