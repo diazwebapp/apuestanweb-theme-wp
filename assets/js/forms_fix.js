@@ -91,7 +91,7 @@ window.addEventListener("load",()=>{
             container_social_links.appendChild(social)
           })
         }
-  
+        container_register_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Create Acount</h4>')
         register_form.innerHTML += `
               <div class="form-group input-group">
                   <div class="input-group-prepend">
