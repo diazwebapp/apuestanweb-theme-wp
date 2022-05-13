@@ -80,7 +80,7 @@ window.addEventListener("load",()=>{
       register_form_divs.forEach(div=>{
         div.remove()
       })
-      
+      console.log(product_subtotal_table)
       
       if(register_form){
 
