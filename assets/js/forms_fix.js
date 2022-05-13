@@ -117,13 +117,25 @@ window.addEventListener("load",()=>{
                   <!-- dinamic content-->
               </section>
 
-              <section class="form-group input-group" id="payment-select">
+              <section class="form-group input-group" id="payment-field">
                   <!-- dinamic content-->
-                  <table>
+                  <table style="width:100%;display:block;" >
                     <tr>
-                      <td id="product-name">
+                      <td id="product-name" style="color:black;font-weight:bold;" >
                       </td>
                       <td id="product-description">
+                    </tr>
+                  </table>
+
+                  <div id="payment-select" >
+                    
+                  </div>
+
+                  <table style="width:100%;display:block;" >
+                    <tr>
+                      <td id="fee-name" style="color:black;font-weight:bold;" >
+                      </td>
+                      <td id="product-subtotal">
                     </tr>
                   </table>
               </section>
@@ -142,7 +154,7 @@ window.addEventListener("load",()=>{
           const product_desc_ = register_form.querySelector("td#product-description")
           product_desc_.textContent = product_description.textContent
           // add payment select to form
-          const div_payment_field = register_form.querySelector("section#payment-select")
+          const div_payment_field = register_form.querySelector("div#payment-select")
           div_register_payments.forEach(payment=>{
             div_payment_field.appendChild(payment) //payments
           })
