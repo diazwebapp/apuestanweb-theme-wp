@@ -76,39 +76,39 @@ window.addEventListener("load",()=>{
         div.remove()
       })
       
-    }
-    console.log(register_form)
-    if(register_form){
-
-      register_form.innerHTML += `
-            <div class="form-group input-group">
+      console.log(register_form)
+      if(register_form){
+  
+        register_form.innerHTML += `
+              <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                  </div>
+                  <input type="email" class="form-control" name="user_email" placeholder="Email">
+              </div>
+              <div class="form-group input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                 </div>
-                <input type="email" class="form-control" name="user_email" placeholder="Email">
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                  <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
               </div>
-                <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
-            </div>
-  
-            <div class="form-group input-group" id="country-field">
-              <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+    
+              <div class="form-group input-group" id="country-field">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                  <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
               </div>
-                <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
-            </div>
-  
-            <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-primary btn-block">
-            </div>
-        `
-        // add select country to form
-        const div_country_field = register_form.querySelector("div#country-field")
-        div_country_field.appendChild(select_country_element) //select
-        div_country_field.appendChild(datalist_countries) //datalist
+    
+              <div class="form-group">
+                      <input type="submit" value="Login" class="btn btn-primary btn-block">
+              </div>
+          `
+          // add select country to form
+          const div_country_field = register_form.querySelector("div#country-field")
+          div_country_field.appendChild(select_country_element) //select
+          div_country_field.appendChild(datalist_countries) //datalist
+      }
     }
       
 })
