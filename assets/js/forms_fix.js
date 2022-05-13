@@ -60,10 +60,17 @@ window.addEventListener("load",()=>{
       const register_form_divs = register_form.querySelectorAll("div")
       const register_countries = register_form.querySelectorAll("select#ihc_country_field option");
       
-      register_form_divs.forEach(div=>{
-        //div.remove()
+      //Create select
+      const select_country_element = document.createElement("select")
+      select_country_element.setAttribute("id","ihc_country_field")
+      select_country_element.setAttribute("name","ihc_country")
+      register_countries.forEach(country=>{
+        select_country_element.appendChild(country)
       })
-      console.log(register_countries)
+      register_form_divs.forEach(div=>{
+        div.remove()
+      })
+      register_form.appendChild(select_country_element)
     }
     /* form.innerHTML += `
           <div class="form-group input-group">
