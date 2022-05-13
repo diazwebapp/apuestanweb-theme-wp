@@ -80,7 +80,7 @@ function aw_register_form($attr=array()){
         .form-group table tbody td#product-subtotal, .form-group table tbody td#product-price{
             text-align:right;
         }
-        .form-group payment-select {
+        .form-group #payment-select {
             display: grid;
             place-items: center;
             place-content: center;
