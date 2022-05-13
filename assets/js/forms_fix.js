@@ -76,8 +76,9 @@ window.addEventListener("load",()=>{
         div.remove()
       })
       // add new items to form
-      register_form.appendChild(select_country_element)
-      register_form.appendChild(datalist_countries)
+      register_form.createElement("div","class")
+      register_form.appendChild(select_country_element) //select
+      register_form.appendChild(datalist_countries) //datalist
     }
     /* form.innerHTML += `
           <div class="form-group input-group">
