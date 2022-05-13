@@ -112,6 +112,13 @@ window.addEventListener("load",()=>{
                 </div>
                   <!-- dinamic content-->
               </div>
+
+              <div class="form-group input-group" id="payment-select">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                </div>
+                  <!-- dinamic content-->
+              </div>
     
               <div class="form-group">
                       <input type="submit" value="Login" class="btn btn-primary btn-block">
@@ -121,6 +128,10 @@ window.addEventListener("load",()=>{
           const div_country_field = register_form.querySelector("div#country-field")
           div_country_field.appendChild(select_country_element) //select
           div_country_field.appendChild(datalist_countries) //datalist
+
+          // add payment select to form
+          const div_payment_field = register_form.querySelector("div#payment-select")
+          div_payment_field.appendChild(div_register_payments) //payments
       }
     }
       
