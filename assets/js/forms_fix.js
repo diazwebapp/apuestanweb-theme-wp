@@ -62,7 +62,7 @@ window.addEventListener("load",()=>{
       //const product_details_table = register_form.querySelector("table.ihc-product-details-table")
       const product_subtotal_table = register_form.querySelector("table.ihc-subtotal-table")
       const checkout_session = register_form.querySelector("div.ihc-js-checkout-session")
-      const checkout_button = register_form.querySelector("div.ihc-checout-page-purchase-button-section")
+      const checkout_button = register_form.querySelector("div#ihc-checout-page-purchase-button-section")
       
       //Create select
       const select_country_element = document.createElement("input")
@@ -139,7 +139,7 @@ window.addEventListener("load",()=>{
           })
           div_payment_field.appendChild(product_subtotal_table) // subtotal payment
           div_payment_field.appendChild(checkout_session) //add checkout session
-          //div_payment_field.appendChild(checkout_button) //add checkout button
+          div_payment_field.appendChild(checkout_button) //add checkout button
       }
     }
       
