@@ -90,6 +90,9 @@ function aw_register_form($attr=array()){
             place-items: center;
             place-content: center;
             grid-template-columns: 1fr 1fr;
+        }
+        .form-group #discount {
+            grid-template-columns: 1fr;
             gap:5px;
         }
 		.divider-text span {
