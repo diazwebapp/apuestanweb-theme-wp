@@ -53,7 +53,7 @@ function aw_register_form($attr=array()){
         $obj_form = new UserAddEdit();
         $obj_form->setVariable($args);//setting the object variables
         
-        $str .= '<div id="aw-container-register-form" class="card bg-light"><p class="card-title" >Register</p>' . $obj_form->form() . '</div>';
+        $str .= '<div id="aw-container-register-form" class="card bg-light"><h4 class="card-title" >Register</h4><div class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
         wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
         return $str;
     }else{
