@@ -40,8 +40,9 @@ window.addEventListener("load",()=>{
       container_form.classList.add("mx-auto")
 
       if(div_social.length > 0){
-        container_form.appendChild('<p class="divider-text"><span class="bg-light">OR</span></p>')
-        container_form.appendChild('<p id="social-links" ></p>')
+        container_form.innerHTML += `<p class="divider-text"><span class="bg-light">OR</span></p>
+        <p id="social-links" ></p>`
+        
         const container_social_links = container_form.querySelector('#social-links')
         div_social.forEach(social=>{
           const enlace = social.querySelector('a')
