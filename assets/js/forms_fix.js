@@ -58,7 +58,7 @@ window.addEventListener("load",()=>{
       const div_register_social = register_form.querySelectorAll("div.ihc-sm-item")
       const div_register_payments = register_form.querySelectorAll(".ihc-js-select-payment")
       const register_form_divs = register_form.querySelectorAll("div")
-      const register_countries = register_form.querySelectorAll("select#ihc_country option");
+      const register_countries = register_form.querySelectorAll("select#ihc_country_field option");
       
       register_form_divs.forEach(div=>{
         //div.remove()
