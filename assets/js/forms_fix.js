@@ -1,4 +1,6 @@
 window.addEventListener("load",()=>{
+
+    //login form
     const container_form = document.querySelector(".ihc-login-form-wrap")
     const form = document.querySelector("#ihc_login_form")
     if(form){
@@ -23,7 +25,7 @@ window.addEventListener("load",()=>{
           container_social_links.appendChild(social)
         })
       }
-      container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Create Account</h4>')
+      container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Login</h4>')
       form.innerHTML += `
           <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -48,4 +50,34 @@ window.addEventListener("load",()=>{
       container_form.classList.add("card-body")
       container_form.classList.add("mx-auto")
     }
+
+    //Register form
+    const container_register_form = document.querySelector("div#aw-container-register-form")
+    if(container_register_form){
+      const register_form = container_register_form.querySelector("form")
+      const div_register_social = register_form .querySelectorAll("div.ihc-sm-item")
+      const register_form_divs = register_form .querySelectorAll("div")
+
+      if(div_register_social.length > 0){
+        console.log(div_register_social)
+      }
+    }
+    /* form.innerHTML += `
+          <div class="form-group input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+              </div>
+              <input type="email" class="form-control" name="user_email" placeholder="Email">
+          </div>
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+          </div>
+              <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
+          </div>
+          <div class="form-group">
+                  <input type="submit" value="Login" class="btn btn-primary btn-block">
+          </div>
+      ` */
+      
 })
