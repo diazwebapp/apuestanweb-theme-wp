@@ -64,6 +64,7 @@ window.addEventListener("load",()=>{
       const checkout_button = register_form.querySelector("div#ihc-checout-page-purchase-button-section")
       const product_name = register_form.querySelector("div.ihc-product-name")
       const product_description = register_form.querySelector("div.ihc-product-description")
+      const product_price = register_form.querySelector("div.ihc-product-price")
       
       //Create select
       const select_country_element = document.createElement("input")
@@ -153,6 +154,7 @@ window.addEventListener("load",()=>{
           product_name_.appendChild(product_name)
           product_name_.appendChild(product_description)
           const product_price_ = register_form.querySelector("td#product-price")
+          product_price_.appendChild(product_price)
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
           div_register_payments.forEach(payment=>{
