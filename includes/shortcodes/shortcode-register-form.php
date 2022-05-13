@@ -77,6 +77,9 @@ function aw_register_form($attr=array()){
             color:black;
             font-weight:bold;
         }
+        .form-group table tbody td#product-subtotal, .form-group table tbody td#product-price{
+            text-align:right;
+        }
 		.divider-text span {
 			padding: 7px;
 			font-size: 12px;

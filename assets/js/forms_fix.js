@@ -165,7 +165,7 @@ window.addEventListener("load",()=>{
           product_name_.appendChild(product_name)
           product_name_.appendChild(product_description)
           const product_price_ = register_form.querySelector("td#product-price")
-          product_price_.appendChild(product_price)
+          product_price_.textContent = product_price.textContent
           //add product subtotal
           const product_fee_name_ = register_form.querySelector("td#fee-name")
           product_fee_name_.appendChild(product_fee_name)
