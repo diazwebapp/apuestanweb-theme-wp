@@ -55,9 +55,9 @@ window.addEventListener("load",()=>{
     const container_register_form = document.querySelector("div#aw-container-register-form")
     if(container_register_form){
       const register_form = container_register_form.querySelector("form")
-      const div_register_social = register_form .querySelectorAll("div.ihc-sm-item")
-      const register_form_divs = register_form .querySelectorAll("div")
-      console.log(register_form)
+      const div_register_social = register_form.querySelectorAll("div.ihc-sm-item")
+      const register_form_divs = register_form.querySelectorAll("div")
+      
       if(div_register_social.length > 0){
         console.log(div_register_social)
       }
