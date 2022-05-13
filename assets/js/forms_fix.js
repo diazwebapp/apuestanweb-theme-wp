@@ -56,7 +56,7 @@ window.addEventListener("load",()=>{
     if(container_register_form){
       const register_form = container_register_form.querySelector("form")
       const div_register_social = register_form.querySelectorAll("div.ihc-sm-item")
-      const div_register_payments = register_form.querySelectorAll("div.iump-form-paybox")
+      const div_register_payments = register_form.querySelectorAll(".ihc-js-select-payment")
       const register_form_divs = register_form.querySelectorAll("div")
       
       register_form_divs.forEach(div=>{
