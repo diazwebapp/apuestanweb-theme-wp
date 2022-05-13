@@ -85,11 +85,12 @@ function aw_register_form($attr=array()){
         }
         
          
-        .form-group #payment-select {
+        .form-group #payment-select, .form-group #discount {
             display: grid;
             place-items: center;
             place-content: center;
             grid-template-columns: 1fr 1fr;
+            gap:5px;
         }
 		.divider-text span {
 			padding: 7px;
