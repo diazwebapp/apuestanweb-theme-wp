@@ -123,7 +123,7 @@ window.addEventListener("load",()=>{
               </section>
           `
           // add select country to form
-          const div_country_field = register_form.querySelector("div#country-field")
+          const div_country_field = register_form.querySelector("section#country-field")
           div_country_field.appendChild(select_country_element) //select
           div_country_field.appendChild(datalist_countries) //datalist
 
