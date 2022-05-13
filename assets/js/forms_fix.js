@@ -13,18 +13,7 @@ window.addEventListener("load",()=>{
       divs.forEach(div=>{
         div.remove()
       })
-      container_form.insertAdjacentHTML('afterbegin','<p class="divider-text"><span class="bg-light">OR</span></p>')
-      if(div_social.length > 0){
-        container_form.insertAdjacentHTML('afterbegin','<p id="social-links" ></p>')
-        const container_social_links = container_form.querySelector('#social-links')
-        div_social.forEach(social=>{
-          const enlace = social.querySelector('a')
-          enlace.classList.add('btn')
-          enlace.classList.add('btn-block')
-          
-          container_social_links.appendChild(social)
-        })
-      }
+      
       container_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Login</h4>')
       form.innerHTML += `
           <div class="form-group input-group">
@@ -49,6 +38,19 @@ window.addEventListener("load",()=>{
       container_form.removeAttribute("class")
       container_form.classList.add("card-body")
       container_form.classList.add("mx-auto")
+
+      if(div_social.length > 0){
+        container_form.appendChild('<p class="divider-text"><span class="bg-light">OR</span></p>')
+        container_form.appendChild('<p id="social-links" ></p>')
+        const container_social_links = container_form.querySelector('#social-links')
+        div_social.forEach(social=>{
+          const enlace = social.querySelector('a')
+          enlace.classList.add('btn')
+          enlace.classList.add('btn-block')
+          
+          container_social_links.appendChild(social)
+        })
+      }
     }
 
     //Register form
