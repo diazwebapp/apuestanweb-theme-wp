@@ -60,7 +60,7 @@ window.addEventListener("load",()=>{
       const register_form_divs = register_form.querySelectorAll("div")
       const register_countries = register_form.querySelectorAll("select#ihc_country_field option");
       //const product_details_table = register_form.querySelector("table.ihc-product-details-table")
-      const product_subtotal_table = register_form.querySelectorAll("table.ihc-subtotal-table td")
+      const product_subtotal_table = register_form.querySelectorAll("table.ihc-subtotal-table")
       const checkout_session = register_form.querySelector("div.ihc-js-checkout-session")
       const checkout_button = register_form.querySelector("div#ihc-checout-page-purchase-button-section")
       
@@ -76,11 +76,7 @@ window.addEventListener("load",()=>{
       register_countries.forEach(country=>{
         datalist_countries.appendChild(country)
       })
-      //remove form divs
-      register_form_divs.forEach(div=>{
-        div.remove()
-      })
-      console.log(product_subtotal_table)
+      
       
       if(register_form){
 
@@ -98,33 +94,33 @@ window.addEventListener("load",()=>{
         }
         container_register_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Create Acount</h4>')
         register_form.innerHTML += `
-              <div class="form-group input-group">
-                  <div class="input-group-prepend">
+              <section class="form-group input-group">
+                  <section class="input-group-prepend">
                       <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                  </div>
+                  </section>
                   <input type="email" class="form-control" name="user_email" placeholder="Email">
-              </div>
-              <div class="form-group input-group">
-                <div class="input-group-prepend">
+              </section>
+              <section class="form-group input-group">
+                <section class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                </div>
+                </section>
                   <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
-              </div>
+              </section>
     
-              <div class="form-group input-group" id="country-field">
-                <div class="input-group-prepend">
+              <section class="form-group input-group" id="country-field">
+                <section class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-globe"></i> </span>
-                </div>
+                </section>
                   <!-- dinamic content-->
-              </div>
+              </section>
 
-              <div class="form-group input-group" id="payment-select">
+              <section class="form-group input-group" id="payment-select">
                   <!-- dinamic content-->
-              </div>
+              </section>
     
-              <div class="form-group">
+              <section class="form-group">
                       <input type="submit" value="Login" class="btn btn-primary btn-block">
-              </div>
+              </section>
           `
           // add select country to form
           const div_country_field = register_form.querySelector("div#country-field")
@@ -137,9 +133,14 @@ window.addEventListener("load",()=>{
           div_register_payments.forEach(payment=>{
             div_payment_field.appendChild(payment) //payments
           })
-          //div_payment_field.appendChild(product_subtotal_table) // subtotal payment
+          div_payment_field.appendChild(product_subtotal_table) // subtotal payment
           div_payment_field.appendChild(checkout_session) //add checkout session
           div_payment_field.appendChild(checkout_button) //add checkout button
+
+          //remove form divs
+          register_form_divs.forEach(div=>{
+            div.remove()
+          })
       }
     }
       
