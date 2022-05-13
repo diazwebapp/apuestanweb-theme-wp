@@ -63,7 +63,7 @@ window.addEventListener("load",()=>{
       register_form_divs.forEach(div=>{
         div.remove()
       })
-      console.log(countries)
+      console.log(register_countries)
     }
     /* form.innerHTML += `
           <div class="form-group input-group">
