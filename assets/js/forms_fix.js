@@ -137,11 +137,11 @@ window.addEventListener("load",()=>{
           div_payment_field.appendChild(checkout_session) //add checkout session
           div_payment_field.appendChild(checkout_button) //add checkout button
 
-          //remove form divs
-          register_form_divs.forEach(div=>{
-            div.remove()
-          })
-      }
+        }
+        //remove form divs
+        register_form_divs.forEach(div=>{
+          div.remove()
+        })
     }
       
 })
