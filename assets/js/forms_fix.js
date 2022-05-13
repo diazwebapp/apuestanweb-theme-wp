@@ -61,7 +61,7 @@ window.addEventListener("load",()=>{
       const register_countries = register_form.querySelectorAll("select#ihc_country option");
       
       register_form_divs.forEach(div=>{
-        div.remove()
+        //div.remove()
       })
       console.log(register_countries)
     }
