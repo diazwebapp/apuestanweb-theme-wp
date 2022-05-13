@@ -128,7 +128,7 @@ window.addEventListener("load",()=>{
           div_country_field.appendChild(datalist_countries) //datalist
 
           // add payment select to form
-          const div_payment_field = register_form.querySelector("div#payment-select")
+          const div_payment_field = register_form.querySelector("section#payment-select")
           //div_payment_field.appendChild(product_details_table) // detail payment
           div_register_payments.forEach(payment=>{
             div_payment_field.appendChild(payment) //payments
