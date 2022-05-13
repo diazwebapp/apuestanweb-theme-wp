@@ -60,7 +60,7 @@ window.addEventListener("load",()=>{
       const register_form_divs = register_form.querySelectorAll("div")
       
       register_form_divs.forEach(div=>{
-        div.remove()
+        //div.remove()
       })
       div_register_payments.forEach(payment=>{
         console.log(payment)
