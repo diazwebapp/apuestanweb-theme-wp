@@ -69,6 +69,7 @@ function aw_register_form($attr=array()){
 		}
         .form-group table, .form-group table tbody, .form-group table tbody tr{
             width:100%;
+            margin:10px auto;
         }
         .form-group table tbody td{
             width:50%;
@@ -80,6 +81,8 @@ function aw_register_form($attr=array()){
         .form-group table tbody td#product-subtotal, .form-group table tbody td#product-price{
             text-align:right;
         }
+        
+         
         .form-group #payment-select {
             display: grid;
             place-items: center;
