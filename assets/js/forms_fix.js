@@ -131,7 +131,9 @@ window.addEventListener("load",()=>{
 
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
-          div_payment_field.appendChild(div_register_payments) //payments
+          div_register_payments.forEach(payment=>{
+            div_payment_field.appendChild(payment) //payments
+          })
       }
     }
       
