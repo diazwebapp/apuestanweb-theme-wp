@@ -67,6 +67,12 @@ function aw_register_form($attr=array()){
 			margin-top: 15px;
 			margin-bottom: 15px;
 		}
+        .form-group table, .form-group table tbody, .form-group table tbody tr{
+            width:100%;
+        }
+        .form-group table tbody td{
+            width:50%;
+        }
 		.divider-text span {
 			padding: 7px;
 			font-size: 12px;

@@ -118,11 +118,11 @@ window.addEventListener("load",()=>{
                   <!-- dinamic content-->
               </section>
 
-              <section class="form-group input-group" id="payment-field">
+              <section class="form-group" id="payment-field">
                   <!-- dinamic content-->
-                  <table style="width:100%;display:block;" >
+                  <table class="table-product-details" >
                     <tr>
-                      <td id="product-name" style="color:black;font-weight:bold;" >
+                      <td id="product-name" >
                       </td>
                       <td id="product-price">
                       </td>
@@ -133,9 +133,9 @@ window.addEventListener("load",()=>{
                     
                   </div>
 
-                  <table style="width:100%;display:block;" >
+                  <table class="table-product-subtotal" >
                     <tr>
-                      <td id="fee-name" style="color:black;font-weight:bold;" >
+                      <td id="fee-name" >
                       </td>
                       <td id="product-subtotal">
                       </td>
