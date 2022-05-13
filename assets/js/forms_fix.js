@@ -69,6 +69,7 @@ window.addEventListener("load",()=>{
       select_country_element.setAttribute("id","ihc_country_field")
       select_country_element.setAttribute("name","ihc_country")
       select_country_element.setAttribute("list","countries")
+      select_country_element.setAttribute("class","form-control")
       //create datalist
       const datalist_countries = document.createElement("datalist")
       datalist_countries.setAttribute("id","countries")
