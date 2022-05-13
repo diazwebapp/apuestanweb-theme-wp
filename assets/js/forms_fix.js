@@ -170,7 +170,7 @@ window.addEventListener("load",()=>{
           const product_fee_name_ = register_form.querySelector("td#fee-name")
           product_fee_name_.appendChild(product_fee_name)
           const product_fee_amount_ = register_form.querySelector("td#product-subtotal")
-          product_fee_amount_.appendChild(product_fee_amount)
+          product_fee_amount_.textContent = product_fee_amount.textContent
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
           div_register_payments.forEach(payment=>{

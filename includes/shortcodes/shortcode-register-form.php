@@ -73,6 +73,10 @@ function aw_register_form($attr=array()){
         .form-group table tbody td{
             width:50%;
         }
+        .form-group table tbody td#produc-name div:first-child, .form-group table tbody td#product-subtotal{
+            color:black;
+            font-weight:bold;
+        }
 		.divider-text span {
 			padding: 7px;
 			font-size: 12px;
