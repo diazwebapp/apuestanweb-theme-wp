@@ -67,11 +67,11 @@ window.addEventListener("load",()=>{
       const product_price = register_form.querySelector("div.ihc-product-price")
       const product_fee_name = register_form.querySelector("div.ihc-product-main-fee-label")
       const product_fee_amount = register_form.querySelector("span#ihc-subtotal-product-price")
+      const discount_input = register_form.querySelector("input#ihc-discount") 
+      const discount_button = register_form.querySelector("button#ihc-apply-discount") 
+           
       const tos = register_form.querySelector("div.ihc-tos-wrap")
-      
-      
-      
-      
+
       //Create select
       const select_country_element = document.createElement("input")
       select_country_element.setAttribute("id","ihc_country_field")
@@ -88,6 +88,7 @@ window.addEventListener("load",()=>{
       register_form_divs.forEach(div=>{
         div.remove()
       })
+
       if(register_form){
 
         if(div_register_social.length > 0){
@@ -134,7 +135,9 @@ window.addEventListener("load",()=>{
                       </td>
                     </tr>
                   </table>
-
+                  <div id="discount" >
+                    descuento
+                  </div>
                   <div id="payment-select" >
                     
                   </div>
@@ -171,6 +174,10 @@ window.addEventListener("load",()=>{
           product_fee_name_.appendChild(product_fee_name)
           const product_fee_amount_ = register_form.querySelector("td#product-subtotal")
           product_fee_amount_.textContent = product_fee_amount.textContent
+          //add discount
+          const div_discount = register_form.querySelector("div#discount")
+          div_discount.appendChild(discount_input)
+          div_discount.appendChild(discount_button)
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
           div_register_payments.forEach(payment=>{
