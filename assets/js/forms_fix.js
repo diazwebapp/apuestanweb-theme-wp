@@ -89,7 +89,7 @@ window.addEventListener("load",()=>{
       register_form_divs.forEach(div=>{
         div.remove()
       })
-
+      container_register_form.style.display = "block"
       if(register_form){
 
         if(div_register_social.length > 0){
