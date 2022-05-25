@@ -110,6 +110,9 @@ function aw_register_form($attr=array()){
         .ihc-sm-item{
 			width:100%;
 		}
+        .ihc-register-notice{
+            width:100%;
+        }
         </style>';
 
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';

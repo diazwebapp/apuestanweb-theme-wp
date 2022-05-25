@@ -109,21 +109,28 @@ window.addEventListener("load",()=>{
                   <section class="input-group-prepend">
                       <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                   </section>
+                  <input type="text" class="form-control" name="user_login" placeholder="username">
+              </section>
+              <section class="form-group input-group">
+                  <section class="input-group-prepend">
+                      <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                  </section>
                   <input type="email" class="form-control" name="user_email" placeholder="Email">
               </section>
               <section class="form-group input-group">
                 <section class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </section>
-                  <input type="password" value="" class="form-control" name="pwd" placeholder="Password">
+                  <input type="password" value="" class="form-control" name="pass1" placeholder="Password">
               </section>
-    
-              <section class="form-group input-group" id="country-field">
+              ${
+                register_countries.length > 0 ? (`<section class="form-group input-group" id="country-field">
                 <section class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-globe"></i> </span>
                 </section>
                   <!-- dinamic content-->
-              </section>
+              </section>'`) : ''
+              }
 
               <section class="form-group" id="payment-field">
                   <!-- dinamic content-->
@@ -160,9 +167,12 @@ window.addEventListener("load",()=>{
               </section>
           `
           // add select country to form
-          const div_country_field = register_form.querySelector("section#country-field")
-          div_country_field.appendChild(select_country_element) //select
-          div_country_field.appendChild(datalist_countries) //datalist
+          if(register_countries.length > 0){
+
+            const div_country_field = register_form.querySelector("section#country-field")
+            div_country_field.appendChild(select_country_element) //select
+            div_country_field.appendChild(datalist_countries) //datalist
+          }
           //add product details
           const product_name_ = register_form.querySelector("td#product-name")
           product_name_.appendChild(product_name)
@@ -175,10 +185,13 @@ window.addEventListener("load",()=>{
           const product_fee_amount_ = register_form.querySelector("td#product-subtotal")
           product_fee_amount_.textContent = product_fee_amount.textContent
           //add discount
-          const div_discount = register_form.querySelector("div#discount")
-          div_discount.appendChild(discount_title)
-          div_discount.appendChild(discount_input)
-          div_discount.appendChild(discount_button)
+          if(discount_input){
+
+            const div_discount = register_form.querySelector("div#discount")
+            div_discount.appendChild(discount_title)
+            div_discount.appendChild(discount_input)
+            div_discount.appendChild(discount_button)
+          }
           // add payment select to form
           const div_payment_field = register_form.querySelector("div#payment-select")
           div_register_payments.forEach(payment=>{
