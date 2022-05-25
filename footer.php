@@ -1,8 +1,14 @@
 <?php
 $logo = get_template_directory_uri() . '/assets/img/logo.svg';
+$geolocation = json_decode(GEOLOCATION);
+var_dump($geolocation);
+if($geolocation->success !== false):
+    $date = $geolocation->country;
+endif;
 ?>
 <footer class="footer">
 <div class="container">
+    <?php echo $date ?>
             <div class="row align-items-center form-row">
                 <div class="col-lg-2 col-6 mt_20">
                 <?php if ( carbon_get_theme_option( 'logo' ) )

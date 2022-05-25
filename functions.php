@@ -175,13 +175,23 @@ add_action('init', function(){
       
     $ip = $_SERVER['REMOTE_ADDR'];
     
-    $response = wp_remote_get("https://ipwhois.app/json/{$ip}",array('timeout'=>10));
+    $response = wp_remote_get("https://ipwho.is/{$ip}?output=json",array('timeout'=>10));
     
     if(!is_wp_error( $response )):
-        $geolocation =  wp_remote_retrieve_body( $response );
+        $geolocation_resp =  wp_remote_retrieve_body( $response );
+        $geolocation["success"] = true;
+        $geolocation['country'] = $geolocation_resp->country;
+        $geolocation['country_code'] = $geolocation_resp->countryCode;
+        $geolocation['timezone'] = $geolocation_resp->timezone;
         define("GEOLOCATION",$geolocation);
     endif;
     if(is_wp_error( $response )):
+        $country_json_file = file_get_contents(get_template_directory_uri(  ) . '/includes/libs/ipwhois.json');
+        $country_json_file = json_decode($country_json_file);
+        $geolocation["success"] = true;
+        $geolocation['country'] = $country_json_file->country;
+        $geolocation['country_code'] = $geolocation_resp->country_code;
+        $geolocation['timezone'] = $country_json_file->timezone->id;
         define("GEOLOCATION",json_encode($geolocation));
     endif;
     //odds-converter
@@ -203,26 +213,18 @@ add_action('init', function(){
         return $classes;
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
-//ip del cliente
-function aw_get_geolocation() {
-    $ip = false;
-    $geolocation = [
-        "success" => false,
-        "message" => "reserved range"
-    ];
-    if (!empty($_SERVER['HTTP_CLIENT_IP']))
-      $ip = $_SERVER['HTTP_CLIENT_IP'];
-          
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-      
-    $ip = $_SERVER['REMOTE_ADDR'];
-    
-    $response = wp_remote_get("https://ipwhois.app/json/{$ip}",array('timeout'=>10));
-    
-    if(!is_wp_error( $response )):
-        $geolocation =wp_remote_retrieve_body( $response );
-        return json_decode($geolocation);
-    endif;
-    return json_decode(json_encode($geolocation));
-  }   
+  
+  function aw_mime_types($mimes) {
+	$mimes['webp'] = 'image/webp';
+    $mime_types['avif'] = 'image/avif';
+    $mime_types['avis'] = 'image/avif-sequence';
+	return $mimes;
+}
+add_filter('upload_mimes', 'aw_mime_types');
+function filter_webp_quality( $quality, $mime_type ){
+    if ( 'image/webp' === $mime_type ) {
+       return 50;
+    }
+    return $quality;
+  }
+  add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
