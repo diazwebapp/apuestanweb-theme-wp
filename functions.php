@@ -207,13 +207,14 @@ add_action('init', function(){
         define("GEOLOCATION",$geolocation);
     endif;
     if($ip == '127.0.0.1' or is_wp_error( $response ) or $response == false or $geolocation["success"] == false):
-        
-        $geolocation_resp = file_get_contents(get_template_directory_uri(  ) . '/includes/libs/ipwhois.json');
-        $geolocation_resp = json_decode($geolocation_resp);
-        $geolocation["success"] = true;
-        $geolocation['country'] = $geolocation_resp->country;
-        $geolocation['country_code'] = $geolocation_resp->country_code;
-        $geolocation['timezone'] = $geolocation_resp->timezone->id;
+        $response = wp_remote_get("http://ipwho.is/{$ip}",array('timeout'=>2));
+        if(!is_wp_error( $response )):
+            $geolocation_resp =  wp_remote_retrieve_body( $response );
+            $geolocation["success"] = true;
+            $geolocation['country'] = $geolocation_resp->country;
+            $geolocation['country_code'] = $geolocation_resp->country_code;
+            $geolocation['timezone'] = $geolocation_resp->timezone->id;
+        endif;
         
         define("GEOLOCATION",json_encode($geolocation));
     endif;
@@ -239,8 +240,8 @@ add_action('init', function(){
   
   function aw_mime_types($mimes) {
 	$mimes['webp'] = 'image/webp';
-    $mime_types['avif'] = 'image/avif';
-    $mime_types['avis'] = 'image/avif-sequence';
+    $mime['avif'] = 'image/avif';
+    $mime['avis'] = 'image/avif-sequence';
 	return $mimes;
 }
 add_filter('upload_mimes', 'aw_mime_types');
