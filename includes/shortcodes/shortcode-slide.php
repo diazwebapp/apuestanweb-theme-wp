@@ -1,13 +1,6 @@
 <?php
 function shortcode_slide($atts)
 {
-    add_action( 'wp_print_styles', function(){
-        wp_deregister_style( 'bootstrap.min' );
-        wp_deregister_style( 'owl.crousel' );
-    }, 100 );
-    add_action( 'wp_print_scripts', function(){
-        wp_deregister_script( 'plugins' );
-    }, 100 );
     extract(shortcode_atts(array(
         'num' => 4,
         'model' => 1,
