@@ -16,7 +16,7 @@ function shortcode_forecast($atts)
     $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
     $title = empty($custom_h1) ? get_the_title( get_the_ID() ) : $custom_h1;
 
-    if($filter)
+    if($filter):
         $ret .= "<div class='title_wrap'>
                     <h1 class='title mt_30 order-lg-1'>$title</h1>
                     <div class='mt_30 dropd order-lg-3'>
@@ -34,6 +34,7 @@ function shortcode_forecast($atts)
                         </ul>
                     </div>
                 </div>";
+    endif;
     wp_reset_query();
     $args = [];
     $args['post_status']    = 'publish';
