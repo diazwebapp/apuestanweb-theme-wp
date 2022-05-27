@@ -19,7 +19,13 @@ function crb_attach_theme_options()
                             'type' => 'post',
                             'post_type' => 'page',
                         )
-                    ))->set_min(1)->set_max(1)
+                    ))->set_min(1)->set_max(1),
+                Field::make('select', 'geolocation_api', __("geolocation api", "jbetting"))
+                    ->add_options([
+                        "abstractapi" => "abstractapi",
+                        "ipwhois" => "ipwhois",
+                    ]),
+                Field::make('text', 'geolocation_api_key', __("geolocation api key", "jbetting")),
             ));
 
 

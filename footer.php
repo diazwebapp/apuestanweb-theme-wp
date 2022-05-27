@@ -1,7 +1,7 @@
 <?php
 $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 $geolocation = json_decode(GEOLOCATION);
-var_dump($geolocation);
+
 if($geolocation->success !== false):
     $date = $geolocation->country;
 endif;

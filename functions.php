@@ -174,24 +174,47 @@ add_action('init', function(){
       $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
       
     $ip = $_SERVER['REMOTE_ADDR'];
-    
-    $response = wp_remote_get("https://ipwho.is/{$ip}?output=json",array('timeout'=>10));
-    
-    if(!is_wp_error( $response )):
-        $geolocation_resp =  wp_remote_retrieve_body( $response );
-        $geolocation["success"] = true;
-        $geolocation['country'] = $geolocation_resp->country;
-        $geolocation['country_code'] = $geolocation_resp->countryCode;
-        $geolocation['timezone'] = $geolocation_resp->timezone;
+    $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
+    $geolocation_api_key = empty(carbon_get_theme_option('geolocation_api_key')) ? false : carbon_get_theme_option('geolocation_api_key') ;
+    $response = false;
+    if($ip != '127.0.0.1'):
+        if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
+            if(!empty($geolocation_api_key)):
+                $response = wp_remote_get("http://ipwho.is/{$ip}?key=null",array('timeout'=>2));
+            endif;
+            if(empty($geolocation_api_key)):
+                $response = wp_remote_get("http://ipwho.is/{$ip}",array('timeout'=>2));
+            endif;
+            if(!is_wp_error( $response )):
+                $geolocation_resp =  wp_remote_retrieve_body( $response );
+                $geolocation["success"] = true;
+                $geolocation['country'] = $geolocation_resp->country;
+                $geolocation['country_code'] = $geolocation_resp->country_code;
+                $geolocation['timezone'] = $geolocation_resp->timezone->id;
+            endif;
+        endif;
+
+        if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
+            $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key={$geolocation_api_key}&ip_address={$ip}",array('timeout'=>2));
+            if(!is_wp_error( $response )):
+                $geolocation_resp =  wp_remote_retrieve_body( $response );
+                $geolocation["success"] = true;
+                $geolocation['country'] = $geolocation_resp->country;
+                $geolocation['country_code'] = $geolocation_resp->country_code;
+                $geolocation['timezone'] = $geolocation_resp->timezone->name;
+            endif;
+        endif;
         define("GEOLOCATION",$geolocation);
     endif;
-    if(is_wp_error( $response )):
-        $country_json_file = file_get_contents(get_template_directory_uri(  ) . '/includes/libs/ipwhois.json');
-        $country_json_file = json_decode($country_json_file);
+    if($ip == '127.0.0.1' or is_wp_error( $response ) or $response == false or $geolocation["success"] == false):
+        
+        $geolocation_resp = file_get_contents(get_template_directory_uri(  ) . '/includes/libs/ipwhois.json');
+        $geolocation_resp = json_decode($geolocation_resp);
         $geolocation["success"] = true;
-        $geolocation['country'] = $country_json_file->country;
+        $geolocation['country'] = $geolocation_resp->country;
         $geolocation['country_code'] = $geolocation_resp->country_code;
-        $geolocation['timezone'] = $country_json_file->timezone->id;
+        $geolocation['timezone'] = $geolocation_resp->timezone->id;
+        
         define("GEOLOCATION",json_encode($geolocation));
     endif;
     //odds-converter
