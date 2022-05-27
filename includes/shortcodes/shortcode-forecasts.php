@@ -37,9 +37,9 @@ function shortcode_forecast($atts)
     endif;
     wp_reset_query();
     $args = [];
-    $args['post_status']    = 'publish';
+    //$args['post_status']    = 'publish';
     $args['post_type']      = 'forecast';
-    $args['posts_per_page'] = $num;
+    //$args['posts_per_page'] = $num;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
     $args['order']          = 'ASC';
@@ -47,13 +47,15 @@ function shortcode_forecast($atts)
    
     $league_arr=[];
     
-    if(is_array($league))
+    if(is_array($league)):
         foreach ($league as $key => $value) {
             $league_arr[]= $value->slug ;
         }
-    if(!is_array($league))
+    endif;
+    if(!is_array($league)):
         $league_arr = explode(',',$league);
-    if($league !== 'all')
+    endif;
+    if($league !== 'all' or !$league):
         $args['tax_query'] = [
             [
                 'taxonomy' => 'league',
@@ -61,6 +63,7 @@ function shortcode_forecast($atts)
                 'terms' => $league_arr
             ]
         ];
+    endif;
 
     
     if ($date and $date != "") {

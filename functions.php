@@ -144,7 +144,7 @@ add_action('init', function(){
     //Definimos configuraciones globales del tema
     
     //Zona horaria
-    date_default_timezone_set(get_option('timezone_string'));
+    date_default_timezone_set('America/Caracas');
     //vip page
     $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
     if($page_id_vip):
@@ -211,10 +211,7 @@ add_action('init', function(){
         $response = wp_remote_get("http://ipwho.is/{$ip}",array('timeout'=>2));
         if(!is_wp_error( $response )):
             $geolocation_resp =  wp_remote_retrieve_body( $response );
-            $geolocation["success"] = true;
-            $geolocation['country'] = $geolocation_resp->country;
-            $geolocation['country_code'] = $geolocation_resp->country_code;
-            $geolocation['timezone'] = $geolocation_resp->timezone->id;
+            $geolocation["success"] = false;
         endif;
         
         define("GEOLOCATION",json_encode($geolocation));
