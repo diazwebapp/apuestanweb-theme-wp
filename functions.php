@@ -188,7 +188,7 @@ add_action('init', function(){
             endif;
             if(!is_wp_error( $response )):
                 $geolocation_resp =  wp_remote_retrieve_body( $response );
-                $geolocation_resp = json_encode($geolocation_resp);
+                $geolocation_resp = json_decode($geolocation_resp);
                 $geolocation["success"] = true;
                 $geolocation['country'] = $geolocation_resp->country;
                 $geolocation['country_code'] = $geolocation_resp->country_code;
