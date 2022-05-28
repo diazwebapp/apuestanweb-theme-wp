@@ -206,7 +206,7 @@ add_action('init', function(){
                 $geolocation['timezone'] = $geolocation_resp->timezone->name;
             endif;
         endif;
-        $geolocation = json_decode($geolocation);
+        $geolocation = json_encode($geolocation);
         var_dump($geolocation);
         define("GEOLOCATION",$geolocation);
     endif;
