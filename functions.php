@@ -189,7 +189,7 @@ add_action('init', function(){
             if(!is_wp_error( $response )):
                 $geolocation_resp =  wp_remote_retrieve_body( $response );
                 $geolocation["success"] = true;
-                $geolocation['country'] = $geolocation_resp->country;
+                $geolocation['country'] = $geolocation_resp['country'];
                 $geolocation['country_code'] = $geolocation_resp->country_code;
                 $geolocation['timezone'] = $geolocation_resp->timezone->id;
             endif;

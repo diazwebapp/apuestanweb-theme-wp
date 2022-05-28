@@ -44,7 +44,7 @@ function shortcode_forecast($atts)
     $args['orderby']        = 'meta_value';
     $args['order']          = 'ASC';
 
-   var_dump($league);
+  
     $league_arr=[];
     
     if(is_array($league)):
