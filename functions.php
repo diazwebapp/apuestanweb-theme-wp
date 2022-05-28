@@ -194,7 +194,6 @@ add_action('init', function(){
                 $geolocation['country_code'] = $geolocation_resp->country_code;
                 $geolocation['timezone'] = $geolocation_resp->timezone->id;
             endif;
-            define("GEOLOCATION",$geolocation);
         endif;
 
         if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
@@ -207,6 +206,7 @@ add_action('init', function(){
                 $geolocation['timezone'] = $geolocation_resp->timezone->name;
             endif;
         endif;
+        json_encode($geolocation);
         define("GEOLOCATION",$geolocation);
     endif;
     if($ip == '127.0.0.1' or is_wp_error( $response ) or $response == false or $geolocation["success"] == false):
