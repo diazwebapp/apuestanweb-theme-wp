@@ -39,12 +39,12 @@ function shortcode_forecast($atts)
     $args = [];
     //$args['post_status']    = 'publish';
     $args['post_type']      = 'forecast';
-    //$args['posts_per_page'] = $num;
+    $args['posts_per_page'] = $num;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
     $args['order']          = 'ASC';
 
-   
+   var_dump($league);
     $league_arr=[];
     
     if(is_array($league)):
