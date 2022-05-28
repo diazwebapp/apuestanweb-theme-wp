@@ -210,7 +210,7 @@ add_action('init', function(){
         $geolocation = json_encode($geolocation);
         define("GEOLOCATION",$geolocation);
     endif;
-    if($ip == '127.0.0.1' or is_wp_error( $response ) or !$response == false or !$geolocation["success"]):
+    if($ip == '127.0.0.1'):
         $response = file_get_contents(get_template_directory_uri(  ) . "/includes/libs/abstractapi.json");
         if(!is_wp_error( $response )):
             $geolocation_resp = json_decode($response);
