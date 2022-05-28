@@ -207,6 +207,7 @@ add_action('init', function(){
             endif;
         endif;
         json_encode($geolocation);
+        var_dump($geolocation);
         define("GEOLOCATION",$geolocation);
     endif;
     if($ip == '127.0.0.1' or is_wp_error( $response ) or $response == false or $geolocation["success"] == false):
