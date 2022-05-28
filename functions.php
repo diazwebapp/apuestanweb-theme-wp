@@ -194,6 +194,7 @@ add_action('init', function(){
                 $geolocation['country_code'] = $geolocation_resp->country_code;
                 $geolocation['timezone'] = $geolocation_resp->timezone->id;
             endif;
+            define("GEOLOCATION",$geolocation);
         endif;
 
         if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
