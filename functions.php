@@ -214,7 +214,8 @@ add_action('init', function(){
         $response = file_get_contents(get_template_directory_uri(  ) . "/includes/libs/abstractapi.json");
         if(!is_wp_error( $response )):
             $geolocation_resp = json_decode($response);
-            $geolocation["success"] = false;
+            $geolocation["success"] = true;
+            $geolocation["message"] = "local server";
             $geolocation["country"] = $geolocation_resp->country;
             $geolocation["country_code"] = $geolocation_resp->country_code;
             $geolocation["timezone"] = $geolocation_resp->timezone->name;
