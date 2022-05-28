@@ -1,10 +1,3 @@
-<?php 
-$location = json_decode(GEOLOCATION);
-$country = 'n/a';
-if($location->success == true):
-    $country = $location->country ."/".$location->city;
-endif;
-?>
 <!DOCTYPE html>
 <html>
 <head>

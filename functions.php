@@ -190,9 +190,9 @@ add_action('init', function(){
                 $geolocation_resp =  wp_remote_retrieve_body( $response );
                 $geolocation_resp = json_decode($geolocation_resp);
                 $geolocation["success"] = true;
-                $geolocation['country'] = $geolocation_resp->country;
-                $geolocation['country_code'] = $geolocation_resp->country_code;
-                $geolocation['timezone'] = $geolocation_resp->timezone->id;
+                $geolocation["country"] = $geolocation_resp->country;
+                $geolocation["country_code"] = $geolocation_resp->country_code;
+                $geolocation["timezone"] = $geolocation_resp->timezone->id;
             endif;
         endif;
 
@@ -200,21 +200,24 @@ add_action('init', function(){
             $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key={$geolocation_api_key}&ip_address={$ip}",array('timeout'=>2));
             if(!is_wp_error( $response )):
                 $geolocation_resp =  wp_remote_retrieve_body( $response );
+                $geolocation_resp = json_decode($geolocation_resp);
                 $geolocation["success"] = true;
-                $geolocation['country'] = $geolocation_resp->country;
-                $geolocation['country_code'] = $geolocation_resp->country_code;
-                $geolocation['timezone'] = $geolocation_resp->timezone->name;
+                $geolocation["country"] = $geolocation_resp->country;
+                $geolocation["country_code"] = $geolocation_resp->country_code;
+                $geolocation["timezone"] = $geolocation_resp->timezone->name;
             endif;
         endif;
         $geolocation = json_encode($geolocation);
-        var_dump($geolocation);
         define("GEOLOCATION",$geolocation);
     endif;
-    if($ip == '127.0.0.1' or is_wp_error( $response ) or $response == false or $geolocation["success"] == false):
-        $response = wp_remote_get("http://ipwho.is/{$ip}",array('timeout'=>2));
+    if($ip == '127.0.0.1' or is_wp_error( $response ) or !$response == false or !$geolocation["success"]):
+        $response = file_get_contents(get_template_directory_uri(  ) . "/includes/libs/abstractapi.json");
         if(!is_wp_error( $response )):
-            $geolocation_resp =  wp_remote_retrieve_body( $response );
+            $geolocation_resp = json_decode($response);
             $geolocation["success"] = false;
+            $geolocation["country"] = $geolocation_resp->country;
+            $geolocation["country_code"] = $geolocation_resp->country_code;
+            $geolocation["timezone"] = $geolocation_resp->timezone->name;
         endif;
         
         define("GEOLOCATION",json_encode($geolocation));
