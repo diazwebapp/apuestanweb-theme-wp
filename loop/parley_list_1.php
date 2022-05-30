@@ -60,8 +60,11 @@ echo "<div class='parley_wrapper'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
-                            <img style='width:15px;height:15px;object-fit:contain;' src='{$sport['logo']}' class='img-fluid' alt=''>
                             <h5>{$sport['name']}</h5>
+                        
+                        <div class='d-lg-block d-none'>
+                            <time>$fecha, $hora</time>
+                        </div>
                         </div>
                         <div class='d-lg-none d-block'>
                             <div class='mobile_parley_time'>
@@ -72,20 +75,15 @@ echo "<div class='parley_wrapper'>
                     <div class='parley_match_time'>
                         <div class='parley_flag'>
                             <div class='parley_team'>
-                                <img style='width:30px;height:30px;object-fit:contain;' src='{$teams['team1']['logo']}' class='img-fluid' alt=''>
+                                <img src='{$teams['team1']['logo']}' class='img-fluid' alt=''>
+                                <p>{$teams['team1']['name']}</p>
                             </div>
                             <div class='parley_team parley_team2'>
-                                <img style='width:30px;height:30px;object-fit:contain;' src='{$teams['team2']['logo']}' class='img-fluid' alt=''>
-                            </div>
-                        </div>
-                        <div class='parley_match_wrapper'>
-                            <div class='parley_match'>
-                            <div class='date-par d-lg-block d-none'>
-                                <time>$fecha, $hora</time>
-                            </div> 
-                                <p>{$teams['team1']['name']}</p>
+                                <img src='{$teams['team2']['logo']}' class='img-fluid' alt=''>
                                 <p class='p2'>{$teams['team2']['name']}</p>
-                            </div>
+                             </div>
+                        </div>
+                        <div class=''>
                             <div class='d-lg-none d-block'>
                                 <div class='parley_right_first'>
                                     <p class='p1'>{$prediction['title']}</p>
@@ -126,9 +124,7 @@ echo "<div class='parley_wrapper'>
                     <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
                 </div>
                 <div class='parley_right_content2'>
-                    <div class='parley_left_content2 parley_right_content2_mb d-md-none d-block'>
-                        <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
-                    </div>
+
                     <div class='blog_select_box parley_right_content2_mb'>
                         <select class='form-select' onchange='test(this)' name='apu' id='apu' data='$parley_id' >
                             <option value='10'>Apuesta $10</option>
@@ -141,6 +137,9 @@ echo "<div class='parley_wrapper'>
                     <div class='gana_box parley_right_content2_mb'>
                     <input type='hidden' id='jscuote_$parley_id' value='$parley_cuotes'/>
                        <p>Gana: $ <span id='jsresult_$parley_id' >". $parley_cuotes * 10 ."</span></p>
+                    </div>
+                    <div class='parley_left_content2 parley_right_content2_mb d-md-none d-block'>
+                    <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
                     </div>
                     <div class='parley_btn_2 parley_right_content2_mb'> 
                         <a href='{$bookmaker['ref_link']}' class='button'>Apostar ahora</a>
