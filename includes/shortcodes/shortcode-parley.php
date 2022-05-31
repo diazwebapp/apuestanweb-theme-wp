@@ -11,6 +11,7 @@ function shortcode_parley($atts)
         'vip_link' => PERMALINK_VIP,
         'text_vip_link' => 'VIP',
         'filter' => false,
+        'time_format' => false,
     ), $atts));
     $ret = "";
     if(!$title){
@@ -81,8 +82,13 @@ function shortcode_parley($atts)
                 ]
             ];
     }
-
+    set_query_var( 'params', [
+        "vip_link" => PERMALINK_VIP,
+        "text_vip_link" => $text_vip_link,
+        "time_format" => $time_format
+    ] );
     $query = new WP_Query($args);
+    
     if ($query->have_posts()) {
         $ret .= "<div id='games_list'>";
         while ($query->have_posts()):
@@ -104,6 +110,7 @@ function shortcode_parley($atts)
                 var vip = 'no';
                 var unlock = 'no';
                 var cpt = 'parley';
+                var time_format = '<?php echo $time_format ?>'
             </script>
 
         <?php 

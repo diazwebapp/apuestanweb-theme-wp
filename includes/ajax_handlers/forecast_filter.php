@@ -25,11 +25,11 @@ function filter_forecast() {
     
     if ($fecha and $fecha != "") {
         if($fecha == 'today')
-            $current_date = date_i18n('Y-m-d',strtotime(''));
+            $current_date = date('Y-m-d');
         if($fecha == 'yesterday')
-            $current_date = date_i18n('Y-m-d', strtotime('-1 days'));
+            $current_date = date('Y-m-d', strtotime('-1 days'));
         if($fecha == 'tomorrow')
-            $current_date = date_i18n('Y-m-d',strtotime('+1 days'));
+            $current_date = date('Y-m-d',strtotime('+1 days'));
             
         $args['meta_query']   = [
                 [
@@ -48,7 +48,7 @@ function filter_forecast() {
     
     wp_reset_query( );
     $query = new WP_Query( $args );
-
+    var_dump(count($query->get_posts()));
 	// print_r($query);
 	if ( $query->have_posts() ) :
     
@@ -101,7 +101,7 @@ function filter_forecast() {
                 var unlock = '<?php echo $unlock ?>';
                 var cpt = '<?php echo $_POST['cpt'] ?>';
                 var time_format = '<?php echo $time_format ?>'
-                const date_items_2 = document.querySelectorAll('.date_item_pronostico_top');
+                var date_items_2 = document.querySelectorAll('.date_item_pronostico_top');
                 if(date_items_2.length > 0){
                     date_items_2.forEach(item=>{
                         setInterval(()=>{
@@ -112,8 +112,8 @@ function filter_forecast() {
             </script>
             
         <?php 
-wp_reset_query( );
     endif;
+    wp_reset_query( );
 	die();
 }
 
