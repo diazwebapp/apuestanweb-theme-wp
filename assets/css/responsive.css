@@ -516,12 +516,14 @@
 
 	/*parley area*/
 
+
 	.parley_box {
 		width: 48rem;
 		flex-direction: column;
+		margin: 2rem 2.6rem 0 2.3rem;
 		padding: 3rem 2rem 2rem 2rem;
 	}
-
+	
 	.parley_left_content{
 		flex-direction: column;
 		width: 100%;
@@ -544,8 +546,8 @@
 		display: inline-block;
 	}
 	.parley_match_time{
-		padding-left: 0;
-		margin-right: 9rem;
+		width: 300px;
+
 	}
 	.parley_match_wrapper {
 		display: flex;
