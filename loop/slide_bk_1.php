@@ -16,7 +16,7 @@ $stars = draw_rating($rating_ceil);
 
 $bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
 $location = json_decode(GEOLOCATION);
-if($location->success == true and $bk_countries and count($bk_countries) > 0):
+if($location->success and $bk_countries and count($bk_countries) > 0):
     foreach($bk_countries as $country):
         if($country['country_code'] == $location->country_code):  
             echo "<div class='owl-item' style='width: 142.5px; margin-right: 15px;'> ";
