@@ -2,7 +2,6 @@
 if(isset($_GET['delete_payment_account'])){
     delete_payment_account($_GET['delete_payment_account']);
     header('Location:'.$_SERVER['HTTP_REFERER']);
-    die;
 }
 function print_accounts($method){
     $accounts = select_payment_accounts($method);
