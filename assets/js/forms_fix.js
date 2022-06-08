@@ -243,9 +243,12 @@ window.addEventListener("load",()=>{
               input.setAttribute("data-target",`#${payment_methods_array[i][0]}`)
               input.setAttribute("aria-controls",`${payment_methods_array[i][0]}`)
               
-              if(payment_methods_array[i][0] == 'paypal_express_checkout' && payment_methods_array[i][0] !== 'bank_transfer'){
+              if(payment_methods_array[i][0] == 'paypal_express_checkout'){
                 input.checked = true
                 aw_default_register_payment_method(register_form,payment_methods_array[i][0])
+              }
+
+              if(payment_methods_array[i][0] !== 'bank_transfer'){
                 let clone = document.importNode(template.content,true)
                 div_payment_field.appendChild(clone)
               }
