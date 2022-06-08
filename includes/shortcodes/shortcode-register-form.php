@@ -85,7 +85,7 @@ function aw_register_form($attr=array()){
         }
         
          
-        .form-group #payment-select, .form-group #discount {
+        .form-group #discount {
             display: grid;
             place-items: center;
             place-content: center;
@@ -121,8 +121,10 @@ function aw_register_form($attr=array()){
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
         $str .= '<template id="temp"><div>
             <label></label>
-            <input type="radio" onChange="aw_change_register_payment_method(this)"/>
+            <input data-toggle="collapse" type="radio" onChange="aw_change_register_payment_method(this)"/>
+            <p class="collapse"></p>
         </div></template>';
+        //data-toggle="collapse" role="button" aria-expanded="false"
         return $str;
     }else{
         

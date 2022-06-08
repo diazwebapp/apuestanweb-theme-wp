@@ -210,19 +210,45 @@ window.addEventListener("load",()=>{
           if(template){
             let label = template.content.querySelector('label')
             let input = template.content.querySelector('input')
+            let p = template.content.querySelector('p')
+            
             for(let i = 0; i < payment_methods_array.length; i++){
               label.textContent = payment_methods_array[i][1]
               label.setAttribute('for',payment_methods_array[i][0])
+
+              
+
+              p.id = payment_methods_array[i][0]
+
+              p.innerHTML = `<div class="col-12 text-start">
+              <p class="mt-2">
+                1. Usamos la tasa de cambio oficial del BCV  &nbsp;&nbsp;<b> Bs/USD <strong id="tasaFomato">5,16</strong> </b>
+              </p>
+              <p class="mt-2">2. Paga desde tu banco el total de <b id="Monto">Bs. 185,40</b> <i>(El IVA está incluido)</i></p>
+              
+              <p class="mt-2">3. Usa nuestros datos de transferencia bancaria<br>
+                                     <b> Bco. Banesco Cta. Cte:</b><br>
+                                      0134 0038 59 0381059561<br><b>
+                                      A nombre de:</b><br>
+                                      A.C. CONTENIDOS PARA LA INFORMACIÓN Y FORMACIÓN (COFEIN)<br><b>
+                                      RIF:</b> J-40842480-0
+                                  </p>
+              <p class="mt-2">4. Reporta tu pago a continuación</p>
+            </div>`
+
               input.value = payment_methods_array[i][0]
               input.name = "aw-payment-radio"
               input.id = payment_methods_array[i][0]
+
+              input.setAttribute("data-target",`#${payment_methods_array[i][0]}`)
+              input.setAttribute("aria-controls",`${payment_methods_array[i][0]}`)
               
-              if(payment_methods_array[i][0] == 'paypal_express_checkout'){
+              if(payment_methods_array[i][0] == 'paypal_express_checkout' && payment_methods_array[i][0] !== 'bank_transfer'){
                 input.checked = true
                 aw_default_register_payment_method(register_form,payment_methods_array[i][0])
+                let clone = document.importNode(template.content,true)
+                div_payment_field.appendChild(clone)
               }
-              let clone = document.importNode(template.content,true)
-              div_payment_field.appendChild(clone)
             }
           }
         }
@@ -244,6 +270,12 @@ function aw_change_register_payment_method(e){
 
   const ihc_payment_gateway_input = document.querySelector("input[name=ihc_payment_gateway]")
   const ihc_payment_selected_input = document.querySelector("input[name=payment_selected]")
+  const p_show = e.parentNode.parentNode.querySelectorAll("p.show")
+  if(p_show.length > 0){
+    p_show.forEach(p=>{
+      p.classList.remove("show")
+    })
+  }
   if(ihc_payment_gateway_input && ihc_payment_selected_input){
     ihc_payment_gateway_input.value = e.value
     ihc_payment_selected_input.value = e.value
