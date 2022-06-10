@@ -30,7 +30,7 @@ function print_accounts($method){
         <td>'.($key+1).'</td>
         <td>'.$account->bank_name.'</td>
         <td>'.$account->country_code.'</td>
-        <td>'.$account->payment_method.'</td>
+        <td>'.str_replace("_"," ",$account->payment_method).'</td>
         <td>'.$account->dni.'</td>
         <td>'.$account->titular.'</td>
         <td><div class="'.($account->status == 1? "enable":"disable").'" ></div></td>';

@@ -1,15 +1,15 @@
 <?php
-$form_metadata["transferencia"] = '<div class="form-group" >
+$form_metadata["bank_transfer"] = '<div class="form-group" >
             <label>Account number</label>
-            <input type="number"  required name="account_number"  autocomplete="off"/>
+            <input type="number"  required name="account number"  autocomplete="off"/>
         </div>';
-$form_metadata["pago movil"] = '<div class="form-group" >
+$form_metadata["mobile_payment"] = '<div class="form-group" >
             <label>Teléfono</label>
             <input type="number"  required name="phone"  autocomplete="tel"/>
         </div>
         <div class="form-group" >
             <label>Codigo del banco</label>
-            <input type="number"  required name="bank_code"  autocomplete="off"/>
+            <input type="number"  required name="bank code"  autocomplete="off"/>
         </div>';
 function add_account($method){
     global $form_metadata;
@@ -50,9 +50,9 @@ function add_account($method){
                             </form>
                         ';
                         
-    if($method == 'pago movil'): 
+    if($method == 'mobile_payment'): 
         $form_new_account = str_replace("{metadata}",
-        $form_metadata["pago movil"],
+        $form_metadata["mobile_payment"],
         $form_new_account);   
                           
     endif;

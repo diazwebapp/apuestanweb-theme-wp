@@ -4,8 +4,8 @@ define("MYSQL_TABLE_PAYMENT_ACCOUNTS",$wpdb->prefix . "aw_payment_accounts");
 define("MYSQL_TABLE_PAYMENT_ACCOUNTS_META",$wpdb->prefix . "aw_payment_accounts_meta");
 
 $payment_methods = [
-    ["name"=>"pago movil"],
-    ["name" =>"transferencia"]
+    ["name"=>"pago movil","key"=>"mobile_payment"],
+    ["name" =>"transferencia","key"=>"bank_transfer"]
 ];
 
 //creamos la tabla 
@@ -61,7 +61,6 @@ function insert_payment_account_metadata($data){
 function select_payment_accounts($method){
     global $wpdb ;
     $results = $wpdb->get_results("SELECT * FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE payment_method='$method'");
-    $accounts = [];
     foreach($results as $key => $account):
         $rs_metas = select_payment_accounts_meta($account->id);
         $results[$key]->metas = $rs_metas;

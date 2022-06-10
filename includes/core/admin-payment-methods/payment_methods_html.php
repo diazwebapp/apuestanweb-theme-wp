@@ -17,12 +17,12 @@ function panel_payment_methods(){
     
     if(count($query_methods) > 0):
         for($key =0; $key<count($query_methods); $key++):
-            $list_payment_methods_li .= '<button class="'.($key==0?'active method-item':'method-item').'" >'.$query_methods[$key]["name"].'</button>';
+            $list_payment_methods_li .= '<button class="'.($key==0?'active method-item':'method-item').'" id="'.$query_methods[$key]["key"].'" >'.$query_methods[$key]["name"].'</button>';
         endfor;
     endif;
     $list_payment_methods = str_replace("{data}",$list_payment_methods_li,$list_payment_methods);
-    $form_new_account = add_account('pago movil');
-    $table_accounts = print_accounts('pago movil');
+    $form_new_account = add_account('mobile_payment');
+    $table_accounts = print_accounts('mobile_payment');
     $html = '<div id="wpbody-content" >
                 <div class="wrap" >
                     <div id="dashboard-widgets-wrap">

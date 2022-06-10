@@ -146,9 +146,9 @@ window.addEventListener("load",()=>{
                   <div id="discount" >
                     <!-- dimanic content -->
                   </div>
-                  <div id="payment-select" >
+                  <ol id="payment-select" class="list-group">
                     
-                  </div>
+                  </ol>
 
                   <table class="table-product-subtotal" >
                     <tr>
@@ -194,7 +194,7 @@ window.addEventListener("load",()=>{
             div_discount.appendChild(discount_button)
           }
           // add payment select to form
-          const div_payment_field = register_form.querySelector("div#payment-select")
+          const div_payment_field = register_form.querySelector("ol#payment-select")
           
           //add term conditions
           const tos_field = register_form.querySelector("section#terms")
@@ -203,50 +203,20 @@ window.addEventListener("load",()=>{
           div_payment_field.appendChild(checkout_session) //add checkout session
           div_payment_field.appendChild(checkout_button) //add checkout button
           
-          
           //div_register_payments
-          let payment_methods_array = Object.entries(php_payment_services)
+          
+          let payment_methods_array = Object.entries(php_payment_services["um_payment_methods"])
           let template = document.querySelector("#temp")
           if(template){
             let label = template.content.querySelector('label')
             let input = template.content.querySelector('input')
-            let p = template.content.querySelector('p')
             
             for(let i = 0; i < payment_methods_array.length; i++){
               label.textContent = payment_methods_array[i][1]
               label.setAttribute('for',payment_methods_array[i][0])
-
-              
-
-              p.id = payment_methods_array[i][0]
-
-              p.innerHTML = `<div class="col-12 text-start">
-              <p class="mt-2">
-                1. Usamos la tasa de cambio oficial del BCV  &nbsp;&nbsp;<b> Bs/USD <strong id="tasaFomato">5,16</strong> </b>
-              </p>
-              <p class="mt-2">2. Paga desde tu banco el total de <b id="Monto">Bs. 185,40</b> <i>(El IVA está incluido)</i></p>
-              
-              <p class="mt-2">3. Usa nuestros datos de transferencia bancaria<br>
-                                     <b> Bco. Banesco Cta. Cte:</b><br>
-                                      0134 0038 59 0381059561<br><b>
-                                      A nombre de:</b><br>
-                                      A.C. CONTENIDOS PARA LA INFORMACIÓN Y FORMACIÓN (COFEIN)<br><b>
-                                      RIF:</b> J-40842480-0
-                                  </p>
-              <p class="mt-2">4. Reporta tu pago a continuación</p>
-            </div>`
-
+              input.id = payment_methods_array[i][0]
               input.value = payment_methods_array[i][0]
               input.name = "aw-payment-radio"
-              input.id = payment_methods_array[i][0]
-
-              input.setAttribute("data-target",`#${payment_methods_array[i][0]}`)
-              input.setAttribute("aria-controls",`${payment_methods_array[i][0]}`)
-              
-              if(payment_methods_array[i][0] == 'paypal_express_checkout'){
-                input.checked = true
-                aw_default_register_payment_method(register_form,payment_methods_array[i][0])
-              }
 
               if(payment_methods_array[i][0] !== 'bank_transfer'){
                 let clone = document.importNode(template.content,true)
@@ -254,6 +224,47 @@ window.addEventListener("load",()=>{
               }
             }
           }
+          (async()=>{ //function autoiniciada para pintar los metodos de pago del tema 
+
+            let aw_payment_methods = await print_payment_methods_data()
+            aw_payment_methods = Object.entries(aw_payment_methods)
+
+            let template = document.querySelector("#aw-temp")
+            
+            if(template){
+              let label = template.content.querySelector('label')
+              let input = template.content.querySelector('input')
+              let div = template.content.querySelector('div.method_data')
+              for(let i = 0; i <aw_payment_methods.length;i++){
+                label.setAttribute('for',aw_payment_methods[i][1].key)
+                label.textContent = aw_payment_methods[i][1].name
+                label.setAttribute("data-target",`#${aw_payment_methods[i][1].key}`)
+                label.setAttribute("aria-controls",`${aw_payment_methods[i][1].key}`)
+
+                div.id = aw_payment_methods[i][1].key
+                input.value = aw_payment_methods[i][1].key
+                input.name = "aw-payment-radio"
+                input.id = aw_payment_methods[i][1].key
+                div.innerHTML = '<div class="d-flex w-100 justify-content-between">'
+                let accounts_template = ''
+                for(account of aw_payment_methods[i][1].accounts){
+                  accounts_template += `<h5 class="mb-1">${account.bank_name}</h5> <small>3 days ago</small>
+                  <p class="mb-1">${account.titular}</p>
+                  <p class="mb-1">${account.dni}</p>
+                  `
+                  for(meta of account.metas){
+                    accounts_template += `<p class="mb-1"><b>${meta["key"]} :</b> ${meta["value"]}</p>`
+                  }
+                  div.innerHTML = accounts_template
+                }
+                div.innerHTML += '</div>'
+                div.innerHTML += aw_payment_methods[i][1].register_paid_inputs
+                let aw_clone = document.importNode(template.content,true)
+                div_payment_field.appendChild(aw_clone)
+              }
+            }
+            
+          })()
         }
         
       }
@@ -263,9 +274,14 @@ function aw_default_register_payment_method(register_form,method){
 
   const ihc_payment_gateway_input = register_form.querySelector("input[name=ihc_payment_gateway]")
   const ihc_payment_selected_input = register_form.querySelector("input[name=payment_selected]")
-  if(ihc_payment_gateway_input && ihc_payment_selected_input){
+  if(ihc_payment_gateway_input && ihc_payment_selected_input && method){
     ihc_payment_gateway_input.value = method
     ihc_payment_selected_input.value = method
+  }else if(ihc_payment_gateway_input && ihc_payment_selected_input){
+    ihc_payment_gateway_input.value = ""
+    ihc_payment_selected_input.value = ""
+    ihc_payment_gateway_input.setAttribute("required")
+    ihc_payment_selected_input.setAttribute("required")
   }
 }
 
@@ -273,7 +289,8 @@ function aw_change_register_payment_method(e){
 
   const ihc_payment_gateway_input = document.querySelector("input[name=ihc_payment_gateway]")
   const ihc_payment_selected_input = document.querySelector("input[name=payment_selected]")
-  const p_show = e.parentNode.parentNode.querySelectorAll("p.show")
+  const p_show = e.parentNode.parentNode.querySelectorAll("div.show")
+  
   if(p_show.length > 0){
     p_show.forEach(p=>{
       p.classList.remove("show")
@@ -282,5 +299,16 @@ function aw_change_register_payment_method(e){
   if(ihc_payment_gateway_input && ihc_payment_selected_input){
     ihc_payment_gateway_input.value = e.value
     ihc_payment_selected_input.value = e.value
+  }
+}
+
+async function print_payment_methods_data(){
+  const rest_uri = php_payment_services["rest_api_uri"]
+  try {
+    const req = await  fetch(`${rest_uri}aw-register-form/payment-methods`)
+    const {status,data} = await req.json()
+    return data
+  } catch (error) {
+    console.log(error)
   }
 }

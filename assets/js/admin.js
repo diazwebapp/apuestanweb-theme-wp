@@ -1,4 +1,3 @@
-
 window.addEventListener("load",()=>{
     const form_add_account = document.querySelector('#aw-form-add-account') //Seleccionamos el form para añadir cuentas
     const btn_methods = document.querySelectorAll('button.method-item') //seleccionamos los botones del menu de metodos de pago
@@ -6,10 +5,10 @@ window.addEventListener("load",()=>{
         for(let key=0;key<btn_methods.length;key++){
             btn_methods[key].addEventListener('click',async(e)=>{
                 const current_button = e.target // accedemos al elemento button
-                replace_form_metas({form:form_add_account,method:current_button.textContent}) // reemplezamos los metadatos del form segun su metodo de pago
+                replace_form_metas({form:form_add_account,method:current_button.id}) // reemplezamos los metadatos del form segun su metodo de pago
                 reset_class_btn_menu(btn_methods) //quitamos todas las clases active
                 current_button.classList.add('active')
-                get_payment_accounts({method:current_button.textContent})
+                get_payment_accounts({method:current_button.id})
             })
         }
     }

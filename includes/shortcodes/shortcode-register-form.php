@@ -119,11 +119,17 @@ function aw_register_form($attr=array()){
         </style>';
         
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
-        $str .= '<template id="temp"><div>
-            <label></label>
-            <input data-toggle="collapse" type="radio" onChange="aw_change_register_payment_method(this)"/>
-            <p class="collapse"></p>
-        </div></template>';
+        $str .= '<template id="temp"><li class="list-group-item d-flex justify-content-between align-items-center">
+            <input type="radio" style="display:inline-block !important;" onChange="aw_change_register_payment_method(this)"/>
+            <label role="button"></label>
+        </li>
+        </template>
+
+        <template id="aw-temp"><li class="list-group-item list-group-item-action flex-column align-items-start">
+            <input type="radio" style="display:inline-block !important;" onChange="aw_change_register_payment_method(this)"/>
+            <label data-toggle="collapse" role="button" aria-expanded="false" style="width:calc(100% - 20px);display:inline-block;text-align:right;" ></label>
+            <div class="collapse method_data list-group w-100" ></div>
+        </li></template>';
         //data-toggle="collapse" role="button" aria-expanded="false"
         return $str;
     }else{
@@ -137,8 +143,9 @@ function aw_register_form($attr=array()){
 add_action( 'wp_enqueue_scripts', function(){
         wp_enqueue_script( 'forms-fix', get_template_directory_uri() . '/assets/js/forms_fix.js', [], null, true);
 
-        $data = json_encode(ihc_get_active_payments_services());
-        wp_add_inline_script( 'forms-fix', 'const php_payment_services='.$data, 'before' );
+        $data["um_payment_methods"] = ihc_get_active_payments_services();
+        $data["rest_api_uri"] = rest_url();
+        wp_add_inline_script( 'forms-fix', 'const php_payment_services='.json_encode($data), 'before' );
     });
 
 
