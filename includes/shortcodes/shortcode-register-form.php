@@ -121,13 +121,13 @@ function aw_register_form($attr=array()){
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
         $str .= '<template id="temp"><li class="list-group-item d-flex justify-content-between align-items-center">
             <input type="radio" style="display:inline-block !important;" onChange="aw_change_register_payment_method(this)"/>
-            <label role="button"></label>
+            <label role="button" style="color:black;" ></label>
         </li>
         </template>
 
         <template id="aw-temp"><li class="list-group-item list-group-item-action flex-column align-items-start">
             <input type="radio" style="display:inline-block !important;" onChange="aw_change_register_payment_method(this)"/>
-            <label data-toggle="collapse" role="button" aria-expanded="false" style="width:calc(100% - 20px);display:inline-block;text-align:right;" ></label>
+            <label data-toggle="collapse" role="button" aria-expanded="false" style="width:calc(100% - 20px);display:inline-block;text-align:right;color:black;" ></label>
             <div class="collapse method_data list-group w-100" ></div>
         </li></template>';
         //data-toggle="collapse" role="button" aria-expanded="false"

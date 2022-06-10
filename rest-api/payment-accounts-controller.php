@@ -39,7 +39,7 @@ if(!function_exists('get_register_payment_methods')):
         $methods = get_payment_methods();
         $accounts = [];
         $html_register_payment = '
-              <div class="form-group">
+              <section class="form-group">
                 <label for="exampleInputEmail1">
                 </label>
                 <select class="form-select form-control" aria-label="Default select example" name="ptipo">
@@ -69,23 +69,23 @@ if(!function_exists('get_register_payment_methods')):
                     </option>
                   
                 </select>
-              </div>
+              </section>
            
-              <div class="form-group">
+              <section class="form-group">
                 <label for="exampleInputEmail1">Documento<font class="text-o-color-1" style="">*</font></label>
                 <input type="text" class="form-control" name="pdocument" aria-describedby="pdocumentHelp" placeholder=" ">
-              </div>
+              </section>
         
         
-          <div class="form-group">
+          <section class="form-group">
             <label for="exampleInputEmail1">Fecha de la transferencia<font class="text-o-color-1" style="">*</font></label>
             <input type="date" class="form-control" name="pfecha" aria-describedby="nombreHelp" placeholder="Nombre">
-          </div>
+          </section>
         
-          <div class="form-group">
+          <section class="form-group">
             <label for="exampleInputEmail1">Número de transferencia<font class="text-o-color-1" style="">*</font></label>
             <input type="text" class="form-control" name="pnumero" aria-describedby="nombreHelp" placeholder="0000">
-          </div>
+          </section>
         ';
         foreach($methods as $key => $method):
             $method["accounts"] = select_payment_accounts($method['key']);
