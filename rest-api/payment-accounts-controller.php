@@ -42,7 +42,7 @@ if(!function_exists('get_register_payment_methods')):
               <div class="form-group">
                 <label for="exampleInputEmail1">
                 </label>
-                <select class="form-select form-control" aria-label="Default select example" id="ptipo" name="ptipo">
+                <select class="form-select form-control" aria-label="Default select example" name="ptipo">
                   
                     <option value="4">
                       
@@ -73,18 +73,18 @@ if(!function_exists('get_register_payment_methods')):
            
               <div class="form-group">
                 <label for="exampleInputEmail1">Documento<font class="text-o-color-1" style="">*</font></label>
-                <input type="text" class="form-control" id="pdocument" name="pdocument" aria-describedby="pdocumentHelp" placeholder=" ">
+                <input type="text" class="form-control" name="pdocument" aria-describedby="pdocumentHelp" placeholder=" ">
               </div>
         
         
           <div class="form-group">
             <label for="exampleInputEmail1">Fecha de la transferencia<font class="text-o-color-1" style="">*</font></label>
-            <input type="date" class="form-control" id="pfecha" name="pfecha" aria-describedby="nombreHelp" placeholder="Nombre">
+            <input type="date" class="form-control" name="pfecha" aria-describedby="nombreHelp" placeholder="Nombre">
           </div>
         
           <div class="form-group">
             <label for="exampleInputEmail1">Número de transferencia<font class="text-o-color-1" style="">*</font></label>
-            <input type="text" class="form-control" id="pnumero" name="pnumero" aria-describedby="nombreHelp" placeholder="0000">
+            <input type="text" class="form-control" name="pnumero" aria-describedby="nombreHelp" placeholder="0000">
           </div>
         ';
         foreach($methods as $key => $method):
