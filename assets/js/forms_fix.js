@@ -1,3 +1,5 @@
+let aw_payment_methods = false
+const rest_uri = php_payment_services["rest_api_uri"]
 window.addEventListener("load",()=>{
 
     //login form
@@ -83,6 +85,8 @@ window.addEventListener("load",()=>{
       select_country_element.setAttribute("name","ihc_country")
       select_country_element.setAttribute("list","countries")
       select_country_element.setAttribute("class","form-control")
+      //create default option
+      select_country_element.value = php_payment_services["client_geolocation"]["country_code"]
       //create datalist
       const datalist_countries = document.createElement("datalist")
       datalist_countries.setAttribute("id","countries")
@@ -106,7 +110,7 @@ window.addEventListener("load",()=>{
         }
         container_register_form.insertAdjacentHTML('afterbegin','<h4 class="card-title mt-3 text-center" style="color:black !important;">Create Acount</h4>')
         register_form.innerHTML += `
-              <section class="form-group input-group">
+              <section class="form-group input-group"">
                   <section class="input-group-prepend">
                       <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                   </section>
@@ -129,6 +133,8 @@ window.addEventListener("load",()=>{
                 <section class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-globe"></i> </span>
                 </section>
+                <div class="dropdown">
+                
                   <!-- dinamic content-->
               </section>'`) : ''
               }
@@ -167,6 +173,9 @@ window.addEventListener("load",()=>{
                 <!-- dinamic terms and conditions-->
               </section>
           `
+          register_form.addEventListener("submit",async(e)=>{
+              await aw_register_payment(e)
+          })
           // add select country to form
           if(register_countries.length > 0){
 
@@ -226,7 +235,7 @@ window.addEventListener("load",()=>{
           }
           (async()=>{ //function autoiniciada para pintar los metodos de pago del tema 
 
-            let aw_payment_methods = await print_payment_methods_data()
+            aw_payment_methods = await print_payment_methods_data()
             aw_payment_methods = Object.entries(aw_payment_methods)
 
             let template = document.querySelector("#aw-temp")
@@ -248,9 +257,9 @@ window.addEventListener("load",()=>{
                 div.innerHTML = '<div class="d-flex w-100 justify-content-between">'
                 let accounts_template = ''
                 for(account of aw_payment_methods[i][1].accounts){
-                  accounts_template += `<h5 class="mb-1">${account.bank_name}</h5> <small>3 days ago</small>
-                  <p class="mb-1">${account.titular}</p>
-                  <p class="mb-1">${account.dni}</p>
+                  accounts_template += `<h3 class="mb-1">${account.bank_name}</h3>
+                  <p class="mb-1"><b>Titular :</b> ${account.titular}</p>
+                  <p class="mb-1"><b>Dni :</b> ${account.dni}</p>
                   `
                   for(meta of account.metas){
                     accounts_template += `<p class="mb-1"><b>${meta["key"]} :</b> ${meta["value"]}</p>`
@@ -258,7 +267,10 @@ window.addEventListener("load",()=>{
                   div.innerHTML = accounts_template
                 }
                 div.innerHTML += '</div>'
-                div.innerHTML += aw_payment_methods[i][1].register_paid_inputs
+                
+                let key_inputs = aw_payment_methods[i][1].key+"_inputs"
+                div.innerHTML += aw_payment_methods[i][1][key_inputs]
+
                 let aw_clone = document.importNode(template.content,true)
                 div_payment_field.appendChild(aw_clone)
               }
@@ -303,12 +315,36 @@ function aw_change_register_payment_method(e){
 }
 
 async function print_payment_methods_data(){
-  const rest_uri = php_payment_services["rest_api_uri"]
   try {
     const req = await  fetch(`${rest_uri}aw-register-form/payment-methods`)
-    const {status,data} = await req.json()
+    const {data} = await req.json()
     return data
   } catch (error) {
     console.log(error)
   }
+}
+
+async function aw_register_payment(form_event) {
+  const inputs = form_event.target.querySelectorAll('input') //extraemos los datos por defecto del formulario
+  let account_data = {}
+  inputs.forEach((input)=>{
+        account_data[input.name] = input.value
+  })
+  
+  if(account_data["user_login"] == "" || account_data["user_email"] == "" || account_data["pass1"] == ""){
+    alert("faltan datos por completar")
+    return 
+  }
+  if(!form_event.target.tos.checked){
+    return alert("Acepte los terminos")
+  }
+  
+  const req = await fetch(`${rest_uri}aw-payments/register-payment`,{
+    method:'POST',
+    body:JSON.stringify(account_data),
+    headers:{
+      "content-type":"application/json"
+    }
+  })
+  await req.json()
 }

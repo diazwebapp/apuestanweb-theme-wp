@@ -34,8 +34,7 @@ include "includes/widgets/widget-authors.php";
 include "includes/core/meta-fields.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
-include "includes/core/admin-payment-methods/payment_methods_sql.php";
-include "includes/core/admin-payment-methods/payment_methods_html.php";
+include "includes/core/payment-dashboard/payment-dashboard.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php";
 
@@ -56,6 +55,7 @@ include "includes/handlers/get_countries.php";
 /*--------------------------------------------------------------*/
 include "rest-api/register-routes.php";
 include "rest-api/payment-accounts-controller.php";
+include "rest-api/payment-history-controller.php";
 function my_theme_remove_headlinks() {
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
@@ -122,6 +122,7 @@ function jbetting_src()
 function enqueuing_admin_scripts(){
     wp_register_script('admin-js', get_template_directory_uri() . '/assets/js/admin.js', array(), '1.0.0', true);
     wp_register_style('admin-css', get_template_directory_uri() . '/assets/css/admin.css', array(), '1.0.0', false);
+    wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), null);
 }
  
 add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
@@ -271,13 +272,5 @@ function filter_webp_quality( $quality, $mime_type ){
     }
     return $quality;
   }
-  add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
-  function payment_settings_controller(){
-      $html = panel_payment_methods();
-      echo $html;
-    }
-  
-add_action( 'admin_menu', function(){
-    add_submenu_page( 'options-general.php', 'payment dashboard', 'payment settings', 'manage_options', 'options-general.php', 'payment_settings_controller', 2 );
-});
+add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );

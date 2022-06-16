@@ -5,7 +5,9 @@ define("MYSQL_TABLE_PAYMENT_ACCOUNTS_META",$wpdb->prefix . "aw_payment_accounts_
 
 $payment_methods = [
     ["name"=>"pago movil","key"=>"mobile_payment"],
-    ["name" =>"transferencia","key"=>"bank_transfer"]
+    ["name" =>"transferencia","key"=>"bank_transfer"],
+    ["name" =>"binance","key"=>"binance"],
+    ["name" =>"airtm","key"=>"airtm"]
 ];
 
 //creamos la tabla 
@@ -16,6 +18,7 @@ function create_payment_table(){
         `bank_name` TEXT,
         `country_code` TEXT,
         `payment_method` TEXT,
+        `type_dni` TEXT,
         `dni` INT(19),
         `titular` TEXT,
         `status` BOOLEAN,
@@ -58,9 +61,12 @@ function insert_payment_account_metadata($data){
         return $insert;
     endif;
 }
-function select_payment_accounts($method){
+function select_payment_accounts($method,$country_code=false){
     global $wpdb ;
-    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE payment_method='$method'");
+  
+    $location_filter = "AND country_code = '{$country_code}'";
+    
+    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE payment_method='$method' ".($country_code!=''?$location_filter:'')." ");
     foreach($results as $key => $account):
         $rs_metas = select_payment_accounts_meta($account->id);
         $results[$key]->metas = $rs_metas;

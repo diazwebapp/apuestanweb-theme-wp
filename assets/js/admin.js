@@ -79,3 +79,15 @@ const get_payment_accounts = async({method})=>{
     }
     
 }
+
+function change_payment_status(e){
+    const {status,element} = e.attributes
+    let path = `?update_payment_history_id=${element.textContent}&status=${status.textContent}`
+    
+    document.location = document.location.pathname + path
+}
+
+function aw_add_new_payment_data(){
+    const container = document.getElementById("fields-received-paid");
+    const template = document.getElementById("fields-received-paid-template");
+}

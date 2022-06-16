@@ -37,7 +37,7 @@ function shortcode_forecast($atts)
     endif;
     wp_reset_query();
     $args = [];
-    //$args['post_status']    = 'publish';
+    $args['post_status']    = 'publish';
     $args['post_type']      = 'forecast';
     $args['posts_per_page'] = $num;
     $args['meta_key']       = '_data';

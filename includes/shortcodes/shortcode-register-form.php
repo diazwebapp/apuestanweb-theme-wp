@@ -1,9 +1,7 @@
 <?php
 global $str;
-
 function aw_register_form($attr=array()){
     
-
 	if (!IHCACTIVATEDMODE){
 		$str .= ihc_public_notify_trial_version();
 	}
@@ -116,6 +114,10 @@ function aw_register_form($attr=array()){
         .ihc-register-notice{
             width:100%;
         }
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
         </style>';
         
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
@@ -141,12 +143,13 @@ function aw_register_form($attr=array()){
     
 }
 add_action( 'wp_enqueue_scripts', function(){
-        wp_enqueue_script( 'forms-fix', get_template_directory_uri() . '/assets/js/forms_fix.js', [], null, true);
+    wp_enqueue_script( 'forms-fix', get_template_directory_uri() . '/assets/js/forms_fix.js', [], null, true);
 
-        $data["um_payment_methods"] = ihc_get_active_payments_services();
-        $data["rest_api_uri"] = rest_url();
-        wp_add_inline_script( 'forms-fix', 'const php_payment_services='.json_encode($data), 'before' );
-    });
+    $data["um_payment_methods"] = ihc_get_active_payments_services();
+    $data["rest_api_uri"] = rest_url();
+    $data["client_geolocation"] = json_decode(GEOLOCATION);
+    wp_add_inline_script( 'forms-fix', 'const php_payment_services='.json_encode($data), 'before' );
+});
 
 
 add_shortcode( 'aw-register-form', 'aw_register_form');
