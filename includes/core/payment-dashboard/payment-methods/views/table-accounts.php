@@ -2,6 +2,12 @@
 if(isset($_GET['delete_payment_account'])){
     delete_payment_account($_GET['delete_payment_account']);
     header('Location:'.$_SERVER['HTTP_REFERER']);
+    die;
+}
+if(isset($_GET['enable_payment_account'])){
+    update_payment_account($_GET['enable_payment_account'],["status"=>1]);
+    header('Location:'.$_SERVER['HTTP_REFERER']);
+    die;
 }
 function print_accounts($method){
     $accounts = select_payment_accounts($method);
@@ -39,7 +45,10 @@ function print_accounts($method){
             $tr .= '<td>'.$meta->value.'</td>';
             $th .= '<th>'.str_replace("_"," ",$meta->key).'</th>';
         endforeach;
-        $tr .= '<td><a href="?delete_payment_account='.$account->id.'">delete</a></td></tr>';
+        $tr .= '<td>
+            <a href="?delete_payment_account='.$account->id.'">delete</a>
+            <a href="?enable_payment_account='.$account->id.'">enable</a>
+        </td></tr>';
     endforeach;
     $table_accounts = str_replace('{thdata}',$th,$table_accounts);
     $table_accounts = str_replace('{bodydata}',$tr,$table_accounts);

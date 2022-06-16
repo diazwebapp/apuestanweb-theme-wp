@@ -96,6 +96,13 @@ function delete_payment_account_meta($id){
     $deleted = $wpdb->delete(MYSQL_TABLE_PAYMENT_ACCOUNTS_META,["id"=>$id]);
     return $deleted;
 }
+
+function update_payment_account($id,$data_update){
+    global $wpdb ;
+    $deleted = $wpdb->update(MYSQL_TABLE_PAYMENT_ACCOUNTS,$data_update,["id"=>$id]);
+    
+    return $deleted;
+}
 function get_payment_methods(){
     global $payment_methods;
     return $payment_methods;
