@@ -66,6 +66,8 @@ function html_form_new_payment_method(){
                                 <option value="tel" >phone</option>
                                 <option value="url" >url</option>
                                 <option value="number" >number</option>
+                                <option value="checkbox" >checkbox</option>
+                                <option value="date" >date</option>
                             </datalist>
                         </div>
                         <div class="form-group col-md-4">

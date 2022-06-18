@@ -3,7 +3,8 @@ global $wpdb;
 define("MYSQL_TABLE_PAYMENT_METHODS",$wpdb->prefix . "aw_payment_methods");
 define("MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS",$wpdb->prefix . "aw_payment_methods_received_inputs");
 define("MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS",$wpdb->prefix . "aw_payment_methods_register_inputs");
-
+define("MYSQL_TABLE_PAYMENT_ACCOUNTS",$wpdb->prefix . "aw_payment_accounts");
+define("MYSQL_TABLE_PAYMENT_ACCOUNTS_META",$wpdb->prefix . "aw_payment_accounts_meta");
 
 //creamos la tabla 
 function create_payment_tables(){
@@ -34,10 +35,27 @@ function create_payment_tables(){
         UNIQUE KEY id (id)
     );";
 
+    $sql_payment_accounts = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS." (
+        `id` INT(11) NOT NULL AUTO_INCREMENT,
+        `payment_method` TEXT,
+        `country_code` TEXT,
+        `payment_method_id` INT(11),
+        `status` BOOLEAN,
+        UNIQUE KEY id (id)
+    );";
+    $sql_payment_accounts_metas = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS." (
+        `id` INT(11) NOT NULL AUTO_INCREMENT,
+        `key` TEXT,
+        `value` TEXT,
+        `status` BOOLEAN,
+        UNIQUE KEY id (id)
+    );";
+
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
     dbDelta($sql_received_inputs);
     dbDelta($sql_register_inputs);
+    dbDelta($sql_payment_accounts);
 }
 add_action('init','create_payment_tables');
 
@@ -65,10 +83,10 @@ function aw_insert_new_payment_method_received_inputs($method_received){
 
     return ["status"=>"fail","msg"=>"no fue posible insertar el input para recibir pagos"];
 }
-function aw_insert_new_payment_method_register_inputs($method_received){
+function aw_insert_new_payment_method_register_inputs($method_register){
     global $wpdb ;
     
-    $insert = $wpdb->insert(MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS,$method_received);
+    $insert = $wpdb->insert(MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS,$method_register);
     if($insert == 1 and !is_wp_error( $insert )):
         return ["status"=>"ok","msg"=>"input insertado correctamente"];
     endif;

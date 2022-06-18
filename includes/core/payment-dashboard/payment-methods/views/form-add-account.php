@@ -19,16 +19,46 @@ function html_form_new_payment_account(){
             $html_inputs .= '</div>';
         }
     }
+    //input country_code
+    $country_array = get_countries_json();
+    
+    $option_datalist = "";
+    
+    foreach($country_array as $key => $country){
+        $option_datalist .= '<option value="'.$country->country_short_name.'">'.$country->country_name.'</option>';
+    }
     $html = '<form>
-        <div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="">payment method</label>
+                    <input readonly type="text" name="payment_method_name" required value="'.$array_payment_methods[0]->payment_method.'" class="form-control"/>                
+                </div>
 
+                <div class="form-group col-6">
+                    <label>status</label>
+                    <div class="custom-control custom-switch ">
+                        <input type="checkbox" class="custom-control-input" name="status" id="enabled" checked>
+                        <label class="custom-control-label" title="enable" for="enabled"></label>
+                    </div>              
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="">country</label>
+                <input type="text" name="country_code" required value="VE" list="country_datalist" class="form-control"/>
+                <datalist id="country_datalist" >{optioncountry}</datalist>
+            </div>
+            
+            <input type="hidden" name="payment_method_id" required value="'.$array_payment_methods[0]->id.'" />
+                
             {dynamicinputs}
 
             <div class="form-group">
                 <button class="btn btn-primary" >Add</button>
             </div>
-        </div>
+        
     </form>';
+    $html = str_replace("{optioncountry}",$option_datalist,$html);
     $html = str_replace("{dynamicinputs}",$html_inputs,$html);
   return $html;
 }
