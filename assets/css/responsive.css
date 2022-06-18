@@ -1089,13 +1089,17 @@
 	    display: none;
 	}
 	.bonus_wrap .row{
-		width: 14rem;
+		min-width: 120rem;
+	}
+	.bonus_top img{
+		width: 8.2rem;
+		height: 3.5rem;
 	}
 	.bonus_top .rating {
-		font-size: 1.7rem;
+		width: 15rem;
 	 }
 	.bonus_top .rating i {
-		font-size: 1.7rem;
+		font-size: 2rem;
 	 }
 	.event_btn_box .event_btn a {
 	    width: 100%;
