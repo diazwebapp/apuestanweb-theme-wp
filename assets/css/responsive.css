@@ -1089,8 +1089,11 @@
 	    display: none;
 	}
 	.bonus_wrap .row{
-		min-width: 120rem;
+		width: 14rem;
 	}
+	.bonus_top .rating {
+		font-size: 1.7rem;
+	 }
 	.bonus_top .rating i {
 		font-size: 1.7rem;
 	 }
