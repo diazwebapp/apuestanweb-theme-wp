@@ -1,62 +1,13 @@
-.menu-payment-methods{
-    width:100%;
-    display:flex;
-    justify-content: flex-start;
-}
-button.method-item{
-    background:transparent;
-    border: none;
-    border-bottom:1px solid blueviolet;
-    border-radius: 3px;
-    margin: 0 5px;
-    line-height: 2;
-    width:150px;
-}
-button.active{
-    background:limegreen;
-}
-.aw-container-table{
-    overflow-x: auto;
-    margin: auto;
-}
-.aw-container-table,.table-accounts{
-    border-radius: 10px;
-}
-.table-accounts{
-    width:100%;
-    border-collapse: collapse;
-    overflow: hidden;
-}
-.table-accounts thead{
-    background:rgb(4, 2, 73);
-}
-.table-accounts thead th{
-    text-transform: uppercase;
-    color:white;
-}
-.table-accounts thead th, .table-accounts tbody td{
-    text-align: center;
-    padding:10px 20px;
-    word-wrap: unset;
-    min-width:100px;
+input[type="checkbox"]#visible{
+    display:none;
 }
 
-.enable,.disable{
-    min-width: 10px;
-    min-height: 10px;
-    width:10px;
-    height:10px;
-    border-radius: 50%;
+input[type="checkbox"]#visible + label::after{
+    content: "\f530";
+    color:black;
 }
-.enable{
-    background-color: lightgreen;
+
+input[type="checkbox"]#visible:checked + label::after{
+    content: "\f177";
+    color: black;
 }
-.disable{
-    background: red;
-}
-.table-accounts tbody tr{
-    background:rgb(231, 231, 231);
-} 
-.table-accounts tbody tr:nth-child(2n){
-    background:rgb(238, 238, 238);
-} 

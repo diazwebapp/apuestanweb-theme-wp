@@ -1,87 +1,88 @@
 <?php
-
 include "payment-methods-sql.php";
-include 'views/add-account.php';
-include 'views/table-accounts.php';
-function panel_payment_methods(){
-    //form payment accounts
-    $countries = get_countries_json();
-    $query_methods = get_payment_methods();
+include 'views/form-add-method.php';
 
-    
-
-    //table payment methods
-    $list_payment_methods = '<nav class="menu-payment-methods">
-                                {data}
+function html_navbar_payment_methods($payment_methods){
+  
+  $payment_method_navbar = '<nav class="navbar navbar-expand-lg navbar-light bg-light">
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+                              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                <ul class="navbar-nav">
+                                  {replace-li-navbar}
+                                </ul>
+                              </div>
                             </nav>';
-    
-    $list_payment_methods_li = "";
-    
-    if(count($query_methods) > 0):
-        for($key =0; $key<count($query_methods); $key++):
-            $list_payment_methods_li .= '<button class="'.($key==0?'active method-item':'method-item').'" id="'.$query_methods[$key]["key"].'" >'.$query_methods[$key]["name"].'</button>';
-        endfor;
-    endif;
-    $list_payment_methods = str_replace("{data}",$list_payment_methods_li,$list_payment_methods);
-    $form_new_account = add_account('mobile_payment');
-    $table_accounts = print_accounts('mobile_payment');
-    $html = '<div id="container-fluid">
-                <div class="row mb-3" >
-                    <div class="col-md-6" >
-                        <h2>Añadir metodos de pago</h2>
-                        <form>
-                            <div class="form-row" id="type_method">
-                                <div class="form-group" >
-                                    <label>Type method</label>
-                                    <input type="text" name="key" value="bank_transfer" required/>
-                                    <datalist>
-                                        <option value="bank_transfer" >Bank Transfer</option>
-                                        <option value="mobile_payment" >Mobile payment</option>
-                                        <option value="digital" >Digital</option>
-                                    </datalist>
-                                </div>
-                            </div>
-                            <div>
-                                <h3>datos que usará el cliente para realizar un pago</h3>
-                                <div><b onClick="aw_add_new_payment_data()" >añadir dato de pago</b></div>
-                            </div>
-                            <div class="form-row" id="fields-received-paid" >
-                                
-                                <div class="form-group" >
-                                    <label>Banco</label>
-                                    <input name="banco" title="banco" id="Escriba en nombre de la entidad bancaria" class="form-control"/>
-                                </div>
-                            </div>
-                            <div class="form-row" id="fields-registred-paid">
-                            </div>
-                        </form>
-                        <template id="fields-received-paid-template" >
-                            <div class="form-group" >
-                                <label form="" ></label>
-                                <input type="text" name="key" required autocomplete="off"/>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-                '.$list_payment_methods.'
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h2>add account</h2>
-                            <div class="card">
-                                '.$form_new_account.'
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h2>Listado de cuentas</h2>
-                            <div class="aw-container-table" id="aw-container-table">
-                                '.$table_accounts.'
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>';
+    $li="";
+    foreach($payment_methods as $key => $method){
+      $path = $_SERVER['REQUEST_URI'] ."&method_page=". $method->id ;
+      $class="";
+      
+      if(isset($_GET['method_page']) and strval($_GET['method_page'])==strval($method->id)){
+        $class = "active";
+      }
+      if($key == 0){
+        $class = "active";
+      }
+      $li .= '<li class="nav-item '.$class.'"><a class="nav-link" href="'.$path.'">'.$method->payment_method.'</a></li>';
+    }
+    $payment_method_navbar = str_replace("{replace-li-navbar}",$li,$payment_method_navbar);
+    return $payment_method_navbar;
+}
+function html_body_payment_method(){
+  $array_payment_methods = aw_select_payment_method();
+  $table ='<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      {dynamicth}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+    </tr>
+  </tbody>
+</table>';
+  $th = "";
+  if($array_payment_methods[0]){
+    $array = array_keys((array)$array_payment_methods[0]);
+    foreach($array as $newth){
+      $th .= '<th>'.$newth.'</th>';
+    }
+  }
+  $table = str_replace("{dynamicth}",$th,$table);
+
+  $html = '<div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <h2 class="card-title">añadir cuentas</h2>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <h2 class="card-title">listado de cuentas</h2>
+          <div class="table-responsive">
+            '.$table.'
+          </div>
+        </div>
+      </div>
+  </div>
+  ';
   return $html;
 }
-
-?>
+function panel_payment_methods(){
+    $form_add_method = html_form_new_payment_method();
+    $array_payment_methods = aw_select_payment_method();
+    $navbar = html_navbar_payment_methods($array_payment_methods);
+    $body_payment_data = html_body_payment_method();
+    $html = '<div class="container">
+              {html-form-add-method}
+              {html-navbar}
+              {html-body-payment-data}
+            </div>';
+    $html = str_replace("{html-form-add-method}",$form_add_method,$html);
+    $html = str_replace("{html-navbar}",$navbar,$html);
+    $html = str_replace("{html-body-payment-data}",$body_payment_data,$html);
+  echo $html;
+}

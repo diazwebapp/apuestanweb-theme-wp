@@ -10,25 +10,54 @@ if(!function_exists('get_payment_accounts')):
     }
 endif;
 
-if(!function_exists('add_payment_accounts')):
-    function add_payment_accounts(WP_REST_Request $request){
+if(!function_exists('aw_register_new_payment_method')):
+    function aw_register_new_payment_method(WP_REST_Request $request){
         global $wpdb;
         $params = $request->get_json_params();
-        
-        $id_data = insert_payment_account($params["account_data"]);
-        if(!is_wp_error( $id )){
+        $payment_method_data = $params["payment_method_data"];
+        $received_inputs = $params["received_inputs"];
+        $register_inputs = $params["register_inputs"];
 
-            foreach($params['metadata'] as $metadata){
-                $data["key"] = $metadata["key"];
-                $data["value"] = $metadata["value"];
-                $data["payment_account"] = $id_data;
-                insert_payment_account_metadata($data);
-            }
+        $payment_method["icon_class"] = $payment_method_data["icon_class"];
+        $payment_method["icon_service"] = $payment_method_data["icon_service"];
+        $payment_method["payment_method"] = $payment_method_data["payment_method"];
+        $payment_method["status"] = $payment_method_data["status"];
 
-            return ["status"=>"ok"];
+        $response = ["status"=>true,"msg"=>"ok"];
+        $insert = aw_insert_new_payment_method($payment_method);
+
+        if(is_wp_error( $insert ) or $insert["status"] == "fail"){
+            $response["status"] = false;
+            $response["msg"] = $insert["msg"];
+            return $response;
         }
 
-        return ["status"=>"fail"];
+        if($insert["status"] == "ok"):
+            foreach($received_inputs as $method_received){
+                $input_received["type"] = $method_received["type"];
+                $input_received["name"] = $method_received["name"];
+                $input_received["show_ui"] = $method_received["show_ui"];
+                $input_received["payment_method_id"] = $insert["id"];
+                $insert_input_status = aw_insert_new_payment_method_received_inputs($input_received);
+                if(is_wp_error( $insert_input_status ) or $insert_input_status["status"] == "fail"){
+                    $response["status"] = false;
+                    $response["msg"] = $insert_input_status["msg"];
+                    return $response;
+                }
+            }
+            foreach($register_inputs as $method_register){
+                $input_register["type"] = $method_register["type"];
+                $input_register["name"] = $method_register["name"];
+                $input_register["payment_method_id"] = $insert["id"];
+                $insert_input_status = aw_insert_new_payment_method_register_inputs($input_register);
+                if(is_wp_error( $insert_input_status ) or $insert_input_status["status"] == "fail"){
+                    $response["status"] = false;
+                    $response["msg"] = $insert_input_status["msg"];
+                    return $response;
+                }
+            }
+        endif;
+        return $response;
     }
 endif;
 

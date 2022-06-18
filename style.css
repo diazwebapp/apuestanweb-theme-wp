@@ -2484,21 +2484,21 @@ footer .menu li a::before{
 	box-shadow: 0 0.8rem 0.6rem rgba(0, 0, 0, 0.29);
 }
 .bonus_top img{
-	width: 7.2rem;
-	height: 2.5rem;
+	width: 10.2rem;
+	height: 4.5rem;
 }
 .bonus_top p{
-	font-size: 1.5rem;
+	font-size: 2rem;
 	font-weight: 500;
 	color: #0558CB;
 	line-height: 1.2;
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 .bonus_top .rating {
-   width: 12rem;
+   width: 15rem;
 }
 .bonus_top .rating i {
-   font-size: 1.4rem;
+   font-size: 2.2rem;
    margin: 0 0.4rem;
 }
 .bonus_bottom{

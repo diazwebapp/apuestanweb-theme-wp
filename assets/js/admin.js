@@ -1,38 +1,7 @@
 window.addEventListener("load",()=>{
-    const form_add_account = document.querySelector('#aw-form-add-account') //Seleccionamos el form para añadir cuentas
-    const btn_methods = document.querySelectorAll('button.method-item') //seleccionamos los botones del menu de metodos de pago
-    if(btn_methods.length>0){ // verificamos que hay elementos
-        for(let key=0;key<btn_methods.length;key++){
-            btn_methods[key].addEventListener('click',async(e)=>{
-                const current_button = e.target // accedemos al elemento button
-                replace_form_metas({form:form_add_account,method:current_button.id}) // reemplezamos los metadatos del form segun su metodo de pago
-                reset_class_btn_menu(btn_methods) //quitamos todas las clases active
-                current_button.classList.add('active')
-                get_payment_accounts({method:current_button.id})
-            })
-        }
-    }
-    if(form_add_account){ // verificamos que exista el formulario en el dom
-        form_add_account.addEventListener('submit',async e=>{
-            e.preventDefault() //Evitamos que recarge la pagina
-            const inputs = e.target.querySelectorAll('input') //extraemos los datos por defecto del formulario
-            let account_data = {}
-            let account_metadata = []
-            inputs.forEach((input,i)=>{
-                if(i < 6){
-                    account_data[input.name] = input.value
-                }
-            })
-            inputs.forEach((input,i)=>{
-                if(i >= 6){
-                    $key = input.name.toString()
-                    account_metadata.push({key:input.name,value:input.value})
-                }
-            })
-            const {payment_method} = e.target // extraemos el metodo de pago para recargar la tabla de cuentas
-            await insert_account({account_data,metadata:account_metadata})
-            await get_payment_accounts({method:payment_method.value})
-        })
+    const form_add_method = document.getElementById("aw-add-payment-method-form")
+    if(form_add_method){
+        form_add_method.addEventListener("submit",async e => await aw_add_new_account(e))
     }
 })
 // funcion para remover las clases a todos los botones del menu
@@ -50,6 +19,21 @@ const replace_form_metas = ({form,method})=>{
     form_metadata.innerHTML = php_form_metadata[method] // reemplazamos los metas de manera dinamica comparando el payment method que viene del button con el de la variable inyectada desde php
 }
 
+const insert_payment_method = async({received_inputs,register_inputs,payment_method_data})=>{
+    try {
+        
+        const req = await fetch(php.rest_url+'aw-admin/payment-methods',{
+            method:"POST",
+            body:JSON.stringify({received_inputs,register_inputs,payment_method_data}),
+            headers:{
+                "Content-type": "application/json"
+            }
+        })
+        return await req.json()
+    } catch (error) {
+        return console.log(error)
+    }
+}
 const insert_account = async({account_data,metadata})=>{
     try {
         
@@ -65,6 +49,7 @@ const insert_account = async({account_data,metadata})=>{
         return console.log(error)
     }
 }
+
 const get_payment_accounts = async({method})=>{
     const c_table = document.querySelector("#aw-container-table")
     try {
@@ -87,7 +72,84 @@ function change_payment_status(e){
     document.location = document.location.pathname + path
 }
 
-function aw_add_new_payment_data(){
-    const container = document.getElementById("fields-received-paid");
-    const template = document.getElementById("fields-received-paid-template");
+function aw_add_new_payment_data(action){
+    
+    const container = action.parentNode.parentNode;
+    
+    const template = document.getElementById(`${container.id}-template`);
+    var clon = template.content.cloneNode(true);
+    container.appendChild(clon);
+}
+
+function aw_drop_new_payment_data(element){
+    element.parentNode.parentNode.remove();
+}
+
+async function aw_add_new_account(form){
+    form.preventDefault()
+    const {payment_method,icon_service,icon_class,status} = form.target
+    
+    const containers_received_inputs = form.target.querySelectorAll("#fields-received-paid div.inputs")
+    const containers_register_inputs = form.target.querySelectorAll("#fields-register-paid div.inputs")
+    const button = form.target.querySelector("button")
+    let original_text = button.textContent
+    button.textContent = "wait..."
+    button.disabled = true
+    
+    const payment_method_data = {}
+    const received_inputs = []
+    const register_inputs = []
+
+    payment_method_data[payment_method.name] = payment_method.value
+    payment_method_data[icon_service.name] = icon_service.value
+    payment_method_data[icon_class.name] = icon_class.value
+    payment_method_data[status.name] = status.checked
+
+    if(containers_received_inputs && containers_received_inputs.length > 0){
+        for(container of containers_received_inputs){
+            const inputs = container.querySelectorAll("input")
+            const type = inputs[0].value
+            const name = inputs[1].value
+            const show_ui = inputs[2].checked
+            received_inputs.push({type,name,show_ui})
+        }
+    }
+    if(containers_register_inputs && containers_register_inputs.length > 0){
+        for(container of containers_register_inputs){
+            const inputs = container.querySelectorAll("input")
+            const type = inputs[0].value
+            const name = inputs[1].value
+            register_inputs.push({type,name})
+        }
+    }
+    if(received_inputs.length < 1){
+        setTimeout(()=>{
+            button.textContent = original_text
+            button.disabled = false
+        },1000)
+        show_toats({msg:"añada inputs para mostrar su información de pago"})
+    }
+    if(received_inputs.length > 0){
+        const response = await insert_payment_method({received_inputs,register_inputs,payment_method_data})
+        if(!response.status){
+            button.textContent = "error"
+        }
+        show_toats({msg:response.msg})
+    }
+    setTimeout(()=>{
+        button.textContent = original_text
+        button.disabled = false
+    },1000)
+    
+}
+
+function show_toats({msg}){
+    const toats = document.querySelector(".toast")
+    const toats_body = toats.querySelector(".toast-body")
+    toats_body.textContent = msg
+    toats.style.opacity = 1
+    setTimeout(()=>{
+        toats.style.opacity = 0
+        toats_body.textContent = ""
+    },4000)
 }

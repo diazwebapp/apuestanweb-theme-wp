@@ -1,14 +1,15 @@
 <?php
 function register_routes(){
-    //Routes payment accounts
-    register_rest_route('aw-admin','/payment-accounts',[
-        'methods' => 'GET',
-        'callback' => 'get_payment_accounts'
-    ]);
-    register_rest_route('aw-admin','/payment-accounts',[
+    //Routes Payments methods
+    register_rest_route('aw-admin','/payment-methods',[
         'methods' => 'POST',
-        'callback' => 'add_payment_accounts'
+        'callback' => 'aw_register_new_payment_method'
     ]);
+    register_rest_route('aw-admin','/payment-methods',[
+        'methods' => 'GET',
+        'callback' => 'get_payment_methods'
+    ]);
+    //register form shortcode
     register_rest_route('aw-register-form','/payment-methods',[
         'methods' => 'GET',
         'callback' => 'get_register_payment_methods'
