@@ -28,7 +28,7 @@ $location = json_decode(GEOLOCATION);
 if($location->success == true and $bk_countries and count($bk_countries) > 0):
     foreach($bk_countries as $country):
         if($country['country_code'] == $location->country_code):
-            echo "<div class='col-6'>
+            echo "<div class='col-4'>
                 <div class='bonus_box'>
                     <div class='number_text' id='count_bk_model_3'></div>
                     <div class='bonus_top'>
@@ -52,7 +52,7 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
     endforeach;
 endif;
 if(!$location->success):
-    echo "<div class='col-6'>
+    echo "<div class='col-4'>
             <div class='bonus_box'>
                 <div class='number_text' id='count_bk_model_3'></div>
                 <div class='bonus_top'>
