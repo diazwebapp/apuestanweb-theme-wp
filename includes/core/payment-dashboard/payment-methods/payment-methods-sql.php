@@ -76,9 +76,14 @@ function aw_insert_new_payment_method_register_inputs($method_received){
     return ["status"=>"fail","msg"=>"no fue posible insertar el input para registrar pagos"];
 }
 if(!function_exists('aw_select_payment_method')){
-    function aw_select_payment_method($input_received=false,$input_register=false,$limit=10){
+    function aw_select_payment_method($id=false,$limit=10){
         global $wpdb;
-        $query = $wpdb->get_results("select * from ".MYSQL_TABLE_PAYMENT_METHODS." limit $limit ");
+        $sql = "select * from ".MYSQL_TABLE_PAYMENT_METHODS." limit $limit ";
+        $query = false;
+        if($id){
+            $sql = "select * from ".MYSQL_TABLE_PAYMENT_METHODS." WHERE id = $id";
+        }
+        $query = $wpdb->get_results($sql);
         if(!is_wp_error( $query )){
             return $query;
         }
@@ -86,6 +91,19 @@ if(!function_exists('aw_select_payment_method')){
     }
 }else{
     var_dump("la funcion ya existe");
-   return ;
+    die;
+}
+if(!function_exists('aw_select_payment_method_received_inputs')){
+    function aw_select_payment_method_received_inputs($id){
+        global $wpdb;
+        $query = $wpdb->get_results("select * from ".MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS." WHERE payment_method_id = $id");
+        if(!is_wp_error( $query )){
+            return $query;
+        }
+        return [];
+    }
+}else{
+    var_dump("la funcion ya existe");
+    die ;
 }
 ?>
