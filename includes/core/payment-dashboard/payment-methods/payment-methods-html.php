@@ -1,6 +1,7 @@
 <?php
 include "payment-methods-sql.php";
 include 'views/form-add-account.php';
+include 'views/table-accounts.php';
 
 function html_navbar_payment_methods($payment_methods){
   
@@ -42,9 +43,14 @@ function html_body_payment_method(){
       </div>
       <div class="col-md-8">
           <h2>listado de cuentas</h2>
+          <div class="table-responsive">
+            {dynamictableacounts}
+          </div>
       </div>
   </div>
   ';
+  $table = html_table_payment_accounts();
+  $html = str_replace("{dynamictableacounts}",$table,$html);
   return $html;
 }
 function panel_payment_methods(){

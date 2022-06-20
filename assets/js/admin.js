@@ -1,24 +1,22 @@
 window.addEventListener("load",()=>{
+    //////////////seleccionamos el formulario de añadir metodos de pago
     const form_add_method = document.getElementById("aw-add-payment-method-form")
+    /////////verificamos que exista en el DOM
     if(form_add_method){
-        form_add_method.addEventListener("submit",async e => await aw_add_new_account(e))
+        /////////añadimos el controlador que manejara el formulario
+        form_add_method.addEventListener("submit",async e => await aw_add_new_method(e))
+    }
+    //////////////seleccionamos el formulario de añadir cuentas
+    const form_add_maccounts = document.getElementById("aw-form-add-account")
+    /////////verificamos que exista en el DOM
+
+    if(form_add_maccounts){
+        /////////añadimos el controlador que manejara el formulario
+        form_add_maccounts.addEventListener("submit",async e => await aw_add_new_account(e))
     }
 })
-// funcion para remover las clases a todos los botones del menu
-const reset_class_btn_menu = (btn_methods)=>{
-    for(let key=0;key<btn_methods.length;key++){
-        btn_methods[key].classList.remove('active')
-    }
-}
 
-const replace_form_metas = ({form,method})=>{
-    const form_metadata = form.querySelector('#form-metadata') //Seleccionamos el form para añadir cuentas
-    const payment_method = form.querySelector('#payment_method')
-    payment_method.value = method
-    form_metadata.innerHTML = "";
-    form_metadata.innerHTML = php_form_metadata[method] // reemplazamos los metas de manera dinamica comparando el payment method que viene del button con el de la variable inyectada desde php
-}
-
+///////////////// funcion que añade metodos de pago usando la api rest
 const insert_payment_method = async({received_inputs,register_inputs,payment_method_data})=>{
     try {
         
@@ -44,25 +42,11 @@ const insert_account = async({account_data,metadata})=>{
                 "Content-type": "application/json"
             }
         })
-        await req.json()
+        const res = await req.json()
+        return res
     } catch (error) {
         return console.log(error)
     }
-}
-
-const get_payment_accounts = async({method})=>{
-    const c_table = document.querySelector("#aw-container-table")
-    try {
-        const req = await fetch(php.rest_url+'aw-admin/payment-accounts?method='+method)
-        const {data} = await req.json()
-        if(c_table){
-            c_table.innerHTML = ""
-            c_table.innerHTML = data
-        }
-    } catch (error) {
-        return console.log(error)
-    }
-    
 }
 
 function change_payment_status(e){
@@ -84,8 +68,8 @@ function aw_add_new_payment_data(action){
 function aw_drop_new_payment_data(element){
     element.parentNode.parentNode.remove();
 }
-
-async function aw_add_new_account(form){
+//////////////////// controlador de formulario para añadir metodos de pago
+async function aw_add_new_method(form){
     form.preventDefault()
     const {payment_method,icon_service,icon_class,status} = form.target
     
@@ -105,22 +89,43 @@ async function aw_add_new_account(form){
     payment_method_data[icon_class.name] = icon_class.value
     payment_method_data[status.name] = status.checked
 
+    let breack = false
     if(containers_received_inputs && containers_received_inputs.length > 0){
         for(container of containers_received_inputs){
             const inputs = container.querySelectorAll("input")
             const type = inputs[0].value
             const name = inputs[1].value
             const show_ui = inputs[2].checked
-            received_inputs.push({type,name,show_ui})
+            if(received_inputs.length > 0){
+                received_inputs.filter(item=> item.name !== name ? received_inputs.push({type,name,show_ui}) : (()=>{
+                    breack=true;
+                    container.style.border = "1px solid red";
+                    show_toats({msg:"elementos duplicados"});
+                })())
+            }
+            if(received_inputs.length == 0){
+                received_inputs.push({type,name,show_ui})
+            }             
         }
     }
+    
     if(containers_register_inputs && containers_register_inputs.length > 0){
         for(container of containers_register_inputs){
             const inputs = container.querySelectorAll("input")
             const type = inputs[0].value
             const name = inputs[1].value
-            register_inputs.push({type,name})
+            if(register_inputs.length > 0){
+                register_inputs.filter(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
+                    breack=true;
+                    container.style.border = "1px solid red";
+                    show_toats({msg:"elementos duplicados"});
+                })())
+            }
+            if(register_inputs.length == 0){
+                register_inputs.push({type,name})
+            } 
         }
+        
     }
     if(received_inputs.length < 1){
         setTimeout(()=>{
@@ -129,12 +134,15 @@ async function aw_add_new_account(form){
         },1000)
         show_toats({msg:"añada inputs para mostrar su información de pago"})
     }
-    if(received_inputs.length > 0){
+    if(!breack){
         const response = await insert_payment_method({received_inputs,register_inputs,payment_method_data})
         if(!response.status){
             button.textContent = "error"
+            show_toats({msg:response.msg})
         }
-        show_toats({msg:response.msg})
+        if(response.status){
+            location.reload()
+        }
     }
     setTimeout(()=>{
         button.textContent = original_text
@@ -152,4 +160,25 @@ function show_toats({msg}){
         toats.style.opacity = 0
         toats_body.textContent = ""
     },4000)
+}
+async function aw_add_new_account(form){
+    form.preventDefault()
+    const {payment_method_name,payment_method_id,country_code,status} = form.target
+    ////creamos el objeto con los campos obligatorios de la cuenta
+    const account_data = {}
+    account_data[payment_method_name.name] = payment_method_name.value
+    account_data[payment_method_id.name] = payment_method_id.value
+    account_data[country_code.name] = country_code.value
+    account_data[status.name] = status.checked
+    /////////////seleccionamos los inputs dinamicos
+    const dynamic_inputs = form.target.querySelectorAll('input.dynamic-input')
+    const metadata = [];
+    if(dynamic_inputs.length > 0){
+        for(input of dynamic_inputs){
+           const obj = {key:input.name,value:input.value,status:true}
+           metadata.push(obj)
+        }
+    }
+    await insert_account({account_data,metadata})
+    location.reload()
 }

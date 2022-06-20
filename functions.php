@@ -55,6 +55,7 @@ include "includes/handlers/get_countries.php";
 /*--------------------------------------------------------------*/
 include "rest-api/register-routes.php";
 include "rest-api/payment-accounts-controller.php";
+include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
 function my_theme_remove_headlinks() {
     remove_action( 'wp_head', 'wp_generator' );

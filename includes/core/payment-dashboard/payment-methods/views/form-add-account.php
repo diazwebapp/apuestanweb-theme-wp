@@ -15,7 +15,7 @@ function html_form_new_payment_account(){
             $ids = str_replace(" ","-",$input->name);
             $html_inputs .= '<div class="form-group" >';
             $html_inputs .= '<label for="'.$ids.'">'.$input->name.'</label>';
-            $html_inputs .= '<input id="'.$ids.'" type="'.$input->type.'" name="'.$ids.'" class="form-control" required autocomplete="off"/>';
+            $html_inputs .= '<input id="'.$ids.'" type="'.$input->type.'" name="'.$ids.'" class="form-control dynamic-input" required autocomplete="off"/>';
             $html_inputs .= '</div>';
         }
     }
@@ -27,7 +27,7 @@ function html_form_new_payment_account(){
     foreach($country_array as $key => $country){
         $option_datalist .= '<option value="'.$country->country_short_name.'">'.$country->country_name.'</option>';
     }
-    $html = '<form>
+    $html = '<form method="post" id="aw-form-add-account">
             <div class="form-row">
                 <div class="form-group col-6">
                     <label for="">payment method</label>

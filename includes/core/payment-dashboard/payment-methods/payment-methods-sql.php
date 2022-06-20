@@ -4,7 +4,7 @@ define("MYSQL_TABLE_PAYMENT_METHODS",$wpdb->prefix . "aw_payment_methods");
 define("MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS",$wpdb->prefix . "aw_payment_methods_received_inputs");
 define("MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS",$wpdb->prefix . "aw_payment_methods_register_inputs");
 define("MYSQL_TABLE_PAYMENT_ACCOUNTS",$wpdb->prefix . "aw_payment_accounts");
-define("MYSQL_TABLE_PAYMENT_ACCOUNTS_META",$wpdb->prefix . "aw_payment_accounts_meta");
+define("MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS",$wpdb->prefix . "aw_payment_accounts_metas");
 
 //creamos la tabla 
 function create_payment_tables(){
@@ -37,7 +37,7 @@ function create_payment_tables(){
 
     $sql_payment_accounts = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS." (
         `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `payment_method` TEXT,
+        `payment_method_name` TEXT,
         `country_code` TEXT,
         `payment_method_id` INT(11),
         `status` BOOLEAN,
@@ -48,6 +48,7 @@ function create_payment_tables(){
         `key` TEXT,
         `value` TEXT,
         `status` BOOLEAN,
+        `account_id` INT(11),
         UNIQUE KEY id (id)
     );";
 
@@ -56,6 +57,7 @@ function create_payment_tables(){
     dbDelta($sql_received_inputs);
     dbDelta($sql_register_inputs);
     dbDelta($sql_payment_accounts);
+    dbDelta($sql_payment_accounts_metas);
 }
 add_action('init','create_payment_tables');
 
@@ -112,9 +114,9 @@ if(!function_exists('aw_select_payment_method')){
     die;
 }
 if(!function_exists('aw_select_payment_method_received_inputs')){
-    function aw_select_payment_method_received_inputs($id){
+    function aw_select_payment_method_received_inputs($method_id){
         global $wpdb;
-        $query = $wpdb->get_results("select * from ".MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS." WHERE payment_method_id = $id");
+        $query = $wpdb->get_results("select * from ".MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS." WHERE payment_method_id = $method_id");
         if(!is_wp_error( $query )){
             return $query;
         }
@@ -122,6 +124,85 @@ if(!function_exists('aw_select_payment_method_received_inputs')){
     }
 }else{
     var_dump("la funcion ya existe");
+    die ;
+}
+if(!function_exists('aw_select_payment_method_register_inputs')){
+    function aw_select_payment_method_register_inputs($method_id){
+        global $wpdb;
+        $query = $wpdb->get_results("select * from ".MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS." WHERE payment_method_id = $method_id");
+        if(!is_wp_error( $query )){
+            return $query;
+        }
+        return [];
+    }
+}else{
+    var_dump("la funcion aw_select_payment_method_register_inputs ya existe");
+    die ;
+}
+////////payment accounts///////7
+if(!function_exists('aw_insert_new_payment_account')){
+    function aw_insert_new_payment_account($account_data){
+        global $wpdb ;
+        
+        $insert = $wpdb->insert(MYSQL_TABLE_PAYMENT_ACCOUNTS,$account_data);
+        if($insert == 1 and !is_wp_error( $insert )):
+            $id = $wpdb->get_var("SELECT id FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." ORDER BY id DESC");
+            return ["status"=>"ok","msg"=>"Dato insertado correctamente","id"=>$id];
+        endif;
+        return ["status"=>"fail","msg"=>"no fue posible insertar el dato"];
+    }
+}else{
+    var_dump("la funcion aw_insert_new_payment_account ya existe");
+    die ;
+}
+if(!function_exists('aw_insert_new_payment_account_metas')){
+    function aw_insert_new_payment_account_metas($account_meta){
+        global $wpdb ;
+        
+        $insert = $wpdb->insert(MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS,$account_meta);
+        if($insert == 1 and !is_wp_error( $insert )):
+            $id = $wpdb->get_var("SELECT id FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS." ORDER BY id DESC");
+            return ["status"=>"ok","msg"=>"Dato insertado correctamente","id"=>$id];
+        endif;
+        return ["status"=>"fail","msg"=>"no fue posible insertar el dato"];
+    }
+}else{
+    var_dump("la funcion aw_insert_new_payment_account_metas ya existe");
+    die ;
+}
+if(!function_exists('aw_select_payment_account')){
+    function aw_select_payment_account($id=false,$method=false,$limit=10){
+        global $wpdb;
+        $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." limit $limit ";
+        $query = false;
+        if($id){
+            $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE id = $id";
+        }
+        if($method){
+            $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE payment_method_id = $method";
+        }
+        
+        $query = $wpdb->get_results($sql);
+        if(!is_wp_error( $query )){
+            return $query;
+        }
+        return [];
+    }
+}else{
+    var_dump("la funcion aw_select_payment_account ya existe");
+    die;
+}
+if(!function_exists('aw_select_payment_account_metas')){
+    function aw_select_payment_account_metas($account_id){
+        global $wpdb;
+        $query = $wpdb->get_results("select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS." WHERE account_id = $account_id");
+        if(!is_wp_error( $query )){
+            return $query;
+        }
+        return [];
+    }
+}else{
+    var_dump("la funcion aw_select_payment_account_metas ya existe");
     die ;
 }
 ?>

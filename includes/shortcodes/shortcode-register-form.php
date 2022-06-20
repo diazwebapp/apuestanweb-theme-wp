@@ -65,7 +65,7 @@ function aw_register_form($attr=array()){
 			margin-top: 15px;
 			margin-bottom: 15px;
 		}
-        #payment-field div, #payment-field table{
+        #payment-field table{
             margin:10px auto;
         }
         .form-group table, .form-group table tbody, .form-group table tbody tr{
@@ -116,23 +116,16 @@ function aw_register_form($attr=array()){
         }
 
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
         </style>';
         
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
-        $str .= '<template id="temp"><li class="list-group-item d-flex justify-content-between align-items-center">
-            <input type="radio" style="display:inline-block !important;" onChange="aw_change_register_payment_method(this)"/>
-            <label role="button" style="color:black;" ></label>
+        $str .= '<template id="temp"><li class="list-group-item">
+            <input type="radio" onChange="aw_change_register_payment_method(this)"/>
+            <h2><label role="button" ></label></h2>
         </li>
-        </template>
+        </template>';
 
-        <template id="aw-temp"><li class="list-group-item list-group-item-action flex-column align-items-start">
-            <input type="radio" style="display:inline-block !important;" onChange="aw_change_register_payment_method(this)"/>
-            <label data-toggle="collapse" role="button" aria-expanded="false" style="width:calc(100% - 20px);display:inline-block;text-align:right;color:black;" ></label>
-            <div class="collapse method_data list-group w-100" ></div>
-        </li></template>';
-        //data-toggle="collapse" role="button" aria-expanded="false"
         return $str;
     }else{
         
@@ -144,10 +137,43 @@ function aw_register_form($attr=array()){
 }
 add_action( 'wp_enqueue_scripts', function(){
     wp_enqueue_script( 'forms-fix', get_template_directory_uri() . '/assets/js/forms_fix.js', [], null, true);
-
     $data["um_payment_methods"] = ihc_get_active_payments_services();
     $data["rest_api_uri"] = rest_url();
     $data["client_geolocation"] = json_decode(GEOLOCATION);
+    
+    $data["html"] = "";
+    $payment_methods = aw_select_payment_method();
+    $data["pm"] = $payment_methods;
+    foreach($payment_methods as $method){
+       $accounts =  aw_select_payment_account(false,$method->id,$limit=99);
+       $register_inputs = aw_select_payment_method_register_inputs($method->id);
+       $data["html"] .= '<div class="card">';
+       $data["html"] .= '<div class="card-header" id="label-'.$method->payment_method.'">
+            <h2 type="button" data-toggle="collapse" data-target="#'.$method->payment_method.'" aria-expanded="false" aria-controls="'.$method->payment_method.'">
+                '.$method->payment_method.'
+            </h2>
+        </div>';
+       $data["html"] .= '<div class="collapse" aria-labelledby="label-'.$method->payment_method.'" data-parent="#payment-select" id="'.$method->payment_method.'">';
+       foreach($accounts as $account){
+            $metas = aw_select_payment_account_metas($account->id);
+            $data["html"] .= '<div class="card-body">';
+            foreach ($metas as $keymeta => $meta) {
+                
+                $data["html"] .= '<p><b>'.$meta->key.':</b> '.$meta->value.'</p>';
+               
+            }
+            $data["html"] .= '</div>';
+       }
+       foreach ($register_inputs as $keyregister => $register) {
+        $data["html"] .= '<div class="form-group">';
+        $data["html"] .= '<label>'.$register->name.' </label>';
+        $data["html"] .= '<input type="'.$register->type.'" class="form-control" name="'.$register->name.'" />';
+        $data["html"] .= '</div>';
+       }
+       $data["html"] .= '</div>';
+       $data["html"] .= '</div>';
+    }
+    
     wp_add_inline_script( 'forms-fix', 'const php_payment_services='.json_encode($data), 'before' );
 });
 

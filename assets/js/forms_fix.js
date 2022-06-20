@@ -80,18 +80,19 @@ window.addEventListener("load",()=>{
       const tos = register_form.querySelector("div.ihc-tos-wrap")
 
       //Create select
-      const select_country_element = document.createElement("input")
+      const select_country_element = document.createElement("select")
       select_country_element.setAttribute("id","ihc_country_field")
       select_country_element.setAttribute("name","ihc_country")
       select_country_element.setAttribute("list","countries")
-      select_country_element.setAttribute("class","form-control")
+      select_country_element.classList.add("form-control")
+      select_country_element.classList.add("select2countries")
       //create default option
       select_country_element.value = php_payment_services["client_geolocation"]["country_code"]
       //create datalist
       const datalist_countries = document.createElement("datalist")
       datalist_countries.setAttribute("id","countries")
       register_countries.forEach(country=>{
-        datalist_countries.appendChild(country)
+        select_country_element.appendChild(country)
       })
       
       register_form_divs.forEach(div=>{
@@ -152,9 +153,9 @@ window.addEventListener("load",()=>{
                   <div id="discount" >
                     <!-- dimanic content -->
                   </div>
-                  <ol id="payment-select" class="list-group">
+                  <div id="payment-select" class="accordion">
                     
-                  </ol>
+                  </div>
 
                   <table class="table-product-subtotal" >
                     <tr>
@@ -174,6 +175,7 @@ window.addEventListener("load",()=>{
               </section>
           `
           register_form.addEventListener("submit",async(e)=>{
+              e.preventDefault()
               await aw_register_payment(e)
           })
           // add select country to form
@@ -181,7 +183,8 @@ window.addEventListener("load",()=>{
 
             const div_country_field = register_form.querySelector("section#country-field")
             div_country_field.appendChild(select_country_element) //select
-            div_country_field.appendChild(datalist_countries) //datalist
+            //div_country_field.appendChild(datalist_countries) //datalist
+            $('.select2countries').select2();
           }
           //add product details
           const product_name_ = register_form.querySelector("td#product-name")
@@ -203,7 +206,7 @@ window.addEventListener("load",()=>{
             div_discount.appendChild(discount_button)
           }
           // add payment select to form
-          const div_payment_field = register_form.querySelector("ol#payment-select")
+          const div_payment_field = register_form.querySelector("div#payment-select")
           
           //add term conditions
           const tos_field = register_form.querySelector("section#terms")
@@ -232,51 +235,9 @@ window.addEventListener("load",()=>{
                 div_payment_field.appendChild(clone)
               }
             }
+            div_payment_field.innerHTML += `${php_payment_services["html"]}`
           }
-          (async()=>{ //function autoiniciada para pintar los metodos de pago del tema 
-
-            aw_payment_methods = await print_payment_methods_data()
-            aw_payment_methods = Object.entries(aw_payment_methods)
-
-            let template = document.querySelector("#aw-temp")
-            
-            if(template){
-              let label = template.content.querySelector('label')
-              let input = template.content.querySelector('input')
-              let div = template.content.querySelector('div.method_data')
-              for(let i = 0; i <aw_payment_methods.length;i++){
-                label.setAttribute('for',aw_payment_methods[i][1].key)
-                label.textContent = aw_payment_methods[i][1].name
-                label.setAttribute("data-target",`#${aw_payment_methods[i][1].key}`)
-                label.setAttribute("aria-controls",`${aw_payment_methods[i][1].key}`)
-
-                div.id = aw_payment_methods[i][1].key
-                input.value = aw_payment_methods[i][1].key
-                input.name = "aw-payment-radio"
-                input.id = aw_payment_methods[i][1].key
-                div.innerHTML = '<div class="d-flex w-100 justify-content-between">'
-                let accounts_template = ''
-                for(account of aw_payment_methods[i][1].accounts){
-                  accounts_template += `<h3 class="mb-1">${account.bank_name}</h3>
-                  <p class="mb-1"><b>Titular :</b> ${account.titular}</p>
-                  <p class="mb-1"><b>Dni :</b> ${account.dni}</p>
-                  `
-                  for(meta of account.metas){
-                    accounts_template += `<p class="mb-1"><b>${meta["key"]} :</b> ${meta["value"]}</p>`
-                  }
-                  div.innerHTML = accounts_template
-                }
-                div.innerHTML += '</div>'
-                
-                let key_inputs = aw_payment_methods[i][1].key+"_inputs"
-                div.innerHTML += aw_payment_methods[i][1][key_inputs]
-
-                let aw_clone = document.importNode(template.content,true)
-                div_payment_field.appendChild(aw_clone)
-              }
-            }
-            
-          })()
+          aw_default_register_payment_method(register_form)
         }
         
       }
@@ -292,8 +253,8 @@ function aw_default_register_payment_method(register_form,method){
   }else if(ihc_payment_gateway_input && ihc_payment_selected_input){
     ihc_payment_gateway_input.value = ""
     ihc_payment_selected_input.value = ""
-    ihc_payment_gateway_input.setAttribute("required")
-    ihc_payment_selected_input.setAttribute("required")
+    ihc_payment_gateway_input.setAttribute("required","")
+    ihc_payment_selected_input.setAttribute("required","")
   }
 }
 
@@ -301,28 +262,13 @@ function aw_change_register_payment_method(e){
 
   const ihc_payment_gateway_input = document.querySelector("input[name=ihc_payment_gateway]")
   const ihc_payment_selected_input = document.querySelector("input[name=payment_selected]")
-  const p_show = e.parentNode.parentNode.querySelectorAll("div.show")
   
-  if(p_show.length > 0){
-    p_show.forEach(p=>{
-      p.classList.remove("show")
-    })
-  }
   if(ihc_payment_gateway_input && ihc_payment_selected_input){
     ihc_payment_gateway_input.value = e.value
     ihc_payment_selected_input.value = e.value
   }
 }
 
-async function print_payment_methods_data(){
-  try {
-    const req = await  fetch(`${rest_uri}aw-register-form/payment-methods`)
-    const {data} = await req.json()
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}
 
 async function aw_register_payment(form_event) {
   const inputs = form_event.target.querySelectorAll('input') //extraemos los datos por defecto del formulario
@@ -330,21 +276,33 @@ async function aw_register_payment(form_event) {
   inputs.forEach((input)=>{
         account_data[input.name] = input.value
   })
-  
+  let breack = true
   if(account_data["user_login"] == "" || account_data["user_email"] == "" || account_data["pass1"] == ""){
+    breack = false
+    form_event.target.tos.checked = false
     alert("faltan datos por completar")
     return 
   }
-  if(!form_event.target.tos.checked){
-    return alert("Acepte los terminos")
+  if(account_data["payment_selected"] == "" || account_data["ihc_payment_gateway"] == ""){
+    breack = false
+    form_event.target.tos.checked = false
+    alert("Seleccione un metodo de pago")
+    return
   }
-  
-  const req = await fetch(`${rest_uri}aw-payments/register-payment`,{
-    method:'POST',
-    body:JSON.stringify(account_data),
-    headers:{
-      "content-type":"application/json"
-    }
-  })
-  await req.json()
+
+  if(!form_event.target.tos.checked){
+    breack = false
+    alert("Acepte los terminos")
+    return
+  }
+  if(breack){
+    const req = await fetch(`${rest_uri}aw-payments/register-payment`,{
+      method:'POST',
+      body:JSON.stringify(account_data),
+      headers:{
+        "content-type":"application/json"
+      }
+    })
+    await req.json()
+  }
 }
