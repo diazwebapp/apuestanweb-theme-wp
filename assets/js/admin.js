@@ -115,13 +115,13 @@ async function aw_add_new_method(form){
             const type = inputs[0].value
             const name = inputs[1].value
             if(register_inputs.length > 0){
-                register_inputs.filter(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
+                register_inputs.map(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
                     breack=true;
                     container.style.border = "1px solid red";
                     show_toats({msg:"elementos duplicados"});
                 })())
             }
-            if(register_inputs.length == 0){
+            if(register_inputs.length == 0 && !breack){
                 register_inputs.push({type,name})
             } 
         }
@@ -135,6 +135,17 @@ async function aw_add_new_method(form){
         show_toats({msg:"añada inputs para mostrar su información de pago"})
     }
     if(!breack){
+        let received_inputsMap = received_inputs.map(item=>{
+            return [item.name,item]
+        });
+        let received_inputsMapArr = new Map(received_inputsMap); // Pares de clave y valor
+        received_inputs = false
+        received_inputs = [...received_inputsMapArr.values()];
+
+        let register_inputsMapArr = new Map(register_inputsMap); // Pares de clave y valor
+        register_inputs = false
+        register_inputs = [...register_inputsMapArr.values()];
+
         const response = await insert_payment_method({received_inputs,register_inputs,payment_method_data})
         if(!response.status){
             button.textContent = "error"
