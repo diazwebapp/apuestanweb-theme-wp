@@ -81,8 +81,8 @@ async function aw_add_new_method(form){
     button.disabled = true
     
     const payment_method_data = {}
-    const received_inputs = []
-    const register_inputs = []
+    let received_inputs = []
+    let register_inputs = []
 
     payment_method_data[payment_method.name] = payment_method.value
     payment_method_data[icon_service.name] = icon_service.value
@@ -135,6 +135,7 @@ async function aw_add_new_method(form){
         show_toats({msg:"añada inputs para mostrar su información de pago"})
     }
     if(!breack){
+        ///////////eliminamos duplicados
         let received_inputsMap = received_inputs.map(item=>{
             return [item.name,item]
         });
@@ -142,10 +143,13 @@ async function aw_add_new_method(form){
         received_inputs = false
         received_inputs = [...received_inputsMapArr.values()];
 
+        let register_inputsMap = received_inputs.map(item=>{
+            return [item.name,item]
+        });
         let register_inputsMapArr = new Map(register_inputsMap); // Pares de clave y valor
         register_inputs = false
         register_inputs = [...register_inputsMapArr.values()];
-
+        ////////////
         const response = await insert_payment_method({received_inputs,register_inputs,payment_method_data})
         if(!response.status){
             button.textContent = "error"
