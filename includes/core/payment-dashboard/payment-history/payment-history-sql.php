@@ -1,23 +1,9 @@
 <?php
 
-global $wpdb, $payment_history_struc,$payment_history_struc_metadata;
+global $wpdb;
 define("MYSQL_PAYMENT_HISTORY",$wpdb->prefix . "aw_payment_history");
 define("MYSQL_PAYMENT_HISTORY_META",$wpdb->prefix . "aw_payment_history_meta");
 
-
-$payment_history_struc_metadata["bank_transfer"] = [
-    ["key" => "client_dni","name"=>"dni cliente"],
-    ["key" => "bank_emitter","name"=>"Banco emisor"],
-    ["key" => "transaction_code","name"=>"Numero de transaccion"],
-    ["key" => "transaction_date","name"=>"Fecha de transaccion"]
-]; 
-$payment_history_struc_metadata["mobile_payment"] = [
-    ["key" => "client_dni","name"=>"dni cliente"],
-    ["key" => "bank_emitter","name"=>"Banco emisor"],
-    ["key" => "transaction_code","name"=>"Numero de transaccion"],
-    ["key" => "transaction_date","name"=>"Fecha de transaccion"],
-    ["key" => "client_phone","name"=>"telefono de cliente"]
-]; 
 
 //creamos la tabla 
 function create_payment_control_table(){
@@ -25,6 +11,7 @@ function create_payment_control_table(){
     $sql = "CREATE TABLE ".MYSQL_PAYMENT_HISTORY." (
         `id` INT(11) NOT NULL AUTO_INCREMENT,
         `payment_method` TEXT,
+        `payment_account` TEXT,
         `membership_id` TEXT,
         `username` TEXT,
         `select_country_code` TEXT,
@@ -144,13 +131,6 @@ function update_payment_history($data,$id){
     
     return $update;
 }
-function get_all_payment_history_struc_metadata(){
-    global $payment_history_struc_metadata;
-    return $payment_history_struc_metadata;
-}
-function get_a_payment_history_struc_metadata($key){
-    global $payment_history_struc_metadata;
-    return $payment_history_struc_metadata[$key];
-}
+
 add_action('init','create_payment_control_table');
 ?>

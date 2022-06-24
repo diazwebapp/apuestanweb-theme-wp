@@ -13,22 +13,25 @@ function html_table_payment_accounts(){
         </tbody>
       </table>';
         $th = "";
+        $thmetas = "";
         $tr = "";
         if($array_payment_accounts[0]){
-          $array = array_keys((array)$array_payment_accounts[0]);
-          foreach($array as $key => $newth){
-            if($key == 0):
-              $th .= '<th>#</th>';
-            endif;
-            if($newth == "status"):
-                $th  .= '<th>'.$newth.'</th>';
-            endif;
-
-          }
-
+          
           foreach($array_payment_accounts as $keym => $method){
+            $th = "";
+            $thmetas = "";
             $method = (array)$method;
             $metas = aw_select_payment_account_metas($method["id"]);
+            $array = array_keys($method);
+            foreach($array as $keyth => $newth){
+              if($keyth == 0):
+                $th .= '<th>#</th>';
+              endif;
+              if($newth == "status"):
+                  $th  .= '<th>'.$newth.'</th>';
+              endif;
+  
+            }
             $tr .= "<tr>";
                 
                 foreach($array as $key => $newth){
@@ -43,6 +46,7 @@ function html_table_payment_accounts(){
                         $tr .= '<td>'.($newth == "status" ? '<div style="width:10px;height:10px;" class="'.$class.'" ></div> ': $method[$newth]).'</td>';
                     }
                 }
+
                 foreach($metas as $keymeta => $meta){
                     $tr .= '<td>'.$meta->value.'</td>';
                     $th .= '<th>'.$meta->key.'</th>';

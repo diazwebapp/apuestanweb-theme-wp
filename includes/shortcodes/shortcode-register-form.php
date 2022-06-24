@@ -147,31 +147,33 @@ add_action( 'wp_enqueue_scripts', function(){
     foreach($payment_methods as $method){
        $accounts =  aw_select_payment_account(false,$method->id,$limit=99);
        $register_inputs = aw_select_payment_method_register_inputs($method->id);
-       $data["html"] .= '<div class="card">';
-       $data["html"] .= '<div class="card-header" id="label-'.$method->payment_method.'">
-            <h2 type="button" data-toggle="collapse" data-target="#'.$method->payment_method.'" aria-expanded="false" aria-controls="'.$method->payment_method.'">
-                '.$method->payment_method.'
-            </h2>
-        </div>';
-       $data["html"] .= '<div class="collapse" aria-labelledby="label-'.$method->payment_method.'" data-parent="#payment-select" id="'.$method->payment_method.'">';
-       foreach($accounts as $account){
-            $metas = aw_select_payment_account_metas($account->id);
-            $data["html"] .= '<div class="card-body">';
-            foreach ($metas as $keymeta => $meta) {
-                
-                $data["html"] .= '<p><b>'.$meta->key.':</b> '.$meta->value.'</p>';
-               
+       if(count($accounts) > 0):
+            $data["html"] .= '<div class="card">';
+            $data["html"] .= '<div class="card-header" id="label-'.$method->id.'">
+                    <h2 type="button" data-toggle="collapse" data-target="#paymentid'.$method->id.'" aria-expanded="false" aria-controls="'.$method->id.'">
+                        '.$method->payment_method.'
+                    </h2>
+                </div>';
+            $data["html"] .= '<div class="collapse" aria-labelledby="label-'.$method->id.'" data-parent="#payment-select" id="paymentid'.$method->id.'">';
+            foreach($accounts as $account){
+                    $metas = aw_select_payment_account_metas($account->id);
+                    $data["html"] .= '<div class="card-body">';
+                    foreach ($metas as $keymeta => $meta) {
+                        
+                        $data["html"] .= '<p><b>'.$meta->key.':</b> '.$meta->value.'</p>';
+                    
+                    }
+                    $data["html"] .= '</div>';
+            }
+            foreach ($register_inputs as $keyregister => $register) {
+                $data["html"] .= '<div class="form-group">';
+                $data["html"] .= '<label>'.$register->name.' </label>';
+                $data["html"] .= '<input type="'.$register->type.'" class="form-control" name="'.$register->name.'" />';
+                $data["html"] .= '</div>';
             }
             $data["html"] .= '</div>';
-       }
-       foreach ($register_inputs as $keyregister => $register) {
-        $data["html"] .= '<div class="form-group">';
-        $data["html"] .= '<label>'.$register->name.' </label>';
-        $data["html"] .= '<input type="'.$register->type.'" class="form-control" name="'.$register->name.'" />';
-        $data["html"] .= '</div>';
-       }
-       $data["html"] .= '</div>';
-       $data["html"] .= '</div>';
+            $data["html"] .= '</div>';
+        endif;
     }
     
     wp_add_inline_script( 'forms-fix', 'const php_payment_services='.json_encode($data), 'before' );

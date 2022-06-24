@@ -143,7 +143,7 @@ async function aw_add_new_method(form){
         received_inputs = false
         received_inputs = [...received_inputsMapArr.values()];
 
-        let register_inputsMap = received_inputs.map(item=>{
+        let register_inputsMap = register_inputs.map(item=>{
             return [item.name,item]
         });
         let register_inputsMapArr = new Map(register_inputsMap); // Pares de clave y valor

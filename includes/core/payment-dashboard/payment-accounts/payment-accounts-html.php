@@ -1,5 +1,4 @@
 <?php
-include "payment-methods-sql.php";
 include 'views/form-add-account.php';
 include 'views/table-accounts.php';
 

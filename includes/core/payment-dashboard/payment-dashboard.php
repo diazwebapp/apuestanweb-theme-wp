@@ -1,6 +1,9 @@
 <?php
+include "dashboard/payment-methods-sql.php";
+include "payment-accounts/payment-accounts-sql.php";
+
 include "dashboard/dashboard-html.php";
-include "payment-methods/payment-methods-html.php";
+include "payment-accounts/payment-accounts-html.php";
 include "payment-history/payment-history-html.php";
 
 function payment_control_page() {

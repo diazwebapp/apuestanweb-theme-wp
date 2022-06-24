@@ -3,13 +3,11 @@ global $wpdb;
 define("MYSQL_TABLE_PAYMENT_METHODS",$wpdb->prefix . "aw_payment_methods");
 define("MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS",$wpdb->prefix . "aw_payment_methods_received_inputs");
 define("MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS",$wpdb->prefix . "aw_payment_methods_register_inputs");
-define("MYSQL_TABLE_PAYMENT_ACCOUNTS",$wpdb->prefix . "aw_payment_accounts");
-define("MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS",$wpdb->prefix . "aw_payment_accounts_metas");
 
 //creamos la tabla 
-function create_payment_tables(){
+function create_sql_payment_methods_tables(){
     
-    $sql = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_METHODS." (
+    $sql_methods = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_METHODS." (
         `id` INT(11) NOT NULL AUTO_INCREMENT,
         `payment_method` TEXT,
         `icon_service` TEXT,
@@ -35,31 +33,13 @@ function create_payment_tables(){
         UNIQUE KEY id (id)
     );";
 
-    $sql_payment_accounts = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `payment_method_name` TEXT,
-        `country_code` TEXT,
-        `payment_method_id` INT(11),
-        `status` BOOLEAN,
-        UNIQUE KEY id (id)
-    );";
-    $sql_payment_accounts_metas = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `key` TEXT,
-        `value` TEXT,
-        `status` BOOLEAN,
-        `account_id` INT(11),
-        UNIQUE KEY id (id)
-    );";
-
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
+    
+    dbDelta($sql_methods);
     dbDelta($sql_received_inputs);
     dbDelta($sql_register_inputs);
-    dbDelta($sql_payment_accounts);
-    dbDelta($sql_payment_accounts_metas);
 }
-add_action('init','create_payment_tables');
+add_action('init','create_sql_payment_methods_tables');
 
 //querys payment methods
 function aw_insert_new_payment_method($method_data){
@@ -139,70 +119,35 @@ if(!function_exists('aw_select_payment_method_register_inputs')){
     var_dump("la funcion aw_select_payment_method_register_inputs ya existe");
     die ;
 }
-////////payment accounts///////7
-if(!function_exists('aw_insert_new_payment_account')){
-    function aw_insert_new_payment_account($account_data){
-        global $wpdb ;
-        
-        $insert = $wpdb->insert(MYSQL_TABLE_PAYMENT_ACCOUNTS,$account_data);
-        if($insert == 1 and !is_wp_error( $insert )):
-            $id = $wpdb->get_var("SELECT id FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." ORDER BY id DESC");
-            return ["status"=>"ok","msg"=>"Dato insertado correctamente","id"=>$id];
-        endif;
-        return ["status"=>"fail","msg"=>"no fue posible insertar el dato"];
-    }
-}else{
-    var_dump("la funcion aw_insert_new_payment_account ya existe");
-    die ;
-}
-if(!function_exists('aw_insert_new_payment_account_metas')){
-    function aw_insert_new_payment_account_metas($account_meta){
-        global $wpdb ;
-        
-        $insert = $wpdb->insert(MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS,$account_meta);
-        if($insert == 1 and !is_wp_error( $insert )):
-            $id = $wpdb->get_var("SELECT id FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS." ORDER BY id DESC");
-            return ["status"=>"ok","msg"=>"Dato insertado correctamente","id"=>$id];
-        endif;
-        return ["status"=>"fail","msg"=>"no fue posible insertar el dato"];
-    }
-}else{
-    var_dump("la funcion aw_insert_new_payment_account_metas ya existe");
-    die ;
-}
-if(!function_exists('aw_select_payment_account')){
-    function aw_select_payment_account($id=false,$method=false,$limit=10){
+if(!function_exists('aw_update_payment_method')):
+    function aw_update_payment_method($data=false,$id=false){
         global $wpdb;
-        $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." limit $limit ";
-        $query = false;
-        if($id){
-            $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE id = $id";
-        }
-        if($method){
-            $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE payment_method_id = $method";
-        }
-        
-        $query = $wpdb->get_results($sql);
-        if(!is_wp_error( $query )){
-            return $query;
-        }
-        return [];
+        $update = $wpdb->update(MYSQL_TABLE_PAYMENT_METHODS,$data,$id);
     }
-}else{
-    var_dump("la funcion aw_select_payment_account ya existe");
-    die;
-}
-if(!function_exists('aw_select_payment_account_metas')){
-    function aw_select_payment_account_metas($account_id){
+else:
+    echo 'la funcion aw_update_payment_method ya existe';
+endif;
+if(!function_exists('aw_delete_payment_method')):
+    function aw_delete_payment_method($id){
         global $wpdb;
-        $query = $wpdb->get_results("select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS." WHERE account_id = $account_id");
-        if(!is_wp_error( $query )){
-            return $query;
-        }
-        return [];
+        $delete = $wpdb->delete(MYSQL_TABLE_PAYMENT_METHODS,["id"=>$id]);
     }
-}else{
-    var_dump("la funcion aw_select_payment_account_metas ya existe");
-    die ;
-}
-?>
+else:
+    echo 'la funcion aw_delete_payment_method ya existe';
+endif;
+if(!function_exists('aw_delete_payment_method_received_inputs')):
+    function aw_delete_payment_method_received_inputs($data){
+        global $wpdb;
+        $delete_register = $wpdb->delete(MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS,$data);
+    }
+else:
+    echo 'la funcion aw_delete_payment_method_received_inputs ya existe';
+endif;
+if(!function_exists('aw_delete_payment_method_register_inputs')):
+    function aw_delete_payment_method_register_inputs($data){
+        global $wpdb;
+        $delete_register = $wpdb->delete(MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS,$data);
+    }
+else:
+    echo 'la funcion aw_delete_payment_method_register_inputs ya existe';
+endif;

@@ -1,6 +1,35 @@
 <?php
 include 'form-add-method.php';
+if(isset($_GET['disable_method'])):
+  aw_update_payment_method(["status"=>false],["id"=>"{$_GET['disable_method']}"]);
+  header("Location:".$_SERVER["HTTP_REFERER"]);
+  die;
+endif;
+
+if(isset($_GET['enable_method'])):
+  aw_update_payment_method(["status"=>true],["id"=>"{$_GET['enable_method']}"]);
+  header("Location:".$_SERVER["HTTP_REFERER"]);
+  die;
+endif;
+
+if(isset($_GET['delete_method'])):
+  aw_delete_payment_method($_GET['delete_method']);
+  aw_delete_payment_method_received_inputs(["payment_method_id"=>$_GET['delete_method']]);
+  aw_delete_payment_method_register_inputs(["payment_method_id"=>$_GET['delete_method']]);
+  $array_payment_accounts = aw_select_payment_account(false,$_GET['delete_method']);
+  if($array_payment_accounts[0]){
+          
+    foreach($array_payment_accounts as $keym => $method){
+      aw_delete_payment_account(["id"=>$method->id]);
+      aw_delete_payment_account_metas(["account_id"=>$method->id]);
+    }
+  }
+  header("Location:".$_SERVER["HTTP_REFERER"]);
+  die;
+endif;
+
 function html_table_payment_methods(){
+  $path = $_SERVER['REQUEST_URI'];
   $array_payment_methods = aw_select_payment_method();
   $table ='<table class="table table-hover table-dark">
         <thead>
@@ -14,25 +43,32 @@ function html_table_payment_methods(){
       </table>';
         $th = "";
         $tr = "";
-        if($array_payment_methods[0]){
-          $array = array_keys((array)$array_payment_methods[0]);
-          foreach($array as $key => $newth){
-            if($key == 0):
-              $th .= '<th>#</th>';
-            endif;
-            if($newth != "id"):
-                $th  .= '<th>'.$newth.'</th>';
-            endif;
-
-          }
+        if($array_payment_methods[0]){          
 
           foreach($array_payment_methods as $keym => $method){
             $method = (array)$method;
+            $array = array_keys($method);
+            $th = "";
+            
+            foreach($array as $keyth => $newth){
+              if($keyth == 0):
+                $th .= '<th>#</th>';
+              endif;
+              if($newth != "id"):
+                  $th  .= '<th>'.$newth.'</th>';
+              endif;
+            }
+            //th actions
+            $th  .= '<th>actions</th>';
+
             $tr .= "<tr>";
             foreach($array as $key => $newth){
               $class= "rounded rounded-circle ";
               if($newth == "status" and $method[$newth] == 1){
                 $class .= "bg-success ";
+              }
+              if($newth == "status" and $method[$newth] == 0){
+                $class .= "bg-danger ";
               }
               if($key == 0):
                 $tr .= '<th>'.($keym+1).'</th>';
@@ -41,6 +77,11 @@ function html_table_payment_methods(){
                 $tr .= '<td>'.($newth == "status" ? '<div style="width:10px;height:10px;" class="'.$class.'" ></div> ': $method[$newth]).'</td>';
               }
             }
+            //td actions
+            $tr .= '<td><a '.($method['status'] ? ' href="'.$path.'&disable_method='.$method['id'].'" title="disable" >disable': ' href="'.$path.'&enable_method='.$method['id'].'" title="enable" >enable').'</a></td>';
+            
+            $tr .= '<td><a href="'.$path.'&delete_method='.$method['id'].'" title="delete" >delete</a></td>';
+
             $tr .= "</tr>";
           }
         }
