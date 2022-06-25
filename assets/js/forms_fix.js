@@ -83,15 +83,15 @@ window.addEventListener("load",()=>{
       const select_country_element = document.createElement("select")
       select_country_element.setAttribute("id","ihc_country_field")
       select_country_element.setAttribute("name","ihc_country")
-      select_country_element.setAttribute("list","countries")
       select_country_element.classList.add("form-control")
       select_country_element.classList.add("select2countries")
-      //create default option
-      select_country_element.value = php_payment_services["client_geolocation"]["country_code"]
-      //create datalist
-      const datalist_countries = document.createElement("datalist")
-      datalist_countries.setAttribute("id","countries")
+      
       register_countries.forEach(country=>{
+        if(php_payment_services["client_geolocation"]["country_code"] == country.value){
+          country.setAttribute("seleted","")
+        }else{
+          country.removeAttribute("seleted","")
+        }
         select_country_element.appendChild(country)
       })
       
@@ -273,14 +273,17 @@ function aw_change_register_payment_method(e){
 
 async function aw_register_payment(form_event) {
   const inputs = form_event.target.querySelectorAll('input') //extraemos los datos por defecto del formulario
+  const {ihc_country} = form_event.target
   let account_data = {}
-  inputs.forEach((input)=>{
+  for(let input of inputs){
         account_data[input.name] = input.value
         if(input.name == 'payment_selected'){
           account_data["account_id"] = input.id
         }
-  })
+  }
+  account_data["ihc_country"] = ihc_country.value
   let breack = true
+  
   if(account_data["user_login"] == "" || account_data["user_email"] == "" || account_data["pass1"] == ""){
     breack = false
     form_event.target.tos.checked = false
@@ -293,14 +296,21 @@ async function aw_register_payment(form_event) {
     alert("Seleccione un metodo de pago")
     return
   }
-
+  //creamos selector de register metas unico por payment method
+  let register_metas = form_event.target.querySelectorAll(`input[data-method="${account_data["payment_selected"]}"]`)
+  account_data["register"] = []
+  register_metas.forEach((input)=>{
+      account_data["register"].push({key:input.name,name:input.name,value:input.value})
+  })
+  
   if(!form_event.target.tos.checked){
     breack = false
     alert("Acepte los terminos")
     return
   }
+  
   if(breack){
-    const req = await fetch(`${rest_uri}aw-payments/register-payment`,{
+    const req = await fetch(`${rest_uri}aw-register-form/register-payment`,{
       method:'POST',
       body:JSON.stringify(account_data),
       headers:{

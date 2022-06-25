@@ -16,6 +16,9 @@ function register_routes(){
         'methods' => 'GET',
         'callback' => 'register_form_payment_methods'
     ]);
-    
+    register_rest_route('aw-register-form','/register-payment',[
+        'methods' => 'POST',
+        'callback' => 'aw_register_new_payment'
+    ]);
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );

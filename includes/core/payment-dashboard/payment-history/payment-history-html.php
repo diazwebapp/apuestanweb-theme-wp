@@ -29,18 +29,18 @@ function generate_history_payment_table(){
     $query = select_payment_history($data,$text);
   }
 
-  $table_html = '<table id="dataTable" class="table table-striped table-accounts" cellspacing="0" width="100%">
+  $table_html = '<table class="table table-hover table-dark" >
       <thead>
-        {thead_data}
+        <tr>
+          {thead_data}
+        </tr>
       </thead>
       <tbody>
         {tbody_data}
       </tbody> 
   </table>';
 
-  $table_data["thead"] = '<tr>
-      {theaddata}
-    </tr>';
+  $table_data["thead"] = '{theaddata}';
   
     $html_th = "";
     $html_td;
@@ -51,17 +51,12 @@ function generate_history_payment_table(){
         $table_data["tbody"] .= '<tr>';
         $html_th = "";
         $html_td = "";
-        $html_th .= '<th>Action</th>';
         //botones de accion
         $btn_completed = '<span class="dashicons dashicons-yes" title="complete" status="completed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
         $btn_pending = '<span class="dashicons dashicons-clock" title="pending" status="pending" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
         $btn_fail = '<span class="dashicons dashicons-no-alt" title="fail" status="failed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
         $btn_trash = '<span class="dashicons dashicons-trash" title="trash" status="trashed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span>';
-        $html_td .= '<td>
-          '.($value->status!='pending' ? $btn_pending:'').'
-          '.($value->status!='completed' ? $btn_completed:'').'
-          '.($value->status!='failed' ? $btn_fail:'').'
-        </td>';
+        
         foreach($llaves as $keyth => $th){
           
           if(!is_array($th)){
@@ -75,7 +70,12 @@ function generate_history_payment_table(){
             }
           }
         }
-        
+        $html_th .= '<th>Action</th>';
+        $html_td .= '<td>
+          '.($value->status!='pending' ? $btn_pending:'').'
+          '.($value->status!='completed' ? $btn_completed:'').'
+          '.($value->status!='failed' ? $btn_fail:'').'
+        </td>';
         $table_data["tbody"] .= $html_td;
         $table_data["tbody"] .= '</tr>';
       }
@@ -135,7 +135,7 @@ function aw_payment_history(){
                       </form>
                 </div>
                 <div class="col-md-12" >
-                  <div class="aw-container-table" >
+                  <div class="table-responsive" >
                     '.$table_payment_history.'
                   </div>
                 </div>

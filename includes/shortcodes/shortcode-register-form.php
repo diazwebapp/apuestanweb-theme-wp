@@ -176,10 +176,10 @@ add_action( 'wp_enqueue_scripts', function(){
                     $data["html"] .= '</div>';
                     $data["html"] .= '</div>';
             }
-            $data["html"] .= '<div class="card-body" >';
+            $data["html"] .= '<div class="card-body">';
             foreach ($register_inputs as $keyregister => $register) {
                 $data["html"] .= '<label>'.$register->name.' </label>';
-                $data["html"] .= '<input type="'.$register->type.'" class="form-control" name="'.$register->name.'" required />';
+                $data["html"] .= '<input type="'.$register->type.'" data-method="'.$account->payment_method_name.'" class="form-control" name="'.$register->name.'" required />';
                 
             }
             $data["html"] .= '</div>';
