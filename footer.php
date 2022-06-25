@@ -44,9 +44,9 @@ endif;
                     <!--menu end-->
                 </div>
                 <div class="col-lg-2 col-6 mt_20 text-right">
-                    <select id="select_odds_format" class="nice-select">
-                        <option value="2" class="option" <?php if($_SESSION['odds_format']=='2'): echo "selected"; endif; ?> >decimal</option>
-                        <option value="3" class="option" <?php if($_SESSION['odds_format']=='3'): echo "selected"; endif; ?> >american</option>
+                    <select id="select_odds_format" class="dropdown-menu">
+                        <option value="2" class="dropdown-item" <?php if($_SESSION['odds_format']=='2'): echo "selected"; endif; ?> >decimal</option>
+                        <option value="3" class="dropdown-item" <?php if($_SESSION['odds_format']=='3'): echo "selected"; endif; ?> >american</option>
                     </select>
                     <!-- <div class="social_icons">
                         <a href="#">
