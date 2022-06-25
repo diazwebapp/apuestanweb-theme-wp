@@ -1,5 +1,4 @@
 <?php
-include "payment-history-sql.php";
 function generate_history_payment_table(){
   global $wpdb;
 
@@ -43,7 +42,7 @@ function generate_history_payment_table(){
       {theaddata}
     </tr>';
   
-    $html_th;
+    $html_th = "";
     $html_td;
     if(!is_wp_error( $query ) and count($query) > 0):
       foreach ($query as $key => $value) {

@@ -115,13 +115,13 @@ window.addEventListener("load",()=>{
                   <section class="input-group-prepend">
                       <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                   </section>
-                  <input type="text" class="form-control" name="user_login" placeholder="username">
+                  <input type="text" class="form-control" name="user_login" placeholder="username" autocomplete="username">
               </section>
               <section class="form-group input-group">
                   <section class="input-group-prepend">
                       <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                   </section>
-                  <input type="email" class="form-control" name="user_email" placeholder="Email">
+                  <input type="email" class="form-control" name="user_email" placeholder="Email" autocomplete="email">
               </section>
               <section class="form-group input-group">
                 <section class="input-group-prepend">
@@ -228,7 +228,6 @@ window.addEventListener("load",()=>{
               label.setAttribute('for',payment_methods_array[i][0])
               input.id = payment_methods_array[i][0]
               input.value = payment_methods_array[i][0]
-              input.name = "aw-payment-radio"
 
               if(payment_methods_array[i][0] !== 'bank_transfer'){
                 let clone = document.importNode(template.content,true)
@@ -266,6 +265,8 @@ function aw_change_register_payment_method(e){
   if(ihc_payment_gateway_input && ihc_payment_selected_input){
     ihc_payment_gateway_input.value = e.value
     ihc_payment_selected_input.value = e.value
+    ihc_payment_gateway_input.id = e.id.replace("account-id-","")
+    ihc_payment_selected_input.id = e.id.replace("account-id-","")
   }
 }
 
@@ -275,6 +276,9 @@ async function aw_register_payment(form_event) {
   let account_data = {}
   inputs.forEach((input)=>{
         account_data[input.name] = input.value
+        if(input.name == 'payment_selected'){
+          account_data["account_id"] = input.id
+        }
   })
   let breack = true
   if(account_data["user_login"] == "" || account_data["user_email"] == "" || account_data["pass1"] == ""){
@@ -303,6 +307,7 @@ async function aw_register_payment(form_event) {
         "content-type":"application/json"
       }
     })
-    await req.json()
+    const res = await req.json()
+    console.log(res)
   }
 }

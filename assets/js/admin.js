@@ -151,6 +151,7 @@ async function aw_add_new_method(form){
         register_inputs = [...register_inputsMapArr.values()];
         ////////////
         const response = await insert_payment_method({received_inputs,register_inputs,payment_method_data})
+        
         if(!response.status){
             button.textContent = "error"
             show_toats({msg:response.msg})

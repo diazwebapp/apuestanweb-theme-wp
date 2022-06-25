@@ -15,7 +15,7 @@ function html_form_new_payment_account(){
             $ids = str_replace(" ","-",$input->name);
             $html_inputs .= '<div class="form-group" >';
             $html_inputs .= '<label for="'.$ids.'">'.$input->name.'</label>';
-            $html_inputs .= '<input id="'.$ids.'" type="'.$input->type.'" name="'.$ids.'" class="form-control dynamic-input" required autocomplete="off"/>';
+            $html_inputs .= '<input id="'.$ids.'" type="'.$input->type.'" name="'.$input->name.'" class="form-control dynamic-input" required autocomplete="off"/>';
             $html_inputs .= '</div>';
         }
     }

@@ -120,10 +120,16 @@ function aw_register_form($attr=array()){
         </style>';
         
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
-        $str .= '<template id="temp"><li class="list-group-item">
-            <input type="radio" onChange="aw_change_register_payment_method(this)"/>
-            <h2><label role="button" ></label></h2>
-        </li>
+        $str .= '<template id="temp"><div class="card">
+                <div class="card-header">
+                    <h2>
+                        <div class="custom-control custom-radio" >                    
+                            <input type="radio" onChange="aw_change_register_payment_method(this)" class="custom-control-input" name="aw-payment-radio"/>
+                            <label role="button" class="custom-control-label"></label>
+                        </div>
+                    </h2>
+                </div>
+            </div>
         </template>';
 
         return $str;
@@ -151,26 +157,32 @@ add_action( 'wp_enqueue_scripts', function(){
             $data["html"] .= '<div class="card">';
             $data["html"] .= '<div class="card-header" id="label-'.$method->id.'">
                     <h2 type="button" data-toggle="collapse" data-target="#paymentid'.$method->id.'" aria-expanded="false" aria-controls="'.$method->id.'">
-                        '.$method->payment_method.'
+                        '.$method->payment_method.' <span class="'.$method->icon_class.'" ></span>
                     </h2>
                 </div>';
             $data["html"] .= '<div class="collapse" aria-labelledby="label-'.$method->id.'" data-parent="#payment-select" id="paymentid'.$method->id.'">';
             foreach($accounts as $account){
                     $metas = aw_select_payment_account_metas($account->id);
                     $data["html"] .= '<div class="card-body">';
+                    $data["html"] .= '<div class="custom-control custom-radio">';
+                    $data["html"] .= '<input id="account-id-'.$account->id.'" name="aw-payment-radio" value="'.$account->payment_method_name.'" type="radio" class="custom-control-input" onChange="aw_change_register_payment_method(this)"/>';
+                    $data["html"] .= '<label for="account-id-'.$account->id.'" role="button" class="custom-control-label"> ';
                     foreach ($metas as $keymeta => $meta) {
                         
-                        $data["html"] .= '<p><b>'.$meta->key.':</b> '.$meta->value.'</p>';
+                        $data["html"] .= '<b>'.$meta->key.':</b> '.$meta->value.'<br/>' ;
                     
                     }
+                    $data["html"] .= '</label>';
+                    $data["html"] .= '</div>';
                     $data["html"] .= '</div>';
             }
+            $data["html"] .= '<div class="card-body" >';
             foreach ($register_inputs as $keyregister => $register) {
-                $data["html"] .= '<div class="form-group">';
                 $data["html"] .= '<label>'.$register->name.' </label>';
-                $data["html"] .= '<input type="'.$register->type.'" class="form-control" name="'.$register->name.'" />';
-                $data["html"] .= '</div>';
+                $data["html"] .= '<input type="'.$register->type.'" class="form-control" name="'.$register->name.'" required />';
+                
             }
+            $data["html"] .= '</div>';
             $data["html"] .= '</div>';
             $data["html"] .= '</div>';
         endif;

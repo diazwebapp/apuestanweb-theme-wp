@@ -2,7 +2,7 @@
 
 global $wpdb;
 define("MYSQL_PAYMENT_HISTORY",$wpdb->prefix . "aw_payment_history");
-define("MYSQL_PAYMENT_HISTORY_META",$wpdb->prefix . "aw_payment_history_meta");
+define("MYSQL_PAYMENT_HISTORY_METAS",$wpdb->prefix . "aw_payment_history_metas");
 
 
 //creamos la tabla 
@@ -11,8 +11,7 @@ function create_payment_control_table(){
     $sql = "CREATE TABLE ".MYSQL_PAYMENT_HISTORY." (
         `id` INT(11) NOT NULL AUTO_INCREMENT,
         `payment_method` TEXT,
-        `payment_account` TEXT,
-        `membership_id` TEXT,
+        `membership_id` INT(11),
         `username` TEXT,
         `select_country_code` TEXT,
         `detected_country_code` TEXT,
@@ -21,7 +20,7 @@ function create_payment_control_table(){
         UNIQUE KEY id (id)
     );";
 
-    $sql_meta = "CREATE TABLE ".MYSQL_PAYMENT_HISTORY_META." (
+    $sql_meta = "CREATE TABLE ".MYSQL_PAYMENT_HISTORY_METAS." (
         `id` INT(11) NOT NULL AUTO_INCREMENT,
         `key` TEXT,
         `name` TEXT,
@@ -44,9 +43,9 @@ function insert_payment_history($data){
 }
 function insert_payment_history_meta($data){
     global $wpdb;
-    $insert = $wpdb->insert(MYSQL_PAYMENT_HISTORY_META,$data);
+    $insert = $wpdb->insert(MYSQL_PAYMENT_HISTORY_METAS,$data);
     if($insert == 1){
-        $insert= $wpdb->get_var("SELECT id FROM ".MYSQL_PAYMENT_HISTORY_META." ORDER BY id DESC");
+        $insert= $wpdb->get_var("SELECT id FROM ".MYSQL_PAYMENT_HISTORY_METAS." ORDER BY id DESC");
     }
     return $insert;
 }
@@ -121,7 +120,7 @@ function select_payment_history($date=false,$text=false){
 
 function select_payment_history_meta($account_id){
     global $wpdb ;
-    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_PAYMENT_HISTORY_META." WHERE payment_history_id='$account_id'");
+    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_PAYMENT_HISTORY_METAS." WHERE payment_history_id='$account_id'");
     
     return $results;
 }

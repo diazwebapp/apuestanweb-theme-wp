@@ -1,6 +1,7 @@
 <?php
 include "dashboard/payment-methods-sql.php";
 include "payment-accounts/payment-accounts-sql.php";
+include "payment-history/payment-history-sql.php";
 
 include "dashboard/dashboard-html.php";
 include "payment-accounts/payment-accounts-html.php";
