@@ -442,7 +442,7 @@
     </footer>
 
     <!--====== BACK TO TOP START ======-->
-    <a href="#" class="back-to-top"><i class="fal fa-angle-up"></i></a>
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
     <!--====== BACK TO TOP ENDS ======-->
 
     <!-- all js here -->
@@ -453,8 +453,8 @@
         $('.slider__active').owlCarousel({
             loop: true,
             navText: [
-                '<i class="fal fa-angle-right"></i>',
-                '<i class="fal fa-angle-left"></i>'
+                '<i class="fa fa-angle-right"></i>',
+                '<i class="fa fa-angle-left"></i>'
             ],
             dots: false,
             smartSpeed: 1000,

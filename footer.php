@@ -66,7 +66,7 @@ endif;
             </div>
         </div>
         <!--====== BACK TO TOP START ======-->
-        <a href="#" class="back-to-top"><i class="fal fa-angle-up"></i></a>
+        <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
         <!--====== BACK TO TOP ENDS ======-->
             
 </footer>

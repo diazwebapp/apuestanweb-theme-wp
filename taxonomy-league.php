@@ -23,7 +23,7 @@ $textafter = carbon_get_term_meta( $term_id, 'after_list' );
                         <div class="col-lg-9 mt_25">
                         <div class="title_wrap">
                             <h3 class="title mt_30 order-lg-1"><?php echo $h1 ?></h3>
-                            <span onclick="filter()" class="mt_30 dropd order-lg-3">Hoy <i class="fal fa-angle-down"></i></span>
+                            <span onclick="filter()" class="mt_30 dropd order-lg-3">Hoy <i class="fa fa-angle-down"></i></span>
                             <?php echo do_shortcode("[menu_leagues deporte='{$term->name}' model='2']") ?>
                         </div>
                         

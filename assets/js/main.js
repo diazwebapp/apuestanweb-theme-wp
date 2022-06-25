@@ -61,8 +61,8 @@
             loop: true,
             nav: true,
             navText: [
-                '<i class="fal fa-angle-left"></i>',
-                '<i class="fal fa-angle-right"></i>'
+                '<i class="fa fa-angle-left"></i>',
+                '<i class="fa fa-angle-right"></i>'
             ],
             dots: true,
             items: 1,
@@ -72,8 +72,8 @@
         $('.owl-carousel.slider2').owlCarousel({
             loop: true,
             navText: [
-                '<i class="fal fa-angle-left"></i>',
-                '<i class="fal fa-angle-right"></i>'
+                '<i class="fa fa-angle-left"></i>',
+                '<i class="fa fa-angle-right"></i>'
             ],
             dots: false,
             smartSpeed: 1000,
@@ -97,8 +97,8 @@
         $('.slider__active').owlCarousel({
             loop: true,
             navText: [
-                '<i class="fal fa-angle-right"></i>',
-                '<i class="fal fa-angle-left"></i>'
+                '<i class="fa fa-angle-right"></i>',
+                '<i class="fa fa-angle-left"></i>'
             ],
             dots: false,
             smartSpeed: 1000,
