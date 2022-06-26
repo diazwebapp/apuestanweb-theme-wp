@@ -1,4 +1,7 @@
 window.addEventListener("load",()=>{
+    /////////Cambiamos el backgroun de color
+    const wp_content = document.getElementById("wpcontent")
+    //wp_content.style.background = '#1d2327'
     //////////////seleccionamos el formulario de añadir metodos de pago
     const form_add_method = document.getElementById("aw-add-payment-method-form")
     /////////verificamos que exista en el DOM

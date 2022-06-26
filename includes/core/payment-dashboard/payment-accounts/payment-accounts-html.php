@@ -4,14 +4,16 @@ include 'views/table-accounts.php';
 
 function html_navbar_payment_methods($payment_methods){
   
-  $payment_method_navbar = '<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top ">
-                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                              </button>
-                              <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                                <ul class="navbar-nav">
-                                  {replace-li-navbar}
-                                </ul>
+  $payment_method_navbar = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
+                              <div class="container-fluid">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                  <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                  <ul class="navbar-nav me-auto">
+                                    {replace-li-navbar}
+                                  </ul>
+                                </div>
                               </div>
                             </nav>';
     $li="";
@@ -25,7 +27,7 @@ function html_navbar_payment_methods($payment_methods){
       if($key == 0){
         $class = "active";
       }
-      $li .= '<li class="nav-item '.$class.'"><a class="nav-link" href="'.$path.'">'.$method->payment_method.'</a></li>';
+      $li .= '<li class="nav-item"><a class="nav-link '.$class.'" href="'.$path.'">'.$method->payment_method.'</a></li>';
     }
     $payment_method_navbar = str_replace("{replace-li-navbar}",$li,$payment_method_navbar);
     return $payment_method_navbar;

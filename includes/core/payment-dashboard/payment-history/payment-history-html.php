@@ -29,7 +29,7 @@ function generate_history_payment_table(){
     $query = select_payment_history($data,$text);
   }
 
-  $table_html = '<table class="table table-hover table-dark" >
+  $table_html = '<table class="table table-hover " >
       <thead>
         <tr>
           {thead_data}
@@ -105,7 +105,7 @@ function aw_payment_history(){
               <h4>'._x("payment history","jbetting").'</h4>
                 <div class="col-md-12 mb-2">
                       <h3>Filtrar consulta</h3>
-                      <form method="post" class="form-row">
+                      <form method="post" class="row">
                         <div class="col" >
                           <label>Username</label>
                           <input type="text" name="username" class="form-control" />

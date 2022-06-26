@@ -31,7 +31,7 @@ endif;
 function html_table_payment_methods(){
   $path = $_SERVER['REQUEST_URI'];
   $array_payment_methods = aw_select_payment_method();
-  $table ='<table class="table table-hover table-dark">
+  $table ='<table class="table table-hover ">
         <thead>
           <tr>
             {dynamicth}
