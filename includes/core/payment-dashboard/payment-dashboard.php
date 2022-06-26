@@ -25,8 +25,8 @@ add_action( 'admin_menu', function(){
   add_submenu_page( 'payment-dashboard', 'payment methods', 'payment settings', 'manage_options', 'payment-mehods', 'panel_payment_methods', 2 );
 });
 
-add_action( 'admin_enqueue_scripts', function(){
 
+add_action( 'admin_enqueue_scripts', function(){
   wp_enqueue_script('admin-js',get_template_directory_uri() . '/assets/js/admin.js');
   wp_enqueue_style('admin-css');
   

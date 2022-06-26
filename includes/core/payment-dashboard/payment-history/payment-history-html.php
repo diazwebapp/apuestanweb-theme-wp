@@ -129,8 +129,7 @@ function aw_payment_history(){
                           <input type="date" name="date_2" class="form-control"/>
                         </div>
                         <div class="col" >
-                          <label>.</label>
-                          <button class="btn btn-primary form-control" name="filter_table_history" >filtrar</button>
+                          <button class="btn btn-primary mt-4" name="filter_table_history" >filtrar</button>
                         </div>
                       </form>
                 </div>
