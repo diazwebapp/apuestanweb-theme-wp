@@ -192,6 +192,7 @@ window.addEventListener("load",()=>{
           product_name_.appendChild(product_description)
           const product_price_ = register_form.querySelector("td#product-price")
           product_price_.textContent = product_price.textContent
+                  
           //add product subtotal
           const product_fee_name_ = register_form.querySelector("td#fee-name")
           product_fee_name_.appendChild(product_fee_name)
@@ -241,6 +242,35 @@ window.addEventListener("load",()=>{
         
       }
       
+      // copiar al portapapeles
+      const labels = document.querySelectorAll('label.copy')
+      if(labels.length>0){
+        
+        for(let label of labels){
+          label.addEventListener('click',async e =>{
+            const text_id = label.getAttribute("for")
+            const input = document.getElementById(text_id)
+            if(!navigator.clipboard){
+              input.focus()
+              input.select();
+              const result = document.execCommand('copy');
+              if (result === 'unsuccessful') {
+                console.error('Failed to copy text.');
+                return;
+              }
+              alert("copiado!")
+              return
+            }
+
+            try {
+              await navigator.clipboard.writeText(text_id)
+            } catch (err) {
+              console.error('Failed to copy!', err)
+            }
+
+          })
+        }
+      }
 })
 function aw_default_register_payment_method(register_form,method){
 
@@ -321,3 +351,4 @@ async function aw_register_payment(form_event) {
     console.log(res)
   }
 }
+

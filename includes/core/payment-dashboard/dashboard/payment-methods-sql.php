@@ -76,12 +76,23 @@ function aw_insert_new_payment_method_register_inputs($method_register){
     return ["status"=>"fail","msg"=>"no fue posible insertar el input para registrar pagos"];
 }
 if(!function_exists('aw_select_payment_method')){
-    function aw_select_payment_method($id=false,$limit=10){
+    function aw_select_payment_method($id=false,$status=false,$payment_method=false,$limit=false,$order=false){
         global $wpdb;
-        $sql = "select * from ".MYSQL_TABLE_PAYMENT_METHODS." limit $limit ";
         $query = false;
+        
+        $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_METHODS." WHERE status='$status' ";
         if($id){
-            $sql = "select * from ".MYSQL_TABLE_PAYMENT_METHODS." WHERE id = $id";
+            $sql .= "AND id = $id ";
+        }
+        if($payment_method){
+            $sql .= "AND payment_method = '$payment_method' ";
+        }
+        
+        if($order){
+            $sql .= "ORDER BY {$order['key']} {$order['order']} ";
+        }
+        if($limit){
+            $sql .= "LIMIT $limit ";
         }
         $query = $wpdb->get_results($sql);
         if(!is_wp_error( $query )){

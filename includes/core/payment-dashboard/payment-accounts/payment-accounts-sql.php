@@ -64,17 +64,24 @@ if(!function_exists('aw_insert_new_payment_account_metas')){
     die ;
 }
 if(!function_exists('aw_select_payment_account')){
-    function aw_select_payment_account($id=false,$method=false,$limit=10){
+    function aw_select_payment_account($id=false,$status=false,$payment_method_id=false,$limit=false,$order=false){
         global $wpdb;
-        $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." limit $limit ";
         $query = false;
+        
+        $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE status='$status' ";
         if($id){
-            $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE id = $id";
+            $sql .= "AND id = $id ";
         }
-        if($method){
-            $sql = "select * from ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE payment_method_id = $method";
+        if($payment_method_id){
+            $sql .= "AND payment_method_id = '$payment_method_id' ";
         }
         
+        if($order){
+            $sql .= "ORDER BY {$order['key']} {$order['order']} ";
+        }
+        if($limit){
+            $sql .= "LIMIT $limit ";
+        }
         $query = $wpdb->get_results($sql);
         if(!is_wp_error( $query )){
             return $query;

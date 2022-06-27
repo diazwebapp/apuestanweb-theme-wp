@@ -57,7 +57,7 @@ function aw_register_form($attr=array()){
             display:none;
         }
 		
-		.form-group input, .input-group-text{font-size:2.5rem !important;}
+		.form-group input, .input-group-text{font-size:2.5rem ;}
 		.card-title{font-size:3.3rem !important;}
 		.divider-text {
 			position: relative;
@@ -65,6 +65,10 @@ function aw_register_form($attr=array()){
 			margin-top: 15px;
 			margin-bottom: 15px;
 		}
+        .input-group input:focus{
+            outline:none !important;
+            border:none;
+        }
         #payment-field table{
             margin:10px auto;
         }
@@ -121,12 +125,10 @@ function aw_register_form($attr=array()){
         
         $str .= '<div class="card bg-light"><div id="aw-container-register-form" class="card-body mx-auto">' . $obj_form->form() . '</div></div>';
         $str .= '<template id="temp"><div class="card">
-                <div class="card-header">
-                    <h2>
-                        <div class="custom-control custom-radio" >                    
-                            <input type="radio" onChange="aw_change_register_payment_method(this)" class="custom-control-input" name="aw-payment-radio"/>
-                            <label role="button" class="custom-control-label"></label>
-                        </div>
+                <div class="card-header d-flex justify-content-between">
+                    <h2>                                           
+                        <input type="radio" onChange="aw_change_register_payment_method(this)" name="aw-payment-radio"/>
+                        <label role="button" ></label>
                     </h2>
                 </div>
             </div>
@@ -148,44 +150,50 @@ add_action( 'wp_enqueue_scripts', function(){
     $data["client_geolocation"] = json_decode(GEOLOCATION);
     
     $data["html"] = "";
-    $payment_methods = aw_select_payment_method();
+    $payment_methods = aw_select_payment_method(false,true);
     $data["pm"] = $payment_methods;
     foreach($payment_methods as $method){
-       $accounts =  aw_select_payment_account(false,$method->id,$limit=99);
+       $accounts = aw_select_payment_account(false,true,$method->id,false);
        $register_inputs = aw_select_payment_method_register_inputs($method->id);
        if(count($accounts) > 0):
-            $data["html"] .= '<div class="card">';
-            $data["html"] .= '<div class="card-header" id="label-'.$method->id.'">
-                    <h2 type="button" data-toggle="collapse" data-target="#paymentid'.$method->id.'" aria-expanded="false" aria-controls="'.$method->id.'">
-                        '.$method->payment_method.' <span class="'.$method->icon_class.'" ></span>
-                    </h2>
-                </div>';
-            $data["html"] .= '<div class="collapse" aria-labelledby="label-'.$method->id.'" data-parent="#payment-select" id="paymentid'.$method->id.'">';
-            foreach($accounts as $account){
-                    $metas = aw_select_payment_account_metas($account->id);
-                    $data["html"] .= '<div class="card-body">';
-                    $data["html"] .= '<div class="custom-control custom-radio">';
-                    $data["html"] .= '<input id="account-id-'.$account->id.'" name="aw-payment-radio" value="'.$account->payment_method_name.'" type="radio" class="custom-control-input" onChange="aw_change_register_payment_method(this)"/>';
-                    $data["html"] .= '<label for="account-id-'.$account->id.'" role="button" class="custom-control-label"> ';
-                    foreach ($metas as $keymeta => $meta) {
-                        
-                        $data["html"] .= '<b>'.$meta->key.':</b> '.$meta->value.'<br/>' ;
-                    
-                    }
-                    $data["html"] .= '</label>';
-                    $data["html"] .= '</div>';
-                    $data["html"] .= '</div>';
-            }
-            $data["html"] .= '<div class="card-body">';
-            foreach ($register_inputs as $keyregister => $register) {
-                $data["html"] .= '<label>'.$register->name.' </label>';
-                $data["html"] .= '<input type="'.$register->type.'" data-method="'.$account->payment_method_name.'" class="form-control" name="'.$register->name.'" required />';
-                
-            }
-            $data["html"] .= '</div>';
-            $data["html"] .= '</div>';
-            $data["html"] .= '</div>';
-        endif;
+        //recorremos todas las cuentas
+        foreach($accounts as $account):
+            $account_metas = aw_select_payment_account_metas($account->id);
+            $data["html"] .= '<div class="card">
+                <div class="card-header d-flex justify-content-between" id="heading-'.$account->id.'" >
+                    <h2>
+                        <input type="radio" onChange="aw_change_register_payment_method(this)" value="'.$account->id.'" id="'.$account->id.'" name="aw-payment-radio"/>
+                        <label for="'.$account->id.'" data-toggle="collapse" data-target="#target-'.$account->id.'" aria-expanded="false" aria-controls="target-'.$account->id.'">
+                            '.$account->payment_method_name.'
+                        </label>
+                        </h2>
+                    <i class="'.$method->icon_class.'" ></i>
+                </div>
+            
+                <div id="target-'.$account->id.'" class="collapse" aria-labelledby="heading-'.$account->id.'" data-parent="#payment-select">
+                    <div class="card-body">';
+            //recorremos los metas 
+            foreach($account_metas as $meta):
+                $data["html"] .= '<h3 class="d-block" >'.$meta->key.'</h3>';
+                $data["html"] .= '<div class="input-group mb-3">
+                <input type="text" id="'.$meta->id.$meta->key.'" value="'.$meta->value.'" class="form-control" readonly style="outline:none !important;border:none;background:transparent;font-size:1.7rem">
+                <div class="input-group-append">
+                  <label class="input-group-text copy" title="copiar al portapapeles" for="'.$meta->id.$meta->key.'" type="button" ><i class="fa fa-copy"></i></label>
+                </div>
+              </div>';
+            endforeach;
+            //recorremos todos los inputs para que el cliente registre su pago
+            foreach($register_inputs as $input):
+                $data["html"] .= '<div class="form-group">';
+                $data["html"] .= '<label>'.$input->name.'</label>';
+                $data["html"] .= '<input type="'.$input->type.'" name="'.$input->name.'" class="form-control"/>';
+                $data["html"] .= '</div>';
+            endforeach;
+            $data["html"] .= '</div>'; //cerramos card body
+            $data["html"] .= '</div>'; //cerramos div collapse
+            $data["html"] .= '</div>'; //cerramos card
+        endforeach;
+       endif;
     }
     
     wp_add_inline_script( 'forms-fix', 'const php_payment_services='.json_encode($data), 'before' );
