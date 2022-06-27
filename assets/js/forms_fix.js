@@ -295,8 +295,8 @@ function aw_change_register_payment_method(e){
   if(ihc_payment_gateway_input && ihc_payment_selected_input){
     ihc_payment_gateway_input.value = e.value
     ihc_payment_selected_input.value = e.value
-    ihc_payment_gateway_input.id = e.id.replace("account-id-","")
-    ihc_payment_selected_input.id = e.id.replace("account-id-","")
+    ihc_payment_gateway_input.id = e.getAttribute('data-method')
+    ihc_payment_selected_input.id = e.getAttribute('data-method')
   }
 }
 
@@ -308,7 +308,7 @@ async function aw_register_payment(form_event) {
   for(let input of inputs){
         account_data[input.name] = input.value
         if(input.name == 'payment_selected'){
-          account_data["account_id"] = input.id
+          account_data["method_name"] = input.id
         }
   }
   account_data["ihc_country"] = ihc_country.value
