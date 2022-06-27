@@ -176,9 +176,9 @@ add_action( 'wp_enqueue_scripts', function(){
             foreach($account_metas as $meta):
                 $data["html"] .= '<h3 class="d-block" >'.$meta->key.'</h3>';
                 $data["html"] .= '<div class="input-group mb-3">
-                <input type="text" id="'.$meta->id.$meta->key.'" value="'.$meta->value.'" class="form-control" readonly style="outline:none !important;border:none;background:transparent;font-size:1.7rem">
+                <input type="text" id="'.$meta->id.$meta->key.'" value="'.$meta->value.'" class="form-control" readonly style="outline:none !important;border:none;background:transparent;font-size:1.7rem;">
                 <div class="input-group-append">
-                  <label class="input-group-text copy" title="copiar al portapapeles" for="'.$meta->id.$meta->key.'" type="button" ><i class="fa fa-copy"></i></label>
+                  <label class="input-group-text copy" title="copiar al portapapeles" for="'.$meta->id.$meta->key.'" type="button" ><i style="font-size:1.5rem;" class="fa fa-copy"></i></label>
                 </div>
               </div>';
             endforeach;
