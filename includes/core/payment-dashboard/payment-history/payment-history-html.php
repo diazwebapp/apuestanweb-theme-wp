@@ -52,16 +52,18 @@ function generate_history_payment_table(){
         $html_th = "";
         $html_td = "";
         //botones de accion
-        $btn_completed = '<span class="dashicons dashicons-yes" title="complete" status="completed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
-        $btn_pending = '<span class="dashicons dashicons-clock" title="pending" status="pending" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
-        $btn_fail = '<span class="dashicons dashicons-no-alt" title="fail" status="failed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
-        $btn_trash = '<span class="dashicons dashicons-trash" title="trash" status="trashed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span>';
+        $btn_completed = '<span role="button" class="dashicons dashicons-yes" title="complete" status="completed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
+        $btn_pending = '<span role="button" class="dashicons dashicons-clock" title="pending" status="pending" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
+        $btn_fail = '<span role="button" class="dashicons dashicons-no-alt" title="fail" status="failed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span><br/>';
+        $btn_trash = '<span role="button" class="dashicons dashicons-trash" title="trash" status="trashed" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></span>';
         
         foreach($llaves as $keyth => $th){
           
           if(!is_array($th)){
-            $html_td .= '<td>'.$th.'</td>';
-            $html_th .= '<th>'.$keyth.'</th>';
+            if($keyth!=='payment_account_id'):
+              $html_td .= '<td>'.$th.'</td>';
+              $html_th .= '<th>'.$keyth.'</th>';
+            endif;
           }
           if(is_array($th)){
             foreach ($th as $keyth2 => $thvalue) {

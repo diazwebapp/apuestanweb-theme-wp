@@ -68,7 +68,10 @@ if(!function_exists('aw_select_payment_account')){
         global $wpdb;
         $query = false;
         
-        $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE status='$status' ";
+        $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." ";
+        if($status !=='any'){
+            $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_ACCOUNTS." WHERE status='$status' ";
+        }
         if($id){
             $sql .= "AND id = $id ";
         }

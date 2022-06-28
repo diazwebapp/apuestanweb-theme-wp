@@ -11,7 +11,7 @@ function create_payment_control_table(){
     $sql = "CREATE TABLE ".MYSQL_PAYMENT_HISTORY." (
         `id` INT(11) NOT NULL AUTO_INCREMENT,
         `payment_method` TEXT,
-        `payment_account` INT(11),
+        `payment_account_id` INT(11),
         `membership_id` INT(11),
         `username` TEXT,
         `select_country_code` TEXT,

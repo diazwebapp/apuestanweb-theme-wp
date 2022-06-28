@@ -229,6 +229,7 @@ window.addEventListener("load",()=>{
               label.setAttribute('for',payment_methods_array[i][0])
               input.id = payment_methods_array[i][0]
               input.value = payment_methods_array[i][0]
+              input.setAttribute('data-method',payment_methods_array[i][0])
 
               if(payment_methods_array[i][0] !== 'bank_transfer'){
                 let clone = document.importNode(template.content,true)
@@ -326,7 +327,7 @@ async function aw_register_payment(form_event) {
     alert("Seleccione un metodo de pago")
     return
   }
-  //creamos selector de register metas unico por payment method
+  //creamos selector de register metas unico por payment account
   let register_metas = form_event.target.querySelectorAll(`input[data-method="${account_data["payment_selected"]}"]`)
   account_data["register"] = []
   register_metas.forEach((input)=>{
@@ -347,8 +348,8 @@ async function aw_register_payment(form_event) {
         "content-type":"application/json"
       }
     })
-    const res = await req.json()
-    console.log(res)
+    //const res = await req.json()
+    
   }
 }
 

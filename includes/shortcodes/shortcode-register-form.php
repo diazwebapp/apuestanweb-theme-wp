@@ -162,7 +162,7 @@ add_action( 'wp_enqueue_scripts', function(){
             $data["html"] .= '<div class="card">
                 <div class="card-header d-flex justify-content-between" id="heading-'.$account->id.'" >
                     <h2>
-                        <input type="radio" onChange="aw_change_register_payment_method(this)" data-method="'.$method->payment_method_name.'" value="'.$account->id.'" id="'.$account->id.'" name="aw-payment-radio"/>
+                        <input type="radio" onChange="aw_change_register_payment_method(this)" data-method="'.$account->payment_method_name.'" value="'.$account->id.'" id="'.$account->id.'" name="aw-payment-radio"/>
                         <label for="'.$account->id.'" data-toggle="collapse" data-target="#target-'.$account->id.'" aria-expanded="false" aria-controls="target-'.$account->id.'">
                             '.$account->payment_method_name.'
                         </label>
@@ -186,7 +186,7 @@ add_action( 'wp_enqueue_scripts', function(){
             foreach($register_inputs as $input):
                 $data["html"] .= '<div class="form-group">';
                 $data["html"] .= '<label>'.$input->name.'</label>';
-                $data["html"] .= '<input type="'.$input->type.'" name="'.$input->name.'" class="form-control"/>';
+                $data["html"] .= '<input type="'.$input->type.'" data-method="'.$account->id.'" name="'.$input->name.'" class="form-control"/>';
                 $data["html"] .= '</div>';
             endforeach;
             $data["html"] .= '</div>'; //cerramos card body

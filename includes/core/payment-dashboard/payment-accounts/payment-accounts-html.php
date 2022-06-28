@@ -24,7 +24,7 @@ function html_navbar_payment_methods($payment_methods){
       if(isset($_GET['method_page']) and strval($_GET['method_page'])==strval($method->id)){
         $class = "active";
       }
-      if($key == 0){
+      if($key == 0 and !isset($_GET['method_page'])){
         $class = "active";
       }
       $li .= '<li class="nav-item"><a class="nav-link '.$class.'" href="'.$path.'">'.$method->payment_method.'</a></li>';
@@ -32,38 +32,34 @@ function html_navbar_payment_methods($payment_methods){
     $payment_method_navbar = str_replace("{replace-li-navbar}",$li,$payment_method_navbar);
     return $payment_method_navbar;
 }
-function html_body_payment_method(){
-  
-      //////////////////Formulario
 
-  $form = html_form_new_payment_account();
-  $html = '<div class="row">
-      <div class="col-md-4">
-        <h2 class="card-title">añadir cuentas</h2>
-        '.$form.'
-      </div>
-      <div class="col-md-8">
-          <h2>listado de cuentas</h2>
-          <div class="table-responsive">
-            {dynamictableacounts}
-          </div>
-      </div>
-  </div>
-  ';
-  $table = html_table_payment_accounts();
-  $html = str_replace("{dynamictableacounts}",$table,$html);
-  return $html;
-}
 function panel_payment_methods(){
     
-    $array_payment_methods = aw_select_payment_method();
+    $array_payment_methods = aw_select_payment_method(false,true);
     $navbar = html_navbar_payment_methods($array_payment_methods);
-    $body_payment_data = html_body_payment_method();
+    $form = '';
+    $table = '';
+    if($array_payment_methods[0]):
+      $table = html_table_payment_accounts($array_payment_methods[0]->id);
+      $form = html_form_new_payment_account($array_payment_methods[0]->id);
+    endif;
     $html = '<div class="container">
               {html-navbar}
-              {html-body-payment-data}
+              <div class="row">
+                  <div class="col-md-4">
+                    <h2 class="card-title">añadir cuentas</h2>
+                    {dynamicform}
+                  </div>
+                  <div class="col-md-8">
+                      <h2>listado de cuentas</h2>
+                      <div class="table-responsive">
+                        {dynamictableacounts}
+                      </div>
+                  </div>
+              </div>
             </div>';
     $html = str_replace("{html-navbar}",$navbar,$html);
-    $html = str_replace("{html-body-payment-data}",$body_payment_data,$html);
+    $html = str_replace("{dynamicform}",$form,$html);
+    $html = str_replace("{dynamictableacounts}",$table,$html);
   echo $html;
 }

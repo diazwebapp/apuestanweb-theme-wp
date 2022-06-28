@@ -1,8 +1,8 @@
 <?php
 
-function html_form_new_payment_account(){
-    $get_id = isset($_GET['method_page']) ? $_GET['method_page'] : false;
-    $array_payment_methods = aw_select_payment_method($get_id,1);
+function html_form_new_payment_account($method_id=false){
+    $get_id = isset($_GET['method_page']) ? $_GET['method_page'] : $method_id;
+    $array_payment_methods = aw_select_payment_method($get_id,true);
     $inputs = [];
     $html_inputs = "";
 
@@ -35,10 +35,9 @@ function html_form_new_payment_account(){
                 </div>
 
                 <div class="form-group mb-2 col-6">
-                    <label class="form-label">status</label>
                     <div class="custom-control custom-switch ">
-                        <input type="checkbox" class="custom-control-input" name="status" id="enabled" checked>
-                        <label class="form-label" class="custom-control-label" title="enable" for="enabled"></label>
+                        <input class="custom-control-input" type="checkbox" name="status" id="enabled">
+                        <label class="custom-control-label" title="enable" for="enabled"></label>
                     </div>              
                 </div>
             </div>

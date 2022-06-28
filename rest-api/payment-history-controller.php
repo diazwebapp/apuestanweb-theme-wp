@@ -7,7 +7,7 @@ function aw_register_new_payment(WP_REST_Request $request){
     
     //Rellenamos los datos para payment history
     $sql_data["payment_method"] = $params["method_name"];
-    $sql_data["payment_account"] = $params["payment_selected"];
+    $sql_data["payment_account_id"] = $params["payment_selected"];
     $sql_data["membership_id"] = $params["lid"];
     $sql_data["username"] = $params["user_login"];
     $sql_data["select_country_code"] = $params["ihc_country"];
