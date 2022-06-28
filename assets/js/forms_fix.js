@@ -264,7 +264,8 @@ window.addEventListener("load",()=>{
             }
 
             try {
-              await navigator.clipboard.writeText(text_id)
+              await navigator.clipboard.writeText(input.value)
+              alert("copiado!")
             } catch (err) {
               console.error('Failed to copy!', err)
             }

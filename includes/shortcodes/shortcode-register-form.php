@@ -153,7 +153,7 @@ add_action( 'wp_enqueue_scripts', function(){
     $payment_methods = aw_select_payment_method(false,true);
     $data["pm"] = $payment_methods;
     foreach($payment_methods as $method){
-       $accounts = aw_select_payment_account(false,true,$method->id,false);
+       $accounts = aw_select_payment_account(false,false,$method->id,false);
        $register_inputs = aw_select_payment_method_register_inputs($method->id);
        if(count($accounts) > 0):
         //recorremos todas las cuentas
