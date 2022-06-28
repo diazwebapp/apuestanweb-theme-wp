@@ -3,7 +3,7 @@ function html_table_payment_accounts($method_id=false){
   $get_id = isset($_GET['method_page']) ? $_GET['method_page'] : $method_id;
   $array_payment_accounts = [];
   
-  $array_payment_accounts = aw_select_payment_account(false,true,$get_id);
+  $array_payment_accounts = aw_select_payment_account(false,'any',$get_id);
   $table ='<table class="table table-hover ">
         <thead>
           <tr>
