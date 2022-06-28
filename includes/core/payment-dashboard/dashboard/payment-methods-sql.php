@@ -79,9 +79,9 @@ if(!function_exists('aw_select_payment_method')){
     function aw_select_payment_method($id=false,$status=false,$payment_method=false,$limit=false,$order=false){
         global $wpdb;
         $query = false;
-        $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_METHODS." ";
-        if($status !== 'any'):
-            $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_METHODS." WHERE status='$status' ";
+        $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_METHODS." WHERE status='$status' ";
+        if($status == 'any'):
+            $sql = "SELECT * FROM ".MYSQL_TABLE_PAYMENT_METHODS." WHERE 1 ";
         endif;
         if($id){
             $sql .= "AND id = $id ";
