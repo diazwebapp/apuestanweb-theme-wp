@@ -163,7 +163,7 @@ add_action( 'wp_enqueue_scripts', function(){
                 <div class="card-header d-flex justify-content-between" id="heading-'.$account->id.'" >
                     <h2>
                         <input type="radio" onChange="aw_change_register_payment_method(this)" data-method="'.$account->payment_method_name.'" value="'.$account->id.'" id="'.$account->id.'" name="aw-payment-radio"/>
-                        <label for="'.$account->id.'" data-toggle="collapse" data-target="#target-'.$account->id.'" aria-expanded="false" aria-controls="target-'.$account->id.'">
+                        <label role="button" for="'.$account->id.'" data-toggle="collapse" data-target="#target-'.$account->id.'" aria-expanded="false" aria-controls="target-'.$account->id.'">
                             '.$account->payment_method_name.'
                         </label>
                         </h2>
