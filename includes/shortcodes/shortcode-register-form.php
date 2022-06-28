@@ -150,10 +150,10 @@ add_action( 'wp_enqueue_scripts', function(){
     $data["client_geolocation"] = json_decode(GEOLOCATION);
     
     $data["html"] = "";
-    $payment_methods = aw_select_payment_method(false,true);
+    $payment_methods = aw_select_payment_method(false,1);
     $data["pm"] = $payment_methods;
     foreach($payment_methods as $method){
-       $accounts = aw_select_payment_account(false,false,$method->id,false);
+       $accounts = aw_select_payment_account(false,1,$method->id,false);
        $register_inputs = aw_select_payment_method_register_inputs($method->id);
        if(count($accounts) > 0):
         //recorremos todas las cuentas
