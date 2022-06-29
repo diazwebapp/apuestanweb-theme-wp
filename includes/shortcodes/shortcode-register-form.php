@@ -125,8 +125,8 @@ function aw_register_form($attr=array()){
         $str .= '<div class="position-fixed top-0 right-0 p-3" style="z-index: 10000; right: 0; top: 0; width:250px;">
         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
           <div class="toast-header" style="height:50px;">
-            <i class="fa fa-bell"></i>
-            <strong class="mr-auto" >Notification</strong>
+            <i style="font-size:1.8rem;" class="fa fa-bell"></i>
+            <strong class="mr-auto ml-2" style="font-size:1.3rem;" >Notification</strong>
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
