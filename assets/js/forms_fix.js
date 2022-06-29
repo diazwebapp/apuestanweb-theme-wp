@@ -245,6 +245,7 @@ window.addEventListener("load",()=>{
       
       // copiar al portapapeles
       const labels = document.querySelectorAll('label.copy')
+      
       if(labels.length>0){
         
         for(let label of labels){
@@ -259,13 +260,13 @@ window.addEventListener("load",()=>{
                 console.error('Failed to copy text.');
                 return;
               }
-              alert("copiado!")
+              await $('.toast').toast('show')
               return
             }
 
             try {
               await navigator.clipboard.writeText(input.value)
-              alert("copiado!")
+              await $('.toast').toast('show')
             } catch (err) {
               console.error('Failed to copy!', err)
             }

@@ -1,12 +1,6 @@
 <?php
-if(isset($_GET['disable_account'])):
-  aw_update_payment_account(["status"=>false],["id"=>"{$_GET['disable_account']}"]);
-  header("Location:".$_SERVER["HTTP_REFERER"]);
-  die;
-endif;
-
-if(isset($_GET['enable_account'])):
-  aw_update_payment_account(["status"=>true],["id"=>"{$_GET['enable_account']}"]);
+if(isset($_GET['account_id']) and isset($_GET['status_account']) and isset($_GET['method_page'])):
+  aw_update_payment_account(["status"=>$_GET['status_account']],["id"=>$_GET['account_id'],"payment_method_id"=>$_GET['method_page']]);
   header("Location:".$_SERVER["HTTP_REFERER"]);
   die;
 endif;
@@ -79,7 +73,11 @@ function html_table_payment_accounts($method_id=false){
                     $th .= '<th>'.$meta->key.'</th>';
                 }
                 //td actions
-              $tr .= '<td><a '.($method['status'] ? ' href="'.$path.'&disable_account='.$method['id'].'" title="disable" > disable': ' href="'.$path.'&enable_account='.$method['id'].'" title="enable" >enable').'</a>';
+                
+              $tr .= '<td>
+                    <a href="'.$path.'&account_id='.$method['id'].'&status_account='.($method['status'] ? 0:1).'" title="'.($method['status'] ? "disable":"enable").'" >
+                     '.($method['status'] ? "disable":"enable").
+                    '</a>';
               $tr .= '<br/>';
               $tr .= '<a href="'.$path.'&delete_account='.$method['id'].'" title="delete" >delete</a></td>';
               $tr .= "</tr>";

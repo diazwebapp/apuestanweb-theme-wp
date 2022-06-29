@@ -38,7 +38,8 @@ if(!function_exists('aw_insert_new_payment_account')){
         global $wpdb ;
         //Por ahora se habilita solo una cuenta
         if($account_data["status"] == true){
-            $update = $wpdb->update(MYSQL_TABLE_PAYMENT_ACCOUNTS,["status"=>false],["status"=>true]);
+            $update = $wpdb->update(MYSQL_TABLE_PAYMENT_ACCOUNTS,["status"=>false],["status"=>true,"payment_method_id"=>$account_data['payment_method_id']]);
+            
         }
         $insert = $wpdb->insert(MYSQL_TABLE_PAYMENT_ACCOUNTS,$account_data);
         if($insert == 1 and !is_wp_error( $insert )):
@@ -113,13 +114,14 @@ if(!function_exists('aw_select_payment_account_metas')){
     die ;
 }
 if(!function_exists('aw_update_payment_account')):
-    function aw_update_payment_account($data=false,$id=false){
+    function aw_update_payment_account($data=false,$where_params=false){
         global $wpdb;
         //Por ahora se habilita solo una cuenta
-        if($data["status"] == true){
-            $update = $wpdb->update(MYSQL_TABLE_PAYMENT_ACCOUNTS,["status"=>false],["status"=>true]);
+        if($data["status"] == 1){
+            $update = $wpdb->update(MYSQL_TABLE_PAYMENT_ACCOUNTS,["status"=>false],["status"=>true,"payment_method_id"=>$where_params['payment_method_id']]);
+            
         }
-        $update = $wpdb->update(MYSQL_TABLE_PAYMENT_ACCOUNTS,$data,$id);
+        $update = $wpdb->update(MYSQL_TABLE_PAYMENT_ACCOUNTS,$data,$where_params);
     }
 else:
     echo 'la funcion aw_update_payment_account ya existe';
