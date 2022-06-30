@@ -127,7 +127,7 @@ window.addEventListener("load",()=>{
                 <section class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                 </section>
-                  <input type="password" value="" class="form-control" name="pass1" placeholder="Password">
+                  <input type="password" value="" class="form-control" min="4" name="pass1" placeholder="Password">
               </section>
               ${
                 register_countries.length > 0 ? (`<section class="form-group input-group" id="country-field">
@@ -327,6 +327,11 @@ async function aw_register_payment(form_event) {
     breack = false
     form_event.target.tos.checked = false
     alert("Seleccione un metodo de pago")
+    return
+  }
+  if(account_data["pass1"].length <= 5){
+    breack = false
+    alert("Seleccione la contraseña es muy corta")
     return
   }
   //creamos selector de register metas unico por payment account
