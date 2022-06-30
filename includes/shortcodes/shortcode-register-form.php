@@ -1,5 +1,6 @@
 <?php
 global $str;
+
 function aw_register_form($attr=array()){
     
 	if (!IHCACTIVATEDMODE){

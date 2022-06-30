@@ -350,8 +350,8 @@ async function aw_register_payment(form_event) {
         "content-type":"application/json"
       }
     })
-    //const res = await req.json()
-    
+    const res = await req.json()
+    console.log(res)
   }
 }
 

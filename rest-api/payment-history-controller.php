@@ -4,7 +4,14 @@ function aw_register_new_payment(WP_REST_Request $request){
     $params = $request->get_json_params();
     $location = json_decode(GEOLOCATION);
     $sql_data=[];
-    
+    $usermail = email_exists( $params["user_email"] );
+    $username = username_exists( $params["user_login"] );
+    //si el usuario existe nó registramo el pago
+    if($username or $usermail):
+        $response["status"] = "fail";
+        $response["data"] = "usuario o email ya existen";
+        return $response; 
+    endif;
     //Rellenamos los datos para payment history
     $sql_data["payment_method"] = $params["method_name"];
     $sql_data["payment_account_id"] = $params["payment_selected"];
@@ -16,7 +23,7 @@ function aw_register_new_payment(WP_REST_Request $request){
     $sql_data["status"] = "pending";
 
     $insert_history_id = insert_payment_history($sql_data);
-    
+
     if(!is_wp_error( $insert_history_id )){
         $response["status"] = "ok";
         $response["data"] = $insert_history_id;
@@ -27,7 +34,6 @@ function aw_register_new_payment(WP_REST_Request $request){
         }
         return $response;
     }
-
     $response["status"] = "fail";
     $response["data"] = "";
     return $response;
