@@ -348,7 +348,7 @@ async function aw_register_payment(form_event) {
   }
   
   if(breack){
-    fetch(`${rest_uri}aw-register-form/register-payment`,{
+    await fetch(`${rest_uri}aw-register-form/register-payment`,{
       method:'POST',
       body:JSON.stringify(account_data),
       headers:{
