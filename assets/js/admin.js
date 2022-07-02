@@ -55,7 +55,7 @@ const insert_account = async({account_data,metadata})=>{
 function change_payment_status(e){
     const {status,element,lid,username} = e.attributes
     let path = `?update_payment_history_id=${element.textContent}&status=${status.textContent}&lid=${lid.textContent}&username=${username.textContent}`
-    console.log(path)
+    
     document.location = document.location.pathname + path
 }
 
