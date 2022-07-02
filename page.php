@@ -13,6 +13,7 @@ if ( $textbefore ):
 else:
 	echo do_shortcode("[menu_leagues] ");
 endif;
+
  ?>
 
 	<main>

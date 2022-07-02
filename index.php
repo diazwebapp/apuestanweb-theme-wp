@@ -15,6 +15,8 @@ if($query_home->have_posts()):
         $thumb = get_the_post_thumbnail_url(get_the_ID());
     endwhile;
 endif;
+
+
 ?>
 
 <main>
