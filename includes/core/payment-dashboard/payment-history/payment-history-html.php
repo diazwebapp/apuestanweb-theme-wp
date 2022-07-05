@@ -62,8 +62,14 @@ function generate_history_payment_table(){
           
           if(!is_array($th)){
             if($keyth!=='payment_account_id'):
-              $html_td .= '<td>'.$th.'</td>';
+              if($keyth=='username'):
+                $id_user = username_exists( $th );
+                $name = get_user_meta($id_user,'display_name',true);
+                $html_th .= '<th>id</th>';
+                $html_td .= '<td>'.$name.'</td>';
+              endif;
               $html_th .= '<th>'.$keyth.'</th>';
+              $html_td .= '<td>'.$th.'</td>';
             endif;
           }
           if(is_array($th)){

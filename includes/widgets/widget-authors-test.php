@@ -2,13 +2,11 @@
 
 class w_authors extends WP_Widget {
 
-    function __construct()
-    {
-        parent::__construct(
-            'top_authors',
-            __('TOP AUTHORS', 'jbetting')
-        );
+    function w_authors(){
+        $widget_ops = array();
+        $this->WP_Widget('w_authors', "Authors", $widget_ops);
     }
+
     public function widget( $args, $instance ) {
         $title = isset($instance['title']) ? $instance['title'] : __( 'Top Pronosticadores', 'jbetting' );
         $limit = isset($instance['limit']) ? $instance['limit'] : 10;

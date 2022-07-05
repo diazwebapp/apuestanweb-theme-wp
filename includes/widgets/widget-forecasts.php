@@ -1,7 +1,6 @@
 <?php
 
-class top_forecasts extends WP_Widget
-{
+class W_Forecasts extends WP_Widget {
 
     function __construct()
     {
@@ -11,22 +10,15 @@ class top_forecasts extends WP_Widget
         );
     }
 
-    private $widget_fields = array();
-
-    public function widget($args, $instance)
+    function widget($args, $instance)
     {
-        $list = isset($instance['list']) ? $instance['list'] : false;
-        $title = isset($instance['title']) ? $instance['title'] :false;
+        $title = isset($instance['title']) ? __( $instance['title'], 'jbetting' ) : __( 'TOP FORECAST', 'jbetting' );
+        $limit = isset($instance['limit']) ? $instance['limit'] : 10;
 
-
-        if (!$title) {
-            $title = __('TOP FORECAST', 'jbetting');
-        }
-        
         wp_reset_query();
             $args = array(
                 'post_type' => 'forecast',
-                'posts_per_page' => 4,
+                'posts_per_page' => $limit,
                 'no_found_rows' => true,
                 'post_status' => 'publish'
             );
@@ -83,12 +75,33 @@ class top_forecasts extends WP_Widget
             endif;
         }
 
+    function update($new_instance, $old_instance){
+        // Función de guardado de opciones
+        $instance = $old_instance;
+        $instance["title"] = strip_tags($new_instance["title"]);
+        $instance["limit"] = strip_tags($new_instance["limit"]);
+        // Repetimos esto para tantos campos como tengamos en el formulario.
+        return $instance;
     }
 
-function register_new_widget1()
-{
-    register_widget('top_forecasts');
+    function form($instance){
+        // Formulario de opciones del Widget, que aparece cuando añadimos el Widget a una Sidebar
+        ?>
+         <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>">Title del Widget</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance["title"]); ?>" />
+         </p>
+         <p>
+            <label for="<?php echo $this->get_field_id('limit'); ?>">Limit del Widget</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo esc_attr($instance["limit"]); ?>" />
+         </p>
+         <?php
+    }
 }
 
-add_action('widgets_init', 'register_new_widget1');
-wp_reset_query();
+function aw_register_widget_forecasts() {
+    register_widget( 'W_Forecasts' );
+    }
+    add_action( 'widgets_init', 'aw_register_widget_forecasts' );
+    
+?>

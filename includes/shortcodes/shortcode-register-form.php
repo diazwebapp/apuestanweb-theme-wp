@@ -7,7 +7,7 @@ if(isset($_GET['lid'])):
     $paid = $wpdb->get_var("SELECT payment_type FROM $table WHERE id=$lid");
 endif;
 function aw_register_form($attr=array()){
-    global $paid;
+    global $paid,$str;
 	if (!IHCACTIVATEDMODE){
 		$str .= ihc_public_notify_trial_version();
 	}

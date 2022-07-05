@@ -217,8 +217,11 @@ window.addEventListener("load",()=>{
           div_payment_field.appendChild(checkout_button) //add checkout button
           
           //div_register_payments
-          
-          let payment_methods_array = Object.entries(php_payment_services["um_payment_methods"])
+          const payment_methods_ = php_payment_services["um_payment_methods"]
+          let payment_methods_array = []
+          if(payment_methods_){
+              payment_methods_array = Object.entries(payment_methods_)
+          }
           let template = document.querySelector("#temp")
           if(template){
             let label = template.content.querySelector('label')
@@ -323,12 +326,12 @@ async function aw_register_payment(form_event) {
     alert("faltan datos por completar")
     return 
   }
-  if(account_data["payment_selected"] == "" || account_data["ihc_payment_gateway"] == ""){
+  /* if(account_data["payment_selected"] == "" || account_data["ihc_payment_gateway"] == ""){
     breack = false
     form_event.target.tos.checked = false
     alert("Seleccione un metodo de pago")
     return
-  }
+  } */
   if(account_data["pass1"].length <= 5){
     breack = false
     alert("Seleccione la contraseña es muy corta")
@@ -348,13 +351,17 @@ async function aw_register_payment(form_event) {
   }
   
   if(breack){
-    await fetch(`${rest_uri}aw-register-form/register-payment`,{
-      method:'POST',
-      body:JSON.stringify(account_data),
-      headers:{
-        "content-type":"application/json"
-      }
-    })
+    try {
+      await fetch(`${rest_uri}aw-register-form/register-payment`,{
+        method:'POST',
+        body:JSON.stringify(account_data),
+        headers:{
+          "content-type":"application/json"
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 

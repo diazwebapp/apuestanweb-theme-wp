@@ -23,9 +23,8 @@ include "includes/shortcodes/shortcode-login-form.php";
 /*--------------------------------------------------------------*/
 include "includes/widgets_area.php";
 include "includes/widgets/widget-top-bk.php";
-include "includes/widgets/widget-top-forecasts.php";
+include "includes/widgets/widget-forecasts.php";
 include "includes/widgets/widget-bonuses.php";
-include "includes/widgets/widget-subscribe.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
@@ -277,3 +276,34 @@ function filter_webp_quality( $quality, $mime_type ){
   }
 
 add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
+/////configurando smtp///////
+
+function configuracion_smtp( PHPMailer $phpmailer ){
+    $phpmailer->isSMTP(); 
+    $phpmailer->Host = 'smtp.gmail.com';
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 25;
+    $phpmailer->Username = 'erickofiial69@gmail.com';
+    $phpmailer->Password = 'gmail_69.2021';
+    $phpmailer->SMTPSecure = false;
+    $phpmailer->From = 'From Email';
+    $phpmailer->FromName='Nombre del remitente';
+}
+
+///// Detectando registro de usuarios
+add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
+
+function aw_actions_after_register_user( $user_id ) {
+    $headers[]= 'From: Apuestan <apuestan@gmail.com>';
+    $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
+    $headers[]= 'Cc: Persona2 <nohe.zambrano69@gmail.com>';
+    wp_mail( 'erickoficial69@gmail.com',
+    'Ejemplo de la función mail en WP',
+    '<h1>Correo de apuestan</h1>',
+    $headers
+    );
+    function tipo_de_contenido_html() {
+        return 'text/html';
+    }
+    add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
+}
