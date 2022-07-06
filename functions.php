@@ -280,11 +280,11 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 function configuracion_smtp( PHPMailer $phpmailer ){
     $phpmailer->isSMTP(); 
-    $phpmailer->Host = 'smtp.gmail.com';
+    $phpmailer->Host = 'smtp-relay.sendinblue.com';
     $phpmailer->SMTPAuth = true;
-    $phpmailer->Port = 25;
-    $phpmailer->Username = 'erickofiial69@gmail.com';
-    $phpmailer->Password = 'gmail_69.2021';
+    $phpmailer->Port = 587;
+    $phpmailer->Username = 'erickoficial69@gmail.com';
+    $phpmailer->Password = 'SzgWcxJ0TnMO9sD8';
     $phpmailer->SMTPSecure = false;
     $phpmailer->From = 'From Email';
     $phpmailer->FromName='Nombre del remitente';
