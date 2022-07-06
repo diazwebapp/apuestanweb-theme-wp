@@ -10,7 +10,6 @@ if(!function_exists('aw_new_payment_method')):
         $register_inputs = $params["register_inputs"];
 
         $payment_method["icon_class"] = $payment_method_data["icon_class"];
-        $payment_method["icon_service"] = $payment_method_data["icon_service"];
         $payment_method["payment_method"] = $payment_method_data["payment_method"];
         $payment_method["status"] = $payment_method_data["status"];
 
