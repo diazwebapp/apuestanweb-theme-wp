@@ -33,7 +33,7 @@ function html_table_payment_accounts($method_id=false){
         $th = "";
         $thmetas = "";
         $tr = "";
-        if($array_payment_accounts[0]){
+        if(isset($array_payment_accounts[0])){
           
           foreach($array_payment_accounts as $keym => $method){
             $th = "";
@@ -69,8 +69,8 @@ function html_table_payment_accounts($method_id=false){
                 }
 
                 foreach($metas as $keymeta => $meta){
-                    $tr .= '<td>'.$meta->value.'</td>';
-                    $th .= '<th>'.$meta->key.'</th>';
+                    $tr .= '<td>'.$meta->meta_value.'</td>';
+                    $th .= '<th>'.$meta->meta_key.'</th>';
                 }
                 //td actions
                 

@@ -74,7 +74,7 @@ function aw_drop_new_payment_data(element){
 //////////////////// controlador de formulario para añadir metodos de pago
 async function aw_add_new_method(form){
     form.preventDefault()
-    const {payment_method,icon_service,icon_class,status} = form.target
+    const {payment_method,icon_class,status} = form.target
     
     const containers_received_inputs = form.target.querySelectorAll("#fields-received-paid div.inputs")
     const containers_register_inputs = form.target.querySelectorAll("#fields-register-paid div.inputs")
@@ -88,7 +88,6 @@ async function aw_add_new_method(form){
     let register_inputs = []
 
     payment_method_data[payment_method.name] = payment_method.value
-    payment_method_data[icon_service.name] = icon_service.value
     payment_method_data[icon_class.name] = icon_class.value
     payment_method_data[status.name] = status.checked
 
@@ -194,7 +193,7 @@ async function aw_add_new_account(form){
     const metadata = [];
     if(dynamic_inputs.length > 0){
         for(input of dynamic_inputs){
-           const obj = {key:input.name,value:input.value,status:true}
+           const obj = {meta_key:input.name,meta_value:input.value,status:true}
            metadata.push(obj)
         }
     }

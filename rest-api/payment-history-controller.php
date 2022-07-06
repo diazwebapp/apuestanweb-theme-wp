@@ -6,12 +6,7 @@ function aw_register_new_payment(WP_REST_Request $request){
     $sql_data=[];
     $usermail = email_exists( $params["user_email"] );
     $username = username_exists( $params["user_login"] );
-    //si el usuario existe nó registramo el pago
-    if($username or $usermail):
-        $response["status"] = "fail";
-        $response["data"] = "usuario o email ya existen";
-        return $response; 
-    endif;
+    
     if(!$username and !$usermail):
         
         //Rellenamos los datos para payment history
@@ -30,7 +25,6 @@ function aw_register_new_payment(WP_REST_Request $request){
             $response["status"] = "ok";
             $response["data"] = $insert_history_id;
             foreach($params["register"] as $data){
-                $response = (array)$data;
                 $data["payment_history_id"] = $insert_history_id;
                 insert_payment_history_meta($data);
             }

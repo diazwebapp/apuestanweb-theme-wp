@@ -341,7 +341,7 @@ async function aw_register_payment(form_event) {
   let register_metas = form_event.target.querySelectorAll(`input[data-method="${account_data["payment_selected"]}"]`)
   account_data["register"] = []
   register_metas.forEach((input)=>{
-      account_data["register"].push({key:input.name,name:input.name,value:input.value})
+      account_data["register"].push({meta_key:input.name,name:input.name,meta_value:input.value})
   })
   
   if(!form_event.target.tos.checked){

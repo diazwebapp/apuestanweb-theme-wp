@@ -42,7 +42,7 @@ function generate_history_payment_table(){
   </table>';
 
   $table_data["thead"] = '{theaddata}';
-  
+  $table_data["tbody"] = '';
     $html_th = "";
     $html_td;
     if(!is_wp_error( $query ) and count($query) > 0):
@@ -74,8 +74,8 @@ function generate_history_payment_table(){
           }
           if(is_array($th)){
             foreach ($th as $keyth2 => $thvalue) {
-              $html_th .= '<th>'.$thvalue->key.'</th>';
-              $html_td .= '<td>'.$thvalue->value.'</td>';
+              $html_th .= '<th>'.$thvalue->meta_key.'</th>';
+              $html_td .= '<td>'.$thvalue->meta_value.'</td>';
             }
           }
         }

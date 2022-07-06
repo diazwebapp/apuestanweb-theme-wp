@@ -1,39 +1,50 @@
 <?php
-
-global $wpdb;
+require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+global $wpdb, $charset_collate;
+$charset_collate = $wpdb->get_charset_collate();
 define("MYSQL_PAYMENT_HISTORY",$wpdb->prefix . "aw_payment_history");
 define("MYSQL_PAYMENT_HISTORY_METAS",$wpdb->prefix . "aw_payment_history_metas");
 
 
 //creamos la tabla 
+
 function create_payment_control_table(){
+    global $charset_collate;
+    $table_1 = MYSQL_PAYMENT_HISTORY;
 
-    $sql = "CREATE TABLE ".MYSQL_PAYMENT_HISTORY." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `payment_method` TEXT,
-        `payment_account_id` INT(11),
-        `membership_id` INT(11),
-        `username` TEXT,
-        `select_country_code` TEXT,
-        `detected_country_code` TEXT,
-        `payment_date` DATETIME,
-        `status` TEXT,
+    $sql = "CREATE TABLE IF NOT EXISTS $table_1 (
+        id bigint(50) NOT NULL auto_increment,
+        payment_method TEXT,
+        payment_account_id bigint(50),
+        membership_id bigint(50),
+        username TEXT,
+        select_country_code TEXT,
+        detected_country_code TEXT,
+        payment_date DATETIME,
+        status TEXT,
         UNIQUE KEY id (id)
-    );";
+    ) $charset_collate;";
 
-    $sql_meta = "CREATE TABLE ".MYSQL_PAYMENT_HISTORY_METAS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `key` TEXT,
-        `name` TEXT,
-        `value` TEXT,
-        `payment_history_id` INT(11),
-        UNIQUE KEY id (id)
-    );";
-    
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
-    dbDelta($sql_meta);
 }
+
+function create_payment_control_table_2(){
+  global $charset_collate;
+  $table_2 = MYSQL_PAYMENT_HISTORY_METAS;
+  $refer = MYSQL_PAYMENT_HISTORY;
+
+  $sql_meta = "CREATE TABLE IF NOT EXISTS $table_2 (
+      id bigint(50) NOT NULL auto_increment,
+      meta_key TEXT,
+      name TEXT,
+      meta_value TEXT,
+      payment_history_id bigint(50),
+      UNIQUE KEY id (id)
+  ) $charset_collate; ";
+  
+  dbDelta($sql_meta);
+}
+
 function insert_payment_history($data){
     global $wpdb;
     $insert = $wpdb->insert(MYSQL_PAYMENT_HISTORY,$data);
@@ -136,7 +147,7 @@ function update_payment_history($data,$id){
 }
 
 add_action('init','create_payment_control_table');
-
+add_action('init','create_payment_control_table_2');
 ///////activate membership functions
 if(!function_exists("aw_generate_activation_membership_data")):
     function aw_generate_activation_membership_data($activation_data){

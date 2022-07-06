@@ -74,6 +74,19 @@ class W_Forecasts extends WP_Widget {
                 echo "</div> </div> </div>";
             endif;
         }
+    function form($instance){
+        // Formulario de opciones del Widget, que aparece cuando añadimos el Widget a una Sidebar
+        ?>
+            <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>">Title del Widget</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance["title"]); ?>" />
+            </p>
+            <p>
+            <label for="<?php echo $this->get_field_id('limit'); ?>">Limit del Widget</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo esc_attr($instance["limit"]); ?>" />
+            </p>
+            <?php
+    }
 
     function update($new_instance, $old_instance){
         // Función de guardado de opciones
@@ -84,19 +97,6 @@ class W_Forecasts extends WP_Widget {
         return $instance;
     }
 
-    function form($instance){
-        // Formulario de opciones del Widget, que aparece cuando añadimos el Widget a una Sidebar
-        ?>
-         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>">Title del Widget</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance["title"]); ?>" />
-         </p>
-         <p>
-            <label for="<?php echo $this->get_field_id('limit'); ?>">Limit del Widget</label>
-            <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo esc_attr($instance["limit"]); ?>" />
-         </p>
-         <?php
-    }
 }
 
 function aw_register_widget_forecasts() {

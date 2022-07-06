@@ -1,39 +1,43 @@
 <?php
-global $wpdb;
+require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+global $wpdb, $charset_collate;
+$charset_collate = $wpdb->get_charset_collate();
+
 define("MYSQL_TABLE_PAYMENT_METHODS",$wpdb->prefix . "aw_payment_methods");
 define("MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS",$wpdb->prefix . "aw_payment_methods_received_inputs");
 define("MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS",$wpdb->prefix . "aw_payment_methods_register_inputs");
 
 //creamos la tabla 
 function create_sql_payment_methods_tables(){
-    
-    $sql_methods = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_METHODS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `payment_method` TEXT,
-        `icon_service` TEXT,
-        `icon_class` TEXT(19),
-        `status` BOOLEAN,
-        UNIQUE KEY id (id)
-    );";
+    global $charset_collate;
+    $table_1 = MYSQL_TABLE_PAYMENT_METHODS;
+    $table_2 = MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS;
+    $table_3 = MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS;
 
-    $sql_received_inputs = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_METHODS_RECEIVED_INPUTS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `type` TEXT,
-        `name` TEXT,
-        `show_ui` BOOLEAN,
-        `payment_method_id` INT(11),
+    $sql_methods = "CREATE TABLE IF NOT EXISTS $table_1 (
+        id bigint(50) NOT NULL auto_increment,
+        payment_method TEXT,
+        icon_class TEXT,
+        status BOOLEAN,
         UNIQUE KEY id (id)
-    );";
+    ) $charset_collate;";
 
-    $sql_register_inputs = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_METHODS_REGISTER_INPUTS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `type` TEXT,
-        `name` TEXT,
-        `payment_method_id` INT(11),
+    $sql_received_inputs = "CREATE TABLE IF NOT EXISTS $table_2 (
+        id bigint(50) NOT NULL auto_increment,
+        type TEXT,
+        name TEXT,
+        show_ui BOOLEAN,
+        payment_method_id bigint(50),
         UNIQUE KEY id (id)
-    );";
+    ) $charset_collate;";
 
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    $sql_register_inputs = "CREATE TABLE IF NOT EXISTS $table_3 (
+        id bigint(50) NOT NULL auto_increment,
+        type TEXT,
+        name TEXT,
+        payment_method_id bigint(50),
+        UNIQUE KEY id (id)
+    ) $charset_collate;";
     
     dbDelta($sql_methods);
     dbDelta($sql_received_inputs);

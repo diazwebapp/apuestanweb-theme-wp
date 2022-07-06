@@ -22,13 +22,6 @@ function html_form_new_payment_method(){
                         </div>
                         
                         <div class="form-group mb-2 col-md-2">
-                            <label for="">icon service</label>
-                            <input type="text" list="datalist-icons-service" class="form-control" name="icon_service" value="font awesome" required />
-                            <datalist>
-                                <option value="font awesome" >font awesome</option>
-                            </datalist>
-                        </div>
-                        <div class="form-group mb-2 col-md-2">
                             <label>icon class</label>
                             <input type="text" name="icon_class" class="form-control" placeholder="fa fa-star" />
                         </div>

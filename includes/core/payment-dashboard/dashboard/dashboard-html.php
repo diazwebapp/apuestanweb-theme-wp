@@ -43,7 +43,7 @@ function html_table_payment_methods(){
       </table>';
         $th = "";
         $tr = "";
-        if($array_payment_methods[0]){          
+        if(isset($array_payment_methods[0])){          
 
           foreach($array_payment_methods as $keym => $method){
             $method = (array)$method;

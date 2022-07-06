@@ -1,36 +1,45 @@
 <?php
-global $wpdb;
+require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+global $wpdb, $charset_collate;
+$charset_collate = $wpdb->get_charset_collate();
 
 define("MYSQL_TABLE_PAYMENT_ACCOUNTS",$wpdb->prefix . "aw_payment_accounts");
 define("MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS",$wpdb->prefix . "aw_payment_accounts_metas");
 
 //creamos la tabla 
 function create_sql_payment_accounts_tables(){
+    global $charset_collate;
+    $table_1 = MYSQL_TABLE_PAYMENT_ACCOUNTS;
 
-    $sql_payment_accounts = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `payment_method_name` TEXT,
-        `country_code` TEXT,
-        `payment_method_id` INT(11),
-        `status` BOOLEAN,
+    $sql_payment_accounts = "CREATE TABLE IF NOT EXISTS $table_1 (
+        id bigint(50) NOT NULL auto_increment,
+        payment_method_name TEXT,
+        country_code TEXT,
+        payment_method_id bigint(50),
+        status BOOLEAN,
         UNIQUE KEY id (id)
-    );";
-    $sql_payment_accounts_metas = "CREATE TABLE ".MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS." (
-        `id` INT(11) NOT NULL AUTO_INCREMENT,
-        `key` TEXT,
-        `value` TEXT,
-        `status` BOOLEAN,
-        `account_id` INT(11),
-        UNIQUE KEY id (id)
-    );";
-
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    ) $charset_collate;";
     
     dbDelta($sql_payment_accounts);
-    dbDelta($sql_payment_accounts_metas);
 }
 add_action('init','create_sql_payment_accounts_tables');
 
+function create_sql_payment_accounts_tables_2(){
+    global $charset_collate;
+    $table_2 = MYSQL_TABLE_PAYMENT_ACCOUNTS_METAS;
+
+   $sql_payment_accounts_metas = "CREATE TABLE IF NOT EXISTS $table_2 (
+        id bigint(50) NOT NULL auto_increment,
+        meta_key TEXT,
+        meta_value TEXT,
+        status BOOLEAN,
+        account_id bigint(50),
+        UNIQUE KEY id (id)
+    ) $charset_collate;";
+    
+    dbDelta($sql_payment_accounts_metas);
+}
+add_action('init','create_sql_payment_accounts_tables_2');
 
 ////////payment accounts///////7
 if(!function_exists('aw_insert_new_payment_account')){
