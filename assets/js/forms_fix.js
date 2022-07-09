@@ -175,7 +175,6 @@ window.addEventListener("load",()=>{
               </section>
           `
           register_form.addEventListener("submit",async(e)=>{
-              e.preventDefault()
               await aw_register_payment(e)
           })
           // add select country to form
@@ -324,6 +323,12 @@ async function aw_register_payment(form_event) {
     breack = false
     form_event.target.tos.checked = false
     alert("faltan datos por completar")
+    return 
+  }
+  if (/\s/.test(account_data["user_login"])) {
+    breack = false
+    form_event.target.tos.checked = false
+    alert("el nombre de usuario tiene espacios en blanco")
     return 
   }
   /* if(account_data["payment_selected"] == "" || account_data["ihc_payment_gateway"] == ""){
