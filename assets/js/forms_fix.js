@@ -175,6 +175,7 @@ window.addEventListener("load",()=>{
               </section>
           `
           register_form.addEventListener("submit",async(e)=>{
+              e.preventDefault()
               await aw_register_payment(e)
           })
           // add select country to form
@@ -182,7 +183,6 @@ window.addEventListener("load",()=>{
 
             const div_country_field = register_form.querySelector("section#country-field")
             div_country_field.appendChild(select_country_element) //select
-            //div_country_field.appendChild(datalist_countries) //datalist
             $('.select2countries').select2();
           }
           //add product details
