@@ -6,12 +6,7 @@ function aw_register_new_payment(WP_REST_Request $request){
     $sql_data=[];
     $usermail = email_exists( $params["user_email"] );
     $username = username_exists( $params["user_login"] );
-    if($username and $usermail):
-        $response["status"] = "fail";
-        $response["data"] = "";
-        return $response;
-    endif;
-
+    if(!$username and !$usermail):
         
         //Rellenamos los datos para payment history
         $sql_data["payment_method"] = $params["method_name"];
@@ -34,6 +29,11 @@ function aw_register_new_payment(WP_REST_Request $request){
             }
             return $response;
         }
+    endif;
+    $response["status"] = "fail";
+    $response["data"] = "";
+    return $response;
+        
     
 }
 ?>
