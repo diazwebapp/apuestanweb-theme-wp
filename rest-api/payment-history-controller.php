@@ -6,7 +6,7 @@ function aw_register_new_payment(WP_REST_Request $request){
     $sql_data=[];
     $usermail = email_exists( $params["user_email"] );
     $username = username_exists( $params["user_login"] );
-    if(!$username and !$usermail):
+    if($username and $usermail):
         $response["status"] = "fail";
         $response["data"] = "";
         return $response;
