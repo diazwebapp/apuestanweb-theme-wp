@@ -54,15 +54,107 @@ else:
     die;
 endif;
 
-//frond handlers
+//front handlers
 
-if(!function_exists('register_form_payment_methods')):
-    function register_form_payment_methods(WP_REST_Request $request){
+if(!function_exists('aw_register_form_checket_user')):
+    function aw_register_form_checket_user(WP_REST_Request $request){
+        $params = $request->get_params();
 
-        $payment_methods = aw_select_payment_method();
-        return ["data"=>$payment_methods];
+        $resp["status"] = "ok";
+
+        if($params['name'] == 'email'):
+            $usermail = email_exists( $params["value"] );
+            if($usermail){
+                $resp["status"] = "fail";
+                $resp["msg"] = "El email yá existe";
+            }
+        endif;
+        if($params['name'] == 'username'):
+            $username = username_exists( $params["value"] );
+            if($username){
+                $resp["status"] = "fail";
+                $resp["msg"] = "El username yá existe";
+            }
+        endif;
+
+        return $resp;
     }
 else:
-    echo 'la funcion register_form_payment_methods ya existe';
+    echo 'la funcion aw_register_form_checket_user ya existe';
+    die;
+endif;
+
+if(!function_exists('aw_register_user')):
+    function aw_register_user(WP_REST_Request $request){
+        $params = $request->get_params();
+
+        $resp["status"] = "fail";
+
+        $username = $params['username'];
+        $email = $params['email'];
+        $password = $params['password'];
+    
+        $user_id = wp_create_user( $username, $password, $email );
+        
+        $user['user_login'] = $username;
+        $user['user_password'] = $password;
+        $user['renember'] = true;
+
+        if(!is_wp_error( $user_id )){
+            $user = wp_signon( $user, false );
+        }
+        
+        $insert_data = false;
+        if(!is_wp_error( $user) and $user){
+            $prepare_membership_data["username"] = $params['username'];
+            $prepare_membership_data["lid"] = $params['membership_id'];
+
+            $membership_assign_result = aw_generate_new_membership_data($prepare_membership_data);
+            global $wpdb;
+            $table_level = $wpdb->prefix."ihc_user_levels";
+            $insert_data = $wpdb->insert($table_level,$membership_assign_result);
+            $checkout_page = get_option('ihc_checkout_page');
+            if ($checkout_page){
+                $resp["redirect_url"] = get_permalink($checkout_page);
+            }
+        }
+
+        if(!is_wp_error( $insert_data ) and $insert_data){
+
+            if($params['membership_paid'] == 'free'):
+                $register_page = get_option('ihc_thank_you_page');
+                if ($checkout_page){
+                    $resp["redirect_url"] = get_permalink($checkout_page);
+                }
+                $activate_sql_params = aw_generate_activation_membership_data($prepare_membership_data);
+                $activated = aw_activate_membership($activate_sql_params);
+            endif;
+            
+            $resp["status"] = "ok";
+        }
+        
+        return $resp;
+    }
+else:
+    echo 'la funcion aw_register_user ya existe';
+    die;
+endif;
+
+if(!function_exists('aw_generate_new_membership_data')):
+    function aw_generate_new_membership_data($prepare_membership_data){
+        $activate_data = aw_generate_activation_membership_data($prepare_membership_data);
+
+        $assing_data["user_id"] = intval($activate_data['where']['user_id']);
+        $assing_data["level_id"] = intval($activate_data['where']['level_id']);
+        $assing_data["start_time"] = date("Y-m-d h:i:s", strtotime($activate_data['update']['update_time']));
+        $assing_data["update_time"] = date("Y-m-d h:i:s", strtotime($activate_data['update']['update_time']));
+        $assing_data["expire_time"] = "0000-00-00 00:00:00";
+        $assing_data["notification"] = 0;
+        $assing_data["status"] = 1;        
+        
+        return $assing_data;
+    }
+else:
+    echo('la funcion aw_generate_new_membership_data');
     die;
 endif;

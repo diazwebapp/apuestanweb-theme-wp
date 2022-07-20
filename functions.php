@@ -104,17 +104,17 @@ function jbetting_src()
 {
     wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/css/bootstrap.min.css', array(), null);
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
-    wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select.css', array(), null);
+    wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
     wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
     wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
 
     wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.4.1.min.js', array(), null, false);
+    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), null, false);
     
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/js/bootstrap.min.js', array(), null, false);
-    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select.min.js', array(), null, false);
+    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, false);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);

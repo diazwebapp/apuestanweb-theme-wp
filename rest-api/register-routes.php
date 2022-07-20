@@ -12,9 +12,13 @@ function register_routes(){
     ]);
     
     //register form shortcode
-    register_rest_route('aw-register-form','/payment-methods',[
+    register_rest_route('aw-register-form','/register-user',[
         'methods' => 'GET',
-        'callback' => 'register_form_payment_methods'
+        'callback' => 'aw_register_form_checket_user'
+    ]);
+    register_rest_route('aw-register-form','/register-user',[
+        'methods' => 'POST',
+        'callback' => 'aw_register_user'
     ]);
     register_rest_route('aw-register-form','/register-payment',[
         'methods' => 'POST',
