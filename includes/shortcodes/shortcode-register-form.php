@@ -1,15 +1,15 @@
 <?php
-global $str; $wpdb; $paid;
+global $str; $wpdb; $register_membership_payment_type;
 
 if(isset($_GET['lid'])):
     $lid = $_GET['lid'];
     $table = $wpdb->prefix."ihc_memberships";
-    $paid = $wpdb->get_var("SELECT payment_type FROM $table WHERE id=$lid");
+    $register_membership_payment_type = $wpdb->get_var("SELECT payment_type FROM $table WHERE id=$lid");
 endif;
 
 function aw_register_form($attr=array()){
-    global $paid,$str;
-
+    global $register_membership_payment_type,$str;
+    
 	$user_type = ihc_get_user_type();
 	if ($user_type=='unreg'){
         ///////ONLY UNREGISTERED CAN SEE THE REGISTER FORM
@@ -100,7 +100,7 @@ function aw_register_form($attr=array()){
                     </div>
                     <div class="form-group col-12">
                         <input type="hidden" name="membership_id" value="'.$_GET['lid'].'">
-                        <input type="hidden" name="membership_paid" value="'.$paid.'">
+                        <input type="hidden" name="membership_paid" value="'.strval($register_membership_payment_type).'">
                         <input type="submit" class="btn btn-primary" value="Register">
                     </div>
                 </div>

@@ -30,21 +30,23 @@ $params = get_query_var('params');
                                         <h5>".ihc_correct_text($level['label'])."</h5>
                                         <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
                                         <div class='box_p'>
+                                        
                                             <p>". ihc_correct_text($level['description']) ."</p>
                                         </div>
                                         <div class='price_btn'>
-                                        ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, $params['select_payment'], TRUE ) ."
+                                        ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, TRUE ) ."
                                         </div>
                             </div>";
         $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$id'>
                                             <div class='price_box price_box1'>
                                                 <h5>".ihc_correct_text($level['label'])."</h5>
+                                                ".$params['register_url']."?lid=".$id."
                                                 <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
                                                 <div class='box_p'>
                                                     <p>". ihc_correct_text($level['description']) ."</p>
                                                 </div>
                                                 <div class='price_btn'>
-                                                    ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, $params['select_payment'], TRUE ) ."
+                                                    ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, TRUE ) ."
                                                 </div>
                                             </div>
                                         </div>";

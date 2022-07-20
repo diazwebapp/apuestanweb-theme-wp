@@ -58,7 +58,7 @@ window.addEventListener("load",()=>{
 
     ////////////////////Register form/////////////////////////
     
-    
+    const inputs = document.querySelector('#payment-select input')
     
       
     // copiar al portapapeles

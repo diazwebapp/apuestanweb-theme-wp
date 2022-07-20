@@ -11,32 +11,41 @@ function aw_checkout_form($attr=array()){
     global $paid,$str;$currency;
     $currency = !empty(get_option( 'ihc_custom_currency_code', true )) ? get_option( 'ihc_custom_currency_code', true ) : get_option( 'ihc_currency', true );
     $data = [];
+    $user_type = ihc_get_user_type();
 	$data['css'] = '<style>
-        .col-md-8 > .card{
+        .col-md-7 > .card{
             border-radius:12px;
             overflow-x:hidden;
             padding:1rem 3rem;
         }
-        .col-md-8 > .card .card-header{
+        .col-md-7 > .card .card-header{
             background:transparent;
         }
-        .col-md-8 > .card > .card-header > .card-title{
+        .col-md-7 > .card > .card-header > .card-title{
             font-size:3rem;
         }
-        .col-md-4 .card-title{
+        .col-md-5 .card-title{
             font-size:2.2rem;
         }
         .card-title{
             color:var(--gray-dark);
         }
+        .form-control{
+            padding:15px;
+            border-radius:5px;
+        }
+        #payment-select .form-control{
+            font-size:2.2rem;
+        }
     </style>';
+    $register_page = get_option('ihc_register_default_page');
         $str = '{styles}
                 <div class="row mt-5">
-                    <div class="col-md-8">
+                    <div class="col-md-7 col-lg-8">
                         <div class="card">
                             <div class="card-header mb-5">
                                 <h2 class="card-title">
-                                    Metodos de pago
+                                    Metodos de pago '.$register_page .'
                                 </h2>
                             </div>                            
 
@@ -45,7 +54,7 @@ function aw_checkout_form($attr=array()){
                             </div>
                         </div>                        
                     </div>
-                    <div class="col-md-4" >     
+                    <div class="col-md-5 col-lg-4" >     
                         <h3 class="card-title">
                             Hazte miembro de apuestan                            
                         </h3>
@@ -114,7 +123,7 @@ function aw_checkout_form($attr=array()){
                         foreach($register_inputs as $input):
                             $data["html"] .= '<div class="form-group">';
                             $data["html"] .= '<label>'.$input->name.'</label>';
-                            $data["html"] .= '<input type="'.$input->type.'" data-method="'.$account->id.'" name="'.$input->name.'" class="form-control"/>';
+                            $data["html"] .= '<input type="'.$input->type.'" data-method="'.$account->id.'" name="'.$input->name.'" class="form-control mt-2"/>';
                             $data["html"] .= '</div>';
                         endforeach;
                         $data["html"] .= '</div>'; //cerramos card body
