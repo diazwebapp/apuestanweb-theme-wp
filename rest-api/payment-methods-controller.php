@@ -122,9 +122,9 @@ if(!function_exists('aw_register_user')):
         if(!is_wp_error( $insert_data ) and $insert_data){
 
             if($params['membership_paid'] == 'free'):
-                $register_page = get_option('ihc_thank_you_page');
+                $thanks_page = get_option('ihc_thank_you_page');
                 if ($checkout_page){
-                    $resp["redirect_url"] = get_permalink($checkout_page);
+                    $resp["redirect_url"] = get_permalink($thanks_page);
                 }
                 $activate_sql_params = aw_generate_activation_membership_data($prepare_membership_data);
                 $activated = aw_activate_membership($activate_sql_params);
