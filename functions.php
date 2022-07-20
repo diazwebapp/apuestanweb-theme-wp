@@ -17,6 +17,7 @@ include "includes/shortcodes/shortcode-leagues-menu.php";
 include "includes/shortcodes/shortcode-predictions.php";
 include "includes/shortcodes/shortcode-user-stats.php";
 include "includes/shortcodes/shortcode-register-form.php";
+include "includes/shortcodes/shortcode-checkout-form.php";
 include "includes/shortcodes/shortcode-login-form.php";
 /*--------------------------------------------------------------*/
 /*                         WIDGETS                              */

@@ -87,6 +87,7 @@ endif;
 if(!function_exists('aw_register_user')):
     function aw_register_user(WP_REST_Request $request){
         $params = $request->get_params();
+        $location = json_decode(GEOLOCATION);
 
         $resp["status"] = "fail";
 
@@ -115,11 +116,23 @@ if(!function_exists('aw_register_user')):
             $insert_data = $wpdb->insert($table_level,$membership_assign_result);
             $checkout_page = get_option('ihc_checkout_page');
             if ($checkout_page){
-                $resp["redirect_url"] = get_permalink($checkout_page);
+                $resp["redirect_url"] = get_permalink($checkout_page) . "?lid={$params['membership_id']}";
             }
         }
 
         if(!is_wp_error( $insert_data ) and $insert_data){
+            /////////////AÑADIMOS LA TRANSACCIÓN AL HISTORY
+            //Rellenamos los datos para payment history
+            $sql_data["payment_method"] = '';
+            $sql_data["payment_account_id"] = 0;
+            $sql_data["membership_id"] = $params['membership_id'];
+            $sql_data["username"] = $params["username"];
+            $sql_data["select_country_code"] = $params["country"];
+            $sql_data["detected_country_code"] = $location->country_code;
+            $sql_data["payment_date"] = date("Y-m-d h:i:s");
+            $sql_data["status"] = "pending";
+        
+            $insert_history_id = insert_payment_history($sql_data);
 
             if($params['membership_paid'] == 'free'):
                 $thanks_page = get_option('ihc_thank_you_page');
@@ -128,6 +141,13 @@ if(!function_exists('aw_register_user')):
                 }
                 $activate_sql_params = aw_generate_activation_membership_data($prepare_membership_data);
                 $activated = aw_activate_membership($activate_sql_params);
+
+                $array_id['id'] = $insert_history_id;
+                $array_data["status"] = "completed";
+                $array_data["payment_method"] = '';
+                $array_data["payment_account_id"] = 0;
+                $update = update_payment_history($array_data,$array_id);
+
             endif;
             
             $resp["status"] = "ok";
