@@ -102,10 +102,10 @@ function aw_register_form($attr=array()){
                                 {country_items}
                             </select>
                         </div>
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 my-4">
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="tos_check" name="tos" value="1">
-                                <label class="form-check-label ml-4" role="button" for="tos_check">Check me out</label>
+                                <label class="form-check-label ml-5" role="button" for="tos_check">Check me out</label>
                             </div>
                         </div>
                         <div class="form-group col-12">
