@@ -73,7 +73,7 @@ function aw_register_form($attr=array()){
       </div>';
         
         $str .= '
-        <div class="container">
+        <div class="container mt-5">
             <div class="row" >
                 <form method="POST" class="aw_register_form col-md-9">
                     <div class="form-row">
