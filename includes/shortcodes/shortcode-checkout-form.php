@@ -36,7 +36,7 @@ function aw_checkout_form($attr=array()){
             <div class="col-12 mb-5 shortcode-step d-flex justify-content-between">
                 <span class="font-weight-bolder text-uppercase text-body">'.get_the_title(get_option('ihc_general_register_default_page')).'</span>
                 <i class="fa fa-angle-right font-weight-bolder text-body"></i>
-                <span class="font-weight-bolder text-uppercase text-body">'.get_the_title().'</span>
+                <span class="font-weight-bolder text-uppercase text-body" style="border-bottom:2px solid #0558cb;">'.get_the_title().'</span>
                 <i class="fa fa-angle-right font-weight-bolder text-body"></i>
                 <span class="font-weight-bolder text-uppercase text-body">'.get_the_title(get_option('ihc_thank_you_page')).'</span>
             </div>
