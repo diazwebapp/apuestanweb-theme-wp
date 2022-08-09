@@ -25,6 +25,7 @@ function aw_register_form($attr=array()){
             border:1px solid #707070;
             border-radius:17px;
             padding:25px;
+            height: max-content;
         }
         .aw-form-header{
             border-bottom:2px solid  #c6cace;
