@@ -56,25 +56,25 @@ function aw_register_form($attr=array()){
             right:1.3em;
             color:var(--danger);
         }
-        .twitter-timeline::-webkit-scrollbar {
+        .timeline-Viewport::-webkit-scrollbar {
             width: 8px;     /* Tamaño del scroll en vertical */
             height: 8px;    /* Tamaño del scroll en horizontal */
             display: none;  /* Ocultar scroll */
         }
         /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
-        .twitter-timeline::-webkit-scrollbar-thumb {
+        .timeline-Viewport::-webkit-scrollbar-thumb {
             background: #ccc;
             border-radius: 4px;
         }
 
         /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
-        .twitter-timeline::-webkit-scrollbar-thumb:hover {
+        .timeline-Viewport::-webkit-scrollbar-thumb:hover {
             background: #b3b3b3;
             box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
         }
 
         /* Cambiamos el fondo cuando esté en active */
-        .twitter-timeline::-webkit-scrollbar-thumb:active {
+        .timeline-Viewport::-webkit-scrollbar-thumb:active {
             background-color: #999999;
         }
         </style>';
