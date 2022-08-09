@@ -57,25 +57,25 @@ function aw_register_form($attr=array()){
             color:var(--danger);
         }
         .timeline-Viewport::-webkit-scrollbar {
-            width: 8px;     /* Tamaño del scroll en vertical */
-            height: 8px;    /* Tamaño del scroll en horizontal */
-            display: none;  /* Ocultar scroll */
+            width: 8px !important;     /* Tamaño del scroll en vertical */
+            height: 8px !important;    /* Tamaño del scroll en horizontal */
+            display: none !important;  /* Ocultar scroll */
         }
         /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
         .timeline-Viewport::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 4px;
+            background: #ccc !important;
+            border-radius: 4px !important;
         }
 
         /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
         .timeline-Viewport::-webkit-scrollbar-thumb:hover {
-            background: #b3b3b3;
-            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+            background: #b3b3b3 !important;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2) !important;
         }
 
         /* Cambiamos el fondo cuando esté en active */
         .timeline-Viewport::-webkit-scrollbar-thumb:active {
-            background-color: #999999;
+            background-color: #999999 !important;
         }
         </style>';
         /////////Toasts
@@ -97,7 +97,7 @@ function aw_register_form($attr=array()){
         $str .= '
         <div class="container mt-5">
             <div class="row" >
-                <form method="POST" class="aw_register_form col-md-9">
+                <form method="POST" class="aw_register_form col-md-8">
                     <div class="form-row">
                         <div class="form-group col-12 aw-form-header">
                             <h2 class="aw-form-title" >Crear cuenta</h2>
@@ -138,15 +138,15 @@ function aw_register_form($attr=array()){
                         </div>
                     </div>
                 </form>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <h3 class="aw-form-title">Conviertete en miembro de apuestan</h3>
                     <p style="color:var(--gray-dark);" >
                         En ApuestanWeb nos gustan los deportes, y los pronósticos de fútbol no podían pasar desapersibidos,
                         no por nada, es el deporte mas visto del mundo, gracias a competiciones como la copa del mundo, Eurocopa, 
                         Champion League, entre otras.
                     </p>
-                    
-                    <a class="twitter-timeline mt-5" data-height="300" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a>
+                    <div class="mt-5" ></div>
+                    <a class="twitter-timeline" data-height="300" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a>
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     
                 </div>
