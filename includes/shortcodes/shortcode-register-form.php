@@ -123,6 +123,8 @@ function aw_register_form($attr=array()){
                         no por nada, es el deporte mas visto del mundo, gracias a competiciones como la copa del mundo, Eurocopa, 
                         Champion League, entre otras.
                     </p>
+                    <div class="twitter">
+                    <a class="twitter-timeline" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
                 </div>
             </div>
         </div>
