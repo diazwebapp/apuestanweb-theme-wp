@@ -56,6 +56,27 @@ function aw_register_form($attr=array()){
             right:1.3em;
             color:var(--danger);
         }
+        .twitter-timeline::-webkit-scrollbar {
+            width: 8px;     /* Tamaño del scroll en vertical */
+            height: 8px;    /* Tamaño del scroll en horizontal */
+            display: none;  /* Ocultar scroll */
+        }
+        /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+        .twitter-timeline::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+        .twitter-timeline::-webkit-scrollbar-thumb:hover {
+            background: #b3b3b3;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Cambiamos el fondo cuando esté en active */
+        .twitter-timeline::-webkit-scrollbar-thumb:active {
+            background-color: #999999;
+        }
         </style>';
         /////////Toasts
         $str .= '<div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
@@ -124,9 +145,10 @@ function aw_register_form($attr=array()){
                         no por nada, es el deporte mas visto del mundo, gracias a competiciones como la copa del mundo, Eurocopa, 
                         Champion League, entre otras.
                     </p>
-                    <div class="twitter">
-                        <a class="twitter-timeline" data-height="300" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                    </div>
+                    
+                    <a class="twitter-timeline mt-5" data-height="300" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    
                 </div>
             </div>
         </div>
