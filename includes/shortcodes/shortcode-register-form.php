@@ -125,7 +125,7 @@ function aw_register_form($attr=array()){
                         Champion League, entre otras.
                     </p>
                     <div class="twitter">
-                        <a class="twitter-timeline" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        <a class="twitter-timeline" data-height="300" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>
             </div>
