@@ -30,11 +30,6 @@ function aw_register_form($attr=array()){
         .aw-form-header{
             border-bottom:2px solid  #c6cace;
         }
-        .aw-form-title{
-            text-transform:uppercase;
-            color:var(--gray-dark);
-            padding: 10px 0;
-        }
         .aw_register_form input{
             border-radius:5px;
             padding:18px;
@@ -46,36 +41,11 @@ function aw_register_form($attr=array()){
         .nice-select, .aw_register_form input{
             border:1px solid var(--blue);
         }
-        .aw_register_form label{
-            color:var(--gray-dark);
-            text-transform:capitalize;
-        }
         .aw_register_form .notification{
             position:absolute;
             top:2.5em;
             right:1.3em;
             color:var(--danger);
-        }
-        .timeline-Viewport::-webkit-scrollbar {
-            width: 8px !important;     /* Tamaño del scroll en vertical */
-            height: 8px !important;    /* Tamaño del scroll en horizontal */
-            display: none !important;  /* Ocultar scroll */
-        }
-        /* Ponemos un color de fondo y redondeamos las esquinas del thumb */
-        .timeline-Viewport::-webkit-scrollbar-thumb {
-            background: #ccc !important;
-            border-radius: 4px !important;
-        }
-
-        /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
-        .timeline-Viewport::-webkit-scrollbar-thumb:hover {
-            background: #b3b3b3 !important;
-            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2) !important;
-        }
-
-        /* Cambiamos el fondo cuando esté en active */
-        .timeline-Viewport::-webkit-scrollbar-thumb:active {
-            background-color: #999999 !important;
         }
         </style>';
         /////////Toasts
@@ -97,30 +67,37 @@ function aw_register_form($attr=array()){
         $str .= '
         <div class="container mt-5">
             <div class="row" >
-                <form method="POST" class="aw_register_form col-md-8">
+                <div class="col-12 mb-5 shortcode-step d-flex justify-content-between">
+                    <span class="font-weight-bolder text-uppercase text-body">'.get_the_title().'</span>
+                    <i class="fa fa-angle-right font-weight-bolder text-body"></i>
+                    <span class="font-weight-bolder text-uppercase text-body">'.get_the_title(get_option('ihc_checkout_page')).'</span>
+                    <i class="fa fa-angle-right font-weight-bolder text-body"></i>
+                    <span class="font-weight-bolder text-uppercase text-body">'.get_the_title(get_option('ihc_thank_you_page')).'</span>
+                </div>
+                <form method="POST" class="aw_register_form col-md-7 col-lg-8">
                     <div class="form-row">
                         <div class="form-group col-12 aw-form-header">
-                            <h2 class="aw-form-title" >Crear cuenta</h2>
+                            <p class="font-weight-bolder text-uppercase text-body py-3" >Crear cuenta</p>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="">Username</label>
+                            <label class="text-capitalize text-body">nombre de usuario</label>
                             <div class="input-group-prepend">
                                 <input type="text" name="username" class="form-control mt-2" autocomplete="false" >
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="">email</label>
+                            <label class="text-capitalize text-body">email</label>
 
                             <div class="input-group-prepend">
                                 <input type="email" name="email" class="form-control mt-2" autocomplete="false">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="">password</label>
+                            <label class="text-capitalize text-body">contraseña</label>
                             <input type="password" name="password" class="form-control mt-2" autocomplete="false">
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Country</label></br>
+                            <label class="text-capitalize text-body">pais</label></br>
                             <select class="form-control mt-2 wide" name="country" id="search_select">
                                 {country_items}
                             </select>
@@ -134,19 +111,19 @@ function aw_register_form($attr=array()){
                         <div class="form-group col-12">
                             <input type="hidden" name="membership_id" value="'.$_GET['lid'].'">
                             <input type="hidden" name="membership_paid" value="'.strval($register_membership_payment_type).'">
-                            <input type="submit" class="btn btn-primary" value="Register">
+                            <input type="submit" class="btn btn-primary px-5" value="Register">
                         </div>
                     </div>
                 </form>
-                <div class="col-md-4">
-                    <h3 class="aw-form-title">Conviertete en miembro de apuestan</h3>
-                    <p style="color:var(--gray-dark);" >
+                <div class="col-md-5 col-lg-4">
+                    <p class="font-weight-bolder text-uppercase text-body py-3">Conviertete en miembro de apuestan</p>
+                    <p class="text-body" >
                         En ApuestanWeb nos gustan los deportes, y los pronósticos de fútbol no podían pasar desapersibidos,
                         no por nada, es el deporte mas visto del mundo, gracias a competiciones como la copa del mundo, Eurocopa, 
                         Champion League, entre otras.
                     </p>
                     <div class="mt-5" ></div>
-                    <a class="twitter-timeline" data-height="300" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a>
+                    <a class="twitter-timeline" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a>
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     
                 </div>

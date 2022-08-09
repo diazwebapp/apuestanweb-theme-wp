@@ -13,25 +13,16 @@ function aw_checkout_form($attr=array()){
     $data = [];
     
 	$data['css'] = '<style>
-        .col-md-7 > .card{
-            border-radius:12px;
-            overflow-x:hidden;
-            padding:1rem 3rem;
+        #checkout-form{
+            border:1px solid #707070;
+            border-radius:17px;
+            padding:25px;
+            height: max-content;
         }
-        .col-md-7 > .card .card-header{
-            background:transparent;
-        }
-        .col-md-7 > .card > .card-header > .card-title{
-            font-size:3rem;
-        }
-        .col-md-5 .card-title{
-            font-size:2.2rem;
-        }
-        .card-title{
-            color:var(--gray-dark);
+        #checkout-form .aw-form-header{
+            border-bottom:2px solid  #c6cace;
         }
         .form-control{
-            padding:15px;
             border-radius:5px;
         }
         #payment-select .form-control{
@@ -40,49 +31,59 @@ function aw_checkout_form($attr=array()){
     </style>';
    
     $str = '{styles}
-            <div class="row mt-5">
-                <div class="col-md-7 col-lg-8">
-                    <form class="card" method="post" id="checkout-form">
-                        <div class="card-header mb-5">
-                            <h2 class="card-title">
-                                Metodos de pago
-                            </h2>
-                        </div>                            
-                        <input type="hidden" name="lid" value="'.$_GET['lid'].'"/>
-                        <div id="payment-select" >
-                            {awpayments}
-                        </div>
-
-                        <div class="card-body" >
-                            <button class="btn btn-primary d-block" disabled>Pagar</button>
-                        </div>
-                    </div>                        
-                </form>
-                <div class="col-md-5 col-lg-4" >     
-                    <h3 class="card-title">
-                        Hazte miembro de apuestan                            
-                    </h3>
-                    <div class="card-body">
-                        '.$paid->short_description.'
-                    </div>
-                    <div class="card-header">
-                        <h3 class="card-title">Orden</h3>
-                    </div>
-                    <div class="card-body">
-                        <ul>
-                            <li class="d-flex justify-content-between">
-                                <b>'.$paid->label.'</b>
-                                <b>'.$currency.' '.ihc_correct_text($paid->price).'</b>
-                            </li>
-                            <li><hr/></li>
-                            <li class="d-flex justify-content-between">
-                                <b>Total: </b>
-                                <b>'.$currency.' '.ihc_correct_text($paid->price).'</b>
-                            </li>
-                        </ul>
-                    </div>                    
-                </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 mb-5 shortcode-step d-flex justify-content-between">
+                <span class="font-weight-bolder text-uppercase text-body">'.get_the_title(get_option('ihc_general_register_default_page')).'</span>
+                <i class="fa fa-angle-right font-weight-bolder text-body"></i>
+                <span class="font-weight-bolder text-uppercase text-body">'.get_the_title().'</span>
+                <i class="fa fa-angle-right font-weight-bolder text-body"></i>
+                <span class="font-weight-bolder text-uppercase text-body">'.get_the_title(get_option('ihc_thank_you_page')).'</span>
             </div>
+            <div class="col-md-7 col-lg-8">
+                <form method="post" id="checkout-form">
+                    <div class="aw-form-header mb-5">
+                        <p class="font-weight-bolder text-uppercase text-body py-3">
+                            Metodos de pago
+                        </p>
+                    </div>                            
+                    <input type="hidden" name="lid" value="'.$_GET['lid'].'"/>
+                    <div id="payment-select" >
+                        {awpayments}
+                    </div>
+
+                    <div class="card-body" >
+                        <button style="font-size:1.8rem" class="btn btn-primary d-block px-5" disabled>Pagar</button>
+                    </div>                       
+                </form>
+            </div>
+            <div class="col-md-5 col-lg-4" >     
+                <p class="font-weight-bolder text-uppercase text-body py-3">
+                    Hazte miembro de apuestan                            
+                </p>
+                <div class="card-body">
+                    <p class="text-body">
+                        '.$paid->short_description.'
+                    </p>
+                </div>
+                <div class="aw-form-header">
+                    <p class="font-weight-bolder text-uppercase text-body py-3">Orden</p>
+                </div>
+                
+                <ul>
+                    <li class="d-flex justify-content-between">
+                        <b class="font-weight-bolder text-capitalize text-body">'.$paid->label.'</b>
+                        <b class="font-weight-bolder text-capitalize text-body">'.$currency.' '.ihc_correct_text($paid->price).'</b>
+                    </li>
+                    <li><hr/></li>
+                    <li class="d-flex justify-content-between">
+                        <b class="font-weight-bolder text-capitalize text-body">Total: </b>
+                        <b class="font-weight-bolder text-capitalize text-body">'.$currency.' '.ihc_correct_text($paid->price).'</b>
+                    </li>
+                </ul>                  
+            </div>
+        </div>
+    </div>
     ';
 
     if($paid->payment_type == "payment"):
@@ -98,14 +99,11 @@ function aw_checkout_form($attr=array()){
                 foreach($accounts as $account):
                     $account_metas = aw_select_payment_account_metas($account->id);
                     $data["html"] .= '<div>
-                        <div class="card-header" id="heading-'.$account->id.'" >
-                            <h2 class="card-title" >
-                                <label class="w-100" style="position:relative;" role="button" for="'.$account->id.'" data-toggle="collapse" data-target="#target-'.$account->id.'" aria-expanded="false" aria-controls="target-'.$account->id.'">
-
+                        <div class="aw-form-header py-3" id="heading-'.$account->id.'" >
+                            <h2 class="text-body" >
+                                <label class="w-100 text-capitalize" style="position:relative;" role="button" for="'.$account->id.'" data-toggle="collapse" data-target="#target-'.$account->id.'" aria-expanded="false" aria-controls="target-'.$account->id.'">
                                     <input type="radio" value="'.$account->id.'" id="'.$account->id.'" name="aw-payment-radio"/>
-
-                                    '.$account->payment_method_name.'
-                                    
+                                    '.$account->payment_method_name.'                                    
                                     <i style="position:absolute;right:1rem; top:1rem;" class="'.$method->icon_class.'" ></i>
                                 </label>
                                 </h2>
