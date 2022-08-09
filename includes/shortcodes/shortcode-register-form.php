@@ -21,19 +21,33 @@ function aw_register_form($attr=array()){
         
         //////////// STYLES CSS ///////////
         $str .= '<style>
+        .aw_register_form{
+            border:1px solid #707070;
+            border-radius:17px;
+            padding:25px;
+        }
+        .aw-form-header{
+            border-bottom:2px solid  #c6cace;
+        }
+        .aw-form-title{
+            text-transform:uppercase;
+            color:var(--gray-dark);
+            padding: 10px 0;
+        }
         .aw_register_form input{
             border-radius:5px;
             padding:18px;
             font-size:1.8rem;
         }
         .aw_register_form input[type=submit]{
-            padding:10px;
+            padding:5px;
         }
         .nice-select, .aw_register_form input{
             border:1px solid var(--blue);
         }
-        .aw_register_form label, .aw_register_form h2{
+        .aw_register_form label{
             color:var(--gray-dark);
+            text-transform:capitalize;
         }
         .aw_register_form .notification{
             position:absolute;
@@ -60,47 +74,57 @@ function aw_register_form($attr=array()){
         
         $str .= '
         <div class="container">
-            <form method="POST" class="aw_register_form">
-                <div class="form-row">
-                    <div class="form-group col-12">
-                        <h2>Crear cuenta</h2>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="">Username</label>
-                        <div class="input-group-prepend">
-                            <input type="text" name="username" class="form-control mt-2" autocomplete="false" >
+            <div class="row" >
+                <form method="POST" class="aw_register_form col-md-9">
+                    <div class="form-row">
+                        <div class="form-group col-12 aw-form-header">
+                            <h2 class="aw-form-title" >Crear cuenta</h2>
                         </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="">email</label>
+                        <div class="form-group col-md-6">
+                            <label for="">Username</label>
+                            <div class="input-group-prepend">
+                                <input type="text" name="username" class="form-control mt-2" autocomplete="false" >
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">email</label>
 
-                        <div class="input-group-prepend">
-                            <input type="email" name="email" class="form-control mt-2" autocomplete="false">
+                            <div class="input-group-prepend">
+                                <input type="email" name="email" class="form-control mt-2" autocomplete="false">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">password</label>
+                            <input type="password" name="password" class="form-control mt-2" autocomplete="false">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Country</label></br>
+                            <select class="form-control mt-2 wide" name="country" id="search_select">
+                                {country_items}
+                            </select>
+                        </div>
+                        <div class="form-group col-12">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="tos_check" name="tos" value="1">
+                                <label class="form-check-label ml-4" role="button" for="tos_check">Check me out</label>
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
+                            <input type="hidden" name="membership_id" value="'.$_GET['lid'].'">
+                            <input type="hidden" name="membership_paid" value="'.strval($register_membership_payment_type).'">
+                            <input type="submit" class="btn btn-primary" value="Register">
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="">password</label>
-                        <input type="password" name="password" class="form-control mt-2" autocomplete="false">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Country</label></br>
-                        <select class="form-control mt-2 wide" name="country" id="search_select">
-                            {country_items}
-                        </select>
-                    </div>
-                    <div class="form-group col-12">
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="tos_check" name="tos" value="1">
-                            <label class="form-check-label ml-4" role="button" for="tos_check">Check me out</label>
-                        </div>
-                    </div>
-                    <div class="form-group col-12">
-                        <input type="hidden" name="membership_id" value="'.$_GET['lid'].'">
-                        <input type="hidden" name="membership_paid" value="'.strval($register_membership_payment_type).'">
-                        <input type="submit" class="btn btn-primary" value="Register">
-                    </div>
+                </form>
+                <div class="col-md-3">
+                    <h3 class="aw-form-title">Conviertete en miembro de apuestan</h3>
+                    <p style="color:var(--gray-dark);" >
+                        En ApuestanWeb nos gustan los deportes, y los pronósticos de fútbol no podían pasar desapersibidos,
+                        no por nada, es el deporte mas visto del mundo, gracias a competiciones como la copa del mundo, Eurocopa, 
+                        Champion League, entre otras.
+                    </p>
                 </div>
-            </form>
+            </div>
         </div>
         ';
         $countries = get_countries_json();
