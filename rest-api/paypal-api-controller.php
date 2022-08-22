@@ -1,6 +1,4 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/wp-load.php");
-
 if(!function_exists('aw_paypal_create_order')):
     function aw_paypal_create_order(WP_REST_Request $request){
         global $wpdb;
