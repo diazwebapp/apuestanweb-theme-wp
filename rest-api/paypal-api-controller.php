@@ -30,13 +30,14 @@ if(!function_exists('aw_paypal_create_order')):
                 "amount" => [
                     "value" => $paid->price,
                     "currency_code" => get_option( 'ihc_currency', true )
-
-                ]
+                ],
+                "description" => "Subscripción"
             ]],
             "application_context" => [
                 "brand_name" => get_bloginfo( "title" ),
                  "cancel_url" => get_bloginfo( "url" ),
-                 "return_url" => get_rest_url( null,"aw-paypal-api/capture-order")
+                 "return_url" => get_rest_url( null,"aw-paypal-api/capture-order"),
+                 "user_action" => "PAY_NOW"
             ] 
         ];
         $order = json_encode($order);
