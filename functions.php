@@ -50,6 +50,7 @@ include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
 include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
+include "includes/handlers/paypal-tools.php";
 
 include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
@@ -60,6 +61,7 @@ include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
+include "rest-api/paypal-api-controller.php";
 
 
 function my_theme_remove_headlinks() {

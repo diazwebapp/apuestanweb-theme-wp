@@ -1,4 +1,4 @@
-const {rest_api_uri,current_user} = php_payment_services
+const {rest_api_uri} = php_payment_services
 window.addEventListener("load",()=>{
   
     //login form
@@ -104,8 +104,13 @@ window.addEventListener("load",()=>{
       }
       checkout_form.addEventListener('submit',async (e)=>await aw_submit_checkout_form(e))
     }
-      
+          
 })
+/*//////////////
+*             *
+*Controladores*
+*             *
+/////////////*/
 ///////controlador de payment method inputs
 const aw_payment_method_controller = (e)=>{
   const register_payment_inputs = document.querySelectorAll(`#payment-select input.register-input`) //Seleccionamos todos los campos que es usuario debe llenar para registrar su pago
@@ -123,18 +128,25 @@ const aw_submit_checkout_form = async (e)=>{
   e.preventDefault()
   //Seleccionamos todos los inputs de metodos de pago
   const payment_inputs = e.target.querySelectorAll('#payment-select input[name=aw-payment-radio]')
+  const btn = e.target.querySelector('button')
+  let text_btn = btn.textContent
+  btn.disabled = true
+  btn.textContent = "espere..."
   let payment_account_id = false
+  let payment_account_name = false
   let payment_history_metas = []
   
   for(let payment_input of payment_inputs){
     if(payment_input.checked){
+      let attr = payment_input.getAttribute("data-method")
       payment_account_id = payment_input.value
+      payment_account_name = attr    
     }
   }
   const register_payment_inputs = document.querySelectorAll(`#payment-select input.register-input`)
   for(let register_payment_input of register_payment_inputs){
       let attr = register_payment_input.getAttribute("account-id")
-      if(payment_account_id === attr){ //////////esto no funciona
+      if(payment_account_id === attr){ 
         let meta = {
           meta_key: register_payment_input.name,
           meta_value: register_payment_input.value
@@ -143,24 +155,55 @@ const aw_submit_checkout_form = async (e)=>{
       }
   }
   const {lid} = e.target
+ 
+  if(payment_account_name.toLowerCase() == "paypal"){
+    const {id,links,status} = await paypal_checkout({lid:lid.value,payment_account_id})
+        if(status === "CREATED"){
+          window.location = links[1].href
+        }
+    return
+  }
   const {redirect} = await aw_checkout_activate_membership({payment_history_metas,lid:lid.value,payment_account_id})
+  btn.textContent = text_btn
   if(redirect){
     location = redirect
   }
+  btn.disabled = false
 }
 
 const aw_checkout_activate_membership = async({lid,payment_history_metas,payment_account_id})=>{
   const uri = rest_api_uri + 'aw-user-levels/user-level-opeations/'
-  const req = await fetch(uri,{
+  try{
+    const req = await fetch(uri,{
       method:'post',
-      body:JSON.stringify({current_user,lid,payment_history_metas,payment_account_id}),
+      body:JSON.stringify({lid,payment_history_metas,payment_account_id}),
       headers:{
           "content-type" : "application/json"
-      }
+        }
+    })
+    if(req.status == 200){
+      const resp = await req.json()
+      return resp
+    }
+  }catch(err){
+    console.log(err)
+    return false
+  }
+  btn.textContent = text_btn
+  btn.disabled = false
+  return false
+}
+const paypal_checkout = async({lid,payment_account_id})=>{
+  const req = await fetch(rest_api_uri+'aw-paypal-api/create-order',{
+    method:'post',
+    body: JSON.stringify({lid,payment_account_id}),
+    headers:{
+      "content-type":"application/json"
+    }
   })
   if(req.status == 200){
-    const resp = await req.json()
-    return resp
+    const res = req.json()
+    return res
   }
   return false
 }

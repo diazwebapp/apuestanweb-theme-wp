@@ -141,7 +141,7 @@ function handler_odds_format(e){
     document.location = '?odds_format='+format
 }
 const aw_detect_user_level = async (e)=>{
-    const {current_user} = php_js_prices
+    const {current_user_id} = php_js_prices
     const level_id = e.getAttribute('lid')
     const level_type = e.getAttribute('type')
     const dest = e.getAttribute('dest')
@@ -149,7 +149,8 @@ const aw_detect_user_level = async (e)=>{
     const text_btn = e.textContent
     e.textContent = "espere..."
     //Si hay usuarios logeados
-    if(current_user.user_login){
+    console.log(current_user_id)
+    if(current_user_id){
         const {msg,status,action} = await aw_check_user_level({lid:level_id})
         if(status == 'ok'){
             if(action && action == "new"){
@@ -176,7 +177,7 @@ const aw_detect_user_level = async (e)=>{
 
     }
     //Si no hay usuario logeado
-    if(!current_user.user_login){
+    if(!current_user_id){
         location = dest //Redirigimos a register page
     }
     e.textContent = text_btn
@@ -184,11 +185,11 @@ const aw_detect_user_level = async (e)=>{
 }
 
 const aw_check_user_level = async ({lid})=>{
-    const {rest_uri,current_user} = php_js_prices
+    const {rest_uri} = php_js_prices
     const uri = rest_uri + 'aw-user-levels/check-user-level/'
     const req = await fetch(uri,{
         method:'post',
-        body:JSON.stringify({current_user,lid}),
+        body:JSON.stringify({lid}),
         headers:{
             "content-type" : "application/json"
         }
@@ -198,11 +199,11 @@ const aw_check_user_level = async ({lid})=>{
 }
 
 const aw_activate_membership = async({lid})=>{
-    const {rest_uri,current_user} = php_js_prices
+    const {rest_uri} = php_js_prices
     const uri = rest_uri + 'aw-user-levels/user-level-opeations/'
     const req = await fetch(uri,{
         method:'post',
-        body:JSON.stringify({current_user,lid}),
+        body:JSON.stringify({lid}),
         headers:{
             "content-type" : "application/json"
         }

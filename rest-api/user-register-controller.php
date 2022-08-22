@@ -100,10 +100,9 @@ endif;
 if(!function_exists('aw_check_user_level')):
     function aw_check_user_level(WP_REST_Request $request){
         $params = $request->get_json_params(); //Obtenemos parametros get 
-        $current_user = $params['current_user']; //Detectamos usuario logeado
-
+        
         ////Datos para operaciones em membresía en caso que sea free
-        $prepare_membership_data['username'] = $current_user['user_login']; //nombre de usuario
+        $prepare_membership_data['username'] = $_SESSION["current_user"]['user_login']; //nombre de usuario
         $prepare_membership_data['lid'] = $params['lid']; //ID de membresía
         /////////////////
         $thanks_page = get_option('ihc_thank_you_page'); //Pagina de gracias
@@ -113,11 +112,11 @@ if(!function_exists('aw_check_user_level')):
         $resp['status'] = 'ok'; //status
         $resp['redirect'] = get_permalink( $checkout_page ); // url de redirección
         $_SESSION["checkout_action"] = "new"; //seteamos variable de sesión que se usará en el checkout
-        if($current_user['user_login']):
+        if($_SESSION["current_user"]['user_login']):
             
             ////////////////DETECTAR MEMBRESIAS ACTIVAS!!!!!!!!!!!!1
-            $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user['ID'], true );
-            $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $current_user['ID'] );
+            $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $_SESSION["current_user"]['ID'], true );
+            $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $_SESSION["current_user"]['ID'] );
 
             if(!empty($user_levels) and strval($user_levels) == strval($params['lid'])): //Si tiene la misma membresía activa, la renovamos
                 $resp['msg'] = 'Yá posee una membresía, desea renovar?';
@@ -153,63 +152,55 @@ if(!function_exists('aw_user_level_operations')):
          * lid (string)
          * payment_history_metas
          */
+        
         $params = $request->get_json_params(); //extraemos parametros del request body
         $thanks_page = get_option('ihc_thank_you_page'); //Obtenemos pagina de destino
-
-        $current_user = $params['current_user']; // Seteamos el usuario actual 
+        $_SESSION["payment_account_id"] = $params["payment_account_id"]; ////GUARDAMOS EN SESIÓN EL ACCOUNT ID
 
         //////Datos para realizar operaciones en membresias
-        $set_data['lid'] = $params['lid']; // id de la membresia 
-        $set_data['username'] = $current_user['user_login']; // nombre de usuario
         /////////////
-        
-        $resp['msg'] = '';
+        $payment_method = aw_get_method_name($_SESSION["payment_account_id"]);
+
+        $resp['msg'] = $_SESSION["checkout_action"];
         $resp['redirect'] = get_permalink( $thanks_page );
         
         if($_SESSION["checkout_action"] == 'renew'):   //Renovar una membresia         
-            $activate_sql_params = aw_generate_activation_membership_data($set_data);
-            if(empty($params['payment_account_id'])){
+            $activate_sql_params = aw_generate_activation_membership_data(["lid"=>$params["lid"],"username"=>$_SESSION["current_user"]["user_login"]]);
+            if(!isset($_SESSION["payment_account_id"])){
                 $activated = aw_activate_membership($activate_sql_params);
             }
             
-            //Rellenamos los datos para payment history
-            $sql_data["payment_method"] = '';
-            $sql_data["payment_account_id"] = (empty($params['payment_account_id']) ? 0 : $params['payment_account_id']);
-            $sql_data["membership_id"] = $params['lid'];
-            $sql_data["username"] = $current_user['user_login'];
-            $sql_data["payment_date"] = date("Y-m-d h:i:s");
-            $sql_data["status"] = (empty($params['payment_account_id']) ? "completed" :"pending");
+            $sql_data = aw_get_history_insert_data($params['lid'],$_SESSION["payment_account_id"],$_SESSION["current_user"]['user_login'],true);
             /////////////AÑADIMOS LA TRANSACCIÓN AL HISTORY
             $insert_history_id = insert_payment_history($sql_data);
+
             if($params['payment_history_metas']):
                 foreach($params["payment_history_metas"] as $data){
-                    $data = array($data);
-                    $data[0]["payment_history_id"] = $insert_history_id;
-                    $metas = insert_payment_history_meta($data[0]);
-                    if(is_wp_error( $metas )):
-                        $resp['metas'] = 'error';
-                    endif;
+                    $data = (array)$data;
+                    $data["payment_history_id"] = $insert_history_id;
+                    $metas = insert_payment_history_meta($data);
                 }
             endif;
             $resp['msg'] = $_SESSION["checkout_action"].' completed';
+            $resp['history_id'] = $insert_history_id;
         endif;
 
         if($_SESSION["checkout_action"] == 'new' or $_SESSION["checkout_action"] == 'replace'): ///Asignar o reeplazar una membresía
-            $deleted = aw_delete_user_memberships(["user_id"=>$current_user['ID']]);
+            $deleted = aw_delete_user_memberships(["user_id"=>$_SESSION["current_user"]['ID']]);
             if(!is_wp_error( $deleted )):
-                $insert_data = aw_assign_membership($set_data);
-                if(empty($params['payment_account_id'])){
-                    $activate_sql_params = aw_generate_activation_membership_data($set_data);
+                $insert_data = aw_assign_membership(["lid"=>$params["lid"],"username"=>$_SESSION["current_user"]["user_login"]]);
+                if(!isset($_SESSION["payment_account_id"])){
+                    $activate_sql_params = aw_generate_activation_membership_data(["lid"=>$params["lid"],"username"=>$_SESSION["current_user"]["user_login"]]);
                     $activated = aw_activate_membership($activate_sql_params);
                 }
             endif;
             //Rellenamos los datos para payment history
-            $sql_data["payment_method"] = '';
-            $sql_data["payment_account_id"] = (empty($params['payment_account_id']) ? 0 : $params['payment_account_id']);
+            $sql_data["payment_method"] = $payment_method;
+            $sql_data["payment_account_id"] = (isset($_SESSION["payment_account_id"]) ? 0 : $_SESSION["payment_account_id"]);
             $sql_data["membership_id"] = $params['lid'];
-            $sql_data["username"] = $current_user['user_login'];
+            $sql_data["username"] = $_SESSION["current_user"]['user_login'];
             $sql_data["payment_date"] = date("Y-m-d h:i:s");
-            $sql_data["status"] = (empty($params['payment_account_id']) ? "completed" :"pending");
+            $sql_data["status"] = (isset($_SESSION["payment_account_id"]) ? "pending" :"completed");
             /////////////AÑADIMOS LA TRANSACCIÓN AL HISTORY
             $insert_history_id = insert_payment_history($sql_data);
             if($params['payment_history_metas']):
@@ -221,9 +212,13 @@ if(!function_exists('aw_user_level_operations')):
                 }
             endif;
             $resp['msg'] = $_SESSION["checkout_action"].' completed';
+            $resp['history_id'] = $insert_history_id;
         endif;
-        $_SESSION["checkout_action"] = false;
-
+        ////VACIAMOS LAS SESIONES
+        //$_SESSION["checkout_action"] = false;
+        //$_SESSION["payment_account_id"] = false;
+        //$_SESSION["current_user"] = false;
+        
         return $resp;
     }
 else:

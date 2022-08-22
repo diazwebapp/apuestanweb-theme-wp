@@ -43,8 +43,8 @@ function aw_checkout_form($attr=array()){
             <div class="col-md-7 col-lg-8">
                 <form method="post" id="checkout-form">
                     <div class="aw-form-header mb-5">
-                        <p class="font-weight-bolder text-uppercase text-body py-3">
-                            Metodos de pago
+                        <p class="font-weight-bolder text-uppercase text-body py-3" id="paypal-checkout">
+                            Metodos de pago '.$_SESSION["checkout_action"].'
                         </p>
                     </div>                            
                     <input type="hidden" name="lid" value="'.$_GET['lid'].'"/>
@@ -102,7 +102,7 @@ function aw_checkout_form($attr=array()){
                         <div class="aw-form-header py-3" id="heading-'.$account->id.'" >
                             <h2 class="text-body" >
                                 <label class="w-100 text-capitalize" style="position:relative;" role="button" for="'.$account->id.'" data-toggle="collapse" data-target="#target-'.$account->id.'" aria-expanded="false" aria-controls="target-'.$account->id.'">
-                                    <input type="radio" value="'.$account->id.'" id="'.$account->id.'" name="aw-payment-radio"/>
+                                    <input type="radio" value="'.$account->id.'" id="'.$account->id.'" data-method="'.$account->payment_method_name.'" name="aw-payment-radio"/>
                                     '.$account->payment_method_name.'                                    
                                     <i style="position:absolute;right:1rem; top:1rem;" class="'.$method->icon_class.'" ></i>
                                 </label>
@@ -111,23 +111,25 @@ function aw_checkout_form($attr=array()){
                     
                         <div id="target-'.$account->id.'" class="collapse" aria-labelledby="heading-'.$account->id.'" data-parent="#payment-select">
                             <div class="card-body">';
-                    //recorremos los metas 
-                    foreach($account_metas as $meta):
-                        $data["html"] .= '<h3 class="d-block" >'.$meta->meta_key.'</h3>';
-                        $data["html"] .= '<div class="input-group mb-3">
-                        <input type="text" id="'.$meta->id.$meta->meta_key.'" value="'.$meta->meta_value.'" class="form-control" readonly style="outline:none !important;border:none;background:transparent;font-size:1.7rem;">
-                        <div class="input-group-append">
-                        <label class="input-group-text copy" title="copiar al portapapeles" for="'.$meta->id.$meta->meta_key.'" type="button" ><i style="font-size:1.5rem;" class="fa fa-copy"></i></label>
-                        </div>
-                    </div>';
-                    endforeach;
-                    //recorremos todos los inputs para que el cliente registre su pago
-                    foreach($register_inputs as $input):
-                        $data["html"] .= '<div class="form-group">';
-                        $data["html"] .= '<label>'.$input->name.'</label>';
-                        $data["html"] .= '<input type="'.$input->type.'" name="'.$input->name.'" account-id="'.$account->id.'" class="form-control mt-2 register-input"/>';
-                        $data["html"] .= '</div>';
-                    endforeach;
+                    if(strtolower($account->payment_method_name) !== 'paypal'):
+                                //recorremos los metas 
+                        foreach($account_metas as $meta):
+                            $data["html"] .= '<h3 class="d-block" >'.$meta->meta_key.'</h3>';
+                            $data["html"] .= '<div class="input-group mb-3">
+                                <input type="text" id="'.$meta->id.$meta->meta_key.'" value="'.$meta->meta_value.'" class="form-control" readonly style="outline:none !important;border:none;background:transparent;font-size:1.7rem;">
+                                <div class="input-group-append">
+                                <label class="input-group-text copy" title="copiar al portapapeles" for="'.$meta->id.$meta->meta_key.'" type="button" ><i style="font-size:1.5rem;" class="fa fa-copy"></i></label>
+                                </div>
+                            </div>';
+                        endforeach;
+                        //recorremos todos los inputs para que el cliente registre su pago
+                        foreach($register_inputs as $input):
+                            $data["html"] .= '<div class="form-group">';
+                            $data["html"] .= '<label>'.$input->name.'</label>';
+                            $data["html"] .= '<input type="'.$input->type.'" name="'.$input->name.'" account-id="'.$account->id.'" class="form-control mt-2 register-input"/>';
+                            $data["html"] .= '</div>';
+                        endforeach;
+                    endif;
                     $data["html"] .= '</div>'; //cerramos card body
                     $data["html"] .= '</div>'; //cerramos div collapse
                     $data["html"] .= '</div>'; //cerramos card
@@ -153,7 +155,8 @@ add_action( 'wp_enqueue_scripts', function(){
     
     $current_user = wp_get_current_user(  );
 
-	$data['current_user'] = ["user_login"=>$current_user->user_login,"ID"=>$current_user->ID];
+	$_SESSION["current_user"] = ["user_login"=>$current_user->user_login,"ID"=>$current_user->ID];
+    $data["current_user_id"] = $_SESSION["current_user"]['ID'];
 	$data = json_encode($data);
     wp_add_inline_script( 'forms-fix', 'const php_payment_services='.$data, 'before' );
 

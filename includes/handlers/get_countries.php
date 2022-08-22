@@ -3,7 +3,6 @@ $country_json_file = file_get_contents(get_template_directory_uri(  ) . '/includ
 function get_countries_for_carbonmeta(){
     global $country_json_file;
     $parse_countries = json_decode($country_json_file);
-    $select = [];
     foreach($parse_countries as $country):
         $select[$country->country_short_name] = $country->country_name;        
     endforeach;

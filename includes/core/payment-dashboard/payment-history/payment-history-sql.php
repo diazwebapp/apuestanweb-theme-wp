@@ -135,14 +135,28 @@ function select_payment_history_meta($account_id){
 }
 function update_payment_history($data,$id){
     global $wpdb;
-    if($data["status"] == "completed"):
-        //
-    endif;
+    
     $update = $wpdb->update(MYSQL_PAYMENT_HISTORY,$data,$id);
     
     return $update;
 }
-
+function aw_get_history_insert_data($level_id,$payment_account_id,$username,$status){
+    global $wpdb;
+    $payment_method = aw_get_method_name($payment_account_id);
+    $table = $wpdb->prefix."ihc_memberships";
+    $level_data = $wpdb->get_row("SELECT payment_type,short_description, label, price FROM $table WHERE id=$level_id");
+    $status = "pending";
+    if($status or $level_data->payment_type == 'free'):
+        $status = 'complete';
+    endif;
+    $sql_data["payment_method"] = $payment_method;
+    $sql_data["payment_account_id"] = $payment_account_id;
+    $sql_data["membership_id"] = $level_id;
+    $sql_data["username"] = $username;
+    $sql_data["payment_date"] = date("Y-m-d h:i:s");
+    $sql_data["status"] = $status;
+    return $sql_data;
+}
 add_action('init','create_payment_control_table');
 add_action('init','create_payment_control_table_2');
 

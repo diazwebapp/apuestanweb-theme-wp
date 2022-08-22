@@ -48,7 +48,8 @@ add_action( 'wp_enqueue_scripts', function(){
 	$current_user = wp_get_current_user(  );
 
 	$jsdata['rest_uri'] = rest_url();
-	$jsdata['current_user'] = ["user_login"=>$current_user->user_login,"ID"=>$current_user->ID];
+	$_SESSION["current_user"] = ["user_login"=>$current_user->user_login,"ID"=>$current_user->ID];
+	$jsdata["current_user_id"] = $current_user->ID;
 	$jsdata = json_encode($jsdata);
     wp_add_inline_script( 'common-js', "const php_js_prices = $jsdata" );
 });

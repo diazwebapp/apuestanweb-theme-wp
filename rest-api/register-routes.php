@@ -33,5 +33,18 @@ function register_routes(){
         'methods' => 'POST',
         'callback' => 'aw_user_level_operations'
     ]);
+    //Paypal checkout
+    register_rest_route('aw-paypal-api','/create-order',[
+        'methods' => 'POST',
+        'callback' => 'aw_paypal_create_order'
+    ]);
+    register_rest_route('aw-paypal-api','/capture-order',[
+        'methods' => 'GET',
+        'callback' => 'aw_paypal_capture_order'
+    ]);
+    register_rest_route('aw-paypal-api','/cancel-order',[
+        'methods' => 'GET',
+        'callback' => 'aw_paypal_cancel_order'
+    ]);
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );

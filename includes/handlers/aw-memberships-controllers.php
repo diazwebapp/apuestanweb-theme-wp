@@ -120,19 +120,6 @@ if(!function_exists('aw_activate_membership')):
     }
 endif;
 
-
-if(!function_exists('aw_get_user_memberships')):
-    function aw_get_user_memberships($data=false){
-        global $wpdb;
-        $table_level = $wpdb->prefix."ihc_user_levels";
-        $result = $wpdb->get_results("SELECT * FROM $table_level WHERE user_id={$data['user_id']} AND level_id={$data['level_id']} ");
-        return $result;
-    }
-else:
-    echo 'aw_get_user_memberships ya existe';
-    die;
-endif;
-
 if(!function_exists('aw_delete_user_memberships')):
     function aw_delete_user_memberships($data=[]){
         global $wpdb;
@@ -143,4 +130,18 @@ if(!function_exists('aw_delete_user_memberships')):
 else:
     echo 'aw_delete_user_memberships ya existe';
     die;
+endif;
+
+if(!function_exists("aw_get_method_name")):
+  function aw_get_method_name($payment_account_id){
+    global $wpdb;
+    $table_accounts = $wpdb->prefix."aw_payment_accounts";
+    $payment_method_id = $wpdb->get_var("SELECT payment_method_id FROM $table_accounts WHERE id=$payment_account_id");
+
+    $table_methods = $wpdb->prefix."aw_payment_methods";
+    $payment_method = $wpdb->get_var("SELECT payment_method FROM $table_methods WHERE id=$payment_method_id");
+    return $payment_method;
+  }
+else:
+  echo "la funcion aw_get_method_name ya existe";
 endif;
