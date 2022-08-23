@@ -183,9 +183,9 @@ add_action('init', function(){
     endif;
 
     //profile page
-    $page_id_profile = empty(get_option( 'ihc_inside_user_page')) ? "#":get_option( 'ihc_inside_user_page',0);
-    if($page_id_profile):
-        define('PERMALINK_PROFILE',get_the_permalink($page_id_profile));
+    $page_forecaster = isset(carbon_get_theme_option('page_forecaster')[0]) ? carbon_get_theme_option('page_forecaster')[0]['id']: "#";
+    if($page_forecaster):
+        define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;
     //geolocation
     $ip = false;
