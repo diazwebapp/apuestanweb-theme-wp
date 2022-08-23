@@ -182,8 +182,9 @@ add_action('init', function(){
         define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
     endif;
 
-    //profile page
-    $page_forecaster = isset(carbon_get_theme_option('page_forecaster')[0]) ? carbon_get_theme_option('page_forecaster')[0]['id']: "#";
+    //profile page 
+    //$page_forecaster = isset(carbon_get_theme_option('page_forecaster')[0]) ? carbon_get_theme_option('page_forecaster')[0]['id']: "#";
+    $page_forecaster = empty(get_option( 'ihc_inside_user_page')) ? "#":get_option( 'ihc_inside_user_page',0);
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;
