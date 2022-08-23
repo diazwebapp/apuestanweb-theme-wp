@@ -184,7 +184,7 @@ add_action('init', function(){
 
     //profile page 
     //$page_forecaster = isset(carbon_get_theme_option('page_forecaster')[0]) ? carbon_get_theme_option('page_forecaster')[0]['id']: "#";
-    $page_forecaster = empty(get_option( 'ihc_inside_user_page')) ? "#":get_option( 'ihc_inside_user_page',0);
+    $page_forecaster = empty(get_option( 'ihc_general_register_view_user')) ? "#":get_option( 'ihc_general_register_view_user');
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;
