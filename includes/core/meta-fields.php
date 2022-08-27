@@ -20,14 +20,6 @@ function crb_attach_theme_options()
                             'post_type' => 'page',
                         )
                     ))->set_min(1)->set_max(1),
-                /*Seleccion de pagina de perfil pronosticador
-                Field::make('association', 'page_forecaster', __("Select default forecaster", "jbetting"))
-                    ->set_types(array(
-                        array(
-                            'type' => 'post',
-                            'post_type' => 'page',
-                        )
-                    ))->set_min(1)->set_max(1)*/
                 Field::make('select', 'geolocation_api', __("geolocation api", "jbetting"))
                     ->add_options([
                         "abstractapi" => "abstractapi",

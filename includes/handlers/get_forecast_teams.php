@@ -105,11 +105,10 @@ function get_user_stats($user_id,$vip){
     $user_stats['porcentaje_fallidos'] = 0;
     $user_stats['porcentaje_nulos'] = 0;
     $user_stats['tvalue'] = 0;
-    wp_reset_query();
+    
         $forecast_args['author'] = $user_id;
         $forecast_args['post_type'] = 'forecast';
         $forecast_args['post_per_page'] = 10;
-        $forecast_args['paged'] = 10;
         if($vip):
             $forecast_args['meta_query']     = [
                 [
@@ -130,12 +129,14 @@ function get_user_stats($user_id,$vip){
         endif;
         
         $user_posts_query = new WP_Query($forecast_args);
+        
 
         if($user_posts_query->have_posts()):
             //Loop de los forecasts del autor
             while($user_posts_query->have_posts()): $user_posts_query->the_post();
                 
                 $status = carbon_get_post_meta(get_the_ID(), 'status');
+                
                 $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
                 if($predictions and count($predictions) > 0):
                     if($status and $status == 'ok'):
@@ -161,7 +162,10 @@ function get_user_stats($user_id,$vip){
             $user_stats['porcentaje'] = $user_stats['acertados'] * 100 / $user_stats['total'];
             $user_stats['porcentaje_fallidos'] = $user_stats['fallidos'] * 100 / $user_stats['total'];
             $user_stats['porcentaje_nulos'] = $user_stats['nulos'] * 100 / $user_stats['total'];
+        
         endif;
+        wp_reset_query();
+        
         return $user_stats;
 }
 add_filter( 'init', 'setUserRating', 10 );

@@ -17,7 +17,7 @@ if(isset($_GET['profile'])):
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
     $total_forecast = $acerted + $failed;
     $porcentage = $acerted * 100 / $total_forecast;
-    $stats_vip = get_user_stats($id_author,true);
+    $stats_vip = get_user_stats($id_author,'vip');
     $stats_free = get_user_stats($id_author,false);
     $profile = '<div class="sub-inn">
         <div class="sub-bx-lf">
@@ -40,7 +40,7 @@ if(isset($_GET['profile'])):
             <p>Algun texto aquí o quitar este elemento</p>
         </div>
         <div class="subscribe__btn">
-            <a href="#">RANKING '.$stats_vip['tvalue'].'</a>
+            <a href="#">RANKING '.$total_forecast.'</a>
         </div>
 
     </div>
@@ -73,7 +73,7 @@ if(isset($_GET['profile'])):
                     </div>
                     <div class="estad__single">
                         <div class="estd__bt">
-                            <h5>'.$stats_vip['porcentaje'].'%</h5>
+                            <h5>'.round($stats_vip['porcentaje'],2).'%</h5>
                         </div>
                         <p>%</p>
                     </div>
@@ -121,7 +121,7 @@ if(isset($_GET['profile'])):
                     </div>
                     <div class="estad__single">
                         <div class="estd__bt">
-                            <h5>'.$stats_free['porcentaje'].'%</h5>
+                            <h5>'.round($stats_free['porcentaje'],2).'%</h5>
                         </div>
                         <p>%</p>
                     </div>

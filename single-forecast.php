@@ -50,9 +50,11 @@
                         foreach($sport_term as $term):
                             if($term->parent == 0){
                                 $page = get_page_by_title($term->name);
-                                $sport['title'] = get_the_title($page->ID);
-                                $sport['class'] = carbon_get_post_meta($page->ID,'fa_icon_class');
-                                $sport['slug'] = get_the_permalink( $page->ID );
+                                if($page):
+                                    $sport['title'] = get_the_title($page->ID);
+                                    $sport['class'] = carbon_get_post_meta($page->ID,'fa_icon_class');
+                                    $sport['slug'] = get_the_permalink( $page->ID );
+                                endif;
                             }
                             if($term->parent != 0){
                                 $league_page = get_page_by_title($term->name);
@@ -77,15 +79,19 @@
                             <ul>
                                 <li>
                                     <a href="<?php echo bloginfo( 'url' ) ?>">
-                                    <i style="margin:0 5px;" class="<?php echo $home['class'] ?>" ></i><?php echo $home['title'] ?>
-
+                                        <i style="margin:0 5px;" class="<?php echo $home['class'] ?>" ></i>
+                                        <?php echo $home['title'] ?>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="<?php echo $sport['slug'] ?>">
-                                        <i style="margin:0 5px;" class="<?php echo $sport['class'] ?>" ></i><?php echo $sport['title'] ?>
-                                    </a>
-                                </li>
+                                <?php if($sport['title']):
+                                    echo '<li>
+                                        <a href="<?php echo '.$sport['slug'].' ?>">
+                                            <i style="margin:0 5px;" class="'.$sport['class'].'" ></i>
+                                            '.$sport['title'].' 
+                                        </a>
+                                    </li>';
+                                endif;
+                                ?>
                                 <?php if($league['title'] != ''):
                                     echo '<li>
                                         <a href="'.$sport['slug'].'">
@@ -130,9 +136,7 @@
                                 wp_reset_query();
 							?>
 						</div>
-                        
-						<?php wp_reset_query();?>
-						
+                        						
 					<?php } ?>
 		
 			</div>
