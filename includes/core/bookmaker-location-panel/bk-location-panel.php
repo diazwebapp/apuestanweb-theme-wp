@@ -92,11 +92,11 @@ else:
 endif;
 
 if(!function_exists('aw_select_relate_bookakers')):
-  function aw_select_relate_bookakers(){
+  function aw_select_relate_bookakers($country_id ){
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
-    $list = $wpdb->get_results("SELECT * FROM $table INNER JOIN $table2 ON $table2.bookmaker_id = $table.ID WHERE post_type='bk'");
+    $list = $wpdb->get_results("SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk'");
     return $list;
   }
 else:
@@ -105,11 +105,11 @@ else:
 endif;
 
 if(!function_exists('aw_select_unrelate_bookakers')):
-  function aw_select_unrelate_bookakers(){
+  function aw_select_unrelate_bookakers($country_id){
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
-    $list = $wpdb->get_results("SELECT * FROM $table Where Not exists (select 1 from $table2 B Where $table.ID = B.bookmaker_id) AND post_type='bk'");
+    $list = $wpdb->get_results("SELECT * FROM $table Where Not exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk'");
     return $list;
   }
 else:
