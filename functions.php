@@ -52,6 +52,10 @@ include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
 include "includes/handlers/paypal-tools.php";
 
+/*--------------------------------------------------------------*/
+/*                        TOOLS PANEL ADMIN                     */
+/*--------------------------------------------------------------*/
+include "includes/core/bookmaker-location-panel/bk-location-panel.php";
 include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
