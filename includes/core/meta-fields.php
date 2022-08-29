@@ -79,7 +79,7 @@ function crb_attach_theme_options()
                         ->add_fields(array(
                             Field::make('text', 'feacture', __("feacture text", "jbetting")),
                         )),
-                    Field::make('complex', 'countries', __("Country", "jbetting"))
+                    /* Field::make('complex', 'countries', __("Country", "jbetting"))
                         ->set_layout("tabbed-horizontal")
                         ->add_fields(array(
                             Field::make('text', 'bonus', __("Bonus slogan", "jbetting")),
@@ -99,7 +99,7 @@ function crb_attach_theme_options()
                                         'post_type' => 'bk',
                                     )
                                 ))->set_min(1)->set_max(1),
-                        )),
+                        )), */
                 )
         );
         
