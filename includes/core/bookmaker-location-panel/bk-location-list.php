@@ -126,11 +126,10 @@ if(!function_exists('aw_bookmaker_location')):
             foreach($related_bookmakers as $bookmaker):
                 $list_bk .= '<li><label>'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" value="'.$bookmaker->ID.'"/></li>';
             endforeach;
-            $html["edit_view"] = str_replace("{bookmaker-list-view}",$list_bk,$html["edit_view"]);
-            $html["panel"] = str_replace("{edit_view}",$html["edit_view"],$html["panel"]);                  
+            $html["edit_view"] = str_replace("{bookmaker-list-view}",$list_bk,$html["edit_view"]);                             
 
         endif;
-        
+        $html["panel"] = str_replace("{edit_view}",$html["edit_view"],$html["panel"]);
         echo $html["panel"];
       }
 else:
