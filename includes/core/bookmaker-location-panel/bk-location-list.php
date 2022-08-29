@@ -113,18 +113,18 @@ if(!function_exists('aw_bookmaker_location')):
             
             if(count($unrelated_bookmakers) > 0):
                 foreach($unrelated_bookmakers as $bookmaker):
-                    $inputs_bk .= '<li><label>'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" value="'.$bookmaker->ID.'"/></li>';
+                    $inputs_bk .= '<div><label class="mr-5" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
                 endforeach;
             else:
                 foreach($related_bookmakers as $bookmaker):
-                    $inputs_bk .= '<li><label>'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" value="'.$bookmaker->ID.'"/></li>';
+                    $inputs_bk .= '<div><label class="mr-5" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
                 endforeach;
             endif;
             $html["edit_view"] = str_replace("{bookmaker-list-add}",$inputs_bk,$html["edit_view"]);
 
             $list_bk = '';
             foreach($related_bookmakers as $bookmaker):
-                $list_bk .= '<li><label>'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" value="'.$bookmaker->ID.'"/></li>';
+                $list_bk .= '<div><label class="mr-5" for="list_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="list_bk" value="'.$bookmaker->ID.'"/></div>';
             endforeach;
             $html["edit_view"] = str_replace("{bookmaker-list-view}",$list_bk,$html["edit_view"]);                             
 
