@@ -5,6 +5,11 @@ add_action("admin_init",function(){
         header("Location:".$_SERVER["HTTP_REFERER"]);
         die;
     endif;
+    if(isset($_GET['delete-bookmaker']) && isset($_GET['country'])){
+        $deleted = aw_relations_bk_lc($_GET['country'],$_GET['delete-bookmaker']);
+        header("Location:".$_SERVER["HTTP_REFERER"]);
+        die;
+    }
 } );
 if(!function_exists('aw_bookmaker_location')):
     
@@ -29,16 +34,18 @@ if(!function_exists('aw_bookmaker_location')):
             endif;
         endif;
         
-        $html["panel"] = '<div class="container">
+        $html["panel"] = '<div class="container pt-2">
             <div class="row">
                 <div class="col-md-6">
                     <form method="post">
-                        <div class="form-group">
-                            <label>Country</label>
-                            <input type="text" class="form-control" autocomplete="false" list="countries_datalist" name="country_name"/>
-                            <datalist id="countries_datalist">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Paises para añadir</label>
+                            </div>
+                            <select name="country_name" class="custom-select" id="inputGroupSelect01">
+                                <option selected>Choose...</option>
                                 {countries_datalist_options}
-                            </datalist>
+                            </select>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="añadir" name="add_country">
@@ -128,7 +135,7 @@ if(!function_exists('aw_bookmaker_location')):
                             {bookmaker-list-add}
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="add_bookmaker_to_country" value="Actualizar">
+                            <input type="submit" class="btn btn-primary" name="add_bookmaker_to_country" value="Añadir">
                         </div>
                     </form>
                 </div>
@@ -142,18 +149,21 @@ if(!function_exists('aw_bookmaker_location')):
             
             if(count($unrelated_bookmakers) > 0):
                 foreach($unrelated_bookmakers as $bookmaker):
-                    $inputs_bk .= '<div><label class="mr-5" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
+                    $inputs_bk .= '<div><label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
                 endforeach;
             else:
                 foreach($related_bookmakers as $bookmaker):
-                    $inputs_bk .= '<div><label class="mr-5" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
+                    $inputs_bk .= '<div><label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
                 endforeach;
             endif;
             $html["edit_view"] = str_replace("{bookmaker-list-add}",$inputs_bk,$html["edit_view"]);
 
             $list_bk = '';
             foreach($related_bookmakers as $bookmaker):
-                $list_bk .= '<div><label class="mr-5" for="list_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="list_bk" value="'.$bookmaker->ID.'"/></div>';
+                $list_bk .= '<div>
+                        <label class="mr-3">'.$bookmaker->post_title.'</label>
+                        <a class="mr-3 text-danger" href="'.$path.'&delete-bookmaker='.$bookmaker->ID.'"><i class="dashicons dashicons-trash"></i></a>
+                    </div>';
             endforeach;
             $html["edit_view"] = str_replace("{bookmaker-list-view}",$list_bk,$html["edit_view"]);                             
 

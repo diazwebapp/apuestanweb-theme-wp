@@ -164,6 +164,17 @@ else:
   echo "aw_insert_table_relations_bk_lc ya existe";
   die;
 endif;
+if(!function_exists('aw_relations_bk_lc')):
+  function aw_relations_bk_lc($id_country,$id_bookamer){
+    global $wpdb;
+    $table = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
+    $delete_relations_country = $wpdb->delete($table,["country_id" =>$id_country,"bookmaker_id"=>$id_bookamer]);
+    return $delete_relations_country;
+  }
+else:
+  echo "aw_relations_bk_lc ya existe";
+  die;
+endif;
 /* add_action( 'admin_menu', function(){
   add_submenu_page( 'bookmaker-location', 'bookmaker history', 'bookmaker history', 'manage_options', 'bookmaker-history', 'aw_bookmaker_history', 2 );
   add_submenu_page( 'bookmaker-location', 'bookmaker methods', 'bookmaker settings', 'manage_options', 'bookmaker-mehods', 'panel_bookmaker_methods', 2 );
