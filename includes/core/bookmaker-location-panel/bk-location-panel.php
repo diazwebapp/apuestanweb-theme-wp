@@ -89,6 +89,20 @@ else:
   die;
 endif;
 
+if(!function_exists('aw_delete_country')):
+  function aw_delete_country($id_country){
+    global $wpdb;
+    $table = MYSQL_TABLE_COUNTRIES;
+    $table2 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
+    $delete_country = $wpdb->delete($table,["id"=>$id_country]);
+    $delete_relations_country = $wpdb->delete($table2,["country_id" =>$id_country]);
+    return $delete_country;
+  }
+else:
+  echo "aw_delete_country ya existe";
+  die;
+endif;
+
 if(!function_exists('aw_select_bookakers')):
   function aw_select_bookakers(){
     global $wpdb;

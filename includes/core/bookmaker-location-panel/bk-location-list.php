@@ -1,8 +1,15 @@
 <?php
-
+add_action("admin_init",function(){
+    if(isset($_GET['delete-country'])):
+        $deleted = aw_delete_country($_GET['delete-country']);
+        header("Location:".$_SERVER["HTTP_REFERER"]);
+        die;
+    endif;
+} );
 if(!function_exists('aw_bookmaker_location')):
     
     function aw_bookmaker_location(){
+        $path = $_SERVER['REQUEST_URI'];
         $countries = get_countries_json();
         if(isset($_POST['add_country'])):
             if(!empty($_POST['country_name'])):
@@ -21,7 +28,7 @@ if(!function_exists('aw_bookmaker_location')):
                 endforeach;
             endif;
         endif;
-        $path = $_SERVER['REQUEST_URI'];
+        
         $html["panel"] = '<div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -70,13 +77,13 @@ if(!function_exists('aw_bookmaker_location')):
         //AÑADIR OPTIONS AL DATALIST HTML
         $html["panel"] = str_replace("{countries_datalist_options}",$html["countries_datalist_options"],$html["panel"]);
 
+        $per_page = 10;
         //QUERY DE LA TABLA DE PAISES
-        $countries_data = aw_select_countries(isset($_GET['limit']) ? $_GET['limit'] : 2);
+        $countries_data = aw_select_countries(isset($_GET['limit']) ? $_GET['limit'] : $per_page);
         //BOTON DE CARGAR MAS REGISTROS
         $link_cargar_mas = '';
-        $per_page = 10;
         if($countries_data['current_countries'] < $countries_data['total_countries']){
-            $link_cargar_mas = '<a href="'.$path.'&limit=4" class="btn btn-primary">Más</a>';
+            $link_cargar_mas = '<a href="'.$path.'&limit='.$per_page.'" class="btn btn-primary">Más</a>';
             if(isset($_GET['limit'])){
                 $path = str_replace("&limit={$_GET['limit']}","",$path);
                 $next = (($_GET['limit'] + $per_page) > $countries_data['total_countries'] ? $countries_data['total_countries'] : $_GET['limit'] + $per_page);
