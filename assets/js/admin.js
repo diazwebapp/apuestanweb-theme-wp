@@ -14,19 +14,7 @@ window.addEventListener("load",()=>{
         /////////añadimos el controlador que manejara el formulario
         form_add_maccounts.addEventListener("submit",async e => await aw_add_new_account(e))
     }
-    /* const countries_datalist = document.getElementById("countries_datalist")
-    const country_input = document.getElementById("country_input")
-    if(countries_datalist && country_input){
-
-        for(let country of bookmaker_scripts.countries){
-            countries_datalist.innerHTML += `
-                <option value="${country.country_short_name}">${country.country_name}</option>
-            `
-        }
-        country_input.addEventListener("keyup",()=>{
-            console.log(country_input.value)
-        })
-    } */
+    
 })
 
 ///////////////// funcion que añade metodos de pago usando la api rest

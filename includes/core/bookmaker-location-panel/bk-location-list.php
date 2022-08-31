@@ -37,10 +37,9 @@ if(!function_exists('aw_bookmaker_location')):
                             <input type="submit" class="btn btn-primary" value="añadir" name="add_country">
                         </div>
                     </form>
-                </div>
-                <div class="col-md-6">
-                    <div class="table-responive">
-                        <table class="table table-hover ">
+
+                    <div class="table-responive" style="max-height:400px;overflow:auto;">
+                        <table class="table table-sm table-hover" style="max-height:400px;">
                             <thead>
                             <tr>
                                 <th>pais</th>
@@ -53,8 +52,11 @@ if(!function_exists('aw_bookmaker_location')):
                             </tbody>
                         </table>
                     </div>
+                    <div>                        
+                        {btn_cargar_mas}
+                    </div>
                 </div>
-                <div class="col-12">
+                <div class="col-md-6">
                     {edit_view}
                 </div>
             </div>
@@ -69,13 +71,31 @@ if(!function_exists('aw_bookmaker_location')):
         $html["panel"] = str_replace("{countries_datalist_options}",$html["countries_datalist_options"],$html["panel"]);
 
         //QUERY DE LA TABLA DE PAISES
-        $countries_data = aw_select_countries();
+        $countries_data = aw_select_countries(isset($_GET['limit']) ? $_GET['limit'] : 2);
+        //BOTON DE CARGAR MAS REGISTROS
+        $link_cargar_mas = '';
+        $per_page = 10;
+        if($countries_data['current_countries'] < $countries_data['total_countries']){
+            $link_cargar_mas = '<a href="'.$path.'&limit=4" class="btn btn-primary">Más</a>';
+            if(isset($_GET['limit'])){
+                $path = str_replace("&limit={$_GET['limit']}","",$path);
+                $next = (($_GET['limit'] + $per_page) > $countries_data['total_countries'] ? $countries_data['total_countries'] : $_GET['limit'] + $per_page);
+                $link_cargar_mas = '<a href="'.$path.'&limit='.$next.'" class="btn btn-primary">Más</a>';                        
+            }
+        }
+        
+        $html["panel"] = str_replace("{btn_cargar_mas}",$link_cargar_mas,$html["panel"]);
+
+        //AÑADIENDO LOS PAISES A LA TABLA HTML
         $html["countries_list_table_body"] = '';
         foreach($countries_data["countries_array"] as $country):
             $html["countries_list_table_body"] .= '<tr>
                 <td>'.$country->country_name.'</td>
                 <td>'.$country->country_code.'</td>
-                <td><a href="'.$path.'&country='.$country->id.'&name='.$country->country_name.'" class="btn btn-primary"><i class="dashicons dashicons-edit"></i></a></td>
+                <td>
+                    <a href="'.$path.'&country='.$country->id.'&name='.$country->country_name.'" class="btn btn-primary"><i class="dashicons dashicons-edit"></i></a>
+                    <a href="'.$path.'&delete-country='.$country->id.'" class="btn btn-primary"><i class="dashicons dashicons-trash"></i></a>
+                </td>
             </tr>';
         endforeach;
         //AÑADIR PAISES A LA TABLA HTML
@@ -94,7 +114,8 @@ if(!function_exists('aw_bookmaker_location')):
                 <div class="col-12">
                     <h3>'.$_GET['name'].'</h3>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="max-height:800px;overflow:auto;">
+                    <h4>Por añadir</h4>
                     <form method="post">
                         <div class="form-group">
                             {bookmaker-list-add}
@@ -105,6 +126,7 @@ if(!function_exists('aw_bookmaker_location')):
                     </form>
                 </div>
                 <div class="col-md-6">
+                    <h4>Añadidos</h4>
                     {bookmaker-list-view}
                 </div>
             </div>

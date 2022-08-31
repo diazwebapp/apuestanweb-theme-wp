@@ -53,16 +53,24 @@ function mysql_table_aw_bk_country_relations(){
   dbDelta($sql);
 }
 /*
-  FALTA AÑADIR PAGINACION Y MEJORA LA UI Y UX
+  FALTA MEJORA LA UI Y UX
+  FALTA BOTON PARA ELIMINAR BOOKMAKERS DE UN PAIS
+  FALTA BOTON PARA ELIMINAR UN PAIS
 */
 add_action('init','mysql_table_aw_bk_country_relations');
 if(!function_exists('aw_select_countries')):
-  function aw_select_countries(){
+  function aw_select_countries($limit = 2){
     global $wpdb;
     $table = MYSQL_TABLE_COUNTRIES;
     $count = $wpdb->get_var("SELECT COUNT(*) FROM $table");
-    $list = $wpdb->get_results("SELECT * FROM $table");
-    return ["countries_array"=>$list,"total_countries"=>$count];
+    if(isset($limit) and $limit <= $count){
+      $list = $wpdb->get_results("SELECT * FROM $table LIMIT $limit");
+    }
+    if(isset($limit) and $limit > $count){
+      $limit = $count;
+      $list = $wpdb->get_results("SELECT * FROM $table LIMIT $limit");
+    }
+    return ["countries_array"=>$list,"total_countries"=>$count,"current_countries"=>count($list)];
   }
 else:
   echo "aw_select_countries ya existe";
