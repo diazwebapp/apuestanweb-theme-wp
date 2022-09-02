@@ -168,7 +168,8 @@ if(!function_exists('aw_select_unrelate_bookakers')):
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
-    $list = $wpdb->get_results("SELECT * FROM $table Where Not exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ");
+    var_dump($country_id);
+    $list = $wpdb->get_results("SELECT * FROM $table A Where Not exists (select * from $table2 B Where B.country_id ='$country_id' and A.ID =B.bookmaker_id) AND post_type='bk' AND post_status='publish' ");
     return $list;
   }
 else:
