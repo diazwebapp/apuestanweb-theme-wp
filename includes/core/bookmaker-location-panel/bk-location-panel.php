@@ -58,6 +58,7 @@ function mysql_table_aw_bk_country_relations(){
   FALTA BOTON PARA ELIMINAR UN PAIS
 */
 add_action('init','mysql_table_aw_bk_country_relations');
+
 if(!function_exists('aw_select_countries')):
   function aw_select_countries($limit = 2){
     global $wpdb;
@@ -76,6 +77,22 @@ else:
   echo "aw_select_countries ya existe";
   die;
 endif;
+
+
+if(!function_exists('aw_select_country')):
+  function aw_select_country($params=["country_code"=>"WW"]){
+    global $wpdb;
+    $table = MYSQL_TABLE_COUNTRIES;
+    
+    $country = $wpdb->get_row("SELECT * FROM $table WHERE country_code=$country_code");
+    
+    return $country;
+  }
+else:
+  echo "aw_select_country ya existe";
+  die;
+endif;
+
 
 if(!function_exists('aw_add_country')):
   function aw_add_country($params){
