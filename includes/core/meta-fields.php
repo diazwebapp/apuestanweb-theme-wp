@@ -158,8 +158,8 @@ function crb_attach_theme_options()
                         )
                     ))->set_min(1)->set_max(1),
                     Field::make('text', 'x', __("X other cuote", "jbetting")),
-            ))
-            ->add_tab(__("Casa de apuesta?", "jbetting"), array(
+            ));
+            /* ->add_tab(__("Casa de apuesta?", "jbetting"), array(
                 Field::make('association', 'bk', __("Select bookmaker", "jbetting"))
                     ->set_types(array(
                         array(
@@ -167,7 +167,8 @@ function crb_attach_theme_options()
                             'post_type' => 'bk',
                         )
                     ))->set_min(1)->set_max(1),
-            ));
+            )) */
+            
         Container::make('post_meta', __("Parley", "jbetting"))
             ->where('post_type', '=', 'parley')
             ->add_tab(__("General", "jbetting"), array(
