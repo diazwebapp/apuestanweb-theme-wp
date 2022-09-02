@@ -25,9 +25,7 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
         
         //Obtenemos la geolocalizacion del cliente
         $location = json_decode(GEOLOCATION);
-        if($location->success):
-            var_dump($location);
-        endif;
+        var_dump($location);
     endif;
     
     return $bookmaker;
