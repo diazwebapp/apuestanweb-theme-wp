@@ -23,57 +23,10 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
         endif;
 
         
-        //Obtenemos la geolocalizacion del cliente y los paises configurados de dicha casa de apuesta
+        //Obtenemos la geolocalizacion del cliente
         $location = json_decode(GEOLOCATION);
-        $bk_countries = carbon_get_post_meta($bk,'countries');
-        //verificamos que tenemos geolocalizado al cliente y existen paises configurados en la casa de apuesta
-        if($location->success == true and $bk_countries and count($bk_countries) > 0):
-            //Rerorremos todos los paises consigurados de la casa de apuesta actual
-            foreach($bk_countries as $country):
-                //si existe coincidencia entre pais de la casa de apuesta actual y el pais del cliente 
-                if($country['country_code'] == $location->country_code):
-                    //Seteamos link de referido y bonus slogan
-                    $bookmaker["ref_link"] = $country['ref'];
-                    $bookmaker["bonus"] = $country['bonus'];
-                endif;
-                //Si no existe coincidencia buscamos casas de apuestas alternativas o variaciones
-                if($country['country_code'] != $location->country_code):
-                    $bk_alternatives = carbon_get_post_meta($bk, 'alt_bk') ;
-
-                    //Verificamos que tenemos las casas de apuestas altenativas
-                    if($bk_alternatives and count($bk_alternatives) > 0): 
-                        //Recorremos las casas de apuestas alternativas
-                        foreach($bk_alternatives as $alt_bk):
-                            //Comprobamos que el pais de la casa de apuesta alternativa coincida con el pais del cliente
-                            if($alt_bk['country_code'] == $location->country_code):
-                                //Seteamos sus nuevos valores
-                                $bookmaker['name'] = get_the_title($alt_bk['bk'][0]['id']);
-                                $bookmaker["bonus_sum"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus_sum');
-                                $bookmaker["ref_link"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'ref');
-                                $bookmaker["bonus"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus');
-                                $logo = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'mini_img');
-                                $bookmaker['logo'] = wp_get_attachment_url($logo);
-                                $wallpaper = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'wbg');
-                                $bookmaker['wallpaper'] = wp_get_attachment_url($wallpaper);
-                                //buscamos los paises configurados de la casa de apuesta alternativa 
-                                $alternative_bk_countries = carbon_get_post_meta($alt_bk['bk'][0]['id'],'countries');
-                                //Verificamos que existan paises configurados en esta casa de apuesta alternativa
-                                if($alternative_bk_countries and count($alternative_bk_countries) > 0):
-                                    //Al obtener lo paises las recorremos
-                                    foreach($alternative_bk_countries as $alternative_bk_country):
-                                        //Comprobamos que el pais configurado en la casa de apuesta alternativa coincida con el pais del cliente
-                                        if($alternative_bk_country['country_code'] ==  $location->country_code):
-                                            //Seteamos link de referido y bonus slogan
-                                            $bookmaker["ref_link"] =  $alternative_bk_country['ref'];
-                                            $bookmaker["bonus"] =  $alternative_bk_country['bonus'];
-                                        endif;
-                                    endforeach;
-                                endif;
-                            endif;
-                        endforeach;
-                    endif;        
-                endif;
-            endforeach;
+        if($location->success):
+            var_dump($location);
         endif;
     endif;
     
