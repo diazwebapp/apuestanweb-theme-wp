@@ -4,7 +4,7 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 global $wpdb, $charset_collate;
 $charset_collate = $wpdb->get_charset_collate();
 define("MYSQL_TABLE_COUNTRIES",$wpdb->prefix . "aw_countries");
-define("MYSQL_TABLE_BK_CLOUNTRY_RELATIONS",$wpdb->prefix . "aw_bk_country_relations");
+define("MYSQL_TABLE_BK_COUNTRY_RELATIONS",$wpdb->prefix . "aw_bk_country_relations");
 
 //creamos la tabla 
 
@@ -41,7 +41,7 @@ add_action('admin_init','insert_default_country');
 
 function mysql_table_aw_bk_country_relations(){
   global $charset_collate;
-  $table_1 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
+  $table_1 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
 
   $sql = "CREATE TABLE IF NOT EXISTS $table_1 (
       id bigint(50) NOT NULL auto_increment,
@@ -110,7 +110,7 @@ if(!function_exists('aw_delete_country')):
   function aw_delete_country($id_country){
     global $wpdb;
     $table = MYSQL_TABLE_COUNTRIES;
-    $table2 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
+    $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
     $delete_country = $wpdb->delete($table,["id"=>$id_country]);
     $delete_relations_country = $wpdb->delete($table2,["country_id" =>$id_country]);
     return $delete_country;
@@ -120,26 +120,15 @@ else:
   die;
 endif;
 
-if(!function_exists('aw_select_bookakers')):
-  function aw_select_bookakers(){
-    global $wpdb;
-    $table = $wpdb->prefix."posts";
-    $list = $wpdb->get_results("SELECT * FROM $table WHERE post_type='bk'");
-    return $list;
-  }
-else:
-  echo "aw_select_bookakers ya existe";
-  die;
-endif;
 
 if(!function_exists('aw_select_relate_bookakers')):
   function aw_select_relate_bookakers($country_id, $unique=false){
     global $wpdb;
     $table = $wpdb->prefix."posts";
-    $table2 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
-    $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk'";
+    $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
+    $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ";
     if($unique){
-      $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' ORDER BY RAND()";
+      $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ORDER BY RAND()";
       $list = $wpdb->get_row($query);
     }
     if(!$unique){
@@ -156,8 +145,8 @@ if(!function_exists('aw_select_unrelate_bookakers')):
   function aw_select_unrelate_bookakers($country_id){
     global $wpdb;
     $table = $wpdb->prefix."posts";
-    $table2 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
-    $list = $wpdb->get_results("SELECT * FROM $table Where Not exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk'");
+    $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
+    $list = $wpdb->get_results("SELECT * FROM $table Where Not exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ");
     return $list;
   }
 else:
@@ -168,7 +157,7 @@ endif;
 if(!function_exists('aw_select_table_relations_bk_lc')):
   function aw_select_table_relations_bk_lc($params){
     global $wpdb;
-    $table = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
+    $table = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
     $list = $wpdb->get_results("SELECT * FROM $table WHERE country_id='{$params['country_id']}'");
     return $list;
   }
@@ -180,7 +169,7 @@ endif;
 if(!function_exists('aw_insert_table_relations_bk_lc')):
   function aw_insert_table_relations_bk_lc($params){
     global $wpdb;
-    $table = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
+    $table = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
     $list = $wpdb->insert($table,$params);
     return $list;
   }
@@ -191,7 +180,7 @@ endif;
 if(!function_exists('aw_relations_bk_lc')):
   function aw_relations_bk_lc($id_country,$id_bookamer){
     global $wpdb;
-    $table = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
+    $table = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
     $delete_relations_country = $wpdb->delete($table,["country_id" =>$id_country,"bookmaker_id"=>$id_bookamer]);
     return $delete_relations_country;
   }
@@ -199,6 +188,30 @@ else:
   echo "aw_relations_bk_lc ya existe";
   die;
 endif;
+/*
+  ELIMINAR DE LA TABLA RELATED_BK_LOC LOS BOOKMAKERS ELIMINADOS EN DASHBOARD
+*/
+add_action( 'admin_init', 'aw_detect_deleted_bookmaker' );
+function aw_detect_deleted_bookmaker() {
+    add_action( 'wp_trash_post','aw_delete_related_bookmakers' );
+}
+ 
+function aw_delete_related_bookmakers() {
+    global $wpdb;
+    $table = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
+    if(isset( $_GET['post'] ) && isset($_GET['action'])){
+      if($_GET['action'] == 'trash'){
+        if(is_array($_GET['post'])){
+          foreach($_GET['post'] as $pid){
+            $query = $wpdb->delete($table,["bookmaker_id"=>$pid]);
+          }
+        }else{
+          $query = $wpdb->delete($table,["bookmaker_id"=>$_GET['post']]);
+        }
+      }
+    }
+    
+}
 /* add_action( 'admin_menu', function(){
   add_submenu_page( 'bookmaker-location', 'bookmaker history', 'bookmaker history', 'manage_options', 'bookmaker-history', 'aw_bookmaker_history', 2 );
   add_submenu_page( 'bookmaker-location', 'bookmaker methods', 'bookmaker settings', 'manage_options', 'bookmaker-mehods', 'panel_bookmaker_methods', 2 );
