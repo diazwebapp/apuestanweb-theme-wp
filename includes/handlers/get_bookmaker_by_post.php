@@ -80,13 +80,13 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
     return $bookmaker;
 } 
 
-function get_bookmaker_by_country($location=false){
+function get_bookmaker_by_country($location=false,$unique=false){
     if(!$location){
         $location = json_decode(GEOLOCATION);
     }
     ///Buscamos el pais en la base de datos
     $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-    $related_bookmaker = aw_select_relate_bookakers($aw_system_location->id, true);
+    $related_bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
     $bookmaker["name"] = "no bookmaker";
     $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
     $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png';

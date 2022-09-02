@@ -122,14 +122,36 @@ endif;
 
 
 if(!function_exists('aw_select_relate_bookakers')):
-  function aw_select_relate_bookakers($country_id, $unique=false){
+  function aw_select_relate_bookakers($country_id, $unique=false, $random=false){
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
     $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ";
     if($unique){
-      $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ORDER BY RAND()";
-      $list = $wpdb->get_row($query);
+      $bookmaker["name"] = "no bookmaker";
+      $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
+      $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png';
+      if($random){
+        $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ORDER BY RAND()";
+        $list = $wpdb->get_row($query);
+      }else{
+        $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ";
+        $list = $wpdb->get_row($query);
+      }
+      //Si existe una casa de apuesta seteamos sus valores
+      $bookmaker['name'] = $list->post_title;
+      $bookmaker["bonus_sum"] = carbon_get_post_meta($list->ID, 'bonus_sum');
+      $bookmaker["ref_link"] = carbon_get_post_meta($list->ID, 'ref');
+      $bookmaker["bonus"] = carbon_get_post_meta($list->ID, 'bonus');
+      if (carbon_get_post_meta($list->ID, 'mini_img')):
+        $logo = carbon_get_post_meta($list->ID, 'mini_img');
+        $bookmaker['logo'] = wp_get_attachment_url($logo);
+      endif;
+      if (carbon_get_post_meta($list->ID, 'wbg')):
+          $wallpaper = carbon_get_post_meta($list->ID, 'wbg');
+          $bookmaker['wallpaper'] = wp_get_attachment_url($wallpaper);
+      endif;
+      $list = $bookmaker;
     }
     if(!$unique){
       $list = $wpdb->get_results($query);

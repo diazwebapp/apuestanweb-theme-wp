@@ -1,4 +1,5 @@
 <?php
+$geolocation = json_decode(GEOLOCATION);
 $image_att = carbon_get_post_meta(get_the_ID(), 'img');
 $image_png = wp_get_attachment_url($image_att);
 $prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
@@ -17,11 +18,9 @@ if ($sport_term) {
     }
 }
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-if($geolocation->success !== false):
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-endif;
+$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 
 if ($teams['team1']['logo'] && $teams['team2']['logo']){  

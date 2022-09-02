@@ -1,7 +1,7 @@
 <?php
 
 $params = get_query_var('params');
-$bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>50,"h"=>12]);
+$bookmaker = get_bookmaker_by_country();
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());

@@ -1,7 +1,11 @@
 <?php
+$geolocation = json_decode(GEOLOCATION);
 $params = get_query_var('params');
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-$bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
+
+$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
+$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
+
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
@@ -9,11 +13,8 @@ $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all')
 $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
 $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 0;
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-if($geolocation->success !== false):
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-endif;
+$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 //Componente si es vip
 
 $vipcomponent ="<div class='plogo'>

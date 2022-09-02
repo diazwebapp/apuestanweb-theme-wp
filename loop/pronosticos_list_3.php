@@ -22,12 +22,12 @@ if ($sport_term) {
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-if($geolocation->success !== false):
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-endif;
+$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-$bk = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
+
+$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
+$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
 
 
 $html_predictions = '';
@@ -134,16 +134,16 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             {$html_predictions}
                             <div class='event2_box_bonus'>
                                 <p class='p2'>Bonus:</p>
-                                <p class='p3'>{$bk['bonus']}</p>
+                                <p class='p3'>{$bookmaker['bonus']}</p>
                             </div>
                             <div class='event_btn_box'>
                                 <div class='event_btn_img'>
-                                    <a href='{$bk['ref_link']}'>
-                                    <img src='{$bk['logo']}' class='img-fluid' alt=''>
+                                    <a href='{$bookmaker['ref_link']}'>
+                                    <img src='{$bookmaker['logo']}' class='img-fluid' alt=''>
                                     </a>
                                 </div>
                                 <div >
-                                    <a href='{$bk['ref_link']}' class='button'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' class='button'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>

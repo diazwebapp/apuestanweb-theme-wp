@@ -1,24 +1,24 @@
 <?php
+$geolocation = json_decode(GEOLOCATION);
 $params = get_query_var('params');
 $image_att = carbon_get_post_meta(get_the_ID(), 'img');
 $image_png = wp_get_attachment_url($image_att);
 $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
 $status = carbon_get_post_meta(get_the_ID(), 'status');
 $link = carbon_get_post_meta(get_the_ID(), 'link');
+$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
+$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 
+$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
+$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
+
 //configurando zona horaria
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-if($geolocation->success !== false):
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-endif;
+$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
-$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
-$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-$bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
 $id_collapse = get_the_ID();
 
 //Liga y deporte
@@ -161,7 +161,10 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <div class="rate_text">'.$cuote.'</div>
                                 </div>
                             </div>
-                            
+                            <div class="d-flex align-items-center justify-content-between">
+                                <p>Pronostico de:</p>
+                                <img src="'.$bookmaker['logo'].'" alt="bk">
+                            </div>
                             <div class="text-center accor_btn mt_15">
                                 <button type="button" data-toggle="collapse" data-target="#col1'.$id_collapse.'" aria-expanded="false">
                                     <i class="fa fa-angle-down"></i>
