@@ -83,8 +83,8 @@ if(!function_exists('aw_select_country')):
   function aw_select_country($params=["country_code"=>"WW"]){
     global $wpdb;
     $table = MYSQL_TABLE_COUNTRIES;
-    
-    $country = $wpdb->get_row("SELECT * FROM $table WHERE country_code=$country_code");
+    $prepare = $wpdb->prepare("SELECT * FROM $table WHERE country_code = %s ",$params["country_code"]);
+    $country = $wpdb->get_row($prepare);
     
     return $country;
   }
@@ -133,11 +133,18 @@ else:
 endif;
 
 if(!function_exists('aw_select_relate_bookakers')):
-  function aw_select_relate_bookakers($country_id ){
+  function aw_select_relate_bookakers($country_id, $unique=false){
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_CLOUNTRY_RELATIONS;
-    $list = $wpdb->get_results("SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk'");
+    $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk'";
+    if($unique){
+      $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' ORDER BY RAND()";
+      $list = $wpdb->get_row($query);
+    }
+    if(!$unique){
+      $list = $wpdb->get_results($query);
+    }
     return $list;
   }
 else:

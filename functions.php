@@ -239,7 +239,7 @@ add_action('init', function(){
         endif;
     endif;
     $geolocation = json_encode($geolocation);
-    define("GEOLOCATION",json_encode($geolocation));
+    define("GEOLOCATION",$geolocation);
 
     //odds-converter
     if(!isset($_SESSION['odds_format'])):
