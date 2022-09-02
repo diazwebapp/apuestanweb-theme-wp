@@ -126,16 +126,16 @@ if(!function_exists('aw_select_relate_bookakers')):
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
-    $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ";
+    $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ";
     if($unique){
       $bookmaker["name"] = "no bookmaker";
       $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
       $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png';
       if($random){
-        $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ORDER BY RAND()";
+        $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ORDER BY RAND()";
         $list = $wpdb->get_row($query);
       }else{
-        $query = "SELECT * FROM $table Where exists (select 1 from $table2 B Where country_id = $country_id and $table.ID = B.bookmaker_id) AND post_type='bk' AND post_status='publish' ";
+        $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ";
         $list = $wpdb->get_row($query);
       }
       //Si existe una casa de apuesta seteamos sus valores
@@ -169,7 +169,7 @@ if(!function_exists('aw_select_unrelate_bookakers')):
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
     var_dump($country_id);
-    $list = $wpdb->get_results("SELECT * FROM $table A Where Not exists (select * from $table2 B Where B.country_id ='$country_id' and A.ID =B.bookmaker_id) AND post_type='bk' AND post_status='publish' ");
+    $list = $wpdb->get_results("SELECT * FROM $table Where Not exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ");
     return $list;
   }
 else:
