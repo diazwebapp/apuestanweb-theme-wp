@@ -162,7 +162,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
-                                <p>Pronostico de:</p>
+                                <p>Cuotas de:</p>
                                 <img src="'.$bookmaker['logo'].'" alt="bk">
                             </div>
                             <div class="text-center accor_btn mt_15">

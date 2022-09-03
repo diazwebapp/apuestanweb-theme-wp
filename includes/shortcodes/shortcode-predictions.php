@@ -15,7 +15,9 @@ function shortcode_predictions($atts)
     if($model == 1){
 
         $id_post = get_the_ID();
-        $bk        = get_bookmaker_by_post( $id_post, ["w"=>69,"h"=>28], ["w"=>100,"h"=>50] );
+        $geolocation = json_decode(GEOLOCATION);
+        $aw_system_country = aw_select_country(["country_code"=>$geolocation->country_code]);
+        $bk = aw_select_relate_bookakers($aw_system_country->id, true, true);
         $predictions = carbon_get_post_meta($id_post, 'predictions');
         if($predictions and count($predictions)> 0):
             

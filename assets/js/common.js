@@ -71,13 +71,14 @@ $(document).ready(function () {
     let select_odds = $('select#select_odds_format');
     select_odds.change(e =>handler_odds_format(e))
 });
-function test(param){
+function parley_calc_cuotes(param){
     let current_parley = param.attributes.data.textContent
     let amount = param.value
     let cuote = document.querySelector(`#jscuote_${current_parley }`)
     let result = document.querySelector(`#jsresult_${current_parley }`)
     if(cuote && result){
-        result.innerHTML = parseFloat(cuote.value) * parseFloat(amount)
+        let final_cuote = parseFloat(cuote.value) * parseFloat(amount)
+        result.innerHTML = final_cuote.toFixed(2)
     }
 }
 
@@ -149,7 +150,7 @@ const aw_detect_user_level = async (e)=>{
     const text_btn = e.textContent
     e.textContent = "espere..."
     //Si hay usuarios logeados
-    console.log(current_user_id)
+    
     if(current_user_id){
         const {msg,status,action} = await aw_check_user_level({lid:level_id})
         if(status == 'ok'){

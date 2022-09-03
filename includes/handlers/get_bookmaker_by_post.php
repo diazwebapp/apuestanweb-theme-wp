@@ -79,32 +79,3 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
     
     return $bookmaker;
 } 
-
-function get_bookmaker_by_country($location=false,$unique=false){
-    if(!$location){
-        $location = json_decode(GEOLOCATION);
-    }
-    ///Buscamos el pais en la base de datos
-    $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-    $related_bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
-    $bookmaker["name"] = "no bookmaker";
-    $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
-    $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png';
-    if($related_bookmaker){
-        //Si existe una casa de apuesta seteamos sus valores
-        $bookmaker['name'] = $related_bookmaker->post_title;
-        $bookmaker["bonus_sum"] = carbon_get_post_meta($related_bookmaker->ID, 'bonus_sum');
-        $bookmaker["ref_link"] = carbon_get_post_meta($related_bookmaker->ID, 'ref');
-        $bookmaker["bonus"] = carbon_get_post_meta($related_bookmaker->ID, 'bonus');
-        
-        if (carbon_get_post_meta($related_bookmaker->ID, 'mini_img')):
-            $logo = carbon_get_post_meta($related_bookmaker->ID, 'mini_img');
-            $bookmaker['logo'] = wp_get_attachment_url($logo);
-        endif;
-        if (carbon_get_post_meta($related_bookmaker->ID, 'wbg')):
-            $wallpaper = carbon_get_post_meta($related_bookmaker->ID, 'wbg');
-            $bookmaker['wallpaper'] = wp_get_attachment_url($wallpaper);
-        endif;
-    }
-    return $bookmaker;
-}
