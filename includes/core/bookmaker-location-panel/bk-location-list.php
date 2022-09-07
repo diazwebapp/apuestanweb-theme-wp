@@ -5,8 +5,15 @@ add_action("admin_init",function(){
         header("Location:".$_SERVER["HTTP_REFERER"]);
         die;
     endif;
+
     if(isset($_GET['delete-bookmaker']) && isset($_GET['country'])){
-        $deleted = aw_relations_bk_lc($_GET['country'],$_GET['delete-bookmaker']);
+        $deleted = aw_delete_relations_bk_lc($_GET['country'],$_GET['delete-bookmaker']);
+        header("Location:".$_SERVER["HTTP_REFERER"]);
+        die;
+    }
+
+    if(isset($_GET['delete-bookmaker-onpage'])){
+        $deleted = aw_delete_bookmaker_onpage($_GET['country'],$_GET['delete-bookmaker-onpage']);
         header("Location:".$_SERVER["HTTP_REFERER"]);
         die;
     }
@@ -26,17 +33,26 @@ if(!function_exists('aw_bookmaker_location')):
             endif;
             
         endif;
-        if(isset($_POST['add_bookmaker_to_country'])):
-            if(count($_POST["bookmaker_id"]) > 0):
-                foreach($_POST["bookmaker_id"] as $id_bk):
-                    aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk]);
+        if(isset($_POST['add_bookmaker_to_country']) and count($_POST["bookmaker_id"]) > 0):
+            if(isset($_POST['onpage']) and count($_POST['onpage']) > 0):
+                    foreach($_POST["bookmaker_id"] as $id_bk):
+                        $rs = array_search($id_bk,$_POST['onpage']); 
+                        if( is_numeric($rs) ):
+                            aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk,"on_page"=>true]);
+                        else:
+                            aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk]);
+                        endif;
                 endforeach;
             endif;
+            if(!isset($_POST['onpage'])):
+                foreach($_POST["bookmaker_id"] as $id_bk):
+                    aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk]);
+            endforeach;
         endif;
-        
+        endif;
         $html["panel"] = '<div class="container pt-2">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-4">
                     <form method="post">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -70,7 +86,7 @@ if(!function_exists('aw_bookmaker_location')):
                         {btn_cargar_mas}
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-8">
                     {edit_view}
                 </div>
             </div>
@@ -148,20 +164,26 @@ if(!function_exists('aw_bookmaker_location')):
             
             if(count($unrelated_bookmakers) > 0):
                 foreach($unrelated_bookmakers as $bookmaker):
-                    $inputs_bk .= '<div><label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
-                endforeach;
-            else:
-                foreach($related_bookmakers as $bookmaker):
-                    $inputs_bk .= '<div><label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label><input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/></div>';
+                    $inputs_bk .= '<div>
+                    <label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label>
+                    <input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+                    <label class="mr-3" for="input_bk">on page</label>
+                    <input name="onpage[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+                    </div>';
                 endforeach;
             endif;
             $html["edit_view"] = str_replace("{bookmaker-list-add}",$inputs_bk,$html["edit_view"]);
 
             $list_bk = '';
             foreach($related_bookmakers as $bookmaker):
+                $onpage = aw_detect_bookmaker_onpage($bookmaker->ID);
+                var_dump($onpage);
                 $list_bk .= '<div>
                         <label class="mr-3">'.$bookmaker->post_title.'</label>
                         <a class="mr-3 text-danger" href="'.$path.'&delete-bookmaker='.$bookmaker->ID.'"><i class="dashicons dashicons-trash"></i></a>
+
+                        <label class="mr-3">on page</label>
+                        <a class="mr-3 '.(isset($onpage) ?'text-danger':'').'" href="'.$path.'&delete-bookmaker-onpage='.$bookmaker->ID.'"><i class="dashicons dashicons-admin-page"></i></a>
                     </div>';
             endforeach;
             $html["edit_view"] = str_replace("{bookmaker-list-view}",$list_bk,$html["edit_view"]);                             

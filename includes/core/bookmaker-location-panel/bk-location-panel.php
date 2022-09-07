@@ -47,6 +47,7 @@ function mysql_table_aw_bk_country_relations(){
       id bigint(50) NOT NULL auto_increment,
       country_id TEXT,
       bookmaker_id TEXT,
+      on_page BOOLEAN default 0,
       UNIQUE KEY id (id)
   ) ";
 
@@ -122,7 +123,7 @@ endif;
 
 
 if(!function_exists('aw_select_relate_bookakers')):
-  function aw_select_relate_bookakers($country_id, $unique=false, $random=false){
+  function aw_select_relate_bookakers($country_id, $unique=false, $random=false, $onpage=false){
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
@@ -132,11 +133,21 @@ if(!function_exists('aw_select_relate_bookakers')):
       $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
       $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png';
       if($random){
-        $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ORDER BY RAND()";
-        $list = $wpdb->get_row($query);
+        if($onpage){
+          $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.on_page ='1' and $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ORDER BY RAND()";
+          $list = $wpdb->get_row($query);
+        }else{
+          $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ORDER BY RAND()";
+          $list = $wpdb->get_row($query);
+        }
       }else{
-        $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ";
-        $list = $wpdb->get_row($query);
+        if($onpage){
+          $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.on_page ='1' and $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ";
+          $list = $wpdb->get_row($query);
+        }else{
+          $query = "SELECT * FROM $table Where exists (select * from $table2 Where $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ";
+          $list = $wpdb->get_row($query);
+        }
       }
       //Si existe una casa de apuesta seteamos sus valores
       $bookmaker['name'] = $list->post_title;
@@ -162,7 +173,18 @@ else:
   echo "aw_select_relate_bookakers ya existe";
   die;
 endif;
-
+if(!function_exists('aw_detect_bookmaker_onpage')):
+  function aw_detect_bookmaker_onpage($bookmaker_id){
+    global $wpdb;
+    $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
+    $query = "SELECT id FROM $table2 where on_page=1 and bookmaker_id='$bookmaker_id' ";
+    $list = $wpdb->get_var($query);
+    return $list;
+  }
+else:
+  echo 'aw_detect_bookmaker_onpage ya existe';
+  die;
+endif;
 if(!function_exists('aw_select_unrelate_bookakers')):
   function aw_select_unrelate_bookakers($country_id){
     global $wpdb;
@@ -199,16 +221,26 @@ else:
   echo "aw_insert_table_relations_bk_lc ya existe";
   die;
 endif;
-if(!function_exists('aw_relations_bk_lc')):
-  function aw_relations_bk_lc($id_country,$id_bookamer){
+if(!function_exists('aw_delete_relations_bk_lc')):
+  function aw_delete_relations_bk_lc($id_country,$id_bookamer){
     global $wpdb;
     $table = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
     $delete_relations_country = $wpdb->delete($table,["country_id" =>$id_country,"bookmaker_id"=>$id_bookamer]);
     return $delete_relations_country;
   }
 else:
-  echo "aw_relations_bk_lc ya existe";
+  echo "aw_delete_relations_bk_lc ya existe";
   die;
+endif;
+if(!function_exists('aw_delete_bookmaker_onpage')):
+  function aw_delete_bookmaker_onpage($country_id,$bookmaker_id){
+    global $wpdb;
+    $table = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
+    $delete_relations_country = $wpdb->update($table,['on_page'=>0],["country_id" =>$country_id,"bookmaker_id"=>$bookmaker_id]);
+    return $delete_relations_country;
+  }
+else:
+  echo 'aw_delete_bookmaker_onpage ya existe';
 endif;
 /*
   ELIMINAR DE LA TABLA RELATED_BK_LOC LOS BOOKMAKERS ELIMINADOS EN DASHBOARD
