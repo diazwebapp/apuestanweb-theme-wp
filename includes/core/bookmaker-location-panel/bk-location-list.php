@@ -68,7 +68,7 @@ if(!function_exists('aw_bookmaker_location')):
                         </div>
                     </form>
 
-                    <div class="table-responive" style="max-height:400px;overflow:auto;">
+                    <div class="table-responsive" style="max-height:400px;overflow:auto;">
                         <table class="table table-sm table-hover" style="max-height:400px;">
                             <thead>
                             <tr>
