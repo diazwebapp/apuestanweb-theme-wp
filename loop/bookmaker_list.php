@@ -10,7 +10,7 @@ $rating_ceil = ceil(carbon_get_post_meta(get_the_ID(), 'rating'));
 $ref = carbon_get_post_meta(get_the_ID(), 'ref');
 $permalink = get_the_permalink();
 $num_comments = get_comments_number();
-$bonus = carbon_get_post_meta(get_the_ID(), 'bonus');
+$bonus = carbon_get_post_meta(get_the_ID(), 'bonus_slogan');
 $title = get_the_title(get_the_ID());   
 $stars = draw_rating($rating_ceil);  
 $bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
@@ -24,7 +24,7 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
                     <div class='rating mt_15'> ";
                         echo $stars; 
             echo "        </div>
-                    <p class='mt_30'> {$country['bonus']} </p>
+                    <p class='mt_30'> {$country['bonus_slogan']} </p>
                     <a href='{$country['ref']}' class='button mt_25 w-100'>Haz tu apuesta</a>
                     <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
                 </div>

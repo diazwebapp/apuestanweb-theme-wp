@@ -11,9 +11,32 @@ add_action("admin_init",function(){
         header("Location:".$_SERVER["HTTP_REFERER"]);
         die;
     }
+    if(isset($_GET['add-bookmaker-on-page'])){
+        $params = ["on_page"=>true];
+        $where = ["country_id" =>$_GET['country'],"bookmaker_id"=>$_GET['add-bookmaker-on-page']];
+        $add = aw_update_relations_bk_lc($params,$where);
+        header("Location:".$_SERVER["HTTP_REFERER"]);
+        die;
+    }
+    if(isset($_GET['add-bookmaker-on-single'])){
+        $params = ["on_single"=>true];
+        $where = ["country_id" =>$_GET['country'],"bookmaker_id"=>$_GET['add-bookmaker-on-single']];
+        $add = aw_update_relations_bk_lc($params,$where);
+        header("Location:".$_SERVER["HTTP_REFERER"]);
+        die;
+    }
 
-    if(isset($_GET['delete-bookmaker-onpage'])){
-        $deleted = aw_delete_bookmaker_onpage($_GET['country'],$_GET['delete-bookmaker-onpage']);
+    if(isset($_GET['delete-bookmaker-on-page'])){
+        $params = ["on_page"=>false];
+        $where = ["country_id" =>$_GET['country'],"bookmaker_id"=>$_GET['delete-bookmaker-on-page']];
+        $deleted = aw_update_relations_bk_lc($params,$where);
+        header("Location:".$_SERVER["HTTP_REFERER"]);
+        die;
+    }
+    if(isset($_GET['delete-bookmaker-on-single'])){
+        $params = ["on_single"=>false];
+        $where = ["country_id" =>$_GET['country'],"bookmaker_id"=>$_GET['delete-bookmaker-on-single']];
+        $deleted = aw_update_relations_bk_lc($params,$where);
         header("Location:".$_SERVER["HTTP_REFERER"]);
         die;
     }
@@ -34,21 +57,63 @@ if(!function_exists('aw_bookmaker_location')):
             
         endif;
         if(isset($_POST['add_bookmaker_to_country']) and count($_POST["bookmaker_id"]) > 0):
-            if(isset($_POST['onpage']) and count($_POST['onpage']) > 0):
+            //SI EXISTEM LOS PARAMETROS ON_PAGE Y ON_SINGLE
+            if(isset($_POST['on_page']) and isset($_POST['on_single'])):
                     foreach($_POST["bookmaker_id"] as $id_bk):
-                        $rs = array_search($id_bk,$_POST['onpage']); 
-                        if( is_numeric($rs) ):
+                        $rs = array_search($id_bk,$_POST['on_page']); 
+                        $rs2 = array_search($id_bk,$_POST['on_single']); 
+                        //SI EXISTEM AMBOS
+                        if( is_numeric($rs) and is_numeric($rs2)):
+                            aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk,"on_page"=>true,"on_single"=>true]);
+                        endif;
+                        //SI EXISTE SOLO ON_PAGE
+                        if( is_numeric($rs) and !is_numeric($rs2)):
                             aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk,"on_page"=>true]);
-                        else:
+                        endif;
+                        //SI EXISTE SOLO ON_SINGLE
+                        if( !is_numeric($rs) and is_numeric($rs2)):
+                            aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk,"on_single"=>true]);
+                        endif;
+                        //SI NO EXISTE NINGUNO
+                        if( !is_numeric($rs) and !is_numeric($rs2)):
                             aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk]);
                         endif;
                 endforeach;
             endif;
-            if(!isset($_POST['onpage'])):
+            //SI EXISTE EL PARAMETRO ON_PAGE Y NO EXISTE EL PARAMETRO ON_SINGLE
+            if(isset($_POST['on_page']) and !isset($_POST['on_single'])):
+                foreach($_POST["bookmaker_id"] as $id_bk):
+                    $rs = array_search($id_bk,$_POST['on_page']);  
+                    //SI EXISTE
+                    if( is_numeric($rs)):
+                        aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk,"on_page"=>true]);
+                    endif;
+                    // SI NO EXISTE
+                    if( !is_numeric($rs) ):
+                        aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk]);
+                    endif;
+                endforeach;
+            endif;
+            //SI EXISTE EL PARAMETRO ON_SINGLE Y NO EXISTE EL PARAMETRO ON_PAGE
+            if(!isset($_POST['on_page']) and isset($_POST['on_single'])):
+                foreach($_POST["bookmaker_id"] as $id_bk):
+                    $rs = array_search($id_bk,$_POST['on_single']);  
+                    //SI EXISTE
+                    if( is_numeric($rs)):
+                        aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk,"on_single"=>true]);
+                    endif;
+                    //SI NO EXISTE
+                    if( !is_numeric($rs)):
+                        aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk]);
+                    endif;
+                endforeach;
+            endif;
+            //SI NO EXISTEN LOS PARAMETROS ON_PAGE Y ON_SINGLE
+            if(!isset($_POST['on_page']) and !isset($_POST['on_single'])):
                 foreach($_POST["bookmaker_id"] as $id_bk):
                     aw_insert_table_relations_bk_lc(["country_id"=>$_GET['country'],"bookmaker_id"=>$id_bk]);
-            endforeach;
-        endif;
+                endforeach;
+            endif;
         endif;
         $html["panel"] = '<div class="container pt-2">
             <div class="row">
@@ -136,7 +201,7 @@ if(!function_exists('aw_bookmaker_location')):
         if(isset($_GET['country']) and isset($_GET['name'])):
              
             $relations = aw_select_table_relations_bk_lc(["country_id"=>$_GET['country']]);
-            $related_bookmakers = aw_select_relate_bookakers($_GET['country']);
+            $related_bookmakers = aw_select_relate_bookakers($_GET['country'],[]);
             $unrelated_bookmakers = aw_select_unrelate_bookakers($_GET['country']);
             $html["edit_view"] = '
             <div class="row">
@@ -167,25 +232,35 @@ if(!function_exists('aw_bookmaker_location')):
                     $inputs_bk .= '<div>
                     <label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label>
                     <input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+
                     <label class="mr-3" for="input_bk">on page</label>
-                    <input name="onpage[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+                    <input name="on_page[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+
+                    <label class="mr-3" for="input_bk">on single</label>
+                    <input name="on_single[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
                     </div>';
                 endforeach;
             endif;
             $html["edit_view"] = str_replace("{bookmaker-list-add}",$inputs_bk,$html["edit_view"]);
 
             $list_bk = '';
-            foreach($related_bookmakers as $bookmaker):
-                $onpage = aw_detect_bookmaker_onpage($bookmaker->ID);
-                var_dump($onpage);
-                $list_bk .= '<div>
-                        <label class="mr-3">'.$bookmaker->post_title.'</label>
-                        <a class="mr-3 text-danger" href="'.$path.'&delete-bookmaker='.$bookmaker->ID.'"><i class="dashicons dashicons-trash"></i></a>
 
-                        <label class="mr-3">on page</label>
-                        <a class="mr-3 '.(isset($onpage) ?'text-danger':'').'" href="'.$path.'&delete-bookmaker-onpage='.$bookmaker->ID.'"><i class="dashicons dashicons-admin-page"></i></a>
-                    </div>';
-            endforeach;
+            if(count($related_bookmakers) > 0):
+                foreach($related_bookmakers as $bookmaker):
+                    $on_page = aw_detect_bookmaker_on_page($bookmaker->ID);
+                    $on_single = aw_detect_bookmaker_on_single($bookmaker->ID);
+                    $list_bk .= '<div>
+                            <label class="mr-3">'.$bookmaker->post_title.'</label>
+                            <a class="mr-3 text-danger" href="'.$path.'&delete-bookmaker='.$bookmaker->ID.'"><i class="dashicons dashicons-trash"></i></a>
+
+                            <label class="mr-3">on page</label>
+                            <a class="mr-3 '.(isset($on_page) ?'text-primary':'text-secondary').'" href="'.$path.'&'.(isset($on_page) ? "delete-bookmaker-on-page=$bookmaker->ID" : "add-bookmaker-on-page=$bookmaker->ID").'"><i class="dashicons dashicons-admin-page"></i></a>
+
+                            <label class="mr-3">on single</label>
+                            <a class="mr-3 '.(isset($on_single) ?'text-primary':'text-secondary').'" href="'.$path.'&'.(isset($on_single) ? "delete-bookmaker-on-single=$bookmaker->ID" : "add-bookmaker-on-single=$bookmaker->ID").'"><i class="dashicons dashicons-admin-post"></i></a>
+                        </div>';
+                endforeach;
+            endif;
             $html["edit_view"] = str_replace("{bookmaker-list-view}",$list_bk,$html["edit_view"]);                             
 
         endif;

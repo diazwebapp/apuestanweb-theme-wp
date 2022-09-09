@@ -5,8 +5,7 @@
 		<div class="row">
 			<div class="col-lg-9 mt_30">
 				<?php
-					while ( have_posts() ){
-                        the_post();
+					
                         $img_src    = get_template_directory_uri() . '/assets/img/banner2.png';
 						$img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
 						if($img_att):$img_src    = aq_resize(wp_get_attachment_url( $img_att ), 1080, 600, true,true,true);  endif;
@@ -15,9 +14,8 @@
 
                         $geolocation = json_decode(GEOLOCATION);
                         $date = new DateTime($time);
-                        if($geolocation->success !== false):
-                            $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-                        endif;
+                        $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+
 						$sport_term = wp_get_post_terms( get_the_ID(), 'league', array( 'fields' => 'all' ) );
 						$arr_sport  = array();
 						if ( $sport_term ) {
@@ -127,17 +125,12 @@
                             </div>
                         </div>
 
-						<?php echo do_shortcode("[predictions]") ?>					
+						<?php echo do_shortcode("[predictions]"); ?>					
 							
 						<div class="single_event_content text-break">
 						
-							<?php
-                                the_content();
-                                wp_reset_query();
-							?>
+							<?php $content = get_the_content(get_the_ID());  ?>
 						</div>
-                        						
-					<?php } ?>
 		
 			</div>
 			<div class="col-lg-3">

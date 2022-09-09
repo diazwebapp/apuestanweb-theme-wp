@@ -2,7 +2,7 @@
 $location = json_decode(GEOLOCATION);
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
+$bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>false]);
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());

@@ -12,7 +12,27 @@ $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 
 $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
-$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
+
+$bookmaker = json_encode([]);
+
+//SI EL SHORTCODE ES USADO EN SINGLE PAGE
+        if(is_single()){
+            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
+            if($bookmaker["name"] == "no bookmaker"){
+                $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+            }
+        }
+        //SI EL SHORTCODE ES USADO EN UNA PAGINA
+        if(is_page()){
+            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+            if($bookmaker["name"] == "no bookmaker"){
+                $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+            }
+        }
+        //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
+        if(!is_page() and !is_single()){
+            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+        }
 
 //configurando zona horaria
 $time = carbon_get_post_meta(get_the_ID(), 'data');

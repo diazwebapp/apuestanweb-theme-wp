@@ -38,7 +38,7 @@ class w_bookmakers extends WP_Widget{
                 $image_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_ceil = ceil(carbon_get_post_meta(get_the_ID(), 'rating'));
-                $bonus = carbon_get_post_meta(get_the_ID(), 'bonus_sum_table') ? carbon_get_post_meta(get_the_ID(), 'bonus_sum_table') : 'n/a';
+                $bonus = carbon_get_post_meta(get_the_ID(), 'bonus_amount_table') ? carbon_get_post_meta(get_the_ID(), 'bonus_amount_table') : 'n/a';
                 $ref = carbon_get_post_meta(get_the_ID(), 'ref');
 
                 $bk_countries = carbon_get_post_meta(get_the_ID(),'countries');

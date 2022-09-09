@@ -15,8 +15,8 @@ endif;
 $rating_ceil = ceil(carbon_get_post_meta(get_the_ID(), 'rating'));
 $ref = carbon_get_post_meta(get_the_ID(), 'ref');
 $permalink = get_the_permalink();
-$bonus = carbon_get_post_meta(get_the_ID(), 'bonus') ? carbon_get_post_meta(get_the_ID(), 'bonus') : 'n/a';
-$bonus_sum = carbon_get_post_meta(get_the_ID(), 'bonus_sum') ? carbon_get_post_meta(get_the_ID(), 'bonus_sum') : 'n/a';
+$bonus = carbon_get_post_meta(get_the_ID(), 'bonus_slogan') ? carbon_get_post_meta(get_the_ID(), 'bonus_slogan') : 'n/a';
+$bonus_amount = carbon_get_post_meta(get_the_ID(), 'bonus_amount') ? carbon_get_post_meta(get_the_ID(), 'bonus_amount') : 'n/a';
 $feactures = carbon_get_post_meta(get_the_ID(), 'feactures');
 $html_feactures = "";
 if(!empty($feactures) and count($feactures) > 0):
@@ -50,7 +50,7 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
                             <h4> $title </h4>
                             <div class='bookmaker_left_check'>
                                 <img src='img/s21.svg' class='img-fluid' alt=''>
-                                <p>{$country['bonus']}</p>
+                                <p>{$country['bonus_slogan']}</p>
                             </div>
                         </div>
                         <div class='bookmaker_left_last_text'>

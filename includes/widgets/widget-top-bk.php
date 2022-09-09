@@ -15,7 +15,7 @@ class w_bookmakers extends WP_Widget{
         $limit = isset($instance['limit']) ? $instance['limit'] : 10;
         $location = json_decode(GEOLOCATION);
         $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-        $bookmakers = aw_select_relate_bookakers($aw_system_location->id);
+        $bookmakers = aw_select_relate_bookakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
         if ($bookmakers and count($bookmakers) > 0) {
             echo '<div class="col-lg-12 col-md-6">
                     <div class="side_box mt_30">
@@ -27,7 +27,7 @@ class w_bookmakers extends WP_Widget{
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'mini_img');
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_ceil = ceil(carbon_get_post_meta($bookmaker->ID, 'rating'));
-                $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_sum_table') ? carbon_get_post_meta($bookmaker->ID, 'bonus_sum_table') : 'n/a';
+                $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') ? carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') : 'n/a';
                 $ref = carbon_get_post_meta($bookmaker->ID, 'ref');
 
                 echo '<div class="top_box">

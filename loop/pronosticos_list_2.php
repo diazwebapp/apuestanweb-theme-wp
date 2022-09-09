@@ -13,8 +13,19 @@ $time = carbon_get_post_meta(get_the_ID(), 'data');
 
 $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
-$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
+$bookmaker = json_encode([]);
 
+//SI EL SHORTCODE ES USADO EN UNA PAGINA
+if(is_page()){
+    $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
+        $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    }
+}
+//SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
+if(!is_page()){
+    $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+}
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 

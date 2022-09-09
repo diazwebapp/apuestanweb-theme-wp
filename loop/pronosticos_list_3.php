@@ -27,9 +27,27 @@ $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 
 $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
-$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
 
+$bookmaker = json_encode([]);
 
+//SI EL SHORTCODE ES USADO EN SINGLE PAGE
+        if(is_single()){
+            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
+            if($bookmaker["name"] == "no bookmaker"){
+                $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+            }
+        }
+        //SI EL SHORTCODE ES USADO EN UNA PAGINA
+        if(is_page()){
+            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+            if($bookmaker["name"] == "no bookmaker"){
+                $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+            }
+        }
+        //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
+        if(!is_page() and !is_single()){
+            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+        }
 $html_predictions = '';
 
 if(!empty($predictions)):
@@ -134,7 +152,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             {$html_predictions}
                             <div class='event2_box_bonus'>
                                 <p class='p2'>Bonus:</p>
-                                <p class='p3'>{$bookmaker['bonus']}</p>
+                                <p class='p3'>{$bookmaker['bonus_slogan']}</p>
                             </div>
                             <div class='event_btn_box'>
                                 <div class='event_btn_img'>

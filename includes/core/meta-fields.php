@@ -70,8 +70,8 @@ function crb_attach_theme_options()
             ->add_tab(__("General", "jbetting"), array(
                     Field::make('text', 'ref', __("Refferal link", "jbetting")),
                     Field::make('text', 'rating', __("Rating(1,2,3,4,5)", "jbetting")),
-                    Field::make('text', 'bonus', __("Bonus slogan", "jbetting")),
-                    Field::make('text', 'bonus_sum', __("Bonus ammount", "jbetting")),
+                    Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
+                    Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
                     Field::make('image', 'mini_img', __("Transparent logo(.png)", "jbetting")),
                     Field::make('image', 'wbg', __("Background of the block with basic information inside the BC overview", "jbetting")),
                     Field::make('complex', 'feactures', __("feactures", "jbetting"))
@@ -82,7 +82,7 @@ function crb_attach_theme_options()
                     /* Field::make('complex', 'countries', __("Country", "jbetting"))
                         ->set_layout("tabbed-horizontal")
                         ->add_fields(array(
-                            Field::make('text', 'bonus', __("Bonus slogan", "jbetting")),
+                            Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                             Field::make('text', 'ref', __("Refear link", "jbetting")),
                             Field::make('select', 'country_code', __("country code", "jbetting"))
                                 ->add_options('get_countries_for_carbonmeta'),
@@ -158,8 +158,8 @@ function crb_attach_theme_options()
                         )
                     ))->set_min(1)->set_max(1),
                     Field::make('text', 'x', __("X other cuote", "jbetting")),
-            ));
-            /* ->add_tab(__("Casa de apuesta?", "jbetting"), array(
+            ))
+            ->add_tab(__("Casa de apuesta?", "jbetting"), array(
                 Field::make('association', 'bk', __("Select bookmaker", "jbetting"))
                     ->set_types(array(
                         array(
@@ -167,7 +167,7 @@ function crb_attach_theme_options()
                             'post_type' => 'bk',
                         )
                     ))->set_min(1)->set_max(1),
-            )) */
+            ));
             
         Container::make('post_meta', __("Parley", "jbetting"))
             ->where('post_type', '=', 'parley')
@@ -198,7 +198,6 @@ function crb_attach_theme_options()
                                 '4' => '4',
                                 '5' => '5',
                             )),
-                        //Field::make('text', 'tvalue', __("trush value (1,2,3,4,5)", "jbetting")),
                     )),
             ))
             ->add_tab(__("forecasts", "jbetting"), array(
@@ -221,8 +220,8 @@ function crb_attach_theme_options()
             ));
 
 
-        Container::make('post_meta', __("Bonus", "jbetting"))
-            ->where('post_type', '=', 'bonus')
+        Container::make('post_meta', __("bonus_slogan", "jbetting"))
+            ->where('post_type', '=', 'bonus_slogan')
             ->add_tab(__("General", "jbetting"), array(
                 Field::make('association', 'bk', __("Select the bookmaker to which the bonus belongs", "jbetting"))
                     ->set_types(array(

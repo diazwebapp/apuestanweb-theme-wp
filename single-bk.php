@@ -10,9 +10,9 @@ $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png
 
     //Si existe una casa de apuesta seteamos sus valores
     $bookmaker['name'] = get_the_title( get_the_ID() );
-    $bookmaker["bonus_sum"] = carbon_get_post_meta(get_the_ID(), 'bonus_sum');
+    $bookmaker["bonus_amount"] = carbon_get_post_meta(get_the_ID(), 'bonus_amount');
     $bookmaker["ref_link"] = carbon_get_post_meta(get_the_ID(), 'ref');
-    $bookmaker["bonus"] = carbon_get_post_meta(get_the_ID(), 'bonus');
+    $bookmaker["bonus_slogan"] = carbon_get_post_meta(get_the_ID(), 'bonus_slogan');
     
     if (carbon_get_post_meta(get_the_ID(), 'mini_img')):
         $logo = carbon_get_post_meta(get_the_ID(), 'mini_img');

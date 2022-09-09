@@ -16,9 +16,9 @@ $rating_ceil = ceil(carbon_get_post_meta(get_the_ID(), 'rating'));
 $ref = carbon_get_post_meta(get_the_ID(), 'ref');
 $permalink = get_the_permalink();
 $num_comments = get_comments_number();
-$bonus = carbon_get_post_meta(get_the_ID(), 'bonus') ? carbon_get_post_meta(get_the_ID(), 'bonus') : 'n/a';
-$bonus_sum = carbon_get_post_meta(get_the_ID(), 'bonus_sum') ? carbon_get_post_meta(get_the_ID(), 'bonus_sum') : 'n/a';
-$bonus_sum_table = carbon_get_post_meta(get_the_ID(), 'bonus_sum_table') ? carbon_get_post_meta(get_the_ID(), 'bonus_sum_table') : 'n/a';
+$bonus = carbon_get_post_meta(get_the_ID(), 'bonus_slogan') ? carbon_get_post_meta(get_the_ID(), 'bonus_slogan') : 'n/a';
+$bonus_amount = carbon_get_post_meta(get_the_ID(), 'bonus_amount') ? carbon_get_post_meta(get_the_ID(), 'bonus_amount') : 'n/a';
+$bonus_amount_table = carbon_get_post_meta(get_the_ID(), 'bonus_amount_table') ? carbon_get_post_meta(get_the_ID(), 'bonus_amount_table') : 'n/a';
 $title = get_the_title(get_the_ID());             
 $stars = draw_rating($rating_ceil); 
 
@@ -38,7 +38,7 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
                                 echo $stars;
             echo "          </div>
                         </div>
-                        <p>{$country['bonus']}</p>
+                        <p>{$country['bonus_slogan']}</p>
                     </div>
                     <div class='bonus_bottom'>
                         <a href='$permalink' ><p>Review</p></a>

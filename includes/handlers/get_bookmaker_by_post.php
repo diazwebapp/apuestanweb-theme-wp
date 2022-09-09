@@ -9,9 +9,9 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
     if($bk):
         //Si existe una casa de apuesta seteamos sus valores
         $bookmaker['name'] = get_the_title( $bk );
-        $bookmaker["bonus_sum"] = carbon_get_post_meta($bk, 'bonus_sum');
+        $bookmaker["bonus_amount"] = carbon_get_post_meta($bk, 'bonus_amount');
         $bookmaker["ref_link"] = carbon_get_post_meta($bk, 'ref');
-        $bookmaker["bonus"] = carbon_get_post_meta($bk, 'bonus');
+        $bookmaker["bonus_slogan"] = carbon_get_post_meta($bk, 'bonus_slogan');
         
         if (carbon_get_post_meta($bk, 'mini_img')):
             $logo = carbon_get_post_meta($bk, 'mini_img');
@@ -34,7 +34,7 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
                 if($country['country_code'] == $location->country_code):
                     //Seteamos link de referido y bonus slogan
                     $bookmaker["ref_link"] = $country['ref'];
-                    $bookmaker["bonus"] = $country['bonus'];
+                    $bookmaker["bonus_slogan"] = $country['bonus_slogan'];
                 endif;
                 //Si no existe coincidencia buscamos casas de apuestas alternativas o variaciones
                 if($country['country_code'] != $location->country_code):
@@ -48,9 +48,9 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
                             if($alt_bk['country_code'] == $location->country_code):
                                 //Seteamos sus nuevos valores
                                 $bookmaker['name'] = get_the_title($alt_bk['bk'][0]['id']);
-                                $bookmaker["bonus_sum"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus_sum');
+                                $bookmaker["bonus_amount"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus_amount');
                                 $bookmaker["ref_link"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'ref');
-                                $bookmaker["bonus"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus');
+                                $bookmaker["bonus_slogan"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus_slogan');
                                 $logo = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'mini_img');
                                 $bookmaker['logo'] = wp_get_attachment_url($logo);
                                 $wallpaper = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'wbg');
@@ -65,7 +65,7 @@ function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=
                                         if($alternative_bk_country['country_code'] ==  $location->country_code):
                                             //Seteamos link de referido y bonus slogan
                                             $bookmaker["ref_link"] =  $alternative_bk_country['ref'];
-                                            $bookmaker["bonus"] =  $alternative_bk_country['bonus'];
+                                            $bookmaker["bonus_slogan"] =  $alternative_bk_country['bonus_slogan'];
                                         endif;
                                     endforeach;
                                 endif;

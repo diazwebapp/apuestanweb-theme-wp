@@ -17,7 +17,7 @@ class w_bonuses extends WP_Widget {
 		
 		wp_reset_query();
 		$args = array(
-			'post_type'      => 'bonus',
+			'post_type'      => 'bonus_slogan',
 			'posts_per_page' => $limit,
 		);
 		

@@ -9,9 +9,6 @@ $permalink = get_the_permalink(get_the_ID());
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 
-$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
-$bookmaker = aw_select_relate_bookakers($aw_system_location->id, true, true);
-
 //configurando zona horaria
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $date = new DateTime($time);
