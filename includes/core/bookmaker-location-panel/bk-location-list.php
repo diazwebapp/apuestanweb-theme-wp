@@ -230,14 +230,14 @@ if(!function_exists('aw_bookmaker_location')):
             if(count($unrelated_bookmakers) > 0):
                 foreach($unrelated_bookmakers as $bookmaker):
                     $inputs_bk .= '<div>
-                    <label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label>
                     <input name="bookmaker_id[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+                    <label class="mr-3" for="input_bk">'.$bookmaker->post_title.'</label>
 
-                    <label class="mr-3" for="input_bk">on page</label>
                     <input name="on_page[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+                    <label class="mr-3" for="input_bk">on page</label>
 
-                    <label class="mr-3" for="input_bk">on single</label>
                     <input name="on_single[]" type="checkbox" id="input_bk" value="'.$bookmaker->ID.'"/>
+                    <label class="mr-3" for="input_bk">on single</label>
                     </div>';
                 endforeach;
             endif;
