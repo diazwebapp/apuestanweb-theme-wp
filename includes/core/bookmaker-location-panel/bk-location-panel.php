@@ -128,7 +128,7 @@ if(!function_exists('aw_select_relate_bookakers')):
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
-    $query = "SELECT * FROM $table Where exists (select 1 from $table2 Where ".(isset($params["on_page"]) ? "$table2.on_page ='1' and " : '')." ".(isset($params["on_single"]) ? "$table2.on_single ='1' and " : '')." $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ".($params["random"] ? "ORDER BY RAND()" : '')." ".(isset($params["limit"]) ? "LIMIT {$params['limit']}" : '')." ";
+    $query = "SELECT * FROM $table Where exists (select 1 from $table2 Where ".(isset($params["on_page"]) ? "$table2.on_page ='1' and " : '')." ".(isset($params["on_single"]) ? "$table2.on_single ='1' and " : '')." $table2.country_id = $country_id and $table.ID = $table2.bookmaker_id) AND $table.post_type='bk' AND $table.post_status='publish' ".(isset($params["random"]) ? "ORDER BY RAND()" : '')." ".(isset($params["limit"]) ? "LIMIT {$params['limit']}" : '')." ";
     
     if(isset($params["unique"])){
       $bookmaker["name"] = "no bookmaker";
