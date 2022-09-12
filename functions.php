@@ -224,6 +224,7 @@ add_action('init', function(){
             $geolocation["country"] = $geolocation_resp->country;
             $geolocation["country_code"] = $geolocation_resp->country_code;
             $geolocation["timezone"] = $geolocation_resp->timezone->id;
+            $geolocation["flag_uri"] = $geolocation_resp->flag->img;
         endif;
     endif;
 
@@ -235,6 +236,7 @@ add_action('init', function(){
             $geolocation["country"] = $geolocation_resp->country;
             $geolocation["country_code"] = $geolocation_resp->country_code;
             $geolocation["timezone"] = $geolocation_resp->timezone->name;
+            $geolocation["flag_uri"] = $geolocation_resp->flag->png;
             
         endif;
     endif;
