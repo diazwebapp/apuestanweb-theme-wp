@@ -58,7 +58,7 @@ $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png
                         <b style="background:lightgray;font-size:2.7rem;" class="px-4 py-2 rounded text-body" >DE DONDE SACO ESTO?</b>
                     </div>
                     <div class="text-center">
-                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 py-2" style="font-size:2rem;" target="_blank"><?php echo _e("Haz tu apuesta") ?></a>
+                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 py-2 font-weight-light" style="font-size:2rem;" target="_blank"><?php echo _e("Haz tu apuesta") ?></a>
                     </div>
                 </div>
                 <div class="col-md-3 px-2 d-flex flex-column justify-content-around">
