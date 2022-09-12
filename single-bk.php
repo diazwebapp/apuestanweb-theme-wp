@@ -64,7 +64,7 @@ $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png
                 <div class="col-md-3 px-2 d-flex flex-column justify-content-around">
                     <div class="text-right">
                         <small>acepts player from </small>
-                        <img src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country_name ?>">
+                        <img width="50px" height="30px" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country_name ?>">
                     </div>
                     <div>
                         <?php
