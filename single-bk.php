@@ -34,7 +34,7 @@ $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png
             <!-- Heading -->
             <div class="row my-4">
                 <div class="col-md-3 d-flex flex-column justify-content-center" style="background:black;height:25rem;width:16rem; border-radius:1rem 0 0 1rem;">
-                    <img width="150rem" height="50rem" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
+                    <img width="130rem" height="30rem" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                 </div>
                 <div class="col-md-6 px-2 d-flex flex-column justify-content-around" >
                     <div class="d-flex justify-content-around">
