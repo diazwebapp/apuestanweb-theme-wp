@@ -155,9 +155,9 @@ function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,
             endwhile;
             //Completando estadisticas total y porcentaje
             $user_stats['total'] = $user_stats['acertados'] + $user_stats['fallidos'] + $user_stats['nulos'] ;
-            $user_stats['porcentaje'] = $user_stats['acertados'] * 100 / $user_stats['total'];
-            $user_stats['porcentaje_fallidos'] = $user_stats['fallidos'] * 100 / $user_stats['total'];
-            $user_stats['porcentaje_nulos'] = $user_stats['nulos'] * 100 / $user_stats['total'];
+            $user_stats['porcentaje'] = ($user_stats['acertados'] != 0 and $user_stats['total'] != 0) ?$user_stats['acertados'] * 100 / $user_stats['total'] : 0;
+            $user_stats['porcentaje_fallidos'] = ( $user_stats['fallidos'] != 0 and $user_stats['total'] != 0) ? $user_stats['fallidos'] * 100 / $user_stats['total'] : 0;
+            $user_stats['porcentaje_nulos'] = ($user_stats['nulos'] != 0 and  $user_stats['total'] != 0) ? $user_stats['nulos'] * 100 / $user_stats['total'] : 0;
         
         endif;
         wp_reset_query();
