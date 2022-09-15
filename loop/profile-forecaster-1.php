@@ -20,7 +20,7 @@ if(isset($_GET['profile'])):
     $stats_vip = get_user_stats($id_author,'=');
     $stats_free = get_user_stats($id_author,'!=');
     //estadisticas ultimos 2 meses
-    $num = 6;
+    $num = 4;
     $stats_months_vip_html = '';
     $stats_months_free_html = '';
     for($i=1;$i<$num;$i++){
