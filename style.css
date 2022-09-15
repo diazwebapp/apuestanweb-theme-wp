@@ -4091,6 +4091,8 @@ footer .menu li a::before{
 .slider__active .owl-stage {
 	padding-left: 0px !important;
 	padding-right: 10px !important;
+	max-height:165px;
+	overflow: hidden;
 }
 
 .str.str-mobile {

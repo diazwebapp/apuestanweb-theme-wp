@@ -7,6 +7,12 @@
 	<?php wp_head(); ?>
 </head>
 <body>
+<?php
+    $post_type = get_post_type( );
+    if($post_type == "bk" and is_single()):
+        echo do_shortcode("[slide_forecasts model='2']");
+    endif;
+?>
 <header class="sticky-top">
 <div class="container">
             <div class="row align-items-center form-row">

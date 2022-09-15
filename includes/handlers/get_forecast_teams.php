@@ -96,7 +96,7 @@ function setUserRating(){
 
     }
 }
-function get_user_stats($user_id,$vip){
+function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,"last_date"=>false],$limit=10){
     $user_stats['acertados'] = 0;
     $user_stats['fallidos'] = 0;
     $user_stats['nulos'] = 0;
@@ -108,26 +108,22 @@ function get_user_stats($user_id,$vip){
     
         $forecast_args['author'] = $user_id;
         $forecast_args['post_type'] = 'forecast';
-        $forecast_args['post_per_page'] = 10;
-        if($vip):
-            $forecast_args['meta_query']     = [
-                [
-                    'key' => 'vip',
-                    'value' => 'yes',
-                    'compare' => '='
-                ]
-            ];
-        endif;
-        if(!$vip):
-            $forecast_args['meta_query']     = [
-                [
-                    'key' => 'vip',
-                    'value' => 'yes',
-                    'compare' => '!='
-                ]
-            ];
-        endif;
+        $forecast_args['post_per_page'] = $limit;
         
+        $forecast_args['meta_query']     = [
+            ($vip) ? [
+                'key' => 'vip',
+                'value'=>'yes',
+                'compare' => $vip
+                ] : '',
+                [
+                    'key'     => 'data',
+                    'value'   => ($interval_date["start_date"] and $interval_date["last_date"]) ? [$interval_date["start_date"],$interval_date["last_date"]] : [],
+                    'compare' => 'BETWEEN',
+                    'type'    => 'DATE'
+                ],
+        ];
+
         $user_posts_query = new WP_Query($forecast_args);
         
 
@@ -168,4 +164,6 @@ function get_user_stats($user_id,$vip){
         
         return $user_stats;
 }
+
+
 add_filter( 'init', 'setUserRating', 10 );
