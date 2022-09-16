@@ -28,7 +28,7 @@ $bk_countries = aw_select_relate_bookakers($aw_system_country->id, []);
 
 if(count($bk_countries) > 0):
     foreach($bk_countries as $country):
-        if($country['country_code'] == $location->country_code):
+        
             echo "<div class='col-4'>
                 <div class='bonus_box'>
                     <div class='number_text' id='count_bk_model_3'></div>
@@ -47,8 +47,6 @@ if(count($bk_countries) > 0):
                     </div>
                 </div>
             </div>";
-        else:
-            echo "";
-        endif;
+        
     endforeach;
 endif;
