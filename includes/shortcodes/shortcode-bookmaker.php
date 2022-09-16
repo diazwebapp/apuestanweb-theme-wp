@@ -18,17 +18,18 @@ function shortcode_bookmaker($atts)
     $args['meta_key'] = '_rating';
     
     $query = new WP_Query($args);
+    var_dump($query->posts);
     if ($query) {
         $new_bks = [];
         $location = json_decode(GEOLOCATION);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
-        foreach ($query as $bookmaker): 
+        /* foreach ($query as $bookmaker): 
             $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
             if(isset($exists)):
                 $new_bks[] = $bookmaker;
             endif;
-        endforeach;
-        var_dump($new_bks);
+        endforeach; */
+        
         /* if($model == 1): 
             $ret .=  "<div class='testimonial_area'>
                 <div class='container'>
