@@ -37,9 +37,10 @@ function shortcode_bookmaker($atts)
                             <h5 class='sub_title'> $slogan </h5>
                             <h2 class='title_lg mt_5'> $title </h2>
                         </div>";
-                        foreach ($new_bks as $key_bk => $bookmaker):
-                            $post = $query->post;
-                            $ret .= load_template_part('loop/bookmaker_list');                            
+                        foreach ($new_bks as $key_bk => $bookmaker):        
+                            $ret .= get_template_part('loop/bookmaker_list',null,[
+                                'post'	=> $bookmaker,
+                            ]);                            
                         endforeach;
             $ret .=  "</div>
                 </div>
@@ -59,9 +60,9 @@ function shortcode_bookmaker($atts)
             <div class='row'>";
             
             foreach ($new_bks as $key_bk => $bookmaker):
-                
-                $post = $query->post;
-                $ret .= load_template_part("loop/bookmaker_list_{$model}");
+                $ret .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                    'post'	=> $bookmaker,
+                ]);
             endforeach;
             $ret .=  "</div>
             </div>";

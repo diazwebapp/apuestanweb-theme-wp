@@ -63,7 +63,7 @@ $title = get_the_title($args["post"]->ID);
                         </div>
                     </div>
                     <div class='bookmaker_right_btn'>
-                        <a href='{$country['ref']}' class='btn_2'>Quiero Apostar</a>
+                        <a href='$ref' class='btn_2'>Quiero Apostar</a>
                     </div>
                 </div>
             </div>";
