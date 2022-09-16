@@ -28,8 +28,8 @@ function shortcode_bookmaker($atts)
                 $new_bks[] = $bookmaker;
             endif;
         endforeach;
-        var_dump($new_bks);
-        /* if($model == 1): 
+        
+        if($model == 1): 
             $ret .=  "<div class='testimonial_area'>
                 <div class='container'>
                     <div class='row small_gutter'>
@@ -37,34 +37,34 @@ function shortcode_bookmaker($atts)
                             <h5 class='sub_title'> $slogan </h5>
                             <h2 class='title_lg mt_5'> $title </h2>
                         </div>";
-                        while ($query->have_posts()):
-                            $query->the_post();
+                        foreach ($new_bks as $key_bk => $bookmaker):
+                            $post = $query->post;
                             $ret .= load_template_part('loop/bookmaker_list');                            
-                        endwhile;
+                        endforeach;
             $ret .=  "</div>
                 </div>
             </div>";
         endif;
 
         if($model == 2):
-            while ($query->have_posts()):
-                $query->the_post();
+            foreach ($new_bks as $key_bk => $bookmaker):
+                $post = $query->post;
                 $ret .= load_template_part("loop/bookmaker_list_{$model}");
-            endwhile;
+            endforeach;
         endif;
         
         if($model == 3):
             $ret =  "<div style='margin:15px auto;' class='bonus_wrap'>
             <div class='row'>";
             
-            while ($query->have_posts()):
+            foreach ($new_bks as $key_bk => $bookmaker):
                 
-                $query->the_post();
+                $post = $query->post;
                 $ret .= load_template_part("loop/bookmaker_list_{$model}");
-            endwhile;
+            endforeach;
             $ret .=  "</div>
             </div>";
-        endif; */
+        endif;
         ?>
         <script>
             document.addEventListener('DOMContentLoaded',()=>{
