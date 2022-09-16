@@ -1,5 +1,5 @@
 <?php
-
+var_dump( $args );
 $image_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
 if($image_att):
     $image_png = wp_get_attachment_url($image_att);
