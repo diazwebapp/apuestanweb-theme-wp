@@ -22,10 +22,11 @@ $bonus_amount_table = carbon_get_post_meta(get_the_ID(), 'bonus_amount_table') ?
 $title = get_the_title(get_the_ID());             
 $stars = draw_rating($rating_ceil); 
 
-$bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
 $location = json_decode(GEOLOCATION);
+$aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+$bk_countries = aw_select_relate_bookakers($aw_system_country->id, []);
 
-if($location->success == true and $bk_countries and count($bk_countries) > 0):
+if(count($bk_countries) > 0):
     foreach($bk_countries as $country):
         if($country['country_code'] == $location->country_code):
             echo "<div class='col-4'>
@@ -50,24 +51,4 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
             echo "";
         endif;
     endforeach;
-endif;
-if(!$location->success):
-    echo "<div class='col-4'>
-            <div class='bonus_box'>
-                <div class='number_text' id='count_bk_model_3'></div>
-                <div class='bonus_top'>
-                    <div class='d-flex align-items-center justify-content-between'>
-                        <img src='$image_png' alt=''>
-                        <div class='rating'>";
-                            echo $stars;
-        echo "          </div>
-                    </div>
-                    <p>$bonus</p>
-                </div>
-                <div class='bonus_bottom'>
-                    <a href='$permalink' ><p>Review</p></a>
-                    <a href='$ref' class='button'>Obtener bono</a>
-                </div>
-            </div>
-        </div>";
 endif;

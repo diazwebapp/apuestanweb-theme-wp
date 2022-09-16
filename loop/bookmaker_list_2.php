@@ -27,8 +27,8 @@ endif;
 
 $title = get_the_title(get_the_ID());             
 $location = json_decode(GEOLOCATION);
-var_dump($location);
-$bk_countries = aw_select_relate_bookakers($location->id, []);
+$aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+$bk_countries = aw_select_relate_bookakers($aw_system_country->id, []);
 
 if(count($bk_countries) > 0):
     foreach($bk_countries as $country):
@@ -77,46 +77,4 @@ if(count($bk_countries) > 0):
             echo "";
         endif;
     endforeach;
-endif;
-if(!$location->success):
-    echo "<div class='bookmaker_box_wrapper mt_30'>
-    <div class='bookmaker_left_content'>
-        <div class='d-md-none d-block'>
-            <div class='bookamker_rating_box'>
-                <p> $rating_ceil </p>
-                <div class='bookmaker_rating_list rating '>";
-                echo draw_rating($rating_ceil); 
-    echo "      </div>
-            </div>
-        </div>
-        <div class='bookmaker_logo_box' style='background-image:url( $bg_png );background-size:cover;' >
-            <img src=' $image_png ' class='img-fluid' alt=' $title '>
-        </div>
-        <div class='bookmaker_left_text'>
-            <div class='bookmaker_left_heading'>
-                <h4> $title </h4>
-                <div class='bookmaker_left_check'>
-                    <img src='img/s21.svg' class='img-fluid' alt=''>
-                    <p>$bonus</p>
-                </div>
-            </div>
-            <div class='bookmaker_left_last_text'>
-                $html_feactures
-            </div>
-        </div>
-    </div>
-    <div class='bookmaker_right_content'>
-        <div class='d-md-block d-none'>
-            <div class='bookamker_rating_box'>
-                <p> $rating_ceil </p>
-                <div class='bookmaker_rating_list rating '>";
-                echo draw_rating($rating_ceil); 
-echo                "</div>
-            </div>
-        </div>
-        <div class='bookmaker_right_btn'>
-            <a href=' $ref ' class='btn_2'>Quiero Apostar</a>
-        </div>
-    </div>
-</div>";
 endif;
