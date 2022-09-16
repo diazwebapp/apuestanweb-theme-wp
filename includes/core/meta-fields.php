@@ -73,7 +73,8 @@ function crb_attach_theme_options()
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
                     Field::make('image', 'mini_img', __("Transparent logo(.png)", "jbetting")),
-                    Field::make('image', 'wbg', __("background logo", "jbetting"))
+                    Field::make('image', 'wbg', __("background logo", "jbetting")),
+                    Field::make("color", "crb_box_background", "Background Color")
                 )
                 
             )
