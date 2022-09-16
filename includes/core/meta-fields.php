@@ -72,25 +72,26 @@ function crb_attach_theme_options()
                     Field::make('text', 'rating', __("Rating(1,2,3,4,5)", "jbetting")),
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
-                    Field::make('image', 'mini_img', __("Transparent logo(.png)", "jbetting"))
+                    Field::make('image', 'mini_img', __("Transparent logo(.png)", "jbetting")),
+                    Field::make('image', 'wbg', __("background logo", "jbetting"))
+                )
+                
             )
-            
-        )
-        ->add_tab(__("feactures", "jbetting"), array( 
-            Field::make('complex', 'feactures', __("feactures", "jbetting"))
-                ->set_layout("tabbed-horizontal")
-                ->add_fields(array(
-                    Field::make('text', 'feacture', __("feacture text", "jbetting")),
-                )),
-            Field::make('complex', 'general_feactures', __("general feactures", "jbetting"))
-                ->set_layout("tabbed-horizontal")
-                ->add_fields(array(
-                    Field::make('text', 'feacture', __("feacture text", "jbetting")),
-                    Field::make('text', 'points', __("points", "jbetting")),
-                )),
-            )
-            
-        );
+            ->add_tab(__("feactures", "jbetting"), array( 
+                Field::make('complex', 'feactures', __("feactures", "jbetting"))
+                    ->set_layout("tabbed-horizontal")
+                    ->add_fields(array(
+                        Field::make('text', 'feacture', __("feacture text", "jbetting")),
+                    )),
+                Field::make('complex', 'general_feactures', __("general feactures", "jbetting"))
+                    ->set_layout("tabbed-horizontal")
+                    ->add_fields(array(
+                        Field::make('text', 'feacture', __("feacture text", "jbetting")),
+                        Field::make('text', 'points', __("points", "jbetting")),
+                    )),
+                )
+                
+            );
         
         Container::make('post_meta', __("Team", "jbetting"))
             ->where('post_type', '=', 'team')

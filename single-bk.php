@@ -26,7 +26,6 @@ $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png
         $wallpaper = carbon_get_post_meta(get_the_ID(), 'wbg');
         $bookmaker['wallpaper'] = wp_get_attachment_url($wallpaper);
     endif; 
-
 ?>
 
 <div class="container">
