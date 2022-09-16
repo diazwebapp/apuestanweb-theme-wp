@@ -191,6 +191,19 @@ else:
   die;
 endif;
 
+if(!function_exists('aw_detect_bookmaker_on_country')):
+  function aw_detect_bookmaker_on_country($country_id,$bookmaker_id){
+    global $wpdb;
+    $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
+    $query = "SELECT id FROM $table2 where country_id='$country_id' and bookmaker_id='$bookmaker_id' ";
+    $list = $wpdb->get_var($query);
+    return $list;
+  }
+else:
+  echo 'aw_detect_bookmaker_on_country ya existe';
+  die;
+endif;
+
 if(!function_exists('aw_select_unrelate_bookakers')):
   function aw_select_unrelate_bookakers($country_id){
     global $wpdb;

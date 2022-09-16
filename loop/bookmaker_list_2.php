@@ -30,6 +30,8 @@ $location = json_decode(GEOLOCATION);
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
 $bk_countries = aw_select_relate_bookakers($aw_system_country->id, []);
 
+$exists = aw_detect_bookmaker_on_country($aw_system_country->id,get_the_ID());
+var_dump($exists);
             echo "<div class='bookmaker_box_wrapper mt_30'>
                 <div class='bookmaker_left_content'>
                     <div class='d-md-none d-block'>
