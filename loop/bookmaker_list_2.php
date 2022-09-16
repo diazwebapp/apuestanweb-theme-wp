@@ -29,7 +29,7 @@ $title = get_the_title(get_the_ID());
 $location = json_decode(GEOLOCATION);
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
 $bk_countries = aw_select_relate_bookakers($aw_system_country->id, []);
-
+var_dump($bk_countries);
 if(count($bk_countries) > 0):
     foreach($bk_countries as $country):
         
