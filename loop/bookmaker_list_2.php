@@ -27,6 +27,7 @@ endif;
 
 $title = get_the_title(get_the_ID());             
 $location = json_decode(GEOLOCATION);
+var_dump($location);
 $bk_countries = aw_select_relate_bookakers($location->id, []);
 
 if(count($bk_countries) > 0):
