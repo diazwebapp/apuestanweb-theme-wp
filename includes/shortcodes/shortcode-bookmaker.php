@@ -17,7 +17,7 @@ function shortcode_bookmaker($atts)
     $args['orderby'] = 'meta_value_num';
     $args['meta_key'] = '_rating';
     
-    $query = get_posts($args);
+    $query = new WP_Query($args);
     if ($query) {
         $new_bks = [];
         $location = json_decode(GEOLOCATION);
