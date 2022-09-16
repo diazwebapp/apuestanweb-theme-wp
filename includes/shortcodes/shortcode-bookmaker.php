@@ -50,7 +50,7 @@ function shortcode_bookmaker($atts)
             foreach ($new_bks as $key_bk => $bookmaker):
                 $post = $query->post;
                 var_dump($post);
-                $ret .= load_template_part("loop/bookmaker_list_{$model}");
+                $ret .= get_template_part("loop/bookmaker_list_{$model}");
             endforeach;
         endif;
         
