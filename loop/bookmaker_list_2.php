@@ -31,7 +31,7 @@ $aw_system_country = aw_select_country(["country_code"=>$location->country_code]
 $bk_countries = aw_select_relate_bookakers($aw_system_country->id, []);
 
 foreach($bk_countries as $country):
-        
+        var_dump($country);
             echo "<div class='bookmaker_box_wrapper mt_30'>
                 <div class='bookmaker_left_content'>
                     <div class='d-md-none d-block'>
