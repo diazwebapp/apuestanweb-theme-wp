@@ -26,10 +26,10 @@ if(!empty($feactures) and count($feactures) > 0):
 endif;
 
 $title = get_the_title(get_the_ID());             
-$bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
 $location = json_decode(GEOLOCATION);
+$bk_countries = aw_select_relate_bookakers($location->id, []);
 
-if($location->success == true and $bk_countries and count($bk_countries) > 0):
+if(count($bk_countries) > 0):
     foreach($bk_countries as $country):
         if($country['country_code'] == $location->country_code):
             echo "<div class='bookmaker_box_wrapper mt_30'>
