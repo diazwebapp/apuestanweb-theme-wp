@@ -1,23 +1,23 @@
 <?php
 
-$image_att = carbon_get_post_meta($bookmaker->ID, 'mini_img');
+$image_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
 if($image_att):
     $image_png = wp_get_attachment_url($image_att);
 else:
     $image_png = get_template_directory_uri() . '/assets/img/logo.svg';
 endif;
-$bg_att = carbon_get_post_meta($bookmaker->ID, 'wbg');
+$bg_att = carbon_get_post_meta(get_the_ID(), 'wbg');
 if($bg_att):
     $bg_png = wp_get_attachment_url($bg_att);
 else:
     $bg_png = get_template_directory_uri() . '/assets/img/banner2.png';
 endif;
-$rating_ceil = ceil(carbon_get_post_meta($bookmaker->ID, 'rating'));
-$ref = carbon_get_post_meta($bookmaker->ID, 'ref');
+$rating_ceil = ceil(carbon_get_post_meta(get_the_ID(), 'rating'));
+$ref = carbon_get_post_meta(get_the_ID(), 'ref');
 $permalink = get_the_permalink();
-$bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_slogan') ? carbon_get_post_meta($bookmaker->ID, 'bonus_slogan') : 'n/a';
-$bonus_amount = carbon_get_post_meta($bookmaker->ID, 'bonus_amount') ? carbon_get_post_meta($bookmaker->ID, 'bonus_amount') : 'n/a';
-$feactures = carbon_get_post_meta($bookmaker->ID, 'feactures');
+$bonus = carbon_get_post_meta(get_the_ID(), 'bonus_slogan') ? carbon_get_post_meta(get_the_ID(), 'bonus_slogan') : 'n/a';
+$bonus_amount = carbon_get_post_meta(get_the_ID(), 'bonus_amount') ? carbon_get_post_meta(get_the_ID(), 'bonus_amount') : 'n/a';
+$feactures = carbon_get_post_meta(get_the_ID(), 'feactures');
 $html_feactures = "";
 if(!empty($feactures) and count($feactures) > 0):
     foreach($feactures as $feacture):
@@ -25,7 +25,7 @@ if(!empty($feactures) and count($feactures) > 0):
     endforeach; 
 endif;
 
-$title = get_the_title($bookmaker->ID);             
+$title = get_the_title(get_the_ID());             
 
             echo "<div class='bookmaker_box_wrapper mt_30'>
                 <div class='bookmaker_left_content'>
