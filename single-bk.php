@@ -16,18 +16,9 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
     $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
-    $bookmaker["payment_methods"] = carbon_get_post_meta(get_the_ID(), 'payment_methods');
 
-    if(!empty($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
-        foreach($bookmaker["payment_methods"] as $item){
-            echo "id: " .$item["payment_method"][0]["id"]. "<br/>";
-            if(!empty($item["caracteristicas"]) and coount($item["caracteristicas"]) > 0){
-                foreach($item["caracteristicas"] as $char){
-                    var_dump($char);
-                }
-            }
-        }
-    }
+    $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
+
     if (carbon_get_post_meta(get_the_ID(), 'mini_img')):
         $logo = carbon_get_post_meta(get_the_ID(), 'mini_img');
         $bookmaker['logo'] = wp_get_attachment_url($logo);
@@ -71,7 +62,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                 <div class="col-md-3 px-2 d-flex flex-column justify-content-around">
                     <div class="text-right">
                         <small>acepts player from </small>
-                        <img width="40px" height="17px" style="border-radius:1rem;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country_name ?>">
+                        <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                     </div>
                     <div>
                         <?php
@@ -83,9 +74,13 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         ?>
                     </div>
                     <div>
-                        <img src="<?php echo $bookmaker['logo'] ?>" width="40px" height="20px" alt="">
-                        <img src="<?php echo $bookmaker['logo'] ?>" width="40px" height="20px" alt="">
-                        <img src="<?php echo $bookmaker['logo'] ?>" width="40px" height="20px" alt="">
+                        <?php 
+                            if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
+                                foreach ($bookmaker["payment_methods"] as $key => $payment) {
+                                    echo '<i class="'.$payment->logo_icon_class.'" ></i>';
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
