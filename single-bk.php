@@ -6,7 +6,6 @@ $location = json_decode(GEOLOCATION);
 //Seteamos valores por defecto de la casa de apuesta
 $bookmaker["name"] = "no bookmaker";
 $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
-$bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png';
 //Buscamos la casa de apuesta del pronostico
 
     //Si existe una casa de apuesta seteamos sus valores
@@ -17,15 +16,16 @@ $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png
     $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
-    
+    $bookmaker["payment_methods"] = carbon_get_post_meta(get_the_ID(), 'payment_methods');
+    if(!empty($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) >0){
+        foreach($bookmaker["payment_methods"] as $item){
+            var_dump($item["payment_method"]);
+        }
+    }
     if (carbon_get_post_meta(get_the_ID(), 'mini_img')):
         $logo = carbon_get_post_meta(get_the_ID(), 'mini_img');
         $bookmaker['logo'] = wp_get_attachment_url($logo);
     endif;
-    if (carbon_get_post_meta(get_the_ID(), 'wbg')):
-        $wallpaper = carbon_get_post_meta(get_the_ID(), 'wbg');
-        $bookmaker['wallpaper'] = wp_get_attachment_url($wallpaper);
-    endif; 
 ?>
 
 <div class="container">

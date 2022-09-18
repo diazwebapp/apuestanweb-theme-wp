@@ -6,12 +6,8 @@ if($image_att):
 else:
     $image_png = get_template_directory_uri() . '/assets/img/logo.svg';
 endif;
-$bg_att = carbon_get_post_meta($args["post"]->ID, 'wbg');
-if($bg_att):
-    $bg_png = wp_get_attachment_url($bg_att);
-else:
-    $bg_png = get_template_directory_uri() . '/assets/img/banner2.png';
-endif;
+$bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
+
 $rating_ceil = ceil(carbon_get_post_meta($args["post"]->ID, 'rating'));
 $ref = carbon_get_post_meta($args["post"]->ID, 'ref');
 $permalink = get_the_permalink();
@@ -37,7 +33,7 @@ $title = get_the_title($args["post"]->ID);
                 echo "      </div>
                         </div>
                     </div>
-                    <div class='bookmaker_logo_box' style='background-image:url( $bg_png );background-size:cover;' >
+                    <div class='bookmaker_logo_box' style='background:$bg_att;' >
                         <img src=' $image_png ' class='img-fluid' alt=' $title '>
                     </div>
                     <div class='bookmaker_left_text'>

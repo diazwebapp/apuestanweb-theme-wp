@@ -73,8 +73,7 @@ function crb_attach_theme_options()
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
                     Field::make('image', 'mini_img', __("Transparent logo(.png)", "jbetting")),
-                    Field::make('image', 'wbg', __("background logo", "jbetting")),
-                    Field::make("color", "crb_box_background", "Background Color")
+                    Field::make("color", "background-color", "Background Color")
                 )
                 
             )
@@ -89,6 +88,28 @@ function crb_attach_theme_options()
                     ->add_fields(array(
                         Field::make('text', 'feacture', __("feacture text", "jbetting")),
                         Field::make('text', 'points', __("points", "jbetting")),
+                    )),
+                )
+                
+            )
+
+            ->add_tab(__("payment methods", "jbetting"), array( 
+                    Field::make('complex', 'payment_methods', __("payment methods", "jbetting"))
+                    ->set_layout("tabbed-horizontal")
+                    ->add_fields(array(
+                        Field::make('association', 'payment_method', __("Payment_method", "jbetting"))
+                            ->set_types(array(
+                                array(
+                                    'type' => 'term',
+                                    'taxonomy' => 'bookmaker-payment-methods',
+                                )
+                            ))->set_min(1)->set_max(1),
+                        Field::make('complex', 'caracteristicas', __("caracteristicas", "jbetting"))
+                            ->set_layout("tabbed-vertical")
+                            ->add_fields(array(
+                                Field::make('text', 'title', __("Title", "jbetting")),
+                                Field::make('text', 'content', __("value", "jbetting")),
+                            ))
                     )),
                 )
                 
@@ -236,7 +257,11 @@ function crb_attach_theme_options()
                 Field::make('text', 'h1', __("Custom H1", "jbetting")),
                 Field::make('text', 'fa_icon_class', __("FA icon class", "jbetting"))
             ));
-
+        Container::make('term_meta', __("bookmaker payment methods", "jbetting"))
+            ->where('term_taxonomy', '=', 'bookmaker-payment-methods')
+            ->add_fields(array(
+                Field::make('text', 'fa_icon_class', __("FA icon class", "jbetting"))
+            ));
     endif;
 }
 
