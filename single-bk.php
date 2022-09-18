@@ -17,9 +17,15 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
     $bookmaker["payment_methods"] = carbon_get_post_meta(get_the_ID(), 'payment_methods');
-    if(!empty($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) >0){
+
+    if(!empty($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
         foreach($bookmaker["payment_methods"] as $item){
-            var_dump($item["payment_method"]);
+            echo "id: " .$item["payment_method"][0]["id"]. "<br/>";
+            if(!empty($item["caracteristicas"]) and coount($item["caracteristicas"]) > 0){
+                foreach($item["caracteristicas"] as $char){
+                    var_dump($char);
+                }
+            }
         }
     }
     if (carbon_get_post_meta(get_the_ID(), 'mini_img')):
