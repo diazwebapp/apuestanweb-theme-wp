@@ -262,8 +262,8 @@ function crb_attach_theme_options()
             ->add_fields(array(
                 Field::make( 'media_gallery', 'img_icon', __( 'icono 30x30' ) )
                     ->set_type( array( 'image' ) )
-            ))
-            ->add_fields(array(
+            ));
+           /*  ->add_fields(array(
                     Field::make( 'complex', 'bookmakers' )
                         ->set_layout("tabbed-horizontal")
                         ->add_fields( 'bookmakers', array(
@@ -282,7 +282,7 @@ function crb_attach_theme_options()
                             ))
                         ) )
                         
-                ));
+                )); */
             
             
     endif;

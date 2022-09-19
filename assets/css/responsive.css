@@ -285,6 +285,9 @@
 }
 
 @media (max-width: 991.98px) {
+	.special-single-bk-button > a, .special-single-bk-button > b{
+		display:block !important;
+	}
 	.event_select{
 		display: none;
 	}

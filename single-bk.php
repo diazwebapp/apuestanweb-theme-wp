@@ -29,20 +29,14 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
     <div class="row">
         <div class="col-lg-9">
             <h1 class="title"><?php echo $bookmaker['name'] ?></h1>
-            <!-- Heading -->
-            <div class="row my-4">
-                <div class="col-md-3 d-flex flex-column justify-content-center" style="background:black;height:25rem; border-radius:1rem 0 0 1rem;">
-                    <img width="130rem" height="33rem" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
-                </div>
-                <div  style="min-height:150px;" class="col-md-6 px-2 d-flex flex-column justify-content-around" >
-                    <div class="d-flex justify-content-around">
-                        <div>
-                            <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
-                            <sub class="text-uppercase text-success" style="font-size:1.9rem;"> Calificación</sub>                            
-                        </div>
-                        <!-- rating -->
-                        <div>
-                            <span class="text-uppercase text-body" style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>
+            
+            <div class="container my-4"> 
+                <div class="row">
+                    <!-- Heading -->
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center" style="background:black; min-height:139px;border-radius:1rem 0 0 1rem;">
+                        <!-- rating movil-->
+                        <div class="d-md-none text-center" style="position: absolute;z-index: 2; width: 100%;top:10px;left:0;" >
+                            <span class="text-uppercase text-light" style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>
                             <?php 
                                 if(isset($bookmaker["rating"])):
                                     for($i=0; $i<intval($bookmaker["rating"]);$i++):
@@ -51,45 +45,77 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                 endif;
                             ?>
                         </div>
+                        <img width="130rem" height="40rem" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                     </div>
-                    <div class="text-center mt-3" >
-                        <b style="background:lightgray;font-size:2.7rem;" class="px-4 py-2 rounded text-body" ><?php echo $bookmaker["bonus_slogan"] ?></b>
+                    <div class="col-md-12 col-lg-6" >
+                        <div class="row text-center">                        
+                            <div class="col-md-12 d-md-block d-lg-none my-3">
+                                <small style="font-size:2rem;" class="align-middle" >acepts player from </small>
+                                <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
+                            </div>
+                            <div class="col-md-12 col-lg-6 my-3">
+                                <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
+                                <span class="text-uppercase text-success align-middle" style="font-size:1.7rem;"> Calificación</span>                            
+                            </div>
+                            <!-- rating -->
+                            <div class="col-md-12 col-lg-6 d-none d-lg-block my-3" >
+                                <span class="text-uppercase text-body " style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>
+                                <?php 
+                                    if(isset($bookmaker["rating"])):
+                                        for($i=0; $i<intval($bookmaker["rating"]);$i++):
+                                            echo '<i class="fa fa-star text-warning px-1 py-1 align-text-bottom" ></i>';
+                                        endfor;
+                                    endif;
+                                ?>
+                            </div>
+    
+                            <div class="col-12 my-3 special-single-bk-button" >
+                                <b style="background:lightgray;font-size:1.7rem;" class="py-2 px-2 rounded text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
+                            </div>
+                            <div class="col-12 my-3 special-single-bk-button">                                
+                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary py-3 px-5 font-weight-light" style="font-size:1.7rem;" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link" aria-hidden="true"></i></a>                                    
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 py-2 font-weight-light" style="font-size:2rem;" target="_blank"><?php echo _e("Visitar") ?></a>
+                    <div class="col-md-12 col-lg-3">
+                        <div class="row">
+
+                            <div class="col-12 text-right d-none d-sm-block my-3">
+                                <small style="font-size:1.6rem;" class="align-middle">acepts player from </small>
+                                <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
+                            </div>
+                            <div class="col-12 d-none d-sm-block my-2">
+                                <?php
+                                    if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
+                                        foreach($bookmaker["feactures"] as $feacture):
+                                            echo '<p style="color:#00203A;" >- '.$feacture['feacture'].' </p>';
+                                        endforeach;
+                                    endif;
+                                ?>
+                            </div>
+                            <div class="col-12 my-3">
+                                <?php 
+                                    if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
+                                        foreach ($bookmaker["payment_methods"] as $key => $payment) {
+                                            echo '<img width="'.$payment->img_icon[1].'" height="'.$payment->img_icon[2].'" src="'.$payment->img_icon[0].'" />';
+                                        }
+                                    }
+                                ?>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 px-2 d-flex flex-column justify-content-around">
-                    <div class="text-right">
-                        <small>acepts player from </small>
-                        <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
-                    </div>
-                    <div>
-                        <?php
-                            if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
-                                foreach($bookmaker["feactures"] as $feacture):
-                                    echo '<p style="color:#00203A;" >- '.$feacture['feacture'].' </p>';
-                                endforeach;
-                            endif;
-                        ?>
-                    </div>
-                    <div>
-                        <?php 
-                            if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
-                                foreach ($bookmaker["payment_methods"] as $key => $payment) {
-                                    echo '<img width="'.$payment->img_icon[1].'" height="'.$payment->img_icon[2].'" src="'.$payment->img_icon[0].'" />';
-                                }
-                            }
-                        ?>
-                    </div>
-                </div>
+
+                </div>               
             </div>
             <!-- Content -->
             
         </div>
 
         <div class="col-lg-3">
-                <div class="col-lg-12 col-md-6">
+            <div class="row">
+                <div class="col-lg-12 col-md-6">                    
+
                     <div class="side_box mt_30">
                         <div class="box_header">Información</div>
                         <div class="box_body shadow py-5 mb-5 bg-white rounded">
@@ -114,7 +140,9 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                             ?>
                         </div>
                     </div>
+
                 </div>
+            </div>
         </div>
     </div>
 </div>
