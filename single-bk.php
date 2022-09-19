@@ -68,7 +68,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         <?php
                             if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                 foreach($bookmaker["feactures"] as $feacture):
-                                    echo '<p style="color:black;" >- '.$feacture['feacture'].' </p>';
+                                    echo '<p style="color:#00203A;" >- '.$feacture['feacture'].' </p>';
                                 endforeach;
                             endif;
                         ?>
