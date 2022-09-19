@@ -3049,7 +3049,8 @@ footer .menu li a::before{
 /*single-review--page--style--start*/
 .special-single-bk-button > a, .special-single-bk-button > b{
 	display:block !important;
-	padding:5px 5px;
+	padding-top:5px;
+	padding-bottom:5px;
 }
 .review__area {
   padding-top: 70px;
