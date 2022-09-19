@@ -59,7 +59,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 py-2 font-weight-light" style="font-size:2rem;" target="_blank"><?php echo _e("Visitar") ?></a>
                     </div>
                 </div>
-                <div class="col-md-3 px-2 d-flex flex-column justify-content-around">
+                <div style="min-height:150px;" class="col-md-3 px-2 d-flex flex-column justify-content-around">
                     <div class="text-right">
                         <small>acepts player from </small>
                         <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
