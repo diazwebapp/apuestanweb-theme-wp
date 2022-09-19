@@ -68,7 +68,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         <?php
                             if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                 foreach($bookmaker["feactures"] as $feacture):
-                                    echo "<p>- {$feacture['feacture']} </p>";
+                                    echo '<p style="color:black;" >- '.$feacture['feacture'].' </p>';
                                 endforeach;
                             endif;
                         ?>
@@ -96,7 +96,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                             <?php
                                 if(isset($bookmaker["general_feactures"]) and count($bookmaker["general_feactures"]) > 0):
                                     foreach($bookmaker["general_feactures"] as $feacture):
-                                        echo '<p class="d-flex justify-content-between my-2">'.$feacture['feacture'].' <span style="color:black;" >'.$feacture['points'].' <i class="fa fa-star text-warning"></i></span></p>';
+                                        echo '<p class="d-flex justify-content-between my-2" style="color:black;">'.$feacture['feacture'].' <span style="color:black;" >'.$feacture['points'].' <i class="fa fa-star text-warning"></i></span></p>';
                                     endforeach;
                                 endif;
                             ?>
