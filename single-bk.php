@@ -34,7 +34,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                 <div class="col-md-3 d-flex flex-column justify-content-center" style="background:black;height:25rem; border-radius:1rem 0 0 1rem;">
                     <img width="130rem" height="33rem" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                 </div>
-                <div class="col-md-6 px-2 d-flex flex-column justify-content-around" >
+                <div  style="min-height:150px;" class="col-md-6 px-2 d-flex flex-column justify-content-around" >
                     <div class="d-flex justify-content-around">
                         <div>
                             <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
@@ -59,7 +59,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 py-2 font-weight-light" style="font-size:2rem;" target="_blank"><?php echo _e("Visitar") ?></a>
                     </div>
                 </div>
-                <div style="min-height:150px;" class="col-md-3 px-2 d-flex flex-column justify-content-around">
+                <div class="col-md-3 px-2 d-flex flex-column justify-content-around">
                     <div class="text-right">
                         <small>acepts player from </small>
                         <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
