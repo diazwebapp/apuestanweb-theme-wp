@@ -56,7 +56,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         <b style="background:lightgray;font-size:2.7rem;" class="px-4 py-2 rounded text-body" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                     </div>
                     <div class="text-center">
-                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 py-2 font-weight-light" style="font-size:2rem;" target="_blank"><?php echo _e("Haz tu apuesta") ?></a>
+                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 py-2 font-weight-light" style="font-size:2rem;" target="_blank"><?php echo _e("Visitar") ?></a>
                     </div>
                 </div>
                 <div class="col-md-3 px-2 d-flex flex-column justify-content-around">
