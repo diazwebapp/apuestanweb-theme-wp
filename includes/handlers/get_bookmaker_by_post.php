@@ -31,11 +31,11 @@ function get_bookmaker_payments($bookmaker_id){
         foreach($methods as $key_item => $item){
             $default = [];
             $default[0] = get_template_directory_uri( ) . "/assets/img/logo2.svg";
-            $default[1] = 40;
-            $default[2] = 40;
+            $default[1] = 30;
+            $default[2] = 30;
             $logo = carbon_get_term_meta($item["payment_method"][0]["id"],'img_icon');
             
-            $logo = isset($logo[0]) ? wp_get_attachment_image_src( $logo[0], [40,40] ): $default; 
+            $logo = isset($logo[0]) ? wp_get_attachment_image_src( $logo[0], [30,30] ): $default; 
             $bookmaker_payment_methods[$key_item] = [
                 "id" => $item["payment_method"][0]["id"],
                 "img_icon" => $logo,
