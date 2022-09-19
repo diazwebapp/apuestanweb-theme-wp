@@ -73,7 +73,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                 <b style="background:lightgray;font-size:1.7rem;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                             </div>
                             <div class="col-12 my-3 special-single-bk-button">                                
-                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase badge badge-primary px-5 font-weight-light" style="font-size:1.7rem;border-radius:.5rem;" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
+                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase badge badge-primary px-5" style="font-size:1.7rem;border-radius:.5rem;" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
                             </div>
                         </div>
                     </div>
