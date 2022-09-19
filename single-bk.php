@@ -69,8 +69,8 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                 ?>
                             </div>
     
-                            <div class="col-12 my-3 special-single-bk-button" >
-                                <b style="background:lightgray;font-size:1.7rem;" class="px-2 rounded text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
+                            <div class="col-12 my-4 special-single-bk-button" >
+                                <b style="background:lightgray;font-size:1.7rem;" class="px-2 d-block rounded text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                             </div>
                             <div class="col-12 my-3 special-single-bk-button">                                
                                 <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary px-5 font-weight-light" style="font-size:1.7rem;" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
@@ -84,7 +84,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                 <small style="font-size:1.6rem;" class="align-middle">acepts player from </small>
                                 <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                             </div>
-                            <div class="col-12 d-none d-sm-block my-2">
+                            <div class="col-12 d-none d-sm-block my-3">
                                 <?php
                                     if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                         foreach($bookmaker["feactures"] as $feacture):
@@ -93,11 +93,11 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                     endif;
                                 ?>
                             </div>
-                            <div class="col-12 my-3">
+                            <div class="col-12 my-3 text-center">
                                 <?php 
                                     if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
                                         foreach ($bookmaker["payment_methods"] as $key => $payment) {
-                                            echo '<img width="'.$payment->img_icon[1].'" height="'.$payment->img_icon[2].'" src="'.$payment->img_icon[0].'" />';
+                                            echo '<img width="'.$payment->img_icon[1].'" class="mx-2" height="'.$payment->img_icon[2].'" src="'.$payment->img_icon[0].'" />';
                                         }
                                     }
                                 ?>
