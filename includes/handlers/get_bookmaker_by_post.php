@@ -29,10 +29,16 @@ function get_bookmaker_payments($bookmaker_id){
     $bookmaker_payment_methods = [];
     if(!empty($methods) and count($methods) > 0){
         foreach($methods as $key_item => $item){
-            $logo = carbon_get_term_meta($item["payment_method"][0]["id"],'fa_icon_class');
+            $default = [];
+            $default[0] = get_template_directory_uri( ) . "/assets/img/logo2.svg";
+            $default[1] = 40;
+            $default[2] = 40;
+            $logo = carbon_get_term_meta($item["payment_method"][0]["id"],'img_icon');
+            
+            $logo = isset($logo[0]) ? wp_get_attachment_image_src( $logo[0], [40,40] ): $default; 
             $bookmaker_payment_methods[$key_item] = [
                 "id" => $item["payment_method"][0]["id"],
-                "logo_icon_class" => $logo,
+                "img_icon" => $logo,
                 "payment_method_chars" => []
             ];
 
@@ -49,3 +55,34 @@ function get_bookmaker_payments($bookmaker_id){
     }
     return $bookmaker_payment_methods;
 }
+/* function get_bookmaker_payments($bookmaker_id){
+    $methods = carbon_get_post_meta(get_the_ID(), 'payment_methods');
+    $bookmaker_payment_methods = [];
+    if(!empty($methods) and count($methods) > 0){
+        foreach($methods as $key_item => $item){
+            $default = [];
+            $default[0] = get_template_directory_uri( ) . "/assets/img/logo2.svg";
+            $default[1] = 40;
+            $default[2] = 40;
+            $logo = carbon_get_term_meta($item["payment_method"][0]["id"],'img_icon');
+            
+            $logo = isset($logo[0]) ? wp_get_attachment_image_src( $logo[0], [40,40] ): $default; 
+            $bookmaker_payment_methods[$key_item] = [
+                "id" => $item["payment_method"][0]["id"],
+                "img_icon" => $logo,
+                "payment_method_chars" => []
+            ];
+
+            if(!empty($item["caracteristicas"]) and count($item["caracteristicas"]) > 0){
+                foreach($item["caracteristicas"] as $char){
+                    $bookmaker_payment_methods[$key_item]["payment_method_chars"][] = [
+                        "titulo" => $char["title"],
+                        "contenido" => $char["content"]
+                    ];
+                }
+            }
+            $bookmaker_payment_methods[$key_item] = json_decode(json_encode($bookmaker_payment_methods[$key_item]));
+        }
+    }
+    return $bookmaker_payment_methods;
+} */

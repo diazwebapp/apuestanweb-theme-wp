@@ -77,7 +77,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         <?php 
                             if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
                                 foreach ($bookmaker["payment_methods"] as $key => $payment) {
-                                    echo '<i class="'.$payment->logo_icon_class.'" ></i>';
+                                    echo '<img width="'.$payment->img_icon[1].'" height="'.$payment->img_icon[2].'" src="'.$payment->img_icon[0].'" />';
                                 }
                             }
                         ?>

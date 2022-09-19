@@ -19,6 +19,21 @@ function shortcode_bookmaker($atts)
     $args['orderby'] = 'meta_value_num';
     $args['meta_key'] = '_rating';
     
+    
+    $terms = [];
+    foreach($payment as $term){
+        $terms[] = $term->slug;
+    }
+    
+    if(count($terms) > 0){
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'bookmaker-payment-methods',
+                'field'    => 'slug',
+                'terms'    => $terms,
+            ]
+        ];
+    }
     $query = new WP_Query($args);
     if ($query) {
         $new_bks = [];
@@ -35,8 +50,8 @@ function shortcode_bookmaker($atts)
         $path = $_SERVER["REQUEST_URI"];
 
         $total_pages = ceil(count($new_bks) / $num);
-        $current_page = 1;
-        var_dump($_GET);
+        $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        
         if(isset($_GET["page"])){
             $current_page = intval($_GET["page"]) > $total_pages ? $total_pages :intval($_GET["page"]);
         }
@@ -93,14 +108,22 @@ function shortcode_bookmaker($atts)
             </div>";
         endif;
         if(count($new_bks) > 0 and $paginate=="yes"){
-            
+            $links = '';
+            for($i=1;$i<=$total_pages;$i++){
+                $path2 = str_replace("page/$current_page/","",$path);
+                if($current_page !=$i)
+                    $links .= '
+                    <a class="page-numbers" href="'.$path2.'page/'.$i.'">'.$i.'</a>';               
+                
+                if($current_page == $i)
+                    $links .= '
+                    <span aria-current="page" class="page-numbers current">'.$i.'</span>';
+            }
             $ret .= '
             <div class="col-lg-12">
                 <div class="blog_pagination">
                     <ul class="pagination_list">
-                        <span aria-current="page" class="page-numbers current">1</span>
-                        <a class="page-numbers" href="'.$path.'page/'.($current_page+1).'">2</a>
-                        <a class="next page-numbers" href="'.$path.'page/'.($current_page+1).'">&gt;</a>
+                        '.$links.'
                     </ul>
                 </div>
             </div>
