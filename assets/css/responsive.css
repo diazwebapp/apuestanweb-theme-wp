@@ -290,6 +290,9 @@
 		padding-top:10px;
 		padding-bottom:10px;
 	}
+	.container_logo_review{
+		border-radius:1rem 0 0 1rem;
+	}
 	.event_select{
 		display: none;
 	}

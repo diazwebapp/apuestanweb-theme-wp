@@ -33,7 +33,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
             <div class="container my-4"> 
                 <div class="row">
                     <!-- Heading -->
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center" style="background:black; min-height:139px;border-radius:1rem 0 0 1rem;">
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background:black; min-height:139px;">
                         <!-- rating movil-->
                         <div class="d-md-none text-center" style="position: absolute;z-index: 2; width: 100%;top:10px;left:0;" >
                             <span class="text-uppercase text-light" style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>

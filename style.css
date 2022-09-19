@@ -3051,6 +3051,9 @@ footer .menu li a::before{
 	padding-top:5px;
 	padding-bottom:5px;
 }
+.container_logo_review{
+	border-radius:1rem ;
+}
 .review__area {
   padding-top: 70px;
   padding-bottom: 240px;
