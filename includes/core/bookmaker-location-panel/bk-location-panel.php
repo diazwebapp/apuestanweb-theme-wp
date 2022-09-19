@@ -166,10 +166,10 @@ else:
   die;
 endif;
 if(!function_exists('aw_detect_bookmaker_on_page')):
-  function aw_detect_bookmaker_on_page($bookmaker_id){
+  function aw_detect_bookmaker_on_page($country_id,$bookmaker_id){
     global $wpdb;
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
-    $query = "SELECT id FROM $table2 where on_page=1 and bookmaker_id='$bookmaker_id' ";
+    $query = "SELECT id FROM $table2 where on_page=1 and bookmaker_id='$bookmaker_id' and country_id='$country_id' ";
     $list = $wpdb->get_var($query);
     return $list;
   }
@@ -179,10 +179,10 @@ else:
 endif;
 
 if(!function_exists('aw_detect_bookmaker_on_single')):
-  function aw_detect_bookmaker_on_single($bookmaker_id){
+  function aw_detect_bookmaker_on_single($country_id,$bookmaker_id){
     global $wpdb;
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
-    $query = "SELECT id FROM $table2 where on_single=1 and bookmaker_id='$bookmaker_id' ";
+    $query = "SELECT id FROM $table2 where on_single=1 and bookmaker_id='$bookmaker_id' and country_id='$country_id' ";
     $list = $wpdb->get_var($query);
     return $list;
   }

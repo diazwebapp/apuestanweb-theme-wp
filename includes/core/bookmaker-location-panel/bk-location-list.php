@@ -244,11 +244,11 @@ if(!function_exists('aw_bookmaker_location')):
             $html["edit_view"] = str_replace("{bookmaker-list-add}",$inputs_bk,$html["edit_view"]);
 
             $list_bk = '';
-
+            
             if(count($related_bookmakers) > 0):
                 foreach($related_bookmakers as $bookmaker):
-                    $on_page = aw_detect_bookmaker_on_page($bookmaker->ID);
-                    $on_single = aw_detect_bookmaker_on_single($bookmaker->ID);
+                    $on_page = aw_detect_bookmaker_on_page($_GET['country'],$bookmaker->ID);
+                    $on_single = aw_detect_bookmaker_on_single($_GET['country'],$bookmaker->ID);
                     $list_bk .= '<div>
                             <label class="mr-3">'.$bookmaker->post_title.'</label>
                             <a class="mr-3 text-danger" href="'.$path.'&delete-bookmaker='.$bookmaker->ID.'"><i class="dashicons dashicons-trash"></i></a>
