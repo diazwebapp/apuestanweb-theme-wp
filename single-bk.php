@@ -55,7 +55,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                             </div>
                             <div class="col-md-12 col-lg-6 my-3">
                                 <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
-                                <span class="text-uppercase text-success align-middle" style="font-size:1.7rem;"> Calificación</span>                            
+                                <span class="text-uppercase text-success align-middle ml-3" style="font-size:1.7rem;"> Calificación</span>                            
                             </div>
                             <!-- rating -->
                             <div class="col-md-12 col-lg-6 d-none d-lg-block my-3" >
@@ -70,10 +70,10 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                             </div>
     
                             <div class="col-12 my-3 special-single-bk-button" >
-                                <b style="background:lightgray;font-size:1.7rem;" class="py-2 px-2 rounded text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
+                                <b style="background:lightgray;font-size:1.7rem;" class="py-4 px-2 rounded text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                             </div>
                             <div class="col-12 my-3 special-single-bk-button">                                
-                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary py-3 px-5 font-weight-light" style="font-size:1.7rem;" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link" aria-hidden="true"></i></a>                                    
+                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="badge badge-primary py-4 px-5 font-weight-light" style="font-size:1.7rem;" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
                             </div>
                         </div>
                     </div>

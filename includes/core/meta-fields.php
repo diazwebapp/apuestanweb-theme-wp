@@ -284,7 +284,6 @@ function crb_attach_theme_options()
                         
                 )); */
             
-            
     endif;
 }
 
