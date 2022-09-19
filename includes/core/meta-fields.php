@@ -260,7 +260,7 @@ function crb_attach_theme_options()
         Container::make('term_meta', __("bookmaker payment methods", "jbetting"))
             ->where('term_taxonomy', '=', 'bookmaker-payment-methods')
             ->add_fields(array(
-                Field::make( 'media_gallery', 'img_icon', __( 'icono 40x40' ) )
+                Field::make( 'media_gallery', 'img_icon', __( 'icono 30x30' ) )
                     ->set_type( array( 'image' ) )
             ))
             ->add_fields(array(
