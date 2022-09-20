@@ -47,11 +47,11 @@
                         $league['class'] = '';
                         foreach($sport_term as $term):
                             if($term->parent == 0){
-                                $page = get_page_by_title($term->name);
-                                if($page):
-                                    $sport['title'] = get_the_title($page->ID);
-                                    $sport['class'] = carbon_get_post_meta($page->ID,'fa_icon_class');
-                                    $sport['slug'] = get_the_permalink( $page->ID );
+                                $the_page = get_page_by_title($term->name);
+                                if($the_page):
+                                    $sport['title'] = get_the_title($the_page->ID);
+                                    $sport['class'] = carbon_get_post_meta($the_page->ID,'fa_icon_class');
+                                    $sport['slug'] = get_the_permalink( $the_page->ID );
                                 endif;
                             }
                             if($term->parent != 0){
