@@ -80,7 +80,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-7">
+                            <div class="col-md-12 col-lg-5">
                                 <div class="row">
         
                                     <div class="col-12 text-right d-none d-sm-block my-3">
