@@ -124,7 +124,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
 
                     <div class="side_box mt-5">
                         <div class="box_header">Información</div>
-                        <div class="py-5 px-5 mb-5 bg-white" style="box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;border-radius:0 0 18px 18px; min-height:180px;">
+                        <div class="py-5 px-5 mb-5 bg-white" style="box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;border-radius:0 0 18px 18px; min-height:190px;">
                             <?php
                                 if(isset($bookmaker["general_feactures"]) and count($bookmaker["general_feactures"]) > 0):
                                     foreach($bookmaker["general_feactures"] as $feacture):
