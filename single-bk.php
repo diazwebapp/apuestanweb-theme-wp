@@ -36,11 +36,11 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                     <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background:black; min-height:139px;">
                         <!-- rating movil-->
                         <div class="d-md-none text-center" style="position: absolute;z-index: 2; width: 100%;top:10px;left:0;" >
-                            <span class="text-uppercase text-light" style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>
+                            <span class="text-uppercase font-weight-500 mr-3" style="font-size:20px;color:#F9F9F9;" ><?php echo $bookmaker["rating"]?></span>
                             <?php 
                                 if(isset($bookmaker["rating"])):
                                     for($i=0; $i<intval($bookmaker["rating"]);$i++):
-                                        echo '<i class="fa fa-star text-warning px-1 py-1" ></i>';
+                                        echo '<i style="font-size:15px;" class="fa fa-star text-warning px-1 py-1 align-text-bottom" ></i>';
                                     endfor;
                                 endif;
                             ?>
