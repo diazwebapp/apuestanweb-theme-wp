@@ -63,10 +63,7 @@
                                 endif;
                             }
                         endforeach;
-                        $homepage = get_page_by_title('home');
-                        $home['title'] = get_the_title($homepage->ID);
-                        $home['class'] = carbon_get_post_meta($homepage->ID,'fa_icon_class');
-                        $home['slug'] = get_the_permalink( $homepage->ID );
+                        
 
 						?>
 
@@ -76,9 +73,9 @@
                         <div class="single_event_breadcrumb">
                             <ul>
                                 <li>
-                                    <a href="<?php echo bloginfo( 'url' ) ?>">
-                                        <i style="margin:0 5px;" class="<?php echo $home['class'] ?>" ></i>
-                                        <?php echo $home['title'] ?>
+                                    <a href="<?php echo get_home_url() ?>">
+                                        <i style="margin:0 5px;" ></i>
+                                        inicio
                                     </a>
                                 </li>
                                 <?php if($sport['title']):
