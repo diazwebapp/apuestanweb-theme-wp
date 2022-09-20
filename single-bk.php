@@ -87,7 +87,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                         <small style="font-size:1.6rem;" class="align-middle">acepts player from </small>
                                         <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                     </div>
-                                    <div class="col-12 d-none d-sm-block my-3">
+                                    <div class="col-12 d-none d-sm-block my-2">
                                         <?php
                                             if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                                 foreach($bookmaker["feactures"] as $feacture):
