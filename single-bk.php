@@ -50,7 +50,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                     <div class="col-md-12 col-lg-9" style="box-shadow: 0px 0px 9px #00000009, 0px 0px 9px #00000009;border-radius:0 8px 8px 0;">
                         <div class="row">
 
-                            <div class="col-md-12 col-lg-8" >
+                            <div class="col-md-12 col-lg-7" >
                                 <div class="row text-center">                        
                                     <div class="col-md-12 d-md-block d-lg-none my-3">
                                         <small style="font-size:2rem;" class="align-middle" >acepts player from </small>
@@ -80,7 +80,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-lg-4">
+                            <div class="col-md-12 col-lg-7">
                                 <div class="row">
         
                                     <div class="col-12 text-right d-none d-sm-block my-3">
