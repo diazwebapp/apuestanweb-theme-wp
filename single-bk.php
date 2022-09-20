@@ -75,7 +75,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                     <div class="col-12 my-4 special-single-bk-button" >
                                         <b style="background:lightgray;font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                                     </div>
-                                    <div class="col-12 my-5 special-single-bk-button">                                
+                                    <div class="col-12 my-4 special-single-bk-button">                                
                                         <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase badge badge-primary px-5" style="font-size:15px;border-radius:.5rem;font-weight: 500" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
                                     </div>
                                 </div>
@@ -83,11 +83,11 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                             <div class="col-md-12 col-lg-5">
                                 <div class="row">
         
-                                    <div class="col-12 text-right d-none d-sm-block my-3">
+                                    <div class="col-12 text-right d-none d-sm-block my-5">
                                         <small style="font-size:1.6rem;" class="align-middle">acepts player from </small>
                                         <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                     </div>
-                                    <div class="col-12 d-none d-sm-block my-3">
+                                    <div class="col-12 d-none d-sm-block my-4">
                                         <?php
                                             if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                                 foreach($bookmaker["feactures"] as $feacture):
