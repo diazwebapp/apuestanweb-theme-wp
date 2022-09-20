@@ -33,7 +33,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
             <div class="container my-4"> 
                 <div class="row">
                     <!-- Heading -->
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background:black; min-height:260px;">
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background:black; min-height:230px;">
                         <!-- rating movil-->
                         <div class="d-md-none text-center" style="position: absolute;z-index: 2; width: 100%;top:10px;left:0;" >
                             <span class="text-uppercase font-weight-500 mr-3" style="font-size:20px;color:#F9F9F9;" ><?php echo $bookmaker["rating"]?></span>
@@ -124,7 +124,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
 
                     <div class="side_box mt-5">
                         <div class="box_header">Información</div>
-                        <div class="py-5 px-5 mb-5 bg-white" style="box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;border-radius:0 0 18px 18px; min-height:320px;">
+                        <div class="py-5 px-5 mb-5 bg-white" style="box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;border-radius:0 0 18px 18px; min-height:280px;">
                             <?php
                                 if(isset($bookmaker["general_feactures"]) and count($bookmaker["general_feactures"]) > 0):
                                     foreach($bookmaker["general_feactures"] as $feacture):
