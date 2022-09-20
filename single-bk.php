@@ -33,7 +33,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
             <div class="container my-4"> 
                 <div class="row">
                     <!-- Heading -->
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background:black; min-height:230px;">
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background:black; min-height:210px;">
                         <!-- rating movil-->
                         <div class="d-md-none text-center" style="position: absolute;z-index: 2; width: 100%;top:10px;left:0;" >
                             <span class="text-uppercase font-weight-500 mr-3" style="font-size:20px;color:#F9F9F9;" ><?php echo $bookmaker["rating"]?></span>
@@ -52,16 +52,16 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
 
                             <div class="col-md-12 col-lg-7" >
                                 <div class="row text-center">                        
-                                    <div class="col-md-12 d-md-block d-lg-none my-3">
+                                    <div class="col-md-12 d-md-block d-lg-none my-5">
                                         <small style="font-size:2rem;" class="align-middle" >acepts player from </small>
                                         <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                     </div>
-                                    <div class="col-md-12 col-lg-6 my-3">
+                                    <div class="col-md-12 col-lg-6 my-5">
                                         <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
                                         <span class="text-uppercase text-success align-middle ml-3" style="font-size:1.7rem;"> Calificación</span>                            
                                     </div>
                                     <!-- rating -->
-                                    <div class="col-md-12 col-lg-6 d-none d-lg-block my-3" >
+                                    <div class="col-md-12 col-lg-6 d-none d-lg-block my-5" >
                                         <span class="text-uppercase text-body " style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>
                                         <?php 
                                             if(isset($bookmaker["rating"])):
@@ -75,7 +75,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                     <div class="col-12 my-4 special-single-bk-button" >
                                         <b style="background:lightgray;font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                                     </div>
-                                    <div class="col-12 my-3 special-single-bk-button">                                
+                                    <div class="col-12 my-5 special-single-bk-button">                                
                                         <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase badge badge-primary px-5" style="font-size:15px;border-radius:.5rem;font-weight: 500" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
                                     </div>
                                 </div>
