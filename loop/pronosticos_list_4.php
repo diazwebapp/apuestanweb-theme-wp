@@ -43,9 +43,8 @@ $vipcomponent ="<div class='plogo'>
                     <a href='{$params['vip_link']}'><p>{$params['text_vip_link']}</p></a>
                 <div class='rate'>?</div>";
 if(!$vip):
-    $oOddsConverter = new Converter(1.2, 'eu');
+    $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
-    var_dump($odds_result,$prediction['cuote']);
     $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
     $vipcomponent ="<div class='plogo'>
                         <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
