@@ -11,7 +11,7 @@ $rating_ceil = ceil(carbon_get_post_meta($args["post"]->ID, 'rating'));
 $ref = carbon_get_post_meta($args["post"]->ID, 'ref');
 $permalink = get_the_permalink();
 $num_comments = get_comments_number();
-$bonus = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan');
+$bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan');
 $title = get_the_title($args["post"]->ID);   
 $stars = draw_rating($rating_ceil);  
 
