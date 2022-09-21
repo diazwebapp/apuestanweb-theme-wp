@@ -40,7 +40,7 @@ function shortcode_slide($atts)
                     <div class='owl-stage' >";
                         while ($query->have_posts()):
                             $query->the_post();
-                            $ret .= load_template_part("loop/slide_$model");
+                            $ret .= get_template_part("loop/slide_$model");
                         endwhile;
         $ret .="        </div>
                 </div>
@@ -68,7 +68,7 @@ function shortcode_slide($atts)
                                             <div class="slider__active owl-carousel">';
                                             while ($query->have_posts()):
                                                 $query->the_post();
-                                                $ret .= load_template_part("loop/slide_$model");
+                                                $ret .= get_template_part("loop/slide_$model");
                                             endwhile;
                                                 
             $ret .='                        </div>
