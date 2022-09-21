@@ -101,14 +101,14 @@ function shortcode_forecast_vip($atts)
                 $ret .="<div class='' id='games_list' >";
                         while ($query->have_posts()):
                             $query->the_post();
-                            $ret .= load_template_part("loop/pronosticos_vip_list_{$model}_unlock"); 
+                            $ret .= get_teplate_part("loop/pronosticos_vip_list_{$model}_unlock"); 
                         endwhile;
                 $ret .="</div>";
                     else:
                         $ret .="<div class='' id='games_list' >";
                                 while ($query->have_posts()):
                                     $query->the_post();
-                                    $ret .= load_template_part("loop/pronosticos_vip_list_{$model}"); 
+                                    $ret .= get_teplate_part("loop/pronosticos_vip_list_{$model}"); 
                                 endwhile;
                         $ret .="</div>";
                 endif;

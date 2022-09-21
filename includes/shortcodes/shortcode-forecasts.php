@@ -109,7 +109,7 @@ function shortcode_forecast($atts)
         $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >";
                 while ($query->have_posts()):
                     $query->the_post();
-                    $ret .= load_template_part("loop/pronosticos_list_{$model}"); 
+                    $ret .= get_teplate_part("loop/pronosticos_list_{$model}"); 
                 endwhile; 
         $ret .="</div>";
 

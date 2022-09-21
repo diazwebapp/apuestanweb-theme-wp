@@ -93,7 +93,7 @@ function shortcode_parley($atts)
         $ret .= "<div id='games_list'>";
         while ($query->have_posts()):
             $query->the_post();
-            $ret .= load_template_part("loop/parley_list_{$model}"); 
+            $ret .= get_teplate_part("loop/parley_list_{$model}"); 
         endwhile;
         $ret .= "</div>";
         

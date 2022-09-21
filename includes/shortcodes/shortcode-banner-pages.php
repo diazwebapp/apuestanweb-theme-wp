@@ -69,9 +69,9 @@ function shortcode_banner($atts)
     ]);
 
     if($model):
-        $ret = load_template_part("/loop/banner_{$model}");
+        $ret = get_teplate_part("/loop/banner_{$model}");
     else:
-        $ret = load_template_part("/loop/banner_1");
+        $ret = get_teplate_part("/loop/banner_1");
     endif;
     return $ret;
 }
