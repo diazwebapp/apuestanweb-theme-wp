@@ -11,26 +11,26 @@ class Converter {
     }
 
     public function doConverting() {
-        if($this->iOddsFromUser > 0):
-            switch ($this->sUserOddsType) {
-                case "uk":
-                    $iDecimal = $this->convertDecimalFromFraction($this->iOddsFromUser);
-                    break;
-                case "eu":
-                    $iDecimal = floatval($this->iOddsFromUser);
-                    break;
-                case "usa":
-                    $iDecimal = $this->convertDecimalFromUs($this->iOddsFromUser);
-                    break;
-            }
-            $aResult = array();
-            if (is_numeric($iDecimal) && $iDecimal > 0) {
-                $aResult[0] = "ok";
-                $aResult[1] = $this->convertFractionalFromDecimal($iDecimal);
-                $aResult[2] = round(($iDecimal * 100 ) / 100, 3);
-                $aResult[3] = $this->convertUsFromDecimal($iDecimal);
-            }
-        endif;
+        
+        switch ($this->sUserOddsType) {
+            case "uk":
+                $iDecimal = $this->convertDecimalFromFraction($this->iOddsFromUser);
+                break;
+            case "eu":
+                $iDecimal = floatval($this->iOddsFromUser);
+                break;
+            case "usa":
+                $iDecimal = $this->convertDecimalFromUs($this->iOddsFromUser);
+                break;
+        }
+        $aResult = array();
+        if (is_numeric($iDecimal) && $iDecimal > 0) {
+            $aResult[0] = "ok";
+            $aResult[1] = $this->convertFractionalFromDecimal($iDecimal);
+            $aResult[2] = round(($iDecimal * 100 ) / 100, 3);
+            $aResult[3] = $this->convertUsFromDecimal($iDecimal);
+        }
+        
         return $aResult;
     }
 
