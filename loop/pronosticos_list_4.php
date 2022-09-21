@@ -43,7 +43,7 @@ $vipcomponent ="<div class='plogo'>
                     <a href='{$params['vip_link']}'><p>{$params['text_vip_link']}</p></a>
                 <div class='rate'>?</div>";
 if(!$vip):
-    $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+    $oOddsConverter = new Converter(1.2, 'eu');
     $odds_result = $oOddsConverter->doConverting();
     var_dump($odds_result,$prediction['cuote']);
     $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
