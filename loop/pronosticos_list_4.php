@@ -45,6 +45,7 @@ $vipcomponent ="<div class='plogo'>
 if(!$vip):
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
+    var_dump($odds_result,$prediction['cuote']);
     $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
     $vipcomponent ="<div class='plogo'>
                         <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
