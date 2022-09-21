@@ -69,15 +69,24 @@ function shortcode_bookmaker($atts)
                         <div class='col-12 text-center pb_30'>
                             <h5 class='sub_title'> $slogan </h5>
                             <h2 class='title_lg mt_5'> $title </h2>
-                        </div>";
-                        foreach ($new_bks as $key_bk => $bookmaker):        
-                            $ret .= get_template_part('loop/bookmaker_list',null,[
-                                'post'	=> $bookmaker,
-                            ]);                            
-                        endforeach;
-            $ret .=  "</div>
+                        </div>
+                        {replace}
+            </div>
                 </div>
             </div>";
+            $html = '';
+            foreach ($new_bks as $key_bk => $bookmaker):
+                if($current_page == 1 and  $key_bk  <= ($num - 1))
+                    $html .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                        'post'	=> $bookmaker,
+                    ]);
+                if($current_page > 1 and  $key_bk  <= ($num - 1))
+                    $html .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                        'post'	=> $bookmaker,
+                    ]);
+                
+            endforeach;
+            $ret = str_replace("{replace}",$html,$ret);
         endif;
 
         if($model == 2):
