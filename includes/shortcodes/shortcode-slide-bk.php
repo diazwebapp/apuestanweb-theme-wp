@@ -32,7 +32,7 @@ function shortcode_slide_bk($atts)
                             <div class='owl-stage' style='transform: translate3d(-517px, 0px, 0px); transition: all 1s ease 0s; width: 1410px; padding-left: 15px; padding-right: 15px;'>";
                         while ($query_bk->have_posts()):
                             $query_bk->the_post();
-                            $ret .= get_teplate_part("loop/slide_bk_$model");                            
+                            $ret .= load_template_part("loop/slide_bk_$model");                            
                         endwhile;
             $ret .=  "          </div>
                         </div>

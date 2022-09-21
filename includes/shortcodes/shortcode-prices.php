@@ -35,7 +35,7 @@ function shortcode_prices($atts)
             "register_url" => is_user_logged_in() ? $checkout_url : $register_url ,
         ] );
         if(!$model || $model == 1):
-            $str .= get_teplate_part("loop/prices_{$model}"); 
+            $str .= load_template_part("loop/prices_{$model}"); 
         endif;
 		
 		return $str;

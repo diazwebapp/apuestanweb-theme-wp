@@ -61,7 +61,7 @@ function shortcode_news($atts)
         $ret .= $heading;
                     while ($query->have_posts()):
                         $query->the_post();
-                        $ret .= get_teplate_part("/loop/posts-grid_{$model}");
+                        $ret .= load_template_part("/loop/posts-grid_{$model}");
                     endwhile;
         $ret .= "</div>";
     

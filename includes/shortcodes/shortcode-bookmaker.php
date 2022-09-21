@@ -77,11 +77,11 @@ function shortcode_bookmaker($atts)
             $html = '';
             foreach ($new_bks as $key_bk => $bookmaker):
                 if($current_page == 1 and  $key_bk  <= ($num - 1))
-                    $html .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                    $html .= load_template_part("loop/bookmaker_list_{$model}",null,[
                         'post'	=> $bookmaker,
                     ]);
                 if($current_page > 1 and  $key_bk  <= ($num - 1))
-                    $html .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                    $html .= load_template_part("loop/bookmaker_list_{$model}",null,[
                         'post'	=> $bookmaker,
                     ]);
                 
@@ -93,11 +93,11 @@ function shortcode_bookmaker($atts)
             
             foreach ($new_bks as $key_bk => $bookmaker):
                 if($current_page == 1 and  $key_bk  <= ($num - 1))
-                    $ret .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                    $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
                         'post'	=> $bookmaker,
                     ]);
                 if($current_page > 1 and  $key_bk  <= ($num - 1))
-                    $ret .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                    $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
                         'post'	=> $bookmaker,
                     ]);
                 
@@ -109,7 +109,7 @@ function shortcode_bookmaker($atts)
             <div class='row'>";
             
             foreach ($new_bks as $key_bk => $bookmaker):
-                $ret .= get_template_part("loop/bookmaker_list_{$model}",null,[
+                $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
                     'post'	=> $bookmaker,
                 ]);
             endforeach;

@@ -101,18 +101,17 @@ function shortcode_forecast($atts)
 
     $query = new WP_Query($args);
     
-    if ($query->have_posts()) {
+    if ($query->posts) {
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)
                 $home_class = 'row';        
             
-        $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >";
-                while ($query->have_posts()):
-                    $query->the_post();
-                    $ret .= get_teplate_part("loop/pronosticos_list_{$model}"); 
-                endwhile; 
-        $ret .="</div>";
-
+        $ret ="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
+        $loop_html = '';
+        foreach($query->posts as $forecast):
+            $loop_html .= load_template_part("loop/pronosticos_list_{$model}",null,["forecast"=>$forecast]); 
+        endforeach;
+        $ret = str_replace("{replace_loop}",$loop_html,$ret);
         ?>
             <script>
                 var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
@@ -134,7 +133,7 @@ function shortcode_forecast($atts)
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
                 <br/>
-                <button class='loadmore forecasts btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
+                <button class='loadmore forecasts btn headerbtn'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>
                 <br/>
             </div>";
         endif;

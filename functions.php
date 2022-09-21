@@ -102,6 +102,15 @@ function get_key()
      return true;
 }
 
+function load_template_part($template_name, $part_name = null, $args=false)
+{
+    ob_start();
+    get_template_part($template_name, $part_name, $args);
+    $var = ob_get_contents();
+    ob_end_clean();
+
+    return $var;
+}
 add_action('wp_enqueue_scripts', 'jbetting_src');
 function jbetting_src()
 {

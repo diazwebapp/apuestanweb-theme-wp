@@ -36,20 +36,20 @@ function load_forecast() {
 				while ($query->have_posts()):
 					$query->the_post();
 					if($_POST['cpt'] == 'parley'):
-						get_template_part("loop/parley_list_{$model}");
+						load_template_part("loop/parley_list_{$model}");
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						get_template_part("loop/pronosticos_vip_list_{$model}_unlock"); 
+						load_template_part("loop/pronosticos_vip_list_{$model}_unlock"); 
 					endif;
 				endwhile;
 			else:
 				while ($query->have_posts()):
 					$query->the_post();
 					if($_POST['cpt'] == 'parley'):
-						get_template_part("loop/parley_list_{$model}");
+						load_template_part("loop/parley_list_{$model}");
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						get_template_part("loop/pronosticos_vip_list_{$model}"); 
+						load_template_part("loop/pronosticos_vip_list_{$model}"); 
 					endif; 
 				endwhile;
 			endif;
@@ -57,10 +57,10 @@ function load_forecast() {
 		if($vip != 'yes'):
 			while ( $query->have_posts() ): $query->the_post();
 				if($_POST['cpt'] == 'parley'):
-					get_template_part("loop/parley_list_{$model}");
+					load_template_part("loop/parley_list_{$model}");
 				endif;
 				if($_POST['cpt'] == 'forecast'):
-					get_template_part("loop/pronosticos_list_{$model}"); 
+					load_template_part("loop/pronosticos_list_{$model}"); 
 				endif;
 			endwhile;
 		endif;

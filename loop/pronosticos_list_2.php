@@ -1,15 +1,15 @@
 <?php
 $geolocation = json_decode(GEOLOCATION);
 $params = get_query_var('params');
-$image_att = carbon_get_post_meta(get_the_ID(), 'img');
+$image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);
-$prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
-$status = carbon_get_post_meta(get_the_ID(), 'status');
-$vip = carbon_get_post_meta(get_the_ID(), 'vip');
-$permalink = get_the_permalink(get_the_ID());
-$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
-$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-$time = carbon_get_post_meta(get_the_ID(), 'data');
+$prediction = carbon_get_post_meta($args["forecast"]->ID, 'prediction');
+$status = carbon_get_post_meta($args["forecast"]->ID, 'status');
+$vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
+$permalink = get_the_permalink($args["forecast"]->ID);
+$sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
+$teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
+$time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 
 $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
@@ -41,7 +41,7 @@ if($vip !='yes')
                     </a>";
 //Liga y deporte
 //taxonomy league
-$tax_leagues = wp_get_post_terms(get_the_ID(),'league');                            
+$tax_leagues = wp_get_post_terms($args["forecast"]->ID,'league');                            
 $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';
 
 //forecast sport

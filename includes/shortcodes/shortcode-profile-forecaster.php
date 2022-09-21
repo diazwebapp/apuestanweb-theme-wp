@@ -7,7 +7,7 @@ function shortcode_profile_forecaster($atts)
 
     $ret = "";
     
-    $ret = get_template_part("loop/profile-forecaster-{$model}"); 
+    $ret = load_template_part("loop/profile-forecaster-{$model}"); 
 
     return $ret;
 }
