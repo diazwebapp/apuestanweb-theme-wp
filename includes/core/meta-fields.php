@@ -253,7 +253,7 @@ function crb_attach_theme_options()
         Container::make('term_meta', __("League", "jbetting"))
             ->where('term_taxonomy', '=', 'league')
             ->add_fields(array(
-                Field::make('image', 'wbg', __("Sidebar background(if using 283*73)", "jbetting")),
+                Field::make('image', 'wbg', __("Sidebar background", "jbetting")),
                 Field::make('text', 'h1', __("Custom H1", "jbetting")),
                 Field::make('text', 'fa_icon_class', __("FA icon class", "jbetting"))
             ));
@@ -263,27 +263,7 @@ function crb_attach_theme_options()
                 Field::make( 'media_gallery', 'img_icon', __( 'icono 30x30' ) )
                     ->set_type( array( 'image' ) )
             ));
-           /*  ->add_fields(array(
-                    Field::make( 'complex', 'bookmakers' )
-                        ->set_layout("tabbed-horizontal")
-                        ->add_fields( 'bookmakers', array(
-                            Field::make('association', 'bookmaker', __("Select the bookmaker to which the bonus belongs", "jbetting"))
-                            ->set_types(array(
-                                array(
-                                    'type' => 'post',
-                                    'post_type' => 'bk',
-                                )
-                            ))->set_min(1)->set_max(1),
-                            Field::make('complex', 'caracteristicas', __("caracteristicas", "jbetting"))
-                            ->set_layout("tabbed-horizontal")
-                            ->add_fields(array(
-                                Field::make('text', 'title', __("Title", "jbetting")),
-                                Field::make('text', 'content', __("value", "jbetting")),
-                            ))
-                        ) )
-                        
-                )); */
-            
+                       
     endif;
 }
 

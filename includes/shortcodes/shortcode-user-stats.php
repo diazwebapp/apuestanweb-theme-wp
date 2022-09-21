@@ -2,8 +2,9 @@
 function shortcode_user_stats($atts)
 {
     extract(shortcode_atts(array(
-        'id' => 1,
+        'id' =>  !empty(get_post_field( 'post_author', get_the_ID() )) ? get_post_field( 'post_author', get_the_ID() ) : 0,
     ), $atts));
+    
     if($id):
         $acerted = get_the_author_meta("forecast_acerted", $id );
         $failed = get_the_author_meta("forecast_failed", $id );

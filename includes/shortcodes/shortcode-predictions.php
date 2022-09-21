@@ -48,24 +48,21 @@ function shortcode_predictions($atts)
                 $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
 
                 $ret .= "<br/><div class='single_event_match_title_box'>
-                            <div class='match_title_left_box'>
-                                <div class='match_title_img_box'>
-                                    <img width='90' loading='lazy' src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
-                                </div>
-                                <div class='match_title_left_content'>
-                                    <p style='text-transform:uppercase;' ><span class='match_title_left_text'>pronóstico: </span> {$prediction['title']}</p>
-                                    <div class='ratings'>
-                                        <span>{$prediction['tvalue']}</span>
-                                        <i class='fas fa-star'></i>
-                                    </div>
-                                    
-                                </div>
+                            <div class='row mx-1 px-4 py-4' style='background:white;border-radius:4.3rem;'>
+                                <img width='80' height='20' loading='lazy' src='{$bookmaker['logo']}'  style='object-fit-contain;' alt='{$bookmaker['name']}'>
+                                <p class='text-uppercase ml-3' style='font-size:1.4rem;'>
+                                    pronóstico: {$prediction['title']}
+                                </p>
+                                <span class='ml-3 pt-1 text-body'>
+                                    {$prediction['tvalue']}
+                                    <i class='fas fa-star align-text-top text-warning'></i>
+                                </span>
+                                
                             </div>
-                            <div class='match_title_right_box'>
-                                <div class='match_title_right_point'>
-                                    <p>{$prediction['cuote']}</p>
-                                </div>
-                            </div>    
+                            
+                            <div class='match_title_right_point'>
+                                <p class='text-light' style='font-size:1.4rem;' >{$prediction['cuote']}</p>
+                            </div>  
                         </div><br/>";
             endforeach;
         endif;

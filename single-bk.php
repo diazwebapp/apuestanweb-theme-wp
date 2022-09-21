@@ -24,7 +24,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
         $bookmaker['logo'] = wp_get_attachment_url($logo);
     endif;
 ?>
-
+<main>
 <div class="container">
     <div class="row">
         <div class="col-lg-9">
@@ -152,5 +152,5 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
         </div>
     </div>
 </div>
-
+</main>
 <?php get_footer(); ?>

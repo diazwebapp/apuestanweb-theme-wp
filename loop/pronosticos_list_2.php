@@ -40,22 +40,33 @@ if($vip !='yes')
                         <p>Haz una apuesta</p>
                     </a>";
 //Liga y deporte
-$sport['class'] = '' ;
-$sport['name'] = '';
-$league['class'] = '' ;
-$league['name'] = '';
-if ($sport_term) {
-    foreach ( $sport_term as $item ) {
-        if($item->parent == 0){
-            $sport['class'] = carbon_get_term_meta($item->term_id, 'fa_icon_class');
-            $sport['name'] = $item->name;
-        }
-        if($item->parent != 0){
-            $league['class'] = carbon_get_term_meta($item->term_id, 'fa_icon_class');
-            $league['name'] = $item->name;
-        }
-    }
-}
+//taxonomy league
+$tax_leagues = wp_get_post_terms(get_the_ID(),'league');                            
+$icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';
+
+//forecast sport
+$sport = false;
+if(isset($tax_leagues) and count($tax_leagues) > 0):
+    foreach($tax_leagues as $tax_league):
+        if($tax_league->parent == 0):
+            $sport = $tax_league; //define forecast sport
+            $icon_class = carbon_get_term_meta($sport->term_id,'fa_icon_class');
+            $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+        endif;
+    endforeach;
+endif;
+
+//forecast League
+$league = false;
+
+if(isset($sport)):
+    $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
+    if(isset($leagues) and count($leagues) > 0):
+        $league = $leagues[0]; //define forecast sport
+        $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
+        $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+    endif;
+endif;
 
 $time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
@@ -71,11 +82,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             <div class='game_box'>
                 <div class='game_top'>
                     <div class='d-flex align-items-center league_box1'>
-                        <i class='{$league['class']}' ></i>  
-                        {$league['name']}
+                        ".(isset($league->icon_html) ? $league->icon_html:'')." 
+                        ".(isset($league->name) ? $league->name:'')."
                     </div>
                     <div class='d-flex align-items-center'>
-                      <i class='{$sport['class']}' ></i>  
+                        ".(isset($sport->icon_html) ? $sport->icon_html : '')." 
                     </div>
                 </div>
                 <a href='$permalink'  >

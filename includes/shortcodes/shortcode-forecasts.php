@@ -9,16 +9,25 @@ function shortcode_forecast($atts)
         'text_vip_link' => 'VIP',
         'filter' => false,
         'time_format' => false,
-        'paginate' => false
+        'paginate' => false,
+        'title' => false
     ), $atts));
     $ret = "";
-   
+    if(is_page() && !$title)
+        $title = get_the_title( );
+    if(is_post_type_archive() && !$title)
+        $title = post_type_archive_title( '', false );
+    if(is_category() or is_tax())
+        $title = single_term_title('',false );
+    if(is_tag())
+        $title = single_tag_title('',false );
+
     $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-    $title = empty($custom_h1) ? get_the_title( get_the_ID() ) : $custom_h1;
+    $title = empty($custom_h1) ? $title : $custom_h1;
 
     if($filter):
         $ret .= "<div class='title_wrap'>
-                    <h1 class='title mt_30 order-lg-1'>$title</h1>
+                    <h1 class='title mt_30 order-lg-1'>".(isset($title) ? $title : '')."</h1>
                     <div class='mt_30 dropd order-lg-3'>
                         <div class='blog_select_box'>
                             <select name='ord' id='element_select_forecasts'>
