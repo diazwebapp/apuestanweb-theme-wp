@@ -13,7 +13,6 @@ $permalink = get_the_permalink();
 $num_comments = get_comments_number();
 $bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
 $bonus_amount = carbon_get_post_meta($args["post"]->ID, 'bonus_amount') ? carbon_get_post_meta($args["post"]->ID, 'bonus_amount') : 'n/a';
-$bonus_amount_table = carbon_get_post_meta($args["post"]->ID, 'bonus_amount_table') ? carbon_get_post_meta($args["post"]->ID, 'bonus_amount_table') : 'n/a';
 $title = get_the_title($args["post"]->ID);             
 $stars = draw_rating($rating_ceil); 
 
