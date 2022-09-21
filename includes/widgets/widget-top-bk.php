@@ -34,7 +34,7 @@ class w_bookmakers extends WP_Widget{
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="top_serial">
                                 <span class="serial">'.$key.'</span>
-                                <img src="'.$image_png.'" width="70" height="20" class="img-fluid" alt="">
+                                <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="">
                             </div>
                             <div class="ratings">
                                 <span>'.$rating_ceil.'</span>
