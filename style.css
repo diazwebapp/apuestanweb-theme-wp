@@ -3038,6 +3038,7 @@ footer .menu li a::before{
 
 .container_logo_review{
 	border-radius:1rem 0 0 1rem;
+	background:black;
 }
 .review__area {
   padding-top: 70px;

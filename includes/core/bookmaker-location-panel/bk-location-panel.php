@@ -133,7 +133,7 @@ if(!function_exists('aw_select_relate_bookakers')):
     if(isset($params["unique"])){
       $bookmaker["name"] = "no bookmaker";
       $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
-      $bookmaker["wallpaper"] = '';
+      $bookmaker["background_color"] = '#000';
       $bookmaker["ref_link"] = "#";
       $bookmaker["bonus_slogan"] = "";
       $bookmaker["bonus_amount"] = 0;
@@ -145,14 +145,11 @@ if(!function_exists('aw_select_relate_bookakers')):
         $bookmaker["bonus_amount"] = carbon_get_post_meta($list->ID, 'bonus_amount');
         $bookmaker["ref_link"] = carbon_get_post_meta($list->ID, 'ref');
         $bookmaker["bonus_slogan"] = carbon_get_post_meta($list->ID, 'bonus_slogan');
+        $bookmaker["background_color"] = carbon_get_post_meta($list->ID, 'background-color');
         if (carbon_get_post_meta($list->ID, 'mini_img')):
           $logo = carbon_get_post_meta($list->ID, 'mini_img');
           $bookmaker['logo'] = wp_get_attachment_url($logo);
-        endif;
-        if (carbon_get_post_meta($list->ID, 'wbg')):
-            $wallpaper = carbon_get_post_meta($list->ID, 'wbg');
-            $bookmaker["wallpaper"] = '';
-        endif;
+        endif;        
       endif;
         $list = $bookmaker;
     }

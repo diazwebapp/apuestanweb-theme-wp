@@ -13,6 +13,7 @@ include "includes/shortcodes/shortcode-slide.php";
 include "includes/shortcodes/shortcode-slide-bk.php";
 include "includes/shortcodes/shortcode-bookmaker.php";
 include "includes/shortcodes/shortcode-banner-pages.php";
+include "includes/shortcodes/shortcode-banner-bookmaker.php";
 include "includes/shortcodes/shortcode-leagues-menu.php";
 include "includes/shortcodes/shortcode-predictions.php";
 include "includes/shortcodes/shortcode-user-stats.php";
