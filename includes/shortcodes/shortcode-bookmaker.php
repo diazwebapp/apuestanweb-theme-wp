@@ -39,9 +39,14 @@ function shortcode_bookmaker($atts)
         $new_bks = [];
         $location = json_decode(GEOLOCATION);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
-        var_dump($aw_system_country->id,$bookmaker->ID);
         foreach ($query->posts as $bookmaker): 
-            $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
+            $exists = null;
+            if(isset($aw_system_country->id)):
+                $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
+            endif;
+            if(!isset($aw_system_country->id)):
+                $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
+            endif;
             if(isset($exists)):
                 $new_bks[] = $bookmaker;
             endif;
