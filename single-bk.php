@@ -19,8 +19,8 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
 
     $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
 
-    if (carbon_get_post_meta(get_the_ID(), 'mini_img')):
-        $logo = carbon_get_post_meta(get_the_ID(), 'mini_img');
+    if (carbon_get_post_meta(get_the_ID(), 'logo')):
+        $logo = carbon_get_post_meta(get_the_ID(), 'logo');
         $bookmaker['logo'] = wp_get_attachment_url($logo);
     endif;
 ?>
@@ -46,7 +46,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                 endif;
                             ?>
                         </div>
-                        <img width="130rem" height="40rem" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
+                        <img width="130" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                     </div>
                     <div class="col-md-12 col-lg-9" style="box-shadow: 0px 0px 9px #00000009, 0px 0px 9px #00000009;border-radius:0 8px 8px 0;">
                         <div class="row">
@@ -101,7 +101,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                         <?php 
                                             if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
                                                 foreach ($bookmaker["payment_methods"] as $key => $payment) {
-                                                    echo '<img width="'.$payment->img_icon[1].'" class="mx-2" height="'.$payment->img_icon[2].'" src="'.$payment->img_icon[0].'" />';
+                                                    echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
                                                 }
                                             }
                                         ?>

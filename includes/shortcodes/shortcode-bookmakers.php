@@ -66,35 +66,8 @@ function shortcode_bookmaker($atts)
             $cut = $cut * $current_page;
         }
         array_splice($new_bks,0, ($current_page == 1) ? $current_page -1 : $cut );
-        
-        if($model == 1): 
-            $ret .=  "<div class='testimonial_area'>
-                <div class='container'>
-                    <div class='row small_gutter'>
-                        <div class='col-12 text-center pb_30'>
-                            <h5 class='sub_title'> $slogan </h5>
-                            <h2 class='title_lg mt_5'> $title </h2>
-                        </div>
-                        {replace}
-            </div>
-                </div>
-            </div>";
-            $html = '';
-            foreach ($new_bks as $key_bk => $bookmaker):
-                if($current_page == 1 and  $key_bk  <= ($num - 1))
-                    $html .= load_template_part("loop/bookmaker_list_{$model}",null,[
-                        'post'	=> $bookmaker,
-                    ]);
-                if($current_page > 1 and  $key_bk  <= ($num - 1))
-                    $html .= load_template_part("loop/bookmaker_list_{$model}",null,[
-                        'post'	=> $bookmaker,
-                    ]);
-                
-            endforeach;
-            $ret = str_replace("{replace}",$html,$ret);
-        endif;
 
-        if($model == 2):
+        if($model == 1):
             
             foreach ($new_bks as $key_bk => $bookmaker):
                 if($current_page == 1 and  $key_bk  <= ($num - 1))
@@ -109,18 +82,6 @@ function shortcode_bookmaker($atts)
             endforeach;
         endif;
         
-        if($model == 3):
-            $ret =  "<div style='margin:15px auto;' class='bonus_wrap'>
-            <div class='row'>";
-            
-            foreach ($new_bks as $key_bk => $bookmaker):
-                $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
-                    'post'	=> $bookmaker,
-                ]);
-            endforeach;
-            $ret .=  "</div>
-            </div>";
-        endif;
         if(count($new_bks) > 0 and $paginate=="yes"){
             $links = '';
             for($i=1;$i<=$total_pages;$i++){
@@ -165,4 +126,4 @@ function shortcode_bookmaker($atts)
 }
 
 
-add_shortcode('bookmaker', 'shortcode_bookmaker');
+add_shortcode('bookmakers', 'shortcode_bookmaker');

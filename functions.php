@@ -11,7 +11,7 @@ include "includes/shortcodes/shortcode-forecasts-vip.php";
 include "includes/shortcodes/shortcode-related-posts.php";
 include "includes/shortcodes/shortcode-slide.php";
 include "includes/shortcodes/shortcode-slide-bk.php";
-include "includes/shortcodes/shortcode-bookmaker.php";
+include "includes/shortcodes/shortcode-bookmakers.php";
 include "includes/shortcodes/shortcode-banner-pages.php";
 include "includes/shortcodes/shortcode-banner-bookmaker.php";
 include "includes/shortcodes/shortcode-leagues-menu.php";

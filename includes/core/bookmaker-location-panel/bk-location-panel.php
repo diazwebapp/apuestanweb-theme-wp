@@ -123,8 +123,8 @@ else:
 endif;
 
 
-if(!function_exists('aw_select_relate_bookakers')):
-  function aw_select_relate_bookakers($country_id, $params=["unique"=>false,"random"=>false,"on_page"=>false,"on_single"=>false, "limit"=>false]){
+if(!function_exists('aw_select_relate_bookmakers')):
+  function aw_select_relate_bookmakers($country_id, $params=["unique"=>false,"random"=>false,"on_page"=>false,"on_single"=>false, "limit"=>false]){
     global $wpdb;
     $table = $wpdb->prefix."posts";
     $table2 = MYSQL_TABLE_BK_COUNTRY_RELATIONS;
@@ -133,10 +133,12 @@ if(!function_exists('aw_select_relate_bookakers')):
     if(isset($params["unique"])){
       $bookmaker["name"] = "no bookmaker";
       $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
+      $bookmaker["logo_2x1"] = get_template_directory_uri() . '/assets/img/logo2.svg';
       $bookmaker["background_color"] = '#000';
       $bookmaker["ref_link"] = "#";
       $bookmaker["bonus_slogan"] = "";
       $bookmaker["bonus_amount"] = 0;
+      $bookmaker["feactures"] = [];
                 
       $list = $wpdb->get_row($query);
       //Si existe una casa de apuesta seteamos sus valores
@@ -146,9 +148,14 @@ if(!function_exists('aw_select_relate_bookakers')):
         $bookmaker["ref_link"] = carbon_get_post_meta($list->ID, 'ref');
         $bookmaker["bonus_slogan"] = carbon_get_post_meta($list->ID, 'bonus_slogan');
         $bookmaker["background_color"] = carbon_get_post_meta($list->ID, 'background-color');
-        if (carbon_get_post_meta($list->ID, 'mini_img')):
-          $logo = carbon_get_post_meta($list->ID, 'mini_img');
-          $bookmaker['logo'] = wp_get_attachment_url($logo);
+        $bookmaker["feactures"] = carbon_get_post_meta($list->ID, 'feactures');
+        if (carbon_get_post_meta($list->ID, 'logo')):
+          $logo = carbon_get_post_meta($list->ID, 'logo');
+          $bookmaker["logo"] = wp_get_attachment_url($logo);
+        endif; 
+        if (carbon_get_post_meta($list->ID, 'logo_2x1')):
+          $logo = carbon_get_post_meta($list->ID, 'logo_2x1');
+          $bookmaker["logo_2x1"] = wp_get_attachment_url($logo);
         endif;        
       endif;
         $list = $bookmaker;
@@ -159,7 +166,7 @@ if(!function_exists('aw_select_relate_bookakers')):
     return $list;
   }
 else:
-  echo "aw_select_relate_bookakers ya existe";
+  echo "aw_select_relate_bookmakers ya existe";
   die;
 endif;
 if(!function_exists('aw_detect_bookmaker_on_page')):

@@ -58,13 +58,14 @@ function shortcode_forecast($atts)
     
     if(is_array($league)):
         foreach ($league as $key => $value) {
-            $league_arr[]= $value->slug ;
+            $league_arr[] = $value->slug ;
         }
     endif;
-    if(!is_array($league)):
-        $league_arr = explode(',',$league);
+    if(!is_array($league) and is_string($league)):
+        $league_arr = $league;
     endif;
-    if($league !== 'all' or !$league):
+
+    if($league !== 'all'):
         $args['tax_query'] = [
             [
                 'taxonomy' => 'league',
@@ -106,7 +107,7 @@ function shortcode_forecast($atts)
             if($model and $model != 1)
                 $home_class = 'row';        
             
-        $ret ="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
+        $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
         $loop_html = '';
         foreach($query->posts as $forecast):
             $loop_html .= load_template_part("loop/pronosticos_list_{$model}",null,["forecast"=>$forecast]); 

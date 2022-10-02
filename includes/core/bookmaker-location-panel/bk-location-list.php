@@ -201,7 +201,7 @@ if(!function_exists('aw_bookmaker_location')):
         if(isset($_GET['country']) and isset($_GET['name'])):
              
             $relations = aw_select_table_relations_bk_lc(["country_id"=>$_GET['country']]);
-            $related_bookmakers = aw_select_relate_bookakers($_GET['country'],[]);
+            $related_bookmakers = aw_select_relate_bookmakers($_GET['country'],[]);
             $unrelated_bookmakers = aw_select_unrelate_bookakers($_GET['country']);
             $html["edit_view"] = '
             <div class="row">

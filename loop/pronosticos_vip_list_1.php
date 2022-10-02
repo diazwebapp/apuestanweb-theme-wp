@@ -1,16 +1,16 @@
 <?php
 $geolocation = json_decode(GEOLOCATION);
 $params = get_query_var('params');
-$image_att = carbon_get_post_meta(get_the_ID(), 'img');
+$image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);
-$status = carbon_get_post_meta(get_the_ID(), 'status');
-$vip = carbon_get_post_meta(get_the_ID(), 'vip');
-$permalink = get_the_permalink(get_the_ID());
-$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
-$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
+$status = carbon_get_post_meta($args["forecast"]->ID, 'status');
+$vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
+$permalink = get_the_permalink($args["forecast"]->ID);
+$sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
+$teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 
 //configurando zona horaria
-$time = carbon_get_post_meta(get_the_ID(), 'data');
+$time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 

@@ -2,7 +2,7 @@
 $location = json_decode(GEOLOCATION);
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-$bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>false]);
+$bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
@@ -44,7 +44,7 @@ echo "<div class='parley_wrapper'>
             if ($sport_term) {
                 foreach ( $sport_term as $item ) {
                     if($item->parent == 0){
-                        $sport_logo = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'mini_img'));
+                        $sport_logo = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'logo'));
                         if($sport_logo)
                             $sport['logo'] = $sport_logo;
                         $sport['name'] = $item->name;
@@ -123,7 +123,7 @@ echo "<div class='parley_wrapper'>
     }
     echo "<div class='parley_box2'>
                 <div class='parley_left_content2 d-md-block d-none'>
-                    <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
+                    <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                 </div>
                 <div class='parley_right_content2'>
 
@@ -141,7 +141,7 @@ echo "<div class='parley_wrapper'>
                        <p>Gana: $ <span id='jsresult_$parley_id' >". round($parley_cuotes * 10,2) ."</span></p>
                     </div>
                     <div class='parley_left_content2 parley_right_content2_mb d-md-none d-block'>
-                    <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
+                    <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                     </div>
                     <div class='parley_btn_2 parley_right_content2_mb'> 
                         <a href='{$bookmaker['ref_link']}' class='button'>Apostar ahora</a>

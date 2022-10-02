@@ -2439,7 +2439,6 @@ footer .menu li a::before{
 	margin-right: auto;
 }
 .bonus_box{
-	background-color: #00203A;
 	border-radius: 1rem;
 	position: relative;
 }
@@ -2483,6 +2482,7 @@ footer .menu li a::before{
    margin: 0 0.4rem;
 }
 .bonus_bottom{
+	background-color: #00203A;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

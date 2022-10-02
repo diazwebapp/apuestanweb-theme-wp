@@ -33,7 +33,7 @@ if ($sport_term) {
 $teams = get_forecast_teams(get_the_ID());
 //bk
 $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
-$bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+$bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
 
 $p1 = carbon_get_post_meta(get_the_ID(), 'p1');
 $x = carbon_get_post_meta(get_the_ID(), 'x');

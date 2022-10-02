@@ -14,18 +14,23 @@ $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
 $bookmaker = json_encode([]);
-
-//SI EL SHORTCODE ES USADO EN UNA PAGINA
-if(is_page()){
-    $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-    if($bookmaker["name"] == "no bookmaker"){
-        $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+//SI EL PAIS ESTÁ CONFIGURADO
+if(isset($aw_system_location)):
+    //SI EL SHORTCODE ES USADO EN UNA PAGINA
+    if(is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+        if($bookmaker["name"] == "no bookmaker"){
+            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+        }
     }
-}
-//SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-if(!is_page()){
-    $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-}
+    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
+    if(!is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    }
+endif;
+if(!isset($aw_system_location)):
+    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
+endif;
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
@@ -36,7 +41,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                 </a>";
 if($vip !='yes')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
-                        <img src='{$bookmaker['logo']}' alt='{$bookmaker['name']}'>
+                        <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
                         <p>Haz una apuesta</p>
                     </a>";
 //Liga y deporte

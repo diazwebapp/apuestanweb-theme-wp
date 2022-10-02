@@ -61,6 +61,7 @@ $(document).ready(function () {
                 
                 var element = $('#games_list');
                 if (data) {
+                    console.log(unlock,vip)
                     $(element).html(data)
                     } else {
                         $(element).html('')

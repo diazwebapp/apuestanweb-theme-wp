@@ -14,8 +14,8 @@ function get_bookmaker_by_post($id){
         $bookmaker["bonus_slogan"] = carbon_get_post_meta($bk, 'bonus_slogan');
         $bookmaker["background_color"] = carbon_get_post_meta($bk,'background-color');
 
-        if (carbon_get_post_meta($bk, 'mini_img')):
-            $logo = carbon_get_post_meta($bk, 'mini_img');
+        if (carbon_get_post_meta($bk, 'logo')):
+            $logo = carbon_get_post_meta($bk, 'logo');
             $bookmaker['logo'] = wp_get_attachment_url($logo);
         endif;
 
@@ -29,22 +29,23 @@ function get_bookmaker_payments($bookmaker_id){
     $bookmaker_payment_methods = [];
     if(!empty($methods) and count($methods) > 0){
         foreach($methods as $key_item => $item){
-            $default = [];
-            $default[0] = get_template_directory_uri( ) . "/assets/img/logo2.svg";
-            $default[1] = 30;
-            $default[2] = 30;
-            $logo = carbon_get_term_meta($item["payment_method"][0]["id"],'img_icon');
+            $term = get_term($item['payment_method'][0]["id"],$item['payment_method'][0]["subtype"]);
+            $default_logo = get_template_directory_uri( ) . "/assets/img/logo2.svg";
             
-            $logo = isset($logo[0]) ? wp_get_attachment_image_src( $logo[0], [30,30] ): $default; 
-            $bookmaker_payment_methods[$key_item] = [
-                "id" => $item["payment_method"][0]["id"],
-                "img_icon" => $logo,
-                "payment_method_chars" => []
-            ];
+            $logo = carbon_get_term_meta($term->term_id,'logo_1x1'); 
+            $logo = !empty(wp_get_attachment_url( $logo )) ? wp_get_attachment_url( $logo ) : $default_logo; 
+
+            $logo_2x1 = carbon_get_term_meta($term->term_id,'logo_2x1');
+            $logo_2x1 = !empty(wp_get_attachment_url( $logo_2x1 )) ? wp_get_attachment_url( $logo_2x1 ) : $default_logo;
+
+            $bookmaker_payment_methods[$key_item] = $term;
+            $bookmaker_payment_methods[$key_item]->logo_1x1 = $logo;
+            $bookmaker_payment_methods[$key_item]->logo_2x1 = $logo_2x1;
+            $bookmaker_payment_methods[$key_item]->payment_method_chars = [];
 
             if(!empty($item["caracteristicas"]) and count($item["caracteristicas"]) > 0){
                 foreach($item["caracteristicas"] as $char){
-                    $bookmaker_payment_methods[$key_item]["payment_method_chars"][] = [
+                    $bookmaker_payment_methods[$key_item]->payment_method_chars[] = [
                         "titulo" => $char["title"],
                         "contenido" => $char["content"]
                     ];
@@ -55,34 +56,3 @@ function get_bookmaker_payments($bookmaker_id){
     }
     return $bookmaker_payment_methods;
 }
-/* function get_bookmaker_payments($bookmaker_id){
-    $methods = carbon_get_post_meta(get_the_ID(), 'payment_methods');
-    $bookmaker_payment_methods = [];
-    if(!empty($methods) and count($methods) > 0){
-        foreach($methods as $key_item => $item){
-            $default = [];
-            $default[0] = get_template_directory_uri( ) . "/assets/img/logo2.svg";
-            $default[1] = 40;
-            $default[2] = 40;
-            $logo = carbon_get_term_meta($item["payment_method"][0]["id"],'img_icon');
-            
-            $logo = isset($logo[0]) ? wp_get_attachment_image_src( $logo[0], [40,40] ): $default; 
-            $bookmaker_payment_methods[$key_item] = [
-                "id" => $item["payment_method"][0]["id"],
-                "img_icon" => $logo,
-                "payment_method_chars" => []
-            ];
-
-            if(!empty($item["caracteristicas"]) and count($item["caracteristicas"]) > 0){
-                foreach($item["caracteristicas"] as $char){
-                    $bookmaker_payment_methods[$key_item]["payment_method_chars"][] = [
-                        "titulo" => $char["title"],
-                        "contenido" => $char["content"]
-                    ];
-                }
-            }
-            $bookmaker_payment_methods[$key_item] = json_decode(json_encode($bookmaker_payment_methods[$key_item]));
-        }
-    }
-    return $bookmaker_payment_methods;
-} */

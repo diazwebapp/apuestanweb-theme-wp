@@ -20,24 +20,30 @@ function shortcode_predictions($atts)
 
         $bookmaker = json_encode([]);
 
-        //SI EL SHORTCODE ES USADO EN SINGLE PAGE
-        if(is_single()){
-            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
-            if($bookmaker["name"] == "no bookmaker"){
-                $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-            }
+        //SI EL PAIS ESTÁ CONFIGURADO
+if(isset($aw_system_location)):
+    //SI EL SHORTCODE ES USADO EN UNA PAGINA
+    if(is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+        if($bookmaker["name"] == "no bookmaker"){
+            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
         }
-        //SI EL SHORTCODE ES USADO EN UNA PAGINA
-        if(is_page()){
-            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-            if($bookmaker["name"] == "no bookmaker"){
-                $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-            }
+    }
+    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
+    if(!is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    }
+    //SI EL SHORTCODE ES USADO EN single
+    if(is_single()):
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
+        if($bookmaker["name"] == "no bookmaker"){
+            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
         }
-        //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-        if(!is_page() and !is_single()){
-            $bookmaker = aw_select_relate_bookakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
+    endif;
+endif;
+if(!isset($aw_system_location)):
+    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
+endif;
         
         $predictions = carbon_get_post_meta($id_post, 'predictions');
         if($predictions and count($predictions)> 0):
@@ -49,7 +55,7 @@ function shortcode_predictions($atts)
 
                 $ret .= "<br/><div class='single_event_match_title_box'>
                             <div class='row mx-1 px-4 py-4' style='background:white;border-radius:4.3rem;'>
-                                <img width='80' height='20' loading='lazy' src='{$bookmaker['logo']}'  style='object-fit-contain;' alt='{$bookmaker['name']}'>
+                                <img width='80' height='20' loading='lazy' src='{$bookmaker['logo_2x1']}'  style='object-fit-contain;' alt='{$bookmaker['name']}'>
                                 <p class='text-uppercase ml-3' style='font-size:1.4rem;'>
                                     pronóstico: {$prediction['title']}
                                 </p>
