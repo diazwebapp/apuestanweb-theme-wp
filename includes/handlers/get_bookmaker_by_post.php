@@ -1,81 +1,58 @@
 <?php 
-function get_bookmaker_by_post($id,$size_logo=["w"=>30,"h"=>30],$size_wallpaper=["w"=>1080,"h"=>400]){
+function get_bookmaker_by_post($id){
     //Seteamos valores por defecto de la casa de apuesta
     $bookmaker["name"] = "no bookmaker";
     $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
-    $bookmaker["wallpaper"] = get_template_directory_uri() . '/assets/img/baner2.png';
+    $bookmaker["background_color"] = '';
     //Buscamos la casa de apuesta del pronostico
     $bk = isset(carbon_get_post_meta($id, 'bk')[0]) ? carbon_get_post_meta($id, 'bk')[0]['id'] : false ;
     if($bk):
         //Si existe una casa de apuesta seteamos sus valores
         $bookmaker['name'] = get_the_title( $bk );
-        $bookmaker["bonus_sum"] = carbon_get_post_meta($bk, 'bonus_sum');
+        $bookmaker["bonus_amount"] = carbon_get_post_meta($bk, 'bonus_amount');
         $bookmaker["ref_link"] = carbon_get_post_meta($bk, 'ref');
-        $bookmaker["bonus"] = carbon_get_post_meta($bk, 'bonus');
-        
-        if (carbon_get_post_meta($bk, 'mini_img')):
-            $logo = carbon_get_post_meta($bk, 'mini_img');
+        $bookmaker["bonus_slogan"] = carbon_get_post_meta($bk, 'bonus_slogan');
+        $bookmaker["background_color"] = carbon_get_post_meta($bk,'background-color');
+
+        if (carbon_get_post_meta($bk, 'logo')):
+            $logo = carbon_get_post_meta($bk, 'logo');
             $bookmaker['logo'] = wp_get_attachment_url($logo);
         endif;
-        if (carbon_get_post_meta($bk, 'wbg')):
-            $wallpaper = carbon_get_post_meta($bk, 'wbg');
-            $bookmaker['wallpaper'] = wp_get_attachment_url($wallpaper);
-        endif;
 
-        
-        //Obtenemos la geolocalizacion del cliente y los paises configurados de dicha casa de apuesta
-        $location = json_decode(GEOLOCATION);
-        $bk_countries = carbon_get_post_meta($bk,'countries');
-        //verificamos que tenemos geolocalizado al cliente y existen paises configurados en la casa de apuesta
-        if($location->success == true and $bk_countries and count($bk_countries) > 0):
-            //Rerorremos todos los paises consigurados de la casa de apuesta actual
-            foreach($bk_countries as $country):
-                //si existe coincidencia entre pais de la casa de apuesta actual y el pais del cliente 
-                if($country['country_code'] == $location->country_code):
-                    //Seteamos link de referido y bonus slogan
-                    $bookmaker["ref_link"] = $country['ref'];
-                    $bookmaker["bonus"] = $country['bonus'];
-                endif;
-                //Si no existe coincidencia buscamos casas de apuestas alternativas o variaciones
-                if($country['country_code'] != $location->country_code):
-                    $bk_alternatives = carbon_get_post_meta($bk, 'alt_bk') ;
-
-                    //Verificamos que tenemos las casas de apuestas altenativas
-                    if($bk_alternatives and count($bk_alternatives) > 0): 
-                        //Recorremos las casas de apuestas alternativas
-                        foreach($bk_alternatives as $alt_bk):
-                            //Comprobamos que el pais de la casa de apuesta alternativa coincida con el pais del cliente
-                            if($alt_bk['country_code'] == $location->country_code):
-                                //Seteamos sus nuevos valores
-                                $bookmaker['name'] = get_the_title($alt_bk['bk'][0]['id']);
-                                $bookmaker["bonus_sum"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus_sum');
-                                $bookmaker["ref_link"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'ref');
-                                $bookmaker["bonus"] = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'bonus');
-                                $logo = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'mini_img');
-                                $bookmaker['logo'] = wp_get_attachment_url($logo);
-                                $wallpaper = carbon_get_post_meta($alt_bk['bk'][0]['id'], 'wbg');
-                                $bookmaker['wallpaper'] = wp_get_attachment_url($wallpaper);
-                                //buscamos los paises configurados de la casa de apuesta alternativa 
-                                $alternative_bk_countries = carbon_get_post_meta($alt_bk['bk'][0]['id'],'countries');
-                                //Verificamos que existan paises configurados en esta casa de apuesta alternativa
-                                if($alternative_bk_countries and count($alternative_bk_countries) > 0):
-                                    //Al obtener lo paises las recorremos
-                                    foreach($alternative_bk_countries as $alternative_bk_country):
-                                        //Comprobamos que el pais configurado en la casa de apuesta alternativa coincida con el pais del cliente
-                                        if($alternative_bk_country['country_code'] ==  $location->country_code):
-                                            //Seteamos link de referido y bonus slogan
-                                            $bookmaker["ref_link"] =  $alternative_bk_country['ref'];
-                                            $bookmaker["bonus"] =  $alternative_bk_country['bonus'];
-                                        endif;
-                                    endforeach;
-                                endif;
-                            endif;
-                        endforeach;
-                    endif;        
-                endif;
-            endforeach;
-        endif;
     endif;
     
     return $bookmaker;
 } 
+
+function get_bookmaker_payments($bookmaker_id){
+    $methods = carbon_get_post_meta(get_the_ID(), 'payment_methods');
+    $bookmaker_payment_methods = [];
+    if(!empty($methods) and count($methods) > 0){
+        foreach($methods as $key_item => $item){
+            $term = get_term($item['payment_method'][0]["id"],$item['payment_method'][0]["subtype"]);
+            $default_logo = get_template_directory_uri( ) . "/assets/img/logo2.svg";
+            
+            $logo = carbon_get_term_meta($term->term_id,'logo_1x1'); 
+            $logo = !empty(wp_get_attachment_url( $logo )) ? wp_get_attachment_url( $logo ) : $default_logo; 
+
+            $logo_2x1 = carbon_get_term_meta($term->term_id,'logo_2x1');
+            $logo_2x1 = !empty(wp_get_attachment_url( $logo_2x1 )) ? wp_get_attachment_url( $logo_2x1 ) : $default_logo;
+
+            $bookmaker_payment_methods[$key_item] = $term;
+            $bookmaker_payment_methods[$key_item]->logo_1x1 = $logo;
+            $bookmaker_payment_methods[$key_item]->logo_2x1 = $logo_2x1;
+            $bookmaker_payment_methods[$key_item]->payment_method_chars = [];
+
+            if(!empty($item["caracteristicas"]) and count($item["caracteristicas"]) > 0){
+                foreach($item["caracteristicas"] as $char){
+                    $bookmaker_payment_methods[$key_item]->payment_method_chars[] = [
+                        "titulo" => $char["title"],
+                        "contenido" => $char["content"]
+                    ];
+                }
+            }
+            $bookmaker_payment_methods[$key_item] = json_decode(json_encode($bookmaker_payment_methods[$key_item]));
+        }
+    }
+    return $bookmaker_payment_methods;
+}

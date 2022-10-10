@@ -17,8 +17,32 @@ if(isset($_GET['profile'])):
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
     $total_forecast = $acerted + $failed;
     $porcentage = $acerted * 100 / $total_forecast;
-    $stats_vip = get_user_stats($id_author,true);
-    $stats_free = get_user_stats($id_author,false);
+    $stats_vip = get_user_stats($id_author,'=');
+    $stats_free = get_user_stats($id_author,'!=');
+    //estadisticas ultimos 2 meses
+    $num = 4;
+    $stats_months_vip_html = '';
+    $stats_months_free_html = '';
+    for($i=1;$i<$num;$i++){
+        $month_first_day = date("Y-m-1", strtotime("-$i month"));
+        $month_last_day = date("Y-m-t", strtotime("-$i month"));
+
+        $stats_months_vip = get_user_stats($id_author,'=',["start_date"=>$month_first_day,"last_date"=>$month_last_day]);
+        $stats_months_free = get_user_stats($id_author,'!=',["start_date"=>$month_first_day,"last_date"=>$month_last_day]);
+        $stats_months_vip_html .= '<div class="restad__tabl--mid">
+                            <p>'.date("M", strtotime("-$i month")).'</p>
+                            <p>'.$stats_months_vip["total"].'</p>
+                            <p>'.$stats_months_vip["tvalue"].'</p>
+                            <p>'.round($stats_months_vip["porcentaje"],2).'%</p>
+                        </div>';
+        $stats_months_free_html .= '<div class="restad__tabl--mid">
+                            <p>'.date("M", strtotime("-$i month")) .'</p>
+                            <p>'.$stats_months_free["total"].'</p>
+                            <p>'.$stats_months_free["tvalue"].'</p>
+                            <p>'.round($stats_months_free["porcentaje"],2).'%</p>
+                        </div>';
+    }
+    
     $profile = '<div class="sub-inn">
         <div class="sub-bx-lf">
             <div class="subscribe__img">
@@ -40,7 +64,7 @@ if(isset($_GET['profile'])):
             <p>Algun texto aquí o quitar este elemento</p>
         </div>
         <div class="subscribe__btn">
-            <a href="#">RANKING '.$stats_vip['tvalue'].'</a>
+            <a href="#">RANKING '.$total_forecast.'</a>
         </div>
 
     </div>
@@ -73,7 +97,7 @@ if(isset($_GET['profile'])):
                     </div>
                     <div class="estad__single">
                         <div class="estd__bt">
-                            <h5>'.$stats_vip['porcentaje'].'%</h5>
+                            <h5>'.round($stats_vip['porcentaje'],2).'%</h5>
                         </div>
                         <p>%</p>
                     </div>
@@ -91,18 +115,7 @@ if(isset($_GET['profile'])):
                         <p>BENEFICIO</p>
                         <p>% Acierto</p>
                     </div>
-                    <div class="restad__tabl--mid">
-                        <p>Marzo 2022</p>
-                        <p>15</p>
-                        <p>+25,96</p>
-                        <p>51,07%</p>
-                    </div>
-                    <div class="restad__tabl--mid">
-                        <p>Marzo 2022</p>
-                        <p>15</p>
-                        <p>+25,96</p>
-                        <p>51,07%</p>
-                    </div>
+                    {months_stats_vip}
                 </div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -121,7 +134,7 @@ if(isset($_GET['profile'])):
                     </div>
                     <div class="estad__single">
                         <div class="estd__bt">
-                            <h5>'.$stats_free['porcentaje'].'%</h5>
+                            <h5>'.round($stats_free['porcentaje'],2).'%</h5>
                         </div>
                         <p>%</p>
                     </div>
@@ -132,10 +145,20 @@ if(isset($_GET['profile'])):
                         <p>PRONÓSTICOS</p>
                     </div>
                 </div>
+                <div class="estad__tabl">
+                    <div class="estad__tabl---head">
+                        <p>FECHA</p>
+                        <p>PICKS</p>
+                        <p>BENEFICIO</p>
+                        <p>% Acierto</p>
+                    </div>
+                    {months_stats_free}
+                </div>
             </div>
         </div>
     </div>';
-
+    $stats = str_replace("{months_stats_vip}",$stats_months_vip_html,$stats);
+    $stats = str_replace("{months_stats_free}",$stats_months_free_html,$stats);
     $stats_full = '<div class="estad__box">
     <div class="free__tab">
         <nav>
@@ -173,6 +196,8 @@ if(isset($_GET['profile'])):
         </div>
     </div>
     </div>';
+
+    
     $html = '<div class="subscribe__box">
                 '.$profile.'
             </div>

@@ -54,15 +54,4 @@ else:
     die;
 endif;
 
-//frond handlers
-
-if(!function_exists('register_form_payment_methods')):
-    function register_form_payment_methods(WP_REST_Request $request){
-
-        $payment_methods = aw_select_payment_method();
-        return ["data"=>$payment_methods];
-    }
-else:
-    echo 'la funcion register_form_payment_methods ya existe';
-    die;
-endif;
+//front handlers

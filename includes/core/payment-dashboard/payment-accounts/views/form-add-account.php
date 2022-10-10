@@ -10,7 +10,7 @@ function html_form_new_payment_account($method_id=false){
         $inputs = aw_select_payment_method_received_inputs($array_payment_methods[0]->id);
     }
 
-    if($inputs[0] and !is_wp_error( $inputs )){
+    if(isset($inputs[0]) and !is_wp_error( $inputs )){
         foreach($inputs as $key => $input){
             $ids = str_replace(" ","-",$input->name);
             $html_inputs .= '<div class="form-group mb-2" >';
@@ -19,6 +19,7 @@ function html_form_new_payment_account($method_id=false){
             $html_inputs .= '</div>';
         }
     }
+    
     //input country_code
     $country_array = get_countries_json();
     
@@ -26,6 +27,20 @@ function html_form_new_payment_account($method_id=false){
     
     foreach($country_array as $key => $country){
         $option_datalist .= '<option value="'.$country->country_short_name.'">'.$country->country_name.'</option>';
+    }
+    /*
+        SOPORTE PAYPAL
+    */ 
+    if(strtolower($array_payment_methods[0]->payment_method) == 'paypal'){
+        $html_inputs .= '<div class="form-group mb-2" >';
+        $html_inputs .= '<label class="form-label" for="client-id">Client id</label>';
+        $html_inputs .= '<input id="client-id" type="text" name="client_id" class="form-control dynamic-input" required autocomplete="off"/>';
+        $html_inputs .= '</div>';
+
+        $html_inputs .= '<div class="form-group mb-2" >';
+        $html_inputs .= '<label class="form-label" for="secret-id">secret id</label>';
+        $html_inputs .= '<input id="secret-id" type="text" name="secret_id" class="form-control dynamic-input" required autocomplete="off"/>';
+        $html_inputs .= '</div>';
     }
     $html = '<form method="post" id="aw-form-add-account">
             <div class="row">

@@ -11,22 +11,22 @@ function load_posts() {
 	if ( $query->have_posts() ) :
 		if($_POST['model'] == 1 || $_POST['model'] == ''):
 			while ( $query->have_posts() ): $query->the_post();
-				get_template_part( "loop/posts-grid" );
+				load_template_part( "loop/posts-grid" );
 			endwhile;
 		endif;
 		if($_POST['model'] == 2):
 			while ( $query->have_posts() ): $query->the_post();
-				get_template_part( "loop/posts-grid_2" );
+				load_template_part( "loop/posts-grid_2" );
 			endwhile;
 		endif;
         if($_POST['model'] == 3):
 			while ( $query->have_posts() ): $query->the_post();
-				get_template_part( "loop/posts-grid_3" );
+				load_template_part( "loop/posts-grid_3" );
 			endwhile;
 		endif;
         if($_POST['model'] == 4):
 			while ( $query->have_posts() ): $query->the_post();
-				get_template_part( "loop/posts-grid_4" );
+				load_template_part( "loop/posts-grid_4" );
 			endwhile;
 		endif;
 	endif;

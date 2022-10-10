@@ -27,45 +27,43 @@ function load_forecast() {
         "text_vip_link" => $text_vip_link,
 		"time_format" => $time_format
 	] );
-	wp_reset_query();
+	wp_reset_postdata();
 	$query = new WP_Query( $args );
 	// print_r($query);
-	if ( $query->have_posts() ) :
+	if ( count($query->posts) > 0 ) :
+		$html = '';
 		if($vip == 'yes'):
 			if($unlock == 'yes'):
-				while ($query->have_posts()):
-					$query->the_post();
+				foreach ($query->posts as $key => $forecast):
 					if($_POST['cpt'] == 'parley'):
-						get_template_part("loop/parley_list_{$model}");
+						$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						get_template_part("loop/pronosticos_vip_list_{$model}_unlock"); 
+						$html .= load_template_part("loop/pronosticos_vip_list_{$model}_unlock",null,["forecast"=>$forecast]); 
 					endif;
-				endwhile;
+				endforeach;
 			else:
-				while ($query->have_posts()):
-					$query->the_post();
+				foreach ($query->posts as $key => $forecast):
 					if($_POST['cpt'] == 'parley'):
-						get_template_part("loop/parley_list_{$model}");
+						$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						get_template_part("loop/pronosticos_vip_list_{$model}"); 
+						$html .= load_template_part("loop/pronosticos_vip_list_{$model}",null,["forecast"=>$forecast]); 
 					endif; 
-				endwhile;
+				endforeach;
 			endif;
 		endif;
 		if($vip != 'yes'):
-			while ( $query->have_posts() ): $query->the_post();
+			foreach ( $query->posts as $key => $forecast ):
 				if($_POST['cpt'] == 'parley'):
-					get_template_part("loop/parley_list_{$model}");
+					$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
 				endif;
 				if($_POST['cpt'] == 'forecast'):
-					get_template_part("loop/pronosticos_list_{$model}"); 
+					$html .= load_template_part("loop/pronosticos_list_{$model}",null,["forecast"=>$forecast]); 
 				endif;
-			endwhile;
+			endforeach;
 		endif;
-
-	endif;
+		echo $html;
 	?>
 		<script>
 			var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
@@ -90,7 +88,7 @@ function load_forecast() {
 			}
 		</script>
 		
-	<?php  
+	<?php  endif;
 	die();
 }
 
