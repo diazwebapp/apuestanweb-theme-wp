@@ -1,0 +1,13 @@
+input[type="checkbox"]#visible{
+    display:none;
+}
+
+input[type="checkbox"]#visible + label::after{
+    content: "\f530";
+    color:black;
+}
+
+input[type="checkbox"]#visible:checked + label::after{
+    content: "\f177";
+    color: black;
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23.114" height="19.553" viewBox="0 0 23.114 19.553">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1.764" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffd826"/>
+      <stop offset="1" stop-color="#9b7d18"/>
+    </linearGradient>
+  </defs>
+  <path id="Corona" d="M17.006,19.553H6.191a1.357,1.357,0,0,1-1.185-.84L.243,5.39c-.679-1.91.115-2.5,1.749-1.323l4.487,3.21A1.212,1.212,0,0,0,8.4,6.69l2.025-5.4c.644-1.726,1.714-1.726,2.359,0l2.025,5.4a1.2,1.2,0,0,0,1.91.587l4.211-3c1.795-1.289,2.658-.633,1.921,1.45L18.2,18.737A1.405,1.405,0,0,1,17.006,19.553Z" fill="url(#linear-gradient)"/>
+</svg>
