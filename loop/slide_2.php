@@ -17,7 +17,9 @@ $cross_img = get_template_directory_uri(  ) . '/assets/img/cross.png';
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+if($geolocation->success !== false):
+    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+endif;
 
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 
@@ -32,8 +34,7 @@ if ($sport_term) {
 //Equipos
 $teams = get_forecast_teams(get_the_ID());
 //bk
-$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
-$bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+$bookmaker = get_bookmaker_by_post(get_the_ID());
 
 $p1 = carbon_get_post_meta(get_the_ID(), 'p1');
 $x = carbon_get_post_meta(get_the_ID(), 'x');
@@ -77,26 +78,26 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             <div class="slider__number--fx">
                 <div class="slider__nmbr--single">
                     <div class="slider-ct">
-                        <span>1</span>
+                        <span>'.$p1.'</span>
                     </div>
                     <div class="sl--bt">
-                        <a href="#">'.$p1.'</a>
+                        <a href="#">1.90</a>
                     </div>
                 </div>
                 <div class="slider__nmbr--single">
                     <div class="slider-ct">
-                        <span>x</span>
+                        <span>'.$x.'</span>
                     </div>
                     <div class="sl--bt">
-                        <a href="#">'.$x.'</a>
+                        <a href="#">1.90</a>
                     </div>
                 </div>
                 <div class="slider__nmbr--single">
                     <div class="slider-ct">
-                        <span>2</span>
+                        <span>'.$p2.'</span>
                     </div>
                     <div class="sl--bt">
-                        <a href="#">'.$p2.'</a>
+                        <a href="#">1.90</a>
                     </div>
                 </div>
             </div>

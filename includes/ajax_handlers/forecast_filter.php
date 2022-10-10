@@ -13,7 +13,7 @@ function filter_forecast() {
     $vip = $_POST['vip'];
     $unlock = $_POST['unlock'];
     $time_format = $_POST['time_format'];
-    
+
 	if($vip == 'yes'):
 		$args['meta_query']   = [
 			[
@@ -46,46 +46,45 @@ function filter_forecast() {
         "time_format" => $time_format
         ] );
     
-    wp_reset_postdata( );
+    wp_reset_query( );
     $query = new WP_Query( $args );
     
 	// print_r($query);
-	if ( count($query->posts) > 0 ) :
-        $html = '';
+	if ( $query->have_posts() ) :
+    
 		if($vip == 'yes'):
-            $html = '';
 			if($unlock == 'yes'):
-				foreach ($query->posts as $key => $forecast):
-					
+				while ($query->have_posts()):
+					$query->the_post();
 					if($_POST['cpt'] == 'parley'):
-						$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
+						get_template_part("loop/parley_list_{$model}");
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						$html .= load_template_part("loop/pronosticos_vip_list_{$model}_unlock",null,["forecast"=>$forecast]); 
+						get_template_part("loop/pronosticos_vip_list_{$model}_unlock"); 
 					endif;
-				endforeach;
+				endwhile;
 			else:
-				foreach ($query->posts as $key => $forecast):
+				while ($query->have_posts()):
+					$query->the_post();
 					if($_POST['cpt'] == 'parley'):
-						$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
+						get_template_part("loop/parley_list_{$model}");
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						$html .= load_template_part("loop/pronosticos_vip_list_{$model}",null,["forecast"=>$forecast]); 
+						get_template_part("loop/pronosticos_vip_list_{$model}"); 
 					endif; 
-				endforeach;
+				endwhile;
 			endif;
 		else:
-            foreach ( $query->posts as $key => $forecast ):
+            while ( $query->have_posts() ): $query->the_post();
                 if($_POST['cpt'] == 'parley'):
-                    $html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
+                    get_template_part("loop/parley_list_{$model}");
                 endif;
                 if($_POST['cpt'] == 'forecast'):
-                    $html .= load_template_part("loop/pronosticos_list_{$model}",null,["forecast"=>$forecast]); 
+                    get_template_part("loop/pronosticos_list_{$model}"); 
                 endif;
-            endforeach;
-            
+            endwhile;
 		endif;
-        echo $html;
+
          ?>
             <script>
                 var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
@@ -114,7 +113,7 @@ function filter_forecast() {
             
         <?php 
     endif;
-    wp_reset_postdata( );
+    wp_reset_query( );
 	die();
 }
 

@@ -44,7 +44,7 @@ endif;
                     if(have_posts()):
                         while (have_posts()):
                             the_post();
-                            load_template_part("loop/posts-grid_1"); 
+                            get_template_part("loop/posts-grid_1"); 
                         endwhile; 
                     endif;
                 ?>

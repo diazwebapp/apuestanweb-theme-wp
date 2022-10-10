@@ -4,7 +4,7 @@ $textbefore = carbon_get_post_meta(get_the_ID(), 'before_post');
 $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
 $sidebar = carbon_get_post_meta(get_the_ID(), 'sidebar');
 // logo
-$page_logo_att = carbon_get_post_meta(get_the_ID(), 'logo');
+$page_logo_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
 if($page_logo_att){
     $page_logo_src = aq_resize(wp_get_attachment_url($page_logo_att), 50, 50, true, true, true);
 }else{

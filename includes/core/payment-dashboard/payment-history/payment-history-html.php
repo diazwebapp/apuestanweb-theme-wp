@@ -62,14 +62,14 @@ function generate_history_payment_table(){
           
           if(!is_array($th)){
             if($keyth!=='payment_account_id'):
-              $user_link = '<a href="?page=ihc_manage&tab=user-details&uid={iduser}" >{username}</a>';
               if($keyth=='username'):
                 $id_user = username_exists( $th );
-                $user_link = str_replace("{username}",$th,$user_link);
-                $user_link = str_replace("{iduser}",$id_user,$user_link);
+                $name = get_user_meta($id_user,'display_name',true);
+                $html_th .= '<th>id</th>';
+                $html_td .= '<td>'.$name.'</td>';
               endif;
               $html_th .= '<th>'.$keyth.'</th>';
-              $html_td .= '<td>'.($keyth=="username"?$user_link:$th).'</td>';
+              $html_td .= '<td>'.$th.'</td>';
             endif;
           }
           if(is_array($th)){

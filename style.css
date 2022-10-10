@@ -1784,9 +1784,12 @@ footer .menu li a::before{
     margin-top: 6rem;
     margin-bottom: -2.5rem;
 }
-.price_box .price_btn button{
+.price_box .price_btn div{
 	font-size: 3.5rem;
+	padding: 1.5rem 6.4rem;
+	width: 100%;
 	background-color: #05CB2D;
+	box-shadow: none;
 	color:white;
 }
 .price_side_wrapper{
@@ -2174,7 +2177,22 @@ footer .menu li a::before{
     border-radius: 4.3rem;
     overflow: hidden;
 }
-
+.match_title_img_box {
+    background-color: #FFFFFF;
+    padding: .88rem 3.5rem;
+}
+.match_title_left_content{
+	display: flex;
+	align-items: center;
+	padding: 1.5rem 4.7rem 1.5rem 6.3rem;
+	background-color: #F7F7F8;
+}
+.match_title_left_content p{
+	padding-right: 2rem;
+	font-size: 1.4rem;
+	line-height: 1.2;
+	color: #000000;
+}
 .match_title_right_point p {
     padding: 1.3rem 2.4rem;
     background-color: #0558CB;
@@ -2192,6 +2210,7 @@ footer .menu li a::before{
 	font-size: 1.8rem;
 	color: #00203A;
 	max-width: 93.5rem;
+	margin-bottom: 16px;
 	text-align: justify;
 	line-height: 1.5em;
 }
@@ -2439,6 +2458,7 @@ footer .menu li a::before{
 	margin-right: auto;
 }
 .bonus_box{
+	background-color: #00203A;
 	border-radius: 1rem;
 	position: relative;
 }
@@ -2482,7 +2502,6 @@ footer .menu li a::before{
    margin: 0 0.4rem;
 }
 .bonus_bottom{
-	background-color: #00203A;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -3031,15 +3050,7 @@ footer .menu li a::before{
 
 
 /*single-review--page--style--start*/
-.special-single-bk-button > a, .special-single-bk-button > b{
-	padding-top:5px;
-	padding-bottom:5px;
-}
 
-.container_logo_review{
-	border-radius:1rem 0 0 1rem;
-	background:black;
-}
 .review__area {
   padding-top: 70px;
   padding-bottom: 240px;
@@ -4083,8 +4094,6 @@ footer .menu li a::before{
 .slider__active .owl-stage {
 	padding-left: 0px !important;
 	padding-right: 10px !important;
-	max-height:165px;
-	overflow: hidden;
 }
 
 .str.str-mobile {

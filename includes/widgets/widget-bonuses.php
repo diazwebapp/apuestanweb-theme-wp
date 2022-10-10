@@ -17,7 +17,7 @@ class w_bonuses extends WP_Widget {
 		
 		wp_reset_query();
 		$args = array(
-			'post_type'      => 'bonus_slogan',
+			'post_type'      => 'bonus',
 			'posts_per_page' => $limit,
 		);
 		
@@ -39,7 +39,7 @@ class w_bonuses extends WP_Widget {
 				echo '<div class="top_box top_box2">
 							<div class="d-flex align-items-center justify-content-between">
 								<div class="top_serial">
-									<img src="'.$bk['logo'].'" width="80" height="20" class="img-fluid" alt="'.$bk['name'].'" title="'.$bk['name'].'">
+									<img src="'.$bk['logo'].'" class="img-fluid" alt="'.$bk['name'].'" title="'.$bk['name'].'">
 								</div>
 								<div class="top_box_content">
 									<p>'.$short.'</p>
