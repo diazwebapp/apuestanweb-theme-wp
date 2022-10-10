@@ -74,15 +74,15 @@ function shortcode_slide($atts)
             $ret .='                        </div>
                                         </div>
                                     </div>
-                                </div">
+                                </div>
                             </div>
-                         </div">
+                         </div>
                     </div>';
         endif;
     } else {
         echo do_shortcode('[banner]');
     }
-    
+    wp_reset_postdata( );
     return $ret;
 }
 

@@ -60,9 +60,6 @@
 	    text-transform: uppercase;
 	    font-size: 4.2rem;
 	}
-	.match_title_left_content {
-	    padding: 1.4rem 4.7rem 1.5rem 6.3rem;
-	}
 
 	.price_heading h2 {
 	    font-size: 5.2rem;
@@ -125,9 +122,7 @@
 	.single_envent_heading h2 {
 	    font-size: 4.2rem;
 	}
-	.match_title_left_content {
-	    padding: 1rem 4.7rem 1.5rem 6.3rem;
-	}
+
 	.price_heading h2 {
 	    font-size: 5rem;	
 	}
@@ -285,6 +280,14 @@
 }
 
 @media (max-width: 991.98px) {
+	.special-single-bk-button > a, .special-single-bk-button > b{
+		display:block !important;
+		padding-top:10px;
+		padding-bottom:10px;
+	}
+	.container_logo_review{
+		border-radius:1rem ;
+	}
 	.event_select{
 		display: none;
 	}
@@ -1037,9 +1040,7 @@
 	.single_event_banner_middle {
 	    padding-top: 3rem;
 	}
-	.match_title_left_content {
-	    padding: 1.3rem 3.7rem 1.5rem 3.3rem;
-	}
+
 	.single_event_progress_left{
 		margin-right: 0;
 	}
@@ -1871,16 +1872,6 @@
 	    width: 8px;
 	    height: 6px;
 	}
-
-	/*single event area*/
-	.match_title_img_box {
-	    padding: 1.5rem 1.5rem;
-	}
-	.match_title_left_content {
-	    padding: 1.1rem 3.3rem 1.5rem 3.3rem;
-	}
-
-
 
 
 	.slider .owl-nav{

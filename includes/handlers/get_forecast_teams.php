@@ -96,7 +96,7 @@ function setUserRating(){
 
     }
 }
-function get_user_stats($user_id,$vip){
+function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,"last_date"=>false],$limit=10){
     $user_stats['acertados'] = 0;
     $user_stats['fallidos'] = 0;
     $user_stats['nulos'] = 0;
@@ -105,37 +105,34 @@ function get_user_stats($user_id,$vip){
     $user_stats['porcentaje_fallidos'] = 0;
     $user_stats['porcentaje_nulos'] = 0;
     $user_stats['tvalue'] = 0;
-    wp_reset_query();
+    
         $forecast_args['author'] = $user_id;
         $forecast_args['post_type'] = 'forecast';
-        $forecast_args['post_per_page'] = 10;
-        $forecast_args['paged'] = 10;
-        if($vip):
-            $forecast_args['meta_query']     = [
-                [
-                    'key' => 'vip',
-                    'value' => 'yes',
-                    'compare' => '='
-                ]
-            ];
-        endif;
-        if(!$vip):
-            $forecast_args['meta_query']     = [
-                [
-                    'key' => 'vip',
-                    'value' => 'yes',
-                    'compare' => '!='
-                ]
-            ];
-        endif;
+        $forecast_args['post_per_page'] = $limit;
         
+        $forecast_args['meta_query']     = [
+            ($vip) ? [
+                'key' => 'vip',
+                'value'=>'yes',
+                'compare' => $vip
+                ] : '',
+                [
+                    'key'     => 'data',
+                    'value'   => ($interval_date["start_date"] and $interval_date["last_date"]) ? [$interval_date["start_date"],$interval_date["last_date"]] : [],
+                    'compare' => 'BETWEEN',
+                    'type'    => 'DATE'
+                ],
+        ];
+
         $user_posts_query = new WP_Query($forecast_args);
+        
 
         if($user_posts_query->have_posts()):
             //Loop de los forecasts del autor
             while($user_posts_query->have_posts()): $user_posts_query->the_post();
                 
                 $status = carbon_get_post_meta(get_the_ID(), 'status');
+                
                 $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
                 if($predictions and count($predictions) > 0):
                     if($status and $status == 'ok'):
@@ -158,10 +155,15 @@ function get_user_stats($user_id,$vip){
             endwhile;
             //Completando estadisticas total y porcentaje
             $user_stats['total'] = $user_stats['acertados'] + $user_stats['fallidos'] + $user_stats['nulos'] ;
-            $user_stats['porcentaje'] = $user_stats['acertados'] * 100 / $user_stats['total'];
-            $user_stats['porcentaje_fallidos'] = $user_stats['fallidos'] * 100 / $user_stats['total'];
-            $user_stats['porcentaje_nulos'] = $user_stats['nulos'] * 100 / $user_stats['total'];
+            $user_stats['porcentaje'] = ($user_stats['acertados'] != 0 and $user_stats['total'] != 0) ?$user_stats['acertados'] * 100 / $user_stats['total'] : 0;
+            $user_stats['porcentaje_fallidos'] = ( $user_stats['fallidos'] != 0 and $user_stats['total'] != 0) ? $user_stats['fallidos'] * 100 / $user_stats['total'] : 0;
+            $user_stats['porcentaje_nulos'] = ($user_stats['nulos'] != 0 and  $user_stats['total'] != 0) ? $user_stats['nulos'] * 100 / $user_stats['total'] : 0;
+        
         endif;
+        wp_reset_query();
+        
         return $user_stats;
 }
+
+
 add_filter( 'init', 'setUserRating', 10 );

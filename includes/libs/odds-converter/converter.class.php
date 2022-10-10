@@ -11,6 +11,7 @@ class Converter {
     }
 
     public function doConverting() {
+        
         switch ($this->sUserOddsType) {
             case "uk":
                 $iDecimal = $this->convertDecimalFromFraction($this->iOddsFromUser);
@@ -23,12 +24,13 @@ class Converter {
                 break;
         }
         $aResult = array();
-        if (is_numeric($iDecimal) && $iDecimal > 0) {
+        if (is_numeric($iDecimal) ) {
             $aResult[0] = "ok";
             $aResult[1] = $this->convertFractionalFromDecimal($iDecimal);
             $aResult[2] = round(($iDecimal * 100 ) / 100, 3);
             $aResult[3] = $this->convertUsFromDecimal($iDecimal);
         }
+        
         return $aResult;
     }
 

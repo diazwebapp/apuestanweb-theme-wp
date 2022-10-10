@@ -32,7 +32,7 @@ $sidebar=false;
                                 <?php   endwhile; }
                             ?>
                         </div>
-                        <?php echo do_shortcode( "[slide_bk]" ) ?>
+                        <?php echo do_shortcode( "[slide_bk title='casas de apuestas' model='2']" ) ?>
                     </div>
 						
                     <div class="col-lg-3">

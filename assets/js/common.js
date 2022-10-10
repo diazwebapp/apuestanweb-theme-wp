@@ -61,6 +61,7 @@ $(document).ready(function () {
                 
                 var element = $('#games_list');
                 if (data) {
+                    console.log(unlock,vip)
                     $(element).html(data)
                     } else {
                         $(element).html('')
@@ -71,13 +72,14 @@ $(document).ready(function () {
     let select_odds = $('select#select_odds_format');
     select_odds.change(e =>handler_odds_format(e))
 });
-function test(param){
+function parley_calc_cuotes(param){
     let current_parley = param.attributes.data.textContent
     let amount = param.value
     let cuote = document.querySelector(`#jscuote_${current_parley }`)
     let result = document.querySelector(`#jsresult_${current_parley }`)
     if(cuote && result){
-        result.innerHTML = parseFloat(cuote.value) * parseFloat(amount)
+        let final_cuote = parseFloat(cuote.value) * parseFloat(amount)
+        result.innerHTML = final_cuote.toFixed(2)
     }
 }
 
@@ -139,4 +141,75 @@ date_items.forEach(item=>{
 function handler_odds_format(e){
     let format = e.target.value
     document.location = '?odds_format='+format
+}
+const aw_detect_user_level = async (e)=>{
+    const {current_user_id} = php_js_prices
+    const level_id = e.getAttribute('lid')
+    const level_type = e.getAttribute('type')
+    const dest = e.getAttribute('dest')
+    e.disabled = true
+    const text_btn = e.textContent
+    e.textContent = "espere..."
+    //Si hay usuarios logeados
+    
+    if(current_user_id){
+        const {msg,status,action} = await aw_check_user_level({lid:level_id})
+        if(status == 'ok'){
+            if(action && action == "new"){
+                if(level_type=="free"){
+                    const {redirect} = await aw_activate_membership({lid:level_id})
+                    location = redirect //Redirigimos a pagina de gracias
+                    return;
+                }
+                if(level_type=="payment"){
+                    location = dest //Redirigimos al checkout
+                    return;
+                }
+            }
+            if(confirm(msg)){
+                if(level_type=="free"){
+                    const {redirect} = await aw_activate_membership({lid:level_id})
+                    location = redirect //Redirigimos a pagina de gracias
+                }
+                if(level_type=="payment"){
+                    location = dest //Redirigimos al checkout
+                }
+            }
+        }
+
+    }
+    //Si no hay usuario logeado
+    if(!current_user_id){
+        location = dest //Redirigimos a register page
+    }
+    e.textContent = text_btn
+    e.disabled = false
+}
+
+const aw_check_user_level = async ({lid})=>{
+    const {rest_uri} = php_js_prices
+    const uri = rest_uri + 'aw-user-levels/check-user-level/'
+    const req = await fetch(uri,{
+        method:'post',
+        body:JSON.stringify({lid}),
+        headers:{
+            "content-type" : "application/json"
+        }
+    })
+    const resp = await req.json()
+    return resp
+}
+
+const aw_activate_membership = async({lid})=>{
+    const {rest_uri} = php_js_prices
+    const uri = rest_uri + 'aw-user-levels/user-level-opeations/'
+    const req = await fetch(uri,{
+        method:'post',
+        body:JSON.stringify({lid}),
+        headers:{
+            "content-type" : "application/json"
+        }
+    })
+    const resp = await req.json()
+    return resp
 }

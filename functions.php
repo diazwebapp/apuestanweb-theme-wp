@@ -4,28 +4,30 @@
 /*--------------------------------------------------------------*/
 include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
-include "includes/shortcodes/shortcode-profile.php";
+include "includes/shortcodes/shortcode-profile-forecaster.php";
 include "includes/shortcodes/shortcode-blog.php";
 include "includes/shortcodes/shortcode-forecasts.php";
 include "includes/shortcodes/shortcode-forecasts-vip.php";
 include "includes/shortcodes/shortcode-related-posts.php";
 include "includes/shortcodes/shortcode-slide.php";
 include "includes/shortcodes/shortcode-slide-bk.php";
-include "includes/shortcodes/shortcode-bookmaker.php";
+include "includes/shortcodes/shortcode-bookmakers.php";
 include "includes/shortcodes/shortcode-banner-pages.php";
+include "includes/shortcodes/shortcode-banner-bookmaker.php";
 include "includes/shortcodes/shortcode-leagues-menu.php";
 include "includes/shortcodes/shortcode-predictions.php";
 include "includes/shortcodes/shortcode-user-stats.php";
 include "includes/shortcodes/shortcode-register-form.php";
+include "includes/shortcodes/shortcode-checkout-form.php";
 include "includes/shortcodes/shortcode-login-form.php";
 /*--------------------------------------------------------------*/
 /*                         WIDGETS                              */
 /*--------------------------------------------------------------*/
 include "includes/widgets_area.php";
-//include "includes/widgets/widget-top-bk.php";
-//include "includes/widgets/widget-forecasts.php";
-//include "includes/widgets/widget-bonuses.php";
-//include "includes/widgets/widget-authors.php";
+include "includes/widgets/widget-top-bk.php";
+include "includes/widgets/widget-forecasts.php";
+include "includes/widgets/widget-bonuses.php";
+include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
@@ -33,7 +35,6 @@ include "includes/widgets_area.php";
 include "includes/core/meta-fields.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
-include "includes/core/payment-dashboard/payment-dashboard.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php";
 
@@ -48,7 +49,15 @@ include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
 include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
+include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
+include "includes/handlers/paypal-tools.php";
+
+/*--------------------------------------------------------------*/
+/*                        TOOLS PANEL ADMIN                     */
+/*--------------------------------------------------------------*/
+include "includes/core/bookmaker-location-panel/bk-location-panel.php";
+include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
@@ -56,6 +65,10 @@ include "rest-api/register-routes.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
+include "rest-api/user-register-controller.php";
+include "rest-api/paypal-api-controller.php";
+
+
 function my_theme_remove_headlinks() {
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
@@ -90,10 +103,10 @@ function get_key()
      return true;
 }
 
-function load_template_part($template_name, $part_name = null)
+function load_template_part($template_name, $part_name = null, $args=false)
 {
     ob_start();
-    get_template_part($template_name, $part_name);
+    get_template_part($template_name, $part_name, $args);
     $var = ob_get_contents();
     ob_end_clean();
 
@@ -104,17 +117,17 @@ function jbetting_src()
 {
     wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/css/bootstrap.min.css', array(), null);
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
-    wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select.css', array(), null);
+    wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
     wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
     wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
 
     wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.4.1.min.js', array(), null, false);
+    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), null, false);
     
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/js/bootstrap.min.js', array(), null, false);
-    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select.min.js', array(), null, false);
+    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, false);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
@@ -174,29 +187,35 @@ add_action('init', function(){
         define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
     endif;
 
-    //profile page
-    $page_id_profile = empty(get_option( 'ihc_inside_user_page')) ? "#":get_option( 'ihc_inside_user_page',0);
-    if($page_id_profile):
-        define('PERMALINK_PROFILE',get_the_permalink($page_id_profile));
+    //profile page 
+    //$page_forecaster = isset(carbon_get_theme_option('page_forecaster')[0]) ? carbon_get_theme_option('page_forecaster')[0]['id']: "#";
+    $page_forecaster = empty(get_option( 'ihc_general_register_view_user')) ? "#":get_option( 'ihc_general_register_view_user');
+    if($page_forecaster):
+        define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;
     //geolocation
     $ip = false;
     $geolocation = [
-        "success" => false,
-        "message" => "reserved range"
+        "country" => "World Wide",
+        "country_code" => "WW",
+        "timezone" => "America/Caracas",
+        "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
-    if (!empty($_SERVER['HTTP_CLIENT_IP']))
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])):
       $ip = $_SERVER['HTTP_CLIENT_IP'];
+    endif;
           
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])):
       $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    endif;
       
     $ip = $_SERVER['REMOTE_ADDR'];
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
     $response = false;
-    if($ip != '127.0.0.1'):
+    
+    if($ip !== "127.0.0.1" and $ip != "::1"):
         if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
             if(!empty($geolocation_api_key)):
                 $response = wp_remote_get("http://ipwho.is/{$ip}?key=null",array('timeout'=>2));
@@ -207,10 +226,10 @@ add_action('init', function(){
             if(!is_wp_error( $response )):
                 $geolocation_resp =  wp_remote_retrieve_body( $response );
                 $geolocation_resp = json_decode($geolocation_resp);
-                $geolocation["success"] = true;
                 $geolocation["country"] = $geolocation_resp->country;
                 $geolocation["country_code"] = $geolocation_resp->country_code;
                 $geolocation["timezone"] = $geolocation_resp->timezone->id;
+                $geolocation["flag_uri"] = $geolocation_resp->flag->img;
             endif;
         endif;
 
@@ -219,28 +238,19 @@ add_action('init', function(){
             if(!is_wp_error( $response )):
                 $geolocation_resp =  wp_remote_retrieve_body( $response );
                 $geolocation_resp = json_decode($geolocation_resp);
-                $geolocation["success"] = true;
                 $geolocation["country"] = $geolocation_resp->country;
                 $geolocation["country_code"] = $geolocation_resp->country_code;
                 $geolocation["timezone"] = $geolocation_resp->timezone->name;
+                $geolocation["flag_uri"] = $geolocation_resp->flag->svg;  
+                
             endif;
         endif;
+    endif;
+    if(!defined("GEOLOCATION")){
         $geolocation = json_encode($geolocation);
         define("GEOLOCATION",$geolocation);
-    endif;
-    if($ip == '127.0.0.1'):
-        $response = file_get_contents(get_template_directory_uri(  ) . "/includes/libs/abstractapi.json");
-        if(!is_wp_error( $response )):
-            $geolocation_resp = json_decode($response);
-            $geolocation["success"] = false;
-            $geolocation["message"] = "local server";
-            $geolocation["country"] = $geolocation_resp->country;
-            $geolocation["country_code"] = $geolocation_resp->country_code;
-            $geolocation["timezone"] = $geolocation_resp->timezone->name;
-        endif;
-        
-        define("GEOLOCATION",json_encode($geolocation));
-    endif;
+    }
+
     //odds-converter
     if(!isset($_SESSION['odds_format'])):
         $_SESSION['odds_format'] = 2;

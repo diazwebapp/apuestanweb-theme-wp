@@ -7,6 +7,12 @@
 	<?php wp_head(); ?>
 </head>
 <body>
+<?php
+    $post_type = get_post_type( );
+    if($post_type == "bk" and is_single()):
+        echo do_shortcode("[slide_forecasts model='2']");
+    endif;
+?>
 <header class="sticky-top">
 <div class="container">
             <div class="row align-items-center form-row">
@@ -31,7 +37,7 @@
                     <a href="#" class="icon_box mr_10">
                         <img src="<?php echo get_template_directory_uri() . '/assets/img/icon8.svg'?>" alt="">
                     </a>
-                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn">VIP</a>
+                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode(GEOLOCATION); echo $loc->country; ?> </a>
                     <a href="#" class="headerbtn v2">LOGIN</a>
                 </div>
                 <div class="col-lg-8 order-lg-2">
@@ -55,3 +61,4 @@
             </div>
         </div>
 </header>
+<?php

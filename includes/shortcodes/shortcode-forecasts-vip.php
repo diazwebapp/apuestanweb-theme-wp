@@ -10,7 +10,8 @@ function shortcode_forecast_vip($atts)
         'title' => false,
         'paginate' => false,
         'text_vip_link' => 'VIP',
-        'filter' => false,
+        'time_format' => false,
+        'filter' => false
     ), $atts));
     $ret = "";
     //default title
@@ -95,21 +96,19 @@ function shortcode_forecast_vip($atts)
     ] );
 
     $query = new WP_Query($args);
-    if ($query->have_posts()) {
+    if ($query->posts) {
         if(!$model || $model == 1):
             if($unlock):
                 $ret .="<div class='' id='games_list' >";
-                        while ($query->have_posts()):
-                            $query->the_post();
-                            $ret .= load_template_part("loop/pronosticos_vip_list_{$model}_unlock"); 
-                        endwhile;
+                        foreach ($query->posts as $key => $forecast):
+                            $ret .= load_template_part("loop/pronosticos_vip_list_{$model}_unlock",null,["forecast"=>$forecast]); 
+                        endforeach;
                 $ret .="</div>";
                     else:
                         $ret .="<div class='' id='games_list' >";
-                                while ($query->have_posts()):
-                                    $query->the_post();
-                                    $ret .= load_template_part("loop/pronosticos_vip_list_{$model}"); 
-                                endwhile;
+                                foreach ($query->posts as $key => $forecast):
+                                    $ret .= load_template_part("loop/pronosticos_vip_list_{$model}",null,["forecast"=>$forecast]); 
+                                endforeach;
                         $ret .="</div>";
                 endif;
         endif;
@@ -123,6 +122,7 @@ function shortcode_forecast_vip($atts)
                 var model = '<?php echo $model ?>';
                 var text_vip_link = '<?php echo $text_vip_link ?>'
                 var vip = 'yes';
+                var time_format = '<?php echo $time_format ?>'
                 var unlock = '<?php if($unlock): echo 'yes' ;else: echo 'no' ; endif; ?>';
                 var cpt = 'forecast';
             </script>

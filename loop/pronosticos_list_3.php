@@ -1,13 +1,13 @@
 <?php
 $params = get_query_var('params');
-$vip = carbon_get_post_meta(get_the_ID(), 'vip');
+$vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
 $permalink = get_the_permalink();
-$predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
+$predictions = carbon_get_post_meta($args["forecast"]->ID, 'predictions');
 $site_logo_url = get_template_directory_uri() . '/assets/img/event-logo.png';
 $lock_image_url = get_template_directory_uri() . '/assets/img/lock.png';
-$idevent = "match_".get_the_ID();
+$idevent = "match_".$args["forecast"]->ID;
 
-$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
+$sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
 
 $sport['class'] = '' ;
 $sport['name'] = '';
@@ -19,17 +19,34 @@ if ($sport_term) {
         }
     }
 }
-$time = carbon_get_post_meta(get_the_ID(), 'data');
+$time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-if($geolocation->success !== false):
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+
+$teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
+
+$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
+
+$bookmaker = json_encode([]);
+
+//SI EL PAIS ESTÁ CONFIGURADO
+if(isset($aw_system_location)):
+    //SI EL SHORTCODE ES USADO EN UNA PAGINA
+    if(is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+        if($bookmaker["name"] == "no bookmaker"){
+            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+        }
+    }
+    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
+    if(!is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    }
 endif;
-
-$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-$bk = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
-
-
+if(!isset($aw_system_location)):
+    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
+endif;
 $html_predictions = '';
 
 if(!empty($predictions)):
@@ -53,7 +70,7 @@ if($params['time_format']  == 'count'):
                         </div>";
 endif;                              
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
-    $content = get_the_content(get_the_ID()) ;
+    $content = get_the_content($args["forecast"]->ID) ;
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
     
     if($vip == 'yes'){
@@ -134,16 +151,16 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             {$html_predictions}
                             <div class='event2_box_bonus'>
                                 <p class='p2'>Bonus:</p>
-                                <p class='p3'>{$bk['bonus']}</p>
+                                <p class='p3'>{$bookmaker['bonus_slogan']}</p>
                             </div>
                             <div class='event_btn_box'>
                                 <div class='event_btn_img'>
-                                    <a href='{$bk['ref_link']}'>
-                                    <img src='{$bk['logo']}' class='img-fluid' alt=''>
+                                    <a href='{$bookmaker['ref_link']}'>
+                                    <img src='{$bookmaker['logo']}' class='img-fluid' alt=''>
                                     </a>
                                 </div>
                                 <div >
-                                    <a href='{$bk['ref_link']}' class='button'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' class='button'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
