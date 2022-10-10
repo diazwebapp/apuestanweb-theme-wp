@@ -1,44 +1,25 @@
 <?php
-$geolocation = json_decode(GEOLOCATION);
 $params = get_query_var('params');
-$image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
+$image_att = carbon_get_post_meta(get_the_ID(), 'img');
 $image_png = wp_get_attachment_url($image_att);
-$predictions = carbon_get_post_meta($args["forecast"]->ID, 'predictions');
-$status = carbon_get_post_meta($args["forecast"]->ID, 'status');
-$link = carbon_get_post_meta($args["forecast"]->ID, 'link');
-$sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
-$teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
-$vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
-$permalink = get_the_permalink($args["forecast"]->ID);
-
-$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
-
-$bookmaker = json_encode([]);
-
-//SI EL PAIS ESTÁ CONFIGURADO
-if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
-    }
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(!is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-    }
-endif;
-if(!isset($aw_system_location)):
-    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
-endif;
+$predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
+$status = carbon_get_post_meta(get_the_ID(), 'status');
+$link = carbon_get_post_meta(get_the_ID(), 'link');
+$vip = carbon_get_post_meta(get_the_ID(), 'vip');
+$permalink = get_the_permalink(get_the_ID());
 
 //configurando zona horaria
-$time = carbon_get_post_meta($args["forecast"]->ID, 'data');
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+$geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+if($geolocation->success !== false):
+    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+endif;
 
-$id_collapse = $args["forecast"]->ID;
+$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
+$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
+$bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
+$id_collapse = get_the_ID();
 
 //Liga y deporte
 $sport['class'] = '' ;
@@ -65,7 +46,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     $nulled = get_the_author_meta("forecast_nulled", $author_id );
     $display_name = get_the_author_meta("display_name", $author_id );
     $rank = get_the_author_meta("rank", $author_id );
-    $content = get_the_content($args["forecast"]->ID);
+    $content = get_the_content(get_the_ID());
     $avatar_url = get_avatar_url($author_id);
     $flechita_up = get_template_directory_uri(  ) . '/assets/img/love2.png';
     $flechita_down = get_template_directory_uri(  ) . '/assets/img/love1.png';
@@ -180,10 +161,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <div class="rate_text">'.$cuote.'</div>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p>Cuotas de:</p>
-                                <img width="80" height="25" src="'.$bookmaker['logo_2x1'].'" alt="bk">
-                            </div>
+                            
                             <div class="text-center accor_btn mt_15">
                                 <button type="button" data-toggle="collapse" data-target="#col1'.$id_collapse.'" aria-expanded="false">
                                     <i class="fa fa-angle-down"></i>

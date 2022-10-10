@@ -1,4 +1,7 @@
 window.addEventListener("load",()=>{
+    /////////Cambiamos el backgroun de color
+    const wp_content = document.getElementById("wpcontent")
+    //wp_content.style.background = '#1d2327'
     //////////////seleccionamos el formulario de añadir metodos de pago
     const form_add_method = document.getElementById("aw-add-payment-method-form")
     /////////verificamos que exista en el DOM
@@ -14,7 +17,6 @@ window.addEventListener("load",()=>{
         /////////añadimos el controlador que manejara el formulario
         form_add_maccounts.addEventListener("submit",async e => await aw_add_new_account(e))
     }
-    
 })
 
 ///////////////// funcion que añade metodos de pago usando la api rest
@@ -90,68 +92,65 @@ async function aw_add_new_method(form){
     payment_method_data[status.name] = status.checked
 
     let breack = false
-    if(payment_method.value.toLowerCase() !== 'paypal'){
-        if(containers_received_inputs && containers_received_inputs.length > 0){
-            for(container of containers_received_inputs){
-                const inputs = container.querySelectorAll("input")
-                const type = inputs[0].value
-                const name = inputs[1].value
-                const show_ui = inputs[2].checked
-                if(received_inputs.length > 0){
-                    received_inputs.filter(item=> item.name !== name ? received_inputs.push({type,name,show_ui}) : (()=>{
-                        breack=true;
-                        container.style.border = "1px solid red";
-                        show_toats({msg:"elementos duplicados"});
-                    })())
-                }
-                if(received_inputs.length == 0){
-                    received_inputs.push({type,name,show_ui})
-                }             
+    if(containers_received_inputs && containers_received_inputs.length > 0){
+        for(container of containers_received_inputs){
+            const inputs = container.querySelectorAll("input")
+            const type = inputs[0].value
+            const name = inputs[1].value
+            const show_ui = inputs[2].checked
+            if(received_inputs.length > 0){
+                received_inputs.filter(item=> item.name !== name ? received_inputs.push({type,name,show_ui}) : (()=>{
+                    breack=true;
+                    container.style.border = "1px solid red";
+                    show_toats({msg:"elementos duplicados"});
+                })())
             }
+            if(received_inputs.length == 0){
+                received_inputs.push({type,name,show_ui})
+            }             
+        }
+    }
+    
+    if(containers_register_inputs && containers_register_inputs.length > 0){
+        for(container of containers_register_inputs){
+            const inputs = container.querySelectorAll("input")
+            const type = inputs[0].value
+            const name = inputs[1].value
+            if(register_inputs.length > 0){
+                register_inputs.map(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
+                    breack=true;
+                    container.style.border = "1px solid red";
+                    show_toats({msg:"elementos duplicados"});
+                })())
+            }
+            if(register_inputs.length == 0 && !breack){
+                register_inputs.push({type,name})
+            } 
         }
         
-        if(containers_register_inputs && containers_register_inputs.length > 0){
-            for(container of containers_register_inputs){
-                const inputs = container.querySelectorAll("input")
-                const type = inputs[0].value
-                const name = inputs[1].value
-                if(register_inputs.length > 0){
-                    register_inputs.map(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
-                        breack=true;
-                        container.style.border = "1px solid red";
-                        show_toats({msg:"elementos duplicados"});
-                    })())
-                }
-                if(register_inputs.length == 0 && !breack){
-                    register_inputs.push({type,name})
-                } 
-            }        
-        }
-        if(received_inputs.length < 1){
-            setTimeout(()=>{
-                button.textContent = original_text
-                button.disabled = false
-            },1000)
-            show_toats({msg:"añada inputs para mostrar su información de pago"})
-        }
+    }
+    if(received_inputs.length < 1){
+        setTimeout(()=>{
+            button.textContent = original_text
+            button.disabled = false
+        },1000)
+        show_toats({msg:"añada inputs para mostrar su información de pago"})
     }
     if(!breack){
         ///////////eliminamos duplicados
-        if(received_inputs.length > 0 || register_inputs.length > 0){
-            let received_inputsMap = received_inputs.map(item=>{
-                return [item.name,item]
-            });
-            let received_inputsMapArr = new Map(received_inputsMap); // Pares de clave y valor
-            received_inputs = false
-            received_inputs = [...received_inputsMapArr.values()];
-    
-            let register_inputsMap = register_inputs.map(item=>{
-                return [item.name,item]
-            });
-            let register_inputsMapArr = new Map(register_inputsMap); // Pares de clave y valor
-            register_inputs = false
-            register_inputs = [...register_inputsMapArr.values()];
-        }
+        let received_inputsMap = received_inputs.map(item=>{
+            return [item.name,item]
+        });
+        let received_inputsMapArr = new Map(received_inputsMap); // Pares de clave y valor
+        received_inputs = false
+        received_inputs = [...received_inputsMapArr.values()];
+
+        let register_inputsMap = register_inputs.map(item=>{
+            return [item.name,item]
+        });
+        let register_inputsMapArr = new Map(register_inputsMap); // Pares de clave y valor
+        register_inputs = false
+        register_inputs = [...register_inputsMapArr.values()];
         ////////////
         const response = await insert_payment_method({received_inputs,register_inputs,payment_method_data})
         

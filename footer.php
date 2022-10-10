@@ -1,6 +1,5 @@
 <?php
 $logo = get_template_directory_uri() . '/assets/img/logo.svg';
-
 ?>
 <footer class="footer">
 <div class="container">

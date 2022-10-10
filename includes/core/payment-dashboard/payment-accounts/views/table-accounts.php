@@ -1,6 +1,6 @@
 <?php
-if(isset($_GET['account_id']) and isset($_GET['status_account'])):
-  aw_update_payment_account(["status"=>$_GET['status_account']],["id"=>$_GET['account_id']]);
+if(isset($_GET['account_id']) and isset($_GET['status_account']) and isset($_GET['method_page'])):
+  aw_update_payment_account(["status"=>$_GET['status_account']],["id"=>$_GET['account_id'],"payment_method_id"=>$_GET['method_page']]);
   header("Location:".$_SERVER["HTTP_REFERER"]);
   die;
 endif;

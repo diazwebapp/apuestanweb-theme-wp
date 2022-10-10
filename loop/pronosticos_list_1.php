@@ -1,11 +1,10 @@
 <?php
-$geolocation = json_decode(GEOLOCATION);
-$image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
+$image_att = carbon_get_post_meta(get_the_ID(), 'img');
 $image_png = wp_get_attachment_url($image_att);
-$prediction = carbon_get_post_meta($args["forecast"]->ID, 'prediction');
-$permalink = get_the_permalink($args["forecast"]->ID);
+$prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
+$permalink = get_the_permalink();
 
-$sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
+$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 
 $sport['class'] = '' ;
 $sport['name'] = '';
@@ -17,14 +16,16 @@ if ($sport_term) {
         }
     }
 }
-$time = carbon_get_post_meta($args["forecast"]->ID, 'data');
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+$geolocation = json_decode(GEOLOCATION);
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+if($geolocation->success !== false):
+    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+endif;
+$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
 
-$teams = get_forecast_teams($args["forecast"]->ID);
-
-if ($teams['team1'] && $teams['team2']){  
-    $content = get_the_content($args["forecast"]->ID) ;
+if ($teams['team1']['logo'] && $teams['team2']['logo']){  
+    $content = get_the_content(get_the_ID()) ;
     echo "<a href='$permalink' >
         <div class='event'>
             <p class='league_box1'>
@@ -51,7 +52,7 @@ if ($teams['team1'] && $teams['team2']){
                 <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
             </div>
             <p class='date_item_pronostico_top'>
-                <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                <input id='date' value='".$date->format('Y-m-d h:i:s')."' />
                 <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
             </p>
     </div></a> ";

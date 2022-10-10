@@ -178,10 +178,10 @@ add_action( 'init', 'create_team', 0 );
 function create_bonus() {
 
 	$labels = array(
-		'name'                  => __( 'bonus_slogan', 'jbetting' ),
-		'singular_name'         => __( 'bonus_slogan', 'jbetting' ),
-		'menu_name'             => __( 'bonus_slogan', 'jbetting' ),
-		'name_admin_bar'        => __( 'bonus_slogan', 'jbetting' ),
+		'name'                  => __( 'Bonus', 'jbetting' ),
+		'singular_name'         => __( 'Bonus', 'jbetting' ),
+		'menu_name'             => __( 'Bonus', 'jbetting' ),
+		'name_admin_bar'        => __( 'Bonus', 'jbetting' ),
 		'archives'              => __( 'Archive', 'jbetting' ),
 		'attributes'            => __( 'Attributes', 'jbetting' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'jbetting' ),
@@ -207,8 +207,8 @@ function create_bonus() {
 		'filter_items_list'     => __( 'Filter items list', 'jbetting' ),
 	);
 	$args   = array(
-		'label'               => __( 'bonus_slogan', 'jbetting' ),
-		'description'         => __( 'bonus_slogan', 'jbetting' ),
+		'label'               => __( 'Bonus', 'jbetting' ),
+		'description'         => __( 'Bonus', 'jbetting' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'editor', 'comments','thumbnail' ),
 		'hierarchical'        => false,
@@ -226,7 +226,7 @@ function create_bonus() {
 		'has_archive'         => false,
 		'rewrite'             => false,
 	);
-	register_post_type( 'bonus_slogan', $args );
+	register_post_type( 'bonus', $args );
 
 }
 

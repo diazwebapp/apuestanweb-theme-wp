@@ -9,11 +9,8 @@ $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all')
 $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
 $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 0;
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$geolocation = json_decode(GEOLOCATION);
-$date = new DateTime($time);
-if($geolocation->success !== false):
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-endif;
+".$date->format('d M')." = date('d M', strtotime($time));
+$hora = date('g:i a', strtotime($time));
 //Componente si es vip
 
 $vipcomponent ="<div class='plogo'>
@@ -32,40 +29,34 @@ if(!$vip):
                     <div class='rate'>{$prediction['cuote']}</div>";
 endif;
 //leagues
-$sport['class'] = '' ;
 $sport['name'] = '';
+$sport['logo'] = get_template_directory_uri() . '/assets/img/logo2.svg';
 if ($sport_term) {
     foreach ( $sport_term as $item ) {
         if($item->parent == 0){
-            $sport['class'] = carbon_get_term_meta($item->term_id, 'fa_icon_class');
+            $sport_logo = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'mini_img'));
+            if($sport_logo)
+                $sport['logo'] = $sport_logo;
             $sport['name'] = $item->name;
         }
     }
 }
-$time_format_html = "<p class='p2'><span>".$date->format('g:i a')."</span></p>";
-if($params['time_format']  == 'count'):
-    $time_format_html = "<div class='date_item_pronostico_top'>
-                            <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
-                            <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
-                        </div>";
-endif;
 echo "<div class='prediction_box'>
             <div class='d-flex align-items-center justify-content-between'>
-                <p class='game_name {$sport['class']}'>{$sport['name']}</p>
+                <p class='game_name'><img src='{$sport['logo']}' alt='{$sport['name']}'>{$sport['name']}</p>
                 <p>
-                    <time datetime='".$date->format('Y-m-d h:i')."' >".$date->format('d M')."/".$date->format('g:i a')."</time>
-                    
+                    <span class='time'>$hora</span>
+                    <span class='date'>".$date->format('d M')."</span>
                 </p>
             </div> 
 
             <div class='d-flex align-items-center justify-content-between mt_15'>
                 <div class='media align-items-center'>
                     <img src='{$teams['team1']['logo']}' class='mr_45' alt='{$teams['team1']['name']}'>
-                </div> 
-                <div>
-                    <p style='margin:0 5px;'>{$teams['team1']['acronimo']} vs {$teams['team2']['name']}</p> 
-                </div>                               
+                    <p class='media-body text-uppercase'>{$teams['team1']['name']}</p>
+                </div>                                
                 <div class='media align-items-center'>
+                    <p class='media-body text-uppercase'>{$teams['team2']['name']}</p>
                     <img src='{$teams['team2']['logo']}' class='ml_45' alt='{$teams['team2']['name']}'>
                 </div>
             </div>

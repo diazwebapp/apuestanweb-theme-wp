@@ -129,18 +129,7 @@
         });
 
         // nice select
-        const selects = document.getElementsByTagName('select')
-        if(selects.length > 0){
-            for(let select of selects){
-                
-                if(select.id == 'search_select'){
-                    NiceSelect.bind(select,{searchable:true})
-                }else{
-                    NiceSelect.bind(select)
-                }
-            }
-        }
-        
+        $('select').niceSelect();
 
 
         // collapse

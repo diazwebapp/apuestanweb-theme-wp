@@ -53,7 +53,7 @@ msgstr "Рейтинг"
 #: includes/core/post-type.php:182 includes/core/post-type.php:208
 #: includes/core/post-type.php:209 includes/shortcodes/shortcode-table.php:35
 #: taxonomy-bk_type.php:42
-msgid "bonus_slogan"
+msgid "Bonus"
 msgstr "Бонус"
 
 #: archive-bk.php:30 includes/shortcodes/shortcode-table.php:36
