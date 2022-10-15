@@ -30,7 +30,7 @@ if ($sport_term) {
         // Slide background optional
         if($item->parent == 0)
             $bg_sport_src = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'wbg'));
-            if($bg_sport_src and !$event_bg):
+            if(isset($bg_sport_src) and !$event_bg):
                 $slide_bg = $bg_sport_src;
             endif;
     }
