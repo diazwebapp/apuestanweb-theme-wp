@@ -32,7 +32,7 @@ if ($sport_term) {
             $bg_term = carbon_get_term_meta($item->term_id, 'wbg');
             $bg_sport_src = isset($bg_term) ? wp_get_attachment_url($bg_term) : get_template_directory_uri() . '/assets/img/logo2.svg';
             var_dump($bg_sport_src);
-            if(isset($bg_sport_src) and !$event_bg):
+            if($bg_sport_src and !$event_bg):
                 $slide_bg = $bg_sport_src;
             endif;
     }
