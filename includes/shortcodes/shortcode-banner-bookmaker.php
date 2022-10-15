@@ -12,7 +12,7 @@ function shortcode_banner_bookmaker($atts)
 
     //default bookmaker
     $bookmaker["name"]="";
-    $bookmaker["logo"]="";
+    $bookmaker["logo"]= get_template_directory_uri( ) . "/assets/img/logo2.svg";
     $bookmaker["background_color"]="";
     $bookmaker["ref_link"]="#" ;
     $bookmaker["bonus_slogan"]= "" ;
