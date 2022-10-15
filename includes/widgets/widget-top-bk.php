@@ -15,7 +15,11 @@ class w_bookmakers extends WP_Widget{
         $limit = !empty($instance['limit']) ? $instance['limit'] : 10;
         $location = json_decode(GEOLOCATION);
         $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-        $bookmakers = aw_select_relate_bookmakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
+        if(!isset($aw_system_location)):
+            $bookmakers = aw_select_relate_bookmakers(1,["random"=>true,"limit"=>$limit]);
+        else:
+            $bookmakers = aw_select_relate_bookmakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
+        endif;
         if ($bookmakers and count($bookmakers) > 0) {
             echo '<div class="col-lg-12 col-md-6">
                     <div class="side_box mt_30">
