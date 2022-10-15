@@ -65,7 +65,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     $nulled = get_the_author_meta("forecast_nulled", $author_id );
     $display_name = get_the_author_meta("display_name", $author_id );
     $rank = get_the_author_meta("rank", $author_id );
-    $content = get_the_content($args["forecast"]->ID);
+    $content = get_the_content(false,false,$args["forecast"]->ID);
     $avatar_url = get_avatar_url($author_id);
     $flechita_up = get_template_directory_uri(  ) . '/assets/img/love2.png';
     $flechita_down = get_template_directory_uri(  ) . '/assets/img/love1.png';
