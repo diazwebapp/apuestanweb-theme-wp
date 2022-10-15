@@ -23,13 +23,14 @@ if ($time) {
 }
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $arr_sport = array();
-$default_icon_mini_src = get_template_directory_uri() . '/assets/img/logo2.svg';
+
 if ($sport_term) {
     foreach ($sport_term as $item) {
         $arr_sport[] = '<a href="' . get_term_link($item, "league") . '>' . $item->name . '</a>';
         // Slide background optional
         if($item->parent == 0)
-            $bg_sport_src = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'wbg'));
+            $bg_term = carbon_get_term_meta($item->term_id, 'wbg');
+            $bg_sport_src = isset($bg_term) ? wp_get_attachment_url($bg_term) : get_template_directory_uri() . '/assets/img/logo2.svg';
             var_dump($bg_sport_src);
             if(isset($bg_sport_src) and !$event_bg):
                 $slide_bg = $bg_sport_src;
