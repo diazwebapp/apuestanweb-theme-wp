@@ -173,4 +173,4 @@ function shortcode_banner_bookmaker_payments_methods($atts){
     return $table;
 }
 
-add_shortcode('banner_bookmaker_payments_methods', 'shortcode_banner_bookmaker_payments_methods');
+add_shortcode('banner_bookmaker_payment_methods', 'shortcode_banner_bookmaker_payments_methods');
