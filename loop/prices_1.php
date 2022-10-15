@@ -16,7 +16,7 @@ $params = get_query_var('params');
     $count = 0;
     
     foreach($params['memberships'] as $id => $level):
-        $button_label = '';
+        $button_label = 'buy';
         $currency = !empty(get_option( 'ihc_custom_currency_code', true )) ? get_option( 'ihc_custom_currency_code', true ) : get_option( 'ihc_currency', true );
         if(isset($level['button_label']) && $level['button_label'] != ''){
             $button_label = $level['button_label'];
