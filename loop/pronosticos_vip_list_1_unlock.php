@@ -190,7 +190,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 </button>
                             </div>
                             <div class="collapse" id="col1'.$id_collapse.'">
-                                <p class="more_text pt_30">'.$content.'</p>
+                                <p class="more_text pt_30">'.$args["forecast"]->ID.'</p>
                             </div>
                         </div>
                     </div>
