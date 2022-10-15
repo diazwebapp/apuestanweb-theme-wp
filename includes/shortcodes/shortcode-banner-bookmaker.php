@@ -28,12 +28,10 @@ function shortcode_banner_bookmaker($atts)
     $bookmaker["ref_link"] = carbon_get_post_meta($post->ID,'ref');
 
     $default = [];
-    $default[0] = get_template_directory_uri( ) . "/assets/img/logo2.svg";
-    $default[1] = 80;
-    $default[2] = 80;
-    
-    $logo = carbon_get_post_meta($post->ID, 'logo');
-    $bookmaker['logo'] = !empty($logo) ? wp_get_attachment_url( $logo, [80,80] ): $default;
+    if (carbon_get_post_meta($post->ID, 'logo')):
+        $logo = carbon_get_post_meta(get_the_ID(), 'logo');
+        $bookmaker['logo'] = wp_get_attachment_url($logo);
+    endif;
     
     //detectamos si el pais está configurado
     
