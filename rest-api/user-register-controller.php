@@ -163,7 +163,6 @@ if(!function_exists('aw_user_level_operations')):
 
         $resp['msg'] = $_SESSION["checkout_action"];
         $resp['redirect'] = get_permalink( $thanks_page );
-        $resp['pid'] = $_SESSION["payment_account_id"];
         
         if($_SESSION["checkout_action"] == 'renew'):   //Renovar una membresia         
             $activate_sql_params = aw_generate_activation_membership_data(["lid"=>$params["lid"],"username"=>$_SESSION["current_user"]["user_login"]]);
