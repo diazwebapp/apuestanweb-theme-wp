@@ -2,7 +2,7 @@
 function shortcode_bookmaker($atts)
 {
     extract(shortcode_atts(array(
-        'num' => 2,
+        'num' => 4,
         'title' => false,
         'slogan' => false,
         'model' => 1,
