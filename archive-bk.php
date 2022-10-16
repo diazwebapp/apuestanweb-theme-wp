@@ -17,7 +17,7 @@ $sidebar = carbon_get_post_meta(get_the_ID(), 'sidebar');
 						<h2><?php if(!$custom_h1): echo get_bloginfo('title') . ' Bookmakers ' ; else: echo $custom_h1; endif;  ?></h2>
 					</div>
                     
-                        <?php echo do_shortcode("[bookmaker model='2']"); ?>
+                        <?php echo do_shortcode("[bookmakers paginate='yes']"); ?>
 						<?php
                             if ( $textafter ):
 								echo '<br/> <br/>' ;
