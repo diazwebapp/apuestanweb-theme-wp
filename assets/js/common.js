@@ -169,6 +169,7 @@ const aw_detect_user_level = async (e)=>{
             if(confirm(msg)){
                 if(level_type=="free"){
                     const {redirect} = await aw_activate_membership({lid:level_id})
+                    console.log(redirect)
                     location = redirect //Redirigimos a pagina de gracias
                 }
                 if(level_type=="payment"){
