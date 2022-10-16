@@ -6,12 +6,13 @@ class Converter {
     private $sUserOddsType;
 
     public function __construct($iOddsFromUser, $sUserOddsType) {
-        $this->iOddsFromUser = $iOddsFromUser;
+        $custom_cuote = str_replace(",",".",$iOddsFromUser);
+        $this->iOddsFromUser = $custom_cuote;
         $this->sUserOddsType = $sUserOddsType;
     }
 
     public function doConverting() {
-        
+
         switch ($this->sUserOddsType) {
             case "uk":
                 $iDecimal = $this->convertDecimalFromFraction($this->iOddsFromUser);
