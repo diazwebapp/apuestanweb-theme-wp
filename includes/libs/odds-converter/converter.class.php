@@ -23,7 +23,7 @@ class Converter {
                 $iDecimal = $this->convertDecimalFromUs($this->iOddsFromUser);
                 break;
         }
-        $iDecimal = str_replace(",",".",$iDecimal);
+        var_dump($iDecimal);
         $aResult = array();
         if (is_numeric($iDecimal) ) {
             $aResult[0] = "ok";
@@ -53,7 +53,6 @@ class Converter {
 
     public function convertUsFromDecimal($iDecimal) {
         $iDecimal -= 1;
-        var_dump($iDecimal);
         if ($iDecimal < 1) {
             return '-' . abs(round(100 / $iDecimal));
         } else {
