@@ -11,7 +11,7 @@ class Converter {
     }
 
     public function doConverting() {
-        $iDecimal = 0;
+        var_dump($iOddsFromUser);
         switch ($this->sUserOddsType) {
             case "uk":
                 $iDecimal = $this->convertDecimalFromFraction($this->iOddsFromUser);
@@ -23,7 +23,7 @@ class Converter {
                 $iDecimal = $this->convertDecimalFromUs($this->iOddsFromUser);
                 break;
         }
-        var_dump($iDecimal);
+        
         $aResult = array();
         if (is_numeric($iDecimal) ) {
             $aResult[0] = "ok";
