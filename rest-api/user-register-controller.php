@@ -154,7 +154,7 @@ if(!function_exists('aw_user_level_operations')):
          */
         
         $params = $request->get_json_params(); //extraemos parametros del request body
-        $thanks_page = get_option('ihc_thank_you_page'); //Obtenemos pagina de destino
+        //$thanks_page = get_option('ihc_thank_you_page'); //Obtenemos pagina de destino
         $_SESSION["payment_account_id"] = $params["payment_account_id"]; ////GUARDAMOS EN SESIÓN EL ACCOUNT ID
 
         //////Datos para realizar operaciones en membresias
