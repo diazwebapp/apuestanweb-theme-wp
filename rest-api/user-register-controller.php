@@ -154,7 +154,7 @@ if(!function_exists('aw_user_level_operations')):
          */
         
         $params = $request->get_json_params(); //extraemos parametros del request body
-        //$thanks_page = get_option('ihc_thank_you_page'); //Obtenemos pagina de destino
+        $thanks_page = get_option('ihc_thank_you_page'); //Obtenemos pagina de destino
         $_SESSION["payment_account_id"] = $params["payment_account_id"]; ////GUARDAMOS EN SESIÓN EL ACCOUNT ID
 
         //////Datos para realizar operaciones en membresias
@@ -162,7 +162,8 @@ if(!function_exists('aw_user_level_operations')):
         $payment_method = aw_get_method_name($_SESSION["payment_account_id"]);
 
         $resp['msg'] = $_SESSION["checkout_action"];
-        $resp['redirect'] = "http://apuestan.ml";// get_permalink( $thanks_page );
+        $resp['redirect'] = get_permalink( $thanks_page );
+        $resp['pid'] = $_SESSION["payment_account_id"];
         
         if($_SESSION["checkout_action"] == 'renew'):   //Renovar una membresia         
             $activate_sql_params = aw_generate_activation_membership_data(["lid"=>$params["lid"],"username"=>$_SESSION["current_user"]["user_login"]]);
