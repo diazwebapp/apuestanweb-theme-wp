@@ -211,5 +211,6 @@ const aw_activate_membership = async({lid})=>{
         }
     })
     const resp = await req.json()
+    console.log(resp);
     return resp
 }
