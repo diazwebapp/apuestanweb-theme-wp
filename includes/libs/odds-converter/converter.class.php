@@ -11,7 +11,7 @@ class Converter {
     }
 
     public function doConverting() {
-        var_dump($iOddsFromUser);
+        
         switch ($this->sUserOddsType) {
             case "uk":
                 $iDecimal = $this->convertDecimalFromFraction($this->iOddsFromUser);
