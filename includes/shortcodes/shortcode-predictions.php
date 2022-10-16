@@ -49,6 +49,7 @@ endif;
         if($predictions and count($predictions)> 0):
             
             foreach($predictions as $prediction):
+                var_dump("cuote->",$prediction['cuote']);
                 $oOddsConverter = new Converter($prediction['cuote'], 'eu');
                 $odds_result = $oOddsConverter->doConverting();
                 $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
