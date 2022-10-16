@@ -53,6 +53,7 @@ class Converter {
 
     public function convertUsFromDecimal($iDecimal) {
         $iDecimal -= 1;
+        var_dump($iDecimal);
         if ($iDecimal < 1) {
             return '-' . abs(round(100 / $iDecimal));
         } else {
