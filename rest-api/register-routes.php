@@ -18,7 +18,7 @@ function register_routes(){
     ]);
     
     //register form shortcode
-    register_rest_route('aw-register-form','/register-user',[
+    register_rest_route('aw-register-form','/check-user-exists',[
         'methods' => 'GET',
         'callback' => 'aw_register_form_checket_user',
         'permission_callback' => function () {
@@ -26,7 +26,7 @@ function register_routes(){
           }
     ]);
     register_rest_route('aw-register-form','/register-user',[
-        'methods' => 'GET',
+        'methods' => 'POST',
         'callback' => 'aw_register_user',
         'permission_callback' => function () {
             return current_user_can( 'edit_others_posts' );
