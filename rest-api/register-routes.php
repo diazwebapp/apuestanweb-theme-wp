@@ -26,7 +26,7 @@ function register_routes(){
           }
     ]);
     register_rest_route('aw-register-form','/register-user',[
-        'methods' => 'POST',
+        'methods' => 'GET',
         'callback' => 'aw_register_user',
         'permission_callback' => function () {
             return current_user_can( 'edit_others_posts' );
