@@ -159,7 +159,7 @@ if(!function_exists('aw_user_level_operations')):
 
         //////Datos para realizar operaciones en membresias
         /////////////
-        $payment_method = 'free';//aw_get_method_name($_SESSION["payment_account_id"]);
+        $payment_method = aw_get_method_name($_SESSION["payment_account_id"]);
 
         $resp['msg'] = $_SESSION["checkout_action"];
         $resp['redirect'] = get_permalink( $thanks_page );
