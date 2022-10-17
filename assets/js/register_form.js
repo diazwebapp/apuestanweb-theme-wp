@@ -87,7 +87,7 @@ window.addEventListener("load",()=>{
 
 const detect_user_exists = async (input)=>{
     try {
-        const req = await fetch(`${register_form_vars.rest_uri}aw-register-form/register-user?name=${input.name}&value=${input.value}`)
+        const req = await fetch(`${register_form_vars.rest_uri}aw-register-form/check-user-exists?name=${input.name}&value=${input.value}`)
         const resp = await req.json()
         return resp
     } catch (error) {

@@ -2,12 +2,13 @@
 function shortcode_bookmaker($atts)
 {
     extract(shortcode_atts(array(
-        'num' => 2,
+        'num' => 4,
         'title' => false,
         'slogan' => false,
         'model' => 1,
         'payment' => wp_get_post_terms(get_the_ID(), 'bookmaker-payment-methods', array('field' => 'slug')),
-        'paginate'=>false
+        'paginate'=>false,
+        'country'=>false
     ), $atts));
     $ret = '';
     
@@ -39,16 +40,29 @@ function shortcode_bookmaker($atts)
         $new_bks = [];
         $location = json_decode(GEOLOCATION);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+        $aw_system_country_2 = aw_select_country(["country_code"=>strtoupper($country)]);
         foreach ($query->posts as $bookmaker): 
             $exists = null;
-            if(isset($aw_system_country->id)):
-                $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
-            endif;
-            if(!isset($aw_system_country->id)):
-                $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
-            endif;
-            if(isset($exists)):
-                $new_bks[] = $bookmaker;
+            if(empty($country)):
+                if(isset($aw_system_country->id)):
+                    $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
+                endif;
+                if(!isset($aw_system_country->id)):
+                    $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
+                endif;
+                if(isset($exists)):
+                    $new_bks[] = $bookmaker;
+                endif;
+            else:
+                if(isset($aw_system_country_2->id)):
+                    $exists = aw_detect_bookmaker_on_country($aw_system_country_2->id,$bookmaker->ID);
+                endif;
+                if(!isset($aw_system_country_2->id)):
+                    $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
+                endif;
+                if(isset($exists)):
+                    $new_bks[] = $bookmaker;
+                endif;
             endif;
         endforeach;
         //Elementos de la paginación

@@ -135,11 +135,14 @@ endif;
 if(!function_exists("aw_get_method_name")):
   function aw_get_method_name($payment_account_id){
     global $wpdb;
-    $table_accounts = $wpdb->prefix."aw_payment_accounts";
-    $payment_method_id = $wpdb->get_var("SELECT payment_method_id FROM $table_accounts WHERE id=$payment_account_id");
+    $payment_method = 'free';
+    if(isset($payment_account_id)):
+      $table_accounts = $wpdb->prefix."aw_payment_accounts";
+      $payment_method_id = $wpdb->get_var("SELECT payment_method_id FROM $table_accounts WHERE id=$payment_account_id");
 
-    $table_methods = $wpdb->prefix."aw_payment_methods";
-    $payment_method = $wpdb->get_var("SELECT payment_method FROM $table_methods WHERE id=$payment_method_id");
+      $table_methods = $wpdb->prefix."aw_payment_methods";
+      $payment_method = $wpdb->get_var("SELECT payment_method FROM $table_methods WHERE id=$payment_method_id");
+    endif;
     return $payment_method;
   }
 else:

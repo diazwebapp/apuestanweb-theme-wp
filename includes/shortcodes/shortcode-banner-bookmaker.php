@@ -12,7 +12,7 @@ function shortcode_banner_bookmaker($atts)
 
     //default bookmaker
     $bookmaker["name"]="";
-    $bookmaker["logo"]="";
+    $bookmaker["logo"]= get_template_directory_uri( ) . "/assets/img/logo2.svg";
     $bookmaker["background_color"]="";
     $bookmaker["ref_link"]="#" ;
     $bookmaker["bonus_slogan"]= "" ;
@@ -28,12 +28,10 @@ function shortcode_banner_bookmaker($atts)
     $bookmaker["ref_link"] = carbon_get_post_meta($post->ID,'ref');
 
     $default = [];
-    $default[0] = get_template_directory_uri( ) . "/assets/img/logo2.svg";
-    $default[1] = 80;
-    $default[2] = 80;
-    
-    $logo = carbon_get_post_meta($post->ID, 'logo');
-    $bookmaker['logo'] = !empty($logo) ? wp_get_attachment_url( $logo, [80,80] ): $default;
+    if (carbon_get_post_meta($post->ID, 'logo')):
+        $logo = carbon_get_post_meta(get_the_ID(), 'logo');
+        $bookmaker['logo'] = wp_get_attachment_url($logo);
+    endif;
     
     //detectamos si el pais está configurado
     
@@ -173,4 +171,4 @@ function shortcode_banner_bookmaker_payments_methods($atts){
     return $table;
 }
 
-add_shortcode('banner_bookmaker_payments_methods', 'shortcode_banner_bookmaker_payments_methods');
+add_shortcode('banner_bookmaker_payment_methods', 'shortcode_banner_bookmaker_payments_methods');

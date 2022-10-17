@@ -2,7 +2,6 @@
 $location = json_decode(GEOLOCATION);
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-$bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
@@ -11,6 +10,25 @@ $time = carbon_get_post_meta(get_the_ID(), 'data');
 $fecha = date('D M', strtotime($time));
 $hora = date('g:i a', strtotime($time));
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
+
+$bookmaker = json_encode([]);
+//SI EL PAIS ESTÁ CONFIGURADO
+if(isset($aw_system_location)):
+    //SI EL SHORTCODE ES USADO EN UNA PAGINA
+    if(is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+        if($bookmaker["name"] == "no bookmaker"){
+            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+        }
+    }
+    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
+    if(!is_page()){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    }
+endif;
+if(!isset($aw_system_location)):
+    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
+endif;
 
 $parley_id = get_the_ID();
 echo "<div class='parley_wrapper'>
