@@ -81,6 +81,23 @@ function shortcode_bookmaker($atts)
                 
             endforeach;
         endif;
+
+        if($model ==2):
+            
+            foreach ($new_bks as $key_bk => $bookmaker):
+                if($current_page == 1 and  $key_bk  <= ($num - 1))
+                    $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
+                        'post'	=> $bookmaker,
+                    ]);
+                if($current_page > 1 and  $key_bk  <= ($num - 1))
+                    $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
+                        'post'	=> $bookmaker,
+                    ]);
+                
+            endforeach;
+        endif;
+        
+
         
         if(count($new_bks) > 0 and $paginate=="yes"){
             $links = '';

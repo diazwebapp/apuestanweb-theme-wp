@@ -15,6 +15,7 @@ $title = get_the_title(get_the_ID());
 $stars = draw_rating($rating_ceil);  
 $bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
 $location = json_decode(GEOLOCATION);
+
 if($location->success == true and $bk_countries and count($bk_countries) > 0):
     foreach($bk_countries as $country):
         if($country['country_code'] === $location->country_code):
