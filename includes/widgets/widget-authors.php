@@ -16,6 +16,7 @@ class w_authors extends WP_Widget {
         $args['meta_key']  = 'rank';
         $args['orderby']   = 'meta_value_num';
         $args['order']     = 'DESC';
+        $args['role__in'] = ['administrator', 'author'];
         $args['number']     = $limit;
         $users = new WP_User_Query($args);
         
