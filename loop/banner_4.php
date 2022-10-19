@@ -2,8 +2,8 @@
 // background pages or forecast
 
 $params = get_query_var('params');
-$text = isset($params['text']) ? $params['text'] : 'Disfruta del contenido VIP';
-$text_vip_link = isset($params['text_vip_link']) ? $params['text_vip_link'] : 'VIP';
+$text = !empty($params['text']) ? $params['text'] : 'Disfruta del contenido VIP';
+$text_vip_link = !empty($params['text_vip_link']) ? $params['text_vip_link'] : 'VIP';
 
 echo "<div class='event_area'>
         <div class='container'>
