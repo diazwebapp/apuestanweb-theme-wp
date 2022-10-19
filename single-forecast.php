@@ -41,7 +41,7 @@
                             //taxonomy league
                             $tax_leagues = wp_get_post_terms(get_the_ID(),'league');                            
                             $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';                           
-                            var_dump($tax_leagues);
+                            
                             //forecast sport
                             $sport = false;
                             if(isset($tax_leagues) and count($tax_leagues) > 0):
@@ -63,11 +63,14 @@
                             $league = false;
                             
                             if(isset($sport)):
-                                $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
-                                if(isset($leagues) and count($leagues) > 0):
-                                    $league = $leagues[0]; //define forecast sport
-                                    $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-                                    $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                if(isset($tax_leagues) and count($tax_leagues) > 0):
+                                    foreach($tax_leagues as $leaguefor):
+                                        if($leaguefor->parent == $sport->term_id):
+                                            $league = $leaguefor; //define forecast sport
+                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
+                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                        endif;
+                                    endforeach;
                                 endif;
                                 if($league):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
