@@ -1,21 +1,4 @@
 <?php get_header(); ?>
-<?php
-				
-    /* 
-    $time       = carbon_get_post_meta( get_the_ID(), 'data' );
-    $link       = carbon_get_post_meta( get_the_ID(), 'link' );
-
-    $geolocation = json_decode(GEOLOCATION);
-    $date = new DateTime($time);
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-
-    $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-    
-    // datos casa de apuesta
-
-    */
- 
-?>
 
 <main>
     <div class="event_area single_event_area pb_90">
