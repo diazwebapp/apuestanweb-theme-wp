@@ -40,8 +40,8 @@
                             
                             //taxonomy league
                             $tax_leagues = wp_get_post_terms(get_the_ID(),'league');                            
-                            $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';
-
+                            $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';                           
+                            var_dump($tax_leagues);
                             //forecast sport
                             $sport = false;
                             if(isset($tax_leagues) and count($tax_leagues) > 0):
