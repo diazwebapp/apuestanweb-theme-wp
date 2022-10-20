@@ -70,7 +70,7 @@ if($params['time_format']  == 'count'):
                         </div>";
 endif;                              
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
-    $content = get_the_content($args["forecast"]->ID) ;
+    $content = get_the_content(false,false,$args["forecast"]->ID) ;
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
     
     if($vip == 'yes'){
