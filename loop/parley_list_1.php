@@ -43,7 +43,7 @@ echo "<div class='parley_wrapper'>
             $prediction = [];
             $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
             $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
-            
+            $permalink_event = get_the_permalink($event['id']);
             
             if($parley_cuotes >= 1){
                 $parley_cuotes *= floatval($prediction['cuote']);
@@ -121,7 +121,7 @@ echo "<div class='parley_wrapper'>
                         </div>
                     </div>
                     <div class='question2'>
-                      <a href='$permalink'>
+                      <a href='$permalink_event'>
                             Ver análisis
                         </a>
                     </div>
