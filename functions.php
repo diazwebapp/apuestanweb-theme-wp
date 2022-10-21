@@ -26,7 +26,7 @@ include "includes/shortcodes/shortcode-login-form.php";
 include "includes/widgets_area.php";
 include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-forecasts.php";
-include "includes/widgets/widget-bonuses.php";
+//include "includes/widgets/widget-bonuses.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/

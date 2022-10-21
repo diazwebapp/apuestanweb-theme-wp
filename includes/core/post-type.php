@@ -174,7 +174,7 @@ function create_team() {
 add_action( 'init', 'create_team', 0 );
 
 
-
+/* 
 function create_bonus() {
 
 	$labels = array(
@@ -231,7 +231,7 @@ function create_bonus() {
 }
 
 add_action( 'init', 'create_bonus', 0 );
-
+ */
 function create_parley() {
 
 	$labels = array(
