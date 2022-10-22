@@ -17,7 +17,7 @@ $sidebar=false;
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
-                            $post_date = get_the_date( "d m h:i a", get_the_ID());
+                            $post_date = get_the_date( "d M h:i a", get_the_ID());
                             $time = carbon_get_post_meta(get_the_ID(), 'data');
                             $title = get_the_title( get_the_ID() ); 
                             $fecha = date('d M', strtotime($time)) .' - '. date('g:i a', strtotime($time));
