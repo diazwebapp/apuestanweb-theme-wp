@@ -46,6 +46,10 @@
                             $league = false;
                             
                             if(isset($sport)):
+                                $img_att   = carbon_term_meta( $sport->term_id, 'wbg' );
+                                if(!empty($img_att)):
+                                    $background_header    = aq_resize(wp_get_attachment_url( $img_att ), 1080, 600, true,true,true);
+                                endif;
                                 if(isset($tax_leagues) and count($tax_leagues) > 0):
                                     foreach($tax_leagues as $leaguefor):
                                         if($leaguefor->parent == $sport->term_id):
