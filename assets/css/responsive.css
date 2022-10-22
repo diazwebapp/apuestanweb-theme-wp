@@ -20,6 +20,11 @@
 		padding-left: 5px;
 		padding-right: 5px;
 	}
+	.event-button-mv{
+		display: none;
+	
+	}   
+	   
 }
 @media (min-width: 1200px) and (max-width: 1409.98px){
 	.event2_box_middle_content {
@@ -28,6 +33,11 @@
 	.event2_header_wrapper ul li a{
 		font-size: 1.7rem
 	}
+	.event-button-mv{
+		display: none;
+	
+	}   
+	   
 }
 @media (min-width: 1200px) and (max-width: 1399.98px) { 
 	.container{
@@ -64,6 +74,11 @@
 	.price_heading h2 {
 	    font-size: 5.2rem;
 	}
+	.event-button-mv{
+		display: none;
+	
+	}   
+	   
     
     
     
@@ -130,15 +145,6 @@
 	    width: 8.5rem;
 	    min-width: 8.5rem;
 	}
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
        
@@ -251,9 +257,14 @@
  .subscribe__area {
 	padding-bottom: 100px;
 }   
-    
-    
-    
+.table-single-predict th, td {
+    padding: 6px 29px;
+}   
+.event-button-mv{
+	display: none;
+
+}   
+   
     
     
     
@@ -276,6 +287,12 @@
 	.event_select .nice-select {
 	    line-height: 2.4;
 	}
+
+	.event-button-mv{
+		display: none;
+	
+	}   
+	   
 
 }
 
@@ -812,7 +829,11 @@
 	position: relative;
 	text-align: center;
 }   
-    
+.event-button-mv{
+	display: none;
+
+}   
+      
     
     
     
@@ -1113,8 +1134,40 @@
 	.event_btn_box .event_btn {
 	    max-width: 25%;
 	}
-    
-    
+
+	.table-single-predict {
+		margin-right: auto;
+	}
+	.table-single-predict th, td{
+		padding: 5px 19px;
+	
+	}
+	.table-single-predict td {
+		font-size: 12px;
+	}
+    .tip-p {
+
+		width: 101px;
+	}
+    .event-button{
+		display: none;
+
+	}
+	.event-button-mv{
+			display: block;
+			background: #0558CB;
+			box-shadow: 0 .3rem 1.5rem rgba(11, 105, 236, 0.33);
+			font-size: 1.8rem;
+			font-weight: 500;
+			padding: 1rem 1.5rem 1.1rem;
+			color: #fff;
+			border-radius: 0.6rem;
+			text-align: center;
+			min-width: 13.3rem;
+			border: none;
+			width: 45rem;
+
+	}
     
     
     
@@ -1901,9 +1954,13 @@
 		text-align: center;
 	}
 	.vip_lock_box.v2 {
-	    border: 0.1rem solid #BEBEBE;
+		box-shadow: 10px 15px 30px #22952026;
 	    padding: 3rem 3rem 5rem;
-	}	
+	}
+	.vip_lock_box.v2:hover {
+		box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
+	}		
 	.vip_lock_box.v2 .vip_left_content {
 	    display: flex;
 	    align-items: center;
@@ -2006,6 +2063,16 @@
 		padding: 0px 5px;
 	  }
 
+	.top_box {
+		background: #FFFFFF;
+		border-radius: 1rem;
+		backdrop-filter: blur(50px);
+		padding: 2.3rem 3.5rem;
+		margin-top: 2rem;
+		width: 40rem;
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 
@@ -2060,5 +2127,10 @@
 		margin: 0;
 		font-weight: 700;
 		margin-bottom: 9px;
+	}
+
+	.event-button-mv{
+		display: none;
+
 	}
 }

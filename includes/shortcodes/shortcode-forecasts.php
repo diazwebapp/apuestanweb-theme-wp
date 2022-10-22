@@ -134,13 +134,13 @@ function shortcode_forecast($atts)
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
                 <br/>
-                <button class='loadmore forecasts btn headerbtn'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>
+                <button class='loadmore forecasts btn headerbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>
                 <br/>
             </div>";
         endif;
         
     } else {
-        return '<h1>Nó hay datos</h1>';
+        return '<h1>No hay datos. Vuelve más tarde.</h1>';
     }
     
     return $ret;

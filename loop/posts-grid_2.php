@@ -25,4 +25,4 @@ echo '<div class="col-lg-3 col-md-6 mt_30">
                 <p class="mt_20">#'.$sport.'</p>
             </div>
         </div>
-        </div>' ; 
+        </div><hr class="mt-2 mb-3"/>'; 

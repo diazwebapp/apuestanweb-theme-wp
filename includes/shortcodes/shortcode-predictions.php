@@ -53,23 +53,35 @@ endif;
                 $odds_result = $oOddsConverter->doConverting();
                 $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
 
-                $ret .= "<br/><div class='single_event_match_title_box'>
-                            <div class='row mx-1 px-4 py-4' style='background:white;border-radius:4.3rem;'>
+                $ret .= "<div class='single_event_match_title_box'>
+                            <div class='tip-p row mx-1 px-4 py-4'>
                                 <img width='80' height='20' loading='lazy' src='{$bookmaker['logo_2x1']}'  style='object-fit-contain;' alt='{$bookmaker['name']}'>
-                                <p class='text-uppercase ml-3' style='font-size:1.4rem;'>
-                                    pronóstico: {$prediction['title']}
-                                </p>
-                                <span class='ml-3 pt-1 text-body'>
-                                    {$prediction['tvalue']}
-                                    <i class='fas fa-star align-text-top text-warning'></i>
-                                </span>
-                                
                             </div>
+                            <table class='table-single-predict'>
+                            <thead>
+                                <tr>                                   
+                                <th scope='col'>Pronóstico</th>
+                                <th scope='col'>Cuota</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr> 
+                                    <td>{$prediction['title']}
+                                    </td>
+                                    <td class=''>{$prediction['cuote']}</td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                            <a href='#' class='event-button'>Apostar</a>
                             
-                            <div class='match_title_right_point'>
-                                <p class='text-light' style='font-size:1.4rem;' >{$prediction['cuote']}</p>
-                            </div>  
-                        </div><br/>";
+                        </div>
+                        <div class='d-flex justify-content-center'>
+                            <a href='http://22bet.com' rel='nofollow' class='event-button-mv' style='
+                            margin-top: 2rem;'>Apostar</a>
+                        </div>
+
+                        <hr class='mt-2 mb-3'/>";
             endforeach;
         endif;
     }

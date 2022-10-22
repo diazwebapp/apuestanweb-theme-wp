@@ -654,7 +654,7 @@ a.btn_2:hover{
 	line-height: 1;
 }
 .title_lg{
-	font-size: 4.8rem;
+	font-size: 32px;
 	color: #00203A;
 	font-weight: 700;
 	line-height: 1.2;
@@ -1039,6 +1039,8 @@ footer .menu li a::before{
 
 .text_box {
     width: 130px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .statswg .fa-angle-up{
 	color: green;
@@ -1059,7 +1061,7 @@ footer .menu li a::before{
 .btn_groups{
 	display: flex;
 	align-items: center;
-	margin-top: 1.4rem;
+	margin-top: 2.4rem;
 }
 .btn_groups .button{
 	font-size: 1.4rem;
@@ -1435,6 +1437,7 @@ footer .menu li a::before{
 .bookmaker_logo_box4{
 	background: #DC213E;
 }
+
 .top_box2{
 	padding: 2rem;
 }
@@ -1556,13 +1559,23 @@ footer .menu li a::before{
 .vip_title_wrap .tag_wrap {
     width: 70%;
 }
+.vip_lock_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
+}
+
+
 .vip_lock_box{
 	display: flex;
 	padding: 4.2rem 5rem 3rem 4rem;
 	background-color: #ffffff;
-	box-shadow: 0px 5px 30px #A2A6B126;
+	box-shadow: 10px 15px 30px #22952026;
 	border-radius: 10px;
 	margin-top: 3rem;
+}
+.vip_lock_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
 }
 .vip_left_content {
     max-width: 17%;
@@ -2168,6 +2181,27 @@ footer .menu li a::before{
 	padding: 0.8rem 1rem;
 	margin-top: 1.5rem;
 }
+.single_event_match_title_box span {
+	font-size:1.4rem;
+	color: #fafcfd;
+	font-weight: bold;
+
+}
+.tip-text{                
+
+	margin-right: auto;
+
+}
+
+.tip-p	{
+	background:white;
+	border-radius:4.3rem;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	width: 155px;
+}
+
 .match_title_left_box {
     display: flex;
     align-items: center;
@@ -2175,53 +2209,106 @@ footer .menu li a::before{
     overflow: hidden;
 }
 
-.match_title_right_point p {
+.table-single-predict{
+	border-collapse: collapse;
+	color: #ffffff;
+
+
+}
+
+.table-single-predict th, td{
+    padding: 6px 79px;
+	border-right: 1px solid #c1c1c152;
+	text-align: center;
+
+
+}
+.table-single-predict td{
+	font-size: 15px;
+}
+.table-single-predict thead tr {
+    color: #ffffffaa;
+}
+
+.event-button {
+    background: #0558CB;
+    box-shadow: 0 .3rem 1.5rem rgba(11, 105, 236, 0.33);
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 1rem 1.5rem 1.1rem;
+    display: inline-block;
+    color: #fff;
+    border-radius: 0.6rem;
+    text-align: center;
+    min-width: 13.3rem;
+    border: none;
+}
+
+
+
+
+/*.match_title_right_point p {
     padding: 1.3rem 2.4rem;
     background-color: #0558CB;
     border-radius: 2.3rem;
     color: #FFFFFF;
     font-size: 1.8rem;
     font-weight: 700;
+}*/
+
+.match_title_right_point {
+    line-height: 2.6;
+    padding: .5rem 1.3rem;
+    background-color: #DDEAFD;
+    border-radius: 4.3rem;
+    color: #0558CB;
+    font-weight: 700;
 }
+
+/*Single event and single Bookmaker */
 .single_event_content{
 	position: relative;
-	min-height: 200px;
+	min-height: auto;
+	
 }
 
 .single_event_content p{
-	font-size: 1.8rem;
+	font-size: 17px;
 	color: #00203A;
 	max-width: 93.5rem;
 	text-align: justify;
 	line-height: 1.5em;
+	margin-bottom: 1em;
+	margin-block-start: 1em;
+
 }
 
 .single_event_title_wrap{
 	justify-content: space-between;
 }
 .single_event_content h1{
-	font-size: 28px;
+	font-size: 32px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
 	margin-bottom: 24px;
 }
 .single_event_content h2{
-	font-size: 22px;
+	font-size: 26px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
 	margin-bottom: 24px;
 }
 .single_event_content h3{
-	font-size: 16px;
+	font-size: 22px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
 	margin-bottom: 24px;
 }
 .single_event_content h4{
-	font-size: 14px;
+	font-size: 20px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
@@ -2241,7 +2328,116 @@ footer .menu li a::before{
 	font-weight: 700;
 	margin-bottom: 24px;
 }
+.single_event_content ul, ol{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
 
+}
+.single_event_content ul{
+	list-style-type: square;
+	color: #00203A;
+
+}
+.single_event_content ul li::marker{
+	
+	color: #d42e11;
+
+}
+
+.single_event_content li {
+    margin: 0 0 10px;
+}
+
+.single_event_content ol{
+	list-style-type: decimal;
+	color: #00203A;
+
+
+}
+
+.single_event_content a:link {
+    color: #0558CB;
+	text-decoration: underline;
+
+}
+
+/* visited link */
+.single_event_content a:visited {
+    color: #ee76de;
+}
+
+/* mouse over link */
+.single_event_content a:hover {
+    color: #03b0f4;
+	text-decoration: underline;
+}
+
+/* selected link */
+.single_event_content a:active {
+    color: blue;
+}
+
+blockquote{
+	display:block;
+	background: #fff;
+	padding: 15px 20px 15px 45px;
+	margin: 0 0 20px;
+	position: relative;
+	
+	/*Font*/
+	font-family: Georgia, serif;
+	font-size: 16px;
+	line-height: 1.2;
+	color: #666;
+	text-align: justify;
+	
+	/*Borders - (Optional)*/
+	border-left: 15px solid #03b0f4;
+	border-right: 2px solid #03b0f4;
+	
+	/*Box Shadow - (Optional)*/
+	-moz-box-shadow: 2px 2px 15px #ccc;
+	-webkit-box-shadow: 2px 2px 15px #ccc;
+	box-shadow: 2px 2px 15px #ccc;
+  }
+  
+  blockquote::before{
+	/*content: "\201C"; /*Unicode for Left Double Quote*/
+	/*Font*/
+	font-size: 60px;
+	font-weight: bold;
+	color: #999;
+	
+	/*Positioning*/
+	position: absolute;
+	left: 10px;
+	top:5px;
+  }
+  
+  blockquote::after{
+	/*Reset to make sure*/
+	content: "";
+  }
+  
+  blockquote a{
+	text-decoration: none;
+	background: #eee;
+	cursor: pointer;
+	padding: 0 3px;
+	color: #c76c0c;
+  }
+  
+  blockquote a:hover{
+   color: #666;
+  }
+  
+  blockquote em{
+	font-style: italic;
+  }
 
 .single_event_match_title_box2{
 	margin-top: 5.5rem;
@@ -2835,7 +3031,7 @@ footer .menu li a::before{
 	font-weight: 400;
 }
 .event2_box_bonus .p3{
-	font-size: 1.5rem;
+	font-size: 1.7rem;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 500;
@@ -3039,6 +3235,8 @@ footer .menu li a::before{
 .container_logo_review{
 	border-radius:1rem 0 0 1rem;
 	background:black;
+	min-height:210px;
+
 }
 .review__area {
   padding-top: 70px;
@@ -3075,6 +3273,23 @@ footer .menu li a::before{
 
 }
 
+/*box in single bk*/
+
+.bk-box{
+	box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;
+	border-radius:0 8px 8px 0;
+}
+.bk-box-mb-left{
+	position: absolute;
+	z-index: 2; 
+	width: 100%;
+	top:10px;
+	left:0;
+}
+.bk-box-mb-left span{
+
+	font-size:20px;color:#F9F9F9;
+}
 
 .review__reting__box {
   width: 100%;

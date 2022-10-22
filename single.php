@@ -27,7 +27,7 @@ $sidebar=false;
                                     <h1 class="blog_title"><?php echo $title ?></h1>
                                     <p class="mt_30 author_text">Por <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a> <?php echo $fecha ?></p>
                                     <img src="<?php echo $thumbnail_url ?>" class="single_img" alt="">
-                                    <div class="text_box2">
+                                    <div class="single_event_content text-break">
                                         <?php the_content(); ?>
                                 <?php   endwhile; }
                             ?>
