@@ -92,7 +92,7 @@ function create_forecast() {
 		'label'               => __( 'Forecast', 'jbetting' ),
 		'description'         => __( 'Forecast', 'jbetting' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'author', 'comments' ),
+		'supports'            => array( 'title', 'editor', 'author', 'comments', 'thumbnail' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
