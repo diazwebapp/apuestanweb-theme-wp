@@ -17,6 +17,7 @@ $sidebar=false;
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
+                            $post_date = get_the_date( "d m h:i a", get_the_ID());
                             $time = carbon_get_post_meta(get_the_ID(), 'data');
                             $title = get_the_title( get_the_ID() ); 
                             $fecha = date('d M', strtotime($time)) .' - '. date('g:i a', strtotime($time));
@@ -25,7 +26,7 @@ $sidebar=false;
                             $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
                             ?>
                                     <h1 class="blog_title"><?php echo $title ?></h1>
-                                    <p class="mt_30 author_text">Por <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a> <?php echo $fecha ?></p>
+                                    <p class="mt_30 author_text">Por <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a> <?php echo $post_date ?></p>
                                     <img src="<?php echo $thumbnail_url ?>" class="single_img" alt="">
                                     <div class="text_box2">
                                         <?php the_content(); ?>
