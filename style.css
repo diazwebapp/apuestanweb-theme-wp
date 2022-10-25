@@ -361,6 +361,26 @@ header {
 .headerbtn:hover{
 	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
 }
+
+.loadbtn{
+	width: 16rem;
+	background: transparent linear-gradient(107deg, #0558CB 0%, #023986 100%);
+	box-shadow: 0px .3rem 1.5rem rgba(11, 105, 236, 0.4);
+	border-radius: .6rem;
+	font-size: 1.8rem;
+	text-align: center;
+	display: inline-flex;
+	font-weight: 500;
+	color: #fff !important;
+	padding: 1.05rem 1.5rem;
+	align-items: center;
+	justify-content: center;
+	line-height: 1.31;
+}
+.loadbtn:hover{
+	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
+}
+
 .headerbtn.v2{
 	position: absolute;
 	top: 143%;
@@ -2230,8 +2250,8 @@ footer .menu li a::before{
     color: #ffffffaa;
 }
 
-.event-button {
-    background: #0558CB;
+#event-button {
+    background: #17a717;
     box-shadow: 0 .3rem 1.5rem rgba(11, 105, 236, 0.33);
     font-size: 1.8rem;
     font-weight: 500;
@@ -2243,7 +2263,10 @@ footer .menu li a::before{
     min-width: 13.3rem;
     border: none;
 }
-
+#event-button:hover{
+	background-color: #1dcd1d;
+	color: #fff;
+}
 
 
 

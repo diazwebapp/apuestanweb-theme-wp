@@ -73,7 +73,7 @@ endif;
                                 </tr>
                             </tbody>
                             </table>
-                            <a href='#' class='event-button'>Apostar</a>
+                            <button href='#' id='event-button'>Apostar</button>
                             
                         </div>
                         <div class='d-flex justify-content-center'>
