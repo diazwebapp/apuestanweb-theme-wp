@@ -66,6 +66,7 @@ Text Domain: jbetting
     font-style: normal;
     font-display: swap;
  }
+
  /*======================
    02. Basic css
 ========================*/
@@ -507,6 +508,9 @@ a.btn_2:hover{
 		margin-left: auto;
 	
 }
+.team_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+}
 .team_box>img{
 	margin-top: 1.5rem;
 	height: 6.5rem;
@@ -654,7 +658,7 @@ a.btn_2:hover{
 	object-fit: cover;
 }
 .media h4{
-	font-size: 2.1rem;
+	font-size: 1.6rem;
 	line-height: 1.2;
 	font-weight: 500;
 	color: #00203A;
@@ -2239,7 +2243,7 @@ footer .menu li a::before{
 }
 
 .table-single-predict th, td{
-    padding: 6px 79px;
+    padding: 6px 55px;
 	border-right: 1px solid #c1c1c152;
 	text-align: center;
 
@@ -2247,6 +2251,7 @@ footer .menu li a::before{
 }
 .table-single-predict td{
 	font-size: 15px;
+	width: 25rem;
 }
 .table-single-predict thead tr {
     color: #ffffffaa;

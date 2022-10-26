@@ -96,13 +96,11 @@
                                             </li>
                                             <li>
                                                 <a href="<?php echo isset($sport->permalink) ? $sport->permalink : '/'  ?>">
-                                                    <?php echo isset($sport->icon_html) ? $sport->icon_html : '' ?>
                                                     <?php echo isset($sport->name) ? $sport->name : '' ?>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="<?php echo isset($league->permalink) ? $league->permalink : '/'  ?>">
-                                                    <?php echo isset($league->icon_html) ? $league->icon_html : '' ?>
                                                     <?php echo isset($league->name) ? $league->name : '' ?>
                                                 </a>
                                             </li>
