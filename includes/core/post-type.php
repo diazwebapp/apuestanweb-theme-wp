@@ -49,6 +49,7 @@ function create_bk() {
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
+		'rewrite' => array('slug' => 'casas-apuestas', 'with_front'=> true)
 	);
 	register_post_type( 'bk', $args );
 
@@ -92,7 +93,7 @@ function create_forecast() {
 		'label'               => __( 'Forecast', 'jbetting' ),
 		'description'         => __( 'Forecast', 'jbetting' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'author', 'comments' ),
+		'supports'            => array( 'title', 'editor', 'author', 'comments', 'thumbnail' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -107,6 +108,7 @@ function create_forecast() {
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
+		'rewrite' => array('slug' => 'pronosticos', 'with_front'=> true)
 
 	);
 	register_post_type( 'forecast', $args );
@@ -174,7 +176,7 @@ function create_team() {
 add_action( 'init', 'create_team', 0 );
 
 
-
+/* 
 function create_bonus() {
 
 	$labels = array(
@@ -231,7 +233,7 @@ function create_bonus() {
 }
 
 add_action( 'init', 'create_bonus', 0 );
-
+ */
 function create_parley() {
 
 	$labels = array(

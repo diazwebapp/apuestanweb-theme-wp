@@ -1,21 +1,4 @@
 <?php get_header(); ?>
-<?php
-				
-    /* 
-    $time       = carbon_get_post_meta( get_the_ID(), 'data' );
-    $link       = carbon_get_post_meta( get_the_ID(), 'link' );
-
-    $geolocation = json_decode(GEOLOCATION);
-    $date = new DateTime($time);
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-
-    $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-    
-    // datos casa de apuesta
-
-    */
- 
-?>
 
 <main>
     <div class="event_area single_event_area pb_90">
@@ -40,8 +23,8 @@
                             
                             //taxonomy league
                             $tax_leagues = wp_get_post_terms(get_the_ID(),'league');                            
-                            $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';
-
+                            $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';                           
+                            
                             //forecast sport
                             $sport = false;
                             if(isset($tax_leagues) and count($tax_leagues) > 0):
@@ -63,11 +46,18 @@
                             $league = false;
                             
                             if(isset($sport)):
-                                $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
-                                if(isset($leagues) and count($leagues) > 0):
-                                    $league = $leagues[0]; //define forecast sport
-                                    $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-                                    $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                $img_att   = carbon_get_term_meta( $sport->term_id, 'wbg' );
+                                if(!empty($img_att)):
+                                    $background_header    = aq_resize(wp_get_attachment_url( $img_att ), 1080, 600, true,true,true);
+                                endif;
+                                if(isset($tax_leagues) and count($tax_leagues) > 0):
+                                    foreach($tax_leagues as $leaguefor):
+                                        if($leaguefor->parent == $sport->term_id):
+                                            $league = $leaguefor; //define forecast sport
+                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
+                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                        endif;
+                                    endforeach;
                                 endif;
                                 if($league):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte

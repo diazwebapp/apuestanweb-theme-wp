@@ -11,7 +11,7 @@ if($event_bg)
 $prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
 $link = carbon_get_post_meta(get_the_ID(), 'link');
 
-$permalink = get_the_permalink();
+$permalink = get_the_permalink(get_the_ID());
 $cross_img = get_template_directory_uri(  ) . '/assets/img/cross.png';
 
 $time = carbon_get_post_meta(get_the_ID(), 'data');
@@ -87,8 +87,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     <div class="slider__box--main">
         <div class="slider__main--menu">
             <ul>
-                <li><a href="#"><img src="'.$teams['team1']['logo'].'" alt="">'.$teams['team1']['name'].'</a></li>
-                <li><a href="#"><img src="'.$teams['team2']['logo'].'" alt="">'.$teams['team2']['name'].'</a></li>
+                <li><a href="'.$permalink.'"><img src="'.$teams['team1']['logo'].'" alt="">'.$teams['team1']['name'].'</a></li>
+                <li><a href="'.$permalink.'"><img src="'.$teams['team2']['logo'].'" alt="">'.$teams['team2']['name'].'</a></li>
             </ul>
         </div>
         <div class="slider__nmbr__wpa">
