@@ -10,7 +10,9 @@ function shortcode_bookmaker($atts)
         'paginate'=>false,
         'country'=>false
     ), $atts));
-    $ret = '';
+    $ret = '<div class="container" >
+        <div class="row small_gutter">{replace_loop}</div>
+    </div>';
     
     wp_reset_query();
 
@@ -80,22 +82,23 @@ function shortcode_bookmaker($atts)
             $cut = $cut * $current_page;
         }
         array_splice($new_bks,0, ($current_page == 1) ? $current_page -1 : $cut );
+        $view_list_bk = '';
 
-        if($model == 1):
+        foreach ($new_bks as $key_bk => $bookmaker):
+            if($current_page == 1 and  $key_bk  <= ($num - 1))
+                $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,[
+                    'post'	=> $bookmaker,
+                ]);
+            if($current_page > 1 and  $key_bk  <= ($num - 1))
+                $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,[
+                    'post'	=> $bookmaker,
+                ]);
             
-            foreach ($new_bks as $key_bk => $bookmaker):
-                if($current_page == 1 and  $key_bk  <= ($num - 1))
-                    $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
-                        'post'	=> $bookmaker,
-                    ]);
-                if($current_page > 1 and  $key_bk  <= ($num - 1))
-                    $ret .= load_template_part("loop/bookmaker_list_{$model}",null,[
-                        'post'	=> $bookmaker,
-                    ]);
-                
-            endforeach;
-        endif;
+        endforeach;
+
         
+        $ret = str_replace("{replace_loop}",$view_list_bk,$ret);
+
         if(count($new_bks) > 0 and $paginate=="yes"){
             $links = '';
             for($i=1;$i<=$total_pages;$i++){
@@ -118,20 +121,6 @@ function shortcode_bookmaker($atts)
             </div>
             ';
         }
-        ?>
-        <script>
-            document.addEventListener('DOMContentLoaded',()=>{
-
-                var counters = document.querySelectorAll('#count_bk_model_3');
-                if(counters.length > 0){
-                    for(var count = 0; count < counters.length;count++ ){
-                        counters[count].textContent = count+1
-                    }
-                }
-
-            })
-        </script>
-        <?php
     } else {
         return '<p>no hay datos</p>';
     }
