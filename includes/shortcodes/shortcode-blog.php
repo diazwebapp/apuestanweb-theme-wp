@@ -5,7 +5,7 @@ function shortcode_blog($atts)
         'model' => false,
         'filter' => false,
         'title' => false,
-        'num' => ''
+        'num' => 6
     ), $atts));
     //Set default title
     if(!$title):
@@ -13,6 +13,7 @@ function shortcode_blog($atts)
         $title = empty($custom_h1) ? get_the_title( get_the_ID() ) : $custom_h1;
     endif;
     //Set search bar
+    $ret = '';
     if($filter):
             $url = site_url();
             $search_icon = get_template_directory_uri() . '/assets/img/s4.png';

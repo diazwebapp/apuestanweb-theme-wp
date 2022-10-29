@@ -288,7 +288,7 @@ function filter_webp_quality( $quality, $mime_type ){
 add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 /////configurando smtp///////
 
-function configuracion_smtp( PHPMailer $phpmailer ){
+/* function configuracion_smtp( PHPMailer $phpmailer ){
     $phpmailer->isSMTP(); 
     $phpmailer->Host = 'smtp-relay.sendinblue.com';
     $phpmailer->SMTPAuth = true;
@@ -298,7 +298,7 @@ function configuracion_smtp( PHPMailer $phpmailer ){
     $phpmailer->SMTPSecure = false;
     $phpmailer->From = 'From Email';
     $phpmailer->FromName='Nombre del remitente';
-}
+} */
 
 ///// Detectando registro de usuarios
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
