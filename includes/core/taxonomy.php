@@ -32,6 +32,7 @@ function custom_taxonomy_league() {
 		'show_admin_column' => true,
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => true,
+		'show_in_rest' => true
 	);
 	register_taxonomy( 'league', array( 'forecast', 'page', 'post', 'parley' ), $args );
 
@@ -70,6 +71,7 @@ function custom_taxonomy_bookmaker_payment_methods() {
 		'show_admin_column' => true,
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => true,
+		'show_in_rest' => true
 	);
 	register_taxonomy( 'bookmaker-payment-methods', array( 'bk', 'page' ), $args );
 
