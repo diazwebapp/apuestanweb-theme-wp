@@ -1,13 +1,11 @@
 /*
 Theme Name: Apuestanweb v12
-Theme URI: https://jbetting.ru/
-Author: TheJema
-Author URI: https://thejema.com/shop
-Description: Betting theme
-Version: 3.7
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: jbetting
+Theme URI: https://www.apuestan.com
+Author: Apuestan
+Author URI: Apuestan
+Description: Apuestan theme
+Version: 1.0
+Text Domain: Apuestan
 *//*======================
    01. fonts
 ========================*/
@@ -262,7 +260,7 @@ header {
 .menu li a {
 	font-size: 2rem;
 	color: #fff;
-	margin: 0 1.8rem;
+	margin: 0 .5rem;
 	display: inline-flex;
 	align-items: center;
 	font-weight: 500;
@@ -980,6 +978,9 @@ footer .menu li a::before{
 	color: #F2E6E6;
 	font-size: 1.3rem;
 	min-height: 3rem;
+}
+.game_btn.v2 i{
+	margin-right: 1rem;
 }
 .divider{
 	width: 100%;
@@ -2373,6 +2374,14 @@ footer .menu li a::before{
 	color: #00203A;
 
 }
+.single_event_content ul li{
+	
+	list-style: inherit;
+}
+.single_event_content ol li{
+	
+	list-style: inherit;
+}
 .single_event_content ul li::marker{
 	
 	color: #d42e11;
@@ -2402,7 +2411,7 @@ footer .menu li a::before{
 }
 
 /* mouse over link */
-.single_event_content a:hover {
+.single_event_content p a:hover {
     color: #03b0f4;
 	text-decoration: underline;
 }
@@ -3917,9 +3926,9 @@ blockquote{
   top: -35px;
   right: 0;
 }
-.owl-next {
+/*.owl-next {
   right: 4% !important;
-}
+}*/
 .payment__btn.pay--mobl {
 	display: none;
 }
@@ -4449,4 +4458,33 @@ a.panel-button {
     text-align: justify;
     line-height: 2rem;
     margin-bottom: 2rem;
+}
+
+.banner-bookmaker{
+	border-radius: 10px;
+	box-shadow: 2px 2px 15px #ccc;
+}
+.banner-bookmaker ul, li{
+	list-style: none;
+	padding-inline-start: 10px;
+
+}
+.banner-bookmaker span{
+	font-size: 14px;
+}
+.banner-bookmaker i{
+	list-style:none;
+	font-size:1rem;
+}
+
+.banner-bookmaker p{
+	font-size: 18px;
+}
+
+#btn-bookmaker {
+    font-size: 15px;
+    border-radius: .5rem;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
 }

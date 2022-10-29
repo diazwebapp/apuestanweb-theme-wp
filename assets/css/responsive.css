@@ -303,7 +303,10 @@
 		padding-bottom:10px;
 	}
 	.container_logo_review{
-		border-radius:1rem ;
+		border-radius: 8px 8px 0 0;
+	}
+	.bk-box{
+		border-radius: 0 0 8px 8px;
 	}
 	.event_select{
 		display: none;
@@ -910,7 +913,7 @@
 	.bookmaker_box_wrapper {
 	    flex-direction: column;
 	    padding: 1.2rem 3rem 4rem;
-	    border: 0.1rem solid #ACACAC;
+		box-shadow: inset 0px 3px 6px #40404029, 0px 3px 6px #00000029;
 	}
 	.bookmaker_left_content {
 	    flex-direction: column;
@@ -926,7 +929,7 @@
 		margin-top: 2.8rem;
 	}
 	.bookmaker_left_heading h4{
-		padding-right: 4.7rem;
+		padding-right: 0;
 	}
 	.bookmaker_right_btn a {
 	    margin-top: 5rem;
@@ -939,6 +942,13 @@
 	}
 	.bookmaker_logo_box img{
 		max-width: 15.2rem;
+	}
+	.bk-box{
+		border-radius: 0 0 8px 8px;
+	}
+	.bookmaker_left_check p{
+		font-size: 2rem;
+		margin-top: 4rem;
 	}
 
 	/*price area*/
@@ -1168,18 +1178,9 @@
 			width: 45rem;
 
 	}
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    .list-feactures{
+		text-align: center;
+	}
     
    .club__box {
 	width: 100%;

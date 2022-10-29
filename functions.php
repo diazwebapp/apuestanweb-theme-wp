@@ -305,21 +305,3 @@ function configuracion_smtp( PHPMailer $phpmailer ){
     $phpmailer->FromName='Nombre del remitente';
 }
 
-///// Detectando registro de usuarios
-add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
-
-function aw_actions_after_register_user( $user_id ) {
-    $headers[]= 'From: Apuestan <apuestan@gmail.com>';
-    $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
-    $headers[]= 'Cc: Persona2 <nohe.zambrano69@gmail.com>';
-    
-    function tipo_de_contenido_html() {
-        return 'text/html';
-    }
-    add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
-    wp_mail( 'erickoficial69@gmail.com',
-    'Ejemplo de la función mail en WP',
-    '<h1>Correo de apuestan</h1>',
-    $headers
-    );
-}

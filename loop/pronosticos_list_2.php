@@ -36,7 +36,7 @@ $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
 //Componente si es vip
 $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
-                    <i class='fa fa-lock'></i>
+                    <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
 if($vip !='yes')

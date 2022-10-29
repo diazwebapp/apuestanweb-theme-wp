@@ -21,9 +21,7 @@ function shortcode_banner_bookmaker($atts)
 
     //obtener datos del bookmaker
     $post = get_post($id);
-    
     $bookmaker["feactures"] = carbon_get_post_meta($post->ID, 'feactures');
-    
     $bookmaker["bonus_slogan"] = carbon_get_post_meta($post->ID,'bonus_slogan');
     $bookmaker["ref_link"] = carbon_get_post_meta($post->ID,'ref');
 
@@ -40,21 +38,20 @@ function shortcode_banner_bookmaker($atts)
     if(!isset($exists)): //si nó existe pedimos un bookmaker aleatorio 
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"limit"=>1]);
     endif;    
-
     $ret = '
-    <div class="container my-4">
-        <div class="row px-5 py-3" style="border:1px solid grey;border-radius:10px;">
+    <div class="banner-bookmaker container my-4">
+        <div class="row px-5 py-3">
             <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:black;min-height:100px;">
-                <img width="{w-logo}" height="{h-logo}" src="{logo}" alt="{alt_logo}" style="margin:auto;" />
+                <img width="{w-logo}"  height="{h-logo}" src="{logo}" alt="{alt_logo}" style="margin:auto;" />
             </div>
-            <div class="col-lg-3 my-4">
+            <div class="list-feactures col-lg-3 my-4">
                 <ul>
                     {feactures}
                 </ul>
             </div>
             <div class="col-lg-6 my-4">
-                <p class="text-body text-center text-uppercase font-weight-bold mb-5" style="font-size:22px;" >{bonus_slogan}</p>
-                <a href="{ref_link}" class="text-uppercase badge badge-primary px-5 d-block py-4" style="font-size:15px;border-radius:.5rem;font-weight: 500" target="_blank">visitar <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>
+                <p class="text-body text-center text-uppercase font-weight-bold mb-5">{bonus_slogan}</p>
+                <a href="{ref_link}" id="btn-bookmaker" class="text-uppercase badge badge-primary px-5 d-block py-4" rel="nofollow" target="_blank">visitar</a>
             </div>
         </div>
     </div>
@@ -65,8 +62,8 @@ function shortcode_banner_bookmaker($atts)
     if($bookmaker["feactures"] and count($bookmaker["feactures"]) > 0):
         foreach($bookmaker["feactures"] as $key => $feacture):
             $feactures_html .= '<li class="my-1">
-                <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem;list-style:none;"></i>
-                <span class="text-uppercase text-success align-middle ml-3" style="font-size:1.7rem;">'.$feacture["feacture"].'</span>
+                <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light"></i>
+                <span class="text-uppercase text-success align-middle ml-3">'.$feacture["feacture"].'</span>
             </li>';
         endforeach;
     endif;

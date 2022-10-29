@@ -8,7 +8,7 @@ function crb_attach_theme_options()
 {
 
     if (get_key()):
-        Container::make('theme_options', "jBetting")
+        Container::make('theme_options', "Apuestan")
             ->set_icon('dashicons-admin-site-alt2')
             ->add_tab(__("General settings", "jbetting"), array(
                 Field::make('image', 'logo', __("Site logo(183*19)", "jbetting")),
@@ -125,32 +125,24 @@ function crb_attach_theme_options()
         
         Container::make('post_meta', __("Team", "jbetting"))
             ->where('post_type', '=', 'team')
-            ->add_tab(__("General", "jbetting"), array(
+            ->add_tab(__("1. General", "jbetting"), array(
                 Field::make('image', 'team_logo', __("Team logo(square .png)", "jbetting")),
                 Field::make('text', 'acronimo', __("acronimo", "jbetting"))
             ));
 
 
 
-        Container::make('post_meta', __("Forecast", "jbetting"))
+        Container::make('post_meta', __("Informacion del evento", "jbetting"))
             ->where('post_type', '=', 'forecast')
-            ->add_tab(__("General", "jbetting"), array(
-                Field::make('date_time', 'data', __("Forecast date", "jbetting")),            
+            ->add_tab(__("1. General", "jbetting"), array(
                 Field::make('checkbox', 'vip', __("Premium event", "jbetting")),
-                Field::make('text', 'stadium', __("Stadium", "jbetting")),
-                Field::make('select', 'status', __("Status event", "jbetting"))
-                    ->add_options(array(
-                        'undefined' => 'Indefinido',
-                        'ok' => 'Acertado',
-                        'fail' => 'No acertado',
-                        'null' => 'nulo'
-                    )),
-                Field::make('complex', 'predictions', __("Predictions", "jbetting"))
+                Field::make('date_time', 'data', __("Fecha&hora", "jbetting"))->set_required( true ),            
+                Field::make('complex', 'predictions', __("Pronósticos", "jbetting"))
                     ->set_layout("tabbed-horizontal")
                     ->add_fields(array(
-                        Field::make('text', 'title', __("Title", "jbetting")),
-                        Field::make('text', 'cuote', __("Cuote text", "jbetting")),
-                        Field::make('select', 'tvalue', __("trush value (1,2,3,4,5)", "jbetting"))
+                        Field::make('text', 'title', __("Pick", "jbetting")),
+                        Field::make('text', 'cuote', __("Cuota", "jbetting")),
+                        Field::make('select', 'tvalue', __("Stake (1,2,3,4,5)", "jbetting"))
                             ->add_options(array(
                                 '1' => '1',
                                 '2' => '2',
@@ -159,27 +151,34 @@ function crb_attach_theme_options()
                                 '5' => '5',
                             )),
                     )),
+                Field::make('select', 'status', __("Status event", "jbetting"))
+                    ->add_options(array(
+                        'undefined' => 'Indefinido',
+                        'ok' => 'Acertado',
+                        'fail' => 'No acertado',
+                        'null' => 'nulo'
+                    )),
             ))
-            ->add_tab(__("Game Teams?", "jbetting"), array(
-                Field::make('text', 'p1', __("Team 1 cuote", "jbetting")),
+            ->add_tab(__("2. Equipos/Cuotas", "jbetting"), array(
                 Field::make('association', 'team1', __("Select team 1", "jbetting"))
                     ->set_types(array(
                         array(
                             'type' => 'post',
                             'post_type' => 'team',
                         )
-                    ))->set_min(1)->set_max(1),
-                    Field::make('text', 'p2', __("Team 2 cuote", "jbetting")),
+                    ))->set_min(1)->set_max(1)->set_required( true ),
                 Field::make('association', 'team2', __("Select team 2", "jbetting"))
                     ->set_types(array(
                         array(
                             'type' => 'post',
                             'post_type' => 'team',
                         )
-                    ))->set_min(1)->set_max(1),
-                    Field::make('text', 'x', __("X other cuote", "jbetting")),
+                    ))->set_min(1)->set_max(1)->set_required( true ),
+                    Field::make('text', 'p1', __("Team 1 cuota", "jbetting"))->set_required( true ),
+                    Field::make('text', 'p2', __("Team 2 cuota", "jbetting"))->set_required( true ),
+                    Field::make('text', 'x', __("Empate cuota", "jbetting"))->set_required( true ),
             ))
-            ->add_tab(__("Casa de apuesta?", "jbetting"), array(
+            ->add_tab(__("3. Casa de apuesta", "jbetting"), array(
                 Field::make('association', 'bk', __("Select bookmaker", "jbetting"))
                     ->set_types(array(
                         array(

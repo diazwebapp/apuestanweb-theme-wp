@@ -103,8 +103,10 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                                 foreach ($bookmaker["payment_methods"] as $key => $payment) {
                                                     echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
                                                 }
+                                                
                                             }
                                         ?>
+                                        <i class="fal fa-plus"></i>
                                     </div>
         
                                 </div>
