@@ -40,7 +40,7 @@ $(document).ready(function () {
 
     function filter(e){
         const date = e.target.value
-        console.log(forecasts_test)
+        
         var data = {
             'action': 'filter_forecast',
             'query': forecasts_fetch_vars.posts,
