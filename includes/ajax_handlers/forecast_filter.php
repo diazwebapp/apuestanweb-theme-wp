@@ -3,7 +3,7 @@ function filter_forecast() {
     wp_reset_postdata( );
 	$args['post_status'] = 'publish';
     $args['post_type']   = $_POST['cpt'];
-    $args['posts_per_page']       = -1;
+    $args['posts_per_page']       = 6;
     $model = $_POST['model'];
     $leage = $_POST['league'];
     $fecha = $_POST['date'];
