@@ -96,6 +96,13 @@ function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
     load_theme_textdomain('jbetting', get_template_directory() . '/lang');
+    global $post;
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'posts' ) ) {
+        //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
+    }
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
+        //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
+    }
 }
 
 function get_key()

@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-
     /*archive-forecast.php*/
     var selector_category_f = $('button.loadmore.forecasts');
     $(selector_category_f).click(function (e) {
@@ -8,27 +7,28 @@ $(document).ready(function () {
         $(this).text('loading...');
         var data = {
             'action': 'loadmore_forecast',
-            'query': posts,
-            'page': current_page,
-            'model': model,
-            "text_vip_link" : text_vip_link,
-            'vip':vip,
-            'unlock':unlock,
-            'cpt':cpt,
-            "time_format" : time_format,
+            'query': forecasts_fetch_vars.posts,
+            'page': forecasts_fetch_vars.current_page++,
+            'max_pages': forecasts_fetch_vars.max_pages,
+            'model': forecasts_fetch_vars.model,
+            "text_vip_link" : forecasts_fetch_vars.text_vip_link,
+            'vip':forecasts_fetch_vars.vip,
+            'unlock':forecasts_fetch_vars.unlock,
+            'cpt':forecasts_fetch_vars.cpt,
+            "time_format" : forecasts_fetch_vars.time_format,
         };
-        
         $.ajax({
-            url: ajaxurl,
+            url: forecasts_fetch_vars.ajaxurl,
             data: data,
             type: 'POST',
-            success: function (data) {
-                if (data) {
+            success: function (data_html) {
+                if (data_html) {
                     $(selector_category_f).text("Load more");
-                    current_page++;
-                    $('#games_list').append(data);
+                    $('#games_list').append(data_html);
+                    console.log(data.page)
                     }else{
                         $(selector_category_f).text("no items");
+                        
                     }
             }
         });
@@ -40,28 +40,27 @@ $(document).ready(function () {
 
     function filter(e){
         const date = e.target.value
-        
+        console.log(forecasts_test)
         var data = {
             'action': 'filter_forecast',
-            'query': posts,
-            'model': model,
+            'query': forecasts_fetch_vars.posts,
+            'model': forecasts_fetch_vars.model,
             'date':date,
-            "text_vip_link" : text_vip_link,
-            'vip':vip,
-            'unlock':unlock,
-            'cpt':cpt,
-            "time_format" : time_format,
+            "text_vip_link" : forecasts_fetch_vars.text_vip_link,
+            'vip':forecasts_fetch_vars.vip,
+            'unlock':forecasts_fetch_vars.unlock,
+            'cpt':forecasts_fetch_vars.cpt,
+            "time_format" : forecasts_fetch_vars.time_format,
         };
        
         $.ajax({
-            url: ajaxurl,
+            url: forecasts_fetch_vars.ajaxurl,
             data: data,
             type: 'POST',
             success: function (data) {
                 
                 var element = $('#games_list');
                 if (data) {
-                    console.log(unlock,vip)
                     $(element).html(data)
                     } else {
                         $(element).html('')

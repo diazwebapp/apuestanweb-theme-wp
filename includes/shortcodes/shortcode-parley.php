@@ -96,24 +96,23 @@ function shortcode_parley($atts)
             $ret .= load_template_part("loop/parley_list_{$model}"); 
         endwhile;
         $ret .= "</div>";
-        
 
-        ?>
-            <script>
-                var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
-                var posts = '<?php echo serialize( $query->query_vars ); ?>';
-                var current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
-                var max_pages = '<?php echo $query->max_num_pages; ?>';
-                var model = '<?php echo $model ?>';
-                //Parametros del shortcode 
-                var text_vip_link = '<?php echo $text_vip_link ?>'
-                var vip = 'no';
-                var unlock = 'no';
-                var cpt = 'parley';
-                var time_format = '<?php echo $time_format ?>'
-            </script>
+        $jsdata = json_encode([
+            "ajaxurl" => site_url() . '/wp-admin/admin-ajax.php',
+            "posts" => serialize( $query->query_vars ),
+            "current_page" => $args['paged'] ,
+            "max_pages" => $query->max_num_pages,
+            "model" => $model,
+            "league" =>  $league,
+			"vip_link" =>  PERMALINK_VIP,
+			"text_vip_link" =>  $text_vip_link,
+            "time_format" =>  $time_format,
+            "vip "=> 'no',
+            "unlock" => 'no',
+            "cpt" => 'parley',
+        ]);
+        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = $jsdata " );
 
-        <?php 
         if($paginate=='yes'):
 
             $ret .="<div class='container container_pagination text-md-center'>

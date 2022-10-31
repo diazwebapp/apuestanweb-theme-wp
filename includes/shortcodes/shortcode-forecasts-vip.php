@@ -113,21 +113,22 @@ function shortcode_forecast_vip($atts)
                 endif;
         endif;
 
-        ?>
-            <script>
-                var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
-                var posts = '<?php echo serialize( $query->query_vars ); ?>';
-                var current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
-                var max_pages = '<?php echo $query->max_num_pages; ?>';
-                var model = '<?php echo $model ?>';
-                var text_vip_link = '<?php echo $text_vip_link ?>'
-                var vip = 'yes';
-                var time_format = '<?php echo $time_format ?>'
-                var unlock = '<?php if($unlock): echo 'yes' ;else: echo 'no' ; endif; ?>';
-                var cpt = 'forecast';
-            </script>
+        $jsdata = json_encode([
+            "ajaxurl" => site_url() . '/wp-admin/admin-ajax.php',
+            "posts" => serialize( $query->query_vars ),
+            "current_page" => $args['paged'] ,
+            "max_pages" => $query->max_num_pages,
+            "model" => $model,
+            "league" =>  $league,
+			"vip_link" =>  PERMALINK_VIP,
+			"text_vip_link" =>  $text_vip_link,
+            "time_format" =>  $time_format,
+            "vip "=> 'yes',
+            "unlock" => $unlock ? 'yes' : 'no',
+            "cpt" => 'forecast',
+        ]);
+        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = $jsdata " );
 
-        <?php 
         if($paginate=='yes'):
 
             $ret .="<div class='container container_pagination text-md-center'>

@@ -44,10 +44,11 @@ function shortcode_forecast($atts)
                     </div>
                 </div>";
     endif;
-    wp_reset_query();
+    wp_reset_postdata();
     $args = [];
     $args['post_status']    = 'publish';
     $args['post_type']      = 'forecast';
+    $args['paged']          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     $args['posts_per_page'] = $num;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
@@ -100,6 +101,7 @@ function shortcode_forecast($atts)
         "time_format" => $time_format
     ] );
 
+    
     $query = new WP_Query($args);
     
     if ($query->posts) {
@@ -113,22 +115,25 @@ function shortcode_forecast($atts)
             $loop_html .= load_template_part("loop/pronosticos_list_{$model}",null,["forecast"=>$forecast]); 
         endforeach;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
-        ?>
-            <script>
-                var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
-                var posts = '<?php echo serialize( $query->query_vars ); ?>';
-                var current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
-                var max_pages = '<?php echo $query->max_num_pages; ?>';
-                var model = '<?php echo $model ?>';
-                //Parametros del shortcode 
-                var time_format = '<?php echo $time_format ?>'
-                var text_vip_link = '<?php echo $text_vip_link ?>'
-                var vip = 'no';
-                var unlock = 'no';
-                var cpt = 'forecast';
-            </script>
 
-        <?php 
+        $jsdata = json_encode([
+            "ajaxurl" => site_url() . '/wp-admin/admin-ajax.php',
+            "posts" => serialize( $query->query_vars ),
+            "current_page" => $args['paged'] ,
+            "max_pages" => $query->max_num_pages,
+            "model" => $model,
+            "league" =>  $league,
+            "link" => false,
+            "text_link" => false,
+			"vip_link" =>  PERMALINK_VIP,
+			"text_vip_link" =>  $text_vip_link,
+            "time_format" =>  $time_format,
+            "vip "=> 'no',
+            "unlock" => 'no',
+            "cpt" => 'forecast',
+        ]);
+        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = $jsdata " );
+        
         if($query->max_num_pages > 1 and $paginate=='yes'):
 
             $ret .="<div class='container container_pagination text-md-center'>

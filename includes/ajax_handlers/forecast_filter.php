@@ -1,11 +1,9 @@
 <?php
 function filter_forecast() {
-    $args                = unserialize( stripslashes( $_POST['query'] ) );
-    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    wp_reset_postdata( );
 	$args['post_status'] = 'publish';
     $args['post_type']   = $_POST['cpt'];
-    $args['paged'] = $paged;
-
+    $args['posts_per_page']       = -1;
     $model = $_POST['model'];
     $leage = $_POST['league'];
     $fecha = $_POST['date'];
@@ -46,7 +44,7 @@ function filter_forecast() {
         "time_format" => $time_format
         ] );
     
-    wp_reset_postdata( );
+    
     $query = new WP_Query( $args );
     
 	// print_r($query);
@@ -88,20 +86,6 @@ function filter_forecast() {
         echo $html;
          ?>
             <script>
-                var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
-                var posts = '<?php echo serialize( $query->query_vars ); ?>';
-                var current_page = <?php echo $args['paged'] ?>;
-                var max_pages = '<?php echo $query->max_num_pages; ?>';
-                var model = '<?php echo $model ?>';
-                var league = '<?php echo $league ?>';
-                var link = '<?php echo $link ?>'
-                var text_link = '<?php echo $text_link ?>'
-                var vip_link = '<?php echo $vip_link?>'
-                var text_vip_link = '<?php echo $text_vip_link ?>'
-                var vip =  '<?php echo $vip ?>';
-                var unlock = '<?php echo $unlock ?>';
-                var cpt = '<?php echo $_POST['cpt'] ?>';
-                var time_format = '<?php echo $time_format ?>'
                 var date_items_2 = document.querySelectorAll('.date_item_pronostico_top');
                 if(date_items_2.length > 0){
                     date_items_2.forEach(item=>{
@@ -114,7 +98,7 @@ function filter_forecast() {
             
         <?php 
     endif;
-    wp_reset_postdata( );
+    
 	die();
 }
 
