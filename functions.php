@@ -216,7 +216,7 @@ add_action('init', function(){
       $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     endif;
       
-    $ip = $_SERVER['REMOTE_ADDR'];
+    //$ip = $_SERVER['REMOTE_ADDR'];
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
