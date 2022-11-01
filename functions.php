@@ -208,13 +208,30 @@ add_action('init', function(){
         "timezone" => "America/Caracas",
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
-    if (!empty($_SERVER['HTTP_CLIENT_IP'])):
-      $ip = $_SERVER['HTTP_CLIENT_IP'];
-    endif;
-          
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])):
-      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    endif;
+    if (isset($_SERVER["HTTP_CLIENT_IP"]))
+    {
+        $ip = $_SERVER["HTTP_CLIENT_IP"];
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+    {
+        $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED"]))
+    {
+        $ip = $_SERVER["HTTP_X_FORWARDED"];
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]))
+    {
+        $ip = $_SERVER["HTTP_FORWARDED_FOR"];
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED"]))
+    {
+        $ip = $_SERVER["HTTP_FORWARDED"];
+    }
+    else
+    {
+        $ip = $_SERVER["REMOTE_ADDR"];
+    }
       
     //$ip = $_SERVER['REMOTE_ADDR'];
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
