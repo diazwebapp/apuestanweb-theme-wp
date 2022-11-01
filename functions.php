@@ -222,38 +222,41 @@ add_action('init', function(){
     
     $response = false;
     
-    if($ip !== "127.0.0.1" and $ip != "::1"):
-        if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
-            if(!empty($geolocation_api_key)):
-                $response = wp_remote_get("http://ipwho.is/{$ip}?key=null",array('timeout'=>2));
+    
+    if(!defined("GEOLOCATION")){
+
+        if($ip !== "127.0.0.1" and $ip != "::1"):
+            if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
+                if(!empty($geolocation_api_key)):
+                    $response = wp_remote_get("http://ipwho.pro/bulk/$ip?key=$geolocation_api_key",array('timeout'=>10));
+                endif;
+                if(empty($geolocation_api_key)):
+                    $response = wp_remote_get("http://ipwho.is/$ip",array('timeout'=>10));
+                endif;
+                if(!is_wp_error( $response )):
+                    $geolocation_resp =  wp_remote_retrieve_body( $response );
+                    $geolocation_resp = json_decode($geolocation_resp);
+                    $geolocation["country"] = $geolocation_resp->country;
+                    $geolocation["country_code"] = $geolocation_resp->country_code;
+                    $geolocation["timezone"] = $geolocation_resp->timezone->id;
+                    $geolocation["flag_uri"] = $geolocation_resp->flag->img;
+                endif;
             endif;
-            if(empty($geolocation_api_key)):
-                $response = wp_remote_get("http://ipwho.is/{$ip}",array('timeout'=>2));
-            endif;
-            if(!is_wp_error( $response )):
-                $geolocation_resp =  wp_remote_retrieve_body( $response );
-                $geolocation_resp = json_decode($geolocation_resp);
-                $geolocation["country"] = $geolocation_resp->country;
-                $geolocation["country_code"] = $geolocation_resp->country_code;
-                $geolocation["timezone"] = $geolocation_resp->timezone->id;
-                $geolocation["flag_uri"] = $geolocation_resp->flag->img;
+    
+            if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
+                $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key={$geolocation_api_key}&ip_address=$ip",array('timeout'=>10));
+                if(!is_wp_error( $response )):
+                    $geolocation_resp =  wp_remote_retrieve_body( $response );
+                    $geolocation_resp = json_decode($geolocation_resp);
+                    $geolocation["country"] = $geolocation_resp->country;
+                    $geolocation["country_code"] = $geolocation_resp->country_code;
+                    $geolocation["timezone"] = $geolocation_resp->timezone->name;
+                    $geolocation["flag_uri"] = $geolocation_resp->flag->svg;  
+                    
+                endif;
             endif;
         endif;
 
-        if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
-            $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key={$geolocation_api_key}&ip_address={$ip}",array('timeout'=>2));
-            if(!is_wp_error( $response )):
-                $geolocation_resp =  wp_remote_retrieve_body( $response );
-                $geolocation_resp = json_decode($geolocation_resp);
-                $geolocation["country"] = $geolocation_resp->country;
-                $geolocation["country_code"] = $geolocation_resp->country_code;
-                $geolocation["timezone"] = $geolocation_resp->timezone->name;
-                $geolocation["flag_uri"] = $geolocation_resp->flag->svg;  
-                
-            endif;
-        endif;
-    endif;
-    if(!defined("GEOLOCATION")){
         $geolocation = json_encode($geolocation);
         define("GEOLOCATION",$geolocation);
     }
