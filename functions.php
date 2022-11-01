@@ -244,8 +244,9 @@ add_action('init', function(){
             endif;
     
             if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
-                $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key={$geolocation_api_key}&ip_address=$ip",array('timeout'=>10));
+                $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address=$ip",array('timeout'=>10));
                 if(!is_wp_error( $response )):
+                    var_dump($response);
                     $geolocation_resp =  wp_remote_retrieve_body( $response );
                     $geolocation_resp = json_decode($geolocation_resp);
                     $geolocation["country"] = $geolocation_resp->country;
