@@ -41,6 +41,7 @@ function shortcode_parley($atts)
     $args = [];
     $args['post_status']    = 'publish';
     $args['post_type']      = 'parley';
+    $args['paged']          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     $args['posts_per_page'] = $num;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';

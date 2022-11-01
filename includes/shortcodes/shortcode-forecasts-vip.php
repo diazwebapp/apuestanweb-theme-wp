@@ -42,6 +42,7 @@ function shortcode_forecast_vip($atts)
     $args = [];
     $args['post_status']    = 'publish';
     $args['post_type']      = 'forecast';
+    $args['paged']          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     $args['posts_per_page'] = $num;
     $args['meta_query']     = [
         [
