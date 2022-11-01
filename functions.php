@@ -212,19 +212,19 @@ add_action('init', function(){
     {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
     }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
     }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED"]))
+    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_X_FORWARDED"];
     }
-    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]))
+    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_FORWARDED_FOR"];
     }
-    elseif (isset($_SERVER["HTTP_FORWARDED"]))
+    elseif (isset($_SERVER["HTTP_FORWARDED"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_FORWARDED"];
     }
