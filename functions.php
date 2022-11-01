@@ -226,6 +226,7 @@ add_action('init', function(){
     if(!defined("GEOLOCATION")){
 
         if($ip !== "127.0.0.1" and $ip != "::1"):
+            var_dump($ip);
             if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
                 if(!empty($geolocation_api_key)):
                     $response = wp_remote_get("http://ipwho.pro/bulk/$ip?key=$geolocation_api_key",array('timeout'=>10));
