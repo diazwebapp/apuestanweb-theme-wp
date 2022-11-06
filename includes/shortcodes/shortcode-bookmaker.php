@@ -24,7 +24,7 @@ function shortcode_bookmaker($atts)
                 <div class='container'>
                     <div class='row small_gutter'>
                         <div class='col-12 text-center pb_30'>
-                            <h5 class='sub_title'> $slogan </h5>
+                            <p class='sub_title'> $slogan </p>
                             <h2 class='title_lg mt_5'> $title </h2>
                         </div>";
                         while ($query->have_posts()):

@@ -14,7 +14,7 @@
                 endif;
             endforeach;
         endif;
-        $result .= '<div class="col-lg-3 col-md-4 col-6">
+        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
                         <div class="blog_box">
                             <div class="img_box">
                                 <a href="'.get_the_permalink(get_the_ID()).'" class="blog_img">

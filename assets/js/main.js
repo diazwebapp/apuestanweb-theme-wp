@@ -4,6 +4,7 @@
     $(window).on('load', function(){
         //===== Prealoder
         $("#preloader").delay(600).fadeOut("slow");
+        
     });
 
     $(document).ready(function () {
@@ -149,5 +150,7 @@
             $('.parley_box').removeClass('parley_box_shadow');
         });
     });
+
+    
 
 })(jQuery);

@@ -92,10 +92,18 @@ register_nav_menus(array(
 
 add_action('after_setup_theme', 'my_theme_setup');
 
+
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
     load_theme_textdomain('jbetting', get_template_directory() . '/lang');
+    global $post;
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'posts' ) ) {
+        //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
+    }
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
+        //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
+    }
 }
 
 function get_key()
@@ -122,10 +130,6 @@ function jbetting_src()
     wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
-    wp_enqueue_style('pace-css', get_template_directory_uri() . '/assets/css/pace-theme-default.min.css', array(), null);
-    wp_enqueue_style('flash-css', get_template_directory_uri() . '/assets/css/flash.css', array(), null);
-
-
 
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), null, false);
@@ -135,7 +139,6 @@ function jbetting_src()
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    wp_enqueue_script('pace-js', get_template_directory_uri() . '/assets/js/pace.min.js', array(), '1.0.0', true);
 }
 
 function enqueuing_admin_scripts(){
@@ -207,51 +210,55 @@ add_action('init', function(){
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
     if (!empty($_SERVER['HTTP_CLIENT_IP'])):
-      $ip = $_SERVER['HTTP_CLIENT_IP'];
+      $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
     endif;
           
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])):
-      $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+      $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
     endif;
       
-    $ip = $_SERVER['REMOTE_ADDR'];
+    $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
     $response = false;
     
-    if($ip !== "127.0.0.1" and $ip != "::1"):
-        if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
-            if(!empty($geolocation_api_key)):
-                $response = wp_remote_get("http://ipwho.is/{$ip}?key=null",array('timeout'=>2));
+    
+    if(!defined("GEOLOCATION")){
+
+        if($ip !== "127.0.0.1" and $ip != "::1"):
+            var_dump($ip);
+            if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
+                if(!empty($geolocation_api_key)):
+                    $response = wp_remote_get("http://ipwho.pro/bulk/$ip?key=$geolocation_api_key",array('timeout'=>10));
+                endif;
+                if(empty($geolocation_api_key)):
+                    $response = wp_remote_get("http://ipwho.is/$ip",array('timeout'=>10));
+                endif;
+                if(!is_wp_error( $response )):
+                    $geolocation_resp =  wp_remote_retrieve_body( $response );
+                    $geolocation_resp = json_decode($geolocation_resp);
+                    $geolocation["country"] = $geolocation_resp->country;
+                    $geolocation["country_code"] = $geolocation_resp->country_code;
+                    $geolocation["timezone"] = $geolocation_resp->timezone->id;
+                    $geolocation["flag_uri"] = $geolocation_resp->flag->img;
+                endif;
             endif;
-            if(empty($geolocation_api_key)):
-                $response = wp_remote_get("http://ipwho.is/{$ip}",array('timeout'=>2));
-            endif;
-            if(!is_wp_error( $response )):
-                $geolocation_resp =  wp_remote_retrieve_body( $response );
-                $geolocation_resp = json_decode($geolocation_resp);
-                $geolocation["country"] = $geolocation_resp->country;
-                $geolocation["country_code"] = $geolocation_resp->country_code;
-                $geolocation["timezone"] = $geolocation_resp->timezone->id;
-                $geolocation["flag_uri"] = $geolocation_resp->flag->img;
+    
+            if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
+                $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address=$ip",array('timeout'=>10));
+                if(!is_wp_error( $response )):
+                    $geolocation_resp =  wp_remote_retrieve_body( $response );
+                    $geolocation_resp = json_decode($geolocation_resp);
+                    $geolocation["country"] = $geolocation_resp->country;
+                    $geolocation["country_code"] = $geolocation_resp->country_code;
+                    $geolocation["timezone"] = $geolocation_resp->timezone->name;
+                    $geolocation["flag_uri"] = $geolocation_resp->flag->svg;  
+                    
+                endif;
             endif;
         endif;
 
-        if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
-            $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key={$geolocation_api_key}&ip_address={$ip}",array('timeout'=>2));
-            if(!is_wp_error( $response )):
-                $geolocation_resp =  wp_remote_retrieve_body( $response );
-                $geolocation_resp = json_decode($geolocation_resp);
-                $geolocation["country"] = $geolocation_resp->country;
-                $geolocation["country_code"] = $geolocation_resp->country_code;
-                $geolocation["timezone"] = $geolocation_resp->timezone->name;
-                $geolocation["flag_uri"] = $geolocation_resp->flag->svg;  
-                
-            endif;
-        endif;
-    endif;
-    if(!defined("GEOLOCATION")){
         $geolocation = json_encode($geolocation);
         define("GEOLOCATION",$geolocation);
     }
@@ -305,3 +312,22 @@ function configuracion_smtp( PHPMailer $phpmailer ){
     $phpmailer->FromName='Nombre del remitente';
 }
 
+///// Detectando registro de usuarios
+add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
+
+function aw_actions_after_register_user( $user_id ) {
+    $headers[]= 'From: Apuestan <apuestan@gmail.com>';
+    $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
+    $headers[]= 'Cc: Persona2 <erickoficial69@gmail.com>';
+    
+    function tipo_de_contenido_html() {
+        return 'text/html';
+    }
+    $memberInfo = get_userdata($user_id);
+    add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
+    wp_mail( 'erickoficial69@gmail.com',
+    'Ejemplo de la función mail en WP '.$memberInfo->user_login.' ',
+    '<h1>Correo de apuestan</h1>',
+    $headers
+    );
+}

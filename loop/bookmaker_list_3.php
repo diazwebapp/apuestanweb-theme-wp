@@ -33,7 +33,7 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
                     <div class='number_text' id='count_bk_model_3'></div>
                     <div class='bonus_top'>
                         <div class='d-flex align-items-center justify-content-between'>
-                            <img src='$image_png' alt=''>
+                            <img src='$image_png' alt='$title'>
                             <div class='rating'>";
                                 echo $stars;
             echo "          </div>
@@ -57,7 +57,7 @@ if(!$location->success):
                 <div class='number_text' id='count_bk_model_3'></div>
                 <div class='bonus_top'>
                     <div class='d-flex align-items-center justify-content-between'>
-                        <img src='$image_png' alt=''>
+                        <img src='$image_png' alt='$title'>
                         <div class='rating'>";
                             echo $stars;
         echo "          </div>

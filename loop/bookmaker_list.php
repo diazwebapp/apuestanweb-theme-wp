@@ -21,7 +21,7 @@ if($location->success == true and $bk_countries and count($bk_countries) > 0):
         if($country['country_code'] === $location->country_code):
             echo "<div class='col-lg-3 col-6 mt_30'>
                 <div class='tbox'>
-                    <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='img-fluid' alt='$title  title='$title'>
+                    <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='img-fluid' alt='$title' title='$title'>
                     <div class='rating mt_15'> ";
                         echo $stars; 
             echo "        </div>
@@ -38,7 +38,7 @@ endif;
 if(!$location->success):
     echo "<div class='col-lg-3 col-6 mt_30'>
         <div class='tbox'>
-            <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='img-fluid' alt='$title  title='$title'>
+            <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='img-fluid' alt='$title'  title='$title'>
             <div class='rating mt_15'> ";
                 echo $stars; 
     echo "        </div>

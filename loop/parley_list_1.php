@@ -80,15 +80,17 @@ echo "<div class='parley_wrapper'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
-                            <h5>{$sport['name']}</h5>
+                            <div class='category-grid'>
+                                <span>{$sport['name']}</span>
+                            </div>
                         
-                        <div class='d-lg-block d-none'>
-                            <time>$fecha, $hora</time>
-                        </div>
+                            <div class='d-lg-block d-none'>
+                                <time>$fecha, $hora</time>
+                            </div>
                         </div>
                         <div class='d-lg-none d-block'>
                             <div class='mobile_parley_time'>
-                                <p>$fecha / $hora</p>
+                                <p>$fecha, $hora</p>
                             </div>
                         </div>
                     </div>                  
@@ -120,11 +122,11 @@ echo "<div class='parley_wrapper'>
                             <p class='p2'>{$prediction['cuote']}</p>
                         </div>
                     </div>
-                    <div class='question2'>
-                      <a href='$permalink_event'>
-                            Ver análisis
-                        </a>
-                    </div>
+                </div>
+                <div class='event-link'>
+                    <a href='$permalink_event'>
+                        Ver análisis
+                    </a>
                 </div>  
                 </div>";
             echo "<div class='parley_collpase_content'>

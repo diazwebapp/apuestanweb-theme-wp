@@ -10,6 +10,9 @@
 	.price_heading h2 {
 	    font-size: 5.5rem;
 	}
+	.parley_box{
+		margin: auto;
+	}
 }
 @media (min-width: 1200px) { 
 	.form-xl-row{
@@ -35,16 +38,15 @@
 	}
 	.event-button-mv{
 		display: none;
-	
-	}   
+	} 
+	.parley_box{
+		margin: auto;
+	}
 	   
 }
 @media (min-width: 1200px) and (max-width: 1399.98px) { 
 	.container{
 		max-width: 1200px;
-	}
-	.container_bottom{
-		max-width: 800px;
 	}
 	html{
 		font-size: 56%;
@@ -291,8 +293,15 @@
 	.event-button-mv{
 		display: none;
 	
-	}   
-	   
+	} 
+
+	.slider .owl-nav button.owl-next {
+		right: 2rem!important;
+	} 
+	.parley_box{
+		width: auto;
+		padding: 2rem;
+	}
 
 }
 
@@ -537,62 +546,7 @@
 	}
 
 
-	/*parley area*/
-
-
-	.parley_box {
-		width: 48rem;
-		flex-direction: column;
-		margin: 2rem 2.6rem 0 2.3rem;
-		padding: 3rem 2rem 2rem 2rem;
-	}
 	
-	.parley_left_content{
-		flex-direction: column;
-		width: 100%;
-	}
-	.parley_right_content {
-	    flex-direction: column;
-	    width: 100%;
-	    align-items: center;
-	}
-	.parley_right_first {
-	    flex-direction: column;
-	    padding-left: 2rem;
-	    align-items: flex-end;
-	}
-	.parley_right_first .p1{
-		padding-right: 0;
-	}
-	.parley_right_first .p2{
-		margin-top: 2.3rem;
-		display: inline-block;
-	}
-	.parley_match_time{
-		width: 300px;
-
-	}
-	.parley_match_wrapper {
-		display: flex;
-		align-items: center;
-		padding-left: 4.2rem;
-		width: 29rem;
-	}
-	.mobile_parley_time p{
-		font-size: 1.4rem;
-		line-height: 1.2;
-		color: #00203A;
-	}
-	.parley_game_name_wrapper {
-	    display: flex;
-	    align-items: center;
-	    justify-content: space-between;
-	    width: 100%;
-	    padding-bottom: 3rem;
-	}
-	.question2{
-		margin-top: 2rem;
-	}
 
 
 	/*single event area*/
@@ -836,8 +790,19 @@
 	display: none;
 
 }   
-      
-    
+.parley_box {
+    width: auto;
+    padding: 2rem;
+}     
+.parley_right_content {
+    display: flex;
+    align-items: center;
+    margin-right: 10%;
+    font-size: 14px;
+}
+.parley_right_first{
+	margin-left: 4em;
+}    
     
     
     
@@ -1725,8 +1690,94 @@
 }
 .visister--text.vis__tx-sec {
   padding-bottom: 29px;
+}
+
+.container_bottom{
+
+	margin-left: -7.5px !important;
+	margin-right: -7.5px !important;
+	padding: 3rem;
+}
+/*parley area*/
+
+
+.parley_box {
+	width: auto;
+	flex-direction: column;
+	margin: 2rem 2.6rem 0 2.3rem;
+	padding: 3rem 2rem 2rem 2rem;
+}
+.parley_flag{
+	margin-left: -4rem;
+}
+
+.parley_left_content{
+	flex-direction: column;
+	align-items: baseline;
+	width: 100%;
+}
+.parley_right_content {
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+}
+.parley_right_first {
+	flex-direction: column;
+	padding-left: 2rem;
+	align-items: flex-end;
+	width: 18rem!important;
+}
+.parley_right_first .p1 {
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
+    margin-top: 1.5rem;
+}
+.parley_right_first .p2{
+	margin-top: 2.3rem;
+	display: inline-block;
+}
+
+.mobile_parley_time p{
+	font-size: 1.4rem;
+	line-height: 1.2;
+	color: #00203A;
+}
+.parley_game_name_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: 3rem;
+}
+.parley_game_name {
+
+    width: 10%;
+
+
+}
+.parley_match_time {
+    padding-left: 5rem;
+    display: flex;
+    align-items: center;
+    /* width: 25rem; */
+}
+.parley_team {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    width: 12em;
+}
+.event-link{
+	margin-top: 2rem;
+}
+.event-link button::before {
+	 width: 8px;
+	height: 6px;
 }   
-    
     
     
     
@@ -1922,10 +1973,86 @@
 	}
 
 	/*parley area*/
-	.question2 button::before {
-	    width: 8px;
-	    height: 6px;
-	}
+/*parley area*/
+
+
+.parley_box {
+	width: 48rem;
+	flex-direction: column;
+	margin: 2rem 2.6rem 0 2.3rem;
+	padding: 3rem 2rem 2rem 2rem;
+}
+.parley_flag{
+	margin-left: -4rem;
+}
+
+.parley_left_content{
+	flex-direction: column;
+	align-items: baseline;
+	width: 100%;
+}
+.parley_right_content {
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+}
+.parley_right_first {
+	flex-direction: column;
+	padding-left: 2rem;
+	align-items: flex-end;
+	width: 18rem!important;
+}
+.parley_right_first .p1 {
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
+    margin-top: 1.5rem;
+}
+.parley_right_first .p2{
+	margin-top: 2.3rem;
+	display: inline-block;
+}
+
+.mobile_parley_time p{
+	font-size: 12px;
+	line-height: 1.2;
+	color: #00203A;
+}
+.parley_game_name_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: 3rem;
+}
+.parley_game_name {
+
+    width: 10%;
+
+
+}
+.parley_match_time {
+    padding-left: 5rem;
+    display: flex;
+    align-items: center;
+    /* width: 25rem; */
+}
+.parley_team {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    width: 12em;
+}
+.event-link{
+	margin-top: 2rem;
+}
+.event-link button::before {
+	 width: 8px;
+	height: 6px;
+}
 
 
 	.slider .owl-nav{

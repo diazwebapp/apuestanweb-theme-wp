@@ -77,7 +77,7 @@ echo "<div class='owl-item' >
                                 <img style='width:40px;height:40px;' src=' {$teams['team1']['logo']} ' class='img-fluid' alt=' {$teams['team1']['name']} '>
                             </div>
                             <div class='cross_img d-lg-none d-block'>
-                                <img src='$cross_img' class='img-fluid'>
+                                <img src='$cross_img' class='img-fluid' alt=''>
                             </div>                                
                             <div class='team_logo'>
                                 <img style='width:40px;height:40px;' src=' {$teams['team2']['logo']} ' class='img-fluid' alt=' {$teams['team2']['name']} '>

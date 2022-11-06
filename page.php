@@ -7,6 +7,7 @@ $banner_top = carbon_get_post_meta(get_the_ID(), 'banner_top');
 $custom_banner_top = carbon_get_post_meta(get_the_ID(), 'custom_banner_top');
 $custom_banner_bottom = carbon_get_post_meta(get_the_ID(), 'custom_banner_bottom');
 $disable_title = carbon_get_post_meta(get_the_ID(), 'disable_title');
+
 if ( $textbefore ):
 	echo do_shortcode("{$textbefore}");
 else:
@@ -31,7 +32,7 @@ endif;
 				<div class="row" >
 			<?php endif;?>
 							
-						<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '<div class="col-lg-9 mt_25">'; ?>
+					<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '<div class="col-lg-9 mt_25">'; ?>
 						
 						<?php 
 							if ( have_posts() ):the_post();
@@ -41,8 +42,21 @@ endif;
 
 								the_content();
 							endif; 
+
+							if ( $faq_area ):
+								echo "<div class='single_event_content container_bottom text-break'>
+									<div class='row'>
+										<div>
+											<p>
+												$faq_area
+											</p>
+										</div>
+									</div>
+								</div>";
+							endif;
                         ?>
-						<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '</div>'; ?>
+
+					<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '</div>'; ?>
 				
 					<?php if($disable_sidebar == 'yes'): echo '' ; else: ?> 
 						<div class="col-lg-3">
@@ -53,24 +67,12 @@ endif;
 					<?php endif;?>
 			
 			<?php if($disable_sidebar == 'yes'): echo '' ; else: ?>				
-				</div>
 			<?php endif;?>
 			</div>
 			<?php 
 				if($custom_banner_bottom)
 					echo do_shortcode($custom_banner_bottom);
 					
-				if ( $faq_area ):
-					echo "<div class='container_bottom'>
-						<div class='row'>
-							<div>
-								<p>
-									$faq_area
-								</p>
-							</div>
-						</div>
-					</div>";
-				endif;
 			?>
 		</div>
 	</main>

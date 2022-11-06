@@ -471,6 +471,20 @@ header {
 .main_text .media-body{
 	padding-left: 3.5rem;
 }
+.category-grid span{
+	display: inline-block;
+	padding: 0.6rem 2rem;
+	font-size: 1.6rem;
+	line-height: 1;
+	color: #00203A;
+	background-color: #E4E6E8;
+	border-radius: 1.7rem;
+	margin-top: 1.5rem;
+}
+.category-grid span:hover{
+	background-color: #00203A;
+	color: #E4E6E8; 
+}
 .main_text>p{
 	opacity: 0.5;
 	margin-bottom: 5.5rem;
@@ -1246,6 +1260,8 @@ footer .menu li a::before{
 	font-size: 1.8rem;
 	max-width: 25rem;
 }
+
+
 .blog_content span{
 	display: inline-block;
 	padding: 0.6rem 2rem;
@@ -1892,7 +1908,7 @@ footer .menu li a::before{
     margin: 2rem 2.6rem 0 6.6rem;
     border-radius: 1rem;
 	width: 730px;
-	border-bottom: 2mm ridge rgb(3 176 244);
+	border-bottom: 1mm ridge rgb(3 176 244);
 }
 .parley_left_content{
 	display: flex;
@@ -1903,16 +1919,14 @@ footer .menu li a::before{
 	width: 15rem;
 }
 .parley_game_name{
-
-		text-align: center;
-		font-size: 1.2rem;
-		color: #03B0F4;
-		line-height: 1.2;
-		width: 100%;
-		display: flex;
-		flex-direction: column-reverse;
-		grid-gap: .5rem;
-		gap: .5rem;
+	text-align: center;
+	color: #051421;
+	line-height: 1.2;
+	width: 100%;
+	display: flex;
+	flex-direction: column-reverse;
+	grid-gap: .5rem;
+	gap: .5rem;
 
 }
 .parley_game_name h5{
@@ -1983,9 +1997,12 @@ footer .menu li a::before{
     color: #0060bf;
     margin-bottom: 10px;
 }
-.parley_right_content{
-	display: flex;
-	align-items: center;
+
+.parley_right_content {
+    display: flex;
+    align-items: center;
+    margin-right: 10%;
+    font-size: 14px;
 }
 .parley_right_first {
     display: flex;
@@ -1995,15 +2012,15 @@ footer .menu li a::before{
 	text-align: center;
 }
 .parley_right_first .p1{
-	font-size: 1.4rem;
-	line-height: 1.2;
-	color: #00203A;
 	font-weight: 700;
-	padding-right: 1.3rem;
-	overflow: hidden;
+	padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
 }
 .parley_right_first .p2 {
-    font-size: 1.4rem;
     line-height: 1;
     padding: .5rem 1.3rem;
     background-color: #DDEAFD;
@@ -2012,17 +2029,18 @@ footer .menu li a::before{
     margin-left: 2rem;
     font-weight: 700;
 }
-.question2{
-	margin-left: 3.7rem;
+.event-link{
+	font-size: 14px;
+	margin-right: 2.7rem;
 }
-.question2 button {
+.event-link button {
     background-color: transparent;
     border: none;
     color: #0558CB;
     position: relative;
     padding-right: 2.5rem;
 }
-.question2 button::before {
+.event-link button::before {
     position: absolute;
     content: '';
     background-image: url(../img/s44.png);
@@ -2036,7 +2054,7 @@ footer .menu li a::before{
     height: 0.8rem;
     transition: 0.4s;
 }
-.question2 button[aria-expanded="true"]::before{
+.event-link button[aria-expanded="true"]::before{
 	transform: translateY(-50%) rotate(-180deg);
 }
 .parley_box_shadow{
@@ -2873,12 +2891,12 @@ blockquote{
 .vip_right_content .team_name{
 	font-size: 1.8rem;
 	font-weight: 500;
-	color: #0558CB;
+	color: #5a5a5a;
 	line-height: 1.2;
 	margin-bottom: 0.6rem;
 	margin-top: 0.3rem;
 }
-.btn_text{
+.btn_text2{
 	color: #090909;
 	background-color: #F7F7F8;
 	padding: 1.2rem 1.5rem;
@@ -2886,6 +2904,15 @@ blockquote{
 	font-size: 1.8rem;
 	font-weight: 500;
 	text-transform: uppercase;
+}
+.btn_text {
+    font-weight: 700;
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
 }
 .rate_text{
 	background-color: #DDEAFD;
@@ -4299,10 +4326,6 @@ blockquote{
 
 
 
-
-
-
-
 .slider___hover--main a {
   width: 27%;
   display: flex;
@@ -4450,14 +4473,9 @@ a.panel-button {
 	border: 3px solid #001F39;  /* creates padding around scroll thumb */
   }
 
-.container_bottom {
-    text-align: justify;
-    margin-left: 10rem;
-}  
+
 .container_bottom p{
-    text-align: justify;
-    line-height: 2rem;
-    margin-bottom: 2rem;
+ 	color: rgb(81, 81, 81);
 }
 
 .banner-bookmaker{
@@ -4487,4 +4505,9 @@ a.panel-button {
     font-weight: 500;
     color: white;
     text-decoration: none;
+}
+.oddstex {
+
+    color: #5a5a5a;
+
 }
