@@ -10,7 +10,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     $args['orderby']        = 'meta_value';
     $args['order']          = 'ASC';
 
-    if(isset($params['leagues']) and $params['leagues'] !== 'all'):
+    if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $args['tax_query'] = [
             [
                 'taxonomy' => 'league',
@@ -65,7 +65,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
     $args['orderby']        = 'meta_value';
     $args['order']          = 'ASC';
 
-    if(isset($params['leagues']) and $params['leagues'] !== 'all'):
+    if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $args['tax_query'] = [
             [
                 'taxonomy' => 'league',
