@@ -37,7 +37,7 @@
                     <a href="#" class="icon_box mr_10">
                         <img src="<?php echo get_template_directory_uri() . '/assets/img/icon8.svg'?>" alt="">
                     </a>
-                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode(GEOLOCATION); echo $loc->country; ?> </a>
+                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
                     <a href="#" class="headerbtn v2">LOGIN</a>
                 </div>
                 <div class="col-lg-8 order-lg-2">

@@ -59,6 +59,11 @@ include "includes/handlers/paypal-tools.php";
 include "includes/core/bookmaker-location-panel/bk-location-panel.php";
 include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
+/*                         GEOLOCATION API                      */
+/*--------------------------------------------------------------*/
+include "includes/handlers/geolocation.php";
+
+/*--------------------------------------------------------------*/
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
 include "rest-api/register-routes.php";
@@ -67,7 +72,7 @@ include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
-
+include "rest-api/forecasts-controller.php";
 
 function my_theme_remove_headlinks() {
     remove_action( 'wp_head', 'wp_generator' );
@@ -200,84 +205,7 @@ add_action('init', function(){
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;
-    //geolocation
-    $ip = false;
-    $geolocation = [
-        "country" => "World Wide",
-        "country_code" => "WW",
-        "timezone" => "America/Caracas",
-        "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
-    ];
-    if (isset($_SERVER["HTTP_CLIENT_IP"]))
-    {
-        $ip = $_SERVER["HTTP_CLIENT_IP"];
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and empty($ip))
-    {
-        $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and empty($ip))
-    {
-        $ip = $_SERVER["HTTP_X_FORWARDED"];
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and empty($ip))
-    {
-        $ip = $_SERVER["HTTP_FORWARDED_FOR"];
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED"]) and empty($ip))
-    {
-        $ip = $_SERVER["HTTP_FORWARDED"];
-    }
-    else
-    {
-        $ip = $_SERVER["REMOTE_ADDR"];
-    }
-      
-    //$ip = $_SERVER['REMOTE_ADDR'];
-    $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
-    $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
-    $response = false;
-    
-    
-    if(!defined("GEOLOCATION")){
-
-        if($ip !== "127.0.0.1" and $ip != "::1"):
-            var_dump($ip);
-            if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
-                if(!empty($geolocation_api_key)):
-                    $response = wp_remote_get("http://ipwho.pro/bulk/$ip?key=$geolocation_api_key",array('timeout'=>10));
-                endif;
-                if(empty($geolocation_api_key)):
-                    $response = wp_remote_get("http://ipwho.is/$ip",array('timeout'=>10));
-                endif;
-                if(!is_wp_error( $response )):
-                    $geolocation_resp =  wp_remote_retrieve_body( $response );
-                    $geolocation_resp = json_decode($geolocation_resp);
-                    $geolocation["country"] = $geolocation_resp->country;
-                    $geolocation["country_code"] = $geolocation_resp->country_code;
-                    $geolocation["timezone"] = $geolocation_resp->timezone->id;
-                    $geolocation["flag_uri"] = $geolocation_resp->flag->img;
-                endif;
-            endif;
-    
-            if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
-                $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address=$ip",array('timeout'=>10));
-                if(!is_wp_error( $response )):
-                    $geolocation_resp =  wp_remote_retrieve_body( $response );
-                    $geolocation_resp = json_decode($geolocation_resp);
-                    $geolocation["country"] = $geolocation_resp->country;
-                    $geolocation["country_code"] = $geolocation_resp->country_code;
-                    $geolocation["timezone"] = $geolocation_resp->timezone->name;
-                    $geolocation["flag_uri"] = $geolocation_resp->flag->svg;  
-                    
-                endif;
-            endif;
-        endif;
-
-        $geolocation = json_encode($geolocation);
-        define("GEOLOCATION",$geolocation);
-    }
 
     //odds-converter
     if(!isset($_SESSION['odds_format'])):
@@ -286,6 +214,8 @@ add_action('init', function(){
     if(isset($_GET['odds_format'])):
         $_SESSION['odds_format'] = $_GET['odds_format'];
     endif;
+
+    geolocation_api();
 });
 
 

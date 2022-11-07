@@ -15,7 +15,7 @@ function shortcode_predictions($atts)
     if($model == 1){
 
         $id_post = get_the_ID();
-        $geolocation = json_decode(GEOLOCATION);
+        $geolocation = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
         $bookmaker = json_encode([]);

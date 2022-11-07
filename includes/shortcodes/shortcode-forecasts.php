@@ -4,13 +4,13 @@ function shortcode_forecast($atts)
     extract(shortcode_atts(array(
         'num' => 6,
         'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
-        'date' => false,
+        'date' => null,
         'model' => 1,
         'text_vip_link' => 'VIP',
-        'filter' => false,
-        'time_format' => false,
-        'paginate' => false,
-        'title' => false
+        'filter' => null,
+        'time_format' => null,
+        'paginate' => null,
+        'title' => null
     ), $atts));
     $ret = "";
     if(is_page() && !$title)
@@ -44,97 +44,60 @@ function shortcode_forecast($atts)
                     </div>
                 </div>";
     endif;
-    wp_reset_postdata();
-    $args = [];
-    $args['post_status']    = 'publish';
-    $args['post_type']      = 'forecast';
-    $args['paged']          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-    $args['posts_per_page'] = $num;
-    $args['meta_key']       = '_data';
-    $args['orderby']        = 'meta_value';
-    $args['order']          = 'ASC';
-
-  
-    $league_arr=[];
     
-    if(is_array($league)):
+    $args = [];
+    $league_arr = null;
+    
+    if(is_array($league) and count($league) > 0):
+        
+        $league_arr = "[{replace-leagues}]";
+        $temp_leages = '';
         foreach ($league as $key => $value) {
-            $league_arr[] = $value->slug ;
+            $temp_leages .= $value->slug.',' ;
         }
+        $league_arr = str_replace("{replace-leagues}",$temp_leages,$league_arr);
     endif;
     if(!is_array($league) and is_string($league)):
-        $league_arr = $league;
+        
+        $league_arr = "[{replace-leagues}]";
+        $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
     endif;
+        
+    //$query = new WP_Query($args);
+    $args['paged']          = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1);
+    $args['posts_per_page'] = $num;
+    $args['leagues'] =  $league_arr;
+    $args['date'] = $date;
+    $args['model'] = $model;
+    $args['time_format'] = $time_format ;
+    $args['text_vip_link'] = $text_vip_link;
+    $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts');
 
-    if($league !== 'all'):
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'league',
-                'field' => 'slug',
-                'terms' => $league_arr
-            ]
-        ];
-    endif;
-
-    
-    if ($date and $date != "") {
-        if($date == 'today')
-            $current_date = date('Y-m-d');
-        if($date == 'yesterday')
-            $current_date = date('Y-m-d', strtotime('-1 days'));
-        if($date == 'tomorrow')
-            $current_date = date('Y-m-d',strtotime('+1 days'));
-            
-        $args['meta_query']   = [
-                [
-                    'key' => '_data',
-                    'compare' => '==',
-                    'value' => $current_date,
-                    'type' => 'DATE'
-                ]
-            ];
-    }
-
-    set_query_var( 'params', [
-        "vip_link" => PERMALINK_VIP,
-        "text_vip_link" => $text_vip_link,
-        "time_format" => $time_format
-    ] );
+    $params = "?paged=".$args['paged'];
+    $params .= "&posts_per_page={$args['posts_per_page']}";
+    $params .= isset($args['leagues']) ? "&leagues=${args['leagues']}":"";
+    $params .= isset($args['date']) ? "&date={$args['date']}":"";
+    $params .= "&model=$model";
+    $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
+    $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
 
     
-    $query = new WP_Query($args);
+    $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
-    if ($query->posts) {
+    $query =  wp_remote_retrieve_body( $response );
+    
+    if ($query) {
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)
                 $home_class = 'row';        
             
         $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
-        $loop_html = '';
-        foreach($query->posts as $forecast):
-            $loop_html .= load_template_part("loop/pronosticos_list_{$model}",null,["forecast"=>$forecast]); 
-        endforeach;
+        $loop_html = $query;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
-
-        $jsdata = json_encode([
-            "ajaxurl" => site_url() . '/wp-admin/admin-ajax.php',
-            "posts" => serialize( $query->query_vars ),
-            "current_page" => $args['paged'] ,
-            "max_pages" => $query->max_num_pages,
-            "model" => $model,
-            "league" =>  $league,
-            "link" => false,
-            "text_link" => false,
-			"vip_link" =>  PERMALINK_VIP,
-			"text_vip_link" =>  $text_vip_link,
-            "time_format" =>  $time_format,
-            "vip "=> 'no',
-            "unlock" => 'no',
-            "cpt" => 'forecast',
-        ]);
-        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = $jsdata " );
         
-        if($query->max_num_pages > 1 and $paginate=='yes'):
+        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
+        
+        if($paginate=='yes'):
 
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>

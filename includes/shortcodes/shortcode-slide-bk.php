@@ -22,7 +22,7 @@ function shortcode_slide_bk($atts)
 
     if ($query) {
         $new_bks = [];
-        $location = json_decode(GEOLOCATION);
+        $location = json_decode($_SESSION["geolocation"]);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
         foreach ($query->posts as $bookmaker): 
             $exists = null;

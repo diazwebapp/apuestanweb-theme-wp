@@ -87,10 +87,6 @@ if(!function_exists('aw_paypal_user_level_operations')):
             endif;
             $resp['msg'] = $_SESSION["checkout_action"].' completed';
         endif;
-        ////VACIAMOS LAS SESIONES
-        //$_SESSION["checkout_action"] = false;
-        //$_SESSION["payment_account_id"] = false;
-        //$_SESSION["current_user"] = false;
         
         return $resp;
     }

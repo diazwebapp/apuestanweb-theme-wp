@@ -1,76 +1,68 @@
 $(document).ready(function () {
-
-    /*archive-forecast.php*/
-    var selector_category_f = $('button.loadmore.forecasts');
-    $(selector_category_f).click(function (e) {
-        e.preventDefault();
-        $(this).text('loading...');
-        var data = {
-            'action': 'loadmore_forecast',
-            'query': forecasts_fetch_vars.posts,
-            'page': forecasts_fetch_vars.current_page++,
-            'max_pages': forecasts_fetch_vars.max_pages,
-            'model': forecasts_fetch_vars.model,
-            "text_vip_link" : forecasts_fetch_vars.text_vip_link,
-            'vip':forecasts_fetch_vars.vip,
-            'unlock':forecasts_fetch_vars.unlock,
-            'cpt':forecasts_fetch_vars.cpt,
-            "time_format" : forecasts_fetch_vars.time_format,
-        };
-        $.ajax({
-            url: forecasts_fetch_vars.ajaxurl,
-            data: data,
-            type: 'POST',
-            success: function (data_html) {
-                if (data_html) {
-                    $(selector_category_f).text("Load more");
-                    $('#games_list').append(data_html);
-                    console.log(data.page)
-                    }else{
-                        $(selector_category_f).text("no items");
-                        
-                    }
-            }
-        });
-    });
-
     
-    let filter_forecast = $('select#element_select_forecasts');
-    $(filter_forecast).change(e => filter(e));
-
-    function filter(e){
-        const date = e.target.value
-        
-        var data = {
-            'action': 'filter_forecast',
-            'query': forecasts_fetch_vars.posts,
-            'model': forecasts_fetch_vars.model,
-            'date':date,
-            "text_vip_link" : forecasts_fetch_vars.text_vip_link,
-            'vip':forecasts_fetch_vars.vip,
-            'unlock':forecasts_fetch_vars.unlock,
-            'cpt':forecasts_fetch_vars.cpt,
-            "time_format" : forecasts_fetch_vars.time_format,
-        };
-       
-        $.ajax({
-            url: forecasts_fetch_vars.ajaxurl,
-            data: data,
-            type: 'POST',
-            success: function (data) {
-                
-                var element = $('#games_list');
-                if (data) {
-                    $(element).html(data)
-                    } else {
-                        $(element).html('')
-                } 
-            }
-        });
-    };
     let select_odds = $('select#select_odds_format');
     select_odds.change(e =>handler_odds_format(e))
 });
+let date_items = document.querySelectorAll('.date_item_pronostico_top');
+/////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
+    const btn_load_more_forecasts = document.querySelector('button.loadmore.forecasts')
+    const div_game_list = document.querySelector('#games_list')
+    if(btn_load_more_forecasts){
+        btn_load_more_forecasts.addEventListener("click",async e =>{
+            const previus_text = e.target.textContent
+            e.target.textContent = 'loading...'
+            forecasts_fetch_vars.paged++
+            let params = "?paged="+forecasts_fetch_vars.paged;
+            params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
+            params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
+            params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
+            params += "&model="+forecasts_fetch_vars.model;
+            params += forecasts_fetch_vars.time_format ? "&time_format="+forecasts_fetch_vars.time_format:"";
+            params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
+            params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
+            const request = await fetch(forecasts_fetch_vars.rest_uri+params)
+            const response = await request.text()
+            if(response !== 'no mas'){
+                div_game_list.innerHTML += response
+                e.target.textContent = previus_text 
+                let date_items = document.querySelectorAll('.date_item_pronostico_top');
+                if(date_items.length > 0){
+                    init_countdown(date_items)
+                }               
+            }else{
+                e.target.remove()
+            }
+        })
+        
+    }
+//////////////FILTRADO DE FECHAS EN PRONOSTICOS
+    const select_filter_forecasts = document.querySelector('#element_select_forecasts')
+    if(select_filter_forecasts){
+        select_filter_forecasts.addEventListener('change',async e =>{
+            forecasts_fetch_vars.date = e.target.value
+            let params = "?paged="+forecasts_fetch_vars.paged;
+            params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
+            params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
+            params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
+            params += "&model="+forecasts_fetch_vars.model;
+            params += forecasts_fetch_vars.time_format ? "&time_format="+forecasts_fetch_vars.time_format:"";
+            params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
+            
+            const request = await fetch(forecasts_fetch_vars.rest_uri+params)
+            const response = await request.text()
+            if(response !== 'no mas'){
+                div_game_list.innerHTML = response
+                let date_items = document.querySelectorAll('.date_item_pronostico_top');
+                if(date_items.length > 0){
+                    init_countdown(date_items)
+                }  
+            }else{
+                div_game_list.innerHTML = "nó hay eventos"
+            }
+        })
+    }
+
+///////////////////////////////// SE FINALIZÓ SHORTCODE-FORECASTS USANDO LA API REST, FALTAN VIP Y PARLEY
 function parley_calc_cuotes(param){
     let current_parley = param.attributes.data.textContent
     let amount = param.value
@@ -82,8 +74,6 @@ function parley_calc_cuotes(param){
     }
 }
 
-// DOM for render
-const date_items = document.querySelectorAll('.date_item_pronostico_top');
 
 function updateCountdown(html_element) {
     const INPUT_DATE = html_element.querySelector('#date');
@@ -127,15 +117,16 @@ function updateCountdown(html_element) {
     }
 }
 
-//===
-// INIT
-//===
-
-date_items.forEach(item=>{
-    setInterval(()=>{
-        updateCountdown(item)
-    },1000)
-})
+function init_countdown(date_items){
+    date_items.forEach(item=>{
+        setInterval(()=>{
+            updateCountdown(item)
+        },1000)
+    })
+}
+if(date_items.length > 0){
+    init_countdown(date_items)
+}
 
 function handler_odds_format(e){
     let format = e.target.value
