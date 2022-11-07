@@ -42,7 +42,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $params['text_vip_link'],
-        "time_format" => $params['time_format'],
+        "time_format" => isset($params['time_format']) ? $params['time_format'] : null,
         "model" => $params['model']
     ] );
     if($query->posts):

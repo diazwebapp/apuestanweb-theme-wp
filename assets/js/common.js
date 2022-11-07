@@ -62,7 +62,7 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
         })
     }
 
-///////////////////////////////// SE FINALIZÓ SHORTCODE-FORECASTS USANDO LA API REST, FALTAN VIP Y PARLEY
+///////////////////////////////// 
 function parley_calc_cuotes(param){
     let current_parley = param.attributes.data.textContent
     let amount = param.value
