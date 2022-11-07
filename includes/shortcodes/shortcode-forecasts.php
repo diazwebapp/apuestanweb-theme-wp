@@ -92,7 +92,7 @@ function shortcode_forecast($atts)
                 $home_class = 'row';        
             
         $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
-        $loop_html = $query;
+        $loop_html = $query == 'no mas' ? 'nó hay eventos' : $query;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
