@@ -8,6 +8,7 @@
 </head>
 <body>
 <?php
+    var_dump($_SERVER["REMOTE_ADDR"]);
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
