@@ -67,7 +67,7 @@ function geolocation_api($param){
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
             var_dump("datalocation-> ");
-            var_dump($data_location);
+            var_dump(is_null($data_location));
             if(isset($data_location)):
                
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
