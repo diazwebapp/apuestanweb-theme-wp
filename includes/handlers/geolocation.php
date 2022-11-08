@@ -116,6 +116,7 @@ function geolocation_api($param){
 
                             $geolocation = json_encode($geolocation);
                             $_SESSION["geolocation"] = $geolocation;
+                            var_dump($_SESSION["geolocation"]);
                             insert_geolocation_cache($geolocation);
                         else:
                             $geolocation = json_encode($geolocation);
@@ -129,7 +130,7 @@ function geolocation_api($param){
             endif;
             if(count($data_location) > 0):
                 $_SESSION["geolocation"] = $data_location[0];
-                var_dump($data_location[0]);
+                var_dump($_SESSION["geolocation"]);
             endif;
         endif;
     
