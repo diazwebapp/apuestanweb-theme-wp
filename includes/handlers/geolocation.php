@@ -65,7 +65,7 @@ function geolocation_api($param){
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1" and $geolocation["ip"] !== "143.198.170.157"):
             var_dump("ip distinta al server -> ".$geolocation["ip"]);
             $data_location = select_geolocation_cache($geolocation["ip"]);
-
+            var_dump("db rs ->  " . $data_location);
             if(is_null($data_location)):
                
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
