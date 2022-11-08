@@ -49,6 +49,7 @@ function geolocation_api(){
     if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
+        var_dump($ip);
     }
     elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and empty($ip))
     {
@@ -80,7 +81,7 @@ function geolocation_api(){
     
     if(!isset($_SESSION["geolocation"])){
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
-            var_dump($geolocation["ip"]);
+            
             $data_location = select_geolocation_cache($geolocation["ip"]);
             if(count($data_location) == 0){
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
