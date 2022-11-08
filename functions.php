@@ -168,12 +168,12 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
-    var_dump($_SERVER["HTTP_CLIENT_IP"]);
+    /* var_dump($_SERVER["HTTP_CLIENT_IP"]);
     var_dump($_SERVER["HTTP_X_FORWARDED_FOR"]);
     var_dump($_SERVER["HTTP_X_FORWARDED"]);
     var_dump($_SERVER["HTTP_FORWARDED_FOR"]);
     var_dump($_SERVER["HTTP_FORWARDED"]);
-    var_dump($_SERVER["REMOTE_ADDR"]);
+    var_dump($_SERVER["REMOTE_ADDR"]); */
     
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
@@ -220,7 +220,7 @@ add_action('init', function(){
     endif;
 
     ///////////geolocation
-    if (isset($_SERVER["HTTP_CLIENT_IP"]))
+    /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         define('IP',$_SERVER["HTTP_CLIENT_IP"]);
     }
@@ -243,8 +243,8 @@ add_action('init', function(){
     else
     {
         define('IP',$_SERVER["REMOTE_ADDR"]);
-    }
-    geolocation_api(IP);
+    } */
+    geolocation_api();
 });
 
 

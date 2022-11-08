@@ -36,11 +36,11 @@ function insert_geolocation_cache($data){
     return $insert;
 }
 
-function geolocation_api($ip){
+function geolocation_api(){
     $response = false;
 
     $geolocation = [
-        "ip" => $ip,
+        "ip" => $_SERVER["REMOTE_ADDR"],
         "country" => "World Wide",
         "country_code" => "WW",
         "timezone" => "America/Caracas",
@@ -50,7 +50,7 @@ function geolocation_api($ip){
     
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
-
+    var_dump($geolocation["ip"]);
     if(!isset($_SESSION["geolocation"])){
     
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
