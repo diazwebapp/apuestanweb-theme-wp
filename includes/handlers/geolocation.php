@@ -123,7 +123,7 @@ function geolocation_api($param){
                 $geolocation["flag_uri"] = $data_location->flag_uri;
             endif;
             var_dump("definiendo indice geolocation ". $data_location->country);
-            var_dump("existe? ". $geolocation);
+            var_dump($geolocation);
             return $geolocation;
         endif;
     }
