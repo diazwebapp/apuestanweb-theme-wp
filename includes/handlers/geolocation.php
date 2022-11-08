@@ -64,10 +64,12 @@ function geolocation_api(){
     elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_FORWARDED_FOR"];
+        var_dump($ip);
     }
     elseif (isset($_SERVER["HTTP_FORWARDED"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_FORWARDED"];
+        var_dump($ip);
     }
     else
     {
