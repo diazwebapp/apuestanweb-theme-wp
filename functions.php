@@ -233,27 +233,22 @@ add_action('init', function(){
     if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
-        var_dump($ip);
     }
     elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-        var_dump($ip);
     }
     elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_X_FORWARDED"];
-        var_dump($ip);
     }
     elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_FORWARDED_FOR"];
-        var_dump($ip);
     }
     elseif (isset($_SERVER["HTTP_FORWARDED"]) and empty($ip))
     {
         $ip = $_SERVER["HTTP_FORWARDED"];
-        var_dump($ip);
     }
     else
     {
