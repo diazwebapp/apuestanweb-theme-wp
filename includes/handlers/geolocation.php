@@ -122,7 +122,6 @@ function geolocation_api($param){
                 $geolocation["timezone"] = $data_location->timezone;
                 $geolocation["flag_uri"] = $data_location->flag_uri;
             endif;
-            $geolocation = json_encode($geolocation);
             var_dump("definiendo indice geolocation ". $data_location->country);
             var_dump("existe? ". $geolocation);
             return $geolocation;
