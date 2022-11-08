@@ -69,11 +69,12 @@ function geolocation_api(){
             $data_location = select_geolocation_cache($geolocation["ip"]);
             if(count($data_location) == 0):
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
+                    var_dump($_SERVER["REMOTE_ADDR"]);
                     if(!empty($geolocation_api_key)):
                         $response = wp_remote_get("http://ipwho.pro/bulk/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
                     endif;
                     if(empty($geolocation_api_key)):
-                        var_dump($_SERVER["REMOTE_ADDR"]);
+                        
                         $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
                     endif;
                     if(!is_wp_error( $response )):
@@ -90,11 +91,12 @@ function geolocation_api(){
                 endif;
         
                 if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
+                    var_dump($_SERVER["REMOTE_ADDR"]);
                     $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address={$geolocation["ip"]}",array('timeout'=>10));
                     if(!is_wp_error( $response )):
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
-                        var_dump($_SERVER["REMOTE_ADDR"]);
+                        
                         if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->svg)):
                             
                             $geolocation["country"] = $geolocation_resp->country;
