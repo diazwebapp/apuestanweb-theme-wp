@@ -65,11 +65,11 @@ function geolocation_api(){
         
         $geolocation["ip"] = aw_get_the_user_ip();
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
-            var_dump($_SERVER["REMOTE_ADDR"]);
+            
             $data_location = select_geolocation_cache($geolocation["ip"]);
             if(count($data_location) == 0):
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
-                    var_dump($_SERVER["REMOTE_ADDR"]);
+                    
                     if(!empty($geolocation_api_key)):
                         $response = wp_remote_get("http://ipwho.pro/bulk/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
                     endif;
@@ -91,7 +91,7 @@ function geolocation_api(){
                 endif;
         
                 if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
-                    var_dump($_SERVER["REMOTE_ADDR"]);
+                    
                     $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address={$geolocation["ip"]}",array('timeout'=>10));
                     if(!is_wp_error( $response )):
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
