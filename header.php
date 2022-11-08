@@ -8,9 +8,14 @@
 </head>
 <body>
 <?php
-$client_ip = strval($_SERVER["REMOTE_ADDR"]);
-    var_dump($client_ip . " header.php ");
-    geolocation_api($client_ip);
+var_dump($_SERVER["HTTP_CLIENT_IP"]);
+    var_dump($_SERVER["HTTP_X_FORWARDED_FOR"]);
+    var_dump($_SERVER["HTTP_X_FORWARDED"]);
+    var_dump($_SERVER["HTTP_FORWARDED_FOR"]);
+    var_dump($_SERVER["HTTP_FORWARDED"]);
+    var_dump($_SERVER["REMOTE_ADDR"]);
+    $client_ip = strval();
+    geolocation_api($_SERVER["REMOTE_ADDR"]);
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
