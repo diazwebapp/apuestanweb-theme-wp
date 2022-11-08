@@ -61,7 +61,7 @@ include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 /*                         GEOLOCATION API                      */
 /*--------------------------------------------------------------*/
-//require_once("includes/handlers/geolocation.php");
+include "includes/handlers/geolocation.php";
 
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
