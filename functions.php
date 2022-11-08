@@ -30,6 +30,10 @@ include "includes/widgets/widget-forecasts.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
+/*                         GEOLOCATION API                      */
+/*--------------------------------------------------------------*/
+include "includes/handlers/geolocation.php";
+/*--------------------------------------------------------------*/
 /*                            CORE                              */
 /*--------------------------------------------------------------*/
 include "includes/core/meta-fields.php";
@@ -58,10 +62,7 @@ include "includes/handlers/paypal-tools.php";
 /*--------------------------------------------------------------*/
 include "includes/core/bookmaker-location-panel/bk-location-panel.php";
 include "includes/core/payment-dashboard/payment-dashboard.php";
-/*--------------------------------------------------------------*/
-/*                         GEOLOCATION API                      */
-/*--------------------------------------------------------------*/
-include "includes/handlers/geolocation.php";
+
 
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
