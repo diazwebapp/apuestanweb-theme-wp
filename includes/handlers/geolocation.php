@@ -78,9 +78,9 @@ function geolocation_api($param){
                         $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
                     endif;
                     if(!is_wp_error( $response )):
-                        var_dump($geolocation["ip"]);
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
+                        var_dump($geolocation_resp);
                         if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->img)):
                             $geolocation["country"] = $geolocation_resp->country;
                             $geolocation["country_code"] = $geolocation_resp->country_code;
@@ -97,7 +97,7 @@ function geolocation_api($param){
                     if(!is_wp_error( $response )):
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
-                        
+                        var_dump($geolocation_resp);
                         if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->svg)):
                             
                             $geolocation["country"] = $geolocation_resp->country;
