@@ -245,7 +245,7 @@ add_action('init', function(){
     {
         define('IP',$_SERVER["REMOTE_ADDR"]);
     } */
-    
+    geolocation_api();
 });
 
 

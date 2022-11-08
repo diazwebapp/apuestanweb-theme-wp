@@ -289,5 +289,3 @@ function create_parley() {
 }
 
 add_action( 'init', 'create_parley', 0 );
-
-geolocation_api();
