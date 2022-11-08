@@ -1,4 +1,10 @@
 <?php
+
+/*--------------------------------------------------------------*/
+/*                         GEOLOCATION API                      */
+/*--------------------------------------------------------------*/
+include "includes/handlers/geolocation.php";
+
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
 /*--------------------------------------------------------------*/
@@ -29,10 +35,6 @@ include "includes/widgets/widget-forecasts.php";
 //include "includes/widgets/widget-bonuses.php";
 include "includes/widgets/widget-authors.php";
 
-/*--------------------------------------------------------------*/
-/*                         GEOLOCATION API                      */
-/*--------------------------------------------------------------*/
-include "includes/handlers/geolocation.php";
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
 /*--------------------------------------------------------------*/
@@ -169,12 +171,6 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
-    /* var_dump($_SERVER["HTTP_CLIENT_IP"]);
-    var_dump($_SERVER["HTTP_X_FORWARDED_FOR"]);
-    var_dump($_SERVER["HTTP_X_FORWARDED"]);
-    var_dump($_SERVER["HTTP_FORWARDED_FOR"]);
-    var_dump($_SERVER["HTTP_FORWARDED"]);
-    var_dump($_SERVER["REMOTE_ADDR"]); */
     
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
