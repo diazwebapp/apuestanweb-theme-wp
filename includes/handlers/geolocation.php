@@ -47,36 +47,12 @@ function geolocation_api(){
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
     
-    if (isset($_SERVER["HTTP_CLIENT_IP"]))
-    {
-        define('IP',$_SERVER["HTTP_CLIENT_IP"]);
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_X_FORWARDED_FOR"]);
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_X_FORWARDED"]);
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_FORWARDED_FOR"]);
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_FORWARDED"]);
-    }
-    else
-    {
-        define('IP',$_SERVER["REMOTE_ADDR"]);
-    }
 
     $geolocation["ip"] = IP;
     
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
-    
+
     if(!isset($_SESSION["geolocation"])){
     
         var_dump($geolocation["ip"]);
