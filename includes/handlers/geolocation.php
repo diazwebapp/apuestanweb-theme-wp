@@ -17,8 +17,8 @@ function aw_get_the_user_ip() {
 
 //creamos la tabla 
 
-$_SERVER['erick'] = "test";
 
+var_dump($_SERVER['erick']);
 global $charset_collate;
 $table = GEOLOCATION_CACHE;
 
