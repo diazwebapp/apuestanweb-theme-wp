@@ -88,9 +88,9 @@ function geolocation_api($param){
                             $geolocation["timezone"] = $geolocation_resp->timezone->id;
                             $geolocation["flag_uri"] = $geolocation_resp->flag->img;
                             
+                            insert_geolocation_cache($geolocation);
                             $geolocation = json_encode($geolocation);
                             $_SESSION["geolocation"] = $geolocation;
-                            insert_geolocation_cache($geolocation);
                         else:
                             $geolocation = json_encode($geolocation);
                             if(!defined("GEOLOCATION")):
@@ -115,11 +115,9 @@ function geolocation_api($param){
                             $geolocation["timezone"] = $geolocation_resp->timezone->name;
                             $geolocation["flag_uri"] = $geolocation_resp->flag->svg; 
 
+                            insert_geolocation_cache($geolocation);
                             $geolocation = json_encode($geolocation);
                             $_SESSION["geolocation"] = $geolocation;
-                            var_dump("sesion-> ");
-                            var_dump($_SESSION["geolocation"]);
-                            insert_geolocation_cache($geolocation);
                         else:
                             $geolocation = json_encode($geolocation);
                             if(!defined("GEOLOCATION")):
