@@ -109,6 +109,7 @@ function my_theme_setup()
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
         //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
     }
+    geolocation_api();
 }
 
 function get_key()
@@ -216,7 +217,6 @@ add_action('init', function(){
         $_SESSION['odds_format'] = $_GET['odds_format'];
     endif;
 
-    geolocation_api();
 });
 
 
