@@ -138,4 +138,4 @@ function geolocation_api(){
     
 }
 
-add_action('wp_loaded', 'geolocation_api');
+add_action('wp', 'geolocation_api');
