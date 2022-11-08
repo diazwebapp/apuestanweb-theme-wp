@@ -133,10 +133,8 @@ function geolocation_api($param){
                 $geolocation["country_code"] = $data_location->country_code;
                 $geolocation["timezone"] = $data_location->timezone;
                 $geolocation["flag_uri"] = $data_location->flag_uri;
-                
+
                 $_SESSION["geolocation"] = json_encode($data_location);
-                var_dump("sql session -> ");
-                var_dump($_SESSION["geolocation"]);
             endif;
         endif;
     
