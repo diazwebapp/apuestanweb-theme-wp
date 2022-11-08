@@ -66,19 +66,19 @@ function geolocation_api($param){
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
-            var_dump(count($data_location));
+            
             if(count($data_location) == 0):
-                var_dump($geolocation["ip"]);
+               
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
                     
                     if(!empty($geolocation_api_key)):
                         $response = wp_remote_get("http://ipwho.pro/bulk/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
                     endif;
                     if(empty($geolocation_api_key)):
-                        
                         $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
                     endif;
                     if(!is_wp_error( $response )):
+                        var_dump($geolocation["ip"]);
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
                         if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->img)):
