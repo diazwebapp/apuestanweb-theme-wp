@@ -74,6 +74,7 @@ function geolocation_api(){
     else
     {
         $ip = $_SERVER["REMOTE_ADDR"];
+        var_dump($ip);
     }
       
     $geolocation["ip"] = $ip;
