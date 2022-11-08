@@ -62,10 +62,10 @@ function geolocation_api($param){
     
     if(!isset($_SESSION["geolocation"])){
         
-        if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1" and $geolocation["ip"] !== "143.198.170.157"):
-            var_dump("ip distinta al server -> ".$geolocation["ip"]);
+        if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1"):
+            
             $data_location = select_geolocation_cache($geolocation["ip"]);
-            var_dump($data_location);
+            
             if(is_null($data_location)):
                
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
@@ -130,7 +130,7 @@ function geolocation_api($param){
                 $geolocation["timezone"] = $data_location->timezone;
                 $geolocation["flag_uri"] = $data_location->flag_uri;
 
-                $_SESSION["geolocation"] = json_encode($data_location);
+                $_SESSION["geolocation"] = json_encode($geolocation);
             endif;
         endif;
     
