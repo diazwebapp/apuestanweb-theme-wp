@@ -232,30 +232,30 @@ add_action('init', function(){
     
     if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
-        $ip = $_SERVER["HTTP_CLIENT_IP"];
+        define(IP,$_SERVER["HTTP_CLIENT_IP"]);
     }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and empty($ip))
+    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and !defined($ip))
     {
-        $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        define(IP,$_SERVER["HTTP_X_FORWARDED_FOR"]);
     }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and empty($ip))
+    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and !defined($ip))
     {
-        $ip = $_SERVER["HTTP_X_FORWARDED"];
+        define(IP,$_SERVER["HTTP_X_FORWARDED"]);
     }
-    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and empty($ip))
+    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and !defined($ip))
     {
-        $ip = $_SERVER["HTTP_FORWARDED_FOR"];
+        define(IP,$_SERVER["HTTP_FORWARDED_FOR"]);
     }
-    elseif (isset($_SERVER["HTTP_FORWARDED"]) and empty($ip))
+    elseif (isset($_SERVER["HTTP_FORWARDED"]) and !defined($ip))
     {
-        $ip = $_SERVER["HTTP_FORWARDED"];
+        define(IP,$_SERVER["HTTP_FORWARDED"]);
     }
     else
     {
-        $ip = $_SERVER["REMOTE_ADDR"];
+        define(IP,$_SERVER["REMOTE_ADDR"]);
     }
-    var_dump($ip);
-    $geolocation["ip"] = $ip;
+    var_dump(IP);
+    $geolocation["ip"] = IP;
     
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
@@ -308,9 +308,9 @@ add_action('init', function(){
         endif;
         
         $geolocation = json_encode($geolocation);
-        $_SESSION["geolocation"] = $geolocation;
+        
     } */
-
+$_SESSION["geolocation"] = $geolocation;
 });
 
 
