@@ -61,7 +61,7 @@ function geolocation_api($param){
     
     
     if(!isset($_SESSION["geolocation"])){
-        
+        var_dump($geolocation["ip"]);
         if($geolocation["ip"] != "127.0.0.1" and $geolocation["ip"] != "::1" and $geolocation["ip"] != "143.198.170.157"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
