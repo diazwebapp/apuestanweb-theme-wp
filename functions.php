@@ -5,35 +5,7 @@
 /*--------------------------------------------------------------*/
 include "includes/handlers/geolocation.php";
 
-/*--------------------------------------------------------------*/
-/*                         SHORTCODES                           */
-/*--------------------------------------------------------------*/
-include "includes/shortcodes/shortcode-prices.php";
-include "includes/shortcodes/shortcode-parley.php";
-include "includes/shortcodes/shortcode-profile-forecaster.php";
-include "includes/shortcodes/shortcode-blog.php";
-include "includes/shortcodes/shortcode-forecasts.php";
-include "includes/shortcodes/shortcode-forecasts-vip.php";
-include "includes/shortcodes/shortcode-related-posts.php";
-include "includes/shortcodes/shortcode-slide.php";
-include "includes/shortcodes/shortcode-slide-bk.php";
-include "includes/shortcodes/shortcode-bookmakers.php";
-include "includes/shortcodes/shortcode-banner-pages.php";
-include "includes/shortcodes/shortcode-banner-bookmaker.php";
-include "includes/shortcodes/shortcode-leagues-menu.php";
-include "includes/shortcodes/shortcode-predictions.php";
-include "includes/shortcodes/shortcode-user-stats.php";
-include "includes/shortcodes/shortcode-register-form.php";
-include "includes/shortcodes/shortcode-checkout-form.php";
-include "includes/shortcodes/shortcode-login-form.php";
-/*--------------------------------------------------------------*/
-/*                         WIDGETS                              */
-/*--------------------------------------------------------------*/
-include "includes/widgets_area.php";
-include "includes/widgets/widget-top-bk.php";
-include "includes/widgets/widget-forecasts.php";
-//include "includes/widgets/widget-bonuses.php";
-include "includes/widgets/widget-authors.php";
+
 
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
@@ -307,3 +279,33 @@ function aw_actions_after_register_user( $user_id ) {
     $headers
     );
 }
+
+/*--------------------------------------------------------------*/
+/*                         SHORTCODES                           */
+/*--------------------------------------------------------------*/
+include "includes/shortcodes/shortcode-prices.php";
+include "includes/shortcodes/shortcode-parley.php";
+include "includes/shortcodes/shortcode-profile-forecaster.php";
+include "includes/shortcodes/shortcode-blog.php";
+include "includes/shortcodes/shortcode-forecasts.php";
+include "includes/shortcodes/shortcode-forecasts-vip.php";
+include "includes/shortcodes/shortcode-related-posts.php";
+include "includes/shortcodes/shortcode-slide.php";
+include "includes/shortcodes/shortcode-slide-bk.php";
+include "includes/shortcodes/shortcode-bookmakers.php";
+include "includes/shortcodes/shortcode-banner-pages.php";
+include "includes/shortcodes/shortcode-banner-bookmaker.php";
+include "includes/shortcodes/shortcode-leagues-menu.php";
+include "includes/shortcodes/shortcode-predictions.php";
+include "includes/shortcodes/shortcode-user-stats.php";
+include "includes/shortcodes/shortcode-register-form.php";
+include "includes/shortcodes/shortcode-checkout-form.php";
+include "includes/shortcodes/shortcode-login-form.php";
+/*--------------------------------------------------------------*/
+/*                         WIDGETS                              */
+/*--------------------------------------------------------------*/
+include "includes/widgets_area.php";
+include "includes/widgets/widget-top-bk.php";
+include "includes/widgets/widget-forecasts.php";
+//include "includes/widgets/widget-bonuses.php";
+include "includes/widgets/widget-authors.php";
