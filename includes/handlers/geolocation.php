@@ -131,7 +131,8 @@ function geolocation_api($param){
                 $geolocation["timezone"] = $data_location->timezone;
                 $geolocation["flag_uri"] = $data_location->flag_uri;
 
-                $_SESSION["geolocation"] = json_encode($geolocation);
+                $geolocation = json_encode($geolocation);
+                $_SESSION["geolocation"] = $geolocation;
             endif;
         endif;
     
