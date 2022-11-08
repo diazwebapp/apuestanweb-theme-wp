@@ -65,9 +65,10 @@ function geolocation_api(){
         
         $geolocation["ip"] = aw_get_the_user_ip();
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
-            var_dump($geolocation);
+            
             $data_location = select_geolocation_cache($geolocation["ip"]);
             if(count($data_location) == 0):
+                var_dump($geolocation);
                 $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
                 if(!is_wp_error( $response )):
                     $geolocation_resp =  wp_remote_retrieve_body( $response );
