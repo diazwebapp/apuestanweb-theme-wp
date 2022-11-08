@@ -259,7 +259,7 @@ add_action('init', function(){
     {
         $ip = $_SERVER["REMOTE_ADDR"];
     }
-      
+    var_dump($ip);
     $geolocation["ip"] = $ip;
     
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
