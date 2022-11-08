@@ -254,7 +254,7 @@ add_action('init', function(){
     {
         define('IP',$_SERVER["REMOTE_ADDR"]);
     }
-    var_dump(IP);
+
     $geolocation["ip"] = IP;
     
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
@@ -262,7 +262,7 @@ add_action('init', function(){
     
     if(empty($_SESSION["geolocation"])){
     
-        
+        var_dump($geolocation["ip"]);
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
