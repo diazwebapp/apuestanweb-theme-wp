@@ -129,7 +129,7 @@ function geolocation_api($param){
                 endif;
             endif;
             if(!is_null($data_location)):
-                $_SESSION["geolocation"] = $data_location;
+                $_SESSION["geolocation"] = json_decode($data_location);
                 var_dump("sql session -> ");
                 var_dump($_SESSION["geolocation"]);
             endif;
