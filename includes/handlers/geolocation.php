@@ -46,7 +46,7 @@ function geolocation_api(){
         "timezone" => "America/Caracas",
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
-    var_dump($_SERVER["HTTP_FORWARDED"]);
+    var_dump($_SERVER["REMOTE_ADDR"]);
     if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
