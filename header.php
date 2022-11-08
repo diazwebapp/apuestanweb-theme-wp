@@ -10,7 +10,7 @@
 <?php
 $client_ip = strval($_SERVER["REMOTE_ADDR"]);
     var_dump($client_ip . " header.php ");
-    geolocation_api("192.168.0.1");
+    geolocation_api($client_ip);
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
