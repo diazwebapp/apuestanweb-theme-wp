@@ -260,7 +260,7 @@ add_action('init', function(){
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
-    if(empty($_SESSION["geolocation"])){
+    /* if(empty($_SESSION["geolocation"])){
     
         
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
@@ -309,7 +309,7 @@ add_action('init', function(){
         
         $geolocation = json_encode($geolocation);
         $_SESSION["geolocation"] = $geolocation;
-    }
+    } */
 
 });
 
