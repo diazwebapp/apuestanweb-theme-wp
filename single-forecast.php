@@ -8,7 +8,7 @@
                     if(have_posts()):
                         while(have_posts()): the_post();
                             //forecast geolocation
-                            $geolocation = json_decode($_SESSION["geolocation"]);
+                            $geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
                             //forecast date
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);

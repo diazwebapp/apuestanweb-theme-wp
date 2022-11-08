@@ -80,14 +80,23 @@ function geolocation_api($param){
                     if(!is_wp_error( $response )):
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
-                        var_dump($geolocation_resp);
+
                         if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->img)):
                             $geolocation["country"] = $geolocation_resp->country;
                             $geolocation["country_code"] = $geolocation_resp->country_code;
                             $geolocation["timezone"] = $geolocation_resp->timezone->id;
                             $geolocation["flag_uri"] = $geolocation_resp->flag->img;
+                            
+                            $geolocation = json_encode($geolocation);
+                            $_SESSION["geolocation"] = $geolocation;
                             insert_geolocation_cache($geolocation);
+                        else:
+                            $geolocation = json_encode($geolocation);
+                            if(!defined("GEOLOCATION")):
+                                define("GEOLOCATION",$geolocation);
+                            endif;
                         endif;
+
                     endif;
                 endif;
         
@@ -97,25 +106,32 @@ function geolocation_api($param){
                     if(!is_wp_error( $response )):
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
-                        var_dump($geolocation_resp);
+                        
                         if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->svg)):
                             
                             $geolocation["country"] = $geolocation_resp->country;
                             $geolocation["country_code"] = $geolocation_resp->country_code;
                             $geolocation["timezone"] = $geolocation_resp->timezone->name;
                             $geolocation["flag_uri"] = $geolocation_resp->flag->svg; 
+
+                            $geolocation = json_encode($geolocation);
+                            $_SESSION["geolocation"] = $geolocation;
                             insert_geolocation_cache($geolocation);
+                        else:
+                            $geolocation = json_encode($geolocation);
+                            if(!defined("GEOLOCATION")):
+                                define("GEOLOCATION",$geolocation);
+                            endif;
                         endif; 
                         
                     endif;
                 endif;
             endif;
-        
+            if(count($data_location) > 0):
+                $_SESSION["geolocation"] = $data_location[0];
+            endif;
         endif;
-        
-        $geolocation = json_encode($geolocation);
-        
-        $_SESSION["geolocation"] = $geolocation;
+    
     }
     
 }

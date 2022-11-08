@@ -20,7 +20,7 @@ if ($sport_term) {
     }
 }
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
-$geolocation = json_decode($_SESSION["geolocation"]);
+$geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
