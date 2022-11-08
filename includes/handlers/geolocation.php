@@ -88,7 +88,7 @@ function geolocation_api(){
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
-            if(count($data_location) == 0){
+            if(count($data_location) == 0):
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
                     if(!empty($geolocation_api_key)):
                         $response = wp_remote_get("http://ipwho.pro/bulk/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
@@ -125,7 +125,7 @@ function geolocation_api(){
                         
                     endif;
                 endif;
-            }
+            endif;
         else:
             var_dump('dev');
         endif;
