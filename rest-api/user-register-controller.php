@@ -31,7 +31,7 @@ endif;
 if(!function_exists('aw_register_user')):
     function aw_register_user(WP_REST_Request $request){
         $params = $request->get_params();
-        $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
+        $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
 
         $resp["status"] = "fail";
         //obtenemos valores del request body  desde javascript

@@ -1,5 +1,5 @@
 <?php
-$geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
+$geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
 $params = get_query_var('params');
 $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 

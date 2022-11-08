@@ -40,7 +40,7 @@ function shortcode_bookmaker($atts)
     $query = new WP_Query($args);
     if ($query) {
         $new_bks = [];
-        $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
+        $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
         $aw_system_country_2 = aw_select_country(["country_code"=>strtoupper($country)]);
         foreach ($query->posts as $bookmaker): 

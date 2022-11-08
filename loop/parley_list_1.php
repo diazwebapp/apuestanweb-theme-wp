@@ -1,5 +1,5 @@
 <?php
-$location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
+$location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
 $params = get_query_var('params');

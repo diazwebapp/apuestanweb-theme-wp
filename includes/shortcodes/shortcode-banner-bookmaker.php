@@ -6,7 +6,7 @@ function shortcode_banner_bookmaker($atts)
         'id' => get_post_type() == 'bk' ? get_the_ID() : false 
     ), $atts));
     //geolocation
-    $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
+    $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
     $aw_system_location = !empty(aw_select_country(["country_code"=>$location->country_code])) ? aw_select_country(["country_code"=>$location->country_code]) : aw_select_country(["country_code"=>"WW"]);
     
 
@@ -88,7 +88,7 @@ function shortcode_banner_bookmaker_payments_methods($atts){
         'model' => false,
         'bookmaker_id' => get_post_type() == 'bk' ? get_the_ID() : false 
     ), $atts));
-    $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
+    $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
     $aw_system_location = !empty(aw_select_country(["country_code"=>$location->country_code])) ? aw_select_country(["country_code"=>$location->country_code]) : aw_select_country(["country_code"=>"WW"]);
     
     $payment_methods = get_bookmaker_payments($bookmaker_id);

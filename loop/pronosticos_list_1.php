@@ -1,6 +1,6 @@
 <?php
 
-$geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);;
+$geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
 $image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);
 $prediction = carbon_get_post_meta($args["forecast"]->ID, 'prediction');
