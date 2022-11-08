@@ -123,9 +123,9 @@ function geolocation_api($param){
                 $geolocation["flag_uri"] = $data_location->flag_uri;
             endif;
             $geolocation = json_encode($geolocation);
-            var_dump("definiendo indice geolocation". $data_location->country);
+            var_dump("definiendo indice geolocation ". $data_location->country);
             var_dump("existe? ". $geolocation);
-            $_SESSION["geolocation"] = $geolocation;
+            return $geolocation;
         endif;
     }
     

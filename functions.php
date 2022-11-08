@@ -217,8 +217,8 @@ add_action('init', function(){
     endif;
 
     ///////////geolocation
-    geolocation_api($_SERVER["REMOTE_ADDR"]);
-    
+    $_SESSION["geolocation"] = geolocation_api($_SERVER["REMOTE_ADDR"]);
+    $_SESSION['test'] = json_encode(["test"=>"test value"]);
     /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         define('IP',$_SERVER["HTTP_CLIENT_IP"]);
