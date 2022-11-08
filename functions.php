@@ -173,6 +173,7 @@ add_action('init', function(){
         var_dump($_SERVER["HTTP_X_FORWARDED"]);
         var_dump($_SERVER["HTTP_FORWARDED_FOR"]);
         var_dump($_SERVER["HTTP_FORWARDED"]);
+        var_dump($_SERVER["REMOTE_ADDR"]);
     geolocation_api();
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
