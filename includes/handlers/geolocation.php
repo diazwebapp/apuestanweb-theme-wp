@@ -35,7 +35,7 @@ dbDelta($sql);
 
 function select_geolocation_cache($ip){
     global $wpdb ;
-    $results = $wpdb->get_results("SELECT * FROM ".GEOLOCATION_CACHE." WHERE ip='$ip'");
+    $results = $wpdb->get_row("SELECT * FROM ".GEOLOCATION_CACHE." WHERE ip='$ip'");
     return $results;
 }
 
@@ -66,8 +66,9 @@ function geolocation_api($param){
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
-            
-            if(count($data_location) == 0):
+            var_dump("datalocation-> ");
+            var_dump($data_location);
+            if($data_location):
                
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
                     
@@ -116,6 +117,7 @@ function geolocation_api($param){
 
                             $geolocation = json_encode($geolocation);
                             $_SESSION["geolocation"] = $geolocation;
+                            var_dump("sesion-> ");
                             var_dump($_SESSION["geolocation"]);
                             insert_geolocation_cache($geolocation);
                         else:
@@ -128,8 +130,9 @@ function geolocation_api($param){
                     endif;
                 endif;
             endif;
-            if(count($data_location) > 0):
-                $_SESSION["geolocation"] = $data_location[0];
+            if(!$data_location):
+                $_SESSION["geolocation"] = $data_location;
+                var_dump("sql session -> ");
                 var_dump($_SESSION["geolocation"]);
             endif;
         endif;
