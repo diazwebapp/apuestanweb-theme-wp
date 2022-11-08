@@ -129,6 +129,7 @@ function geolocation_api($param){
             endif;
             if(count($data_location) > 0):
                 $_SESSION["geolocation"] = $data_location[0];
+                var_dump($_SESSION["geolocation"]);
             endif;
         endif;
     
