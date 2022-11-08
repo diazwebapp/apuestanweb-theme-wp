@@ -17,7 +17,7 @@ $bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
 
 echo "<pre>";
-var_dump($_SERVER);
+var_dump($geolocation);
 echo "</pre>";
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
