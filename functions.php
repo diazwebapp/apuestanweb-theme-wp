@@ -219,6 +219,7 @@ add_action('init', function(){
     ///////////geolocation
     $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
     var_dump($data);
+    define("loc",json_encode($data));
     $_SESSION["geolocation"] = $data;
     $_SESSION["geo"] = json_encode($data);
     $_SESSION['geo2'] = json_decode(json_encode($data));
