@@ -65,7 +65,7 @@ function geolocation_api(){
         
         $geolocation["ip"] = aw_get_the_user_ip();
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
-            
+            var_dump($_SERVER["REMOTE_ADDR"]);
             $data_location = select_geolocation_cache($geolocation["ip"]);
             if(count($data_location) == 0):
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
