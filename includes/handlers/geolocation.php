@@ -86,6 +86,11 @@ function geolocation_api(){
     
     if(empty($_SESSION["geolocation"])){
         var_dump($_SERVER["HTTP_CLIENT_IP"]);
+        var_dump($_SERVER["HTTP_X_FORWARDED_FOR"]);
+        var_dump($_SERVER["HTTP_X_FORWARDED"]);
+        var_dump($_SERVER["HTTP_FORWARDED_FOR"]);
+        var_dump($_SERVER["HTTP_FORWARDED"]);
+    
         $geolocation["ip"] = strval($_SERVER["REMOTE_ADDR"]);
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
