@@ -168,6 +168,11 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
+    var_dump($_SERVER["HTTP_CLIENT_IP"]);
+        var_dump($_SERVER["HTTP_X_FORWARDED_FOR"]);
+        var_dump($_SERVER["HTTP_X_FORWARDED"]);
+        var_dump($_SERVER["HTTP_FORWARDED_FOR"]);
+        var_dump($_SERVER["HTTP_FORWARDED"]);
     geolocation_api();
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
