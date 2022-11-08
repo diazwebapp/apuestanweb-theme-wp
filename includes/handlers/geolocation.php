@@ -125,6 +125,7 @@ function geolocation_api($param){
                 endif;
             endif;
             if(!is_null($data_location)):
+                var_dump("datos en caché");
                 $geolocation["country"] = $data_location->country;
                 $geolocation["country_code"] = $data_location->country_code;
                 $geolocation["timezone"] = $data_location->timezone;
