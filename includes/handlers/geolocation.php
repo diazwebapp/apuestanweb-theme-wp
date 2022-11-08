@@ -135,7 +135,8 @@ function geolocation_api($param){
                 $_SESSION["geolocation"] = $geolocation;
             endif;
         endif;
-    
+    $geolocation = json_encode($geolocation);
+    $_SESSION["geolocation"] = $geolocation;
     }
     
 }
