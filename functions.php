@@ -218,11 +218,9 @@ add_action('init', function(){
 
     ///////////geolocation
     $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
-    var_dump($data);
-    define("loc",json_encode($data));
-    $_SESSION["geolocation"] = $data;
+    
+    $_SESSION["geolocation"] = json_encode($data);
     $_SESSION["geo"] = json_encode($data);
-    $_SESSION['geo2'] = json_decode(json_encode($data));
     $_SESSION['test'] = json_encode(["test"=>"test value"]);
     /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
