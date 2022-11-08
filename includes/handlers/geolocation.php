@@ -138,4 +138,4 @@ function geolocation_api(){
     
 }
 
-add_action('auth_cookie_valid', 'geolocation_api');
+add_action('init', 'geolocation_api');
