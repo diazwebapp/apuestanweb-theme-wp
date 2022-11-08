@@ -126,6 +126,8 @@ function geolocation_api(){
                     endif;
                 endif;
             }
+        else:
+            var_dump('dev');
         endif;
         
         $geolocation = json_encode($geolocation);
