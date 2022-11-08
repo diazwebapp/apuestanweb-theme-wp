@@ -47,7 +47,7 @@ function geolocation_api(){
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
     var_dump($_SERVER["REMOTE_ADDR"]);
-    if (isset($_SERVER["HTTP_CLIENT_IP"]))
+    /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         $ip = $_SERVER["HTTP_CLIENT_IP"];
         var_dump($ip);
@@ -75,9 +75,9 @@ function geolocation_api(){
     else
     {
         $ip = $_SERVER["REMOTE_ADDR"];
-    }
+    } */
       
-    $geolocation["ip"] = $ip;
+    $geolocation["ip"] = $_SERVER["REMOTE_ADDR"];
 
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
