@@ -85,8 +85,8 @@ function geolocation_api(){
     
     
     if(!isset($_SESSION["geolocation"])){
-        $geolocation["ip"] = strval($_SERVER["REMOTE_ADDR"]);
         var_dump($_SERVER["REMOTE_ADDR"]);
+        $geolocation["ip"] = strval($_SERVER["REMOTE_ADDR"]);
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
