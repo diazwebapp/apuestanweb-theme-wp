@@ -218,6 +218,7 @@ add_action('init', function(){
 
     ///////////geolocation
     geolocation_api($_SERVER["REMOTE_ADDR"]);
+    add_shortcode('forecasts', 'shortcode_forecast');
     /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         define('IP',$_SERVER["HTTP_CLIENT_IP"]);

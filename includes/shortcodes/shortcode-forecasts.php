@@ -117,4 +117,3 @@ function shortcode_forecast($atts)
 }
 
 
-add_shortcode('forecasts', 'shortcode_forecast');
