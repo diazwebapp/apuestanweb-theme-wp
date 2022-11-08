@@ -1,5 +1,5 @@
 <?php
-
+require_once("geolocation.php");
 function create_bk() {
 
 	$labels = array(
