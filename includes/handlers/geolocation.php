@@ -115,15 +115,12 @@ function geolocation_api($param){
                 endif;
             endif;
             if(!is_null($data_location)):
-                var_dump("datos en caché ". $data_location->country);
                 $geolocation["ip"] = $data_location->ip;
                 $geolocation["country"] = $data_location->country;
                 $geolocation["country_code"] = $data_location->country_code;
                 $geolocation["timezone"] = $data_location->timezone;
                 $geolocation["flag_uri"] = $data_location->flag_uri;
             endif;
-            var_dump("definiendo indice geolocation ". $data_location->country);
-            var_dump($geolocation);
             return $geolocation;
         endif;
     }
