@@ -15,8 +15,10 @@ $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_c
 
 $bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
-$origin = get_http_origin(  );
+
+echo "<pre>";
 var_dump($_SERVER);
+echo "</pre>";
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
     if(is_page()){
