@@ -68,7 +68,7 @@ function geolocation_api($param){
             $data_location = select_geolocation_cache($geolocation["ip"]);
             var_dump("datalocation-> ");
             var_dump(is_null($data_location));
-            if(isset($data_location)):
+            if(is_null($data_location)):
                
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
                     
@@ -130,7 +130,7 @@ function geolocation_api($param){
                     endif;
                 endif;
             endif;
-            if(!isset($data_location)):
+            if(!is_null($data_location)):
                 $_SESSION["geolocation"] = $data_location;
                 var_dump("sql session -> ");
                 var_dump($_SESSION["geolocation"]);
