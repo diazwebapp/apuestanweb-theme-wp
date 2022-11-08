@@ -8,6 +8,7 @@
 </head>
 <body>
 <?php
+    var_dump($_SERVER["REMOTE_ADDR"] . " header.php ");
     geolocation_api();
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
