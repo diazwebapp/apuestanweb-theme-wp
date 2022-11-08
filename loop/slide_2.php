@@ -15,7 +15,7 @@ $permalink = get_the_permalink(get_the_ID());
 $cross_img = get_template_directory_uri(  ) . '/assets/img/cross.png';
 
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
+$geolocation = json_decode($_SESSION["geolocation"]);
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 

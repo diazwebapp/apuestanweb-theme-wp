@@ -13,7 +13,7 @@ class w_bookmakers extends WP_Widget{
     public function widget($args, $instance){
         $title = isset($instance['title']) ? __( $instance['title'], 'jbetting' ) : __( 'TOP bookmaker', 'jbetting' );
         $limit = !empty($instance['limit']) ? $instance['limit'] : 10;
-        $location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
+        $location = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
         if(!isset($aw_system_location)):
             $bookmakers = aw_select_relate_bookmakers(1,["random"=>true,"limit"=>$limit]);

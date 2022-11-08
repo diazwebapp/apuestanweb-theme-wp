@@ -2,7 +2,7 @@
 get_header(); ?>
 
 <?php 
-$location = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocation"]) : json_decode(GEOLOCATION);
+$location = json_decode($_SESSION["geolocation"]);
 //Seteamos valores por defecto de la casa de apuesta
 $bookmaker["name"] = "no bookmaker";
 $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
