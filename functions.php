@@ -168,12 +168,12 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
-   /*  var_dump($_SERVER["HTTP_CLIENT_IP"]);
+    var_dump($_SERVER["HTTP_CLIENT_IP"]);
     var_dump($_SERVER["HTTP_X_FORWARDED_FOR"]);
     var_dump($_SERVER["HTTP_X_FORWARDED"]);
     var_dump($_SERVER["HTTP_FORWARDED_FOR"]);
     var_dump($_SERVER["HTTP_FORWARDED"]);
-    var_dump($_SERVER["REMOTE_ADDR"]); */
+    var_dump($_SERVER["REMOTE_ADDR"]);
     
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
@@ -220,9 +220,30 @@ add_action('init', function(){
     endif;
 
     ///////////geolocation
-    define('IP',$_SERVER["REMOTE_ADDR"]);
-
-    var_dump(IP);
+    if (isset($_SERVER["HTTP_CLIENT_IP"]))
+    {
+        define('IP',$_SERVER["HTTP_CLIENT_IP"]);
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_X_FORWARDED_FOR"]);
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_X_FORWARDED"]);
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_FORWARDED_FOR"]);
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_FORWARDED"]);
+    }
+    else
+    {
+        define('IP',$_SERVER["REMOTE_ADDR"]);
+    }
     geolocation_api(IP);
 });
 
