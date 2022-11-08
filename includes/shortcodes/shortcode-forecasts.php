@@ -13,6 +13,7 @@ function shortcode_forecast($atts)
         'title' => null
     ), $atts));
     $ret = "";
+
     if(is_page() && !$title)
         $title = get_the_title( );
     if(is_post_type_archive() && !$title)
@@ -90,7 +91,8 @@ function shortcode_forecast($atts)
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)
                 $home_class = 'row';        
-            
+        
+        $loop_html = ''; 
         $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
         $loop_html = $query == 'no mas' ? 'nó hay eventos' : $query;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);

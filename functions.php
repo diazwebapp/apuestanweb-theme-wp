@@ -73,6 +73,7 @@ include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
+include "rest-api/parley-controller.php";
 
 function my_theme_remove_headlinks() {
     remove_action( 'wp_head', 'wp_generator' );

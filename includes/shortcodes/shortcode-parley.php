@@ -4,20 +4,28 @@ function shortcode_parley($atts)
     extract(shortcode_atts(array(
         'num' => 6,
         'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
-        'date' => false,
+        'date' => null,
         'model' => 1,
-        'title' => false,
-        'paginate' => false,
-        'vip_link' => PERMALINK_VIP,
+        'title' => null,
+        'paginate' => null,
         'text_vip_link' => 'VIP',
-        'filter' => false,
-        'time_format' => false,
+        'filter' => null,
+        'time_format' => null,
     ), $atts));
     $ret = "";
-    if(!$title){
-        $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-        $title = empty($custom_h1) ? get_the_title( get_the_ID() ) : $custom_h1;
-    }
+    
+    if(is_page() && !$title)
+        $title = get_the_title( );
+    if(is_post_type_archive() && !$title)
+        $title = post_type_archive_title( '', false );
+    if(is_category() or is_tax())
+        $title = single_term_title('',false );
+    if(is_tag())
+        $title = single_tag_title('',false );
+
+    $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
+    $title = empty($custom_h1) ? $title : $custom_h1;
+
     if($filter)
         $ret .= "<div class='title_wrap'>
         <h1 class='title mt_30 order-lg-1'>$title</h1>
@@ -37,82 +45,53 @@ function shortcode_parley($atts)
         </div>
     </div>";
 
-    wp_reset_query();
     $args = [];
-    $args['post_status']    = 'publish';
-    $args['post_type']      = 'parley';
-    $args['paged']          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-    $args['posts_per_page'] = $num;
-    $args['meta_key']       = '_data';
-    $args['orderby']        = 'meta_value';
-    $args['order']          = 'ASC';
-
-   
-    $league_arr=[];
+    $league_arr = null;
     
-    if(is_array($league))
+    if(is_array($league) and count($league) > 0):
+        
+        $league_arr = "[{replace-leagues}]";
+        $temp_leages = '';
         foreach ($league as $key => $value) {
-            $league_arr[]= $value->slug ;
+            $temp_leages .= $value->slug.',' ;
         }
-    if(!is_array($league))
-        $league_arr = explode(',',$league);
-    if($league !== 'all')
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'league',
-                'field' => 'slug',
-                'terms' => $league_arr,
-            ]
-        ];
+        $league_arr = str_replace("{replace-leagues}",$temp_leages,$league_arr);
+    endif;
+    if(!is_array($league) and is_string($league)):
+        
+        $league_arr = "[{replace-leagues}]";
+        $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
+    endif;
+        
+    //$query = new WP_Query($args);
+    $args['paged']          = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1);
+    $args['posts_per_page'] = $num;
+    $args['leagues'] =  $league_arr;
+    $args['date'] = $date;
+    $args['model'] = $model;
+    $args['time_format'] = $time_format ;
+    $args['text_vip_link'] = $text_vip_link;
+    $args['rest_uri'] = get_rest_url(null,'aw-parley/parley');
+
+    $params = "?paged=".$args['paged'];
+    $params .= "&posts_per_page={$args['posts_per_page']}";
+    $params .= isset($args['leagues']) ? "&leagues=${args['leagues']}":"";
+    $params .= isset($args['date']) ? "&date={$args['date']}":"";
+    $params .= "&model=$model";
+    $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
+    $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
 
     
-    if ($date and $date != "") {
-        if($date == 'today')
-            $current_date = date('Y-m-d');
-        if($date == 'yesterday')
-            $current_date = date('Y-m-d', strtotime('-1 days'));
-        if($date == 'tomorrow')
-            $current_date = date('Y-m-d',strtotime('+1 days'));
-            
-        $args['meta_query']   = [
-                [
-                    'key' => '_data',
-                    'compare' => '==',
-                    'value' => $current_date,
-                    'type' => 'DATE'
-                ]
-            ];
-    }
-    set_query_var( 'params', [
-        "vip_link" => PERMALINK_VIP,
-        "text_vip_link" => $text_vip_link,
-        "time_format" => $time_format
-    ] );
-    $query = new WP_Query($args);
+    $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
+    $query =  wp_remote_retrieve_body( $response );
     
-    if ($query->have_posts()) {
-        $ret .= "<div id='games_list'>";
-        while ($query->have_posts()):
-            $query->the_post();
-            $ret .= load_template_part("loop/parley_list_{$model}"); 
-        endwhile;
-        $ret .= "</div>";
-
-        $jsdata = json_encode([
-            "ajaxurl" => site_url() . '/wp-admin/admin-ajax.php',
-            "posts" => serialize( $query->query_vars ),
-            "current_page" => $args['paged'] ,
-            "max_pages" => $query->max_num_pages,
-            "model" => $model,
-            "league" =>  $league,
-			"vip_link" =>  PERMALINK_VIP,
-			"text_vip_link" =>  $text_vip_link,
-            "time_format" =>  $time_format,
-            "vip "=> 'no',
-            "unlock" => 'no',
-            "cpt" => 'parley',
-        ]);
-        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = $jsdata " );
+    if ($query) {
+        $loop_html = '';
+        $ret .="<div id='games_list' >{replace_loop}</div>";
+        $loop_html = $query == 'no mas' ? 'nó hay eventos' : $query;
+        $ret = str_replace("{replace_loop}",$loop_html,$ret);
+        
+        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
 
         if($paginate=='yes'):
 

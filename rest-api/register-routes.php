@@ -92,6 +92,15 @@ function register_routes(){
             return '__return_true';
           }
     ]);
+
+    //PARLEY
+    register_rest_route('aw-parley','/parley',[
+        'methods' => 'GET',
+        'callback' => 'aw_get_parleys',
+        'permission_callback' => function () {
+            return '__return_true';
+          }
+    ]);
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );
 
