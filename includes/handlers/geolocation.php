@@ -66,7 +66,7 @@ function geolocation_api($param){
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
-            var_dump("database-> ".$data_location[0]->ip." parametro-> ".$param);
+            var_dump("database-> ".$geolocation["ip"]." parametro-> ".$param);
             if(count($data_location) == 0):
                 
                 $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
