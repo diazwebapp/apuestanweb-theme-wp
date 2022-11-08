@@ -36,8 +36,8 @@ function insert_geolocation_cache($data){
     return $insert;
 }
 
-function geolocation_api(){
-    $ip = false;$response = false;
+function geolocation_api($ip){
+    $response = false;
 
     $geolocation = [
         "ip" => $ip,
@@ -47,8 +47,6 @@ function geolocation_api(){
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
     
-
-    $geolocation["ip"] = IP;
     
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;

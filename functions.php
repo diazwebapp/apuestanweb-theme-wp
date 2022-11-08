@@ -246,7 +246,7 @@ add_action('init', function(){
     }
 
     var_dump(IP);
-    geolocation_api();
+    geolocation_api(IP);
 });
 
 
