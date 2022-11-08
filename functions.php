@@ -220,7 +220,30 @@ add_action('init', function(){
     endif;
 
     ///////////geolocation
-    
+    if (isset($_SERVER["HTTP_CLIENT_IP"]))
+    {
+        define('IP',$_SERVER["HTTP_CLIENT_IP"]);
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_X_FORWARDED_FOR"]);
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_X_FORWARDED"]);
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_FORWARDED_FOR"]);
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_FORWARDED"]);
+    }
+    else
+    {
+        define('IP',$_SERVER["REMOTE_ADDR"]);
+    }
     geolocation_api();
 });
 
