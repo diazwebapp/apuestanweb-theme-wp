@@ -184,6 +184,7 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
+    geolocation_api();
     //Definimos configuraciones globales del tema
     
     //Zona horaria

@@ -137,5 +137,3 @@ function geolocation_api(){
     }
     
 }
-
-add_action('init', 'geolocation_api');
