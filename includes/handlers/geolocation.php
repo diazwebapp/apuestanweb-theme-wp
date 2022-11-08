@@ -4,7 +4,16 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 global $wpdb, $charset_collate;
 $charset_collate = $wpdb->get_charset_collate();
 define("GEOLOCATION_CACHE",$wpdb->prefix . "aw_geolocation_cache");
-
+function get_the_user_ip() {
+    if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        }
+    return apply_filters( 'wpb_get_ip', $ip );
+    }
 
 //creamos la tabla 
 
@@ -53,7 +62,8 @@ function geolocation_api(){
     
     
     if(!isset($_SESSION["geolocation"])){
-        $geolocation["ip"] = $_SERVER['HTTP_X_REAL_IP'];
+        
+        $geolocation["ip"] = get_the_user_ip();
         var_dump($geolocation["ip"]);
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
