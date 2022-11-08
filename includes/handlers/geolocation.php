@@ -17,8 +17,6 @@ function aw_get_the_user_ip() {
 
 //creamos la tabla 
 
-
-var_dump($_SERVER['erick']);
 global $charset_collate;
 $table = GEOLOCATION_CACHE;
 
@@ -67,8 +65,7 @@ function geolocation_api($param){
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] != "::1"):
             
             $data_location = select_geolocation_cache($geolocation["ip"]);
-            var_dump("datalocation-> ");
-            var_dump(is_null($data_location));
+            
             if(is_null($data_location)):
                
                 if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
