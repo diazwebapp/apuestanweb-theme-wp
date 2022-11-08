@@ -49,7 +49,7 @@ function geolocation_api(){
     $response = false;
 
     $geolocation = [
-        "ip" => false,
+        "ip" => $_SERVER["REMOTE_ADDR"],
         "country" => "World Wide",
         "country_code" => "WW",
         "timezone" => "America/Caracas",
