@@ -99,7 +99,7 @@ function geolocation_api(){
                     if(!is_wp_error( $response )):
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
-                        if($geolocation_resp->country and $geolocation_resp->flag->img):
+                        if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->img)):
                             $geolocation["country"] = $geolocation_resp->country;
                             $geolocation["country_code"] = $geolocation_resp->country_code;
                             $geolocation["timezone"] = $geolocation_resp->timezone->id;
@@ -115,7 +115,7 @@ function geolocation_api(){
                         $geolocation_resp =  wp_remote_retrieve_body( $response );
                         $geolocation_resp = json_decode($geolocation_resp);
     
-                        if($geolocation_resp->country and $geolocation_resp->flag->svg):
+                        if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->svg)):
                             $geolocation["country"] = $geolocation_resp->country;
                             $geolocation["country_code"] = $geolocation_resp->country_code;
                             $geolocation["timezone"] = $geolocation_resp->timezone->name;
