@@ -63,7 +63,7 @@ function geolocation_api($param){
     if(!isset($_SESSION["geolocation"])){
         
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1" and $geolocation["ip"] !== "143.198.170.157"):
-            var_dump($geolocation["ip"]);
+            var_dump("ip distinta al server -> ".$geolocation["ip"]);
             $data_location = select_geolocation_cache($geolocation["ip"]);
 
             if(is_null($data_location)):
@@ -115,11 +115,12 @@ function geolocation_api($param){
                             $geolocation = json_encode($geolocation);
                             $_SESSION["geolocation"] = $geolocation;
                         else:
-                            var_dump($geolocation_resp);
+                            var_dump("error en la consulta -> ".$geolocation_resp);
                             $geolocation = json_encode($geolocation);
                             define("GEOLOCATION",$geolocation);
                         endif; 
-                        
+                    else:
+                        var_dump("error en el request -> ".$response);
                     endif;
                 endif;
             endif;
