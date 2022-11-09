@@ -289,7 +289,3 @@ function create_parley() {
 }
 
 add_action( 'init', 'create_parley', 0 );
-
-$data = geolocation_api($_SERVER["REMOTE_ADDR"]);
-    
-$_SESSION["geolocation"] = json_encode($data);

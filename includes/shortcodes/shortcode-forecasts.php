@@ -16,7 +16,7 @@ function shortcode_forecast($atts)
     
 
     echo "<pre>";
-    var_dump($_SESSION);
+    var_dump($_SESSION["geolocation"]);
     echo "</pre>";
 
     $ret = "";
