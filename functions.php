@@ -222,6 +222,9 @@ add_action('init', function(){
     if(!isset($_SESSION["geolocation"])){
         $_SESSION["geolocation"] = json_encode($data);
     }
+    echo "<pre>";
+    var_dump($_SERVER["REMOTE_ADDR"]);
+    echo "</pre>";
     
     /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
