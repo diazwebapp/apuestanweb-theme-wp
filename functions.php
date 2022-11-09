@@ -1,11 +1,34 @@
 <?php
 
 /*--------------------------------------------------------------*/
-/*                         GEOLOCATION API                      */
+/*                         SHORTCODES                           */
 /*--------------------------------------------------------------*/
-include "includes/handlers/geolocation.php";
-
-
+include "includes/shortcodes/shortcode-prices.php";
+include "includes/shortcodes/shortcode-parley.php";
+include "includes/shortcodes/shortcode-profile-forecaster.php";
+include "includes/shortcodes/shortcode-blog.php";
+include "includes/shortcodes/shortcode-forecasts.php";
+include "includes/shortcodes/shortcode-forecasts-vip.php";
+include "includes/shortcodes/shortcode-related-posts.php";
+include "includes/shortcodes/shortcode-slide.php";
+include "includes/shortcodes/shortcode-slide-bk.php";
+include "includes/shortcodes/shortcode-bookmakers.php";
+include "includes/shortcodes/shortcode-banner-pages.php";
+include "includes/shortcodes/shortcode-banner-bookmaker.php";
+include "includes/shortcodes/shortcode-leagues-menu.php";
+include "includes/shortcodes/shortcode-predictions.php";
+include "includes/shortcodes/shortcode-user-stats.php";
+include "includes/shortcodes/shortcode-register-form.php";
+include "includes/shortcodes/shortcode-checkout-form.php";
+include "includes/shortcodes/shortcode-login-form.php";
+/*--------------------------------------------------------------*/
+/*                         WIDGETS                              */
+/*--------------------------------------------------------------*/
+include "includes/widgets_area.php";
+include "includes/widgets/widget-top-bk.php";
+include "includes/widgets/widget-forecasts.php";
+//include "includes/widgets/widget-bonuses.php";
+include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
@@ -15,6 +38,10 @@ include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php";
+/*--------------------------------------------------------------*/
+/*                         GEOLOCATION API                      */
+/*--------------------------------------------------------------*/
+include "includes/handlers/geolocation.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
@@ -193,7 +220,7 @@ add_action('init', function(){
     
     $_SESSION["geolocation"] = json_encode($data);
     $_SESSION["geo"] = json_encode($data);
-    $_SESSION['test'] = json_encode(["test"=>"test value"]);
+    $_SESSION['ip'] = IP;
     /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
     {
         define('IP',$_SERVER["HTTP_CLIENT_IP"]);
@@ -279,33 +306,3 @@ function aw_actions_after_register_user( $user_id ) {
     $headers
     );
 }
-
-/*--------------------------------------------------------------*/
-/*                         SHORTCODES                           */
-/*--------------------------------------------------------------*/
-include "includes/shortcodes/shortcode-prices.php";
-include "includes/shortcodes/shortcode-parley.php";
-include "includes/shortcodes/shortcode-profile-forecaster.php";
-include "includes/shortcodes/shortcode-blog.php";
-include "includes/shortcodes/shortcode-forecasts.php";
-include "includes/shortcodes/shortcode-forecasts-vip.php";
-include "includes/shortcodes/shortcode-related-posts.php";
-include "includes/shortcodes/shortcode-slide.php";
-include "includes/shortcodes/shortcode-slide-bk.php";
-include "includes/shortcodes/shortcode-bookmakers.php";
-include "includes/shortcodes/shortcode-banner-pages.php";
-include "includes/shortcodes/shortcode-banner-bookmaker.php";
-include "includes/shortcodes/shortcode-leagues-menu.php";
-include "includes/shortcodes/shortcode-predictions.php";
-include "includes/shortcodes/shortcode-user-stats.php";
-include "includes/shortcodes/shortcode-register-form.php";
-include "includes/shortcodes/shortcode-checkout-form.php";
-include "includes/shortcodes/shortcode-login-form.php";
-/*--------------------------------------------------------------*/
-/*                         WIDGETS                              */
-/*--------------------------------------------------------------*/
-include "includes/widgets_area.php";
-include "includes/widgets/widget-top-bk.php";
-include "includes/widgets/widget-forecasts.php";
-//include "includes/widgets/widget-bonuses.php";
-include "includes/widgets/widget-authors.php";
