@@ -9,7 +9,9 @@
 <body>
 <?php
 
+$data = geolocation_api($_SERVER["REMOTE_ADDR"]);
     
+$_SESSION["geolocation"] = json_encode($data);
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
