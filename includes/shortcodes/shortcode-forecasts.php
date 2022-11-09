@@ -14,10 +14,8 @@ function shortcode_forecast($atts)
         'title' => null
     ), $atts));
 
-    $ip = aw_get_the_user_ip();
     echo "<pre>";
-    echo do_shortcode( '[Show_IP title="ip del plugin"]' );
-    var_dump("forecasts ip es ".$ip. " en ". date("h:i:s a"));
+    var_dump($_SESSION);
     echo "</pre>";
 
     $ret = "";
