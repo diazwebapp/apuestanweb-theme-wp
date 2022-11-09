@@ -121,8 +121,8 @@ function geolocation_api($param){
                 $geolocation["timezone"] = $data_location->timezone;
                 $geolocation["flag_uri"] = $data_location->flag_uri;
             endif;
-            return $geolocation;
+         
         endif;
     }
-    
+    return $geolocation;
 }
