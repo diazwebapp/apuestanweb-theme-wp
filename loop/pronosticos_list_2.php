@@ -16,11 +16,6 @@ $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_c
 $bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
 
-$ip = aw_get_the_user_ip();
-echo "<pre>";
-echo do_shortcode( '[Show_IP title="ip del plugin"]' );
-var_dump("forecasts ip es ".$ip. " en ". date("h:i:s a"));
-echo "</pre>";
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
     if(is_page()){

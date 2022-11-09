@@ -13,6 +13,13 @@ function shortcode_forecast($atts)
         'paginate' => null,
         'title' => null
     ), $atts));
+
+    $ip = aw_get_the_user_ip();
+    echo "<pre>";
+    echo do_shortcode( '[Show_IP title="ip del plugin"]' );
+    var_dump("forecasts ip es ".$ip. " en ". date("h:i:s a"));
+    echo "</pre>";
+
     $ret = "";
 
     if(is_page() && !$title)
