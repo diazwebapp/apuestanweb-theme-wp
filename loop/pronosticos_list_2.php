@@ -18,7 +18,7 @@ $bookmaker = json_encode([]);
 
 $ip = aw_get_the_user_ip();
 echo "<pre>";
-echo do_shortcode( '[Show_IP title="ip del pluguin"]' );
+echo do_shortcode( '[Show_IP title="ip del plugin"]' );
 var_dump("forecasts ip es ".$ip. " en ". date("h:i:s a"));
 echo "</pre>";
 if(isset($aw_system_location)):
