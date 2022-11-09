@@ -217,9 +217,8 @@ add_action('init', function(){
 
     ///////////geolocation
 
-    $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
-    
     if(!isset($_SESSION["geolocation"])){
+        $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
         $_SESSION["geolocation"] = json_encode($data);
     }
     echo "<pre>";
