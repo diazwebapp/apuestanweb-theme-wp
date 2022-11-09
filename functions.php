@@ -250,7 +250,7 @@ add_action('init', function(){
     {
         define('IP',$_SERVER["REMOTE_ADDR"]);
     } */
-});
+},99999999);
 
 
 // active code menu
