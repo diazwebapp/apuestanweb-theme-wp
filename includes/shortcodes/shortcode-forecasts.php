@@ -13,10 +13,8 @@ function shortcode_forecast($atts)
         'paginate' => null,
         'title' => null
     ), $atts));
-    $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
     
-    $_SESSION["geolocation"] = json_encode($data);
-    
+
     echo "<pre>";
     var_dump($_SESSION);
     echo "</pre>";
