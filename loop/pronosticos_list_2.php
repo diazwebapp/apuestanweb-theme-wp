@@ -19,7 +19,7 @@ $bookmaker = json_encode([]);
 $ip = aw_get_the_user_ip();
 echo "<pre>";
 var_dump($ip);
-var_dump($_SERVER);
+var_dump($_SESSION);
 echo "</pre>";
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
