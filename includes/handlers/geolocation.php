@@ -46,9 +46,7 @@ function insert_geolocation_cache($data){
 
 function geolocation_api($param){
     $response = false;
-    if(!session_id()):
-        session_start();
-    endif;
+    
     $geolocation = [
         "ip" => $param,
         "country" => "World Wide",
@@ -65,6 +63,7 @@ function geolocation_api($param){
     if(!isset($_SESSION["geolocation"])){
         
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1" and $geolocation["ip"] !== "143.198.170.157"):
+            var_dump("la ip es ".$param);
             define("IP",$param);
             $data_location = select_geolocation_cache($geolocation["ip"]);
             

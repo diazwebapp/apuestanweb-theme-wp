@@ -18,8 +18,7 @@ $bookmaker = json_encode([]);
 
 $ip = aw_get_the_user_ip();
 echo "<pre>";
-var_dump($ip);
-var_dump($_SESSION);
+var_dump("forecasts ip es ".$ip);
 echo "</pre>";
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
