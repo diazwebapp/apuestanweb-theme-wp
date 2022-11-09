@@ -216,6 +216,7 @@ add_action('init', function(){
     endif;
 
     ///////////geolocation
+    
     if($_GET){
 
         $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
