@@ -1,7 +1,5 @@
 <?php
-if(!session_id()):
-        session_start();
-    endif;
+
 function shortcode_forecast($atts)
 {
     extract(shortcode_atts(array(

@@ -46,7 +46,9 @@ function insert_geolocation_cache($data){
 
 function geolocation_api($param){
     $response = false;
-
+    if(!session_id()):
+        session_start();
+    endif;
     $geolocation = [
         "ip" => $param,
         "country" => "World Wide",
