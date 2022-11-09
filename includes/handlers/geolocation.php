@@ -62,67 +62,67 @@ function geolocation_api($param){
     
     
         
-        if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1"):
-            
-            $data_location = select_geolocation_cache($geolocation["ip"]);
-            
-            if(is_null($data_location)):
-               
-                if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
-                    
-                    if(!empty($geolocation_api_key)):
-                        $response = wp_remote_get("http://ipwho.pro/bulk/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
-                    endif;
-                    if(empty($geolocation_api_key)):
-                        $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
-                    endif;
-                    if(!is_wp_error( $response )):
-                        $geolocation_resp =  wp_remote_retrieve_body( $response );
-                        $geolocation_resp = json_decode($geolocation_resp);
-                        
-                        if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->img)):
-                            $geolocation["country"] = $geolocation_resp->country;
-                            $geolocation["country_code"] = $geolocation_resp->country_code;
-                            $geolocation["timezone"] = $geolocation_resp->timezone->id;
-                            $geolocation["flag_uri"] = $geolocation_resp->flag->img;
-                            
-                            insert_geolocation_cache($geolocation);
-
-                        endif;
-
-                    endif;
-                endif;
+    if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1"):
         
-                if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
+        $data_location = select_geolocation_cache($geolocation["ip"]);
+        
+        if(is_null($data_location)):
+            
+            if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
+                
+                if(!empty($geolocation_api_key)):
+                    $response = wp_remote_get("http://ipwho.pro/bulk/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
+                endif;
+                if(empty($geolocation_api_key)):
+                    $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
+                endif;
+                if(!is_wp_error( $response )):
+                    $geolocation_resp =  wp_remote_retrieve_body( $response );
+                    $geolocation_resp = json_decode($geolocation_resp);
                     
-                    $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address={$geolocation["ip"]}",array('timeout'=>10));
-                    if(!is_wp_error( $response )):
-                        $geolocation_resp =  wp_remote_retrieve_body( $response );
-                        $geolocation_resp = json_decode($geolocation_resp);
-                        if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->svg)):
-                            
-                            $geolocation["country"] = $geolocation_resp->country;
-                            $geolocation["country_code"] = $geolocation_resp->country_code;
-                            $geolocation["timezone"] = $geolocation_resp->timezone->name;
-                            $geolocation["flag_uri"] = $geolocation_resp->flag->svg; 
-
-                            insert_geolocation_cache($geolocation);
+                    if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->img)):
+                        $geolocation["country"] = $geolocation_resp->country;
+                        $geolocation["country_code"] = $geolocation_resp->country_code;
+                        $geolocation["timezone"] = $geolocation_resp->timezone->id;
+                        $geolocation["flag_uri"] = $geolocation_resp->flag->img;
                         
-                        endif; 
-                    else:
-                        var_dump("error en el request -> ".$response);
+                        insert_geolocation_cache($geolocation);
+
                     endif;
+
                 endif;
             endif;
-            if(!is_null($data_location)):
-                $geolocation["ip"] = $data_location->ip;
-                $geolocation["country"] = $data_location->country;
-                $geolocation["country_code"] = $data_location->country_code;
-                $geolocation["timezone"] = $data_location->timezone;
-                $geolocation["flag_uri"] = $data_location->flag_uri;
+    
+            if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
+                
+                $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address={$geolocation["ip"]}",array('timeout'=>10));
+                if(!is_wp_error( $response )):
+                    $geolocation_resp =  wp_remote_retrieve_body( $response );
+                    $geolocation_resp = json_decode($geolocation_resp);
+                    if(isset($geolocation_resp->country) and isset($geolocation_resp->flag->svg)):
+                        
+                        $geolocation["country"] = $geolocation_resp->country;
+                        $geolocation["country_code"] = $geolocation_resp->country_code;
+                        $geolocation["timezone"] = $geolocation_resp->timezone->name;
+                        $geolocation["flag_uri"] = $geolocation_resp->flag->svg; 
+
+                        insert_geolocation_cache($geolocation);
+                    
+                    endif; 
+                else:
+                    var_dump("error en el request -> ".$response);
+                endif;
             endif;
-         
         endif;
+        if(!is_null($data_location)):
+            $geolocation["ip"] = $data_location->ip;
+            $geolocation["country"] = $data_location->country;
+            $geolocation["country_code"] = $data_location->country_code;
+            $geolocation["timezone"] = $data_location->timezone;
+            $geolocation["flag_uri"] = $data_location->flag_uri;
+        endif;
+        
+    endif;
     
     return $geolocation;
 }

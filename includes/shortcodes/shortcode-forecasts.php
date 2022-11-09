@@ -13,11 +13,6 @@ function shortcode_forecast($atts)
         'paginate' => null,
         'title' => null
     ), $atts));
-    
-
-    echo "<pre>";
-    var_dump($_SESSION["geolocation"]);
-    echo "</pre>";
 
     $ret = "";
 
