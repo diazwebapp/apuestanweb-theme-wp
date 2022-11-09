@@ -60,7 +60,7 @@ function geolocation_api($param){
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
     
-    if(!isset($_SESSION["geolocation"])){
+    
         
         if($geolocation["ip"] !== "127.0.0.1" and $geolocation["ip"] !== "::1"):
             
@@ -123,6 +123,6 @@ function geolocation_api($param){
             endif;
          
         endif;
-    }
+    
     return $geolocation;
 }
