@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->
-                    <ul class="menu">                    
+                    <ul class="menu text-uppercase">                    
                     <?php
                         
                         $ret = strip_tags( wp_nav_menu( array(
