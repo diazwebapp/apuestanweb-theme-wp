@@ -18,6 +18,8 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
             params += "&model="+forecasts_fetch_vars.model;
             params += forecasts_fetch_vars.time_format ? "&time_format="+forecasts_fetch_vars.time_format:"";
+            params += forecasts_fetch_vars.country_code ? "&country_code="+forecasts_fetch_vars.country_code:"";
+            params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
             params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
             params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
@@ -46,7 +48,10 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
             params += "&model="+forecasts_fetch_vars.model;
             params += forecasts_fetch_vars.time_format ? "&time_format="+forecasts_fetch_vars.time_format:"";
+            params += forecasts_fetch_vars.country_code ? "&country_code="+forecasts_fetch_vars.country_code:"";
+            params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
             params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
+            params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
             
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
             const response = await request.text()

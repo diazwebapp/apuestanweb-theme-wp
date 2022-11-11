@@ -47,7 +47,11 @@ function aw_get_forecasts(WP_REST_Request $request){
     ] );
     if($query->posts):
         foreach($query->posts as $forecast):
-            $loop_html .= load_template_part("loop/pronosticos_list_{$params['model']}",null,["forecast"=>$forecast]); 
+            $loop_html .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
+                "forecast"=>$forecast,
+                "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+            ]); 
         endforeach;
     else:
         $loop_html = "no mas";
