@@ -210,14 +210,14 @@ add_action('init', function(){
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
     if (!empty($_SERVER['HTTP_CLIENT_IP'])):
-      $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+      $ip = $_SERVER['REMOTE_ADDR'];
     endif;
           
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])):
-      $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+      $ip = $_SERVER['REMOTE_ADDR'];
     endif;
       
-    $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+    $ip = $_SERVER['REMOTE_ADDR'];
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
@@ -227,7 +227,6 @@ add_action('init', function(){
     if(!defined("GEOLOCATION")){
 
         if($ip !== "127.0.0.1" and $ip != "::1"):
-            var_dump($ip);
             if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
                 if(!empty($geolocation_api_key)):
                     $response = wp_remote_get("http://ipwho.pro/bulk/$ip?key=$geolocation_api_key",array('timeout'=>10));
