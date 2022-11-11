@@ -210,14 +210,14 @@ add_action('init', function(){
         "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
     ];
     if (!empty($_SERVER['HTTP_CLIENT_IP'])):
-      $ip = $_SERVER['REMOTE_ADDR'];
+      $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
     endif;
           
     if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])):
-      $ip = $_SERVER['REMOTE_ADDR'];
+      $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
     endif;
       
-    $ip = $_SERVER['REMOTE_ADDR'];
+    $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
     $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
     $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
@@ -283,13 +283,26 @@ add_action('init', function(){
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
   
-  function aw_mime_types($mimes) {
+function aw_mime_types($mimes) {
 	$mimes['webp'] = 'image/webp';
     $mime['avif'] = 'image/avif';
     $mime['avis'] = 'image/avif-sequence';
+
+    
+
 	return $mimes;
 }
 add_filter('upload_mimes', 'aw_mime_types');
+
+add_filter( 'upload_mimes', function() {
+  $mimes = [
+    'svg' => 'image/svg+xml',
+    'jpg|jpeg' => 'image/jpeg',
+    'png' => 'image/png',
+  ];
+  return $mimes;
+});
+
 function filter_webp_quality( $quality, $mime_type ){
     if ( 'image/webp' === $mime_type ) {
        return 50;
@@ -298,6 +311,8 @@ function filter_webp_quality( $quality, $mime_type ){
   }
 
 add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
+
+
 /////configurando smtp///////
 
 function configuracion_smtp( PHPMailer $phpmailer ){

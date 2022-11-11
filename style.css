@@ -259,7 +259,7 @@ header {
 
 .menu li a {
 	font-size: 2rem;
-	color: #fff;
+	color: #ffffffed;
 	margin: 0 .5rem;
 	display: inline-flex;
 	align-items: center;
@@ -275,7 +275,7 @@ header {
 	bottom: 0;
 	width: 0px;
 	height: 0.6rem;
-	background-color: #fff;
+	background-color: #ffff;
 	transition: 0.3s;
 }
 .menu li a:hover::before,
@@ -287,7 +287,7 @@ header {
 	margin-right: 0.6rem;
 }
 .menu li.current-menu-item a{
-    color: #f4ab02!important;
+    color: #fcfbfb!important;
 }
 .menu li.current-menu-item a::before{
 	position: absolute;
@@ -306,7 +306,7 @@ header {
 	width: 100%;
 }
 .menu li.current-page-ancestor a{
-    color: #f4ab02!important;
+    color: #fcfbfb!important;
 }
 .menu li.current-page-ancestor a::before{
 	position: absolute;
@@ -2396,6 +2396,7 @@ footer .menu li a::before{
 	margin-bottom: 24px;
 }
 .single_event_content ul, ol{
+	font-size: 15px;
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -3032,14 +3033,14 @@ blockquote{
     width: 5.4rem;
 }
 .event_top_middle .p1{
-	font-size: 1.5rem;
+	font-size: 1.7rem;
 	font-weight: 500;
 	color: #E7ECF1;
 }
 .event_top_middle time{
 	font-weight: 400;
 	color: #FFFFFF;
-	font-size: 1.3rem;
+	font-size: 1.65rem;
 }
 .event_top_middle .p2 span{
 	font-weight: 400;
