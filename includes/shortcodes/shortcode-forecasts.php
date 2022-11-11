@@ -16,6 +16,9 @@ function shortcode_forecast($atts)
 
     $ret = "";
 
+    $geolocation = json_decode($_SESSION["geolocation"]);
+    var_dump($geolocation->country_code);
+
     if(is_page() && !$title)
         $title = get_the_title( );
     if(is_post_type_archive() && !$title)
