@@ -156,9 +156,9 @@ function draw_rating($rating)
     $ret = '';
     $count = 1;
     while ($count <= 5) {
-        if ($count <= $rating):
-            $ret .= '<i class="fas fa-star"></i>';
-        endif;
+        
+        $ret .= '<i class="fas fa-star" '.($count <= $rating ? 'style="color:#F4D31F;"' : "").' ></i>';
+       
         $count++;
     }
     
@@ -250,7 +250,7 @@ add_action('init', function(){
     {
         define('IP',$_SERVER["REMOTE_ADDR"]);
     } */
-},99999999);
+});
 
 
 // active code menu
