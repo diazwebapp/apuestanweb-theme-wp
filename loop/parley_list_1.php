@@ -1,7 +1,7 @@
 <?php
-$location = json_decode($_SESSION["geolocation"]);
+
 ///Buscamos el pais en la base de datos
-$aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
+$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());

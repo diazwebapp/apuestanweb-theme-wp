@@ -13,7 +13,9 @@ function shortcode_parley($atts)
         'time_format' => null,
     ), $atts));
     $ret = "";
-    
+
+    $geolocation = json_decode($_SESSION["geolocation"]);
+
     if(is_page() && !$title)
         $title = get_the_title( );
     if(is_post_type_archive() && !$title)
@@ -72,6 +74,8 @@ function shortcode_parley($atts)
     $args['time_format'] = $time_format ;
     $args['text_vip_link'] = $text_vip_link;
     $args['rest_uri'] = get_rest_url(null,'aw-parley/parley');
+    $args['country_code'] = $geolocation->country_code;
+    $args['timezone'] = $geolocation->timezone;
 
     $params = "?paged=".$args['paged'];
     $params .= "&posts_per_page={$args['posts_per_page']}";
@@ -80,6 +84,8 @@ function shortcode_parley($atts)
     $params .= "&model=$model";
     $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
+    $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
+    $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
 
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
