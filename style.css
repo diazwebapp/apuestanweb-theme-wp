@@ -2169,6 +2169,7 @@ footer .menu li a::before{
 	margin-top: 2.5rem;
 	padding: 3.2rem 5rem;
 }
+
 .single_event_banner_top{
 	display: flex;
 	align-items: center;
@@ -4496,7 +4497,8 @@ a.panel-button {
 
 
 .container_bottom p{
- 	color: rgb(81, 81, 81);
+ 	color: #00203A;
+	font-size: 15px;
 }
 
 .banner-bookmaker{

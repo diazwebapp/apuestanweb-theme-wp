@@ -1,5 +1,5 @@
 <?php get_header();
-$faq_area = carbon_get_post_meta(get_the_ID(), 'faq');
+$faq_area = wpautop(carbon_get_post_meta(get_the_ID(), 'faq'));
 $textbefore = carbon_get_post_meta(get_the_ID(), 'before_post');
 $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
 $disable_sidebar = carbon_get_post_meta(get_the_ID(), 'sidebar');

@@ -73,12 +73,11 @@ endif;
                                 </tr>
                             </tbody>
                             </table>
-                            <a href='http://22bet.com' rel='nofollow'><button id='event-button'>Apostar</button></a>
+                            <a href='{$bookmaker['ref_link']}' rel='nofollow'><button id='event-button'>Apostar</button></a>
                             
                         </div>
                         <div class='d-flex justify-content-center'>
-                        <a href='http://22bet.com' rel='nofollow'><button class='event-button-mv' style='
-                            margin-top: 2rem;'>Apostar</button></a>
+                        <a href='{$bookmaker['ref_link']}' rel='nofollow'><button class='event-button-mv' style='margin-top: 2rem;'>Apostar</button></a>
                         </div>
 
                         <hr class='mt-2 mb-3'/>";

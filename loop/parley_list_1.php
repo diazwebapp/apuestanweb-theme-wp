@@ -164,7 +164,7 @@ echo "<div class='parley_wrapper'>
                     <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                     </div>
                     <div class='parley_btn_2 parley_right_content2_mb'> 
-                        <a href='{$bookmaker['ref_link']}' class='button'>Apostar ahora</a>
+                        <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
                     </div>      
                 </div>
             </div>";
