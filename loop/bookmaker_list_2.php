@@ -23,7 +23,7 @@ endif;
 $stars = draw_rating($rating_ceil);
 $title = get_the_title($args["post"]->ID);             
 
-echo "<div class='col-lg-4 col-6 mt_30'> ";
+echo "<div class='col-lg-3 col-6 mt_30'> ";
 echo "<div class='tbox'>
 <div>
     <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='timg img-fluid' alt='$title  title='$title'>

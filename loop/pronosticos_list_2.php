@@ -1,5 +1,5 @@
 <?php
-$geolocation = json_decode($_SESSION["geolocation"]);
+
 $params = get_query_var('params');
 $image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);

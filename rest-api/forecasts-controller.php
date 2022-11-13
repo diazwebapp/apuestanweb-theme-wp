@@ -119,13 +119,21 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
         if(isset($params['unlock'])):
             
             foreach ($query->posts as $key => $forecast):
-                $loop_html .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,["forecast"=>$forecast]); 
+                $loop_html .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,[
+                "forecast"=>$forecast,
+                "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+            ]); 
             endforeach;
 
         else:
             
             foreach ($query->posts as $key => $forecast):
-                $loop_html .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,["forecast"=>$forecast]); 
+                $loop_html .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,[
+                "forecast"=>$forecast,
+                "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+            ]); 
             endforeach;
             
         endif;

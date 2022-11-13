@@ -1,5 +1,5 @@
 <?php
-$geolocation = json_decode($_SESSION["geolocation"]);
+
 $params = get_query_var('params');
 $image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);
@@ -12,7 +12,7 @@ $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 //configurando zona horaria
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
 
 //Liga y deporte

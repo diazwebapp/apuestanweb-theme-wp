@@ -14,6 +14,9 @@ function shortcode_forecast_vip($atts)
         'filter' => null
     ), $atts));
     $ret = "";
+
+    $geolocation = json_decode($_SESSION["geolocation"]);
+    
     //default title
     if(is_page() && !$title)
         $title = get_the_title( );
@@ -74,6 +77,8 @@ function shortcode_forecast_vip($atts)
     $args['time_format'] = $time_format ;
     $args['text_vip_link'] = $text_vip_link;
     $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts/vip');
+    $args['country_code'] = $geolocation->country_code;
+    $args['timezone'] = $geolocation->timezone;
 
     $params = "?paged=".$args['paged'];
     $params .= "&posts_per_page={$args['posts_per_page']}";
@@ -83,6 +88,8 @@ function shortcode_forecast_vip($atts)
     $params .= isset($args['unlock']) ? "&unlock={$args['unlock']}":"";
     $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
+    $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
+    $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
 
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
