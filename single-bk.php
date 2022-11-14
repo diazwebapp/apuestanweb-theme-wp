@@ -6,6 +6,7 @@ $location = json_decode($_SESSION["geolocation"]);
 //Seteamos valores por defecto de la casa de apuesta
 $bookmaker["name"] = "no bookmaker";
 $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
+$bookmaker["background_color"] = null;
 //Buscamos la casa de apuesta del pronostico
 
     //Si existe una casa de apuesta seteamos sus valores
@@ -16,7 +17,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
     $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
-
+    $bookmaker["background_color"] = carbon_get_post_meta(get_the_ID(), 'background-color');
     $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
 
     if (carbon_get_post_meta(get_the_ID(), 'logo')):
@@ -34,13 +35,12 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                 <!-- Heading -->
                 <div class="row">
 
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review">
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo $bookmaker["background_color"] ? $bookmaker["background_color"] : "black" ?>;">
                         <!-- rating movil-->
                         <div class="d-md-none text-center bk-box-mb-left">
                             <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
                             <?php 
                                 if(isset($bookmaker["rating"])):
-
                                     for($i=1; $i<=5;$i++):
                                         echo '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
                                     endfor;
