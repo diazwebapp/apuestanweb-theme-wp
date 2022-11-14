@@ -1,5 +1,6 @@
 <?php
-$geolocation = json_decode(GEOLOCATION);
+
+$geolocation = json_decode($_SESSION["geolocation"]);
 $image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);
 $prediction = carbon_get_post_meta($args["forecast"]->ID, 'prediction');
@@ -19,12 +20,11 @@ if ($sport_term) {
 }
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
 $teams = get_forecast_teams($args["forecast"]->ID);
 
 if ($teams['team1'] && $teams['team2']){  
-    $content = get_the_content($args["forecast"]->ID) ;
     echo "<a href='$permalink' >
         <div class='event'>
             <p class='league_box1'>

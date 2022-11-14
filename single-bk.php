@@ -2,7 +2,7 @@
 get_header(); ?>
 
 <?php 
-$location = json_decode(GEOLOCATION);
+$location = json_decode($_SESSION["geolocation"]);
 //Seteamos valores por defecto de la casa de apuesta
 $bookmaker["name"] = "no bookmaker";
 $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
@@ -40,8 +40,9 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                             <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
                             <?php 
                                 if(isset($bookmaker["rating"])):
-                                    for($i=0; $i<intval($bookmaker["rating"]);$i++):
-                                        echo '<i style="font-size:15px;" class="fa fa-star text-warning px-1 py-1 align-text-bottom" ></i>';
+
+                                    for($i=1; $i<=5;$i++):
+                                        echo '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
                                     endfor;
                                 endif;
                             ?>
@@ -66,8 +67,8 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                         <span class="text-uppercase text-body " style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>
                                         <?php 
                                             if(isset($bookmaker["rating"])):
-                                                for($i=0; $i<intval($bookmaker["rating"]);$i++):
-                                                    echo '<i class="fa fa-star text-warning px-1 py-1 align-text-bottom" ></i>';
+                                                for($i=1; $i<=5;$i++):
+                                                    echo '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
                                                 endfor;
                                             endif;
                                         ?>

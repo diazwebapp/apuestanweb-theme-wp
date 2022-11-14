@@ -22,7 +22,7 @@ function shortcode_slide_bk($atts)
 
     if ($query) {
         $new_bks = [];
-        $location = json_decode(GEOLOCATION);
+        $location = json_decode($_SESSION["geolocation"]);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
         foreach ($query->posts as $bookmaker): 
             $exists = null;
@@ -67,6 +67,16 @@ function shortcode_slide_bk($atts)
         endif;
         if($model == 2): 
             $html =  "<div style='margin:15px auto;' class='container bonus_wrap'>
+                        <div class='row'>";
+                        foreach ($new_bks as $keybk => $bookmaker):
+                            $html .= load_template_part("loop/slide_bk_$model",null,['bookmaker'=> $bookmaker,"position"=>$keybk+1]);                            
+                        endforeach;
+            $html .=  " </div>
+                </div>";
+            $ret = str_replace("{replace}",$html,$ret);
+        endif;
+        if($model == 3): 
+            $html =  "<div style='margin:15px auto;' class='container small_gutter'>
                         <div class='row'>";
                         foreach ($new_bks as $keybk => $bookmaker):
                             $html .= load_template_part("loop/slide_bk_$model",null,['bookmaker'=> $bookmaker,"position"=>$keybk+1]);                            

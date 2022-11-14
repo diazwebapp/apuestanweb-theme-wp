@@ -20,13 +20,13 @@ if ($sport_term) {
     }
 }
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
-$geolocation = json_decode(GEOLOCATION);
+
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+$date = $date->setTimezone(new DateTimeZone($$args["timezone"]));
 
 $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 
-$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
+$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
 $bookmaker = json_encode([]);
 

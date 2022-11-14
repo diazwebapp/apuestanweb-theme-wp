@@ -10,7 +10,7 @@ $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 
 $rating_ceil = ceil(carbon_get_post_meta($args["post"]->ID, 'rating'));
 $ref = carbon_get_post_meta($args["post"]->ID, 'ref');
-$permalink = get_the_permalink();
+$permalink = get_the_permalink($args["post"]->ID);
 $bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
 $feactures = carbon_get_post_meta($args["post"]->ID, 'feactures');
 $html_feactures = "";
@@ -23,7 +23,7 @@ endif;
 $stars = draw_rating($rating_ceil);
 $title = get_the_title($args["post"]->ID);             
 
-echo "<div class='col-lg-4 col-6 mt_30'> ";
+echo "<div class='col-lg-3 col-6 mt_30'> ";
 echo "<div class='tbox'>
 <div>
     <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='timg img-fluid' alt='$title'  title='$title'>

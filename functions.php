@@ -1,4 +1,5 @@
 <?php
+
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
 /*--------------------------------------------------------------*/
@@ -26,7 +27,7 @@ include "includes/shortcodes/shortcode-login-form.php";
 include "includes/widgets_area.php";
 include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-forecasts.php";
-//include "includes/widgets/widget-bonuses.php";
+include "includes/widgets/widget-bk-bonus.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
@@ -37,6 +38,10 @@ include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php";
+/*--------------------------------------------------------------*/
+/*                         GEOLOCATION API                      */
+/*--------------------------------------------------------------*/
+include "includes/handlers/geolocation.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
@@ -58,6 +63,8 @@ include "includes/handlers/paypal-tools.php";
 /*--------------------------------------------------------------*/
 include "includes/core/bookmaker-location-panel/bk-location-panel.php";
 include "includes/core/payment-dashboard/payment-dashboard.php";
+
+
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
@@ -67,23 +74,8 @@ include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
-
-
-function my_theme_remove_headlinks() {
-    remove_action( 'wp_head', 'wp_generator' );
-    remove_action( 'wp_head', 'rsd_link' );
-    remove_action( 'wp_head', 'wlwmanifest_link' );
-    remove_action( 'wp_head', 'start_post_rel_link' );
-    remove_action( 'wp_head', 'index_rel_link' );
-    remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-    remove_action( 'wp_head', 'adjacent_posts_rel_link' );
-    remove_action( 'wp_head', 'parent_post_rel_link' );
-    remove_action( 'wp_head', 'feed_links_extra', 3 );
-    remove_action( 'wp_head', 'feed_links', 2 );
-    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-    remove_action( 'wp_print_styles', 'print_emoji_styles' );
-}
-add_action( 'init', 'my_theme_remove_headlinks' );
+include "rest-api/forecasts-controller.php";
+include "rest-api/parley-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
@@ -165,9 +157,9 @@ function draw_rating($rating)
     $ret = '';
     $count = 1;
     while ($count <= 5) {
-        if ($count <= $rating):
-            $ret .= '<i class="fas fa-star"></i>';
-        endif;
+        
+        $ret .= '<i class="fas fa-star" '.($count <= $rating ? 'style="color:#F4D31F;"' : "").' ></i>';
+       
         $count++;
     }
     
@@ -179,6 +171,19 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
+    
+    remove_action( 'wp_head', 'wp_generator' );
+    remove_action( 'wp_head', 'rsd_link' );
+    remove_action( 'wp_head', 'wlwmanifest_link' );
+    remove_action( 'wp_head', 'start_post_rel_link' );
+    remove_action( 'wp_head', 'index_rel_link' );
+    remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+    remove_action( 'wp_head', 'adjacent_posts_rel_link' );
+    remove_action( 'wp_head', 'parent_post_rel_link' );
+    remove_action( 'wp_head', 'feed_links_extra', 3 );
+    remove_action( 'wp_head', 'feed_links', 2 );
+    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+    remove_action( 'wp_print_styles', 'print_emoji_styles' );
     //Definimos configuraciones globales del tema
     
     //Zona horaria
@@ -201,67 +206,7 @@ add_action('init', function(){
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;
-    //geolocation
-    $ip = false;
-    $geolocation = [
-        "country" => "World Wide",
-        "country_code" => "WW",
-        "timezone" => "America/Caracas",
-        "flag_uri" => get_template_directory_uri( ) . "/assets/img/ww.png"
-    ];
-    if (!empty($_SERVER['HTTP_CLIENT_IP'])):
-      $ip = $_SERVER['REMOTE_ADDR'];
-    endif;
-          
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])):
-      $ip = $_SERVER['REMOTE_ADDR'];
-    endif;
-      
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $geolocation_api = empty(carbon_get_theme_option('geolocation_api')) ?"ipwhois": carbon_get_theme_option('geolocation_api') ;
-    $geolocation_api_key = carbon_get_theme_option('geolocation_api_key') ;
     
-    $response = false;
-    
-    
-    if(!defined("GEOLOCATION")){
-
-        if($ip !== "127.0.0.1" and $ip != "::1"):
-            if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
-                if(!empty($geolocation_api_key)):
-                    $response = wp_remote_get("http://ipwho.pro/bulk/$ip?key=$geolocation_api_key",array('timeout'=>10));
-                endif;
-                if(empty($geolocation_api_key)):
-                    $response = wp_remote_get("http://ipwho.is/$ip",array('timeout'=>10));
-                endif;
-                if(!is_wp_error( $response )):
-                    $geolocation_resp =  wp_remote_retrieve_body( $response );
-                    $geolocation_resp = json_decode($geolocation_resp);
-                    $geolocation["country"] = $geolocation_resp->country;
-                    $geolocation["country_code"] = $geolocation_resp->country_code;
-                    $geolocation["timezone"] = $geolocation_resp->timezone->id;
-                    $geolocation["flag_uri"] = $geolocation_resp->flag->img;
-                endif;
-            endif;
-    
-            if($geolocation_api == 'abstractapi' and !empty($geolocation_api_key)):
-
-                $response = wp_remote_get("https://ipgeolocation.abstractapi.com/v1/?api_key=$geolocation_api_key&ip_address=$ip",array('timeout'=>10));
-                if(!is_wp_error( $response )):
-                    $geolocation_resp =  wp_remote_retrieve_body( $response );
-                    $geolocation_resp = json_decode($geolocation_resp);
-                    $geolocation["country"] = $geolocation_resp->country;
-                    $geolocation["country_code"] = $geolocation_resp->country_code;
-                    $geolocation["timezone"] = $geolocation_resp->timezone->name;
-                    $geolocation["flag_uri"] = $geolocation_resp->flag->svg;  
-                    
-                endif;
-            endif;
-        endif;
-
-        $geolocation = json_encode($geolocation);
-        define("GEOLOCATION",$geolocation);
-    }
 
     //odds-converter
     if(!isset($_SESSION['odds_format'])):
@@ -270,6 +215,42 @@ add_action('init', function(){
     if(isset($_GET['odds_format'])):
         $_SESSION['odds_format'] = $_GET['odds_format'];
     endif;
+
+    ///////////geolocation
+
+    if(!isset($_SESSION["geolocation"])){
+        /* echo "<pre>";
+        var_dump($_SERVER["REMOTE_ADDR"]);
+        echo "</pre>"; */
+        $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
+        $_SESSION["geolocation"] = json_encode($data);
+    }
+    
+    
+    /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
+    {
+        define('IP',$_SERVER["HTTP_CLIENT_IP"]);
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_X_FORWARDED_FOR"]);
+    }
+    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_X_FORWARDED"]);
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_FORWARDED_FOR"]);
+    }
+    elseif (isset($_SERVER["HTTP_FORWARDED"]) and !defined('IP'))
+    {
+        define('IP',$_SERVER["HTTP_FORWARDED"]);
+    }
+    else
+    {
+        define('IP',$_SERVER["REMOTE_ADDR"]);
+    } */
 });
 
 

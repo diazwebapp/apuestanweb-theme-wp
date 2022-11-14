@@ -1,12 +1,12 @@
 <?php
 
-class w_bookmakers extends WP_Widget{
+class w_bonus_bookmakers extends WP_Widget{
 
     function __construct()
     {
         parent::__construct(
-            'top_bookmakers',
-            __('TOP BOOKMAKERS', 'jbetting')
+            'bonus_bookmakers',
+            __('BONUSES', 'jbetting')
         );
     }
 
@@ -31,24 +31,18 @@ class w_bookmakers extends WP_Widget{
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_ceil = ceil(carbon_get_post_meta($bookmaker->ID, 'rating'));
-                $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') ? carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') : 'n/a';
+                $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_slogan') ? carbon_get_post_meta($bookmaker->ID, 'bonus_slogan') : 'n/a';
                 $ref = carbon_get_post_meta($bookmaker->ID, 'ref');
 
-                echo '<div class="top_box">
+                echo '<div class="top_box top_box2">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="top_serial">
-                                <span class="serial">'.$key.'</span>
                                 <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="">
                             </div>
-                            <div class="ratings">
-                                <span>'.$rating_ceil.'</span>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="btn_groups">
-                            <a href="'.get_the_permalink($bookmaker->ID).'" class="button">Revision</a>
-                            <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="button">Apostar</a>
+                            <div class="top_box_content">
+									<p>'.$bonus.'</p>
+									<a href="'.$ref.'" class="button">Obtener bono</a>
+							</div>
                         </div>
                     </div>';
             endforeach;
@@ -85,10 +79,10 @@ class w_bookmakers extends WP_Widget{
 
 }
 
-function register_new_widget3(){
-    register_widget('w_bookmakers');
+function register_new_widget4(){
+    register_widget('w_bonus_bookmakers');
 }
 
-add_action('widgets_init', 'register_new_widget3');
+add_action('widgets_init', 'register_new_widget4');
 
 wp_reset_query();

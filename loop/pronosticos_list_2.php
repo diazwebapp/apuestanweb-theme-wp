@@ -1,5 +1,5 @@
 <?php
-$geolocation = json_decode(GEOLOCATION);
+
 $params = get_query_var('params');
 $image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);
@@ -11,10 +11,11 @@ $sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' 
 $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 
-$aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
+$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
 $bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
+
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
     if(is_page()){
@@ -32,7 +33,7 @@ if(!isset($aw_system_location)):
     $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
 endif;
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
 //Componente si es vip
 $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2' rel='nofollow'>
