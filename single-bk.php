@@ -35,7 +35,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                 <!-- Heading -->
                 <div class="row">
 
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php eco ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
                         <!-- rating movil-->
                         <div class="d-md-none text-center bk-box-mb-left">
                             <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
