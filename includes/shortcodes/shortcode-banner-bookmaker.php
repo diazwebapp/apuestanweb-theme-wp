@@ -60,7 +60,7 @@ function shortcode_banner_bookmaker($atts)
     
     $feactures_html = '';
     
-    if($bookmaker["feactures"] and count($bookmaker["feactures"]) > 0):
+    if($bookmaker["feactures"] and count($bookmaker["feactures"]) > 0): 
         foreach($bookmaker["feactures"] as $key => $feacture):
             $feactures_html .= '<li class="my-1">
                 <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light"></i>
