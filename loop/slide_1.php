@@ -75,18 +75,12 @@ echo "<div class='owl-item' >
                         <div class='hero_team_logo_box'>
                             <div class='team_logo'>
                                 <img style='width:40px;height:40px;' src=' {$teams['team1']['logo']} ' class='img-fluid' alt=' {$teams['team1']['name']} '>
-                                <div class='flag' style='overflow:hidden;'>
-                                    <img width='20' height='20' src=' {$teams['team1']['logo']} ' class='img-fluid' alt=' {$teams['team1']['name']} '>
-                                </div>
                             </div>
                             <div class='cross_img d-lg-none d-block'>
-                                <img src='$cross_img' class='img-fluid'>
+                                <img src='$cross_img' class='img-fluid' alt=''>
                             </div>                                
                             <div class='team_logo'>
                                 <img style='width:40px;height:40px;' src=' {$teams['team2']['logo']} ' class='img-fluid' alt=' {$teams['team2']['name']} '>
-                                <div class='flag' style='overflow:hidden;'>
-                                    <img width='20' height='20' src=' {$teams['team2']['logo']} ' class='img-fluid' alt=' {$teams['team2']['name']} '>
-                                </div>
                             </div>
                         </div>
                         <div class='media-body team_name'>
@@ -98,7 +92,7 @@ echo "<div class='owl-item' >
                         </div>
                     </div>
                     <div class='hero_btn'>
-                        <a href='$permalink' class='btn_2'>".__('View forecast','jbetting')."</a>
+                        <a href='$permalink' class='btn_2'>".__('Ver pronóstico','jbetting')."</a>
                     </div>
                 </div>
                 <div class='col-lg-5 hero_team_col'>

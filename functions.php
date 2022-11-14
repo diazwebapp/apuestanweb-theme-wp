@@ -84,6 +84,7 @@ register_nav_menus(array(
 
 add_action('after_setup_theme', 'my_theme_setup');
 
+
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
@@ -263,13 +264,26 @@ add_action('init', function(){
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
   
-  function aw_mime_types($mimes) {
+function aw_mime_types($mimes) {
 	$mimes['webp'] = 'image/webp';
     $mime['avif'] = 'image/avif';
     $mime['avis'] = 'image/avif-sequence';
+
+    
+
 	return $mimes;
 }
 add_filter('upload_mimes', 'aw_mime_types');
+
+add_filter( 'upload_mimes', function() {
+  $mimes = [
+    'svg' => 'image/svg+xml',
+    'jpg|jpeg' => 'image/jpeg',
+    'png' => 'image/png',
+  ];
+  return $mimes;
+});
+
 function filter_webp_quality( $quality, $mime_type ){
     if ( 'image/webp' === $mime_type ) {
        return 50;
@@ -278,6 +292,8 @@ function filter_webp_quality( $quality, $mime_type ){
   }
 
 add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
+
+
 /////configurando smtp///////
 
 function configuracion_smtp( PHPMailer $phpmailer ){

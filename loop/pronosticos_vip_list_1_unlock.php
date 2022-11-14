@@ -170,8 +170,10 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             <p class="team_name">'.$teams['team1']['name'].' vs '.$teams['team2']['name'].'</p>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="btn_text">
-                                    PRONÓSTICO: '.$prediction.' 
-                                    <div class="rate_text d-sm-none">'.$cuote.'</div>
+                                    <span>Pick: '.$prediction.'</span>
+                                    <div class="rate_text d-sm-none">
+                                        <span>'.$cuote.'</span>
+                                    </div>
                                 </div>
                                 <div class="d-none d-sm-flex align-items-center">
                                     <div class="rating">
@@ -180,8 +182,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <div class="rate_text">'.$cuote.'</div>
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p>Cuotas de:</p>
+                            <div class="d-flex mt-3 align-items-center justify-content-between">
+                                <p class="oddstex text-uppercase">Cuotas de:</p>
                                 <img width="80" height="25" src="'.$bookmaker['logo_2x1'].'" alt="bk">
                             </div>
                             <div class="text-center accor_btn mt_15">

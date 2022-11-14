@@ -38,15 +38,16 @@ $title = get_the_title($args["post"]->ID);
                     <div class='bookmaker_left_text'>
                         <div class='bookmaker_left_heading'>
                             <h4> $title </h4>
-                            <div class='bookmaker_left_check'>
-                                <img src='img/s21.svg' class='img-fluid' alt=''>
-                                <p>{$bonus_slogan}</p>
-                            </div>
+
                         </div>
                         <div class='bookmaker_left_last_text'>
                             $html_feactures
                         </div>
                     </div>
+                </div>
+                <div class='bookmaker_left_check'>
+                    <img src='img/s21.svg' class='img-fluid' alt=''>
+                    <p>{$bonus_slogan}</p>
                 </div>
                 <div class='bookmaker_right_content'>
                     <div class='d-md-block d-none'>

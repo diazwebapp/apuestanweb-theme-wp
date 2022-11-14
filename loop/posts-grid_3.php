@@ -17,7 +17,7 @@ echo "<div class='col-6 col-lg-4 mt_30'>
     <div class='notis_box'>
     <img class='img-fluid' alt='$title' loading='lazy' src='$thumbnail_url'>
         <a href='$permalink'>
-            <h4 class='text-white'>$title</h4>
+            <p class='text-white'>$title</p>
         </a>
         <p class='mt_15' >$sport</p>
     </div>

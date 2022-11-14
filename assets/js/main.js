@@ -62,8 +62,8 @@
             loop: true,
             nav: true,
             navText: [
-                '<i class="fa fa-angle-left"></i>',
-                '<i class="fa fa-angle-right"></i>'
+                '<i class="fal fa-chevron-left"></i>',
+                '<i class="fal fa-chevron-right"></i>'
             ],
             dots: true,
             items: 1,

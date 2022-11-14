@@ -48,7 +48,7 @@ class w_bookmakers extends WP_Widget{
                         
                         <div class="btn_groups">
                             <a href="'.get_the_permalink($bookmaker->ID).'" class="button">Revision</a>
-                            <a href="'.$ref.'" class="button">Apostar</a>
+                            <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="button">Apostar</a>
                         </div>
                     </div>';
             endforeach;

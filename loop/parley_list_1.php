@@ -80,15 +80,17 @@ echo "<div class='parley_wrapper'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
-                            <h5>{$sport['name']}</h5>
+                            <div class='category-grid'>
+                                <span>{$sport['name']}</span>
+                            </div>
                         
-                        <div class='d-lg-block d-none'>
-                            <time>$fecha, $hora</time>
-                        </div>
+                            <div class='d-lg-block d-none'>
+                                <time>$fecha, $hora</time>
+                            </div>
                         </div>
                         <div class='d-lg-none d-block'>
                             <div class='mobile_parley_time'>
-                                <p>$fecha / $hora</p>
+                                <p>$fecha, $hora</p>
                             </div>
                         </div>
                     </div>                  
@@ -120,11 +122,11 @@ echo "<div class='parley_wrapper'>
                             <p class='p2'>{$prediction['cuote']}</p>
                         </div>
                     </div>
-                    <div class='question2'>
-                      <a href='$permalink_event'>
-                            Ver análisis
-                        </a>
-                    </div>
+                </div>
+                <div class='event-link'>
+                    <a href='$permalink_event'>
+                        Ver análisis
+                    </a>
                 </div>  
                 </div>";
             echo "<div class='parley_collpase_content'>
@@ -162,7 +164,7 @@ echo "<div class='parley_wrapper'>
                     <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                     </div>
                     <div class='parley_btn_2 parley_right_content2_mb'> 
-                        <a href='{$bookmaker['ref_link']}' class='button'>Apostar ahora</a>
+                        <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
                     </div>      
                 </div>
             </div>";

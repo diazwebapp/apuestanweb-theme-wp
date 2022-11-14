@@ -18,7 +18,7 @@ $stars = draw_rating($rating_ceil);
     echo "<div class='owl-item' style='width: 142.5px; margin-right: 15px;'> ";
         echo "<div class='tbox'>
         <div>
-            <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='timg img-fluid' alt='$title  title='$title'>
+            <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='timg img-fluid' alt='$title'  title='$title'>
         </div>
             <div class='rating mt_15'> ";
                 echo $stars; 

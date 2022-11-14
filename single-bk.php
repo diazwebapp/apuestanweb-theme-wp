@@ -34,10 +34,10 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                 <!-- Heading -->
                 <div class="row">
 
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="min-height:210px;">
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review">
                         <!-- rating movil-->
-                        <div class="d-md-none text-center" style="position: absolute;z-index: 2; width: 100%;top:10px;left:0;" >
-                            <span class="text-uppercase font-weight-500 mr-3" style="font-size:20px;color:#F9F9F9;" ><?php echo $bookmaker["rating"]?></span>
+                        <div class="d-md-none text-center bk-box-mb-left">
+                            <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
                             <?php 
                                 if(isset($bookmaker["rating"])):
 
@@ -49,12 +49,12 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                         </div>
                         <img width="130" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                     </div>
-                    <div class="col-md-12 col-lg-9" style="box-shadow: 0px 0px 9px #00000009, 0px 0px 9px #00000009;border-radius:0 8px 8px 0;">
+                    <div class="col-md-12 col-lg-9 bk-box">
                         <div class="row">
 
                             <div class="col-md-12 col-lg-7" >
                                 <div class="row text-center">                        
-                                    <div class="col-md-12 d-md-block d-lg-none my-5">
+                                    <div class="col-md-12 d-md-block d-lg-none my-5" >
                                         <small style="font-size:2rem;" class="align-middle" >acepts player from </small>
                                         <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                     </div>
@@ -78,7 +78,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                         <b style="background:lightgray;font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                                     </div>
                                     <div class="col-12 my-4 special-single-bk-button">                                
-                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase badge badge-primary px-5" style="font-size:15px;border-radius:.5rem;font-weight: 500" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
+                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase button px-5" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
                                     </div>
                                 </div>
                             </div>
@@ -104,8 +104,10 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                                                 foreach ($bookmaker["payment_methods"] as $key => $payment) {
                                                     echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
                                                 }
+                                                
                                             }
                                         ?>
+                                        <i class="fal fa-plus"></i>
                                     </div>
         
                                 </div>
@@ -117,7 +119,7 @@ $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
                 </div>               
             </div>
             <!-- Content -->
-            <div class="content">
+            <div class="single_event_content text-break">
                 <?php the_content() ?>
             </div>
         </div>

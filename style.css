@@ -1,13 +1,11 @@
 /*
-Theme Name: Apuestanweb
-Theme URI: https://jbetting.ru/
-Author: TheJema
-Author URI: https://thejema.com/shop
-Description: Betting theme
-Version: 3.7
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: jbetting
+Theme Name: Apuestanweb v12
+Theme URI: https://www.apuestan.com
+Author: Apuestan
+Author URI: Apuestan
+Description: Apuestan theme
+Version: 1.0
+Text Domain: Apuestan
 *//*======================
    01. fonts
 ========================*/
@@ -66,6 +64,7 @@ Text Domain: jbetting
     font-style: normal;
     font-display: swap;
  }
+
  /*======================
    02. Basic css
 ========================*/
@@ -260,8 +259,8 @@ header {
 
 .menu li a {
 	font-size: 2rem;
-	color: #fff;
-	margin: 0 1.8rem;
+	color: #ffffffed;
+	margin: 0 .5rem;
 	display: inline-flex;
 	align-items: center;
 	font-weight: 500;
@@ -276,7 +275,7 @@ header {
 	bottom: 0;
 	width: 0px;
 	height: 0.6rem;
-	background-color: #fff;
+	background-color: #ffff;
 	transition: 0.3s;
 }
 .menu li a:hover::before,
@@ -288,7 +287,7 @@ header {
 	margin-right: 0.6rem;
 }
 .menu li.current-menu-item a{
-    color: #f4ab02!important;
+    color: #fcfbfb!important;
 }
 .menu li.current-menu-item a::before{
 	position: absolute;
@@ -307,7 +306,7 @@ header {
 	width: 100%;
 }
 .menu li.current-page-ancestor a{
-    color: #f4ab02!important;
+    color: #fcfbfb!important;
 }
 .menu li.current-page-ancestor a::before{
 	position: absolute;
@@ -361,6 +360,28 @@ header {
 .headerbtn:hover{
 	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
 }
+
+.loadbtn{
+	width: 16rem;
+	background: transparent linear-gradient(107deg, #0558CB 0%, #023986 100%);
+	box-shadow: 0px .3rem 1.5rem rgba(11, 105, 236, 0.4);
+	border-radius: .6rem;
+	font-size: 1.8rem;
+	text-align: center;
+	display: inline-flex;
+	font-weight: 500;
+	color: #fff !important;
+	padding: 1.05rem 1.5rem;
+	align-items: center;
+	justify-content: center;
+	line-height: 1.31;
+	margin-left: auto;
+	margin-right: auto;
+}
+.loadbtn:hover{
+	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
+}
+
 .headerbtn.v2{
 	position: absolute;
 	top: 143%;
@@ -450,6 +471,20 @@ header {
 .main_text .media-body{
 	padding-left: 3.5rem;
 }
+.category-grid span{
+	display: inline-block;
+	padding: 0.6rem 2rem;
+	font-size: 1.6rem;
+	line-height: 1;
+	color: #00203A;
+	background-color: #E4E6E8;
+	border-radius: 1.7rem;
+	margin-top: 1.5rem;
+}
+.category-grid span:hover{
+	background-color: #00203A;
+	color: #E4E6E8; 
+}
 .main_text>p{
 	opacity: 0.5;
 	margin-bottom: 5.5rem;
@@ -485,6 +520,9 @@ a.btn_2:hover{
 		margin-left: auto;
 	
 }
+.team_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+}
 .team_box>img{
 	margin-top: 1.5rem;
 	height: 6.5rem;
@@ -505,8 +543,8 @@ a.btn_2:hover{
     font-weight: 700;
 }
 .team_box .w-100{
-	padding-right: 0.8rem;
-	padding-left: 0.8rem;
+	padding-right: 4.8rem;
+	padding-left: 4.8rem;
 }
 .team_box .w-100 img{
 	width: 1.7rem;
@@ -632,7 +670,7 @@ a.btn_2:hover{
 	object-fit: cover;
 }
 .media h4{
-	font-size: 2.1rem;
+	font-size: 1.6rem;
 	line-height: 1.2;
 	font-weight: 500;
 	color: #00203A;
@@ -654,7 +692,7 @@ a.btn_2:hover{
 	line-height: 1;
 }
 .title_lg{
-	font-size: 4.8rem;
+	font-size: 32px;
 	color: #00203A;
 	font-weight: 700;
 	line-height: 1.2;
@@ -683,6 +721,23 @@ a.btn_2:hover{
 	border: none;
 }
 .button:hover{
+	background-color: #2C7FF4;
+	color: #fff;
+}
+.button-ev2 {
+    background: #0558CB;
+    box-shadow: 0 .3rem 1.5rem rgba(11, 105, 236, 0.33);
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 1rem;
+    display: inline-block;
+    color: #eae7e7;
+    border-radius: 0.6rem;
+    text-align: center;
+    min-width: 13.3rem;
+    border: none;
+}
+.button-ev2:hover{
 	background-color: #2C7FF4;
 	color: #fff;
 }
@@ -827,7 +882,7 @@ footer .menu li a::before{
 	right: 2rem;
 	bottom: 1.8rem;
 }
-.inner_bg h2{
+.inner_bg h1{
 	font-size: 6.8rem;
 	font-weight: 500;
 	line-height: 1;
@@ -836,7 +891,7 @@ footer .menu li a::before{
 	color: #fff;
 	text-transform: uppercase;
 }
-.inner_bg h2 img{
+.inner_bg h1 img{
 	width: 4.7rem;
 	margin-right: 2rem;
 }
@@ -954,6 +1009,9 @@ footer .menu li a::before{
 	font-size: 1.3rem;
 	min-height: 3rem;
 }
+.game_btn.v2 i{
+	margin-right: 1rem;
+}
 .divider{
 	width: 100%;
 	height: 0.1rem;
@@ -1038,6 +1096,8 @@ footer .menu li a::before{
 
 .text_box {
     width: 130px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .statswg .fa-angle-up{
 	color: green;
@@ -1058,7 +1118,7 @@ footer .menu li a::before{
 .btn_groups{
 	display: flex;
 	align-items: center;
-	margin-top: 1.4rem;
+	margin-top: 2.4rem;
 }
 .btn_groups .button{
 	font-size: 1.4rem;
@@ -1216,6 +1276,8 @@ footer .menu li a::before{
 	font-size: 1.8rem;
 	max-width: 25rem;
 }
+
+
 .blog_content span{
 	display: inline-block;
 	padding: 0.6rem 2rem;
@@ -1434,6 +1496,7 @@ footer .menu li a::before{
 .bookmaker_logo_box4{
 	background: #DC213E;
 }
+
 .top_box2{
 	padding: 2rem;
 }
@@ -1555,13 +1618,23 @@ footer .menu li a::before{
 .vip_title_wrap .tag_wrap {
     width: 70%;
 }
+.vip_lock_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
+}
+
+
 .vip_lock_box{
 	display: flex;
 	padding: 4.2rem 5rem 3rem 4rem;
 	background-color: #ffffff;
-	box-shadow: 0px 5px 30px #A2A6B126;
+	box-shadow: 10px 15px 30px #22952026;
 	border-radius: 10px;
 	margin-top: 3rem;
+}
+.vip_lock_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
 }
 .vip_left_content {
     max-width: 17%;
@@ -1851,7 +1924,7 @@ footer .menu li a::before{
     margin: 2rem 2.6rem 0 6.6rem;
     border-radius: 1rem;
 	width: 730px;
-	border-bottom: 2mm ridge rgb(3 176 244);
+	border-bottom: 1mm ridge rgb(3 176 244);
 }
 .parley_left_content{
 	display: flex;
@@ -1862,16 +1935,14 @@ footer .menu li a::before{
 	width: 15rem;
 }
 .parley_game_name{
-
-		text-align: center;
-		font-size: 1.2rem;
-		color: #03B0F4;
-		line-height: 1.2;
-		width: 100%;
-		display: flex;
-		flex-direction: column-reverse;
-		grid-gap: .5rem;
-		gap: .5rem;
+	text-align: center;
+	color: #051421;
+	line-height: 1.2;
+	width: 100%;
+	display: flex;
+	flex-direction: column-reverse;
+	grid-gap: .5rem;
+	gap: .5rem;
 
 }
 .parley_game_name h5{
@@ -1942,9 +2013,12 @@ footer .menu li a::before{
     color: #0060bf;
     margin-bottom: 10px;
 }
-.parley_right_content{
-	display: flex;
-	align-items: center;
+
+.parley_right_content {
+    display: flex;
+    align-items: center;
+    margin-right: 10%;
+    font-size: 14px;
 }
 .parley_right_first {
     display: flex;
@@ -1954,15 +2028,15 @@ footer .menu li a::before{
 	text-align: center;
 }
 .parley_right_first .p1{
-	font-size: 1.4rem;
-	line-height: 1.2;
-	color: #00203A;
 	font-weight: 700;
-	padding-right: 1.3rem;
-	overflow: hidden;
+	padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
 }
 .parley_right_first .p2 {
-    font-size: 1.4rem;
     line-height: 1;
     padding: .5rem 1.3rem;
     background-color: #DDEAFD;
@@ -1971,17 +2045,18 @@ footer .menu li a::before{
     margin-left: 2rem;
     font-weight: 700;
 }
-.question2{
-	margin-left: 3.7rem;
+.event-link{
+	font-size: 14px;
+	margin-right: 2.7rem;
 }
-.question2 button {
+.event-link button {
     background-color: transparent;
     border: none;
     color: #0558CB;
     position: relative;
     padding-right: 2.5rem;
 }
-.question2 button::before {
+.event-link button::before {
     position: absolute;
     content: '';
     background-image: url(../img/s44.png);
@@ -1995,7 +2070,7 @@ footer .menu li a::before{
     height: 0.8rem;
     transition: 0.4s;
 }
-.question2 button[aria-expanded="true"]::before{
+.event-link button[aria-expanded="true"]::before{
 	transform: translateY(-50%) rotate(-180deg);
 }
 .parley_box_shadow{
@@ -2093,6 +2168,7 @@ footer .menu li a::before{
 	margin-top: 2.5rem;
 	padding: 3.2rem 5rem;
 }
+
 .single_event_banner_top{
 	display: flex;
 	align-items: center;
@@ -2162,11 +2238,32 @@ footer .menu li a::before{
 	display: flex;
 	align-items: center;
 	background-color: #00203A;
-	border-radius: 3.1rem;
+	border-radius: 1rem;
 	justify-content: space-between;
 	padding: 0.8rem 1rem;
 	margin-top: 1.5rem;
 }
+.single_event_match_title_box span {
+	font-size:1.4rem;
+	color: #fafcfd;
+	font-weight: bold;
+
+}
+.tip-text{                
+
+	margin-right: auto;
+
+}
+
+.tip-p	{
+	background:white;
+	border-radius:4.3rem;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	width: 155px;
+}
+
 .match_title_left_box {
     display: flex;
     align-items: center;
@@ -2174,53 +2271,111 @@ footer .menu li a::before{
     overflow: hidden;
 }
 
-.match_title_right_point p {
+.table-single-predict{
+	border-collapse: collapse;
+	color: #ffffff;
+
+
+}
+
+.table-single-predict th, td{
+    padding: 6px 55px;
+	border-right: 1px solid #c1c1c152;
+	text-align: center;
+
+
+}
+.table-single-predict td{
+	font-size: 15px;
+	width: 25rem;
+}
+.table-single-predict thead tr {
+    color: #ffffffaa;
+}
+
+#event-button {
+    background: #17a717;
+    box-shadow: 0 .3rem 1.5rem rgba(11, 105, 236, 0.33);
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 1rem 1.5rem 1.1rem;
+    display: inline-block;
+    color: #fff;
+    border-radius: 0.6rem;
+    text-align: center;
+    min-width: 13.3rem;
+    border: none;
+	margin-right: 2rem;
+}
+#event-button:hover{
+	background-color: #f2f3f2;
+	color: #00203A ;
+}
+
+
+
+/*.match_title_right_point p {
     padding: 1.3rem 2.4rem;
     background-color: #0558CB;
     border-radius: 2.3rem;
     color: #FFFFFF;
     font-size: 1.8rem;
     font-weight: 700;
+}*/
+
+.match_title_right_point {
+    line-height: 2.6;
+    padding: .5rem 1.3rem;
+    background-color: #DDEAFD;
+    border-radius: 4.3rem;
+    color: #0558CB;
+    font-weight: 700;
 }
+
+/*Single event and single Bookmaker */
 .single_event_content{
 	position: relative;
-	min-height: 200px;
+	min-height: auto;
+	
 }
 
 .single_event_content p{
-	font-size: 1.8rem;
+	font-size: 17px;
 	color: #00203A;
-	max-width: 93.5rem;
+	max-width: 99%;
 	text-align: justify;
 	line-height: 1.5em;
+	margin-bottom: 1em;
+	margin-block-start: 1em;
+
 }
 
 .single_event_title_wrap{
 	justify-content: space-between;
 }
 .single_event_content h1{
-	font-size: 28px;
+	font-size: 32px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
 	margin-bottom: 24px;
 }
 .single_event_content h2{
-	font-size: 22px;
+	font-size: 26px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
 	margin-bottom: 24px;
 }
 .single_event_content h3{
-	font-size: 16px;
+	font-size: 22px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
 	margin-bottom: 24px;
 }
 .single_event_content h4{
-	font-size: 14px;
+	font-size: 20px;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
@@ -2240,7 +2395,125 @@ footer .menu li a::before{
 	font-weight: 700;
 	margin-bottom: 24px;
 }
+.single_event_content ul, ol{
+	font-size: 15px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
 
+}
+.single_event_content ul{
+	list-style-type: square;
+	color: #00203A;
+
+}
+.single_event_content ul li{
+	
+	list-style: inherit;
+}
+.single_event_content ol li{
+	
+	list-style: inherit;
+}
+.single_event_content ul li::marker{
+	
+	color: #d42e11;
+
+}
+
+.single_event_content li {
+    margin: 0 0 10px;
+}
+
+.single_event_content ol{
+	list-style-type: decimal;
+	color: #00203A;
+
+
+}
+
+.single_event_content a:link {
+    color: #0558CB;
+	text-decoration: underline;
+
+}
+
+/* visited link */
+.single_event_content a:visited {
+    color: #ee76de;
+}
+
+/* mouse over link */
+.single_event_content p a:hover {
+    color: #03b0f4;
+	text-decoration: underline;
+}
+
+/* selected link */
+.single_event_content a:active {
+    color: blue;
+}
+
+blockquote{
+	display:block;
+	background: #fff;
+	padding: 15px 20px 15px 45px;
+	margin: 0 0 20px;
+	position: relative;
+	
+	/*Font*/
+	font-family: Georgia, serif;
+	font-size: 16px;
+	line-height: 1.2;
+	color: #666;
+	text-align: justify;
+	
+	/*Borders - (Optional)*/
+	border-left: 15px solid #03b0f4;
+	border-right: 2px solid #03b0f4;
+	
+	/*Box Shadow - (Optional)*/
+	-moz-box-shadow: 2px 2px 15px #ccc;
+	-webkit-box-shadow: 2px 2px 15px #ccc;
+	box-shadow: 2px 2px 15px #ccc;
+  }
+  
+  blockquote::before{
+	/*content: "\201C"; /*Unicode for Left Double Quote*/
+	/*Font*/
+	font-size: 60px;
+	font-weight: bold;
+	color: #999;
+	
+	/*Positioning*/
+	position: absolute;
+	left: 10px;
+	top:5px;
+  }
+  
+  blockquote::after{
+	/*Reset to make sure*/
+	content: "";
+  }
+  
+  blockquote a{
+	text-decoration: none;
+	background: #eee;
+	cursor: pointer;
+	padding: 0 3px;
+	color: #c76c0c;
+  }
+  
+  blockquote a:hover{
+   color: #666;
+  }
+  
+  blockquote em{
+	font-style: italic;
+  }
 
 .single_event_match_title_box2{
 	margin-top: 5.5rem;
@@ -2360,7 +2633,7 @@ footer .menu li a::before{
 	left: 2rem;
 }
 .slider .owl-nav button.owl-next{
-	right: 2rem;
+	right: 2rem!important;
 }
 .slider .owl-dots{
 	text-align: center;
@@ -2636,12 +2909,12 @@ footer .menu li a::before{
 .vip_right_content .team_name{
 	font-size: 1.8rem;
 	font-weight: 500;
-	color: #0558CB;
+	color: #5a5a5a;
 	line-height: 1.2;
 	margin-bottom: 0.6rem;
 	margin-top: 0.3rem;
 }
-.btn_text{
+.btn_text2{
 	color: #090909;
 	background-color: #F7F7F8;
 	padding: 1.2rem 1.5rem;
@@ -2649,6 +2922,15 @@ footer .menu li a::before{
 	font-size: 1.8rem;
 	font-weight: 500;
 	text-transform: uppercase;
+}
+.btn_text {
+    font-weight: 700;
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
 }
 .rate_text{
 	background-color: #DDEAFD;
@@ -2751,14 +3033,14 @@ footer .menu li a::before{
     width: 5.4rem;
 }
 .event_top_middle .p1{
-	font-size: 1.5rem;
+	font-size: 1.7rem;
 	font-weight: 500;
 	color: #E7ECF1;
 }
 .event_top_middle time{
 	font-weight: 400;
 	color: #FFFFFF;
-	font-size: 1.3rem;
+	font-size: 1.65rem;
 }
 .event_top_middle .p2 span{
 	font-weight: 400;
@@ -2834,16 +3116,20 @@ footer .menu li a::before{
 	font-weight: 400;
 }
 .event2_box_bonus .p3{
-	font-size: 1.5rem;
+	font-size: 1.7rem;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 500;
+	width: 15rem;
+	height: 5rem;
+	text-align: center;
 }
 .event_btn_box{
 	display: flex;
 	align-items: center;
 	width: 100%;
 	margin-top: 2.2rem;
+	margin-bottom: 2.2rem;
 }
 .event_btn_box .event_btn_img{
 	max-width: 60%;
@@ -2851,7 +3137,6 @@ footer .menu li a::before{
 	height: 3.6rem;
 	display: flex;
 	align-items: center;
-	padding-left: 7rem;
 }
 .event_btn_box .event_btn_img img{
 	width: 90%;
@@ -3038,6 +3323,8 @@ footer .menu li a::before{
 .container_logo_review{
 	border-radius:1rem 0 0 1rem;
 	background:black;
+	min-height:210px;
+
 }
 .review__area {
   padding-top: 70px;
@@ -3074,6 +3361,23 @@ footer .menu li a::before{
 
 }
 
+/*box in single bk*/
+
+.bk-box{
+	box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;
+	border-radius:0 8px 8px 0;
+}
+.bk-box-mb-left{
+	position: absolute;
+	z-index: 2; 
+	width: 100%;
+	top:10px;
+	left:0;
+}
+.bk-box-mb-left span{
+
+	font-size:20px;color:#F9F9F9;
+}
 
 .review__reting__box {
   width: 100%;
@@ -3670,9 +3974,9 @@ footer .menu li a::before{
   top: -35px;
   right: 0;
 }
-.owl-next {
+/*.owl-next {
   right: 4% !important;
-}
+}*/
 .payment__btn.pay--mobl {
 	display: none;
 }
@@ -4043,10 +4347,6 @@ footer .menu li a::before{
 
 
 
-
-
-
-
 .slider___hover--main a {
   width: 27%;
   display: flex;
@@ -4194,12 +4494,42 @@ a.panel-button {
 	border: 3px solid #001F39;  /* creates padding around scroll thumb */
   }
 
-.container_bottom {
-    text-align: justify;
-    margin-left: 10rem;
-}  
+
 .container_bottom p{
-    text-align: justify;
-    line-height: 2rem;
-    margin-bottom: 2rem;
+ 	color: #00203A;
+	font-size: 15px;
+}
+
+.banner-bookmaker{
+	border-radius: 10px;
+	box-shadow: 2px 2px 15px #ccc;
+}
+.banner-bookmaker ul, li{
+	list-style: none;
+	padding-inline-start: 10px;
+
+}
+.banner-bookmaker span{
+	font-size: 14px;
+}
+.banner-bookmaker i{
+	list-style:none;
+	font-size:1rem;
+}
+
+.banner-bookmaker p{
+	font-size: 18px;
+}
+
+#btn-bookmaker {
+    font-size: 15px;
+    border-radius: .5rem;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+}
+.oddstex {
+
+    color: #5a5a5a;
+
 }

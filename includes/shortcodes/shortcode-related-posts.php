@@ -57,13 +57,13 @@ function shortcode_news($atts)
 
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
-        $ret = "<div class='row small_gutter'>";
+        $ret = "<hr class='mt-2 mb-3'/><div class='row small_gutter'>";
         $ret .= $heading;
                     while ($query->have_posts()):
                         $query->the_post();
                         $ret .= load_template_part("/loop/posts-grid_{$model}");
                     endwhile;
-        $ret .= "</div>";
+        $ret .= "</div><hr class='mt-2 mb-3'/>";
     
      } else {
         $ret = '<h1>Nó hay datos</h1>';

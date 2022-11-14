@@ -22,7 +22,7 @@ echo '<div class="col-lg-3 col-md-6 mt_30">
                 <a href="'.$permalink.'">
                     <h4>'.$title.'</h4>
                 </a>
-                <p class="mt_20">#'.$sport.'</p>
+                <div class="category-grid"><span class="mt_20">#'.$sport.'</span></div>
             </div>
         </div>
-        </div>' ; 
+        </div><hr class="mt-2 mb-3"/>'; 

@@ -86,13 +86,11 @@
                                             </li>
                                             <li>
                                                 <a href="<?php echo isset($sport->permalink) ? $sport->permalink : '/'  ?>">
-                                                    <?php echo isset($sport->icon_html) ? $sport->icon_html : '' ?>
                                                     <?php echo isset($sport->name) ? $sport->name : '' ?>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="<?php echo isset($league->permalink) ? $league->permalink : '/'  ?>">
-                                                    <?php echo isset($league->icon_html) ? $league->icon_html : '' ?>
                                                     <?php echo isset($league->name) ? $league->name : '' ?>
                                                 </a>
                                             </li>
@@ -100,7 +98,7 @@
                                     </div>
                                     
                                     <!-- header forecast-->
-                                    <div class="single_event_banner" style="background-image: url(<?php echo $background_header ?>)">
+                                    <div class="single_event_banner" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo $background_header ?>);">
                                         <div class="single_event_banner_top">
                                             <div class='single_banner_top_left'>
                                                 <?php echo isset($sport->icon_html) ? $sport->icon_html : '' ?>
