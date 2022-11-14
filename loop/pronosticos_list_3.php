@@ -156,11 +156,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             <div class='event_btn_box'>
                                 <div class='event_btn_img'>
                                     <a href='{$bookmaker['ref_link']}'>
-                                    <img src='{$bookmaker['logo']}' class='img-fluid' alt=''>
+                                    <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt=''>
                                     </a>
                                 </div>
                                 <div >
-                                    <a href='{$bookmaker['ref_link']}' class='button'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>

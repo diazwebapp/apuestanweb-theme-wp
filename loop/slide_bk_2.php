@@ -21,7 +21,7 @@ echo "<div class='col-4'>
                     <div class='number_text' id='count_bk_model_3'>{$args["position"]}</div>
                     <div class='bonus_top'>
                         <div class='d-flex align-items-center justify-content-between'>
-                            <img width='70' height='25' src='$image_png' alt=''>
+                            <img width='70' height='25' src='$image_png' alt='$title'>
                             <div class='rating'>";
                                 echo $stars;
             echo "          </div>

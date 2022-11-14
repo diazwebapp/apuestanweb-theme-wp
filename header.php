@@ -3,7 +3,7 @@
 <head>
     <title><?php wp_title(''); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.001, user-scalable=no">
 	<?php wp_head(); ?>
 </head>
 <body>
@@ -40,10 +40,17 @@
                     </a>
                     <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
                     <a href="#" class="headerbtn v2">LOGIN</a>
+                    <div class="event_select">
+                        <select name="apu" id="apu">
+                                <option data-display="ES"></option>
+                                <option value="0">ES</option>
+                                <option value="apu">ES</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->
-                    <ul class="menu">                    
+                    <ul class="menu text-uppercase">                    
                     <?php
                         
                         $ret = strip_tags( wp_nav_menu( array(

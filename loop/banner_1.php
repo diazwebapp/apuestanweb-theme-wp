@@ -9,10 +9,10 @@ endif;
 
 echo "<div class='container mt_55 home_container'>
     <div class='inner_bg' style='background:{$params['src_bg']};background-size:cover;'>
-        <h2>
+        <h1>
             $html_logo
             {$params['title']}
-        </h2>
+        </h1>
         <img src='$alt_logo' class='logo2' alt='apuestabweb mini logo'>
     </div>
 </div>";
