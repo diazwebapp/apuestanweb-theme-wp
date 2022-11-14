@@ -76,7 +76,7 @@ function shortcode_slide_bk($atts)
             $ret = str_replace("{replace}",$html,$ret);
         endif;
         if($model == 3): 
-            $html =  "<div style='margin:15px auto;' class='container bonus_wrap'>
+            $html =  "<div style='margin:15px auto;' class='container small_gutter'>
                         <div class='row'>";
                         foreach ($new_bks as $keybk => $bookmaker):
                             $html .= load_template_part("loop/slide_bk_$model",null,['bookmaker'=> $bookmaker,"position"=>$keybk+1]);                            
