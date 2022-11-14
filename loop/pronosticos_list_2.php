@@ -35,12 +35,12 @@ $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
 //Componente si es vip
-$vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
+$vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2' rel='nofollow'>
                     <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
 if($vip !='yes')
-    $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
+    $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn' rel='nofollow'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
                         <p>Haz una apuesta</p>
                     </a>";

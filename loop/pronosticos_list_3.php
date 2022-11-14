@@ -160,7 +160,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     </a>
                                 </div>
                                 <div >
-                                    <a href='{$bookmaker['ref_link']}' class='button-ev2'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
