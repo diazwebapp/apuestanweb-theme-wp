@@ -17,7 +17,8 @@ $bookmaker["background_color"] = null;
     $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
-    $bookmaker["background_color"] = carbon_get_post_meta(get_the_ID(), 'background-color');
+    $bookmaker["background_color"]= carbon_get_post_meta(get_the_ID(), 'background-color');
+
     $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
 
     if (carbon_get_post_meta(get_the_ID(), 'logo')):
@@ -35,7 +36,7 @@ $bookmaker["background_color"] = null;
                 <!-- Heading -->
                 <div class="row">
 
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo $bookmaker["background_color"] ? $bookmaker["background_color"] : "black" ?>;">
+                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
                         <!-- rating movil-->
                         <div class="d-md-none text-center bk-box-mb-left">
                             <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
