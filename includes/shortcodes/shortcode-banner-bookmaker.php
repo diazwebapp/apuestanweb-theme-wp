@@ -74,6 +74,8 @@ function shortcode_banner_bookmaker($atts)
     $ret = str_replace("{h-logo}",25,$ret);
     $ret = str_replace("{alt_logo}",$bookmaker["name"],$ret);
     $ret = str_replace("{bonus_slogan}",$bookmaker["bonus_slogan"],$ret);
+    $ret = str_replace("{ref_link}",$bookmaker["ref_link"],$ret);
+    
     return $ret;
 }
 
