@@ -13,7 +13,6 @@ function shortcode_banner_bookmaker($atts)
     //default bookmaker
     $bookmaker["name"]="";
     $bookmaker["logo"]= get_template_directory_uri( ) . "/assets/img/logo2.svg";
-    $bookmaker["background_color"]= carbon_get_post_meta($post->ID, 'background-color');
     $bookmaker["ref_link"]="#" ;
     $bookmaker["bonus_slogan"]= "" ;
     $bookmaker["bonus_amount"]= "0";
@@ -24,6 +23,7 @@ function shortcode_banner_bookmaker($atts)
     $bookmaker["feactures"] = carbon_get_post_meta($post->ID, 'feactures');
     $bookmaker["bonus_slogan"] = carbon_get_post_meta($post->ID,'bonus_slogan');
     $bookmaker["ref_link"] = carbon_get_post_meta($post->ID,'ref');
+    $bookmaker["background_color"]= carbon_get_post_meta($post->ID, 'background-color');
 
     $default = [];
     if (carbon_get_post_meta($post->ID, 'logo')):
@@ -42,7 +42,7 @@ function shortcode_banner_bookmaker($atts)
     $ret = '
     <div class="banner-bookmaker container my-4">
         <div class="row px-5 py-3">
-            <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:'.(!empty($bookmaker["background_color"]) ? $bookmaker["background_color"] : "black").';min-height:100px;">
+            <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:'.($bookmaker["background_color"] ? $bookmaker["background_color"] : "black").';min-height:100px;">
                 <img width="{w-logo}"  height="{h-logo}" src="{logo}" alt="{alt_logo}" style="margin:auto;" />
             </div>
             <div class="list-feactures col-lg-3 my-4">
