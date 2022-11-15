@@ -38,7 +38,7 @@ function shortcode_banner_bookmaker($atts)
     if(!isset($exists)): //si nó existe pedimos un bookmaker aleatorio 
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"limit"=>1]);
     endif;    
-    var_dump($bookmaker["background_color"]);
+    
     $ret = '
     <div class="banner-bookmaker container my-4">
         <div class="row px-5 py-3">
