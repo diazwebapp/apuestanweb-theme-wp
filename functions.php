@@ -346,3 +346,13 @@ function aw_actions_after_register_user( $user_id ) {
     $headers
     );
 }
+
+add_action('wp_footer', 'wpml_floating_language_switcher'); 
+  
+function wpml_floating_language_switcher() { 
+   echo '<div class="event_select">';
+       //PHP action to display the language switcher (see https://wpml.org/documentation/getting-started-guide/language-setup/language-switcher-options/#using-php-actions)
+       do_action('wpml_add_language_selector');
+   echo '</div>'; 
+}
+

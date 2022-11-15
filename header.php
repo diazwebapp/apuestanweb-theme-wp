@@ -39,7 +39,8 @@
                     </a>
                     <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode(GEOLOCATION); echo $loc->country; ?> </a>
                     <a href="#" class="headerbtn v2">LOGIN</a>
-                    <div class="event_select">
+
+                    <div id="flags_language_selector" class="event_select left">
                         <select name="apu" id="apu">
                                 <option data-display="ES"></option>
                                 <option value="0">ES</option>
