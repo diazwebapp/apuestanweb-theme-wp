@@ -552,7 +552,7 @@ a.btn_2:hover{
 }
 /*event area*/
 .title{
-	font-size: 3.2rem;
+	font-size: 24px;
 	font-weight: 700;
 	color: #00203A;
 	line-height: 1.2;
@@ -1064,10 +1064,14 @@ footer .menu li a::before{
 }
 .top_box{
 	background: #FFFFFF;
-   border-radius: 1rem;
-   backdrop-filter: blur(50px);
-   padding: 2.3rem 3.5rem;
-   margin-top: 2rem;
+	border-radius: 1rem;
+	backdrop-filter: blur(50px);
+	padding: 2.3rem 3.5rem;
+	margin-top: 2rem;
+}
+.top_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
 }
 .serial{
 	display: inline-flex;
@@ -1773,7 +1777,7 @@ footer .menu li a::before{
 	align-self: center;
 }
 .top_box3_img p{
-	font-size: 1.2rem;
+	font-size: 12px;
 	line-height: 1.2;
 	color: #00203A;
 	padding-left: 1.5rem;
