@@ -1792,13 +1792,24 @@ footer .menu li a::before{
 
 /*price area*/
 .price_wrapper {
-    margin-top: 8.5rem;
+   /* margin-top: 8.5rem;*/
     padding-bottom: 20.5rem;
     background-color: #032451;
 }
-.price_heading{
-	text-align: center;
-	padding-top: 3rem;
+
+.price_heading {
+    /* text-align: center; */
+    padding-top: 3rem;
+    /* color: lemonchiffon; */
+    background: #fbfbff;
+    /* background: white; */
+    /* border-radius: 1rem; */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* width: 355px; */
+    /* top: 21px; */
+    margin-top: 2rem;
 }
 .price_heading img{
 	padding-bottom: 3rem;
@@ -1813,13 +1824,13 @@ footer .menu li a::before{
 .price_box_wrapper{
 	display: flex;
 	align-items: flex-start;
-	justify-content: space-between;
+	justify-content: center;
 }
 .price_box {
     text-align: center;
     border: 0.1rem solid #3A3737;
     max-width: 52.5rem;
-    width: 100%;
+    width: 300px;
     margin-top: 5.5rem;
     margin-left: 1rem;
     margin-right: 1rem;
@@ -1838,13 +1849,13 @@ footer .menu li a::before{
 	padding-top: 8rem;
 }
 .price_box .price {
-    font-size: 9.7rem;
+    font-size: 7.7rem;
     line-height: 1;
     color: #0558CB;
     padding-top: 5rem;
 }
 .box_p {
-    border: 0.1rem solid #707070;
+    border: 0.1rem solid #0558cb2e;
     padding: 2rem 4rem 4rem 4rem;
     margin-top: 3.7rem;
     margin-left: 2.5rem;

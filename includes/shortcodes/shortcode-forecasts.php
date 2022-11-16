@@ -37,9 +37,9 @@ function shortcode_forecast($atts)
                         <div class='blog_select_box'>
                             <select name='ord' id='element_select_forecasts'>
                                 <option value=''>Ordenar</option>
-                                <option value='yesterday'> ".__('Yesterday','jbetting')." </option>
-                                <option value='today'> ".__('Today','jbetting')." </option>
-                                <option value='tomorrow'> ".__('Tomorrow','jbetting')." </option>
+                                <option value='yesterday'> ".__('Ayer','jbetting')." </option>
+                                <option value='today'> ".__('Hoy','jbetting')." </option>
+                                <option value='tomorrow'> ".__('Mañana','jbetting')." </option>
                             </select>
                         </div>
                     </div>
