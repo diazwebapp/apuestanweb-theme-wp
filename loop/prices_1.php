@@ -33,7 +33,7 @@ $params = get_query_var('params');
                                         <h5>".ihc_correct_text($level['label'])."</h5>
                                         <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
                                         <div class='box_p'>                                        
-                                            <p>". ihc_correct_text($level['description']) ."</p>
+                                            <div>". ihc_correct_text(wpautop($level['description'])) ."</div>
                                         </div>
                                         <div class='price_btn'>
                                             <button class='btn w-100' lid='".$id."' type='".$level_meta->payment_type."' onClick='aw_detect_user_level(this)' dest='".$params['register_url']."?lid=".$id."' >".$button_label."</buton>
@@ -42,6 +42,7 @@ $params = get_query_var('params');
         $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$id'>
                                             <div class='price_box price_box1'>
                                                 <h5>".ihc_correct_text($level['label'])."</h5>
+                                                <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
                                                 <div class='box_p'>
                                                     <p>". ihc_correct_text($level['description']) ."</p>
                                                 </div>
