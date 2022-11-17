@@ -36,7 +36,10 @@ function shortcode_news($atts)
     endif;
     $args['post_status']    = 'publish';
     $args['post_type']      = 'post';
-    $args['posts_per_page'] = $num;;
+    $args['posts_per_page'] = $num;
+    if(is_single() or is_singular()):
+        $args['post__not_in']   = [get_the_ID()];
+    endif;
     $league_arr=[];
     
     if(is_array($league))
