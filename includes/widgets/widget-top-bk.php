@@ -15,11 +15,33 @@ class w_bookmakers extends WP_Widget{
         $limit = !empty($instance['limit']) ? $instance['limit'] : 10;
         $location = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
-        if(!isset($aw_system_location)):
-            $bookmakers = aw_select_relate_bookmakers(1,["random"=>true,"limit"=>$limit]);
+        $args = ["post_type" => "bk","posts_per_page" => $limit];
+        $args['order'] = 'DESC';
+        $args['orderby'] = 'meta_value_num';
+        $args['meta_key'] = '_rating';
+        $query = new WP_Query($args);
+        
+        $bookmakers = [];
+        if(!isset($aw_system_location) and $query->posts):
+            //$bookmakers = aw_select_relate_bookmakers(1,["random"=>true,"limit"=>$limit]);
+            foreach ($query->posts as $key => $bookmaker):
+                $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
+                if($exists):
+                    $bookmakers[] = $bookmaker;
+                endif;
+            endforeach;
         else:
-            $bookmakers = aw_select_relate_bookmakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
+            //$bookmakers = aw_select_relate_bookmakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
+            if($query->posts):
+                foreach ($query->posts as $key => $bookmaker):
+                    $exists = aw_detect_bookmaker_on_country($aw_system_location->id,$bookmaker->ID);
+                    if($exists):
+                        $bookmakers[] = $bookmaker;
+                    endif;
+                endforeach;
+            endif;
         endif;
+        
         if ($bookmakers and count($bookmakers) > 0) {
             echo '<div class="col-lg-12 col-md-6">
                     <div class="side_box mt_30">
