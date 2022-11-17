@@ -35,9 +35,9 @@ function shortcode_parley($atts)
             <div class='blog_select_box'>
                 <select name='ord' id='element_select_forecasts'>
                     <option value=''>Ordenar</option>
-                    <option value='yesterday'> ".__('Ayer','jbetting')." </option>
-                    <option value='today'> ".__('Hoy','jbetting')." </option>
-                    <option value='tomorrow'> ".__('Mañana','jbetting')." </option>
+                    <option value='yesterday' ".(isset($data) and $data == 'yesterday' ? 'selected' : '')."> ".__('Ayer','jbetting')." </option>
+                    <option value='today' ".(isset($data) and $data == 'today' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
+                    <option value='tomorrow' ".(isset($data) and $data == 'tomorrow' ? 'selected' : '')."> ".__('Mañana','jbetting')." </option>
                 </select>
             </div>
         </div>
