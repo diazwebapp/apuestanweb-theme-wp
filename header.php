@@ -3,16 +3,15 @@
 <head>
     <title><?php wp_title(''); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.001, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<?php wp_head(); ?>
 </head>
 <body>
-<?php
-
+<?php /*
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
-        //echo do_shortcode("[slide_forecasts model='2']");
-    endif;
+        echo do_shortcode("[slide_forecasts model='2']");
+    endif;*/
 ?>
 <header class="sticky-top">
 <div class="container">
@@ -40,13 +39,8 @@
                     </a>
                     <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
                     <a href="#" class="headerbtn v2">LOGIN</a>
-                    <div class="event_select">
-                        <select name="apu" id="apu">
-                                <option data-display="ES"></option>
-                                <option value="0">ES</option>
-                                <option value="apu">ES</option>
-                        </select>
-                    </div>
+
+                    
                 </div>
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->

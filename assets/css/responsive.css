@@ -495,10 +495,7 @@
 	.match_time_box {
 	    justify-content: center;
 	}
-	.league_box1 {
-	    margin-right: 6rem;
-	    margin-left: 6rem;
-	}
+
 	.team_flag_box_wrapper{
 		flex-direction: column;
 	}
@@ -525,7 +522,7 @@
 
 	/*price area*/
 	.price_wrapper {
-	    padding-bottom: 13.5rem;
+	    padding-bottom: 3.5rem;
 	}
 	.price_heading {
 	    padding-top: 6.8rem;

@@ -37,9 +37,9 @@ function shortcode_forecast_vip($atts)
             <div class='blog_select_box'>
                 <select name='ord' id='element_select_forecasts'>
                     <option value=''>Ordenar</option>
-                    <option value='yesterday'> ".__('Yesterday','jbetting')." </option>
-                    <option value='today'> ".__('Today','jbetting')." </option>
-                    <option value='tomorrow'> ".__('Tomorrow','jbetting')." </option>
+                    <option value='yesterday'> ".__('Ayer','jbetting')." </option>
+                    <option value='today'> ".__('Hoy','jbetting')." </option>
+                    <option value='tomorrow'> ".__('Mañana','jbetting')." </option>
                 </select>
             </div>
         </div>
@@ -117,7 +117,7 @@ function shortcode_forecast_vip($atts)
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
                 <br/>
-                <button class='loadmore forecasts btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
+                <button class='loadmore forecasts btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>
                 <br/>
             </div>";
         endif;
