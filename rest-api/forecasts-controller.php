@@ -21,11 +21,11 @@ function aw_get_forecasts(WP_REST_Request $request){
     endif;
 
     if (isset($params['date'])) {
-        if($params['date'] == 'today')
+        if($params['date'] == 'hoy')
             $current_date = date('Y-m-d');
-        if($params['date'] == 'yesterday')
+        if($params['date'] == 'ayer')
             $current_date = date('Y-m-d', strtotime('-1 days'));
-        if($params['date'] == 'tomorrow')
+        if($params['date'] == 'mañana')
             $current_date = date('Y-m-d',strtotime('+1 days'));
             
         $args['meta_query']   = [
@@ -87,11 +87,11 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
     ];
 
     if (isset($params['date'])) {
-        if($params['date'] == 'today')
+        if($params['date'] == 'hoy')
             $current_date = date('Y-m-d');
-        if($params['date'] == 'yesterday')
+        if($params['date'] == 'ayer')
             $current_date = date('Y-m-d', strtotime('-1 days'));
-        if($params['date'] == 'tomorrow')
+        if($params['date'] == 'mañana')
             $current_date = date('Y-m-d',strtotime('+1 days'));
             
         $args['meta_query']   = [
