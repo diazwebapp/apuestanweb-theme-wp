@@ -34,13 +34,13 @@ function shortcode_forecast($atts)
         $ret .= "<div class='title_wrap'>
                     <h1 class='title mt_30 order-lg-1'>".(isset($title) ? $title : '')."</h1>
                     <div class='mt_30 dropd order-lg-3'>
-                    ".(isset($data) ? 'selected' : '')."
+                    ".(isset($date) ? 'selected' : '')."
                         <div class='blog_select_box'>
                             <select name='ord' id='element_select_forecasts'>
                                 <option value=''>Ordenar</option>
-                                <option value='yesterday' ".(isset($data) and $data == 'yesterday' ? 'selected' : '')."> ".__('Ayer','jbetting')." </option>
-                                <option value='today' ".(isset($data) and $data == 'today' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
-                                <option value='tomorrow' ".(isset($data) and $data == 'tomorrow' ? 'selected' : '')."> ".__('Mañana','jbetting')." </option>
+                                <option value='yesterday' ".(isset($date) and $date == 'yesterday' ? 'selected' : '')."> ".__('Ayer','jbetting')." </option>
+                                <option value='today' ".(isset($date) and $date == 'today' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
+                                <option value='tomorrow' ".(isset($date) and $date == 'tomorrow' ? 'selected' : '')."> ".__('Mañana','jbetting')." </option>
                             </select>
                         </div>
                     </div>
