@@ -90,7 +90,7 @@ function shortcode_forecast($atts)
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
 
-    var_dump($date);
+    var_dump($params);
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
