@@ -34,7 +34,6 @@ function shortcode_forecast($atts)
         $ret .= "<div class='title_wrap'>
                     <h1 class='title mt_30 order-lg-1'>".(isset($title) ? $title : '')."</h1>
                     <div class='mt_30 dropd order-lg-3'>
-                    ".(isset($date) ? 'selected' : '')."
                         <div class='blog_select_box'>
                             <select name='ord' id='element_select_forecasts'>
                                 <option value=''>Ordenar</option>
