@@ -37,11 +37,7 @@ function shortcode_news($atts)
     $args['post_status']    = 'publish';
     $args['post_type']      = 'post';
     $args['posts_per_page'] = $num;
-    $post_type = get_post_type( );
-    if($post_type == "post" and is_single()):
-        var_dump("singular => ".get_the_ID());
-        $args['post__not_in']   = [get_the_ID()];
-    endif;
+    
     $league_arr=[];
     
     if(is_array($league))
@@ -59,7 +55,13 @@ function shortcode_news($atts)
             ]
         ];    
 
-
+        $post_type = get_post_type( );
+        if($post_type == "post" and is_single()):
+            var_dump("singular => ".get_the_ID());
+            $id = get_the_ID();
+            $args['post__not_in']   = [$id];
+        endif;
+        var_dump($args);
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
         $ret = "<hr class='mt-2 mb-3'/><div class='row small_gutter'>";
