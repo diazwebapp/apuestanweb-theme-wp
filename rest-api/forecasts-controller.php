@@ -55,7 +55,8 @@ function aw_get_forecasts(WP_REST_Request $request){
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null
                 ]);
-            else:
+            endif;
+            if(!isset($params["exclude_post"])):
                 $loop_html .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,

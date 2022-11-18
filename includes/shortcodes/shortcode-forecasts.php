@@ -84,7 +84,7 @@ function shortcode_forecast($atts)
     if($post_type == "forecast" and is_single()):
         $args['exclude_post']   = get_the_ID();
     endif;
-    var_dump($args['exclude_post']);
+    
     $params = "?paged=".$args['paged'];
     $params .= "&posts_per_page={$args['posts_per_page']}";
     $params .= isset($args['leagues']) ? "&leagues=${args['leagues']}":"";
