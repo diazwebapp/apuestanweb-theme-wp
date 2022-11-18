@@ -7,7 +7,7 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
     const btn_load_more_forecasts = document.querySelector('button.loadmore.forecasts')
     const div_game_list = document.querySelector('#games_list')
-    console.log(forecasts_fetch_vars)
+    
     if(btn_load_more_forecasts){
         btn_load_more_forecasts.addEventListener("click",async e =>{
             const previus_text = e.target.textContent
