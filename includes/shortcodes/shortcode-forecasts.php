@@ -80,8 +80,9 @@ function shortcode_forecast($atts)
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
     $args['post__not_in'] = null;
-    if(is_single() or is_singular()):
-        $args['post__not_in']   = [get_the_ID()];
+    $post_type = get_post_type( );
+    if($post_type == "bk" and is_single()):
+        $args['post__not_in']   = get_the_ID();
     endif;
 
     $params = "?paged=".$args['paged'];
@@ -93,7 +94,7 @@ function shortcode_forecast($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
-    $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in'][0]}":"";
+    $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in']}":"";
 
     var_dump($params);
     
