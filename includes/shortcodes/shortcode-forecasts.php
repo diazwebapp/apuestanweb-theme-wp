@@ -79,6 +79,10 @@ function shortcode_forecast($atts)
     $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts');
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
+    $args['post__not_in'] = null;
+    if(is_single() or is_singular()):
+        $args['post__not_in']   = [get_the_ID()];
+    endif;
 
     $params = "?paged=".$args['paged'];
     $params .= "&posts_per_page={$args['posts_per_page']}";
@@ -89,6 +93,7 @@ function shortcode_forecast($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
+    $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in']}":"";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
