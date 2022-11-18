@@ -38,9 +38,7 @@ function aw_get_forecasts(WP_REST_Request $request){
             ];
     }
     
-    if(isset($params['post__not_in'])):
-        $args['post__not_in']  = [$params['post__not_in']];
-    endif;
+   
     $query = new WP_Query($args);
     $loop_html = '';
     set_query_var( 'params', [
