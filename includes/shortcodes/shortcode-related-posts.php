@@ -71,6 +71,9 @@ function shortcode_news($atts)
                         if(isset($id_principal) and $id_principal !== $id ):
                             $ret .= load_template_part("/loop/posts-grid_{$model}");
                         endif;
+                        if(!isset($id_principal)):
+                            $ret .= load_template_part("/loop/posts-grid_{$model}");
+                        endif;
                     endwhile;
         $ret .= "</div><hr class='mt-2 mb-3'/>";
     
