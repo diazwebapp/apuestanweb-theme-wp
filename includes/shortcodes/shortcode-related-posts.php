@@ -68,7 +68,7 @@ function shortcode_news($atts)
                     while ($query->have_posts()):
                         $query->the_post();
                         $id = get_the_ID();
-                        if($id_principal == $id and $post_type == "post" and is_single()):
+                        if($id_principal !== $id and $post_type == "post" and is_single()):
                             $ret .= load_template_part("/loop/posts-grid_{$model}");
                         endif;
                     endwhile;
