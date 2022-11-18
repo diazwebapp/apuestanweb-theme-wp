@@ -112,7 +112,7 @@ function shortcode_forecast_vip($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
         
-        if($paginate=='yes'):
+        if($paginate=='yes' and $query != 'no mas'):
 
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
