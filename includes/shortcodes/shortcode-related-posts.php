@@ -56,19 +56,21 @@ function shortcode_news($atts)
         ];    
 
         $post_type = get_post_type( );
-        if($post_type == "post" and is_single()):
-            var_dump("singular => ".get_the_ID());
-            $id = get_the_ID();
-            $args['post__not_in']   = [$id];
+        $id_principal = null;
+        if($post_type == "post"):
+            $id_principal = get_the_ID();
         endif;
-        var_dump($args);
+        var_dump($args['post__not_in']);
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
         $ret = "<hr class='mt-2 mb-3'/><div class='row small_gutter'>";
         $ret .= $heading;
                     while ($query->have_posts()):
                         $query->the_post();
-                        $ret .= load_template_part("/loop/posts-grid_{$model}");
+                        $id = get_the_ID();
+                        if($id_principal == $id and $post_type == "post" and is_single()):
+                            $ret .= load_template_part("/loop/posts-grid_{$model}");
+                        endif;
                     endwhile;
         $ret .= "</div><hr class='mt-2 mb-3'/>";
     
