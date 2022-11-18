@@ -94,6 +94,8 @@ function shortcode_forecast($atts)
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in']}":"";
+
+    var_dump($params);
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
