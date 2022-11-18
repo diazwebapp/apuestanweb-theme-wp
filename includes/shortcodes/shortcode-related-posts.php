@@ -60,7 +60,7 @@ function shortcode_news($atts)
         if($post_type == "post" and $post_type == "post" and is_single()):
             $id_principal = get_the_ID();
         endif;
-        
+        var_dump($post_type);
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
         $ret = "<hr class='mt-2 mb-3'/><div class='row small_gutter'>";
