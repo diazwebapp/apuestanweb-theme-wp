@@ -222,7 +222,7 @@ add_action('init', function(){
         /* echo "<pre>";
         var_dump($_SERVER["REMOTE_ADDR"]);
         echo "</pre>"; */
-        $data = geolocation_api($_SERVER["HTTP_CF_CONNECTING_IP"]);
+        $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
         $_SESSION["geolocation"] = json_encode($data);
     }
     
