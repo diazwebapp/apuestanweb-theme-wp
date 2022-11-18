@@ -93,7 +93,7 @@ function shortcode_forecast($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
-    $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in']}":"";
+    $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in'][0]}":"";
 
     var_dump($params);
     
