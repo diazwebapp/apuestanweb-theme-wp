@@ -57,10 +57,10 @@ function shortcode_news($atts)
 
         $post_type = get_post_type( );
         $id_principal = null;
-        if($post_type == "post"):
+        if($post_type == "post" and $post_type == "post" and is_single()):
             $id_principal = get_the_ID();
         endif;
-        var_dump($args['post__not_in']);
+        
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
         $ret = "<hr class='mt-2 mb-3'/><div class='row small_gutter'>";
@@ -68,7 +68,7 @@ function shortcode_news($atts)
                     while ($query->have_posts()):
                         $query->the_post();
                         $id = get_the_ID();
-                        if($id_principal !== $id and $post_type == "post" and is_single()):
+                        if(isset($id_principal) and $id_principal !== $id ):
                             $ret .= load_template_part("/loop/posts-grid_{$model}");
                         endif;
                     endwhile;

@@ -79,10 +79,10 @@ function shortcode_forecast($atts)
     $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts');
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
-    $args['post__not_in'] = null;
+    $args['exclude_post'] = null;
     $post_type = get_post_type( );
     if($post_type == "forecast" and is_single()):
-        $args['post__not_in']   = get_the_ID();
+        $args['exclude_post']   = get_the_ID();
     endif;
 
     $params = "?paged=".$args['paged'];
@@ -94,9 +94,7 @@ function shortcode_forecast($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
-    $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in']}":"";
-
-    var_dump($params);
+    $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
