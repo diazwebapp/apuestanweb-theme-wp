@@ -81,7 +81,7 @@ function shortcode_forecast($atts)
     $args['timezone'] = $geolocation->timezone;
     $args['post__not_in'] = null;
     $post_type = get_post_type( );
-    if($post_type == "bk" and is_single()):
+    if($post_type == "forecast" and is_single()):
         $args['post__not_in']   = get_the_ID();
     endif;
 
