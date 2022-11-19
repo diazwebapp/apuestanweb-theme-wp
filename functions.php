@@ -314,6 +314,8 @@ function send_smtp_email( PHPMailer $phpmailer ){
         'allow_self_signed' => true
        ));
     ////////
+
+    aw_actions_after_register_user( 1 );
         
 }
 add_action('phpmailer_init','send_smtp_email');
@@ -328,10 +330,10 @@ function aw_actions_after_register_user( $user_id ) {
     function tipo_de_contenido_html() {
         return 'text/html';
     }
-    $memberInfo = get_userdata($user_id);
+    //$memberInfo = get_userdata($user_id);
     add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
     wp_mail( 'erickoficial69@gmail.com',
-    'Ejemplo de la función mail en WP '.$memberInfo->user_login.' ',
+    'Ejemplo de la función mail en WP ',
     '<h1>Correo de apuestan</h1>',
     $headers
     );
