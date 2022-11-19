@@ -331,4 +331,3 @@ function aw_actions_after_register_user( $user_id ) {
     $headers
     );
 }
-aw_actions_after_register_user( 1 );

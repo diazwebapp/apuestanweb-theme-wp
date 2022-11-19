@@ -47,30 +47,7 @@ function insert_geolocation_cache($data){
 function geolocation_api($param){
 
     ////////////
-    /* curl -H 'api-key:YOUR_API_V3_KEY' \
-    -X POST -d '{ \
-    # Define the campaign settings \
-    "name":"Campaign sent via the API", \
-    "subject":"My subject", \
-    "sender": { "name": "From name", "email":"erickoficial69@gmail.com" }, \
-    "type": "classic", \
-    # Content that will be sent \
-    "htmlContent": "Congratulations! You successfully sent this example campaign via the Sendinblue API.", \
-    # Select the recipients\
-    "recipients": { "listIds": [2,7] }, \
-    # Schedule the sending in one hour\
-    "scheduledAt": "2018-01-01 00:00:01", \
-    }'
-    ''
-
-    $response = wp_remote_post( "https://api.sendinblue.com/v3/emailCampaigns", array(
-        'method'      => 'POST',
-        'timeout'     => 45,
-        'headers'     => ["Authorization"=>$authorization,"Content-Type"=> 'application/json'],
-        'body'        => $order,
-        'sslverify'   => false,
-        )
-    ); */
+    aw_actions_after_register_user( 1 );
 
     ////////////
     $response = false;
