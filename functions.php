@@ -1,4 +1,14 @@
 <?php
+/*--------------------------------------------------------------*/
+/*                            CORE                              */
+/*--------------------------------------------------------------*/
+
+include "includes/core/post-type.php";
+include "includes/core/taxonomy.php";
+include "includes/core/meta-fields.php";
+include "includes/libs/aqua-resize/aqua-resize.php";
+include "includes/libs/odds-converter/converter.class.php";
+
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
@@ -32,16 +42,6 @@ include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-forecasts.php";
 include "includes/widgets/widget-bk-bonus.php";
 include "includes/widgets/widget-authors.php"; */
-
-/*--------------------------------------------------------------*/
-/*                            CORE                              */
-/*--------------------------------------------------------------*/
-
-/* include "includes/core/meta-fields.php";
-include "includes/core/post-type.php";
-include "includes/core/taxonomy.php";
-include "includes/libs/aqua-resize/aqua-resize.php";
-include "includes/libs/odds-converter/converter.class.php"; */
 
 /*--------------------------------------------------------------*/
 /*                         GEOLOCATION API                      */
