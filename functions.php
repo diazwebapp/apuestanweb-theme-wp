@@ -311,7 +311,7 @@ function send_smtp_email( PHPMailer $phpmailer ){
     ////////
         
 }
-add_action('phpmailer_init','send_smtp_email');
+//add_action('phpmailer_init','send_smtp_email');
 ///// Detectando registro de usuarios
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
