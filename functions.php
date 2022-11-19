@@ -296,7 +296,8 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 
 /////configurando smtp///////
-function send_smtp_email( PHPMailer $phpmailer ){
+function send_smtp_email( $mail ){
+//function send_smtp_email( PHPMailer $phpmailer ){
     /* $phpmailer->isSMTP(); 
     $phpmailer->Host = 'smtp-relay.sendinblue.com';
     $phpmailer->SMTPAuth = true;
@@ -307,7 +308,7 @@ function send_smtp_email( PHPMailer $phpmailer ){
     $phpmailer->From = 'erickoficial69@gmail.com';
     $phpmailer->FromName='Nombre del remitente'; */
     ////////
-    function send_smtp_email( $mail ){
+    //function send_smtp_email( $mail ){
 
         // Indicamos que queremos enviar por SMTP
         
@@ -345,7 +346,7 @@ function send_smtp_email( PHPMailer $phpmailer ){
         
         $mail->FromName = 'apuestan';
         
-        }
+        //}
 }
 add_action('phpmailer_init','send_smtp_email');
 ///// Detectando registro de usuarios
