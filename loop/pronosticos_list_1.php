@@ -42,8 +42,7 @@ if ($teams['team1'] && $teams['team2']){
                 <div class='match_time_box league_box1'>
                         <i class='{$sport['class']}'></i>
                     <p class='date_item_pronostico_top'>
-                    ".$date->format('Y-m-d G:i:s')."
-                        <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                        <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                         <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                     </p>
                 </div>
@@ -52,7 +51,7 @@ if ($teams['team1'] && $teams['team2']){
                 <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
             </div>
             <p class='date_item_pronostico_top'>
-                <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                 <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
             </p>
     </div></a> ";
