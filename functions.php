@@ -252,17 +252,6 @@ add_action('init', function(){
         define('IP',$_SERVER["REMOTE_ADDR"]);
     } */
 
-    function configuracion_smtp( PHPMailer $phpmailer ){
-        $phpmailer->isSMTP(); 
-        $phpmailer->Host = 'smtp-relay.sendinblue.com';
-        $phpmailer->SMTPAuth = true;
-        $phpmailer->Port = 587;
-        $phpmailer->Username = 'erickoficial69@gmail.com';
-        $phpmailer->Password = 'xsmtpsib-946bcc77fd61f27f43f8069b405d2ea9c363a097d28ed28b6b7d5f9dc05673d6-Dj43CaOtHks2xzIT';
-        $phpmailer->SMTPSecure = false;
-        $phpmailer->From = 'erickoficial69@gmail.com';
-        $phpmailer->FromName='Nombre del remitente';
-    }
 });
 
 
@@ -307,7 +296,58 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 
 /////configurando smtp///////
+function send_smtp_email( PHPMailer $phpmailer ){
+    $phpmailer->isSMTP(); 
+    $phpmailer->Host = 'smtp-relay.sendinblue.com';
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 587;
+    $phpmailer->Username = 'erickoficial69@gmail.com';
+    $phpmailer->Password = 'xsmtpsib-946bcc77fd61f27f43f8069b405d2ea9c363a097d28ed28b6b7d5f9dc05673d6-Dj43CaOtHks2xzIT';
+    $phpmailer->SMTPSecure = false;
+    $phpmailer->From = 'erickoficial69@gmail.com';
+    $phpmailer->FromName='Nombre del remitente';
+    ////////
+    function send_smtp_email( $mail ){
 
+        // Indicamos que queremos enviar por SMTP
+        
+        $mail->isSMTP();
+        
+        // Definimos la ruta del servidor SMTP
+        
+        $mail->Host = 'smtp-relay.sendinblue.com';
+        
+        // Indicamos que queremos enviar por SMTP
+        
+        $mail->SMTPAuth = true;
+        
+        // El puerto SMTP suele ser el 25 o 587
+        
+        $mail->Port = 25;
+        
+        // Definimos el usuario de la cuenta de correo
+        
+        $mail->Username = 'erickoficial69@gmail.com';
+        
+        // Definimos la contraseña de la cuenta de correo
+        
+        $mail->Password = 'xsmtpsib-946bcc77fd61f27f43f8069b405d2ea9c363a097d28ed28b6b7d5f9dc05673d6-Dj43CaOtHks2xzIT';
+        
+        // Definimos el tipo de encriptación (none, ssl, tls)
+        
+        $mail->SMTPSecure = 'none';
+        
+        // Definimos la cuenta de correo desde donde queremos enviar el correo
+        
+        $mail->From = 'erickoficial69@gmail.com';
+        
+        // Definimos el nombre que aparecerá públicamente
+        
+        $mail->FromName = 'apuestan';
+        
+        }
+}
+add_action('phpmailer_init','send_smtp_email');
 ///// Detectando registro de usuarios
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
