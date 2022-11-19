@@ -306,12 +306,6 @@ function send_smtp_email( PHPMailer $phpmailer ){
     $phpmailer->SMTPSecure = false;
     $phpmailer->From = 'erickoficial69@gmail.com';
     $phpmailer->FromName='apuestan';
-    $phpmailer->SMTPOptions = array(
-        'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false,
-        'allow_self_signed' => true
-       ));
     ////////
 
     aw_actions_after_register_user( 1 );
