@@ -60,7 +60,7 @@ include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
 include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
-//include "includes/handlers/paypal-tools.php";
+include "includes/handlers/paypal-tools.php";
 
 /*--------------------------------------------------------------*/
 /*                        TOOLS PANEL ADMIN                     */
