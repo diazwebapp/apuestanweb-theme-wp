@@ -76,14 +76,15 @@ include "includes/core/payment-dashboard/payment-dashboard.php"; */
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
-include "rest-api/register-routes.php";
+
+/* include "rest-api/register-routes.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
-include "rest-api/parley-controller.php";
+include "rest-api/parley-controller.php"; */
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
@@ -226,13 +227,11 @@ add_action('init', function(){
 
     ///////////geolocation
 
-    if(!isset($_SESSION["geolocation"])){
-        /* echo "<pre>";
-        var_dump($_SERVER["REMOTE_ADDR"]);
-        echo "</pre>"; */
+    /* if(!isset($_SESSION["geolocation"])){
+        
         $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
         $_SESSION["geolocation"] = json_encode($data);
-    }
+    } */
     
     
     /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
