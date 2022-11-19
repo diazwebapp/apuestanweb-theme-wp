@@ -332,7 +332,7 @@ function setUserRating(){
         update_user_meta( $user->ID, 'forecast_acerted', $ok);
         update_user_meta( $user->ID, 'forecast_failed', $fail);
         update_user_meta( $user->ID, 'forecast_nulled', $null);
-        wp_reset_query();
+        
         //Query Args
         $forecast_args['author'] = $user->ID;
         $forecast_args['post_type'] = 'forecast';
