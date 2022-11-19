@@ -24,11 +24,12 @@ include "includes/shortcodes/shortcode-login-form.php";
 /*--------------------------------------------------------------*/
 /*                         WIDGETS                              */
 /*--------------------------------------------------------------*/
-include "includes/widgets_area.php";
-include "includes/widgets/widget-top-bk.php";
-include "includes/widgets/widget-forecasts.php";
-include "includes/widgets/widget-bk-bonus.php";
-include "includes/widgets/widget-authors.php";
+
+//include "includes/widgets_area.php";
+//include "includes/widgets/widget-top-bk.php";
+//include "includes/widgets/widget-forecasts.php";
+//include "includes/widgets/widget-bk-bonus.php";
+//include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
