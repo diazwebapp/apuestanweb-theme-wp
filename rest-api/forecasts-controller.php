@@ -11,11 +11,13 @@ function aw_get_forecasts(WP_REST_Request $request){
     $args['order']          = 'ASC';
 
     if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
+        $p = str_replace("[","",$params['leagues']);
+        $p = str_replace("]","",$params['leagues']);
         $args['tax_query'] = [
             [
                 'taxonomy' => 'league',
                 'field' => 'slug',
-                'terms' => $params['leagues']
+                'terms' => [$p]
             ]
         ];
     endif;

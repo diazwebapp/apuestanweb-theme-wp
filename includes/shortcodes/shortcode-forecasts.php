@@ -96,8 +96,6 @@ function shortcode_forecast($atts)
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
 
-    $params = str_replace("[]","*",$params);
-    var_dump($params);
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
