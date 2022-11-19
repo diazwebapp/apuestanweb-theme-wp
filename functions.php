@@ -304,7 +304,7 @@ function configuracion_smtp( PHPMailer $phpmailer ){
     $phpmailer->Username = 'erickoficial69@gmail.com';
     $phpmailer->Password = 'xsmtpsib-946bcc77fd61f27f43f8069b405d2ea9c363a097d28ed28b6b7d5f9dc05673d6-KkSM6N3mrZRnQVOs';
     $phpmailer->SMTPSecure = false;
-    $phpmailer->From = 'From Email';
+    $phpmailer->From = 'erickoficial69@gmail.com';
     $phpmailer->FromName='Nombre del remitente';
 }
 
