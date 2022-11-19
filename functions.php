@@ -47,15 +47,12 @@ include "includes/widgets/widget-authors.php";
 /*                         GEOLOCATION API                      */
 /*--------------------------------------------------------------*/
 
-/* include "includes/handlers/geolocation.php"; */
+include "includes/handlers/geolocation.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
 /*--------------------------------------------------------------*/
 
-/* include "includes/ajax_handlers/mailchimp.php";
-include "includes/ajax_handlers/forecast_loadmore.php";
-include "includes/ajax_handlers/forecast_filter.php";
 include "includes/ajax_handlers/news_loadmore.php";
 include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
@@ -63,7 +60,7 @@ include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
 include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
-include "includes/handlers/paypal-tools.php"; */
+include "includes/handlers/paypal-tools.php";
 
 /*--------------------------------------------------------------*/
 /*                        TOOLS PANEL ADMIN                     */
