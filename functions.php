@@ -65,8 +65,9 @@ include "includes/handlers/paypal-tools.php"; */
 /*--------------------------------------------------------------*/
 /*                        TOOLS PANEL ADMIN                     */
 /*--------------------------------------------------------------*/
-include "includes/core/bookmaker-location-panel/bk-location-panel.php";
-include "includes/core/payment-dashboard/payment-dashboard.php";
+
+/* include "includes/core/bookmaker-location-panel/bk-location-panel.php";
+include "includes/core/payment-dashboard/payment-dashboard.php"; */
 
 
 /*--------------------------------------------------------------*/
