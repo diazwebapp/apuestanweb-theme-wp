@@ -302,7 +302,7 @@ function send_smtp_email( PHPMailer $phpmailer ){
     $phpmailer->SMTPAuth = true;
     $phpmailer->Port = 587;
     $phpmailer->Username = 'erickoficial69@gmail.com';
-    $phpmailer->Password = 'xsmtpsib-946bcc77fd61f27f43f8069b405d2ea9c363a097d28ed28b6b7d5f9dc05673d6-Dj43CaOtHks2xzIT';
+    $phpmailer->Password = 'SzgWcxJ0TnMO9sD8';
     $phpmailer->SMTPSecure = false;
     $phpmailer->From = 'erickoficial69@gmail.com';
     $phpmailer->FromName='apuestan';
