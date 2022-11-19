@@ -47,7 +47,7 @@ include "includes/widgets/widget-authors.php";
 /*                         GEOLOCATION API                      */
 /*--------------------------------------------------------------*/
 
-//include "includes/handlers/geolocation.php";
+include "includes/handlers/geolocation.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
