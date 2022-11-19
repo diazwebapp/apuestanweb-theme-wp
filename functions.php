@@ -309,8 +309,6 @@ function send_smtp_email( PHPMailer $phpmailer ){
     $phpmailer->FromName='apuestan';
     
     ////////
-
-    aw_actions_after_register_user( 1 );
         
 }
 add_action('phpmailer_init','send_smtp_email');
@@ -333,3 +331,4 @@ function aw_actions_after_register_user( $user_id ) {
     $headers
     );
 }
+aw_actions_after_register_user( 1 );
