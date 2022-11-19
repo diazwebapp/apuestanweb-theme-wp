@@ -25,20 +25,22 @@ include "includes/shortcodes/shortcode-login-form.php";
 /*                         WIDGETS                              */
 /*--------------------------------------------------------------*/
 
-//include "includes/widgets_area.php";
-//include "includes/widgets/widget-top-bk.php";
-//include "includes/widgets/widget-forecasts.php";
-//include "includes/widgets/widget-bk-bonus.php";
-//include "includes/widgets/widget-authors.php";
+/* include "includes/widgets_area.php";
+include "includes/widgets/widget-top-bk.php";
+include "includes/widgets/widget-forecasts.php";
+include "includes/widgets/widget-bk-bonus.php";
+include "includes/widgets/widget-authors.php"; */
 
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
 /*--------------------------------------------------------------*/
-include "includes/core/meta-fields.php";
+
+/* include "includes/core/meta-fields.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
-include "includes/libs/odds-converter/converter.class.php";
+include "includes/libs/odds-converter/converter.class.php"; */
+
 /*--------------------------------------------------------------*/
 /*                         GEOLOCATION API                      */
 /*--------------------------------------------------------------*/
@@ -47,7 +49,8 @@ include "includes/handlers/geolocation.php";
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
 /*--------------------------------------------------------------*/
-include "includes/ajax_handlers/mailchimp.php";
+
+/* include "includes/ajax_handlers/mailchimp.php";
 include "includes/ajax_handlers/forecast_loadmore.php";
 include "includes/ajax_handlers/forecast_filter.php";
 include "includes/ajax_handlers/news_loadmore.php";
@@ -57,7 +60,7 @@ include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
 include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
-include "includes/handlers/paypal-tools.php";
+include "includes/handlers/paypal-tools.php"; */
 
 /*--------------------------------------------------------------*/
 /*                        TOOLS PANEL ADMIN                     */
