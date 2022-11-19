@@ -58,7 +58,7 @@ include "includes/ajax_handlers/news_loadmore.php";
 include "includes/handlers/get_bookmaker_by_post.php";
 include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
-//include "includes/handlers/aw-memberships-controllers.php";
+include "includes/handlers/aw-memberships-controllers.php";
 //include "includes/handlers/get_countries.php";
 //include "includes/handlers/paypal-tools.php";
 
