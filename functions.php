@@ -296,20 +296,33 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 /////configurando smtp///////
 
-function send_smtp_email( PHPMailer $phpmailer ){
-    $phpmailer->isSMTP(); 
-    $phpmailer->Host = 'smtp-relay.sendinblue.com';
+fadd_action('phpmailer_init','send_smtp_email');
+function send_smtp_email( $phpmailer )
+{
+    // Define que estamos enviando por SMTP
+    $phpmailer->isSMTP();
+ 
+    // La dirección del HOST del servidor de correo SMTP p.e. smtp.midominio.com
+    $phpmailer->Host = "smtp-relay.sendinblue.com";
+ 
+    // Uso autenticación por SMTP (true|false)
     $phpmailer->SMTPAuth = true;
-    $phpmailer->Port = 587;
-    $phpmailer->Username = 'erickoficial69@gmail.com';
-    $phpmailer->Password = 'SzgWcxJ0TnMO9sD8';
-    $phpmailer->SMTPSecure = false;
-    $phpmailer->From = 'erickoficial69@gmail.com';
-    $phpmailer->FromName='apuestan';
-    ////////
-        
+ 
+    // Puerto SMTP - Suele ser el 25, 465 o 587
+    $phpmailer->Port = "587";
+ 
+    // Usuario de la cuenta de correo
+    $phpmailer->Username = "erickoficial69@gmail.com";
+ 
+    // Contraseña para la autenticación SMTP
+    $phpmailer->Password = "SzgWcxJ0TnMO9sD8";
+ 
+    // El tipo de encriptación que usamos al conectar - ssl (deprecated) o tls
+    $phpmailer->SMTPSecure = "tls";
+ 
+    $phpmailer->From = "erickoficial69@gmail.com";
+    $phpmailer->FromName = "Tu nombre";
 }
-add_action('phpmailer_init','send_smtp_email');
 ///// Detectando registro de usuarios
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
