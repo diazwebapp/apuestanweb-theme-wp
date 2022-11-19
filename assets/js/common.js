@@ -113,7 +113,14 @@ function updateCountdown(html_element) {
         if(SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES;
         if(SPAN_SECONDS)    SPAN_SECONDS.textContent = REMAINING_SECONDS;
     
-        
+        /* if(REMAINING_DAYS <= 0 && REMAINING_HOURS <= 0 && REMAINING_MINUTES <= 0){
+            let hora = DATE_TARGET.getHours() % 12
+            let minutos = DATE_TARGET.getMinutes().toString().padStart(2,'0')
+            let ampm = DATE_TARGET.getHours() < 12 ? 'pm' : 'am'
+            html_element.innerHTML = `
+                            <time datetime="${DATE_TARGET.getHours()}:${minutos}" >${hora}:${minutos} ${ampm}</time>
+            `
+        } */
     }
 }
 
