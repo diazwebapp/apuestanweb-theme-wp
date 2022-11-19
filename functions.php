@@ -97,7 +97,7 @@ add_action('after_setup_theme', 'my_theme_setup');
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
-    load_theme_textdomain('jbetting', get_template_directory() . '/lang');
+
     global $post;
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'posts' ) ) {
         //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
@@ -197,8 +197,9 @@ add_action('init', function(){
     
     //Zona horaria
     date_default_timezone_set('America/Caracas');
+
     //vip page
-    $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
+    /* $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
     if($page_id_vip):
         define('PERMALINK_VIP',get_the_permalink($page_id_vip));
     endif;
@@ -209,12 +210,10 @@ add_action('init', function(){
         define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
     endif;
 
-    //profile page 
-    //$page_forecaster = isset(carbon_get_theme_option('page_forecaster')[0]) ? carbon_get_theme_option('page_forecaster')[0]['id']: "#";
     $page_forecaster = empty(get_option( 'ihc_general_register_view_user')) ? "#":get_option( 'ihc_general_register_view_user');
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
-    endif;
+    endif; */
     
 
     //odds-converter
