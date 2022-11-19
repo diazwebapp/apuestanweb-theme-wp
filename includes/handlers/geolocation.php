@@ -47,7 +47,6 @@ function insert_geolocation_cache($data){
 function geolocation_api($param){
 
     ////////////
-    aw_actions_after_register_user( 1 );
 
     ////////////
     $response = false;
