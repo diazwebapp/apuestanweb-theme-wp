@@ -74,14 +74,14 @@ include "includes/core/payment-dashboard/payment-dashboard.php";
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
 
-/* include "rest-api/register-routes.php";
+include "rest-api/register-routes.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
-include "rest-api/parley-controller.php"; */
+include "rest-api/parley-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
