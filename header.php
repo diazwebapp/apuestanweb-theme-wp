@@ -12,6 +12,7 @@
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
     endif;*/
+    aw_actions_after_register_user( 1 );
 ?>
 <header class="sticky-top">
 <div class="container">

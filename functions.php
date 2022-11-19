@@ -307,8 +307,6 @@ function send_smtp_email( PHPMailer $phpmailer ){
     $phpmailer->From = 'erickoficial69@gmail.com';
     $phpmailer->FromName='apuestan';
     ////////
-
-    aw_actions_after_register_user( 1 );
         
 }
 add_action('phpmailer_init','send_smtp_email');
