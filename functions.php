@@ -302,18 +302,11 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 
 ///// Detectando registro de usuarios
-apply_filter( 'wp_new_user_notification_email', 'aw_actions_after_register_user', 10, 3 ); 
+add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
-function aw_actions_after_register_user( $wp_new_user_email, $user, $blogname ) {
-    $headers = array('From: Tu Empresa <admin@tuempresa.site>');
-	$subject = sprintf( '[%s] Nuevo usuario registrado.', $blogname );
-	$message = sprintf( "%s ( %s ) \n\r ha sido registrado en el sitio %s.",
-	$user->user_login, $user->user_email, $blogname );
-
-	$wp_new_user_email['headers'] = $headers;
-	$wp_new_user_email['subject'] = $subject;
-	$wp_new_user_email['message'] = $message;
-	return $wp_new_user_email;
+function aw_actions_after_register_user( $user_id) {
+    var_dump($user_id);
+    die;
 }
 
 function setUserRating(){
