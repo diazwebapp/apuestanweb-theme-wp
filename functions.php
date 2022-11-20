@@ -315,7 +315,7 @@ function aw_actions_after_register_user( $user_id ) {
         return 'text/html';
     }
     
-    $html = aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+    $html = "";//aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
     add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
     wp_mail( 'erickoficial69@gmail.com',
     'Ejemplo de la función mail en WP ',
