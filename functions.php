@@ -306,7 +306,7 @@ add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 );
 
 function aw_actions_after_register_user( $user_id ) {
     $blogname = "";//bloginfo("name");
-    $memberInfo = get_userdata($user_id);
+    $memberInfo = "" ;//get_userdata($user_id);
     $headers[]= 'From: Apuestan <apuestan@gmail.com>';
     $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
     $headers[]= 'Cc: Persona2 <erickoficial69@gmail.com>';
