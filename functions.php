@@ -306,7 +306,6 @@ add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 );
 
 function aw_actions_after_register_user( $user_id) {
     var_dump($user_id);
-    die;
 }
 
 function setUserRating(){
