@@ -14,7 +14,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
     <div style="padding-top:30px"></div>
     </div><span class="im">
     <div style="background:#051421;color:#fff;padding:20px 30px">
-    <div>Thank you, The <a style="color:#fff" href="https://eiihajh.r.bh.d.sendibt3.com/tr/cl/Ngj5s4k92bZoZmKkDIO62inglsLPQaSQjO0Zlq6YaovsEu9jkVxAtJe3rIB8lFBqdKki3rgcMVUEfgjHuisFsEuXaHcKEMeTAWyrb3iDV-xlZd2OfKG9ZlXIrER31CglSgQSLowOs1vEnaiN95IzrptCAha__POAU1aEfyP6E14y7sSsJ7Qcgv-Ns1G1YJzjMpawLBDHgSU" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://eiihajh.r.bh.d.sendibt3.com/tr/cl/Ngj5s4k92bZoZmKkDIO62inglsLPQaSQjO0Zlq6YaovsEu9jkVxAtJe3rIB8lFBqdKki3rgcMVUEfgjHuisFsEuXaHcKEMeTAWyrb3iDV-xlZd2OfKG9ZlXIrER31CglSgQSLowOs1vEnaiN95IzrptCAha__POAU1aEfyP6E14y7sSsJ7Qcgv-Ns1G1YJzjMpawLBDHgSU&amp;source=gmail&amp;ust=1668997801018000&amp;usg=AOvVaw3I5eTgncMe1DcrdO2G8WP2">{blogname}</a> Team</div>
+    <div>Thank you, The <a style="color:#fff" href="https://apuestan.ml">{blogname}</a> Team</div>
     </div>
     </span></div>';
     
