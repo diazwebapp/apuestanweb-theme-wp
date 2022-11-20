@@ -304,7 +304,7 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 ///// Detectando registro de usuarios
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
-function aw_actions_after_register_user( $user_id ) {
+/* function aw_actions_after_register_user( $user_id ) {
     $blogname = "";//bloginfo("name");
     $memberInfo = "" ;//get_userdata($user_id);
     $headers[]= 'From: Apuestan <apuestan@gmail.com>';
@@ -322,7 +322,8 @@ function aw_actions_after_register_user( $user_id ) {
     $html,
     $headers
     );
-}
+} */
+
 function setUserRating(){
     $users = new WP_User_Query([]);
     foreach ($users->get_results() as $user) {
