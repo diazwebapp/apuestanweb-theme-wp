@@ -305,20 +305,20 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
 function aw_actions_after_register_user( $user_id ) {
-    $headers[]= 'From: Apuestan <apuestan@gmail.com>';
-    $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
-    $headers[]= 'Cc: Persona2 <erickoficial69@gmail.com>';
     
     function tipo_de_contenido_html() {
         return 'text/html';
     }
     $memberInfo = get_userdata($user_id);
+    $blogname = bloginfo( "name" );
+    $admin_email = get_option( "admin_email" );
+
+    $headers[]= "From: Apuestan <$admin_email>";
+
+    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+
     add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
-    wp_mail( 'erickoficial69@gmail.com',
-    'Ejemplo de la función mail en WP '.$memberInfo->user_login.' ',
-    '<h1>Correo de apuestan</h1>',
-    $headers
-    );
+    wp_mail( $memberInfo->user_email,"Gracias por registrarte $memberInfo->user_login",$body,$headers);
 }
 
 function setUserRating(){
