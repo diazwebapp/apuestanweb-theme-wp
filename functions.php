@@ -313,12 +313,12 @@ function aw_actions_after_register_user( $user_id ) {
     $blogname = get_bloginfo( "name" );
     $admin_email = get_option( "admin_email" );
 
-    $headers[]= "From: Apuestan <$admin_email>";
+    $headers[]= "From: Apuestan <{$admin_email}>";
 
     $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
 
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
-    wp_mail( $memberInfo->user_email,"Gracias por registrarte $memberInfo->user_login",$body,$headers);
+    wp_mail( "{$memberInfo->user_email}","Gracias por registrarte {$memberInfo->user_login}",$body,$headers);
 }
 
 function setUserRating(){
