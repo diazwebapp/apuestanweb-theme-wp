@@ -15,7 +15,7 @@
     $memberInfo = get_userdata(29);
     $blogname = get_bloginfo( "name" );
     $admin_email = get_option( "admin_email" );
-    //var_dump($admin_email,$blogname,$memberInfo->user_email);
+    var_dump($admin_email,$blogname,$memberInfo->user_email);
 ?>
 <header class="sticky-top">
 <div class="container">
