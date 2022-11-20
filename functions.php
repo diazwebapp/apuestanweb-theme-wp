@@ -14,7 +14,7 @@ include "includes/libs/odds-converter/converter.class.php";
 /*                         SHORTCODES                           */
 /*--------------------------------------------------------------*/
 
-include "includes/shortcodes/shortcode-prices.php";
+/* include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
 include "includes/shortcodes/shortcode-profile-forecaster.php";
 include "includes/shortcodes/shortcode-blog.php";
@@ -31,57 +31,57 @@ include "includes/shortcodes/shortcode-predictions.php";
 include "includes/shortcodes/shortcode-user-stats.php";
 include "includes/shortcodes/shortcode-register-form.php";
 include "includes/shortcodes/shortcode-checkout-form.php";
-include "includes/shortcodes/shortcode-login-form.php";
+include "includes/shortcodes/shortcode-login-form.php"; */
 
 /*--------------------------------------------------------------*/
 /*                         WIDGETS                              */
 /*--------------------------------------------------------------*/
 
-/* include "includes/widgets_area.php";
+include "includes/widgets_area.php";
 include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-forecasts.php";
 include "includes/widgets/widget-bk-bonus.php";
-include "includes/widgets/widget-authors.php"; */
+include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
 /*                         GEOLOCATION API                      */
 /*--------------------------------------------------------------*/
 
-//include "includes/handlers/geolocation.php";
+include "includes/handlers/geolocation.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
 /*--------------------------------------------------------------*/
 
-/* include "includes/ajax_handlers/news_loadmore.php";
+include "includes/ajax_handlers/news_loadmore.php";
 include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
 include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
 include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
-include "includes/handlers/paypal-tools.php"; */
+include "includes/handlers/paypal-tools.php";
 
 /*--------------------------------------------------------------*/
 /*                        TOOLS PANEL ADMIN                     */
 /*--------------------------------------------------------------*/
 
-/* include "includes/core/bookmaker-location-panel/bk-location-panel.php";
-include "includes/core/payment-dashboard/payment-dashboard.php"; */
+include "includes/core/bookmaker-location-panel/bk-location-panel.php";
+include "includes/core/payment-dashboard/payment-dashboard.php";
 
 
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
 
-/*include "rest-api/register-routes.php";
+include "rest-api/register-routes.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
-include "rest-api/parley-controller.php"; */
+include "rest-api/parley-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
