@@ -302,7 +302,7 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 
 ///// Detectando registro de usuarios
-add_filter( 'wp_new_user_notification_email', 'aw_actions_after_register_user', 10, 3 ); 
+apply_filter( 'wp_new_user_notification_email', 'aw_actions_after_register_user', 10, 3 ); 
 
 function aw_actions_after_register_user( $wp_new_user_email, $user, $blogname ) {
     $headers = array('From: Tu Empresa <admin@tuempresa.site>');
@@ -313,9 +313,9 @@ function aw_actions_after_register_user( $wp_new_user_email, $user, $blogname ) 
 	$wp_new_user_email['headers'] = $headers;
 	$wp_new_user_email['subject'] = $subject;
 	$wp_new_user_email['message'] = $message;
+	return $wp_new_user_email;
     var_dump($wp_new_user_email);
     die;
-	return $wp_new_user_email;
 }
 
 function setUserRating(){
