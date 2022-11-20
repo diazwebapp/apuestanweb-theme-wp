@@ -12,7 +12,7 @@
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
     endif;*/
-    $memberInfo = get_userdata($user_id);
+    $memberInfo = get_userdata(29);
     $blogname = bloginfo( "name" );
     $admin_email = get_option( "admin_email" );
     var_dump($admin_email,$blogname,$memberInfo->user_email);
