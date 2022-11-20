@@ -8,7 +8,7 @@ include "includes/core/taxonomy.php";
 include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php";
-//include "includes/templates-emails/template-email-1.php";
+include "includes/templates-emails/template-email-1.php";
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
@@ -315,7 +315,7 @@ function aw_actions_after_register_user( $user_id ) {
         return 'text/html';
     }
     
-    $html = aw_email_templates($params=["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+    $html = aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
     add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
     wp_mail( 'erickoficial69@gmail.com',
     'Ejemplo de la función mail en WP ',
