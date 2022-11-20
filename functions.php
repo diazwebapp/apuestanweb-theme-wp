@@ -304,24 +304,17 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 ///// Detectando registro de usuarios
 add_filter( 'wp_new_user_notification_email', 'aw_actions_after_register_user', 10, 3 ); 
 
-function aw_actions_after_register_user( $user_id ) {
-    $blogname = "";//bloginfo("name");
-    $memberInfo = "" ;//get_userdata($user_id);
-    $headers[]= 'From: Apuestan <apuestan@gmail.com>';
-    $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
-    $headers[]= 'Cc: Persona2 <erickoficial69@gmail.com>';
-    
-    function tipo_de_contenido_html() {
-        return 'text/html';
-    }
-    
-    $html = "";//aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
-    add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
-    wp_mail( 'erickoficial69@gmail.com',
-    'Ejemplo de la función mail en WP ',
-    $html,
-    $headers
-    );
+function aw_actions_after_register_user( $wp_new_user_email, $user, $blogname ) {
+    $headers = array('From: Tu Empresa <admin@tuempresa.site>');
+	$subject = sprintf( '[%s] Nuevo usuario registrado.', $blogname );
+	$message = sprintf( "%s ( %s ) \n\r ha sido registrado en el sitio %s.",
+	$user->user_login, $user->user_email, $blogname );
+
+	$wp_new_user_email['headers'] = $headers;
+	$wp_new_user_email['subject'] = $subject;
+	$wp_new_user_email['message'] = $message;
+
+	return $wp_new_user_email;
 }
 
 function setUserRating(){
