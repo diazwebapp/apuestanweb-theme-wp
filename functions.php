@@ -319,7 +319,7 @@ function aw_actions_after_register_user( $user_id ) {
     add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
     wp_mail( 'erickoficial69@gmail.com',
     'Ejemplo de la función mail en WP ',
-    '<h1>Correo de apuestan</h1>',
+    $html,
     $headers
     );
 }
