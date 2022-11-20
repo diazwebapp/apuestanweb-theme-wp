@@ -304,14 +304,21 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 ///// Detectando registro de usuarios
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
-function aw_actions_after_register_user( $user_id) {
-    // assumes $to, $subject, $message have already been defined earlier...
-    $to = 'diazwebapp@gmail.com';
-    $headers[] = 'From: nohe.zambrano69@gmail.com';
-    $headers[] = 'Cc:erickoficial69@gmail.com';
-    $headers["Content-Type"] = 'text/html; charset=UTF-8'; // html
-
-    wp_mail( $to, $subject, $message, $headers );
+function aw_actions_after_register_user( $user_id ) {
+    $headers[]= 'From: Apuestan <apuestan@gmail.com>';
+    $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
+    $headers[]= 'Cc: Persona2 <erickoficial69@gmail.com>';
+    
+    function tipo_de_contenido_html() {
+        return 'text/html';
+    }
+    $memberInfo = get_userdata($user_id);
+    add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
+    wp_mail( 'erickoficial69@gmail.com',
+    'Ejemplo de la función mail en WP '.$memberInfo->user_login.' ',
+    '<h1>Correo de apuestan</h1>',
+    $headers
+    );
 }
 
 function setUserRating(){
