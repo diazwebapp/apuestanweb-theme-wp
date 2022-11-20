@@ -314,6 +314,7 @@ function aw_actions_after_register_user( $user_id ) {
     $admin_email = get_option( "admin_email" );
 
     $headers[]= "From: Apuestan <$admin_email>";
+    $headers[]= "Cc: $memberInfo->user_email";
 
     $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
 
