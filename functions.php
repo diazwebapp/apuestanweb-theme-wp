@@ -8,7 +8,7 @@ include "includes/core/taxonomy.php";
 include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php";
-include "includes/templates-emails/template-email-1.php";
+//include "includes/templates-emails/template-email-1.php";
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
