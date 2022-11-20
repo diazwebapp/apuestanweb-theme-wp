@@ -7,7 +7,7 @@ include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
-include "includes/libs/odds-converter/converter.class.php";
+include "includes/libs/odds-converter/converter.class.php"; 
 
 
 /*--------------------------------------------------------------*/
