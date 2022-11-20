@@ -302,7 +302,7 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 
 ///// Detectando registro de usuarios
-add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
+add_filter( 'wp_new_user_notification_email', 'aw_actions_after_register_user', 10, 3 ); 
 
 function aw_actions_after_register_user( $user_id ) {
     $blogname = "";//bloginfo("name");
