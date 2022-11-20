@@ -305,7 +305,13 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
 function aw_actions_after_register_user( $user_id) {
-    var_dump($user_id);
+    // assumes $to, $subject, $message have already been defined earlier...
+    $to = 'diazwebapp@gmail.com';
+    $headers[] = 'From: nohe.zambrano69@gmail.com';
+    $headers[] = 'Cc:erickoficial69@gmail.com';
+    $headers["Content-Type"] = 'text/html; charset=UTF-8'; // html
+
+    wp_mail( $to, $subject, $message, $headers );
 }
 
 function setUserRating(){
