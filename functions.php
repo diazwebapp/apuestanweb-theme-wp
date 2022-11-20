@@ -196,7 +196,7 @@ add_action('init', function(){
     date_default_timezone_set('America/Caracas');
 
     //vip page
-    /* $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
+    $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
     if($page_id_vip):
         define('PERMALINK_VIP',get_the_permalink($page_id_vip));
     endif;
@@ -210,7 +210,7 @@ add_action('init', function(){
     $page_forecaster = empty(get_option( 'ihc_general_register_view_user')) ? "#":get_option( 'ihc_general_register_view_user');
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
-    endif; */
+    endif;
     
 
     //odds-converter
