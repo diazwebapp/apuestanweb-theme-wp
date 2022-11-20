@@ -313,7 +313,8 @@ function aw_actions_after_register_user( $wp_new_user_email, $user, $blogname ) 
 	$wp_new_user_email['headers'] = $headers;
 	$wp_new_user_email['subject'] = $subject;
 	$wp_new_user_email['message'] = $message;
-
+    var_dump($wp_new_user_email);
+    die;
 	return $wp_new_user_email;
 }
 
