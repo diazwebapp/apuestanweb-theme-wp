@@ -12,10 +12,12 @@
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
     endif;*/
-    if(isset($_GET['odds_format'])):
-        $_SESSION['odds_format'] = $_GET['odds_format'];
-    else:
+    if(!isset($_SESSION['odds_format'])):
         $_SESSION['odds_format'] = 2;
+    else:
+        if(isset($_GET['odds_format'])):
+            $_SESSION['odds_format'] = $_GET['odds_format'];
+        endif;
     endif;
 ?>
 <header class="sticky-top">
