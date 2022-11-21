@@ -216,10 +216,12 @@ add_action('init', function(){
     //odds-converter
     if(!isset($_SESSION['odds_format'])):
         $_SESSION['odds_format'] = 2;
+    else:
+        if(isset($_GET['odds_format'])):
+            $_SESSION['odds_format'] = $_GET['odds_format'];
+        endif;
     endif;
-    if(isset($_GET['odds_format'])):
-        $_SESSION['odds_format'] = $_GET['odds_format'];
-    endif;
+    
 
     ///////////geolocation
 
