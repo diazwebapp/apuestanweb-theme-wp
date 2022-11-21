@@ -323,63 +323,66 @@ function aw_actions_after_register_user( $user_id ) {
 
 function setUserRating(){
     $users = new WP_User_Query([]);
-    foreach ($users->get_results() as $user) {
-        $ok = 0;
-        $fail = 0;
-        $null = 0;
-        $rank = 0;
-        
-        update_user_meta($user->ID,'rank',$rank);
-        update_user_meta( $user->ID, 'forecast_acerted', $ok);
-        update_user_meta( $user->ID, 'forecast_failed', $fail);
-        update_user_meta( $user->ID, 'forecast_nulled', $null);
-        
-        //Query Args
-        $forecast_args['author'] = $user->ID;
-        $forecast_args['post_type'] = 'forecast';
-        $forecast_args['post_per_page'] = 10;
-        $forecast_args['paged'] = 1;
-        $forecast_args['meta_query']     = [
-            [
-                'key' => 'vip',
-                'value' => 'yes',
-            ]
-        ];
-        
-        $user_posts_query = new WP_Query($forecast_args);
+    var_dump(count($users->get_results()));
+    if($users->get_results()):
+        foreach ($users->get_results() as $user) {
+            $ok = 0;
+            $fail = 0;
+            $null = 0;
+            $rank = 0;
+            
+            update_user_meta($user->ID,'rank',$rank);
+            update_user_meta( $user->ID, 'forecast_acerted', $ok);
+            update_user_meta( $user->ID, 'forecast_failed', $fail);
+            update_user_meta( $user->ID, 'forecast_nulled', $null);
+            
+            //Query Args
+            $forecast_args['author'] = $user->ID;
+            $forecast_args['post_type'] = 'forecast';
+            $forecast_args['post_per_page'] = 10;
+            $forecast_args['paged'] = 1;
+            $forecast_args['meta_query']     = [
+                [
+                    'key' => 'vip',
+                    'value' => 'yes',
+                ]
+            ];
+            
+            $user_posts_query = new WP_Query($forecast_args);
 
-        if($user_posts_query->have_posts()):
-            //Loop de los forecasts del autor
-            while($user_posts_query->have_posts()): $user_posts_query->the_post();
-                
-                $status = carbon_get_post_meta(get_the_ID(), 'status');
-                $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
-                if($predictions and count($predictions) > 0):
-                    if($status and $status == 'ok'):
-                        $ok++;
-                        $cuote = floatval($predictions[0]['cuote']);
-                        $tvalue = floatval($predictions[0]['tvalue']);
-                        $inversion = $tvalue * 100;
-                        $rank += $inversion * $cuote - $inversion;
-                        update_user_meta( $user->ID, 'forecast_acerted', $ok);
-                        update_user_meta( $user->ID, 'rank', $rank);
+            if($user_posts_query->have_posts()):
+                //Loop de los forecasts del autor
+                while($user_posts_query->have_posts()): $user_posts_query->the_post();
+                    
+                    $status = carbon_get_post_meta(get_the_ID(), 'status');
+                    $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
+                    if($predictions and count($predictions) > 0):
+                        if($status and $status == 'ok'):
+                            $ok++;
+                            $cuote = floatval($predictions[0]['cuote']);
+                            $tvalue = floatval($predictions[0]['tvalue']);
+                            $inversion = $tvalue * 100;
+                            $rank += $inversion * $cuote - $inversion;
+                            update_user_meta( $user->ID, 'forecast_acerted', $ok);
+                            update_user_meta( $user->ID, 'rank', $rank);
+                        endif;
+                        if($status and $status == 'fail'):
+                            $fail++;
+                            $cuote = floatval($predictions[0]['cuote']);
+                            $tvalue = floatval($predictions[0]['tvalue']);
+                            $inversion = $tvalue * 100;
+                            $rank -= $inversion;
+                            update_user_meta( $user->ID, 'forecast_failed', $fail);
+                            update_user_meta( $user->ID, 'rank', $rank);
+                        endif;
+                        if($status and $status == 'null'):
+                            $null++;
+                            update_user_meta( $user->ID, 'forecast_nulled', $null);
+                        endif;
                     endif;
-                    if($status and $status == 'fail'):
-                        $fail++;
-                        $cuote = floatval($predictions[0]['cuote']);
-                        $tvalue = floatval($predictions[0]['tvalue']);
-                        $inversion = $tvalue * 100;
-                        $rank -= $inversion;
-                        update_user_meta( $user->ID, 'forecast_failed', $fail);
-                        update_user_meta( $user->ID, 'rank', $rank);
-                    endif;
-                    if($status and $status == 'null'):
-                        $null++;
-                        update_user_meta( $user->ID, 'forecast_nulled', $null);
-                    endif;
-                endif;
-            endwhile;
-        endif;
+                endwhile;
+            endif;
 
-    }
+        }
+    endif;
 }

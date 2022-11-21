@@ -48,7 +48,7 @@ if(!isset($aw_system_location)):
     $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
 endif;
 $html_predictions = '';
-
+var_dump($_SESSION['odds_format']);
 if(!empty($predictions)):
     $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title'] : '';
     $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote'] : 1;
