@@ -56,7 +56,8 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
             
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
-            const response = await request.text()
+            const response = await request.json()
+            console.log(response)
             if(response !== 'no mas'){
                 div_game_list.innerHTML = response
                 let date_items = document.querySelectorAll('.date_item_pronostico_top');
