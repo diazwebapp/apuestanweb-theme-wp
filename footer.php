@@ -38,6 +38,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </ul>
                     <!--menu end-->
                 </div>
+                <?php var_dump($_SESSION['odds_format']); ?>
                 <div class="col-lg-2 col-6 mt_20 text-right">
                     <select id="select_odds_format" class="nice-select">
                         <option value="2" <?php if($_SESSION['odds_format']=='2'): echo "selected"; endif; ?> >decimal</option>
