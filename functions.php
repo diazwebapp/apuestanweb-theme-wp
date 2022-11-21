@@ -212,6 +212,13 @@ add_action('init', function(){
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;
     
+    // ODDS
+    if(!isset($_SESSION['odds_format'])):
+        $_SESSION['odds_format'] = 2;
+    endif;
+    if(isset($_GET['odds_format'])):
+        $_SESSION['odds_format'] = $_GET['odds_format'];
+    endif;
 
     ///////////geolocation
 

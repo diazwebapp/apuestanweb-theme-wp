@@ -17,6 +17,7 @@ function shortcode_forecast($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
+    $odds = $_SESSION['odds_format'];
 
     if(is_page() && !$title)
         $title = get_the_title( );
@@ -79,6 +80,7 @@ function shortcode_forecast($atts)
     $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts');
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
+    $args['odds'] = $odds;
     $args['exclude_post'] = null;
     $post_type = get_post_type( );
     if($post_type == "forecast" and is_single()):
@@ -95,6 +97,7 @@ function shortcode_forecast($atts)
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
+    $params .= "&odds=$odds";
 
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
