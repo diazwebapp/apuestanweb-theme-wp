@@ -44,7 +44,7 @@ echo "<div class='parley_wrapper'>
             $permalink_event = get_the_permalink($event['id']);
             $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
             $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
-            
+
             $oOddsConverter = new Converter($prediction['cuote'], 'eu');
             $odds_result = $oOddsConverter->doConverting();
             $prediction['cuote'] = $odds_result[$args["odds"]];
@@ -151,7 +151,7 @@ echo "<div class='parley_wrapper'>
                         
                     </div>
                     <div class='gana_box parley_right_content2_mb'>
-                    <input type='hidden' id='jscuote_$parley_id' value='$parley_cuotes'/>
+                    <input type='hidden' class='jscuote_$parley_id' value='$parley_cuotes'/>
                        <p>Gana: $ <span id='jsresult_$parley_id' >". round($parley_cuotes * 10,2) ."</span></p>
                     </div>
                     <div class='parley_left_content2 parley_right_content2_mb d-md-none d-block'>
