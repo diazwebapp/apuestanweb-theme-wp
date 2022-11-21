@@ -118,7 +118,7 @@ function shortcode_forecast($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
         
-        if($paginate=='yes' and $query != 'no mas'):
+        if($paginate=='yes' and $data_json->status == 'ok'):
 
             $ret .="<div class='container container_pagination text-md-center'>
                 <br/>

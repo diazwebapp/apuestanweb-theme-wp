@@ -42,7 +42,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     
    
     $query = new WP_Query($args);
-    $loop_html = '';
+    $loop_html = ["status" => 'ok',"html"=>''];
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $params['text_vip_link'],
@@ -52,7 +52,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     if($query->posts):
         foreach($query->posts as $forecast):
             if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
-                $loop_html .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
+                $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
@@ -60,7 +60,7 @@ function aw_get_forecasts(WP_REST_Request $request){
                 ]);
             endif;
             if(!isset($params["exclude_post"])):
-                $loop_html .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
+                $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
@@ -69,9 +69,10 @@ function aw_get_forecasts(WP_REST_Request $request){
             endif;
         endforeach;
     else:
-        $loop_html = '<div class="mt-5 alert alert-primary mx-auto" role="alert"><div>Sin pronósticos disponibles, regresa más tarde! <a href="https://www.apuestan.com/" class="alert-link">Ir al Inicio</a></div></div>';
+        $loop_html["status"] = 'fail';
+        $loop_html["html"] = '<div class="mt-5 alert alert-primary mx-auto" role="alert"><div>Sin pronósticos disponibles, regresa más tarde! <a href="https://www.apuestan.com/" class="alert-link">Ir al Inicio</a></div></div>';
     endif;
-    return json_decode(json_encode(["status" => 'ok',"html"=>"<h2>mmm</h2>"]));
+    return json_decode(json_encode($loop_html));
 }
 
 function aw_get_forecasts_vip(WP_REST_Request $request){
