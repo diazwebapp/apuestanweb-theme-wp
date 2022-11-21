@@ -26,6 +26,7 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
             const response = await request.json()
+            console.log(response.max_pages)
             if(response.status == 'ok'){
                 div_game_list.innerHTML += response.html
                 e.target.textContent = previus_text 
