@@ -16,6 +16,7 @@ function shortcode_forecast_vip($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
+    $odds = $_SESSION['odds_format'];
     
     //default title
     if(is_page() && !$title)
@@ -78,6 +79,7 @@ function shortcode_forecast_vip($atts)
     $args['text_vip_link'] = $text_vip_link;
     $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts/vip');
     $args['country_code'] = $geolocation->country_code;
+    $args['odds'] = $odds;
     $args['timezone'] = $geolocation->timezone;
 
     $params = "?paged=".$args['paged'];
@@ -90,7 +92,7 @@ function shortcode_forecast_vip($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
-
+    $params .= "&odds=$odds";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     

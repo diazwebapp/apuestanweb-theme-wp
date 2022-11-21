@@ -15,6 +15,7 @@ function shortcode_parley($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
+    $odds = $_SESSION['odds_format'];
 
     if(is_page() && !$title)
         $title = get_the_title( );
@@ -76,7 +77,8 @@ function shortcode_parley($atts)
     $args['rest_uri'] = get_rest_url(null,'aw-parley/parley');
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
-    $args['post__not_in'] = null;
+    $args['odds'] = $odds;
+    $args['exclude_parley'] = null;
     if(is_single() or is_singular()):
         $args['post__not_in']   = [get_the_ID()];
     endif;
@@ -90,7 +92,8 @@ function shortcode_parley($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
-    $params .= isset($args['post__not_in']) ? "&post__not_in={$args['post__not_in']}":"";
+    $params .= isset($args['exclude_parley']) ? "&exclude_parley={$args['exclude_parley']}":"";
+    $params .= "&odds=$odds";
 
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));

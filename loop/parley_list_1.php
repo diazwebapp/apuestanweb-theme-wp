@@ -72,7 +72,7 @@ echo "<div class='parley_wrapper'>
             if(is_float($prediction['cuote'])):
                 $oOddsConverter = new Converter($prediction['cuote'], 'eu');
                 $odds_result = $oOddsConverter->doConverting();
-                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+                $prediction['cuote'] = $odds_result[$args["odds"]];
             endif;
 
 
