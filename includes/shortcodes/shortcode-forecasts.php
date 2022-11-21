@@ -112,8 +112,8 @@ function shortcode_forecast($atts)
         $loop_html = ''; 
         $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
         $data_json = json_decode($query);
-        var_dump($data_json["html"]);
-        $loop_html = $data_json["html"];
+        var_dump($data_json->html);
+        $loop_html = $data_json->html;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
