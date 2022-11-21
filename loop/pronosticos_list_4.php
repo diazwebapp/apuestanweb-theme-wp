@@ -33,7 +33,7 @@ $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
 $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 0;
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($$args["timezone"]));
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 //Componente si es vip
 
 $vipcomponent ="<div class='plogo'>
