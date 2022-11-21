@@ -65,7 +65,7 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
                     init_countdown(date_items)
                 }  
             }else{
-                div_game_list.innerHTML = "nó hay eventos"
+                div_game_list.innerHTML = response.html
             }
         })
     }
