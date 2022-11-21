@@ -76,7 +76,6 @@ function parley_calc_cuotes(param){
     let cuote = document.querySelector(`#jscuote_${current_parley }`)
     let result = document.querySelector(`#jsresult_${current_parley }`)
     if(cuote && result){
-        console.log(cuote)
         let final_cuote = parseFloat(cuote.value) * parseFloat(amount)
         result.innerHTML = final_cuote.toFixed(2)
     }
