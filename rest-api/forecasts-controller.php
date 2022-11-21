@@ -69,8 +69,9 @@ function aw_get_forecasts(WP_REST_Request $request){
             endif;
         endforeach;
     else:
+        $home_url = get_home_url( null, '/', null );
         $loop_html["status"] = 'fail';
-        $loop_html["html"] = '<div class="mt-5 alert alert-primary mx-auto" role="alert"><div>Sin pronósticos disponibles, regresa más tarde! <a href="https://www.apuestan.com/" class="alert-link">Ir al Inicio</a></div></div>';
+        $loop_html["html"] = '<div class="mt-5 alert alert-primary mx-auto" role="alert"><div>Sin pronósticos disponibles, regresa más tarde! <a href="'.$home_url.'" class="alert-link">Ir al Inicio</a></div></div>';
     endif;
     return json_decode(json_encode($loop_html));
 }
