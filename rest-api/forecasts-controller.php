@@ -56,7 +56,7 @@ function aw_get_forecasts(WP_REST_Request $request){
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => $_SESSION["odds_format"]
+                    "odds" => isset($params['odds']) ? $params['odds'] : null
                 ]);
             endif;
             if(!isset($params["exclude_post"])):
@@ -64,7 +64,7 @@ function aw_get_forecasts(WP_REST_Request $request){
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => $_SESSION["odds_format"]
+                    "odds" => isset($params['odds']) ? $params['odds'] : null
                 ]);
             endif;
         endforeach;
