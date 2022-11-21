@@ -25,15 +25,16 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
             
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
-            const response = await request.text()
-            if(response !== 'no mas'){
-                div_game_list.innerHTML += response
+            const response = await request.json()
+            if(response.status == 'ok'){
+                div_game_list.innerHTML += response.html
                 e.target.textContent = previus_text 
                 let date_items = document.querySelectorAll('.date_item_pronostico_top');
                 if(date_items.length > 0){
                     init_countdown(date_items)
                 }               
             }else{
+                div_game_list.innerHTML = response.html
                 e.target.remove()
             }
         })
@@ -57,9 +58,8 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
             const response = await request.json()
-            console.log(response)
-            if(response !== 'no mas'){
-                div_game_list.innerHTML = response
+            if(response.status == 'ok'){
+                div_game_list.innerHTML = response.html
                 let date_items = document.querySelectorAll('.date_item_pronostico_top');
                 if(date_items.length > 0){
                     init_countdown(date_items)
