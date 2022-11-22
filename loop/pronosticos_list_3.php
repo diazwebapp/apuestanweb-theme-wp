@@ -55,7 +55,7 @@ if(!empty($predictions)):
 
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
-    var_dump("params = ".$args);
+    var_dump($args);
     $prediction['cuote'] = $odds_result[$args["odds"]];
 
     $html_predictions = "<div class='event2_box_middle_heading'>
