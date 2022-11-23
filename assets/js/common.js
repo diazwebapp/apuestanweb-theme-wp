@@ -201,14 +201,16 @@ async function filter_date_items(e){
         if(response.max_pages > 1){
             div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
         }else{
-            document.querySelector("#btn_load_more_"+class_item) ? document.querySelector("#btn_load_more_"+class_item).remove() : null
+            console.log(document.querySelector("#btn_load_more_"+class_item))
+            //document.querySelector("#btn_load_more_"+class_item) ? document.querySelector("#btn_load_more_"+class_item).remove() : null
         }
         if(date_items.length > 0){
             init_countdown(date_items)
         }  
     }else{
         div_game_list.innerHTML = response.html
-        document.querySelector("#btn_load_more_"+class_item) ? document.querySelector("#btn_load_more_"+class_item).remove() : null
+        console.log(document.querySelector("#btn_load_more_"+class_item))
+        //document.querySelector("#btn_load_more_"+class_item) ? document.querySelector("#btn_load_more_"+class_item).remove() : null
 
     }
 }
