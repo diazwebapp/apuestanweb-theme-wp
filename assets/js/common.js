@@ -208,6 +208,5 @@ async function filter_date_items(e){
     }else{
         div_game_list.innerHTML = response.html
         document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
-
     }
 }
