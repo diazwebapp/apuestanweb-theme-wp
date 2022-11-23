@@ -224,8 +224,8 @@ const aw_activate_membership = async({lid})=>{
 }
 
 async function load_more_items(e){
-    const previus_text = e.target.textContent
-    e.target.textContent = 'loading...'
+    const previus_text = e.textContent
+    e.textContent = 'loading...'
     forecasts_fetch_vars.paged++
     let params = "?paged="+forecasts_fetch_vars.paged;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
@@ -242,17 +242,17 @@ async function load_more_items(e){
     const response = await request.json()
     
     if(response.max_pages == forecasts_fetch_vars.paged){
-        e.target.remove()
+        e.remove()
     }
     if(response.status == 'ok'){
         div_game_list.innerHTML += response.html
-        e.target.textContent = previus_text 
+        e.textContent = previus_text 
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
         if(date_items.length > 0){
             init_countdown(date_items)
         }               
     }else{
         div_game_list.innerHTML = response.html
-        e.target.remove()
+        e.remove()
     }
 }
