@@ -7,7 +7,7 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
     const btn_load_more_forecasts = document.querySelector('button.loadmore.forecasts')
     const div_game_list = document.querySelector('#games_list')
-    
+    const div_container_pagination_forecasts = document.querySelector('.container_pagination')
     if(btn_load_more_forecasts){
         btn_load_more_forecasts.addEventListener("click",async e =>{
             const previus_text = e.target.textContent
@@ -62,6 +62,7 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
             const response = await request.json()
+            console.log(response)
             if(response.status == 'ok'){
                 div_game_list.innerHTML = response.html
                 let date_items = document.querySelectorAll('.date_item_pronostico_top');
