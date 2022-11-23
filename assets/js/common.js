@@ -193,9 +193,9 @@ async function filter_date_items(e){
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
 
-    let class_item = forecasts_fetch_vars.btn_load_more.getAttribute('class')
+    let class_item =  document.querySelector('.loadmore_forecast') ? document.querySelector('.loadmore_forecast').getAttribute('class') : null
     console.log(class_item)
-    
+   
     if(response.status == 'ok'){
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
