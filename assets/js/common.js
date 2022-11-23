@@ -221,7 +221,7 @@ async function load_more_items(e){
 }
 async function filter_date_items(e){
     forecasts_fetch_vars.date = e.value
-    let params = "?paged="+forecasts_fetch_vars.paged;
+    let params = "?paged="+1;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
     params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
     params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
