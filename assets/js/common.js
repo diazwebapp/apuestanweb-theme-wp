@@ -191,10 +191,10 @@ async function filter_date_items(e){
     params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
     params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
     params += "&odds="+forecasts_fetch_vars.odds;
-    
+
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
-    
+    console.log(response)
     let class_item =  e.getAttribute('data-type') 
     const div_container_pagination_forecasts = document.querySelector('.container_pagination_'+class_item)
     if(response.status == 'ok'){
