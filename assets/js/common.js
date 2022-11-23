@@ -231,9 +231,9 @@ async function filter_date_items(e){
     params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
     params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
     params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
-    console.log(params)
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
+    console.log(params,response)
     
     if(response.max_pages > 0){
         div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
