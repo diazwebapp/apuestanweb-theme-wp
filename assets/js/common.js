@@ -208,5 +208,7 @@ async function filter_date_items(e){
         }  
     }else{
         div_game_list.innerHTML = response.html
+        document.querySelector("#btn_load_more_"+class_item) ? document.querySelector("#btn_load_more_"+class_item).remove() : null
+
     }
 }
