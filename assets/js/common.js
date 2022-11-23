@@ -220,8 +220,6 @@ async function load_more_items(e){
     }
 }
 async function filter_date_items(e){
-    console.log(e)
-    return
     forecasts_fetch_vars.date = e.value
     let params = "?paged="+forecasts_fetch_vars.paged;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
@@ -233,7 +231,7 @@ async function filter_date_items(e){
     params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
     params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
     params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
-    
+    console.log(params)
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
     if(response.max_pages == forecasts_fetch_vars.paged){
