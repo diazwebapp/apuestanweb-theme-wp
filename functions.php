@@ -213,11 +213,11 @@ add_action('init', function(){
     endif;
     
     // ODDS
-    if(!isset($_SESSION['odds_format'])):
-        $_SESSION['odds_format'] = 2;
+    if(!get_option( "odds_type")):
+        add_option( "odds_type", 2);
     endif;
     if(isset($_GET['odds_format'])):
-        $_SESSION['odds_format'] = $_GET['odds_format'];
+        update_option( "odds_type", $_GET['odds_format']);
     endif;
 
     ///////////geolocation

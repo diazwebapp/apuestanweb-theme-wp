@@ -17,8 +17,8 @@ function shortcode_forecast($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
-    $odds = $_SESSION['odds_format'];
-    
+    $odds = get_option( 'odds_type' );
+    var_dump($odds);
     if(is_page() && !$title)
         $title = get_the_title( );
     if(is_post_type_archive() && !$title)
@@ -98,7 +98,6 @@ function shortcode_forecast($atts)
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
     $params .= "&odds=$odds";
-
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
