@@ -48,37 +48,7 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
 //////////////FILTRADO DE FECHAS EN PRONOSTICOS
     const select_filter_forecasts = document.querySelector('#element_select_forecasts')
     if(select_filter_forecasts){
-        select_filter_forecasts.addEventListener('change',async e =>{
-            forecasts_fetch_vars.date = e.target.value
-            let params = "?paged="+forecasts_fetch_vars.paged;
-            params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
-            params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
-            params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
-            params += "&model="+forecasts_fetch_vars.model;
-            params += forecasts_fetch_vars.time_format ? "&time_format="+forecasts_fetch_vars.time_format:"";
-            params += forecasts_fetch_vars.country_code ? "&country_code="+forecasts_fetch_vars.country_code:"";
-            params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
-            params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
-            params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
-            
-            const request = await fetch(forecasts_fetch_vars.rest_uri+params)
-            const response = await request.json()
-            if(response.max_pages == forecasts_fetch_vars.paged){
-                btn_load_more_forecasts.remove()
-            }else{
-                console.log(forecasts_fetch_vars.btn_load_more)
-                div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
-            }
-            if(response.status == 'ok'){
-                div_game_list.innerHTML = response.html
-                let date_items = document.querySelectorAll('.date_item_pronostico_top');
-                if(date_items.length > 0){
-                    init_countdown(date_items)
-                }  
-            }else{
-                div_game_list.innerHTML = response.html
-            }
-        })
+        
     }
 
 ///////////////////////////////// 
@@ -92,8 +62,6 @@ function parley_calc_cuotes(param){
         result.innerHTML = final_cuote.toFixed(2)
     }
 }
-
-
 function updateCountdown(html_element) {
     const INPUT_DATE = html_element.querySelector('#date');
     const SPAN_DAYS = html_element.querySelector('#date_dias');
@@ -135,7 +103,6 @@ function updateCountdown(html_element) {
         }
     }
 }
-
 function init_countdown(date_items){
     date_items.forEach(item=>{
         setInterval(()=>{
@@ -146,7 +113,6 @@ function init_countdown(date_items){
 if(date_items.length > 0){
     init_countdown(date_items)
 }
-
 function handler_odds_format(e){
     let format = e.target.value
     document.location = '?odds_format='+format
@@ -194,7 +160,6 @@ const aw_detect_user_level = async (e)=>{
     e.textContent = text_btn
     e.disabled = false
 }
-
 const aw_check_user_level = async ({lid})=>{
     const {rest_uri} = php_js_prices
     const uri = rest_uri + 'aw-user-levels/check-user-level/'
@@ -208,7 +173,6 @@ const aw_check_user_level = async ({lid})=>{
     const resp = await req.json()
     return resp
 }
-
 const aw_activate_membership = async({lid})=>{
     const {rest_uri} = php_js_prices
     const uri = rest_uri + 'aw-user-levels/user-level-opeations/'
@@ -222,7 +186,6 @@ const aw_activate_membership = async({lid})=>{
     const resp = await req.json()
     return resp
 }
-
 async function load_more_items(e){
     const previus_text = e.textContent
     e.textContent = 'loading...'
@@ -254,5 +217,38 @@ async function load_more_items(e){
     }else{
         div_game_list.innerHTML = response.html
         e.remove()
+    }
+}
+async function filter_date_items(e){
+    console.log(e)
+    return
+    forecasts_fetch_vars.date = e.value
+    let params = "?paged="+forecasts_fetch_vars.paged;
+    params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
+    params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
+    params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
+    params += "&model="+forecasts_fetch_vars.model;
+    params += forecasts_fetch_vars.time_format ? "&time_format="+forecasts_fetch_vars.time_format:"";
+    params += forecasts_fetch_vars.country_code ? "&country_code="+forecasts_fetch_vars.country_code:"";
+    params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
+    params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
+    params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
+    
+    const request = await fetch(forecasts_fetch_vars.rest_uri+params)
+    const response = await request.json()
+    if(response.max_pages == forecasts_fetch_vars.paged){
+        btn_load_more_forecasts.remove()
+    }else{
+        console.log(forecasts_fetch_vars.btn_load_more)
+        div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
+    }
+    if(response.status == 'ok'){
+        div_game_list.innerHTML = response.html
+        let date_items = document.querySelectorAll('.date_item_pronostico_top');
+        if(date_items.length > 0){
+            init_countdown(date_items)
+        }  
+    }else{
+        div_game_list.innerHTML = response.html
     }
 }

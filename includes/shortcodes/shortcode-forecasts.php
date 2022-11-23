@@ -36,7 +36,7 @@ function shortcode_forecast($atts)
                     <h1 class='title mt_30 order-lg-1'>".(isset($title) ? $title : '')."</h1>
                     <div class='mt_30 dropd order-lg-3'>
                         <div class='blog_select_box'>
-                            <select name='ord' id='element_select_forecasts'>
+                            <select name='ord' id='element_select_forecasts' onchange='filter_date_items(this)'>
                                 <option value=''>Ordenar</option>
                                 <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
                                 <option value='hoy' ".( $date == 'hoy' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
