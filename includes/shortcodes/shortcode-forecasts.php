@@ -125,7 +125,6 @@ function shortcode_forecast($atts)
             $ret .="<button class='loadmore forecasts btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
         endif;
         $ret .="
-                <button class='loadmore forecasts btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>
                 <br/>
             </div>";
     } else {
