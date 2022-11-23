@@ -65,8 +65,8 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             if(response.max_pages == forecasts_fetch_vars.paged){
                 btn_load_more_forecasts.remove()
             }else{
-                console.log(btn_load_more_forecasts)
-                div_container_pagination_forecasts.append(btn_load_more_forecasts)
+                console.log(forecasts_fetch_vars.btn_load_more)
+                div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
             }
             if(response.status == 'ok'){
                 div_game_list.innerHTML = response.html
