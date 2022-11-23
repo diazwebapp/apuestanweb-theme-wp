@@ -62,6 +62,11 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
             
             const request = await fetch(forecasts_fetch_vars.rest_uri+params)
             const response = await request.json()
+            if(response.max_pages == forecasts_fetch_vars.paged){
+                btn_load_more_forecasts.remove()
+            }else{
+                div_container_pagination_forecasts.innerHTML = btn_load_more_forecasts
+            }
             console.log(response)
             if(response.status == 'ok'){
                 div_game_list.innerHTML = response.html
