@@ -6,7 +6,6 @@ $(document).ready(function () {
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
 const div_game_list = document.querySelector('#games_list')
-const div_container_pagination_forecasts = document.querySelector('.container_pagination')
     
 //////////////FILTRADO DE FECHAS EN PRONOSTICOS
 
@@ -194,7 +193,7 @@ async function filter_date_items(e){
     const response = await request.json()
 
     let class_item =  e.getAttribute('data-type') 
-   
+    const div_container_pagination_forecasts = document.querySelector('.container_pagination_'+class_item)
     if(response.status == 'ok'){
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
