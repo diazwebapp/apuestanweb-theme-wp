@@ -116,7 +116,7 @@ function shortcode_forecast($atts)
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
-        
+        var_dump($data_json);
         if($paginate=='yes' and $data_json->status == 'ok'):
 
             $ret .="<div class='container container_pagination text-md-center'>
