@@ -193,7 +193,7 @@ async function filter_date_items(e){
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
 
-    let class_item =  document.querySelector('.loadmore_forecast') ? document.querySelector('.loadmore_forecast').getAttribute('class') : null
+    let class_item =  document.querySelector('.loadmore_forecast') ? document.querySelector('.loadmore_forecast').getAttribute('data-type') : null
     console.log(class_item)
    
     if(response.status == 'ok'){
