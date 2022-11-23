@@ -120,7 +120,7 @@ function shortcode_forecast($atts)
         $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
                 <br/>";
-        if($paginate=='yes' and $data_json->status == 'ok'):
+        if($paginate=='yes' and $data_json->max_pages > 0):
 
             $ret .="<button class='loadmore forecasts btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
         endif;
