@@ -15,7 +15,7 @@ function shortcode_parley($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
-    $odds = $_SESSION['odds_format'];
+    $odds = get_option( 'odds_type' );
 
     if(is_page() && !$title)
         $title = get_the_title( );

@@ -16,7 +16,7 @@ function shortcode_forecast_vip($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
-    $odds = $_SESSION['odds_format'];
+    $odds = get_option( 'odds_type' );
     
     //default title
     if(is_page() && !$title)

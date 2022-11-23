@@ -51,7 +51,7 @@ endif;
             foreach($predictions as $prediction):
                 $oOddsConverter = new Converter($prediction['cuote'], 'eu');
                 $odds_result = $oOddsConverter->doConverting();
-                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+                $prediction['cuote'] = $odds_result[get_option( 'odds_type' )];
 
                 $ret .= "<div class='single_event_match_title_box'>
                             <div class='tip-p row mx-1 px-4 py-4'>
