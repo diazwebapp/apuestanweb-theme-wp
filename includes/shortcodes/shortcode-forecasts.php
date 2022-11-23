@@ -82,7 +82,7 @@ function shortcode_forecast($atts)
     $args['timezone'] = $geolocation->timezone;
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' class='loadmore forecasts btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' class='loadmore_forecast btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
     $post_type = get_post_type( );
     if($post_type == "forecast" and is_single()):
         $args['exclude_post']   = get_the_ID();
@@ -118,7 +118,7 @@ function shortcode_forecast($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
         
-        $ret .="<div class='container container_pagination text-md-center'>
+        $ret .="<div class='container container_pagination_forecast text-md-center'>
                 <br/>
                 <br/>";
         if($paginate=='yes' and $data_json->max_pages > 1):

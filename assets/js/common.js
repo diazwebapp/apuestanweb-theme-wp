@@ -5,51 +5,10 @@ $(document).ready(function () {
 });
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
-    let btn_load_more_forecasts = document.querySelector('button.loadmore.forecasts')
-    const div_game_list = document.querySelector('#games_list')
-    const div_container_pagination_forecasts = document.querySelector('.container_pagination')
-    if(btn_load_more_forecasts){
-        /* btn_load_more_forecasts.addEventListener("click",async e =>{
-            const previus_text = e.target.textContent
-            e.target.textContent = 'loading...'
-            forecasts_fetch_vars.paged++
-            let params = "?paged="+forecasts_fetch_vars.paged;
-            params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
-            params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
-            params += forecasts_fetch_vars.date ? "&date="+forecasts_fetch_vars.date:"";
-            params += "&model="+forecasts_fetch_vars.model;
-            params += forecasts_fetch_vars.time_format ? "&time_format="+forecasts_fetch_vars.time_format:"";
-            params += forecasts_fetch_vars.country_code ? "&country_code="+forecasts_fetch_vars.country_code:"";
-            params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
-            params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
-            params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
-            
-            const request = await fetch(forecasts_fetch_vars.rest_uri+params)
-            const response = await request.json()
-            
-            if(response.max_pages == forecasts_fetch_vars.paged){
-                e.target.remove()
-            }
-            if(response.status == 'ok'){
-                div_game_list.innerHTML += response.html
-                e.target.textContent = previus_text 
-                let date_items = document.querySelectorAll('.date_item_pronostico_top');
-                if(date_items.length > 0){
-                    init_countdown(date_items)
-                }               
-            }else{
-                div_game_list.innerHTML = response.html
-                e.target.remove()
-            }
-        }) */
-        
-    }
+const div_game_list = document.querySelector('#games_list')
+const div_container_pagination_forecasts = document.querySelector('.container_pagination')
     
 //////////////FILTRADO DE FECHAS EN PRONOSTICOS
-    const select_filter_forecasts = document.querySelector('#element_select_forecasts')
-    if(select_filter_forecasts){
-        
-    }
 
 ///////////////////////////////// 
 function parley_calc_cuotes(param){
@@ -233,17 +192,18 @@ async function filter_date_items(e){
     params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
-    console.log(params,response)
-    
-    if(response.max_pages > 1){
-        div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
-    }else{
-        
-    }
 
+    let class_item = forecasts_fetch_vars.btn_load_more.getAttribute('class')
+    console.log(class_item)
+    
     if(response.status == 'ok'){
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
+        if(response.max_pages > 1){
+            div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
+        }else{
+            
+        }
         if(date_items.length > 0){
             init_countdown(date_items)
         }  
