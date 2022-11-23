@@ -224,8 +224,6 @@ const aw_activate_membership = async({lid})=>{
 }
 
 async function load_more_items(e){
-    console.log(e)
-    return
     const previus_text = e.target.textContent
     e.target.textContent = 'loading...'
     forecasts_fetch_vars.paged++
