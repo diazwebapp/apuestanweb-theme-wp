@@ -18,7 +18,7 @@ function shortcode_forecast($atts)
 
     $geolocation = json_decode($_SESSION["geolocation"]);
     $odds = get_option( 'odds_type' );
-    var_dump($odds);
+    
     if(is_page() && !$title)
         $title = get_the_title( );
     if(is_post_type_archive() && !$title)
