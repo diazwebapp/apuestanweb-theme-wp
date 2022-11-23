@@ -235,7 +235,7 @@ async function filter_date_items(e){
     const response = await request.json()
     console.log(params,response)
     
-    if(response.max_pages > 0){
+    if(response.max_pages > 1){
         div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
     }
 
