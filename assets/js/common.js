@@ -237,6 +237,8 @@ async function filter_date_items(e){
     
     if(response.max_pages > 1){
         div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
+    }else{
+        
     }
 
     if(response.status == 'ok'){

@@ -121,7 +121,7 @@ function shortcode_forecast($atts)
         $ret .="<div class='container container_pagination text-md-center'>
                 <br/>
                 <br/>";
-        if($paginate=='yes' and $data_json->max_pages > 0):
+        if($paginate=='yes' and $data_json->max_pages > 1):
 
             $ret .=$args['btn_load_more'];
         endif;
