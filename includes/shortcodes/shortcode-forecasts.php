@@ -36,7 +36,7 @@ function shortcode_forecast($atts)
                     <h1 class='title mt_30 order-lg-1'>".(isset($title) ? $title : '')."</h1>
                     <div class='mt_30 dropd order-lg-3'>
                         <div class='blog_select_box'>
-                            <select name='ord' id='element_select_forecasts' onchange='filter_date_items(this)'>
+                            <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)'>
                                 <option value=''>Ordenar</option>
                                 <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
                                 <option value='hoy' ".( $date == 'hoy' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
@@ -82,7 +82,7 @@ function shortcode_forecast($atts)
     $args['timezone'] = $geolocation->timezone;
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' class='loadmore_forecast btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadmore btn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
     $post_type = get_post_type( );
     if($post_type == "forecast" and is_single()):
         $args['exclude_post']   = get_the_ID();
