@@ -234,12 +234,11 @@ async function filter_date_items(e){
     console.log(params)
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
-    if(response.max_pages == forecasts_fetch_vars.paged){
-        btn_load_more_forecasts.remove()
-    }else{
-        console.log(forecasts_fetch_vars.btn_load_more)
+    
+    if(response.max_pages > 0){
         div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
     }
+
     if(response.status == 'ok'){
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
