@@ -83,6 +83,7 @@ function shortcode_forecast($atts)
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
     $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    
     $post_type = get_post_type( );
     if($post_type == "forecast" and is_single()):
         $args['exclude_post']   = get_the_ID();

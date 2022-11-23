@@ -38,7 +38,7 @@ function aw_get_parleys(WP_REST_Request $request){
             ];
     }
     $query = new WP_Query($args);
-    $loop_html = '';
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
     
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
@@ -48,28 +48,10 @@ function aw_get_parleys(WP_REST_Request $request){
     ] );
 
     if ($query->have_posts()) :
-        /* Si se necesita mostrar post relacionador excluyendo el post actual (single-parley)
-        foreach($query->posts as $forecast):
-            if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
-                $loop_html .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
-                    "forecast"=>$forecast,
-                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => isset($params['odds']) ? $params['odds'] : null
-                ]);
-            endif;
-            if(!isset($params["exclude_post"])):
-                $loop_html .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
-                    "forecast"=>$forecast,
-                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => isset($params['odds']) ? $params['odds'] : null
-                ]);
-            endif;
-        endforeach; */
+
         while ($query->have_posts()):
             $query->the_post();
-            $loop_html .= load_template_part("loop/parley_list_{$params['model']}",null,[
+            $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}",null,[
                 "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                 "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
                 "odds" => isset($params['odds']) ? $params['odds'] : null
@@ -77,10 +59,11 @@ function aw_get_parleys(WP_REST_Request $request){
         endwhile;
 
     else:
-
-        $loop_html = "no mas";
+        $home_url = get_home_url( null, '/', null );
+        $loop_html["status"] = 'fail';
+        $loop_html["html"] = '<div class="mt-5 alert alert-primary mx-auto" role="alert"><div>'.__("Sin pronósticos disponibles, regresa más tarde!","jbetting").' <a href="'.$home_url.'" class="alert-link">'.__("Ir al Inicio","jbetting").'</a></div></div>';
 
     endif;
 
-    echo $loop_html;
+    return json_decode(json_encode($loop_html));
 }
