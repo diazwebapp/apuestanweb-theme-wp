@@ -64,7 +64,7 @@ $oddsp2 = new Converter($p2, 'eu');
 $p1 = $oddsp1->doConverting();
 $x = $oddsx->doConverting();
 $p2 = $oddsp2->doConverting();
-$p1 = $p1[$_SESSION['odds_format']]; $x = $x[$_SESSION['odds_format']]; $p2 = $p2[$_SESSION['odds_format']];
+$p1 = $p1[get_option( 'odds_type' )]; $x = $x[get_option( 'odds_type' )]; $p2 = $p2[get_option( 'odds_type' )];
 
 if (!$p1) {
     $p1 = 'n/a';
