@@ -111,7 +111,7 @@ function shortcode_parley($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
 
-        $ret .="<div class='container container_pagination_forecast text-md-center'>";
+        $ret .="<div class='container container_pagination_parley text-md-center'>";
         if($paginate=='yes' and $data_json->max_pages > 1):
 
             $ret .=$args['btn_load_more'];
