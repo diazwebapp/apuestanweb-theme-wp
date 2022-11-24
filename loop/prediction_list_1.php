@@ -9,7 +9,7 @@ $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all')
 $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
 $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 0;
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-".$date->format('d M')." = date('d M', strtotime($time));
+
 $hora = date('g:i a', strtotime($time));
 //Componente si es vip
 
@@ -21,7 +21,7 @@ $vipcomponent ="<div class='plogo'>
 if(!$vip):
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
-    $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+    $prediction['cuote'] = $odds_result[get_option('odds_type')];
     $vipcomponent ="<div class='plogo'>
                         <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                     </div>

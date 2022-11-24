@@ -80,7 +80,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     if($predictions and count($predictions)> 0):
         $oOddsConverter = new Converter($predictions[0]['cuote'], 'eu');
         $odds_result = $oOddsConverter->doConverting();
-        $cuote = $odds_result[$_SESSION['odds_format']];
+        $cuote = $odds_result[get_option('odds_type')];
         $rating_ceil = $predictions[0]['tvalue'];
         $prediction = $predictions[0]['title'];
     endif;

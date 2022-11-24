@@ -17,7 +17,7 @@ function shortcode_forecast($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
-    $odds = $_SESSION['odds_format'];
+    $odds = get_option( 'odds_type' );
     
     if(is_page() && !$title)
         $title = get_the_title( );
@@ -36,7 +36,7 @@ function shortcode_forecast($atts)
                     <h1 class='title mt_30 order-lg-1'>".(isset($title) ? $title : '')."</h1>
                     <div class='mt_30 dropd order-lg-3'>
                         <div class='blog_select_box'>
-                            <select name='ord' id='element_select_forecasts'>
+                            <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)'>
                                 <option value=''>Ordenar</option>
                                 <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
                                 <option value='hoy' ".( $date == 'hoy' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
@@ -82,6 +82,8 @@ function shortcode_forecast($atts)
     $args['timezone'] = $geolocation->timezone;
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    
     $post_type = get_post_type( );
     if($post_type == "forecast" and is_single()):
         $args['exclude_post']   = get_the_ID();
@@ -98,7 +100,6 @@ function shortcode_forecast($atts)
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
     $params .= "&odds=$odds";
-
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
@@ -118,16 +119,12 @@ function shortcode_forecast($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
         
-        if($paginate=='yes' and $data_json->status == 'ok'):
+        $ret .="<div class='container container_pagination_forecast text-md-center'>";
+        if($paginate=='yes' and $data_json->max_pages > 1):
 
-            $ret .="<div class='container container_pagination text-md-center'>
-                <br/>
-                <br/>
-                <button class='loadmore forecasts btn loadbtn d-flex justify-content-center'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>
-                <br/>
-            </div>";
+            $ret .=$args['btn_load_more'];
         endif;
-        
+        $ret .=" </div>";
     } else {
         return '<h1>No hay datos. Vuelve más tarde.</h1>';
     }
