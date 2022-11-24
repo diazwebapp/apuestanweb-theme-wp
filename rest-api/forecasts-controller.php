@@ -100,7 +100,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
 
     $args['meta_query']     = [
         [
-            'key' => 'vip',
+            'key' => '_vip',
             'compare' => 'EXISTS'
         ]
     ];
