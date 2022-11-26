@@ -347,7 +347,7 @@ function setUserRating(){
             ];
             
             $user_posts_query = new WP_Query($forecast_args);
-            var_dump($user_posts_query->posts);
+            
             if($user_posts_query->have_posts()):
                 //Loop de los forecasts del autor
                 while($user_posts_query->have_posts()): $user_posts_query->the_post();
