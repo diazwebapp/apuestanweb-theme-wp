@@ -321,8 +321,9 @@ function aw_actions_after_register_user( $user_id ) {
 }
 
 function setUserRating(){
-    $users = new WP_User_Query([]);
+    $users = get_users();
     var_dump($users);
+    return;
     if($users->get_results()):
         foreach ($users->get_results() as $user) {
             $ok = 0;
