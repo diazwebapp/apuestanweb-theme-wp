@@ -102,6 +102,7 @@ function my_theme_setup()
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
         //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
     }
+    setUserRating();
 }
 
 function get_key()
@@ -137,7 +138,7 @@ function jbetting_src()
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    setUserRating();
+    
 }
 
 function enqueuing_admin_scripts(){
