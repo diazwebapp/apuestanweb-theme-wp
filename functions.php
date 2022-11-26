@@ -90,7 +90,7 @@ register_nav_menus(array(
 
 add_action('after_setup_theme', 'my_theme_setup');
 
-setUserRating();
+
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
@@ -179,7 +179,7 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
-    
+    setUserRating();
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
     remove_action( 'wp_head', 'wlwmanifest_link' );
