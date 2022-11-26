@@ -180,7 +180,7 @@ add_action('init', function(){
         session_start();
     endif;
     
-    if(!str_contains($$_SERVER["PHP_SELF"], "wp-admin")) {
+    if(!str_contains($_SERVER["PHP_SELF"], "wp-admin")) {
         setUserRating();
     }
     
