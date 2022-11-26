@@ -2,6 +2,7 @@ $(document).ready(function () {
     
     let select_odds = $('select#select_odds_format');
     select_odds.change(e =>handler_odds_format(e))
+    $('.dropdown-toggle').dropdown()
 });
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
