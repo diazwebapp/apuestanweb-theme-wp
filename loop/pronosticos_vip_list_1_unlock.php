@@ -91,8 +91,6 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     if($status == 'fail')
         $html_status = "<b class='winl loss'>loss</b>";
 
-    var_dump($acerted);
-
     if(floatval($acerted) > floatval($failed)):
         $flechita_indicadora = $flechita_up;
     endif;
