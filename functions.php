@@ -182,11 +182,8 @@ add_action('init', function(){
     
     if(!str_contains($$_SERVER["PHP_SELF"], "wp-admin")) {
         setUserRating();
-        var_dump("no estoy en admin");
     }
-    if(str_contains($$_SERVER["PHP_SELF"], "wp-admin")) {
-        var_dump("estoy en admin");
-    }
+    
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
     remove_action( 'wp_head', 'wlwmanifest_link' );
