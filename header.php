@@ -4,6 +4,7 @@
     <title><?php wp_title(''); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
 	<?php wp_head(); ?>
 </head>
 <body>
