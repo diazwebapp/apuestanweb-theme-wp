@@ -322,10 +322,8 @@ function aw_actions_after_register_user( $user_id ) {
 
 function setUserRating(){
     $users = get_users();
-    var_dump($users);
-    return;
-    if($users->get_results()):
-        foreach ($users->get_results() as $user) {
+    if($users and count($users) > 0):
+        foreach ($users as $user) {
             $ok = 0;
             $fail = 0;
             $null = 0;
@@ -349,7 +347,7 @@ function setUserRating(){
             ];
             
             $user_posts_query = new WP_Query($forecast_args);
-
+            var_dump($user_posts_query->posts);
             if($user_posts_query->have_posts()):
                 //Loop de los forecasts del autor
                 while($user_posts_query->have_posts()): $user_posts_query->the_post();
