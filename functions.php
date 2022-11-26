@@ -179,7 +179,7 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
-    var_dump($_SERVER["REQUEST_URI"]);
+    var_dump($_SERVER["PHP_SELF"]);
     setUserRating();
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
