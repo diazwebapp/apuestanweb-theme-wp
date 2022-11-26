@@ -34,12 +34,11 @@
                     <!--logo end-->
                 </div>
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
-                    <a href="#" class="icon_box mr_10">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/icon8.svg'?>" alt="">
-                    </a>
-                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
-                    <a href="#" class="headerbtn v2">LOGIN</a>
 
+                  
+
+                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
+                    <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
                     
                 </div>
                 <div class="col-lg-8 order-lg-2">
