@@ -90,7 +90,7 @@ register_nav_menus(array(
 
 add_action('after_setup_theme', 'my_theme_setup');
 
-
+setUserRating();
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
@@ -102,7 +102,7 @@ function my_theme_setup()
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
         //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
     }
-    setUserRating();
+    
 }
 
 function get_key()
