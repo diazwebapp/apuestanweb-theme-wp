@@ -35,11 +35,19 @@
                 </div>
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
 
-                  
+                 <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
+                 
+                 <select class="small" style="display: none;">
+                    <option data-display="Select">Nothing</option>
+                    <option value="1">Some option</option>
+                    <option value="2">Another option</option>
+                    <option value="3" disabled="">A disabled option</option>
+                    <option value="4">Potato</option>
+                </select>
 
-                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
-                    <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
-                    
+                   <!--menu  <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
+                start-->
+
                 </div>
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->

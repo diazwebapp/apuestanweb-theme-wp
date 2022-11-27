@@ -373,6 +373,7 @@ header {
 
 }
 
+
 .loadbtn{
 	width: 16rem;
 	background: transparent linear-gradient(107deg, #0558CB 0%, #023986 100%);
@@ -400,6 +401,7 @@ header {
 	right: 5px;
 	visibility: hidden;
 }
+
 .btn_group:hover .headerbtn.v2{
 	visibility: visible;
 }
