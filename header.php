@@ -35,15 +35,16 @@
                     <!--logo end-->
                 </div>
                 
-                <div class="col-lg-2 order-lg-3 btn_group col-6">
-                    <a href="#" class="icon_box mr_10">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/icon8.svg'?>" alt="">
-                    </a>
-                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
-                    <a href="#" class="headerbtn v2">LOGIN</a>
+                <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
+                 
+                 <select class="small" style="display: none;">
+                    <option data-display="Select">Nothing</option>
+                    <option value="1">Some option</option>
+                    <option value="2">Another option</option>
+                    <option value="3" disabled="">A disabled option</option>
+                    <option value="4">Potato</option>
+                </select>
 
-                    
-                </div>
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->
                     <ul class="menu text-uppercase">                    
@@ -65,22 +66,6 @@
             </div>
         </div>
 </header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
       
 <?php
