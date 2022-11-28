@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
 
-                 <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
+                 <a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>
                  
                  <select class="small" style="display: none;">
                     <option data-display="Select">Nothing</option>
