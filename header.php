@@ -35,15 +35,6 @@
                     <!--logo end-->
                 </div>
                 
-                <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
-                 
-                 <select class="small" style="display: none;">
-                    <option data-display="Select">Nothing</option>
-                    <option value="1">Some option</option>
-                    <option value="2">Another option</option>
-                    <option value="3" disabled="">A disabled option</option>
-                    <option value="4">Potato</option>
-                </select>
 
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->
@@ -62,6 +53,15 @@
                         
                     ?>
                     </ul> <!--menu end-->
+                    <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
+                 
+                 <select class="small" style="display: none;">
+                    <option data-display="Select">Nothing</option>
+                    <option value="1">Some option</option>
+                    <option value="2">Another option</option>
+                    <option value="3" disabled="">A disabled option</option>
+                    <option value="4">Potato</option>
+                </select>
                 </div>
             </div>
         </div>
