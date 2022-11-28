@@ -360,6 +360,19 @@ header {
 .headerbtn:hover{
 	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
 }
+.headerlgn{
+	width: 16rem;
+	text-align: center;
+
+	padding: 1.05rem 1.5rem;
+	align-items: center;
+	justify-content: center;
+	line-height: 1.31;
+	margin-top: 0!important;
+	margin-left: 1rem;
+
+}
+
 
 .loadbtn{
 	width: 16rem;
@@ -388,6 +401,7 @@ header {
 	right: 5px;
 	visibility: hidden;
 }
+
 .btn_group:hover .headerbtn.v2{
 	visibility: visible;
 }
