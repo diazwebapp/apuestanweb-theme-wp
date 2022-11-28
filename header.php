@@ -4,7 +4,6 @@
     <title><?php wp_title(''); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
 	<?php wp_head(); ?>
 </head>
 <body>
@@ -34,8 +33,22 @@
                     <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
                     <!--logo end-->
                 </div>
-                
+                <div class="col-lg-2 order-lg-3 btn_group col-6">
 
+                 <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
+                 
+                 <select class="small" style="display: none;">
+                    <option data-display="Select">Nothing</option>
+                    <option value="1">Some option</option>
+                    <option value="2">Another option</option>
+                    <option value="3" disabled="">A disabled option</option>
+                    <option value="4">Potato</option>
+                </select>
+
+                   <!--menu  <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
+                start-->
+
+                </div>
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->
                     <ul class="menu text-uppercase">                    
@@ -53,20 +66,8 @@
                         
                     ?>
                     </ul> <!--menu end-->
-                    
-            </div>
-            <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
-                 
-                 <select class="small" style="display: none;">
-                    <option data-display="Select">Nothing</option>
-                    <option value="1">Some option</option>
-                    <option value="2">Another option</option>
-                    <option value="3" disabled="">A disabled option</option>
-                    <option value="4">Potato</option>
-                </select>
                 </div>
+            </div>
         </div>
 </header>
-
-      
 <?php
