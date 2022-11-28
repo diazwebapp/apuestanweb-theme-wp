@@ -34,16 +34,19 @@
                     <!--logo end-->
                 </div>
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
-
-                 <a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>
-                 
-                 <select class="small" style="display: none;">
-                    <option data-display="Select">Nothing</option>
-                    <option value="1">Some option</option>
-                    <option value="2">Another option</option>
-                    <option value="3" disabled="">A disabled option</option>
-                    <option value="4">Potato</option>
-                </select>
+                <?php 
+                    if(is_user_logged_in( )):
+                    echo '<select class="small" style="display: none;">
+                        <option data-display="Select">Nothing</option>
+                        <option value="1">Some option</option>
+                        <option value="2">Another option</option>
+                        <option value="3" disabled="">A disabled option</option>
+                        <option value="4">Potato</option>
+                    </select>';
+                    else:
+                        echo '<a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>';
+                    endif;
+                 ?>
 
                    <!--menu  <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
                 start-->
