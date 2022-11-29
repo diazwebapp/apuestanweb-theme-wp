@@ -26,9 +26,9 @@ function generate_history_payment_table(){
       }
     } */
 
-    $query = select_payment_history($params);
+    
   }
-
+  $query = select_payment_history($params);
   $table_html = '<table class="table table-hover " >
       <thead>
         <tr>
