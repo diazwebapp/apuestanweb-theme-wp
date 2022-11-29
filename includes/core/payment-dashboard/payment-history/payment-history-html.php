@@ -7,7 +7,7 @@ function generate_history_payment_table(){
   if(isset($_POST["filter_table_history"])){
     $text = false;
     
-    if(isset($_POST["username"]) and $_POST["username"] != ""){
+    /* if(isset($_POST["username"]) and $_POST["username"] != ""){
       $text["key"] = "username";
       $text["value"] = $_POST["username"];
     }
@@ -25,7 +25,7 @@ function generate_history_payment_table(){
       if( isset($_POST["date_2"]) and !empty($_POST["date_2"]) and !empty($_POST["date_1"]) ){
         $data["value2"] = $_POST["date_2"];
       }
-    }
+    } */
 
     $query = select_payment_history($data,$text);
   }
