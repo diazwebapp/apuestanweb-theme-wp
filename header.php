@@ -36,13 +36,13 @@
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
                 <?php 
                     if(is_user_logged_in( )):
-                    echo '<div class="navbar navbar-expand-lg navbar-light bg-light">
+                    echo '<div class="navbar bg-light">
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav mr-auto">
                         
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
