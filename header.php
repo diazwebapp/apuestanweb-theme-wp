@@ -36,13 +36,27 @@
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
                 <?php 
                     if(is_user_logged_in( )):
-                    echo '<select class="small" style="display: none;">
-                        <option data-display="Select">Nothing</option>
-                        <option value="1">Some option</option>
-                        <option value="2">Another option</option>
-                        <option value="3" disabled="">A disabled option</option>
-                        <option value="4">Potato</option>
-                    </select>';
+                    echo '<div class="navbar navbar-expand-lg navbar-light bg-light">
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                        
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                          </div>
+                        </li>
+                        
+                      </ul>
+                      
+                    </div>
+                  </div>';
                     else:
                         echo '<a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>';
                     endif;
@@ -73,25 +87,5 @@
             </div>
         </div>
 </header>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      
-    </ul>
-    
-  </div>
 
 <?php
