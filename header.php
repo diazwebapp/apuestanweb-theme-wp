@@ -39,9 +39,9 @@
                     echo '<div class="navbar navbar-expand-lg ">
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav mr-auto">
+                      <ul class="navbar-nav mr-auto menu">
                         
-                        <li class="dropdown menu-item menu-item-type-post_type menu-item-object-page menu-item-333">
+                        <li class="dropdown">
                           <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
                           </a>
