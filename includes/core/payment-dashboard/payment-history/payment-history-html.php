@@ -115,6 +115,7 @@ if(isset($_GET["update_payment_history_id"]) and isset($_GET["status"])){
   header("Location:".$_SERVER["HTTP_REFERER"]."&error=1");
 }
 function aw_payment_history(){
+  $path = $_SERVER['REQUEST_URI'] ."&status=";
   $table_payment_history = generate_history_payment_table();
   $payment_method_navbar = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
                               <div class="container-fluid">
@@ -123,8 +124,8 @@ function aw_payment_history(){
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                   <ul class="navbar-nav me-auto">
-                                    <li class="nav-item"><a class="nav-link" href="&status=pending">pending</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="&status=completed">completed</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'pending">pending</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'completed">completed</a></li>
                                   </ul>
                                 </div>
                               </div>
