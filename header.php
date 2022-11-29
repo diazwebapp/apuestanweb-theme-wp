@@ -33,7 +33,7 @@
                     <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
                     <!--logo end-->
                 </div>
-                <div class="col-lg-2 order-lg-3 btn_group col-6">
+                <div class="col-lg-2 order-lg-3 col-6">
                 <?php 
                     if(is_user_logged_in( )):
                     echo '<div class="navbar navbar-expand-lg ">
