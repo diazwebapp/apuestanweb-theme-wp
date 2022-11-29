@@ -125,6 +125,8 @@ function aw_payment_history(){
                                   <ul class="navbar-nav me-auto">
                                     <li class="nav-item"><a class="nav-link" href="'.$path.'pending">pending</a></li>
                                     <li class="nav-item"><a class="nav-link" href="'.$path.'completed">completed</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'trashed">trashed</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'failed">failed</a></li>
                                   </ul>
                                 </div>
                               </div>
