@@ -141,16 +141,7 @@ function aw_payment_history(){
                           <label>Username</label>
                           <input type="text" name="username" class="form-control" />
                         </div>
-                        <div class="col" >
-                          <label>Status</label>
-                          <input type="text" list="status_list" name="status" class="form-control" autocomplete="off" />
-                          <datalist id="status_list">
-                            <option value="completed" selected ></option>
-                            <option value="pending" ></option>
-                            <option value="failed" ></option>
-                            <option value="trashed" ></option>
-                          </datalist>
-                        </div>
+                        
                         <div class="col" >
                           <label>Date start</label>
                           <input type="date" name="date_1" class="form-control"/>
