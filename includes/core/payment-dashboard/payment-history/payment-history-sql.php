@@ -61,7 +61,7 @@ function insert_payment_history_meta($data){
 
 function select_payment_history($params=["status"=>"pending"]){
     global $wpdb ;
-    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = {$params['status']} ";
+    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params['status']}' ";
 
     /* if($date and !$text){
 
