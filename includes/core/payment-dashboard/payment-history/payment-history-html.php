@@ -7,10 +7,10 @@ function generate_history_payment_table(){
   if(isset($_POST["filter_table_history"])){
     $text = false;
     
-    /* if(isset($_POST["username"]) and $_POST["username"] != ""){
-      $text["key"] = "username";
-      $text["value"] = $_POST["username"];
+     if(isset($_POST["username"]) and $_POST["username"] != ""){
+      $params["username"] = $_POST["username"];
     }
+    /*
     if(isset($_POST["status"]) and $_POST["status"] != ""){
       $text["key2"] = "status";
       $text["value2"] = $_POST["status"];
@@ -27,7 +27,7 @@ function generate_history_payment_table(){
       }
     } */
 
-    $query = select_payment_history($data,$text);
+    $query = select_payment_history($params);
   }
 
   $table_html = '<table class="table table-hover " >
