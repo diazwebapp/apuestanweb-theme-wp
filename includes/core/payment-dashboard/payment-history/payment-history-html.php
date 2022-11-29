@@ -4,9 +4,8 @@ function generate_history_payment_table(){
   global $wpdb;
   $params["status"] = "completed";
   if(isset($_GET["status"])){
-    if(isset($_GET["status"])){
-      $params["status"] = $_POST["status"];
-    }
+    var_dump($_GET["status"]);
+    $params["status"] = $_GET["status"];
   }
   if(isset($_POST["filter_table_history"])){
     
