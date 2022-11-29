@@ -2,10 +2,9 @@
 
 function generate_history_payment_table(){
   global $wpdb;
-
-  $query = select_payment_history();
+  $params["status"] = "completed";
+  
   if(isset($_POST["filter_table_history"])){
-    $text = false;
     
      if(isset($_POST["username"]) and $_POST["username"] != ""){
       $params["username"] = $_POST["username"];
