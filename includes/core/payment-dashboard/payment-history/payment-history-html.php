@@ -4,7 +4,6 @@ function generate_history_payment_table(){
   global $wpdb;
   $params["status"] = "completed";
   if(isset($_GET["status"])){
-    var_dump($_GET["status"]);
     $params["status"] = $_GET["status"];
   }
   if(isset($_POST["filter_table_history"])){
@@ -29,6 +28,7 @@ function generate_history_payment_table(){
 
     
   }
+  var_dump($params);
   $query = select_payment_history($params);
   $table_html = '<table class="table table-hover " >
       <thead>
