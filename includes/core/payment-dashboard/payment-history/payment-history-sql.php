@@ -59,9 +59,9 @@ function insert_payment_history_meta($data){
     return $insert;
 }
 
-function select_payment_history($params=["status"=>"completed"]){
+function select_payment_history($params=["status"=>"completed","username"=>""]){
     global $wpdb ;
-    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' ";
+    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' AND username = '{$params["username"]}' ";
 
     /* if($date and !$text){
 
