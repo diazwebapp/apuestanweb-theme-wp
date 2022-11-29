@@ -102,6 +102,7 @@ function my_theme_setup()
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
         //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
     }
+    
 }
 
 function get_key()
@@ -137,6 +138,7 @@ function jbetting_src()
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
+    
 }
 
 function enqueuing_admin_scripts(){
@@ -177,6 +179,10 @@ add_action('init', function(){
     if(!session_id()):
         session_start();
     endif;
+    
+    if(!str_contains($_SERVER["PHP_SELF"], "wp-admin")) {
+        setUserRating();
+    }
     
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
@@ -253,7 +259,7 @@ add_action('init', function(){
     {
         define('IP',$_SERVER["REMOTE_ADDR"]);
     } */
-   setUserRating();
+   
 });
 
 
@@ -321,10 +327,9 @@ function aw_actions_after_register_user( $user_id ) {
 }
 
 function setUserRating(){
-    $users = new WP_User_Query([]);
-    
-    if($users->get_results()):
-        foreach ($users->get_results() as $user) {
+    $users = get_users();
+    if($users and count($users) > 0):
+        foreach ($users as $user) {
             $ok = 0;
             $fail = 0;
             $null = 0;
@@ -348,7 +353,7 @@ function setUserRating(){
             ];
             
             $user_posts_query = new WP_Query($forecast_args);
-
+            
             if($user_posts_query->have_posts()):
                 //Loop de los forecasts del autor
                 while($user_posts_query->have_posts()): $user_posts_query->the_post();

@@ -33,16 +33,32 @@
                     <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
                     <!--logo end-->
                 </div>
-                <div class="col-lg-2 order-lg-3 btn_group col-6">
+                <div class="col-lg-2 order-lg-3 col-6">
+                <?php 
+                    if(is_user_logged_in( )):
+                    echo '<div class="navbar navbar-expand-lg ">
 
-                 <a href="http://betmaste.com" class="btn_2 headerlgn"> Login</a>
-                 <select>
-                    <option value="1">Some option</option>
-                    <option value="2">Another option</option>
-                    <option value="3" disabled="">A disabled option</option>
-                    <option value="4">Potato</option>
-                </select>
-                
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto menu">
+                        
+                        <li class="dropdown">
+                          <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" style="line-height:2 !important;color:black !important;" href="#">Action</a>
+                            <a class="dropdown-item" style="line-height:2 !important;color:black !important;" href="#">Another action</a>
+                          </div>
+                        </li>
+                        
+                      </ul>
+                      
+                    </div>
+                  </div>';
+                    else:
+                        echo '<a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>';
+                    endif;
+                 ?>
 
                    <!--menu  <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
                 start-->
@@ -69,4 +85,5 @@
             </div>
         </div>
 </header>
+
 <?php

@@ -15,7 +15,7 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-                            var_dump($vip);
+                            
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
                             $img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
