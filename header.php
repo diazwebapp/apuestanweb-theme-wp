@@ -36,7 +36,7 @@
                 <div class="col-lg-2 order-lg-3 btn_group col-6">
                 <?php 
                     if(is_user_logged_in( )):
-                    echo '<div class="navbar bg-light">
+                    echo '<div class="navbar navbar-expand-lg ">
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav mr-auto">
