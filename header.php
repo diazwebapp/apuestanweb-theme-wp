@@ -42,7 +42,7 @@
                       <ul class="navbar-nav mr-auto">
                         
                         <li class="dropdown menu-item menu-item-type-post_type menu-item-object-page menu-item-333">
-                          <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dropdown
                           </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
