@@ -6,14 +6,14 @@ function generate_history_payment_table(){
   
   if(isset($_POST["filter_table_history"])){
     
-     if(isset($_POST["username"]) and $_POST["username"] != ""){
+    if(isset($_POST["username"]) and $_POST["username"] != ""){
       $params["username"] = $_POST["username"];
     }
-    /*
+    
     if(isset($_POST["status"]) and $_POST["status"] != ""){
-      $text["key2"] = "status";
-      $text["value2"] = $_POST["status"];
+      $params["status"] = $_POST["status"];
     }
+    /*
     if(isset($_POST["date_1"]) or isset($_POST["date_2"])){
 
       if( isset($_POST["date_1"]) and !empty($_POST["date_1"]) ){
