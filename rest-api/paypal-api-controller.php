@@ -96,7 +96,7 @@ if(!function_exists("aw_paypal_capture_order")):
             ];         
            $resp = aw_paypal_user_level_operations($body);                        
             var_dump($body,$resp);
-            //header("Location: {$resp['redirect']}", TRUE, 301);
+            header("Location: {$resp['redirect']}", TRUE, 301);
             exit();
         }
         return $apiBody->purchase_units;
