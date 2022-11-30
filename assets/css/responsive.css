@@ -2198,11 +2198,10 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
-
-	.btn_2.headerlgn{
-		width: 7rem;
+	.btn_2.headerlgn {
+		width: 8rem;
+		padding: 1rem;
 	}
-}
 
 
 

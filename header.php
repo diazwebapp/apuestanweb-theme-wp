@@ -56,12 +56,11 @@
                     </div>
                   </div>';
                     else:
-                        echo '<a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>';
+                        echo '<a href="/member-login" class="btn_2 headerlgn mr-2"><i class="far fa-user"></i></a>';
                     endif;
                  ?>
 
-                   <!--menu  <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
-                start-->
+                   <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
 
                 </div>
                 <div class="col-lg-8 order-lg-2">
