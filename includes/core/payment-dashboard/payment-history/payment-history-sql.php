@@ -59,11 +59,11 @@ function insert_payment_history_meta($data){
     return $insert;
 }
 
-function select_payment_history($date=false,$text=false, $limit=false){
+function select_payment_history($params=["status"=>"completed","username"=>""]){
     global $wpdb ;
-    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY ;
+    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' AND username LIKE '%{$params["username"]}%' ";
 
-    if($date and !$text){
+    /* if($date and !$text){
 
         if($date["value"] and !$date["value2"]){
             $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE DATE({$date["key"]}) = '{$date["value"]}' ";
@@ -115,7 +115,7 @@ function select_payment_history($date=false,$text=false, $limit=false){
         if($date["value"] and $date["value2"] and $text["value"] and $text["value2"]){
             $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key"]}='{$text["value"]}' AND {$text["key2"]}='{$text["value2"]}' AND DATE({$date["key"]}) BETWEEN '{$date["value"]}' AND '{$date["value2"]}' ";
         }
-    }
+    } */
     
     
     $results = $wpdb->get_results($sql_);
@@ -147,7 +147,7 @@ function aw_get_history_insert_data($level_id,$payment_account_id,$username,$sta
     $level_data = $wpdb->get_row("SELECT payment_type,short_description, label, price FROM $table WHERE id=$level_id");
     $status = "pending";
     if($status or $level_data->payment_type == 'free'):
-        $status = 'complete';
+        $status = 'completed';
     endif;
     $sql_data["payment_method"] = $payment_method;
     $sql_data["payment_account_id"] = $payment_account_id;
