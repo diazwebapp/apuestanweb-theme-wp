@@ -147,7 +147,7 @@ function aw_get_history_insert_data($level_id,$payment_account_id,$username,$sta
     $level_data = $wpdb->get_row("SELECT payment_type,short_description, label, price FROM $table WHERE id=$level_id");
     $status = "pending";
     if($status or $level_data->payment_type == 'free'):
-        $status = 'complete';
+        $status = 'completed';
     endif;
     $sql_data["payment_method"] = $payment_method;
     $sql_data["payment_account_id"] = $payment_account_id;
