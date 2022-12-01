@@ -2369,9 +2369,9 @@ footer .menu li a::before{
 }
 
 .single_event_content p{
-	font-size: 17px;
+	font-size: 16px;
 	color: #00203A;
-	max-width: 99%;
+	max-width: 100%;
 	text-align: justify;
 	line-height: 1.5em;
 	margin-bottom: 1em;

@@ -57,10 +57,11 @@
                   </div>';
                     else:
                         echo '<a href="/member-login" class="btn_2 headerlgn mr-2"><i class="far fa-user"></i></a>';
+                        echo '<a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>';
                     endif;
                  ?>
 
-                   <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
+                   
 
                 </div>
                 <div class="col-lg-8 order-lg-2">
