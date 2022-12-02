@@ -5,7 +5,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<?php wp_head(); ?>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
 </head>
 <body>
 <?php /*
@@ -56,17 +55,26 @@
                 <div class="col-lg-2 order-lg-3 col-md-6">
                         <?php 
                             if(is_user_logged_in( )):
-                            echo '<div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            echo '<div class="navbar navbar-expand-lg ">
+        
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto ">
+                                
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Dropdown link
                             </a>
-                          
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                               <a class="dropdown-item" href="#">Action</a>
                               <a class="dropdown-item" href="#">Another action</a>
                               <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                          </div>';
+                          </li>
+                                
+                            </ul>
+                            
+                            </div>
+                        </div>';
                             else:
                                 echo '<a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>';
                             endif;
