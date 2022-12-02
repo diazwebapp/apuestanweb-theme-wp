@@ -563,7 +563,19 @@ a.btn_2:hover{
 }
 /*event area*/
 .title{
-	font-size: 23px;
+	font-size: 3rem;
+	font-weight: 700;
+	color: #00203A;
+	line-height: 1.2;
+}
+.title-h2{
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #00203A;
+	line-height: 1.2;
+}
+.title-b{
+	font-size: 2.2rem;
 	font-weight: 700;
 	color: #00203A;
 	line-height: 1.2;
@@ -680,7 +692,7 @@ a.btn_2:hover{
 	margin-right: 1.5rem;
 	object-fit: cover;
 }
-.media h4{
+.media h3{
 	font-size: 1.6rem;
 	line-height: 1.2;
 	font-weight: 500;
@@ -915,7 +927,12 @@ footer .menu li a::before{
 	display: flex;
 	align-items: center;
 }
+
 .title_wrap .title{
+	margin-right: 5rem;
+	white-space: nowrap;
+}
+.title_wrap .title-h2{
 	margin-right: 5rem;
 	white-space: nowrap;
 }
@@ -1049,7 +1066,7 @@ footer .menu li a::before{
 	border: 0.1rem solid #E4E6E8;
 	border-radius: 0 0 1rem 1rem;
 }
-.desc_box h4{
+.desc_box h3{
 	font-size: 1.8rem;
 	font-weight: 500;
 	color: #00203A;

@@ -20,7 +20,7 @@ echo "<div class='col-lg-3 col-md-4 col-6 mt_30'>
         <a href='$permalink'><img class='w-100' alt='$title' loading='lazy' src='$thumbnail_url'></a>
         </div>
         <div class='desc_box' >
-            <a href='$permalink'><h4>$title</h4></a>
+            <a href='$permalink'><h3>$title</h3></a>
         </div>
     </div>
 </div> ";

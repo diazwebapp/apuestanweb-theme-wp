@@ -15,7 +15,7 @@ function shortcode_news($atts)
     if($title and !$link):
         $heading = '<div class="col-12">
                         <div class="title_wrap">
-                            <h3 class="title mt_30">'.$title.'</h3>
+                            <h2 class="title-h2 mt_30">'.$title.'</h3>
                         </div>
                     </div> ';
     endif;
@@ -29,7 +29,7 @@ function shortcode_news($atts)
     if($title and $link):
         $heading = '<div class="col-12">
                         <div class="title_wrap">
-                            <h3 class="title mt_30">'.$title.'</h3>
+                            <h2 class="title-h2 mt_30">'.$title.'</h3>
                             <a href="'.$link.'" class="mt_30 dropd">'.$text_link.'</a>
                         </div>
                     </div> ';

@@ -20,7 +20,7 @@ echo '<div class="col-lg-3 col-md-6 mt_30">
             <img loading="lazy" style="width:115px;height:115px;object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
             <div style="padding-left:10px;" class="media-body">
                 <a href="'.$permalink.'">
-                    <h4>'.$title.'</h4>
+                    <h3>'.$title.'</h3>
                 </a>
                 <div class="category-grid"><span class="mt_20">#'.$sport.'</span></div>
             </div>
