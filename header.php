@@ -55,25 +55,17 @@
                 <div class="col-lg-2 order-lg-3 col-md-6">
                         <?php 
                             if(is_user_logged_in( )):
-                            echo '<div class="navbar navbar-expand-lg ">
-        
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto menu">
-                                
-                                <li class="dropdown">
-                                <a class="dropdown-toggle nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" style="line-height:2 !important;color:black !important;" href="#">Action</a>
-                                    <a class="dropdown-item" style="line-height:2 !important;color:black !important;" href="#">Another action</a>
-                                </div>
-                                </li>
-                                
-                            </ul>
-                            
+                            echo '<div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Dropdown link
+                            </a>
+                          
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                        </div>';
+                          </div>';
                             else:
                                 echo '<a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>';
                             endif;
@@ -83,15 +75,5 @@
             </div>
         </div>
 </header>
-<div class="dropdown show">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown link
-  </a>
 
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
 <?php
