@@ -1776,7 +1776,6 @@ footer .menu li a::before{
 .top_box3_left_content{
 	flex-basis: 70%;
 	max-width: 70%;
-	border-right: 1px solid rgba(0, 0, 0, 0.3);
 }
 .top_box3_left_content:hover{
 	text-decoration: underline;
@@ -2489,7 +2488,7 @@ footer .menu li a::before{
 blockquote{
 	display:block;
 	background: #fff;
-	padding: 15px 20px 15px 45px;
+	padding: 10px 10px 10px 15px;
 	margin: 0 0 20px;
 	position: relative;
 	
@@ -2504,10 +2503,7 @@ blockquote{
 	border-left: 15px solid #03b0f4;
 	border-right: 2px solid #03b0f4;
 	
-	/*Box Shadow - (Optional)*/
-	-moz-box-shadow: 2px 2px 15px #ccc;
-	-webkit-box-shadow: 2px 2px 15px #ccc;
-	box-shadow: 2px 2px 15px #ccc;
+
   }
   
   blockquote::before{
@@ -2694,7 +2690,7 @@ blockquote{
 }
 .blog_title{
 	color: #00203A;
-	font-size: 4rem;
+	font-size: 2em;
 	line-height: 1.2;
 	font-weight: 700;
 	font-family: "Segoe UI", sans-serif;
@@ -3010,17 +3006,17 @@ blockquote{
 }
 .winl{
 	color: #F1F2F3;
-	font-size: 1.6rem;
+	font-size: 2.2rem;
 	text-transform: uppercase;
-	padding: 0.1rem 0.9rem;
-	background-color: rgba(53, 233, 46, 0.61);
+	padding: 0.12rem 1rem;
+	background-color: rgb(36 171 31);
 	border-radius: 0.6rem;
 	position: absolute;
 	right: 5rem;
 	top: 2.4rem;
 }
 .winl.loss{
-	background-color: rgba(236, 17, 17, 0.61);
+	background-color: rgb(236 17 17);
 }
 
 /*event 2 area start*/

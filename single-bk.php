@@ -65,7 +65,7 @@ $bookmaker["background_color"] = null;
                                     </div>
                                     <!-- rating -->
                                     <div class="col-md-12 col-lg-6 d-none d-lg-block my-5" >
-                                        <span class="text-uppercase text-body " style="font-size:1.9rem;" ><?php echo $bookmaker["rating"]?></span>
+                                        <span class="text-uppercase text-body " style="font-size:2.2rem;margin-top:2rem;" ><?php echo $bookmaker["rating"]?></span>
                                         <?php 
                                             if(isset($bookmaker["rating"])):
                                                 for($i=1; $i<=5;$i++):
@@ -94,7 +94,7 @@ $bookmaker["background_color"] = null;
                                         <?php
                                             if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                                 foreach($bookmaker["feactures"] as $feacture):
-                                                    echo '<p style="color:#00203A;" >- '.$feacture['feacture'].' </p>';
+                                                    echo '<p style="color:#00203A;" ><i class="fal fa-check-square"></i> '.$feacture['feacture'].' </p>';
                                                 endforeach;
                                             endif;
                                         ?>

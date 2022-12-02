@@ -1,4 +1,11 @@
+@media (max-width:1192.98px){
+	.body{
+		max-width: 75%;
+	}
+}
+
 /*Extra large devices (large desktops, 1200px and up)*/
+
 @media (min-width: 1400px) { 
 	.container{
 		max-width: 1470px;
@@ -516,7 +523,7 @@
 	}
 	.league_box1{
 		display: flex;
-		justify-content: flex-end;
+		justify-content: flex-start;
 		padding-bottom: 1.5rem;
 	}
 
@@ -1785,7 +1792,6 @@
     
     
 }
-
 /*Small devices (landscape phones, 575px and down)*/
 @media (max-width: 575.98px) {
 	html{

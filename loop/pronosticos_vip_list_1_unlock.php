@@ -87,9 +87,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
 
     $html_status = "";
     if($status == 'ok')
-        $html_status = "<b class='winl'>WIN</b>";
+        $html_status = "<b class='winl'><i class='far fa-check-circle'></i></b>";
     if($status == 'fail')
-        $html_status = "<b class='winl loss'>loss</b>";
+        $html_status = "<b class='winl loss'><i class='far fa-times-circle'></i></b>";
 
     if(floatval($acerted) > floatval($failed)):
         $flechita_indicadora = $flechita_up;
@@ -191,7 +191,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>
-                            <div class="collapse" id="col1'.$id_collapse.'">
+                            <div class="text-break collapse" id="col1'.$id_collapse.'">
                                 <p class="more_text pt_30">'.$content.'</p>
                             </div>
                         </div>

@@ -54,21 +54,24 @@ class W_Forecasts extends WP_Widget {
                     }
 
                     echo "<a href='$permalink' class='top_box top_box3'>
+
+                            <div class='top_box3_right_content league_box1'>
+                                {$sport['name']}                             
+                            </div>
+                    
                             <div class='top_box3_left_content'>
                                 <div class='top_box3_img'>
-                                    <img width='22' height='28' src='{$teams['team1']['logo']}' class='img-fluid' alt='{$teams['team1']['name']}'>
+                                    <img width='25' height='28' src='{$teams['team1']['logo']}' class='img-fluid' alt='{$teams['team1']['name']}'>
                                     <p>{$teams['team1']['name']}</p>
                                 </div>
                                 <div class='top_box3_img top_box3_img2'>
-                                    <img width='22' height='28' src='{$teams['team2']['logo']}' class='img-fluid' alt='{$teams['team2']['name']}' >
+                                    <img width='25' height='28' src='{$teams['team2']['logo']}' class='img-fluid' alt='{$teams['team2']['name']}' >
                                     <p>{$teams['team2']['name']}</p>
                                 </div>
                             </div>
                             
-                            <div class='top_box3_right_content league_box1'>
-                                <i class='{$sport['class']}' ></i>
-                                {$sport['name']}
-                            </div>
+
+                            <i class='fas fa-chevron-right'></i>
                        </a> ";
                 endwhile;
                 echo "</div> </div> </div>";
