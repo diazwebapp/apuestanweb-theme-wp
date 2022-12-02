@@ -141,8 +141,8 @@
                 }
             }
         }
-        
 
+        $('.dropdown-toggle').dropdown()
 
         // collapse
         $('.parley_collapse_btn').click(function(){
