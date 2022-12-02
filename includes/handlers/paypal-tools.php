@@ -85,8 +85,7 @@ if(!function_exists('aw_paypal_user_level_operations')):
                     $metas = insert_payment_history_meta($data);
                 }
             endif;
-            $resp["sql_data"] = $sql_data;
-            $resp["id_history"] = $insert_history_id;
+            
             $resp['msg'] = $_SESSION["checkout_action"].' completed';
         endif;
         
