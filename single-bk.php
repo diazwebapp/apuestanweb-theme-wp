@@ -103,7 +103,9 @@ $bookmaker["background_color"] = null;
                                         <?php 
                                             if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
                                                 foreach ($bookmaker["payment_methods"] as $key => $payment) {
-                                                    echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
+                                                    if($key < 4):
+                                                        echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
+                                                    endif;
                                                 }
                                                 
                                             }
