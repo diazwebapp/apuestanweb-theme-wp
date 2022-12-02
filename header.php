@@ -32,7 +32,27 @@
                     ?>
                     <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
                     <!--logo end-->
-                    <div class="col-lg-2 order-lg-3 col-md-6">
+                    
+                </div>
+                <div class="col-lg-8 order-lg-2">
+                    <!--menu start-->
+                    <ul class="menu text-uppercase">                    
+                    <?php
+                        
+                        $ret = strip_tags( wp_nav_menu( array(
+                            'theme_location' => 'top',
+                            'echo'           => false
+                        ) ), '<li><a>' );
+                        if ( $ret ):
+                            echo $ret;
+                        else:
+                            echo "";
+                        endif;
+                        
+                    ?>
+                    </ul> <!--menu end-->
+                </div>
+                <div class="col-lg-2 order-lg-3 col-md-6">
                         <?php 
                             if(is_user_logged_in( )):
                             echo '<div class="navbar navbar-expand-lg ">
@@ -60,27 +80,17 @@
                         ?>
     
                     </div>
-                </div>
-                <div class="col-lg-8 order-lg-2">
-                    <!--menu start-->
-                    <ul class="menu text-uppercase">                    
-                    <?php
-                        
-                        $ret = strip_tags( wp_nav_menu( array(
-                            'theme_location' => 'top',
-                            'echo'           => false
-                        ) ), '<li><a>' );
-                        if ( $ret ):
-                            echo $ret;
-                        else:
-                            echo "";
-                        endif;
-                        
-                    ?>
-                    </ul> <!--menu end-->
-                </div>
             </div>
         </div>
 </header>
-
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
 <?php
