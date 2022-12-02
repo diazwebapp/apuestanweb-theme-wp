@@ -57,7 +57,7 @@
                             if(is_user_logged_in( )):
                             echo '<div class="navbar navbar-expand-lg ">
         
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto ">
                                 
                             <li class="nav-item dropdown">
