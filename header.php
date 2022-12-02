@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<?php wp_head(); ?>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
 </head>
 <body>
 <?php /*
