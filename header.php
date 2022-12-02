@@ -32,7 +32,6 @@
                     ?>
                     <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
                     <!--logo end-->
-<<<<<<< HEAD
                 </div>
                 <div class="col-lg-2 order-lg-3 col-6">
                 <?php 
@@ -64,9 +63,6 @@
 
                    
 
-=======
-                    
->>>>>>> f967b86946f338ccccaeef6207c265794336377d
                 </div>
                 <div class="col-lg-8 order-lg-2">
                     <!--menu start-->
@@ -86,35 +82,7 @@
                     ?>
                     </ul> <!--menu end-->
                 </div>
-                <div class="col-lg-2 order-lg-3 col-md-6">
-                        <?php 
-                            if(is_user_logged_in( )):
-                            echo '<div class="navbar navbar-expand-lg ">
-        
-                            <div class="navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto ">
-                                
-                            <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Dropdown link
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                          </li>
-                                
-                            </ul>
-                            
-                            </div>
-                        </div>';
-                            else:
-                                echo '<a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a>';
-                            endif;
-                        ?>
-    
-                    </div>
+
             </div>
         </div>
 </header>
