@@ -44,7 +44,7 @@
                         
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-right" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown link
+                        '.$memberInfo = get_userdata(get_current_user_id( )); $memberInfo->user_login.'
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
@@ -85,4 +85,3 @@
 </header>
 
 <?php
-var_dump(get_current_user_id( ));
