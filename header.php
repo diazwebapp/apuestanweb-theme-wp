@@ -48,9 +48,9 @@
                                 </a>
 
                                 <div class="dropdown-menu position-absolute" style="right:0;" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item text-dark font-weight-bold" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
+                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
                                     
-                                    <a class="dropdown-item text-dark font-weight-bold" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'">'.__('cerrar sesion','jbetting').'</a>
+                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'">'.__('cerrar sesion','jbetting').'</a>
                                 </div>
                             </li>
                         </ul>
