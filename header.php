@@ -43,16 +43,18 @@
                     <ul class="navbar-nav mr-auto">
                         
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-right text-light font-weight-bold text-uppercase" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-right text-light font-weight-bold" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             '.get_userdata(get_current_user_id( ))->user_login .'
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item text-dark font-weight-bold text-uppercase" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
-                        
-                        <a class="dropdown-item text-dark font-weight-bold text-uppercase" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'">'.__('cerrar sesion','jbetting').'</a>
-
+                        <a class="dropdown-item text-dark font-weight-bold" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
+                        <a class="dropdown-item text-dark font-weight-bold" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'">'.__('cerrar sesion','jbetting').'</a>
                     </div>
                     </li>
+                        <li>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            </div>
+                        </li>
                     </ul>
                     
                     </div>
