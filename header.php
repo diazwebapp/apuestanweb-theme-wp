@@ -40,7 +40,7 @@
                     echo '<div class="navbar navbar-expand-lg ">
 
                     <div class="navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto ">
+                    <ul class="navbar-nav mr-auto menu">
                         
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-right" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
