@@ -58,7 +58,7 @@
                     </div>
                 </div>';
                     else:
-                        echo '<div class="text-right" ><a href="http://betmaste.com" class="btn_2 headerlgn mr-2"> Login</a></div>';
+                        echo '<div class="text-right" ><a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_option( 'ihc_general_login_default_page' ) : wp_login_url()) .'" class="btn_2 headerlgn mr-2"> Login</a></div>';
                     endif;
                 ?>
             </div>
@@ -86,3 +86,4 @@
 </header>
 
 <?php
+var_dump(!empty(get_option( 'ihc_general_login_default_page' )) ? get_option( 'ihc_general_login_default_page' ) : wp_login_url());
