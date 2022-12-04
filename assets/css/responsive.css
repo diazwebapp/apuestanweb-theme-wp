@@ -1029,12 +1029,12 @@
 		object-fit: contain;
 	}
 	.single_team1 p {
-		font-size: 12px;
+		font-size: 14px;
 		position: relative;
-		top: -11px;
+		top: 0;
 	}
 	.single_event_content p{
-		font-size: 15px;
+		font-size: 16px;
 	}
 	
 	.single_event_banner_middle {
@@ -1795,7 +1795,7 @@
 /*Small devices (landscape phones, 575px and down)*/
 @media (max-width: 575.98px) {
 	html{
-		font-size: 1.76vw;
+		font-size: 1.86vw;
 	}
 	.bookmaker_wrapper {
 	    padding-top: 6rem;
@@ -1950,6 +1950,37 @@
 	    margin-right: -15px;
 	    border-radius: 0;
 	    margin-bottom: 0;
+	}
+	.single_event_content p{
+		font-size: 16px;
+	}
+	.single_event_content h1, h2, h3, h4, h5{
+		line-height: 1.2;
+		color: #00203A;
+		font-weight: 700;
+		margin-bottom: 24px;
+	}
+	
+	.single_event_content h1{
+		font-size: 3.557rem;
+	
+	}
+	
+	.single_event_content h2{
+		font-size: 2.80rem;
+	
+	}
+	.single_event_content h3{
+		font-size: 2.277rem;
+	
+	}
+	.single_event_content h4{
+		font-size: 1.833rem;
+	
+	}
+	.single_event_content h5{
+		font-size: 12px;
+	
 	}
 
 	/*vip area*/

@@ -72,7 +72,7 @@
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
                             
                             ?>
-                            <div class="col-lg-9 mt_30">
+                            <div class="col-lg-8 mt_30">
                     
                                     <div class="single_envent_heading">						
                                         <h1 class="title_lg"><?php the_title() ?></h1>
@@ -134,13 +134,13 @@
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
-                                        <h3 class="title mt_30 order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h3>
-                                        <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="mt_30 dropd order-lg-3">Ver Todo</a>
+                                        <h3 class="title-b mt_30 order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h3>
+                                        <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="mt_10 dropd order-lg-3">Ver Todo</a>
                                     </div>
                                     <?php echo do_shortcode("[forecasts model='2' num='4']") ?>		
                             </div>
                             <!-- sidebar -->
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="row"><?php dynamic_sidebar( "forecast-right" ) ?></div>
                             </div>
                     <?php endwhile;
