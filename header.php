@@ -47,9 +47,9 @@
                             '.get_userdata(get_current_user_id( ))->user_login .'
                         </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item text-dark font-weight-bold my-2 text-uppercase" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
+                        <a class="dropdown-item text-dark font-weight-bold my-4 text-uppercase" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
                         
-                        <a class="dropdown-item text-dark font-weight-bold my-2 text-uppercase" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'">'.__('cerrar sesion','jbetting').'</a>
+                        <a class="dropdown-item text-dark font-weight-bold my-4 text-uppercase" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'">'.__('cerrar sesion','jbetting').'</a>
 
                     </div>
                     </li>
