@@ -85,4 +85,4 @@
 </header>
 
 <?php
-var_dump(!empty(get_option( 'ihc_general_login_default_page' )) ? get_option( 'ihc_general_login_default_page' ) : wp_login_url());
+var_dump(get_current_user_id( ));
