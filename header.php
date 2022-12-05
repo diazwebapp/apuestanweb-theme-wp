@@ -44,7 +44,7 @@
                             
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-right text-light font-weight-bold text-uppercase" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <p style="max-width:120px !important;overflow:hidden; float:left;">'.get_userdata(get_current_user_id( ))->user_login .'</p>
+                                    <p style="max-width:119px !important;overflow:hidden; float:left;">'.get_userdata(get_current_user_id( ))->user_login .'</p>
                                 </a>
 
                                 <div class="dropdown-menu position-absolute" style="right:0;" aria-labelledby="navbarDropdownMenuLink">
