@@ -34,7 +34,7 @@
             <!--logo end-->
             
         </div>
-        <div class="col-6 order-lg-3 col-lg-2">
+        <div class="col-6 order-lg-3 col-lg-2 text-right">
                 <?php 
                     if(is_user_logged_in( )):
                     echo '<div class="navbar navbar-expand-lg ">
@@ -47,17 +47,21 @@
                                     '.get_userdata(get_current_user_id( ))->user_login .'
                                 </a>
 
-                                <div class="dropdown-menu position-absolute" style="right:0;" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'">'.__('mi cuenta','jbetting').'</a>
-                                    
-                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'">'.__('cerrar sesion','jbetting').'</a>
+                                <div class="dropdown-menu position-absolute text-center" style="right:0;font-size: 1.3rem;" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
+                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="/picksplus"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
+
+                                    <hr class="mt-2 mb-3">
+                                    <a class="dropdown-item text-dark my-3" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'"><i class="fas fa-sign-out"></i>'.__(' Cerrar sesion','jbetting').'</a>
+
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>';
                     else:
-                        echo '<div class="text-right" ><a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_the_permalink(get_option( 'ihc_general_login_default_page' )) : wp_login_url()) .'" class="btn_2 headerlgn mr-2"> Login</a></div>';
+                        echo '<a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_the_permalink(get_option( 'ihc_general_login_default_page' )) : wp_login_url()) .'" class="btn_2 headerlgn mr-2"><i class="far fa-user"></i></a>';
+                        echo '<a href="/plus" class="headerbtn">SÉ MIEMBRO</a>';
                     endif;
                 ?>
             </div>
