@@ -474,6 +474,9 @@ header {
 .main_text h2{
 	font-size: 3.8rem;
 	font-weight: 400;
+	line-height: 1.2;
+	color: #ffffff;
+	margin-bottom: 0;
 }
 .main_text h2 strong{
 	margin: 0 1rem;
@@ -697,6 +700,7 @@ a.btn_2:hover{
 	line-height: 1.2;
 	font-weight: 500;
 	color: #00203A;
+	margin-bottom: 0;
 }
 /*testimonial area*/
 .testimonial_area{
@@ -3083,13 +3087,15 @@ blockquote{
 	text-transform: uppercase;
 	text-align: center;
 }
-.event2_top_box_wrapper h2{
+.event2_top_box_wrapper h2 {
     font-size: 1.6rem;
     line-height: 1.2;
     color: #E8EAEB;
     font-weight: 400;
     text-transform: uppercase;
     text-align: center;
+    margin-bottom: 0;
+    margin-top: 2px;
 }
 .event2_top_box_wrapper a{ 
 
@@ -3103,7 +3109,7 @@ blockquote{
 	padding: 5.7rem 8.8rem 1.5rem 8.8rem;
 }
 .event2_box_middle_content .p1{
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	line-height: 1.2;
 	color: #818181;
 	font-weight: 400;
@@ -3119,6 +3125,7 @@ blockquote{
 	line-height: 1.2;
 	color: #111111;
 	font-weight: 700;
+	margin-bottom: 0;
 }
 .event2_box_middle_heading p{
 	font-size: 1.4rem;
@@ -3139,7 +3146,7 @@ blockquote{
 	padding-top: 3.5rem;
 }
 .event2_box_bonus .p2{
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	line-height: 1.2;
 	color: #818181;
 	font-weight: 400;
@@ -3238,7 +3245,7 @@ blockquote{
 	margin-top: 3rem;
 }
 .event2_top_box_wrapper3{
-	background: transparent linear-gradient(180deg, #FFC100 0%, #C09200 54%, #806100 100%) 0% 0% no-repeat padding-box;
+	background: #009fe3;
 }
 .event2_box3{
 	padding-bottom: 0;
@@ -3272,7 +3279,7 @@ blockquote{
 	align-items: center;
 }
 .event2_box3_middle_content .button{
-	background: transparent linear-gradient(108deg, #E8B33A 0%, #C69916 61%, #B18800 100%) 0% 0% no-repeat padding-box;
+	background:#009fe3;
 	box-shadow: none;
 	margin-top: 1.8rem;
 }
