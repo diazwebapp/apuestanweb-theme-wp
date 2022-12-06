@@ -84,7 +84,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                 </div>
                                 </div>';
                                 echo '<p class="copyright" style="word-break:break-word;">'.$regs["text_reg"].'</p> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                
+                                show modal
                                 </button>';
                             endif;
                         endforeach;
