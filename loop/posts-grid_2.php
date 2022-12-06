@@ -17,7 +17,7 @@ endif;
 //
 echo '<div class="col-lg-3 col-md-6 mt_30">
         <div class="media align-items-center">
-            <img loading="lazy" style="width:115px;height:115px;object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
+        <a href="'.$permalink.'"><img loading="lazy" style="width:115px;height:115px;object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'"></a>
             <div style="padding-left:10px;" class="media-body">
                 <a href="'.$permalink.'">
                     <h3>'.$title.'</h3>

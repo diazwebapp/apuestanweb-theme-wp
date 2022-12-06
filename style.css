@@ -573,7 +573,7 @@ a.btn_2:hover{
 	line-height: 1.2;
 }
 .title-h2{
-	font-size: 1.777rem;
+	font-size: 2.2rem;
 	font-weight: 700;
 	color: #00203A;
 	line-height: 1.2;
@@ -911,7 +911,7 @@ footer .menu li a::before{
 	bottom: 1.8rem;
 }
 .inner_bg h1{
-	font-size: 6.8rem;
+	font-size: 4.8rem;
 	font-weight: 500;
 	line-height: 1;
 	display: flex;
@@ -2411,20 +2411,20 @@ footer .menu li a::before{
 }
 
 .single_event_content h1{
-	font-size: 3.157rem;
+	font-size: 4.209rem;
 
 }
 
 .single_event_content h2{
-	font-size: 2.369rem;
+	font-size: 3.157rem;
 
 }
 .single_event_content h3{
-	font-size: 1.777rem;
+	font-size: 2.369rem;
 
 }
 .single_event_content h4{
-	font-size: 1.333rem;
+	font-size: 1.777rem;
 
 }
 .single_event_content h5{

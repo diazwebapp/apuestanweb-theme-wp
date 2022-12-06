@@ -32,7 +32,7 @@ function shortcode_forecast($atts)
     $title = empty($custom_h1) ? $title : $custom_h1;
 
     if($filter):
-        $ret .= "<div class='title_wrap'>
+        $ret .= "<div class='title_wrap'>                    
                     <h1 class='title mt_30 order-lg-1'>".(isset($title) ? $title : '')."</h1>
                     <div class='mt_30 dropd order-lg-3'>
                         <div class='blog_select_box'>
