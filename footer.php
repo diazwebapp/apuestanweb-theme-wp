@@ -57,6 +57,10 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </div> -->
                 </div>
                 <div class="col-12 text-center">
+                    <?php
+                        $theme_regulation = carbon_get_theme_option( 'country_reg' );
+                        var_dump($theme_regulation);
+                    ?>
                     <p class="copyright"><?php echo carbon_get_theme_option( 'copy' ); ?></p>
                 </div>
             </div>

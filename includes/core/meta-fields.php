@@ -8,6 +8,7 @@ function crb_attach_theme_options()
 {
 
     if (get_key()):
+        $countries = get_countries_for_carbonmeta();
         Container::make('theme_options', "Apuestan")
             ->set_icon('dashicons-admin-site-alt2')
             ->add_tab(__("General settings", "jbetting"), array(
@@ -26,6 +27,18 @@ function crb_attach_theme_options()
                         "ipwhois" => "ipwhois",
                     ]),
                 Field::make('text', 'geolocation_api_key', __("geolocation api key", "jbetting")),
+            ))
+            ->add_tab(__("country regulations","jbetting"),array(
+                Field::make('complex', 'country_reg', __("country regulations", "jbetting"))
+                ->set_layout("tabbed-horizontal")
+                ->setup_labels(["plural_name"=>"tests","singular_name"=>"test"])
+                    ->add_fields(array(
+                        Field::make('textarea', 'text_reg', __("texto", "jbetting")),
+                        Field::make('select', 'country_code', __("country", "jbetting"))
+                            ->add_options($countries),
+                        Field::make('media_gallery', 'images', __("images", "jbetting"))
+                            ->set_type(array("image"))
+                    ))
             ));
 
 
