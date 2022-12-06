@@ -52,7 +52,7 @@ $oddsp2 = new Converter($p2, 'eu');
 $p1 = $oddsp1->doConverting();
 $x = $oddsx->doConverting();
 $p2 = $oddsp2->doConverting();
-$p1 = $p1[$_SESSION['odds_format']]; $x = $x[$_SESSION['odds_format']]; $p2 = $p2[$_SESSION['odds_format']];
+$p1 = $p1[get_option('odds_type')]; $x = $x[get_option('odds_type')]; $p2 = $p2[get_option('odds_type')];
 if (!$p1) {
     $p1 = 'n/a';
 }
@@ -67,7 +67,7 @@ if (!$p2) {
 
 if ($teams['team1']['logo'] and $teams['team2']['logo']): 
 echo "<div class='owl-item' >
-        <div class='item' style='background-image:url( $slide_bg ); background-repeat:no-repeat;background-size:cover;'>
+        <div class='item' style='background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%),url( $slide_bg ); background-repeat:no-repeat;background-size:cover;'>
             <div class='row align-items-center'>
                 <div class='col-lg-7 main_text'>
                     <p>Enfrentamiento</p>

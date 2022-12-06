@@ -80,16 +80,16 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     if($predictions and count($predictions)> 0):
         $oOddsConverter = new Converter($predictions[0]['cuote'], 'eu');
         $odds_result = $oOddsConverter->doConverting();
-        $cuote = $odds_result[$_SESSION['odds_format']];
+        $cuote = $odds_result[get_option('odds_type')];
         $rating_ceil = $predictions[0]['tvalue'];
         $prediction = $predictions[0]['title'];
     endif;
 
     $html_status = "";
     if($status == 'ok')
-        $html_status = "<b class='winl'>WIN</b>";
+        $html_status = "<b class='winl'><i class='far fa-check-circle'></i></b>";
     if($status == 'fail')
-        $html_status = "<b class='winl loss'>loss</b>";
+        $html_status = "<b class='winl loss'><i class='far fa-times-circle'></i></b>";
 
     if(floatval($acerted) > floatval($failed)):
         $flechita_indicadora = $flechita_up;
@@ -111,7 +111,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             <h5>'.$display_name.'</h5>
                             <div class="pick_box">
                                 <img src="'.$flechita_indicadora.'" class="img-fluid" alt="">
-                                <p>'.$acerted.'-'.$failed.', '.$rank.', Ult 10 picks</p>
+                                <p>'.$acerted.'-'.$failed.', $'.$rank.', Ult 10 picks</p>
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>
-                            <div class="collapse" id="col1'.$id_collapse.'">
+                            <div class="text-break collapse" id="col1'.$id_collapse.'">
                                 <p class="more_text pt_30">'.$content.'</p>
                             </div>
                         </div>

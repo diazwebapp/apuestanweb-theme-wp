@@ -1,8 +1,19 @@
 <?php
+/*--------------------------------------------------------------*/
+/*                            CORE                              */
+/*--------------------------------------------------------------*/
+
+include "includes/core/post-type.php";
+include "includes/core/taxonomy.php";
+include "includes/core/meta-fields.php";
+include "includes/libs/aqua-resize/aqua-resize.php";
+include "includes/libs/odds-converter/converter.class.php"; 
+include "includes/templates-emails/template-email-1.php"; 
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
 /*--------------------------------------------------------------*/
+
 include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
 include "includes/shortcodes/shortcode-profile-forecaster.php";
@@ -21,9 +32,11 @@ include "includes/shortcodes/shortcode-user-stats.php";
 include "includes/shortcodes/shortcode-register-form.php";
 include "includes/shortcodes/shortcode-checkout-form.php";
 include "includes/shortcodes/shortcode-login-form.php";
+
 /*--------------------------------------------------------------*/
 /*                         WIDGETS                              */
 /*--------------------------------------------------------------*/
+
 include "includes/widgets_area.php";
 include "includes/widgets/widget-top-bk.php";
 include "includes/widgets/widget-forecasts.php";
@@ -31,24 +44,15 @@ include "includes/widgets/widget-bk-bonus.php";
 include "includes/widgets/widget-authors.php";
 
 /*--------------------------------------------------------------*/
-/*                            CORE                              */
-/*--------------------------------------------------------------*/
-include "includes/core/meta-fields.php";
-include "includes/core/post-type.php";
-include "includes/core/taxonomy.php";
-include "includes/libs/aqua-resize/aqua-resize.php";
-include "includes/libs/odds-converter/converter.class.php";
-/*--------------------------------------------------------------*/
 /*                         GEOLOCATION API                      */
 /*--------------------------------------------------------------*/
+
 include "includes/handlers/geolocation.php";
 
 /*--------------------------------------------------------------*/
 /*                         HANDLERS                             */
 /*--------------------------------------------------------------*/
-include "includes/ajax_handlers/mailchimp.php";
-include "includes/ajax_handlers/forecast_loadmore.php";
-include "includes/ajax_handlers/forecast_filter.php";
+
 include "includes/ajax_handlers/news_loadmore.php";
 include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
@@ -61,6 +65,7 @@ include "includes/handlers/paypal-tools.php";
 /*--------------------------------------------------------------*/
 /*                        TOOLS PANEL ADMIN                     */
 /*--------------------------------------------------------------*/
+
 include "includes/core/bookmaker-location-panel/bk-location-panel.php";
 include "includes/core/payment-dashboard/payment-dashboard.php";
 
@@ -68,6 +73,7 @@ include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
+
 include "rest-api/register-routes.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
@@ -88,7 +94,7 @@ add_action('after_setup_theme', 'my_theme_setup');
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
-    load_theme_textdomain('jbetting', get_template_directory() . '/lang');
+
     global $post;
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'posts' ) ) {
         //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
@@ -96,6 +102,7 @@ function my_theme_setup()
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
         //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
     }
+    
 }
 
 function get_key()
@@ -131,6 +138,7 @@ function jbetting_src()
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
+    
 }
 
 function enqueuing_admin_scripts(){
@@ -172,6 +180,10 @@ add_action('init', function(){
         session_start();
     endif;
     
+    if(!str_contains($_SERVER["PHP_SELF"], "wp-admin")) {
+        setUserRating();
+    }
+    
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );
     remove_action( 'wp_head', 'wlwmanifest_link' );
@@ -188,6 +200,7 @@ add_action('init', function(){
     
     //Zona horaria
     date_default_timezone_set('America/Caracas');
+
     //vip page
     $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
     if($page_id_vip):
@@ -200,8 +213,6 @@ add_action('init', function(){
         define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
     endif;
 
-    //profile page 
-    //$page_forecaster = isset(carbon_get_theme_option('page_forecaster')[0]) ? carbon_get_theme_option('page_forecaster')[0]['id']: "#";
     $page_forecaster = empty(get_option( 'ihc_general_register_view_user')) ? "#":get_option( 'ihc_general_register_view_user');
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
@@ -213,15 +224,13 @@ add_action('init', function(){
         $_SESSION['odds_format'] = 2;
     endif;
     if(isset($_GET['odds_format'])):
-        $_SESSION['odds_format'] = $_GET['odds_format'];
+        update_option( "odds_type", $_GET['odds_format']);
     endif;
 
     ///////////geolocation
 
     if(!isset($_SESSION["geolocation"])){
-        /* echo "<pre>";
-        var_dump($_SERVER["REMOTE_ADDR"]);
-        echo "</pre>"; */
+        
         $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
         $_SESSION["geolocation"] = json_encode($data);
     }
@@ -251,6 +260,7 @@ add_action('init', function(){
     {
         define('IP',$_SERVER["REMOTE_ADDR"]);
     } */
+   
 });
 
 
@@ -296,34 +306,88 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 /////configurando smtp///////
 
-function configuracion_smtp( PHPMailer $phpmailer ){
-    $phpmailer->isSMTP(); 
-    $phpmailer->Host = 'smtp-relay.sendinblue.com';
-    $phpmailer->SMTPAuth = true;
-    $phpmailer->Port = 587;
-    $phpmailer->Username = 'erickoficial69@gmail.com';
-    $phpmailer->Password = 'xsmtpsib-946bcc77fd61f27f43f8069b405d2ea9c363a097d28ed28b6b7d5f9dc05673d6-KkSM6N3mrZRnQVOs';
-    $phpmailer->SMTPSecure = false;
-    $phpmailer->From = 'From Email';
-    $phpmailer->FromName='Nombre del remitente';
-}
 
 ///// Detectando registro de usuarios
 add_action( 'user_register', 'aw_actions_after_register_user', 10, 1 ); 
 
 function aw_actions_after_register_user( $user_id ) {
-    $headers[]= 'From: Apuestan <apuestan@gmail.com>';
-    $headers[]= 'Cc: Persona1 <diazwebapp@gmail.com>';
-    $headers[]= 'Cc: Persona2 <erickoficial69@gmail.com>';
     
     function tipo_de_contenido_html() {
         return 'text/html';
     }
     $memberInfo = get_userdata($user_id);
-    add_filter( 'wp_mail_content_type', 'tipo_de_contenido_html' );
-    wp_mail( 'erickoficial69@gmail.com',
-    'Ejemplo de la función mail en WP '.$memberInfo->user_login.' ',
-    '<h1>Correo de apuestan</h1>',
-    $headers
-    );
+    $blogname = get_bloginfo( "name" );
+    $admin_email = get_option( "admin_email" );
+
+    $headers[]= "From: Apuestan <$admin_email>";
+
+    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+
+    add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
+    wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
+}
+
+function setUserRating(){
+    $users = get_users();
+    if($users and count($users) > 0):
+        foreach ($users as $user) {
+            $ok = 0;
+            $fail = 0;
+            $null = 0;
+            $rank = 0;
+            
+            update_user_meta($user->ID,'rank',$rank);
+            update_user_meta( $user->ID, 'forecast_acerted', $ok);
+            update_user_meta( $user->ID, 'forecast_failed', $fail);
+            update_user_meta( $user->ID, 'forecast_nulled', $null);
+            
+            //Query Args
+            $forecast_args['author'] = $user->ID;
+            $forecast_args['post_type'] = 'forecast';
+            $forecast_args['post_per_page'] = 10;
+            $forecast_args['paged'] = 1;
+            $forecast_args['meta_query']     = [
+                [
+                    'key' => 'vip',
+                    'value' => 'yes',
+                ]
+            ];
+            
+            $user_posts_query = new WP_Query($forecast_args);
+            
+            if($user_posts_query->have_posts()):
+                //Loop de los forecasts del autor
+                while($user_posts_query->have_posts()): $user_posts_query->the_post();
+                    
+                    $status = carbon_get_post_meta(get_the_ID(), 'status');
+                    $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
+                    if($predictions and count($predictions) > 0):
+                        if($status and $status == 'ok'):
+                            $ok++;
+                            $cuote = floatval($predictions[0]['cuote']);
+                            $tvalue = floatval($predictions[0]['tvalue']);
+                            $inversion = $tvalue * 100;
+                            $rank += $inversion * $cuote - $inversion;
+                            update_user_meta( $user->ID, 'forecast_acerted', $ok);
+                            update_user_meta( $user->ID, 'rank', $rank);
+                        endif;
+                        if($status and $status == 'fail'):
+                            $fail++;
+                            $cuote = floatval($predictions[0]['cuote']);
+                            $tvalue = floatval($predictions[0]['tvalue']);
+                            $inversion = $tvalue * 100;
+                            $rank -= $inversion;
+                            update_user_meta( $user->ID, 'forecast_failed', $fail);
+                            update_user_meta( $user->ID, 'rank', $rank);
+                        endif;
+                        if($status and $status == 'null'):
+                            $null++;
+                            update_user_meta( $user->ID, 'forecast_nulled', $null);
+                        endif;
+                    endif;
+                endwhile;
+            endif;
+
+        }
+    endif;
 }

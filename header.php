@@ -3,70 +3,89 @@
 <head>
     <title><?php wp_title(''); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.001, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<?php wp_head(); ?>
 </head>
 <body>
-<?php
-
+<?php /*
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
-    endif;
+    endif;*/
 ?>
 <header class="sticky-top">
 <div class="container">
-            <div class="row align-items-center form-row">
-                <div class="col-lg-2 order-lg-1 col-6 logo_col">
-                    <!-- menu toggler -->
-                    <div class="hamburger-menu">
-                        <span class="line-top"></span>
-                        <span class="line-center"></span>
-                        <span class="line-bottom"></span>
-                    </div>
-                    <!--logo start-->
-                    <?php if ( carbon_get_theme_option( 'logo' ) ):
-                            $logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
-                        else:
-                            $logo =  get_template_directory_uri().'/assets/img/logo.svg';
-                        endif;
-                    ?>
-                    <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
-                    <!--logo end-->
-                </div>
-                <div class="col-lg-2 order-lg-3 btn_group col-6">
-                    <a href="#" class="icon_box mr_10">
-                        <img src="<?php echo get_template_directory_uri() . '/assets/img/icon8.svg'?>" alt="">
-                    </a>
-                    <a href="<?php echo PERMALINK_VIP ?>" class="headerbtn"><?php $loc = json_decode($_SESSION["geolocation"]); echo $loc->country; ?> </a>
-                    <a href="#" class="headerbtn v2">LOGIN</a>
-                    <div class="event_select">
-                        <select name="apu" id="apu">
-                                <option data-display="ES"></option>
-                                <option value="0">ES</option>
-                                <option value="apu">ES</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-8 order-lg-2">
-                    <!--menu start-->
-                    <ul class="menu text-uppercase">                    
-                    <?php
-                        
-                        $ret = strip_tags( wp_nav_menu( array(
-                            'theme_location' => 'top',
-                            'echo'           => false
-                        ) ), '<li><a>' );
-                        if ( $ret ):
-                            echo $ret;
-                        else:
-                            echo "";
-                        endif;
-                        
-                    ?>
-                    </ul> <!--menu end-->
-                </div>
+    <div class="row align-items-center form-row">
+        <div class="col-6 logo_col order-lg-1 col-lg-2">
+            <!-- menu toggler -->
+            <div class="hamburger-menu">
+                <span class="line-top"></span>
+                <span class="line-center"></span>
+                <span class="line-bottom"></span>
             </div>
+            <!--logo start-->
+            <?php if ( carbon_get_theme_option( 'logo' ) ):
+                    $logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
+                else:
+                    $logo =  get_template_directory_uri().'/assets/img/logo.svg';
+                endif;
+            ?>
+            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
+            <!--logo end-->
+            
         </div>
+        <div class="col-6 order-lg-3 col-lg-2 text-right">
+                <?php 
+                    if(is_user_logged_in( )):
+                    echo '<div class="navbar navbar-expand-lg ">
+
+                    <div class="navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-right text-light font-weight-bold" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    '.get_userdata(get_current_user_id( ))->user_login .'
+                                </a>
+
+                                <div class="dropdown-menu position-absolute text-center" style="right:0;font-size: 1.3rem;" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
+                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="/picksplus"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
+
+                                    <hr class="mt-2 mb-3">
+                                    <a class="dropdown-item text-dark my-3" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'"><i class="fas fa-sign-out"></i>'.__(' Cerrar sesion','jbetting').'</a>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>';
+                    else:
+                        echo '<a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_the_permalink(get_option( 'ihc_general_login_default_page' )) : wp_login_url()) .'" class="btn_2 headerlgn mr-2"><i class="far fa-user"></i></a>';
+                        echo '<a href="/plus" class="headerbtn">SÉ MIEMBRO</a>';
+                    endif;
+                ?>
+            </div>
+        <div class="col-6 col-lg-8 order-lg-2">
+            <!--menu start-->
+            <ul class="menu text-uppercase">                    
+            <?php
+                
+                $ret = strip_tags( wp_nav_menu( array(
+                    'theme_location' => 'top',
+                    'echo'           => false
+                ) ), '<li><a>' );
+                if ( $ret ):
+                    echo $ret;
+                else:
+                    echo "";
+                endif;
+                
+            ?>
+            </ul> <!--menu end-->
+        </div>
+        
+    </div>
+</div>
 </header>
+
 <?php

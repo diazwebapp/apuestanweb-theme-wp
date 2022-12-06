@@ -5,12 +5,12 @@ global $wpdb, $charset_collate;
 $charset_collate = $wpdb->get_charset_collate();
 define("GEOLOCATION_CACHE",$wpdb->prefix . "aw_geolocation_cache");
 function aw_get_the_user_ip() {
-    if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    if ( ! empty( $_SERVER['HTTP_CF_CONNECTING_IP'] ) ) {
+        $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
         } elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
         } else {
-        $ip = $_SERVER['REMOTE_ADDR'];
+        $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
         }
     return apply_filters( 'wpb_get_ip', $ip );
     }
@@ -45,6 +45,10 @@ function insert_geolocation_cache($data){
 }
 
 function geolocation_api($param){
+
+    ////////////
+
+    ////////////
     $response = false;
     
     $geolocation = [

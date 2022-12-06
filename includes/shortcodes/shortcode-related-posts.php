@@ -15,7 +15,7 @@ function shortcode_news($atts)
     if($title and !$link):
         $heading = '<div class="col-12">
                         <div class="title_wrap">
-                            <h3 class="title mt_30">'.$title.'</h3>
+                            <h2 class="title-h2 mt_30">'.$title.'</h3>
                         </div>
                     </div> ';
     endif;
@@ -29,14 +29,15 @@ function shortcode_news($atts)
     if($title and $link):
         $heading = '<div class="col-12">
                         <div class="title_wrap">
-                            <h3 class="title mt_30">'.$title.'</h3>
+                            <h2 class="title-h2 mt_30">'.$title.'</h3>
                             <a href="'.$link.'" class="mt_30 dropd">'.$text_link.'</a>
                         </div>
                     </div> ';
     endif;
     $args['post_status']    = 'publish';
     $args['post_type']      = 'post';
-    $args['posts_per_page'] = $num;;
+    $args['posts_per_page'] = $num;
+    
     $league_arr=[];
     
     if(is_array($league))
@@ -54,14 +55,25 @@ function shortcode_news($atts)
             ]
         ];    
 
-
+        $post_type = get_post_type( );
+        $id_principal = null;
+        if($post_type == "post" and $post_type == "post" and is_single()):
+            $id_principal = get_the_ID();
+        endif;
+        
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
         $ret = "<hr class='mt-2 mb-3'/><div class='row small_gutter'>";
         $ret .= $heading;
                     while ($query->have_posts()):
                         $query->the_post();
-                        $ret .= load_template_part("/loop/posts-grid_{$model}");
+                        $id = get_the_ID();
+                        if(isset($id_principal) and $id_principal !== $id ):
+                            $ret .= load_template_part("/loop/posts-grid_{$model}");
+                        endif;
+                        if(!isset($id_principal)):
+                            $ret .= load_template_part("/loop/posts-grid_{$model}");
+                        endif;
                     endwhile;
         $ret .= "</div><hr class='mt-2 mb-3'/>";
     

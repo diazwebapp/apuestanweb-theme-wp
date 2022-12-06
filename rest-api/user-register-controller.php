@@ -214,10 +214,6 @@ if(!function_exists('aw_user_level_operations')):
             $resp['msg'] = $_SESSION["checkout_action"].' completed';
             $resp['history_id'] = $insert_history_id;
         endif;
-        ////VACIAMOS LAS SESIONES
-        //$_SESSION["checkout_action"] = false;
-        //$_SESSION["payment_account_id"] = false;
-        //$_SESSION["current_user"] = false;
         
         return $resp;
     }

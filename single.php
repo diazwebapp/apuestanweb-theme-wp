@@ -17,23 +17,23 @@ $sidebar=false;
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
-                            $post_date = get_the_date( "d M h:i a", get_the_ID());
-                            $time = carbon_get_post_meta(get_the_ID(), 'data');
-                            $title = get_the_title( get_the_ID() ); 
-                            $fecha = date('d M', strtotime($time)) .' - '. date('g:i a', strtotime($time));
-                            $author_name = get_the_author_meta("display_name" );
-                            $author_id =  get_the_author_meta('ID') ;
-                            $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
+                                $post_date = get_the_date( "d M h:i a", get_the_ID());
+                                $time = carbon_get_post_meta(get_the_ID(), 'data');
+                                $title = get_the_title( get_the_ID() ); 
+                                $fecha = date('d M', strtotime($time)) .' - '. date('g:i a', strtotime($time));
+                                $author_name = get_the_author_meta("display_name" );
+                                $author_id =  get_the_author_meta('ID') ;
+                                $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
                             ?>
                                     <h1 class="blog_title"><?php echo $title ?></h1>
                                     <p class="mt_30 author_text">Por <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a> <?php echo $post_date ?></p>
-                                    <img src="<?php echo $thumbnail_url ?>" class="single_img" alt="">
+                                    <img src="<?php echo $thumbnail_url ?>" class="single_img" alt="<?php echo $title ?>">
                                     <div class="single_event_content text-break">
                                         <?php the_content(); ?>
                                 <?php   endwhile; }
                             ?>
                         </div>
-                        <?php echo do_shortcode( "[slide_bk title='casas de apuestas' model='2']" ) ?>
+                        <?php echo do_shortcode( "[related_posts model='1' num='4' title='Lee también']" )?>
                     </div>
 						
                     <div class="col-lg-3">

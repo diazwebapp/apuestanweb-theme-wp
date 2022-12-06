@@ -22,11 +22,11 @@ function filter_forecast() {
 	endif;
     
     if ($fecha and $fecha != "") {
-        if($fecha == 'today')
+        if($fecha == 'hoy')
             $current_date = date('Y-m-d');
-        if($fecha == 'yesterday')
+        if($fecha == 'ayer')
             $current_date = date('Y-m-d', strtotime('-1 days'));
-        if($fecha == 'tomorrow')
+        if($fecha == 'mañana')
             $current_date = date('Y-m-d',strtotime('+1 days'));
             
         $args['meta_query']   = [

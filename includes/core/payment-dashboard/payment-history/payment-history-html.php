@@ -2,19 +2,18 @@
 
 function generate_history_payment_table(){
   global $wpdb;
-
-  $query = select_payment_history();
+  $params["status"] = "completed";
+  if(isset($_GET["status"])){
+    $params["status"] = $_GET["status"];
+  }
   if(isset($_POST["filter_table_history"])){
-    $text = false;
     
     if(isset($_POST["username"]) and $_POST["username"] != ""){
-      $text["key"] = "username";
-      $text["value"] = $_POST["username"];
+      $params["username"] = $_POST["username"];
     }
-    if(isset($_POST["status"]) and $_POST["status"] != ""){
-      $text["key2"] = "status";
-      $text["value2"] = $_POST["status"];
-    }
+    
+    
+    /*
     if(isset($_POST["date_1"]) or isset($_POST["date_2"])){
 
       if( isset($_POST["date_1"]) and !empty($_POST["date_1"]) ){
@@ -25,11 +24,12 @@ function generate_history_payment_table(){
       if( isset($_POST["date_2"]) and !empty($_POST["date_2"]) and !empty($_POST["date_1"]) ){
         $data["value2"] = $_POST["date_2"];
       }
-    }
+    } */
 
-    $query = select_payment_history($data,$text);
+    
   }
-
+  
+  $query = select_payment_history($params);
   $table_html = '<table class="table table-hover " >
       <thead>
         <tr>
@@ -114,9 +114,25 @@ if(isset($_GET["update_payment_history_id"]) and isset($_GET["status"])){
   header("Location:".$_SERVER["HTTP_REFERER"]."&error=1");
 }
 function aw_payment_history(){
+  $path = $_SERVER['REQUEST_URI'] ."&status=";
   $table_payment_history = generate_history_payment_table();
-  
+  $payment_method_navbar = '<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
+                              <div class="container-fluid">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                  <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                  <ul class="navbar-nav me-auto">
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'pending">pending</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'completed">completed</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'trashed">trashed</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="'.$path.'failed">failed</a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </nav>';
     $dashboard = '<main class="container-fluid">
+    '.$payment_method_navbar.'
               <h4>'._x("payment history","jbetting").'</h4>
                 <div class="col-md-12 mb-2">
                       <h3>Filtrar consulta</h3>
@@ -125,16 +141,7 @@ function aw_payment_history(){
                           <label>Username</label>
                           <input type="text" name="username" class="form-control" />
                         </div>
-                        <div class="col" >
-                          <label>Status</label>
-                          <input type="text" list="status_list" name="status" class="form-control" autocomplete="off" />
-                          <datalist id="status_list">
-                            <option value="completed" selected ></option>
-                            <option value="pending" ></option>
-                            <option value="failed" ></option>
-                            <option value="trashed" ></option>
-                          </datalist>
-                        </div>
+                        
                         <div class="col" >
                           <label>Date start</label>
                           <input type="date" name="date_1" class="form-control"/>

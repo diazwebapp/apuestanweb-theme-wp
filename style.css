@@ -258,7 +258,7 @@ header {
 }
 
 .menu li a {
-	font-size: 2rem;
+	font-size: 1.6rem;
 	color: #ffffffed;
 	margin: 0 .5rem;
 	display: inline-flex;
@@ -343,11 +343,10 @@ header {
 	width: 2.3rem;
 }
 .headerbtn{
-	width: 16rem;
 	background: transparent linear-gradient(107deg, #0558CB 0%, #023986 100%);
 	box-shadow: 0px .3rem 1.5rem rgba(11, 105, 236, 0.4);
 	border-radius: .6rem;
-	font-size: 1.8rem;
+	font-size: 1.6rem;
 	text-align: center;
 	display: inline-flex;
 	font-weight: 500;
@@ -360,6 +359,18 @@ header {
 .headerbtn:hover{
 	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
 }
+.headerlgn{
+	text-align: center;
+	padding: 1rem!important;
+	align-items: center;
+	justify-content: center;
+	line-height: 1.31;
+	margin-top: 0!important;
+	margin-left: 1rem;
+	font-size: 1.4rem!important;
+
+}
+
 
 .loadbtn{
 	width: 16rem;
@@ -388,6 +399,7 @@ header {
 	right: 5px;
 	visibility: hidden;
 }
+
 .btn_group:hover .headerbtn.v2{
 	visibility: visible;
 }
@@ -463,6 +475,9 @@ header {
 .main_text h2{
 	font-size: 3.8rem;
 	font-weight: 400;
+	line-height: 1.2;
+	color: #ffffff;
+	margin-bottom: 0;
 }
 .main_text h2 strong{
 	margin: 0 1rem;
@@ -552,7 +567,19 @@ a.btn_2:hover{
 }
 /*event area*/
 .title{
-	font-size: 3.2rem;
+	font-size: 3.157rem;
+	font-weight: 700;
+	color: #00203A;
+	line-height: 1.2;
+}
+.title-h2{
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #00203A;
+	line-height: 1.2;
+}
+.title-b{
+	font-size: 2.2rem;
 	font-weight: 700;
 	color: #00203A;
 	line-height: 1.2;
@@ -669,11 +696,12 @@ a.btn_2:hover{
 	margin-right: 1.5rem;
 	object-fit: cover;
 }
-.media h4{
+.media h3{
 	font-size: 1.6rem;
 	line-height: 1.2;
 	font-weight: 500;
 	color: #00203A;
+	margin-bottom: 0;
 }
 /*testimonial area*/
 .testimonial_area{
@@ -692,7 +720,7 @@ a.btn_2:hover{
 	line-height: 1;
 }
 .title_lg{
-	font-size: 32px;
+	font-size: 3.157rem;
 	color: #00203A;
 	font-weight: 700;
 	line-height: 1.2;
@@ -883,7 +911,7 @@ footer .menu li a::before{
 	bottom: 1.8rem;
 }
 .inner_bg h1{
-	font-size: 6.8rem;
+	font-size: 4.8rem;
 	font-weight: 500;
 	line-height: 1;
 	display: flex;
@@ -904,7 +932,12 @@ footer .menu li a::before{
 	display: flex;
 	align-items: center;
 }
+
 .title_wrap .title{
+	margin-right: 5rem;
+	white-space: nowrap;
+}
+.title_wrap .title-h2{
 	margin-right: 5rem;
 	white-space: nowrap;
 }
@@ -1038,7 +1071,7 @@ footer .menu li a::before{
 	border: 0.1rem solid #E4E6E8;
 	border-radius: 0 0 1rem 1rem;
 }
-.desc_box h4{
+.desc_box h3{
 	font-size: 1.8rem;
 	font-weight: 500;
 	color: #00203A;
@@ -1064,10 +1097,14 @@ footer .menu li a::before{
 }
 .top_box{
 	background: #FFFFFF;
-   border-radius: 1rem;
-   backdrop-filter: blur(50px);
-   padding: 2.3rem 3.5rem;
-   margin-top: 2rem;
+	border-radius: 1rem;
+	backdrop-filter: blur(50px);
+	padding: 2.3rem 3.5rem;
+	margin-top: 2rem;
+}
+.top_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
 }
 .serial{
 	display: inline-flex;
@@ -1761,7 +1798,9 @@ footer .menu li a::before{
 .top_box3_left_content{
 	flex-basis: 70%;
 	max-width: 70%;
-	border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+.top_box3_left_content:hover{
+	text-decoration: underline;
 }
 .top_box3_right_content{
 	flex-basis: 30%;
@@ -1773,7 +1812,7 @@ footer .menu li a::before{
 	align-self: center;
 }
 .top_box3_img p{
-	font-size: 1.2rem;
+	font-size: 12px;
 	line-height: 1.2;
 	color: #00203A;
 	padding-left: 1.5rem;
@@ -1788,13 +1827,24 @@ footer .menu li a::before{
 
 /*price area*/
 .price_wrapper {
-    margin-top: 8.5rem;
+   /* margin-top: 8.5rem;*/
     padding-bottom: 20.5rem;
     background-color: #032451;
 }
-.price_heading{
-	text-align: center;
-	padding-top: 3rem;
+
+.price_heading {
+    /* text-align: center; */
+    padding-top: 3rem;
+    /* color: lemonchiffon; */
+    background: #fbfbff;
+    /* background: white; */
+    /* border-radius: 1rem; */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* width: 355px; */
+    /* top: 21px; */
+    margin-top: 2rem;
 }
 .price_heading img{
 	padding-bottom: 3rem;
@@ -1809,13 +1859,13 @@ footer .menu li a::before{
 .price_box_wrapper{
 	display: flex;
 	align-items: flex-start;
-	justify-content: space-between;
+	justify-content: center;
 }
 .price_box {
     text-align: center;
     border: 0.1rem solid #3A3737;
     max-width: 52.5rem;
-    width: 100%;
+    width: 300px;
     margin-top: 5.5rem;
     margin-left: 1rem;
     margin-right: 1rem;
@@ -1834,13 +1884,13 @@ footer .menu li a::before{
 	padding-top: 8rem;
 }
 .price_box .price {
-    font-size: 9.7rem;
+    font-size: 7.7rem;
     line-height: 1;
     color: #0558CB;
     padding-top: 5rem;
 }
 .box_p {
-    border: 0.1rem solid #707070;
+    border: 0.1rem solid #0558cb2e;
     padding: 2rem 4rem 4rem 4rem;
     margin-top: 3.7rem;
     margin-left: 2.5rem;
@@ -2198,7 +2248,7 @@ footer .menu li a::before{
 	text-align: center;
 	padding-top: 2.3rem;
 	width: 100%;
-    height: 80px;
+    height: 100%;
     object-fit: contain;
 }
 .single_team1 img {
@@ -2207,10 +2257,10 @@ footer .menu li a::before{
     object-fit: contain;
 }
 .single_team1 p{
-	font-size: 2.2rem;
+	font-size: 1.8rem;
 	line-height: 1.2;
 	color: #FFFFFF;
-	padding-top: 1.8rem;
+	padding-top: 1.2rem;
 }
 .single_match_time {
     padding-left: 10.5rem;
@@ -2340,11 +2390,11 @@ footer .menu li a::before{
 }
 
 .single_event_content p{
-	font-size: 17px;
+	font-size: 1.786rem;
 	color: #00203A;
-	max-width: 99%;
+	max-width: 100%;
 	text-align: justify;
-	line-height: 1.5em;
+	line-height: 1.9;
 	margin-bottom: 1em;
 	margin-block-start: 1em;
 
@@ -2353,48 +2403,35 @@ footer .menu li a::before{
 .single_event_title_wrap{
 	justify-content: space-between;
 }
-.single_event_content h1{
-	font-size: 32px;
+.single_event_content h1, h2, h3, h4, h5{
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 700;
 	margin-bottom: 24px;
 }
+
+.single_event_content h1{
+	font-size: 4.209rem;
+
+}
+
 .single_event_content h2{
-	font-size: 26px;
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 700;
-	margin-bottom: 24px;
+	font-size: 3.157rem;
+
 }
 .single_event_content h3{
-	font-size: 22px;
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 700;
-	margin-bottom: 24px;
+	font-size: 2.369rem;
+
 }
 .single_event_content h4{
-	font-size: 20px;
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 700;
-	margin-bottom: 24px;
+	font-size: 1.777rem;
+
 }
 .single_event_content h5{
 	font-size: 12px;
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 700;
-	margin-bottom: 24px;
+
 }
-.single_event_content h6{
-	font-size: 10px;
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 700;
-	margin-bottom: 24px;
-}
+
 .single_event_content ul, ol{
 	font-size: 15px;
     display: block;
@@ -2460,7 +2497,7 @@ footer .menu li a::before{
 blockquote{
 	display:block;
 	background: #fff;
-	padding: 15px 20px 15px 45px;
+	padding: 10px 10px 10px 15px;
 	margin: 0 0 20px;
 	position: relative;
 	
@@ -2475,10 +2512,7 @@ blockquote{
 	border-left: 15px solid #03b0f4;
 	border-right: 2px solid #03b0f4;
 	
-	/*Box Shadow - (Optional)*/
-	-moz-box-shadow: 2px 2px 15px #ccc;
-	-webkit-box-shadow: 2px 2px 15px #ccc;
-	box-shadow: 2px 2px 15px #ccc;
+
   }
   
   blockquote::before{
@@ -2665,7 +2699,7 @@ blockquote{
 }
 .blog_title{
 	color: #00203A;
-	font-size: 4rem;
+	font-size: 2em;
 	line-height: 1.2;
 	font-weight: 700;
 	font-family: "Segoe UI", sans-serif;
@@ -2981,17 +3015,17 @@ blockquote{
 }
 .winl{
 	color: #F1F2F3;
-	font-size: 1.6rem;
+	font-size: 2.2rem;
 	text-transform: uppercase;
-	padding: 0.1rem 0.9rem;
-	background-color: rgba(53, 233, 46, 0.61);
+	padding: 0.12rem 1rem;
+	background-color: rgb(36 171 31);
 	border-radius: 0.6rem;
 	position: absolute;
 	right: 5rem;
 	top: 2.4rem;
 }
 .winl.loss{
-	background-color: rgba(236, 17, 17, 0.61);
+	background-color: rgb(236 17 17);
 }
 
 /*event 2 area start*/
@@ -3054,13 +3088,15 @@ blockquote{
 	text-transform: uppercase;
 	text-align: center;
 }
-.event2_top_box_wrapper h2{
+.event2_top_box_wrapper h2 {
     font-size: 1.6rem;
     line-height: 1.2;
     color: #E8EAEB;
     font-weight: 400;
     text-transform: uppercase;
     text-align: center;
+    margin-bottom: 0;
+    margin-top: 2px;
 }
 .event2_top_box_wrapper a{ 
 
@@ -3074,7 +3110,7 @@ blockquote{
 	padding: 5.7rem 8.8rem 1.5rem 8.8rem;
 }
 .event2_box_middle_content .p1{
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	line-height: 1.2;
 	color: #818181;
 	font-weight: 400;
@@ -3090,6 +3126,7 @@ blockquote{
 	line-height: 1.2;
 	color: #111111;
 	font-weight: 700;
+	margin-bottom: 0;
 }
 .event2_box_middle_heading p{
 	font-size: 1.4rem;
@@ -3110,7 +3147,7 @@ blockquote{
 	padding-top: 3.5rem;
 }
 .event2_box_bonus .p2{
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	line-height: 1.2;
 	color: #818181;
 	font-weight: 400;
@@ -3209,7 +3246,7 @@ blockquote{
 	margin-top: 3rem;
 }
 .event2_top_box_wrapper3{
-	background: transparent linear-gradient(180deg, #FFC100 0%, #C09200 54%, #806100 100%) 0% 0% no-repeat padding-box;
+	background: #009fe3;
 }
 .event2_box3{
 	padding-bottom: 0;
@@ -3243,7 +3280,7 @@ blockquote{
 	align-items: center;
 }
 .event2_box3_middle_content .button{
-	background: transparent linear-gradient(108deg, #E8B33A 0%, #C69916 61%, #B18800 100%) 0% 0% no-repeat padding-box;
+	background:#009fe3;
 	box-shadow: none;
 	margin-top: 1.8rem;
 }
@@ -3322,7 +3359,6 @@ blockquote{
 
 .container_logo_review{
 	border-radius:1rem 0 0 1rem;
-	background:black;
 	min-height:210px;
 
 }

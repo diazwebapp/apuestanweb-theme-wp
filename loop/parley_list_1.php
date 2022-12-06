@@ -41,13 +41,13 @@ echo "<div class='parley_wrapper'>
         foreach ($forecasts as $event) {
             $predictions = carbon_get_post_meta($event['id'], 'predictions');
             $prediction = [];
+            $permalink_event = get_the_permalink($event['id']);
             $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
             $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
-            $permalink_event = get_the_permalink($event['id']);
-            
-            if($parley_cuotes >= 1){
-                $parley_cuotes *= floatval($prediction['cuote']);
-            }
+            $parley_cuotes = $parley_cuotes * $prediction['cuote'];
+            $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+            $odds_result = $oOddsConverter->doConverting();
+            $prediction['cuote'] = $odds_result[$args["odds"]];
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
             $time = carbon_get_post_meta($event['id'], 'data');
@@ -69,12 +69,6 @@ echo "<div class='parley_wrapper'>
                     }
                 }
             }
-            if(is_float($prediction['cuote'])):
-                $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-                $odds_result = $oOddsConverter->doConverting();
-                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
-            endif;
-
 
             echo "<div class='parley_box'>
                 <div class='parley_left_content'>

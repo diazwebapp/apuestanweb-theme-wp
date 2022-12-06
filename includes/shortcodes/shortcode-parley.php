@@ -15,6 +15,7 @@ function shortcode_parley($atts)
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
+    $odds = get_option( 'odds_type' );
 
     if(is_page() && !$title)
         $title = get_the_title( );
@@ -33,11 +34,11 @@ function shortcode_parley($atts)
         <h1 class='title mt_30 order-lg-1'>$title</h1>
         <div class='mt_30 dropd order-lg-3'>
             <div class='blog_select_box'>
-                <select name='ord' id='element_select_forecasts'>
+                <select name='ord' data-type='parley' id='element_select_parley' onchange='filter_date_items(this)'>
                     <option value=''>Ordenar</option>
-                    <option value='yesterday'> ".__('Yesterday','jbetting')." </option>
-                    <option value='today'> ".__('Today','jbetting')." </option>
-                    <option value='tomorrow'> ".__('Tomorrow','jbetting')." </option>
+                    <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
+                    <option value='hoy' ".( $date == 'hoy' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
+                    <option value='mañana' ".( $date == 'mañana' ? 'selected' : '')." > ".__('Mañana','jbetting')." </option>
                 </select>
             </div>
         </div>
@@ -76,6 +77,13 @@ function shortcode_parley($atts)
     $args['rest_uri'] = get_rest_url(null,'aw-parley/parley');
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
+    $args['odds'] = $odds;
+    $args['exclude_parley'] = null;
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley' id='load_more_parley' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+
+    if(is_single() or is_singular()):
+        $args['post__not_in']   = [get_the_ID()];
+    endif;
 
     $params = "?paged=".$args['paged'];
     $params .= "&posts_per_page={$args['posts_per_page']}";
@@ -86,6 +94,8 @@ function shortcode_parley($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
+    $params .= isset($args['exclude_parley']) ? "&exclude_parley={$args['exclude_parley']}":"";
+    $params .= "&odds=$odds";
 
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
@@ -94,20 +104,19 @@ function shortcode_parley($atts)
     if ($query) {
         $loop_html = '';
         $ret .="<div id='games_list' >{replace_loop}</div>";
-        $loop_html = $query == 'no mas' ? 'nó hay eventos' : $query;
+        $data_json = json_decode($query);
+        
+        $loop_html = $data_json->html;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
 
-        if($paginate=='yes'):
+        $ret .="<div class='container container_pagination_parley text-md-center'>";
+        if($paginate=='yes' and $data_json->max_pages > 1):
 
-            $ret .="<div class='container container_pagination text-md-center'>
-                <br/>
-                <br/>
-                <button class='loadmore forecasts btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
-                <br/>
-            </div>";
+            $ret .=$args['btn_load_more'];
         endif;
+        $ret .=" </div>";
         
     } else {
         return '<h1>Nó hay datos</h1>';

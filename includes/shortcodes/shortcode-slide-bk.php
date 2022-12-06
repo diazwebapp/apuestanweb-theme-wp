@@ -53,7 +53,7 @@ function shortcode_slide_bk($atts)
             $html = '';
             $html =  "<div class='owl-carousel slider2 owl-loaded owl-drag'>
                         <div class='owl-stage-outer'>
-                            <div class='owl-stage' style='transform: translate3d(-517px, 0px, 0px); transition: all 1s ease 0s; width: 1410px; padding-left: 15px; padding-right: 15px;'>";
+                            <div class='owl-stage' style='linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%);transform: translate3d(-517px, 0px, 0px); transition: all 1s ease 0s; width: 1410px; padding-left: 15px; padding-right: 15px;'>";
                         foreach ($new_bks as $keybk => $bookmaker):
                             $html .= load_template_part("loop/slide_bk_$model",null,['bookmaker'	=> $bookmaker,]);                            
                         endforeach;

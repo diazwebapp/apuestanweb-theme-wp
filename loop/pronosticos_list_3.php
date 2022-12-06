@@ -22,7 +22,7 @@ if ($sport_term) {
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 
 $date = new DateTime($time);
-$date = $date->setTimezone(new DateTimeZone($$args["timezone"]));
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
 $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 
@@ -55,7 +55,7 @@ if(!empty($predictions)):
 
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
-    $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
+    $prediction['cuote'] = $odds_result[$args["odds"]];
 
     $html_predictions = "<div class='event2_box_middle_heading'>
                             <h4>{$prediction['title']}</h4>
@@ -65,7 +65,7 @@ endif;
 $time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
-                            <input type='hidden' id='date' value='".$date->format('Y-m-d h:i:s')."' />
+                            <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
 endif;                              
@@ -102,7 +102,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                         <div class='event2_box3_middle'>
                             <div class='event2_box3_middle_content'>
                                 <div>
-                                    <img src='$site_logo_url' alt=''>
+                                    <img src='".get_template_directory_uri() . '/assets/img/apnpls.svg'."'  alt=''>
                                     <p class='p1'>CONVIERTE EN MIEMBRO PREMIUM</p>
                                     <p class='p2'></p>
                                     <a href='{$params['vip_link']}' class='button'>

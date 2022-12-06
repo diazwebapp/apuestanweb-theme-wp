@@ -13,7 +13,6 @@ function shortcode_banner_bookmaker($atts)
     //default bookmaker
     $bookmaker["name"]="";
     $bookmaker["logo"]= get_template_directory_uri( ) . "/assets/img/logo2.svg";
-    $bookmaker["background_color"]="";
     $bookmaker["ref_link"]="#" ;
     $bookmaker["bonus_slogan"]= "" ;
     $bookmaker["bonus_amount"]= "0";
@@ -24,6 +23,7 @@ function shortcode_banner_bookmaker($atts)
     $bookmaker["feactures"] = carbon_get_post_meta($post->ID, 'feactures');
     $bookmaker["bonus_slogan"] = carbon_get_post_meta($post->ID,'bonus_slogan');
     $bookmaker["ref_link"] = carbon_get_post_meta($post->ID,'ref');
+    $bookmaker["background_color"]= carbon_get_post_meta($post->ID, 'background-color');
 
     $default = [];
     if (carbon_get_post_meta($post->ID, 'logo')):
@@ -38,10 +38,11 @@ function shortcode_banner_bookmaker($atts)
     if(!isset($exists)): //si nó existe pedimos un bookmaker aleatorio 
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"limit"=>1]);
     endif;    
+    
     $ret = '
     <div class="banner-bookmaker container my-4">
         <div class="row px-5 py-3">
-            <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:black;min-height:100px;">
+            <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:'.($bookmaker["background_color"] ? $bookmaker["background_color"] : "black").';min-height:100px;">
                 <img width="{w-logo}"  height="{h-logo}" src="{logo}" alt="{alt_logo}" style="margin:auto;" />
             </div>
             <div class="list-feactures col-lg-3 my-4">
@@ -59,7 +60,7 @@ function shortcode_banner_bookmaker($atts)
     
     $feactures_html = '';
     
-    if($bookmaker["feactures"] and count($bookmaker["feactures"]) > 0):
+    if($bookmaker["feactures"] and count($bookmaker["feactures"]) > 0): 
         foreach($bookmaker["feactures"] as $key => $feacture):
             $feactures_html .= '<li class="my-1">
                 <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light"></i>
@@ -73,6 +74,8 @@ function shortcode_banner_bookmaker($atts)
     $ret = str_replace("{h-logo}",25,$ret);
     $ret = str_replace("{alt_logo}",$bookmaker["name"],$ret);
     $ret = str_replace("{bonus_slogan}",$bookmaker["bonus_slogan"],$ret);
+    $ret = str_replace("{ref_link}",$bookmaker["ref_link"],$ret);
+    
     return $ret;
 }
 

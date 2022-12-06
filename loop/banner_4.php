@@ -9,7 +9,7 @@ echo "<div class='event_area'>
         <div class='container'>
             <div class='row align-items-center'>
             <div class='col-lg-8 mt_25'>   
-                <h2 class='title'>{$params['title']}</h2> ";            
+                <h1 class='title'>{$params['title']}</h1> ";            
                 echo do_shortcode("[forecasts num='{$params['num']}' league='all']");	
         echo "</div>
                 <div class='col-lg-4 mt_25'>
