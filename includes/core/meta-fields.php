@@ -8,6 +8,7 @@ function crb_attach_theme_options()
 {
 
     if (get_key()):
+        $countries = get_countries_for_carbonmeta();
         Container::make('theme_options', "Apuestan")
             ->set_icon('dashicons-admin-site-alt2')
             ->add_tab(__("General settings", "jbetting"), array(
