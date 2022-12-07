@@ -60,6 +60,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 <?php
                         $theme_regulation = carbon_get_theme_option( 'country_reg' );
                         $current_country = json_decode($_SESSION["geolocation"]);
+                        var_dump($theme_regulation[0]);
                         foreach($theme_regulation as $regs):
                             if($regs["country_code"] == $current_country->country_code):
                                 //modal
