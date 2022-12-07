@@ -60,7 +60,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 <?php
                         $theme_regulation = carbon_get_theme_option( 'country_reg' );
                         $current_country = json_decode($_SESSION["geolocation"]);
-                        var_dump($theme_regulation[0]);
+                        
                         foreach($theme_regulation as $regs):
                             if($regs["country_code"] == $current_country->country_code):
                                 //modal
@@ -83,9 +83,14 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                     </div>
                                 </div>
                                 </div>';
-                                echo '<p class="copyright" style="word-break:break-word;">'.$regs["text_reg"].'</p> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                                show modal
-                                </button>';
+                                echo '<p class="copyright" style="word-break:break-word;">'.$regs["text_reg"].'</p> ';
+                                echo '<div class="row justify-content-center">';
+                                foreach ($regs["images"] as $image) {
+                                    $file_uri =  wp_get_attachment_url( $image );
+                                    echo '<img class="img-fluid mx-2" src="'.$file_uri.'" />';
+                                }
+                                echo '</div>';
+                                
                             endif;
                         endforeach;
                     ?>
