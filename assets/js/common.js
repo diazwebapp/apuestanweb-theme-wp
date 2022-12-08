@@ -4,7 +4,7 @@ $(document).ready(function () {
     select_odds.change(e =>handler_odds_format(e))
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
-        $('.bd-example-modal-sm').modal('show')
+        $('#modal_age_terms').modal('show')
         sessionStorage.setItem('usuaro_autorizado', '')
       } else {
        // Código cuando Storage NO es compatible
