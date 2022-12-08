@@ -6,10 +6,10 @@ $(document).ready(function () {
     if (typeof(Storage) !== 'undefined') {
         let respuesta = sessionStorage.age_user
         console.log(respuesta)
-        if(respuesta !== null && respuesta == 'no'){
+        if(respuesta !== undefined && respuesta == 'no'){
             document.write('')
         }
-        if(respuesta === null){
+        if(respuesta === undefined){
             $('#modal_age_terms').modal('show')
         }
       }
