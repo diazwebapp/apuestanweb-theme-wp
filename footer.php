@@ -90,9 +90,9 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <!-- Button trigger modal -->
             <div class="modal fade" id="modal_age_terms" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;justify-content:center;">
-                        <div class="col-12">
-                            <b class="title">¿Eres mayor de edad?</b>
+                    <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
+                        <div class="col-12 text-center">
+                            <b class="title d-block">¿Eres mayor de edad?</b>
                             <button type="button" class="btn btn-primary" onclick="setAge('si')"><p class="h3" >si</p></button>
                             <button type="button" class="btn btn-secondary" onclick="setAge('no')"><p class="h3" >si</p></button>
                         </div>
