@@ -71,7 +71,19 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                         echo '<a class="mx-2" href="'.$image['url'].'" target="new" ><img class="img-fluid mx-2" src="'.$file_uri.'" /></a>';
                                     }
                                     echo '</div>';
-                                    
+                                    if($regs["text_reg2"]):
+                                       echo '<div class="modal fade" id="modal_age_terms" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog-centered" role="document">
+                                                <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
+                                                    <div class="col-12 text-center">
+                                                        <b class="title d-block">'.$regs["text_reg2"].'</b>
+                                                        <button type="button" class="btn btn-primary px-4 m-5" onclick="setAge("si")"><p class="h2" >si</p></button>
+                                                        <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge("no")"><p class="h2" >no</p></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> ';
+                                    endif;
                                 endif;
                             endforeach;
                         endif;
@@ -86,19 +98,6 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <!--====== BACK TO TOP START ======-->
         <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
         <!--====== BACK TO TOP ENDS ======-->
-        <!--======MODAL MAYOR EDA ====-->
-        <!-- Button trigger modal -->
-            <div class="modal fade" id="modal_age_terms" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog-centered" role="document">
-                    <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
-                        <div class="col-12 text-center">
-                            <b class="title d-block">¿Eres mayor de edad?</b>
-                            <button type="button" class="btn btn-primary px-4 m-5" onclick="setAge('si')"><p class="h2" >si</p></button>
-                            <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge('no')"><p class="h2" >no</p></button>
-                        </div>
-                    </div>
-                </div>
-            </div> 
 </footer>
 <?php wp_footer(); ?>
 
