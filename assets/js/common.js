@@ -4,8 +4,10 @@ $(document).ready(function () {
     select_odds.change(e =>handler_odds_format(e))
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
-        $('#modal_age_terms').modal('show')
-        sessionStorage.setItem('usuaro_autorizado', '')
+        let respuesta = localStorage.getItem('age_user')
+        console.log(respuesta)
+        //$('#modal_age_terms').modal('show')
+        //sessionStorage.setItem('age_user', '')
       } else {
        // Código cuando Storage NO es compatible
       }
