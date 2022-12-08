@@ -5,6 +5,7 @@ $(document).ready(function () {
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
         let respuesta = localStorage.getItem('age_user')
+        console.log(respuesta)
         if(respuesta !== null){
             if(respuesta == 'no'){
                 document.write('')
