@@ -23,7 +23,7 @@ function setAge(resp){
     if(resp == 'si'){
         sessionStorage.setItem('age_user', 'si')
     }
-    $('#modal_age_terms').modal('hidde')
+    $('#modal_age_terms').modal('hide')
 }
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
