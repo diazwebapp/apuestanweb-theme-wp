@@ -71,7 +71,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                         echo '<a class="mx-2" href="'.$image['url'].'" target="new" ><img class="img-fluid mx-2" src="'.$file_uri.'" /></a>';
                                     }
                                     echo '</div>';
-                                    if($regs["text_reg2"]):
+                                    if($regs["text_reg2"] AND $regs["text_reg2"] !== ''):
                                        echo '<div class="modal fade" id="modal_age_terms" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog-centered" role="document">
                                                 <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
