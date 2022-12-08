@@ -37,8 +37,11 @@ function crb_attach_theme_options()
                         Field::make('textarea', 'text_reg', __("texto", "jbetting")),
                         Field::make('select', 'country_code', __("country", "jbetting"))
                             ->add_options($countries),
-                        Field::make('media_gallery', 'images', __("images", "jbetting"))
-                            ->set_type(array("image"))
+                        Field::make('complex', 'country_reg', __("country regulations", "jbetting"))
+                        ->add_fields(array(
+                            Field::make('media_gallery', 'images', __("images", "jbetting"))
+                                ->set_type(array("image"))
+                        ))
                     ))
             
             ));
