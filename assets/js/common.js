@@ -6,10 +6,11 @@ $(document).ready(function () {
     if (typeof(Storage) !== 'undefined') {
         let respuesta = localStorage.getItem('age_user')
         if(respuesta){
-            console.log('existe')
+            if(respuesta == 'no'){
+                document.removeChild('body')
+            }
         }else{
             $('#modal_age_terms').modal('show')
-            console.log('es nulo')
         }
         //sessionStorage.setItem('age_user', '')
       } else {
@@ -17,7 +18,13 @@ $(document).ready(function () {
       }
 });
 function setAge(resp){
-    alert(resp)
+    if(resp == 'no'){
+        sessionStorage.setItem('age_user', 'no')
+        document.removeChild('body')
+    }
+    if(resp == 'si'){
+        sessionStorage.setItem('age_user', 'yes')
+    }
 }
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
