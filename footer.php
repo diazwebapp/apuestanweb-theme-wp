@@ -93,6 +93,11 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                 
                             endif;
                         endforeach;
+
+                       if ( carbon_get_theme_option( 'logo' ) ):
+					    $copy = carbon_get_theme_option( 'copy' ) ;
+                        echo '<p>'.$copy.'</p>';
+                       endif;
                     ?>
                 </div>
             </div>
