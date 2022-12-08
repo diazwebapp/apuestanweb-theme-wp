@@ -43,8 +43,8 @@
                     <ul class="navbar-nav mr-auto">
                             
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-light font-weight-bold" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <p class="d-inline-block text-truncate" style="max-width:120px;float:left;">'.get_userdata(get_current_user_id( ))->user_login .'</p>
+                                <a class="nav-link dropdown-toggle text-light font-weight-bold" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <p class="d-inline-block text-truncate align-top" style="max-width:120px;">'.get_userdata(get_current_user_id( ))->user_login .'</p>
                                 </a>
 
                                 <div class="dropdown-menu position-absolute text-center" style="right:0;font-size: 1.3rem;" aria-labelledby="navbarDropdownMenuLink">
