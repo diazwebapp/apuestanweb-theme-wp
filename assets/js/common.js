@@ -16,14 +16,15 @@ $(document).ready(function () {
 });
 
 function setAge(resp){
+    let text = resp.target.textContent
     let modal = document.getElementById('modal_age_terms')
     let modal_ = document.querySelector('.modal-backdrop')
-    alert(resp)
-    if(resp == 'no'){
+    alert(text)
+    if(text == 'no'){
         sessionStorage.setItem('age_user', 'no')
         document.write('')
     }
-    if(resp == 'si'){
+    if(text == 'si'){
         sessionStorage.setItem('age_user', 'si')
     }
     modal.remove()
