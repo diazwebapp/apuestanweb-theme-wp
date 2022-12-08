@@ -94,7 +94,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         <div class="col-12 text-center">
                             <b class="title d-block">¿Eres mayor de edad?</b>
                             <button type="button" class="btn btn-primary" onclick="setAge('si')"><p class="h3" >si</p></button>
-                            <button type="button" class="btn btn-secondary" onclick="setAge('no')"><p class="h3" >si</p></button>
+                            <button type="button" class="btn btn-secondary" onclick="setAge('no')"><p class="h3" >no</p></button>
                         </div>
                     </div>
                 </div>
