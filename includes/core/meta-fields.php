@@ -27,6 +27,7 @@ function crb_attach_theme_options()
                         "ipwhois" => "ipwhois",
                     ]),
                 Field::make('text', 'geolocation_api_key', __("geolocation api key", "jbetting")),
+                Field::make('text', 'copy', __("copy", "jbetting"))
             ))
             ->add_tab(__("country regulations","jbetting"),array(
                 Field::make('complex', 'country_reg', __("country regulations", "jbetting"))
@@ -39,9 +40,7 @@ function crb_attach_theme_options()
                         Field::make('media_gallery', 'images', __("images", "jbetting"))
                             ->set_type(array("image"))
                     ))
-            ->add_tab(__("Copy settings", "jbetting"), array(
-                Field::make('text', 'copy', __("copy", "jbetting"))
-                ))
+            
             ));
 
 
