@@ -18,7 +18,7 @@ $(document).ready(function () {
 function setAge(resp){
     let modal = document.getElementById('modal_age_terms')
     let modal_ = document.querySelector('.modal-backdrop')
-    
+    alert(resp)
     if(resp == 'no'){
         sessionStorage.setItem('age_user', 'no')
         document.write('')
