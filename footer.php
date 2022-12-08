@@ -98,7 +98,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
                        
                     ?>
-                    <p class="my-3" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>;
+                    <p class="my-3" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
                 </div>
             </div>
         </div>
