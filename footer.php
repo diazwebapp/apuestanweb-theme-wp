@@ -77,8 +77,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                                 <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
                                                     <div class="col-12 text-center">
                                                         <b class="title d-block">'.$regs["text_reg2"].'</b>
-                                                        <button type="button" class="btn btn-primary px-4 m-5" onclick="setAge(si)"><p class="h2" >si</p></button>
-                                                        <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge(no)"><p class="h2" >no</p></button>
+                                                        <button type="button" class="btn btn-primary px-4 m-5" onclick="setAge('."si".')"><p class="h2" >si</p></button>
+                                                        <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge('."no".')"><p class="h2" >no</p></button>
                                                     </div>
                                                 </div>
                                             </div>
