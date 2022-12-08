@@ -92,7 +92,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        ¿Eres mayor de edad?
+                        <b class="title">¿Eres mayor de edad?</b>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary  p-4" onClick="setAge('si')" >si</button>
