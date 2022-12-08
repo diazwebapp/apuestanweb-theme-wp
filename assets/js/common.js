@@ -4,12 +4,10 @@ $(document).ready(function () {
     select_odds.change(e =>handler_odds_format(e))
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
-        let respuesta = localStorage.age_user
+        let respuesta = sessionStorage.age_user
         console.log(respuesta)
-        if(respuesta !== null){
-            if(respuesta == 'no'){
-                document.write('')
-            }
+        if(respuesta !== null && respuesta == 'no'){
+            document.write('')
         }
         if(respuesta === null){
             $('#modal_age_terms').modal('show')
