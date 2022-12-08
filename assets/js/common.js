@@ -16,6 +16,7 @@ $(document).ready(function () {
 });
 
 function setAge(resp){
+    alert(resp)
     if(resp == 'no'){
         sessionStorage.setItem('age_user', 'no')
         document.write('')
