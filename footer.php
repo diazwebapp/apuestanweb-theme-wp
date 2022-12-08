@@ -90,7 +90,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <div class="modal fade bd-example-modal-sm modal_terms" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
-                
+                ,xdnfldngldjgldjgld
                 </div>
             </div>
         </div> 
