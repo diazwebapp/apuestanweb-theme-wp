@@ -41,8 +41,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                
                 <div class="col-lg-2 col-6 mt_20 text-right">
                     <select id="select_odds_format" class="nice-select">
-                        <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
-                        <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?> >american</option>
+                        <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> class="text-black" >decimal</option>
+                        <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?> class="text-dark" >american</option>
                     </select>
                     <!-- <div class="social_icons">
                         <a href="#">
