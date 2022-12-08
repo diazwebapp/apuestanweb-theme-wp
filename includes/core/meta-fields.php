@@ -39,7 +39,9 @@ function crb_attach_theme_options()
                         Field::make('media_gallery', 'images', __("images", "jbetting"))
                             ->set_type(array("image"))
                     ))
-            
+            ->add_tab(__("Copy settings", "jbetting"), array(
+                Field::make('text', 'copy', __("copy", "jbetting"))
+                ))
             ));
 
 
