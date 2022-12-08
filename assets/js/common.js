@@ -7,7 +7,7 @@ $(document).ready(function () {
         let respuesta = localStorage.getItem('age_user')
         if(respuesta){
             if(respuesta == 'no'){
-                document.removeChild('body')
+                document.write('')
             }
         }else{
             $('#modal_age_terms').modal('show')
@@ -20,7 +20,7 @@ $(document).ready(function () {
 function setAge(resp){
     if(resp == 'no'){
         sessionStorage.setItem('age_user', 'no')
-        document.removeChild('body')
+        document.write('')
     }
     if(resp == 'si'){
         sessionStorage.setItem('age_user', 'yes')
