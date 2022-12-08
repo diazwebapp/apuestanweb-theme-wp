@@ -16,6 +16,8 @@ $(document).ready(function () {
         }
       }
 });
+let respuesta = localStorage.getItem('age_user')
+        console.log(respuesta)
 function setAge(resp){
     if(resp == 'no'){
         sessionStorage.setItem('age_user', 'no')
