@@ -87,7 +87,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                     echo '<p class="copyright" style="word-break:break-word;">'.$regs["text_reg"].'</p> ';
                                     echo '<div class="row justify-content-center">';
                                     foreach ($regs["images"] as $image) {
-                                        $file_uri =  wp_get_attachment_url( $image );
+                                        $file_uri =  wp_get_attachment_url( $image['image'] );
                                         echo '<img class="img-fluid mx-2" src="'.$file_uri.'" />';
                                     }
                                     echo '</div>';
