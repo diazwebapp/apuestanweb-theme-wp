@@ -8,14 +8,17 @@ $(document).ready(function () {
         if(respuesta){
             console.log('existe')
         }else{
+            $('#modal_age_terms').modal('show')
             console.log('es nulo')
         }
-        //$('#modal_age_terms').modal('show')
         //sessionStorage.setItem('age_user', '')
       } else {
        // Código cuando Storage NO es compatible
       }
 });
+function setAge(resp){
+    alert(resp)
+}
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
 const div_game_list = document.querySelector('#games_list')
