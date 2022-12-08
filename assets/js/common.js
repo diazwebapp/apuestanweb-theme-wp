@@ -16,6 +16,7 @@ $(document).ready(function () {
 });
 
 function setAge(resp){
+    let modal = document.getElementById('modal_age_terms')
     if(resp == 'no'){
         sessionStorage.setItem('age_user', 'no')
         document.write('')
@@ -23,7 +24,7 @@ function setAge(resp){
     if(resp == 'si'){
         sessionStorage.setItem('age_user', 'si')
     }
-    $('#modal_age_terms').modal('hide')
+    modal.remove()
 }
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
