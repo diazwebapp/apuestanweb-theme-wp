@@ -64,26 +64,6 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
                                 if($regs["country_code"] == $current_country->country_code):
-                                    //modal
-                                    echo '<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        '.$regs["text_reg"].'
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>';
                                     echo '<p class="copyright" style="word-break:break-word;">'.$regs["text_reg"].'</p> ';
                                     echo '<div class="row justify-content-center">';
                                     foreach ($regs["images"] as $image) {
@@ -105,7 +85,26 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <!--====== BACK TO TOP START ======-->
         <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
         <!--====== BACK TO TOP ENDS ======-->
-            
+        <!--======MODAL MAYOR EDA ====-->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                '.$regs["text_reg"].'
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div> 
 </footer>
 <?php wp_footer(); ?>
 
