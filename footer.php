@@ -87,7 +87,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
         <!--====== BACK TO TOP ENDS ======-->
         <!--======MODAL MAYOR EDA ====-->
-        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-sm modal_terms" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                 
