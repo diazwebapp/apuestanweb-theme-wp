@@ -9,12 +9,10 @@ $(document).ready(function () {
             if(respuesta == 'no'){
                 document.write('')
             }
-        }else{
+        }
+        if(respuesta === null){
             $('#modal_age_terms').modal('show')
         }
-        //sessionStorage.setItem('age_user', '')
-      } else {
-       // Código cuando Storage NO es compatible
       }
 });
 function setAge(resp){
