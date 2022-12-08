@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
         let respuesta = sessionStorage.age_user
-        console.log(respuesta)
+        
         if(respuesta !== undefined && respuesta == 'no'){
             document.write('')
         }
@@ -23,6 +23,7 @@ function setAge(resp){
     if(resp == 'si'){
         sessionStorage.setItem('age_user', 'yes')
     }
+    $('#modal_age_terms').modal('hidde')
 }
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
