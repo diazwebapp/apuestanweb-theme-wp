@@ -5,7 +5,11 @@ $(document).ready(function () {
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
         let respuesta = localStorage.getItem('age_user')
-        console.log(respuesta)
+        if(respuesta){
+            console.log('existe')
+        }else{
+            console.log('es nulo')
+        }
         //$('#modal_age_terms').modal('show')
         //sessionStorage.setItem('age_user', '')
       } else {
