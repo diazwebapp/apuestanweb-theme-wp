@@ -79,6 +79,9 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                        
                     ?>
                     <p class="mt-5 py-2" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
                 </div>
             </div>
         </div>
@@ -86,7 +89,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
         <!--====== BACK TO TOP ENDS ======-->
         <!--======MODAL MAYOR EDA ====-->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -96,7 +99,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </button>
                 </div>
                 <div class="modal-body">
-                '.$regs["text_reg"].'
+                
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
