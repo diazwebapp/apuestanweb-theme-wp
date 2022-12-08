@@ -3,6 +3,11 @@ $(document).ready(function () {
     let select_odds = $('select#select_odds_format');
     select_odds.change(e =>handler_odds_format(e))
     $('.dropdown-toggle').dropdown()
+    if (typeof(Storage) !== 'undefined') {
+        alert("soy compatible")
+      } else {
+       // Código cuando Storage NO es compatible
+      }
 });
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
