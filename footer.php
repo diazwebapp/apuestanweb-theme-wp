@@ -88,8 +88,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
         <!--====== BACK TO TOP ENDS ======-->
         <!--======MODAL MAYOR EDA ====-->
         <!-- Button trigger modal -->
-            <div class="modal fade" id="modal_age_terms" tabindex="-1"   aria-hidden="true">
-                <div class=" modal-dialog-centered" role="document">
+            <div class="modal fade" id="modal_age_terms" tabindex="-1"  aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
                         <div class="col-12 text-center">
                             <b class="title d-block">¿Eres mayor de edad?</b>
