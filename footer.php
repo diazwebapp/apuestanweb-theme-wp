@@ -95,7 +95,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         ¿Eres mayor de edad?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onClick="setAge('yes')" >yes</button>
+                        <button type="button" class="btn btn-secondary" onClick="setAge('si')" >si</button>
                         <button type="button" class="btn btn-primary" onClick="setAge('no')" >no</button>
                     </div>
                 </div>

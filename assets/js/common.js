@@ -6,7 +6,7 @@ $(document).ready(function () {
     if (typeof(Storage) !== 'undefined') {
         let respuesta = sessionStorage.age_user
         
-        if(respuesta !== undefined && respuesta == 'no'){
+        if(respuesta !== undefined && respuesta === 'no'){
             document.write('')
         }
         if(respuesta === undefined){
@@ -21,7 +21,7 @@ function setAge(resp){
         document.write('')
     }
     if(resp == 'si'){
-        sessionStorage.setItem('age_user', 'yes')
+        sessionStorage.setItem('age_user', 'si')
     }
     $('#modal_age_terms').modal('hidde')
 }
