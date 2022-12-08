@@ -4,7 +4,7 @@ $(document).ready(function () {
     select_odds.change(e =>handler_odds_format(e))
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
-        let respuesta = localStorage.getItem('age_user')
+        let respuesta = localStorage.age_user
         console.log(respuesta)
         if(respuesta !== null){
             if(respuesta == 'no'){
@@ -16,8 +16,7 @@ $(document).ready(function () {
         }
       }
 });
-let respuesta = localStorage.getItem('age_user')
-        console.log(respuesta)
+
 function setAge(resp){
     if(resp == 'no'){
         sessionStorage.setItem('age_user', 'no')
