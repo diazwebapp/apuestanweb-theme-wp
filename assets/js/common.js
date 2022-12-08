@@ -19,7 +19,7 @@ function setAge(resp){
     let text = resp.textContent
     let modal = document.getElementById('modal_age_terms')
     let modal_ = document.querySelector('.modal-backdrop')
-    alert(resp)
+    
     if(text == 'no'){
         sessionStorage.setItem('age_user', 'no')
         document.write('')
