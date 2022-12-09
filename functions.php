@@ -315,8 +315,8 @@ function aw_notificacion_membership($payment_history_id=null){
         }
         $headers[]= "From: Apuestan <$admin_email>";
     
-        $body= "";
-    
+        $body= "kbk";
+        var_dump($memberInfo->user_email);
        add_filter( "wp_mail_content_type", "fix_html" );
        wp_mail($memberInfo->user_email,"status user: $memberInfo->user_login" ,$body,$headers); 
     }
