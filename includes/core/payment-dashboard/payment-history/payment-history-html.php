@@ -136,19 +136,17 @@ function aw_payment_history(){
               <h4>'._x("payment history","jbetting").'</h4>
                 <div class="col-md-12 mb-2">
                       <h3>Filtrar consulta</h3>
-                      <form method="post" class="row">
+                      <form method="post" class="row filter_history">
                         <div class="col" >
                           <label>Username</label>
                           <input type="text" name="username" class="form-control" />
                         </div>
                         
                         <div class="col" >
-                          <label>Date start <span class="dashicons dashicons-plus"></span></label>
+                          <label>Date start <span class="dashicons dashicons-plus" onclick="add_date_input(this)"></span></label>
                           <input type="date" name="date_1" class="form-control"/>
                         </div>
-                        <div class="col" >
-                          <label>Date end</label>                        
-                          <input type="date" name="date_2" class="form-control"/>
+                        <div class="col date_2">
                         </div>
                         <div class="col" >
                           <button class="btn btn-primary mt-4" name="filter_table_history" >filtrar</button>

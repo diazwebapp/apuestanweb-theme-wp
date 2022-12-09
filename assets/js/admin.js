@@ -16,7 +16,15 @@ window.addEventListener("load",()=>{
     }
     
 })
-
+let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
+<input type="date" name="date_2" class="form-control"/>`;
+function add_date_input(this){
+   let date_2 =  document.querySelector('.filter_history > .date_2')
+   console.log(date_2)
+}
+function remove_date_input(element){
+    console.log(element)
+}
 ///////////////// funcion que añade metodos de pago usando la api rest
 const insert_payment_method = async({received_inputs,register_inputs,payment_method_data})=>{
     try {
