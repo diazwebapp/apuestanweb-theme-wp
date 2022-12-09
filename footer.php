@@ -72,8 +72,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                     }
                                     echo '</div>';
                                     if($regs["text_reg2"] and $regs["text_reg2"] !== ''):
-                                       echo '<div class="modal fade" id="modal_age_terms" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog-centered" role="document">
+                                       echo '<div id="modal_age_terms" style="width:100%;height:100%;position:fixed;top:0;left:0;background:red;z-index:99999999;" >
                                                 <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
                                                     <div class="col-12 text-center">
                                                         <b class="title d-block">'.$regs["text_reg2"].'</b>
@@ -81,8 +80,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                                         <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge(this)"><p class="h2" >no</p></button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div> ';
+                                            </div> ';
                                     endif;
                                 endif;
                             endforeach;
