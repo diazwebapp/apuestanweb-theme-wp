@@ -5,7 +5,7 @@ function shortcode_forecast($atts)
     extract(shortcode_atts(array(
         'num' => 6,
         'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
-        'date' => "hoy",
+        'date' => null,
         'model' => 1,
         'text_vip_link' => 'VIP',
         'filter' => null,
