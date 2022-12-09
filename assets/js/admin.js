@@ -16,7 +16,7 @@ window.addEventListener("load",()=>{
     }
    const add_date_2_btn = document.querySelector('#add_date_input')
    if(add_date_2_btn){
-        add_date_2_btn.addEventListener('click',add_date_input())
+        add_date_2_btn.addEventListener('click',()=>add_date_input())
    }
 })
 let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
