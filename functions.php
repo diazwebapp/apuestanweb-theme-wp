@@ -310,7 +310,7 @@ function aw_notificacion_membership($payment_history_id=null){
         $blogname = get_bloginfo( "name" );
         $admin_email = get_option( "admin_email" );
 
-        function tipo_de_contenido_html() {
+        function fix_html() {
             return 'text/html';
         }
         var_dump($memberInfo);
@@ -318,7 +318,7 @@ function aw_notificacion_membership($payment_history_id=null){
     
         $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
     
-        add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
+        add_filter( "wp_mail_content_type", "fix_html" );
        /*  wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers); */
     }
 }
