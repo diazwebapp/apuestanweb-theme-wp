@@ -505,8 +505,8 @@ header {
 	margin-bottom: 5.5rem;
 }
 a.btn_2{
-	display: inline;
-	border: .1rem solid #FFFFFF;
+   display: inline-block;
+   border: .1rem solid #FFFFFF;
    border-radius: .6rem;
    padding: 1rem 2.5rem 1.1rem;
    margin-top: 4rem;
@@ -870,6 +870,13 @@ a.btn_2:hover{
 footer{
 	background: linear-gradient(82deg, #0C1429 0%, #00203A 100%);
 	padding: 5.5rem 0 5rem;
+}
+
+.footer-reg {
+    margin-top: 1rem;
+    border-top: 1px solid #59595999;
+    padding: 1rem;
+
 }
 footer .menu li a{
 	font-size: 1.7rem;

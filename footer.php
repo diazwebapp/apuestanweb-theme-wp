@@ -60,24 +60,28 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 <?php
                         $theme_regulation = carbon_get_theme_option( 'country_reg' );
                         $current_country = json_decode($_SESSION["geolocation"]);
+                        $agesvg = get_template_directory_uri() . '/assets/img/age.svg';
                         
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
                                 if($regs["country_code"] == $current_country->country_code):
                                     echo '<p class="copyright" style="word-break:break-word;">'.$regs["text_reg"].'</p> ';
-                                    echo '<div class="row justify-content-center">';
+                                    echo '<div class="row justify-content-center footer-reg">';
+                                    echo '<div class="flex justify-center  flex-wrap">';
                                     foreach ($regs["images"] as $image) {
                                         $file_uri =  wp_get_attachment_url( $image['image'] );
-                                        echo '<a class="mx-2" href="'.$image['url'].'" target="new" ><img class="img-fluid mx-2" src="'.$file_uri.'" /></a>';
+                                        echo '<a href="'.$image['url'].'"  rel="nofollow" target="new" ><img height="43px" width="133px" class="img-fluid mx-2" src="'.$file_uri.'" /></a>';
                                     }
+                                    echo '</div>';
                                     echo '</div>';
                                     if($regs["text_reg2"] and $regs["text_reg2"] !== ''):
                                        echo '<div id="modal_age_terms" style="backdrop-filter: blur(3px);display:none;align-content: center;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0, .2);z-index:99999999;" >
-                                                <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
-                                                    <div class="col-12 text-center">
+                                                <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:5%;align-items:center;">
+                                                <img class=mx-auto width="240" height="125" src='.$agesvg.'>
+                                                <div class="col-12 text-center">
                                                         <b class="title d-block">'.$regs["text_reg2"].'</b>
-                                                        <button type="button" class="btn btn-primary px-4 m-5" onclick="setAge(this)"><p class="h2" >si</p></button>
-                                                        <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge(this)"><p class="h2" >no</p></button>
+                                                        <button type="button" class="btn btn-primary px-4 m-5" onclick="setAge(this)"><p class="h2" >SI</p></button>
+                                                        <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge(this)"><p class="h2" >NO</p></button>
                                                     </div>
                                                 </div>
                                             </div> ';
