@@ -61,12 +61,13 @@ function insert_payment_history_meta($data){
 
 function select_payment_history($params=["status"=>"completed","username"=>"","date"=>false,"date_2"=>false]){
     global $wpdb ;
-    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' AND DATE(payment_date) = '{$params["date"]}' ";
+    $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' ";
+    isset($params["date"]) ? $sql_ .= "AND DATE(payment_date) = '{$params["date"]}' " : '';
    
     if($params["date"] and $params["date_2"]){
         $sql_ .="AND DATE(payment_date BETWEEN '{$params["date"]}' AND '{$params["date_2"]}) ";
      }
-     //$sql_ .= "AND username LIKE '%{$params["username"]}%'";
+     $sql_ .= "AND username LIKE '%{$params["username"]}%'";
      var_dump($sql_);
     /* if($date and !$text){
 
