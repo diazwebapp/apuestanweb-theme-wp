@@ -314,7 +314,6 @@ function aw_notificacion_membership($payment_history_id=null){
             return 'text/html';
         }
         $headers[]= "From: Apuestan <$admin_email>";
-        var_dump($memberInfo);
     
         $body= aw_email_templates(["blogname"=>$blogname,"username"=>'hfghf']);
     
