@@ -315,7 +315,7 @@ function aw_notificacion_membership($payment_history_id=null){
         }
         $headers[]= "From: Apuestan <$admin_email>";
     
-        $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+        $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
     
        add_filter( "wp_mail_content_type", "fix_html" );
        wp_mail($memberInfo->user_email,"Apuestan status user: $memberInfo->user_login" ,$body,$headers); 
