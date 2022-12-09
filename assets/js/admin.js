@@ -23,7 +23,9 @@ let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="
 <input type="date" name="date_2" class="form-control"/>`;
 function add_date_input(){
    let date_2 =  document.querySelector('.filter_history > .date_2')
-   console.log(date_2)
+   date_2.classList.add('col')
+   date_2.innerHTML = elemtn;
+   
 }
 function remove_date_input(element){
     console.log(element)
