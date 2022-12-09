@@ -90,7 +90,8 @@ function update_payment_history($data,$id){
     global $wpdb;
     
     $update = $wpdb->update(MYSQL_PAYMENT_HISTORY,$data,$id);
-    
+    $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY));
+    var_dump($data_notifi);
     return $update;
 }
 function aw_get_history_insert_data($level_id,$payment_account_id,$username,$status){
@@ -99,7 +100,7 @@ function aw_get_history_insert_data($level_id,$payment_account_id,$username,$sta
     $table = $wpdb->prefix."ihc_memberships";
     $level_data = $wpdb->get_row("SELECT payment_type,short_description, label, price FROM $table WHERE id=$level_id");
     $status = "pending";
-    if($status or $level_data->payment_type == 'free'):
+    if($level_data->payment_type == 'free'):
         $status = 'completed';
     endif;
     $sql_data["payment_method"] = $payment_method;
