@@ -234,33 +234,7 @@ add_action('init', function(){
         $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
         $_SESSION["geolocation"] = json_encode($data);
     }
-    
-    
-    /* if (isset($_SERVER["HTTP_CLIENT_IP"]))
-    {
-        define('IP',$_SERVER["HTTP_CLIENT_IP"]);
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED_FOR"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_X_FORWARDED_FOR"]);
-    }
-    elseif (isset($_SERVER["HTTP_X_FORWARDED"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_X_FORWARDED"]);
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED_FOR"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_FORWARDED_FOR"]);
-    }
-    elseif (isset($_SERVER["HTTP_FORWARDED"]) and !defined('IP'))
-    {
-        define('IP',$_SERVER["HTTP_FORWARDED"]);
-    }
-    else
-    {
-        define('IP',$_SERVER["REMOTE_ADDR"]);
-    } */
-   
+       
 });
 
 
@@ -326,7 +300,21 @@ function aw_actions_after_register_user( $user_id ) {
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
 }
+function notifi_membership(){
+    function tipo_de_contenido_html() {
+        return 'text/html';
+    }
+    $memberInfo = get_userdata($user_id);
+    $blogname = get_bloginfo( "name" );
+    $admin_email = get_option( "admin_email" );
 
+    $headers[]= "From: Apuestan <$admin_email>";
+
+    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+
+    add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
+    wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
+}
 function setUserRating(){
     $users = get_users();
     if($users and count($users) > 0):
