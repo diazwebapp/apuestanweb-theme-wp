@@ -44,7 +44,7 @@ function generate_history_payment_table(){
         $table_data["tbody"] .= '<tr>';
         $html_th = "";
         $html_td = "";
-        var_dump($llaves);
+        
         //botones de accion
         $btn_completed = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-yes" title="complete" status="completed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
         $btn_pending = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-clock" title="pending" status="pending" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
@@ -65,12 +65,7 @@ function generate_history_payment_table(){
               $html_td .= '<td>'.($keyth=="username"?$user_link:$th).'</td>';
             endif;
           }
-          if(is_array($th)){
-            foreach ($th as $keyth2 => $thvalue) {
-              $html_th .= '<th>'.$thvalue->meta_key.'</th>';
-              $html_td .= '<td>'.$thvalue->meta_value.'</td>';
-            }
-          }
+          
         }
         $html_th .= '<th colspan="2" >Action</th>';
         $html_td .= '<td colspan="2">
