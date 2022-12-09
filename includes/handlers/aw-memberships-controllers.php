@@ -116,6 +116,7 @@ if(!function_exists('aw_activate_membership')):
         $table = $wpdb->prefix."ihc_user_levels";
         
         $update = $wpdb->update($table,$data["update"],$data["where"]);
+        
         return $update;
     }
 endif;

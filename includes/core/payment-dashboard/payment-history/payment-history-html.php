@@ -97,7 +97,7 @@ if(isset($_GET["update_payment_history_id"]) and isset($_GET["status"])){
   if(!is_wp_error( $activated )){
     $update = update_payment_history($array_data,$array_id);
     var_dump($activated);
-    header("Location:".$_SERVER["HTTP_REFERER"]);
+    //header("Location:".$_SERVER["HTTP_REFERER"]);
     die;
   }
   header("Location:".$_SERVER["HTTP_REFERER"]."&error=1");
