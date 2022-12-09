@@ -18,19 +18,6 @@ function generate_history_payment_table(){
     if( isset($_POST["date_2"]) and !empty($_POST["date_2"]) ){
       $params["date_2"] = $_POST["date_2"];
   }
-    /*
-    if(isset($_POST["date_1"]) or isset($_POST["date_2"])){
-
-      if( isset($_POST["date_1"]) and !empty($_POST["date_1"]) ){
-        $data["key"] = "payment_date";
-        $data["value"] = $_POST["date_1"];
-      }
-  
-      if( isset($_POST["date_2"]) and !empty($_POST["date_2"]) and !empty($_POST["date_1"]) ){
-        $data["value2"] = $_POST["date_2"];
-      }
-    } */
-
     
   }
   
@@ -77,12 +64,7 @@ function generate_history_payment_table(){
               $html_td .= '<td>'.($keyth=="username"?$user_link:$th).'</td>';
             endif;
           }
-          if(is_array($th)){
-            foreach ($th as $keyth2 => $thvalue) {
-              $html_th .= '<th>'.$thvalue->meta_key.'</th>';
-              $html_td .= '<td>'.$thvalue->meta_value.'</td>';
-            }
-          }
+          
         }
         $html_th .= '<th colspan="2" >Action</th>';
         $html_td .= '<td colspan="2">
