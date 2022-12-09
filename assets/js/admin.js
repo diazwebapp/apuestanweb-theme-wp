@@ -14,7 +14,10 @@ window.addEventListener("load",()=>{
         /////////añadimos el controlador que manejara el formulario
         form_add_maccounts.addEventListener("submit",async e => await aw_add_new_account(e))
     }
-    
+   const add_date_2_btn = document.querySelector('#add_date_input')
+   if(add_date_2_btn){
+        add_date_2_btn.addEventListener('click',add_date_input)
+   }
 })
 let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
 <input type="date" name="date_2" class="form-control"/>`;
