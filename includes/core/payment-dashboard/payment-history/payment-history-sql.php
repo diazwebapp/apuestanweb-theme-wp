@@ -90,8 +90,7 @@ function update_payment_history($data,$id){
     global $wpdb;
     
     $update = $wpdb->update(MYSQL_PAYMENT_HISTORY,$data,$id);
-    $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE id='{$id['id']}'"));
-    var_dump($data_notifi);
+    aw_notificacion_membership($id['id']);
     return $update;
 }
 function aw_get_history_insert_data($level_id,$payment_account_id,$username,$status){

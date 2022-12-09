@@ -300,20 +300,24 @@ function aw_actions_after_register_user( $user_id ) {
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
 }
-function notifi_membership(){
+function aw_notificacion_membership($payment_history_id=null){
     function tipo_de_contenido_html() {
         return 'text/html';
     }
-    $memberInfo = get_userdata($user_id);
-    $blogname = get_bloginfo( "name" );
-    $admin_email = get_option( "admin_email" );
-
-    $headers[]= "From: Apuestan <$admin_email>";
-
-    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
-
-    add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
-    wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
+    if(isset($payment_history_id)){
+        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE id='$payment_history_id'"));
+        var_dump(get_user_details( $data_notifi->username ));
+        /* $memberInfo = get_userdata($user_id);
+        $blogname = get_bloginfo( "name" );
+        $admin_email = get_option( "admin_email" );
+    
+        $headers[]= "From: Apuestan <$admin_email>";
+    
+        $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+    
+        add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
+        wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers); */
+    }
 }
 function setUserRating(){
     $users = get_users();
