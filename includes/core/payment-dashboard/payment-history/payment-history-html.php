@@ -143,7 +143,7 @@ function aw_payment_history(){
                         </div>
                         
                         <div class="col" >
-                          <label>Date start</label>
+                          <label>Date start <span class="dashicons dashicons-plus"></span></label>
                           <input type="date" name="date_1" class="form-control"/>
                         </div>
                         <div class="col" >
