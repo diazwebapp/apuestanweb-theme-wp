@@ -307,9 +307,8 @@ function aw_notificacion_membership($payment_history_id=null){
     }
     if(isset($payment_history_id)){
         $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE id='$payment_history_id'"));
-        $user = get_user_by( 'login', $data_notifi->username );
-        var_dump( $user->user_email );
-        /* $memberInfo = get_userdata($user_id);
+        
+        $memberInfo = get_user_by( 'login', $data_notifi->username );
         $blogname = get_bloginfo( "name" );
         $admin_email = get_option( "admin_email" );
     
@@ -318,7 +317,7 @@ function aw_notificacion_membership($payment_history_id=null){
         $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
     
         add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
-        wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers); */
+        wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
     }
 }
 function setUserRating(){
