@@ -64,7 +64,7 @@ function select_payment_history($params=["status"=>"completed","username"=>"","d
     $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' ";
    
     if($params["date"] and !$params["date_2"]){
-       $sql_ .="AND payment_date = {$params["date"]} ";
+       $sql_ .="AND payment_date = '{$params["date"]}' ";
     }
     if($params["date"] and $params["date_2"]){
         $sql_ .="AND DATE(payment_date BETWEEN '{$params["date"]}' AND '{$params["date_2"]}) ";
