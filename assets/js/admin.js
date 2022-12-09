@@ -16,12 +16,12 @@ window.addEventListener("load",()=>{
     }
    const add_date_2_btn = document.querySelector('#add_date_input')
    if(add_date_2_btn){
-        add_date_2_btn.addEventListener('click',add_date_input)
+        add_date_2_btn.addEventListener('click',add_date_input())
    }
 })
 let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
 <input type="date" name="date_2" class="form-control"/>`;
-function add_date_input(this){
+function add_date_input(){
    let date_2 =  document.querySelector('.filter_history > .date_2')
    console.log(date_2)
 }
