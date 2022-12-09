@@ -28,7 +28,9 @@ function add_date_input(){
    
 }
 function remove_date_input(element){
-    console.log(element)
+    let date_2 =  document.querySelector('.filter_history > .date_2')
+    date_2.classList.remove('col')
+   date_2.innerHTML = '';
 }
 ///////////////// funcion que añade metodos de pago usando la api rest
 const insert_payment_method = async({received_inputs,register_inputs,payment_method_data})=>{
