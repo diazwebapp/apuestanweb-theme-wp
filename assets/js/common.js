@@ -10,7 +10,7 @@ $(document).ready(function () {
             document.write('')
         }
         if(respuesta === undefined){
-            $('#modal_age_terms').modal('show')
+            
         }
       }
 });
@@ -27,7 +27,7 @@ function setAge(resp){
     if(text == 'si'){
         sessionStorage.setItem('age_user', 'si')
     }
-    $('#modal_age_terms').modal('hide')
+    
     modal.remove()
     modal_.remove()
 }
