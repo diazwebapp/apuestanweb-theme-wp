@@ -72,7 +72,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                     }
                                     echo '</div>';
                                     if($regs["text_reg2"] and $regs["text_reg2"] !== ''):
-                                       echo '<div id="modal_age_terms" style="display:grid;align-content: center;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0, .2);z-index:99999999;" >
+                                       echo '<div id="modal_age_terms" style="display:none;align-content: center;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0, .2);z-index:99999999;" >
                                                 <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:50%;align-items:center;">
                                                     <div class="col-12 text-center">
                                                         <b class="title d-block">'.$regs["text_reg2"].'</b>

@@ -10,7 +10,8 @@ $(document).ready(function () {
             document.write('')
         }
         if(respuesta === undefined){
-            
+            let modal = document.getElementById('modal_age_terms')
+            modal.style.display = 'grid';
         }
       }
 });
@@ -18,7 +19,6 @@ $(document).ready(function () {
 function setAge(resp){
     let text = resp.textContent
     let modal = document.getElementById('modal_age_terms')
-    let modal_ = document.querySelector('.modal-backdrop')
     
     if(text == 'no'){
         sessionStorage.setItem('age_user', 'no')
@@ -29,7 +29,6 @@ function setAge(resp){
     }
     
     modal.remove()
-    modal_.remove()
 }
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
