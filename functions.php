@@ -318,7 +318,7 @@ function aw_notificacion_membership($payment_history_id=null){
         $body= "";
     
        add_filter( "wp_mail_content_type", "fix_html" );
-       wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers); 
+       wp_mail($memberInfo->user_email,"status user: $memberInfo->user_login" ,$body,$headers); 
     }
 }
 function setUserRating(){
