@@ -58,7 +58,7 @@ $title = get_the_title($args["post"]->ID);
             echo                "</div>
                         </div>
                     </div>
-                    <div class='bookmaker_right_btn'>
+                    <div class='bookmaker_right_btn mt-5'>
                         <a href='$ref' class='btn_2'>Quiero Apostar</a>
                     </div>
                 </div>

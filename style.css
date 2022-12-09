@@ -1264,6 +1264,7 @@ footer .menu li a::before{
    font-size: 1.6rem;
    color: #0558CB;
    border: none;
+   padding:0 !important;
 }
 .blog_select_box .nice-select::after{
 	background-image: url(../img/s3.png);
@@ -3353,9 +3354,6 @@ blockquote{
 .nice-select .option {
     color: #7d7777;
 }
-
-
-
 
 
 /*single-review--page--style--start*/

@@ -35,7 +35,7 @@ function shortcode_parley($atts)
         <div class='mt_30 dropd order-lg-3'>
             <div class='blog_select_box'>
                 <select name='ord' data-type='parley' id='element_select_parley' onchange='filter_date_items(this)'>
-                    <option value=''>Ordenar</option>
+                    <option value='' ".( !$date ? 'selected' : '').">".__('Todo','jbetting')."</option>
                     <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
                     <option value='hoy' ".( $date == 'hoy' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
                     <option value='mañana' ".( $date == 'mañana' ? 'selected' : '')." > ".__('Mañana','jbetting')." </option>

@@ -10,9 +10,8 @@ $disable_title = carbon_get_post_meta(get_the_ID(), 'disable_title');
 
 if ( $textbefore ):
 	echo do_shortcode("{$textbefore}");
-else:
-	echo do_shortcode("[menu_leagues] ");
 endif;
+
 
  ?>
 
