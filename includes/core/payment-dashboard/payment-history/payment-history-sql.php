@@ -66,7 +66,7 @@ function select_payment_history($params=["status"=>"completed","username"=>"","d
     if($params["date"] and $params["date_2"]){
         $sql_ .="AND DATE(payment_date BETWEEN '{$params["date"]}' AND '{$params["date_2"]}) ";
      }
-     $sql_ .= "AND username LIKE '%{$params["username"]}%'";
+     //$sql_ .= "AND username LIKE '%{$params["username"]}%'";
      var_dump($sql_);
     /* if($date and !$text){
 
