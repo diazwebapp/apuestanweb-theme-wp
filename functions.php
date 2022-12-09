@@ -306,7 +306,8 @@ function aw_notificacion_membership($payment_history_id=null){
         return 'text/html';
     }
     if(isset($payment_history_id)){
-        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE id='$payment_history_id'"));
+        $db = $wpdb->prefix . "aw_payment_history";
+        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM $db WHERE id='$payment_history_id'"));
         var_dump(get_user_details( $data_notifi->username ));
         /* $memberInfo = get_userdata($user_id);
         $blogname = get_bloginfo( "name" );
