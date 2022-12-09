@@ -90,7 +90,7 @@ function update_payment_history($data,$id){
     global $wpdb;
     
     $update = $wpdb->update(MYSQL_PAYMENT_HISTORY,$data,$id);
-    $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY));
+    $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY."WHERE status='{$data[status]}'"));
     var_dump($data_notifi);
     return $update;
 }
