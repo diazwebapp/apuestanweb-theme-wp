@@ -69,62 +69,7 @@ function select_payment_history($params=["status"=>"completed","username"=>"","d
     if($params["date"] and $params["date_2"]){
         $sql_ .="AND DATE(payment_date) BETWEEN '{$params["date"]}' AND '{$params["date_2"]}' ";
      }
-     $sql_ .= "AND username LIKE '%{$params["username"]}%'";
-     var_dump($sql_);
-    /* if($date and !$text){
-
-        if($date["value"] and !$date["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE DATE({$date["key"]}) = '{$date["value"]}' ";
-        }
-
-        if(!$date["value"] and $date["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE DATE({$date["key"]}) = '{$date["value2"]}' ";
-        }
-        if($date["value"] and $date["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE DATE({$date["key"]}) BETWEEN '{$date["value"]}' AND '{$date["value2"]}' ";
-        }
-    }
-
-    if(!$date and $text){
-        if($text["value"] and !$text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key"]}='{$text["value"]}' ";
-        }
-        if(!$text["value"] and $text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key2"]}='{$text["value2"]}' ";
-        }
-        if($text["value"] and $text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key"]}='{$text["value"]}' AND {$text["key2"]}='{$text["value2"]}' ";
-        }
-    }
-
-    if($date and $text){
-        if($date["value"] and !$date["value2"] and $text["value"] and !$text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key"]}='{$text["value"]}' AND DATE({$date["key"]}) = '{$date["value"]}' ";
-        }
-
-        if(!$date["value"] and $date["value2"] and $text["value"] and !$text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key"]}='{$text["value"]}' AND DATE({$date["key"]}) = '{$date["value2"]}' ";
-        }
-
-        if(!$date["value"] and $date["value2"] and !$text["value"] and $text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key2"]}='{$text["value2"]}' AND DATE({$date["key"]}) = '{$date["value2"]}' ";
-        }
-
-        if($date["value"] and !$date["value2"] and !$text["value"] and $text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key2"]}='{$text["value2"]}' AND DATE({$date["key"]}) = '{$date["value"]}' ";
-        }
-
-        if($date["value"] and $date["value2"] and $text["value"] and !$text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key"]}='{$text["value"]}' AND DATE({$date["key"]}) BETWEEN '{$date["value"]}' AND '{$date["value2"]}' ";
-        }
-        if($date["value"] and $date["value2"] and !$text["value"] and $text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key2"]}='{$text["value2"]}' AND DATE({$date["key"]}) BETWEEN '{$date["value"]}' AND '{$date["value2"]}' ";
-        }
-        if($date["value"] and $date["value2"] and $text["value"] and $text["value2"]){
-            $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE {$text["key"]}='{$text["value"]}' AND {$text["key2"]}='{$text["value2"]}' AND DATE({$date["key"]}) BETWEEN '{$date["value"]}' AND '{$date["value2"]}' ";
-        }
-    } */
-    
+    $sql_ .= "AND username LIKE '%{$params["username"]}%'";
     
     $results = $wpdb->get_results($sql_);
     foreach($results as $key => $rs):
