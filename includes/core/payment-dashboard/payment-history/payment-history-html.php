@@ -146,7 +146,7 @@ function aw_payment_history(){
                           <label>Date start <span class="dashicons dashicons-plus" onclick="add_date_input(this)"></span></label>
                           <input type="date" name="date_1" class="form-control"/>
                         </div>
-                        <div class="col date_2">
+                        <div class=" date_2">
                         </div>
                         <div class="col" >
                           <button class="btn btn-primary mt-4" name="filter_table_history" >filtrar</button>
