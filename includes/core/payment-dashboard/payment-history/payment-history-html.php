@@ -96,7 +96,6 @@ if(isset($_GET["update_payment_history_id"]) and isset($_GET["status"])){
   $activated = aw_activate_membership($activate_sql_params);
   if(!is_wp_error( $activated )){
     $update = update_payment_history($array_data,$array_id);
-    var_dump($activated);
     //header("Location:".$_SERVER["HTTP_REFERER"]);
     die;
   }
