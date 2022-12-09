@@ -12,7 +12,9 @@ function generate_history_payment_table(){
       $params["username"] = $_POST["username"];
     }
     
-    
+    if( isset($_POST["date_1"]) and !empty($_POST["date_1"]) ){
+        $params["date"] = $_POST["date_1"];
+    }
     /*
     if(isset($_POST["date_1"]) or isset($_POST["date_2"])){
 
