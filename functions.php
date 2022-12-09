@@ -318,8 +318,8 @@ function aw_notificacion_membership($payment_history_id=null){
     
         $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
     
-        add_filter( "wp_mail_content_type", "fix_html" );
-       /*  wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers); */
+       /*   add_filter( "wp_mail_content_type", "fix_html" );
+       wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers); */
     }
 }
 function setUserRating(){
