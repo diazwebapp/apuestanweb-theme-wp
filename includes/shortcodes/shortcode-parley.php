@@ -101,6 +101,7 @@ function shortcode_parley($atts)
     $query =  wp_remote_retrieve_body( $response );
     echo "<pre>";
         var_dump($query);
+        var_dump($params);
     echo "</pre>";
     if ($query) {
         $loop_html = '';
