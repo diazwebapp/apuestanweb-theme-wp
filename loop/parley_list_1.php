@@ -47,6 +47,7 @@ echo "<div class='parley_wrapper'>
             $parley_cuotes = $parley_cuotes * $prediction['cuote'];
             $oOddsConverter = new Converter($prediction['cuote'], 'eu');
             $odds_result = $oOddsConverter->doConverting();
+            var_dump($odds_result);
             $prediction['cuote'] = $odds_result[$args["odds"]];
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
