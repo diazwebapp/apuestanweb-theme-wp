@@ -97,6 +97,7 @@ function shortcode_parley($atts)
     $params .= isset($args['exclude_parley']) ? "&exclude_parley={$args['exclude_parley']}":"";
     $params .= "&odds=$odds";
 
+    var_dump($params);
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     $query =  wp_remote_retrieve_body( $response );
