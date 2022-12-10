@@ -103,6 +103,7 @@ function shortcode_parley($atts)
         var_dump($query);
         var_dump($params);
     echo "</pre>";
+    die;
     if ($query) {
         $loop_html = '';
         $ret .="<div id='games_list' >{replace_loop}</div>";
