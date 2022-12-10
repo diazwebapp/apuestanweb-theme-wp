@@ -30,7 +30,7 @@ function aw_get_parleys(WP_REST_Request $request){
         if($params['date'] == 'mañana')
             $current_date = date('Y-m-d',strtotime('+1 days'));
             
-        $args['meta_query']   = [
+        $args['meta_query'][]   = [
                 [
                     'key' => '_data',
                     'compare' => '==',
