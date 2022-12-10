@@ -12,20 +12,12 @@ function generate_history_payment_table(){
       $params["username"] = $_POST["username"];
     }
     
-    
-    /*
-    if(isset($_POST["date_1"]) or isset($_POST["date_2"])){
-
-      if( isset($_POST["date_1"]) and !empty($_POST["date_1"]) ){
-        $data["key"] = "payment_date";
-        $data["value"] = $_POST["date_1"];
-      }
-  
-      if( isset($_POST["date_2"]) and !empty($_POST["date_2"]) and !empty($_POST["date_1"]) ){
-        $data["value2"] = $_POST["date_2"];
-      }
-    } */
-
+    if( isset($_POST["date_1"]) and !empty($_POST["date_1"]) ){
+        $params["date"] = $_POST["date_1"];
+    }
+    if( isset($_POST["date_2"]) and !empty($_POST["date_2"]) ){
+      $params["date_2"] = $_POST["date_2"];
+  }
     
   }
   
@@ -52,6 +44,7 @@ function generate_history_payment_table(){
         $table_data["tbody"] .= '<tr>';
         $html_th = "";
         $html_td = "";
+        
         //botones de accion
         $btn_completed = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-yes" title="complete" status="completed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
         $btn_pending = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-clock" title="pending" status="pending" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
@@ -72,12 +65,7 @@ function generate_history_payment_table(){
               $html_td .= '<td>'.($keyth=="username"?$user_link:$th).'</td>';
             endif;
           }
-          if(is_array($th)){
-            foreach ($th as $keyth2 => $thvalue) {
-              $html_th .= '<th>'.$thvalue->meta_key.'</th>';
-              $html_td .= '<td>'.$thvalue->meta_value.'</td>';
-            }
-          }
+          
         }
         $html_th .= '<th colspan="2" >Action</th>';
         $html_td .= '<td colspan="2">
@@ -136,19 +124,17 @@ function aw_payment_history(){
               <h4>'._x("payment history","jbetting").'</h4>
                 <div class="col-md-12 mb-2">
                       <h3>Filtrar consulta</h3>
-                      <form method="post" class="row">
+                      <form method="post" class="row filter_history">
                         <div class="col" >
                           <label>Username</label>
                           <input type="text" name="username" class="form-control" />
                         </div>
                         
                         <div class="col" >
-                          <label>Date start</label>
+                          <label>Date start <span class="dashicons dashicons-plus" id="add_date_input"></span></label>
                           <input type="date" name="date_1" class="form-control"/>
                         </div>
-                        <div class="col" >
-                          <label>Date end</label>                        
-                          <input type="date" name="date_2" class="form-control"/>
+                        <div class=" date_2">
                         </div>
                         <div class="col" >
                           <button class="btn btn-primary mt-4" name="filter_table_history" >filtrar</button>

@@ -102,9 +102,10 @@ function shortcode_forecast($atts)
     $params .= "&odds=$odds";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
-    
+    var_dump($response);
     $query =  wp_remote_retrieve_body( $response );
-    
+    var_dump($query);
+    die;
     if ($query) {
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)

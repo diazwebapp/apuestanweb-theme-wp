@@ -14,9 +14,24 @@ window.addEventListener("load",()=>{
         /////////añadimos el controlador que manejara el formulario
         form_add_maccounts.addEventListener("submit",async e => await aw_add_new_account(e))
     }
-    
+   const add_date_2_btn = document.querySelector('#add_date_input')
+   if(add_date_2_btn){
+        add_date_2_btn.addEventListener('click',()=>add_date_input())
+   }
 })
-
+let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
+<input type="date" name="date_2" class="form-control"/>`;
+function add_date_input(){
+   let date_2 =  document.querySelector('.filter_history > .date_2')
+   date_2.classList.add('col')
+   date_2.innerHTML = elemtn;
+   
+}
+function remove_date_input(element){
+    let date_2 =  document.querySelector('.filter_history > .date_2')
+    date_2.classList.remove('col')
+   date_2.innerHTML = '';
+}
 ///////////////// funcion que añade metodos de pago usando la api rest
 const insert_payment_method = async({received_inputs,register_inputs,payment_method_data})=>{
     try {
