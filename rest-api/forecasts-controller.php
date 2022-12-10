@@ -10,7 +10,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     $args['orderby']        = 'meta_value';
     $args['order']          = 'ASC';
 
-    if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
+    /* if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
         $p = str_replace("]","",$params['leagues']);
         $args['tax_query'] = [
@@ -20,7 +20,7 @@ function aw_get_forecasts(WP_REST_Request $request){
                 'terms' => [$p]
             ]
         ];
-    endif;
+    endif; */
 
     if (isset($params['date'])) {
         if($params['date'] == 'hoy')
