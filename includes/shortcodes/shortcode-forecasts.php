@@ -105,7 +105,6 @@ function shortcode_forecast($atts)
     
     $query =  wp_remote_retrieve_body( $response );
     
-    die;
     if ($query) {
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)
