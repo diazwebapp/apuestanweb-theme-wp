@@ -101,7 +101,9 @@ function shortcode_parley($atts)
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     $query =  wp_remote_retrieve_body( $response );
-    
+    echo '<pre>';
+    var_dump($query);
+    echo '</pre>';
     if ($query) {
         $loop_html = '';
         $ret .="<div id='games_list' >{replace_loop}</div>";
