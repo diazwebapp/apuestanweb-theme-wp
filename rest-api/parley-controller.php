@@ -39,7 +39,7 @@ function aw_get_parleys(WP_REST_Request $request){
                 ]
             ];
     }
-    var_dump($args);
+    //var_dump($args);
     $query = new WP_Query($args);
     $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
     
