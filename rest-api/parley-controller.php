@@ -11,11 +11,13 @@ function aw_get_parleys(WP_REST_Request $request){
     $args['order']          = 'ASC';
 
     if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
+        $p = str_replace("[","",$params['leagues']);
+        $p = str_replace("]","",$params['leagues']);
         $args['tax_query'] = [
             [
                 'taxonomy' => 'league',
                 'field' => 'slug',
-                'terms' => $params['leagues']
+                'terms' => [$p]
             ]
         ];
     endif;
@@ -37,8 +39,9 @@ function aw_get_parleys(WP_REST_Request $request){
                 ]
             ];
     }
+    //var_dump($args);
     $query = new WP_Query($args);
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
+    $loop_html = ["args"=>$args,"status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
     
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,

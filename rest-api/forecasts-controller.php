@@ -98,7 +98,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
         ];
     endif;
 
-    $args['meta_query']     = [
+    $args['meta_query']  = [
         [
             'key' => '_vip',
             'value' => 'false',
@@ -114,7 +114,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
         if($params['date'] == 'mañana')
             $current_date = date('Y-m-d',strtotime('+1 days'));
             
-            $args['meta_query'][]   = [
+            $args['meta_query'][]  = [
                 'key' => '_data',
                 'compare' => '==',
                 'value' => $current_date,
