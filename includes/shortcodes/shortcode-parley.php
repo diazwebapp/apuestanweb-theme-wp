@@ -42,10 +42,6 @@ function shortcode_parley($atts)
                 </select>
             </div>
         </div>
-        <div class='tag_wrap order-lg-2'>
-            <ul class='tag mt_25'>
-            </ul>
-        </div>
     </div>";
 
     $args = [];
