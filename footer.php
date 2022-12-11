@@ -80,8 +80,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                                 <img class=mx-auto width="240" height="125" src='.$agesvg.'>
                                                 <div class="col-12 text-center">
                                                         <b class="title d-block">'.$regs["text_reg2"].'</b>
-                                                        <button type="button" class="btn btn-primary px-4 m-5" onclick="setAge(this)"><p class="h2" >SI</p></button>
-                                                        <button type="button" class="btn btn-secondary px-4 m-5" onclick="setAge(this)"><p class="h2" >NO</p></button>
+                                                        <button type="button" class="btn btn-primary px-4 m-5 text-uppercase" onclick="setAge(this)"><p class="h2" >si</p></button>
+                                                        <button type="button" class="btn btn-secondary px-4 m-5 text-uppercase" onclick="setAge(this)"><p class="h2" >no</p></button>
                                                     </div>
                                                 </div>
                                             </div> ';

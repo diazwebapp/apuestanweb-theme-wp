@@ -20,7 +20,7 @@ function setAge(resp){
     
     let text = resp.textContent
     let modal = document.getElementById('modal_age_terms')
-    console.log(text)
+    
     if(text == 'no'){
         sessionStorage.setItem('age_user', 'no')
         document.write('')
