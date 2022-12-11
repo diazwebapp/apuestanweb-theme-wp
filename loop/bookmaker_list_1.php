@@ -32,7 +32,7 @@ $title = get_the_title($args["post"]->ID);
                 echo "      </div>
                         </div>
                     </div>
-                    <div class='bookmaker_logo_box' style='background:$bg_att;' >
+                    <div class='bookmaker_logo_box container_logo_review' style='background:$bg_att;' >
                         <img src=' $image_png ' width='100' height='40' class='img-fluid' alt=' $title '>
                     </div>
                     <div class='bookmaker_left_text'>
