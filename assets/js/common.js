@@ -17,6 +17,7 @@ $(document).ready(function () {
 });
 
 function setAge(resp){
+    console.log(resp)
     let text = resp.textContent
     let modal = document.getElementById('modal_age_terms')
     
