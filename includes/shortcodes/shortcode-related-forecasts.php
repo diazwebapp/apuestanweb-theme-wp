@@ -111,14 +111,6 @@ function shortcode_related_forecast($atts)
         $loop_html = $data_json->html;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
-        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
-        
-        $ret .="<div class='container container_pagination_forecast text-md-center'>";
-        if($paginate=='yes' and $data_json->max_pages > 1):
-
-            $ret .=$args['btn_load_more'];
-        endif;
-        $ret .=" </div>";
     } else {
         return '<h1>No hay datos. Vuelve más tarde.</h1>';
     }
