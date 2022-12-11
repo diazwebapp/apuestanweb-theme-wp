@@ -11,6 +11,7 @@ function shortcode_related_forecast($atts)
         'filter' => null,
         'time_format' => null,
         'paginate' => null,
+        'page_title' => null,
         'title' => null
     ), $atts));
 
