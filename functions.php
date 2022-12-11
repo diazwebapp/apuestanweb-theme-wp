@@ -19,6 +19,7 @@ include "includes/shortcodes/shortcode-parley.php";
 include "includes/shortcodes/shortcode-profile-forecaster.php";
 include "includes/shortcodes/shortcode-blog.php";
 include "includes/shortcodes/shortcode-forecasts.php";
+include "includes/shortcodes/shortcode-related-forecasts.php";
 include "includes/shortcodes/shortcode-forecasts-vip.php";
 include "includes/shortcodes/shortcode-related-posts.php";
 include "includes/shortcodes/shortcode-slide.php";
