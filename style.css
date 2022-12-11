@@ -3354,7 +3354,10 @@ blockquote{
 .nice-select .option {
     color: #7d7777;
 }
-
+.nice-select .nice-select-dropdown{
+	right:0;
+	left:0;
+}
 
 /*single-review--page--style--start*/
 .special-single-bk-button > a, .special-single-bk-button > b{
