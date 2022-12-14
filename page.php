@@ -68,11 +68,12 @@ endif;
 			<?php if($disable_sidebar == 'yes'): echo '' ; else: ?>				
 			<?php endif;?>
 			</div>
-			<?php 
+			
+		</div>
+		<?php 
 				if($custom_banner_bottom)
 					echo do_shortcode($custom_banner_bottom);
 					
 			?>
-		</div>
 	</main>
 <?php get_footer(); ?>
