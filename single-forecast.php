@@ -155,7 +155,7 @@
                             </div>
                             <!-- sidebar -->
                             <div class="col-lg-4">
-                                <div class="row col-lg-12 ml-5 justify-content-end"><?php dynamic_sidebar( "forecast-right" ) ?></div>
+                                <div class="row col-lg-12 "><?php dynamic_sidebar( "forecast-right" ) ?></div>
                             </div>
                     <?php endwhile;
                     endif;
