@@ -2662,6 +2662,8 @@ blockquote{
 }
 .bonus_box{
 	position: relative;
+	background-color: #00203A;
+	border-radius: 1rem 1rem 0 0;
 }
 .bonus_box .number_text{
 	background-color: #001F39;
@@ -2706,7 +2708,6 @@ blockquote{
    margin: 0 0.4rem;
 }
 .bonus_bottom{
-	background-color: #00203A;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
