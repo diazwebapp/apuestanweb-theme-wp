@@ -16,6 +16,19 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
+                            $usuario_permitido = false;
+                            if(is_user_logged_in(  ) and $vip){
+                                $user_id = get_current_user_id(  );
+                                $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $user_id, true );
+                                $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $user_id );
+                                if(!empty($user_levels)){
+                                    $data = $wpdb->get_var("SELECT meta_value FROM `98uKeqs_postmeta` WHERE post_id='363' AND meta_key = 'ihc_mb_who'");
+                                    
+                                    $array_posts_lid = explode(",",$data);
+                                    $usuario_permitido = in_array($user_levels,$array_posts_lid);
+                                    
+                                }
+                            }
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
@@ -129,23 +142,9 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php
-                                            if(is_user_logged_in(  )){
-                                                $user_id = get_current_user_id(  );
-                                                $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $user_id, true );
-                                                $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $user_id );
-                                                if(!empty($user_levels)){
-                                                    $data = $wpdb->get_var("SELECT meta_value FROM `98uKeqs_postmeta` WHERE post_id='363' AND meta_key = 'ihc_mb_who'");
-                                                    
-                                                    $array_posts_lid = explode(",",$data);
-                                                    $rs = in_array($user_levels,$array_posts_lid);
-                                                    var_dump($rs);
-                                                }
-                                            }
-                                            ?>
-                                        <?php echo do_shortcode("[predictions]") ?>		
+                                        <?php if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
-                                        <?php echo do_shortcode("[predictions]") ?>		
+                                        <?php if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
