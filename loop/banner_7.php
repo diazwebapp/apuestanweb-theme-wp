@@ -1,7 +1,7 @@
 <?php
 
 $params = get_query_var("params");
-$alt_logo = get_template_directory_uri() . '/assets/img/event-logo.svg';
+$alt_logo = get_template_directory_uri() . '/assets/img/event-logo.png';
 $html_logo = "<img src='$alt_logo' class='logo2' alt='{$params['title']}'>";
 if($params['src_logo']):
     $html_logo = "<span class='{$params['src_logo']}' ></span>";
