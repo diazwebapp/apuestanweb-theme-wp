@@ -10,7 +10,7 @@ echo "<div class='event_area'>
             <div class='row align-items-center'>
             <div class='col-lg-8 mt_25'>   
                 <h1 class='title'>{$params['title']}</h1> ";            
-                echo do_shortcode("[related forecasts num='{$params['num']}' league='all']");	
+                echo do_shortcode("[related-forecasts num='{$params['num']}' league='all']");	
         echo "</div>
                 <div class='col-lg-4 mt_25'>
                     <div class='vip_box' style='background-image:url(".get_template_directory_uri() . '/assets/img/vip.png'.");'>
