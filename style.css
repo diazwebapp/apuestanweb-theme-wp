@@ -2679,13 +2679,13 @@ blockquote{
 	position: absolute;
 }
 .bonus_top, .bonus_bottom{
-	border-radius: 1rem;
 	padding:1.2rem;
 }
 .bonus_top{
 	background-color: #fff;
 	text-align: center;
 	box-shadow: 0 0.8rem 0.6rem rgba(0, 0, 0, 0.29);
+	border-radius: 1rem;
 }
 .bonus_top img{
 	width: 7.2rem;
@@ -2710,6 +2710,7 @@ blockquote{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	border-radius: 0 0 1rem 1rem;
 }
 .bonus_bottom p{
 	font-size: 1.4rem;
