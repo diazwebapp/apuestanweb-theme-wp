@@ -142,9 +142,9 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php var_dump($vip); if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php if($usuario_permitido or empty($vip)): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
-                                        <?php if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php if($usuario_permitido or empty($vip)): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
