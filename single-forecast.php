@@ -127,10 +127,8 @@
                                         </div>
                                     </div>
 
-                                    <div class="single_event_content text-break">
-                                        <?php echo do_shortcode("[predictions]") ?>		
-                                        <?php the_content() ?>	
-                                        <?php echo do_shortcode("[predictions]") ?>		
+                                    <div class="single_event_content text-break">	
+                                        <?php the_content() ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
