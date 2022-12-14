@@ -28,6 +28,7 @@
                                     $usuario_permitido = in_array($user_levels,$array_posts_lid);
                                     
                                 }
+                                if(empty($user_levels) or)
                             }
                             
                             //forecast backround
@@ -142,7 +143,7 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php var_dump($vip); if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
                                         <?php if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
