@@ -95,14 +95,6 @@ add_action('after_setup_theme', 'my_theme_setup');
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
-
-    global $post;
-    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'posts' ) ) {
-        //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
-    }
-    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'pages' ) ) {
-        //wp_enqueue_style( 's-pages-css', get_template_directory_uri( ) .'/assets/css/s-pages.css', null, false, 'all' );
-    }
     
 }
 

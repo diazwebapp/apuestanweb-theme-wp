@@ -32,10 +32,9 @@ function shortcode_forecast_vip($atts)
     $title = empty($custom_h1) ? $title : $custom_h1;
     
     if($filter)
-        $ret .= "<div class='title_wrap'>
-        <h1 class='title mt_30 order-lg-1'>$title</h1>
-        <div class='mt_30 dropd order-lg-3'>
-            <div class='blog_select_box'>
+        $ret .= "<div class='row'>
+        <h1 class='title col-6'>$title</h1>       
+            <div class='col-6 event_select'>
                 <select name='ord' data-type='forecast_vip' id='element_select_forecasts' onchange='filter_date_items(this)'>
                     <option value='' ".( !$date ? 'selected' : '').">".__('Todo','jbetting')."</option>
                     <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
@@ -43,7 +42,7 @@ function shortcode_forecast_vip($atts)
                     <option value='mañana' ".( $date == 'mañana' ? 'selected' : '')." > ".__('Mañana','jbetting')." </option>
                 </select>
             </div>
-        </div>
+        
     </div>";
 
     $args = [];

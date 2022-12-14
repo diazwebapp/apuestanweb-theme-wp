@@ -14,7 +14,10 @@ function shortcode_related_forecast($atts)
         'page_title' => null,
         'title' => null
     ), $atts));
-
+    global $post;
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'related-forecasts' ) ) {
+        wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
+    }
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
