@@ -136,9 +136,9 @@
                                                 $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $user_id );
                                                 if(!empty($user_levels)){
                                                     $data = $wpdb->get_var("SELECT meta_value FROM `98uKeqs_postmeta` WHERE post_id='363' AND meta_key = 'ihc_mb_who'");
-                                                    $disable_options = carbon_get_post_meta(get_the_ID(),"ihc_mb_who");
-                                                    $array_posts_lid = explode(",",$disable_options);
-                                                    var_dump($data);
+                                                    
+                                                    $array_posts_lid = explode(",",$data);
+                                                    var_dump($array_posts_lid);
                                                 }
                                             }
                                             ?>
