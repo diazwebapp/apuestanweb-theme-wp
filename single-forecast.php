@@ -133,7 +133,11 @@
                                                 $user_id = get_current_user_id(  );
                                                 $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $user_id, true );
                                                 $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $user_id );
-                                                var_dump($user_levels);
+                                                if(!empty($user_levels)){
+                                                    $disable_options = carbon_get_post_meta(get_the_ID(),"ihc_mb_who");
+                                                    $array_posts_lid = explode(",",$disable_options);
+                                                    var_dump($array_posts_lid);
+                                                }
                                             }
                                             ?>
                                         <?php echo do_shortcode("[predictions]") ?>		
