@@ -16,7 +16,7 @@ $bonus_amount = carbon_get_post_meta($args["bookmaker"]->ID, 'bonus_amount') ? c
 $title = get_the_title($args["bookmaker"]->ID);             
 $stars = draw_rating($rating_ceil); 
 
-echo "<div class='col-4'>
+echo "<div class='col-3'>
                 <div class='bonus_box'>
                     <div class='number_text' id='count_bk_model_3'>{$args["position"]}</div>
                     <div class='bonus_top'>
