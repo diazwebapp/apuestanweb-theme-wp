@@ -130,10 +130,10 @@
                                     <div class="single_event_content text-break">
                                         <?php
                                             if(is_user_logged_in(  )){
-                                                //$user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $_SESSION["current_user"]['ID'], true );
-                                                //$user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $_SESSION["current_user"]['ID'] );
                                                 $user_id = get_current_user_id(  );
-                                                var_dump($user_id);
+                                                $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $user_id, true );
+                                                $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $user_id );
+                                                var_dump($user_levels);
                                             }
                                             ?>
                                         <?php echo do_shortcode("[predictions]") ?>		
