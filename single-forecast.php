@@ -28,7 +28,6 @@
                                     $usuario_permitido = in_array($user_levels,$array_posts_lid);
                                     
                                 }
-                                if(empty($user_levels) or)
                             }
                             
                             //forecast backround
