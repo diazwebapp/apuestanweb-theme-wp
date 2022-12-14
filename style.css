@@ -2799,14 +2799,9 @@ blockquote{
 .vip_box.v2 {
    max-width: 69rem;
    border: 0.1rem solid #a2c0e9;
-   margin-right: auto;
    text-align: left;
    padding: 2.8rem 3.6rem;
-   margin-top: 8rem;
-   position: absolute;
-   top:calc(50% - 120px);
-   left:calc(50% - 35rem);
-   right:calc(50% - 35rem);
+   margin: 8rem auto;
    box-shadow: 0px 0px 80px 2px black;
 }
 .vip_box.v2 h4{
