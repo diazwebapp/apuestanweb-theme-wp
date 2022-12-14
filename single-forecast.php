@@ -136,7 +136,7 @@
                                                 if(!empty($user_levels)){
                                                     $disable_options = carbon_get_post_meta(get_the_ID(),"ihc_mb_who");
                                                     $array_posts_lid = explode(",",$disable_options);
-                                                    var_dump($array_posts_lid);
+                                                    var_dump($disable_options);
                                                 }
                                             }
                                             ?>
