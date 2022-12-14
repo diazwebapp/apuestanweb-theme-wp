@@ -138,7 +138,8 @@
                                                     $data = $wpdb->get_var("SELECT meta_value FROM `98uKeqs_postmeta` WHERE post_id='363' AND meta_key = 'ihc_mb_who'");
                                                     
                                                     $array_posts_lid = explode(",",$data);
-                                                    var_dump($array_posts_lid);
+                                                    $rs = array_search($user_levels,$array_posts_lid);
+                                                    var_dump($rs);
                                                 }
                                             }
                                             ?>
