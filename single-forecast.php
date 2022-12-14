@@ -127,8 +127,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="single_event_content text-break">	
-                                        <?php the_content() ?>		
+                                    <div class="single_event_content text-break">
+                                        <?php
+                                            if(is_user_logged_in(  )){
+                                                //$user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $_SESSION["current_user"]['ID'], true );
+                                                //$user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $_SESSION["current_user"]['ID'] );
+                                                $user_id = get_current_user_id(  );
+                                                var_dump($user_id);
+                                            }
+                                            ?>
+                                        <?php echo do_shortcode("[predictions]") ?>		
+                                        <?php the_content() ?>	
+                                        <?php echo do_shortcode("[predictions]") ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
