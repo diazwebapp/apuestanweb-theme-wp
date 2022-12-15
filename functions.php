@@ -115,12 +115,12 @@ function load_template_part($template_name, $part_name = null, $args=false)
 add_action('wp_enqueue_scripts', 'jbetting_src');
 function jbetting_src()
 {
-    wp_denqueue_style( 'ihc_front_end_style');
+    wp_dequeue_style( 'ihc_front_end_style');
 
-	wp_denqueue_style( 'ihc_templates_style');
+	wp_dequeue_style( 'ihc_templates_style');
 
-	wp_denqueue_script( 'jquery' );
-	wp_denqueue_script( 'ihc-jquery-ui');
+	wp_dequeue_script( 'jquery' );
+	wp_dequeue_script( 'ihc-jquery-ui');
 
 	wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6 );
     wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/css/bootstrap.min.css', array(), null);
