@@ -39,7 +39,7 @@ function shortcode_parley($atts)
     if($filter)
         $ret .= "<div class='row'>
         <h1 class='title col-6'>$title</h1>
-            <div class='col-6 justify-content-end d-flex event_select'>
+            <div class='col-6 justify-content-end d-flex parley-select'>
                 <select name='ord' data-type='parley' id='element_select_parley' onchange='filter_date_items(this)'>
                     <option value='' ".( !$date ? 'selected' : '').">".__('Todo','jbetting')."</option>
                     <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>

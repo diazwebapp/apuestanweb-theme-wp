@@ -215,3 +215,17 @@
 .parley_btn_2{
 	margin-left: 2rem;
 }
+.parley-select .nice-select {
+    background-color: #001F39;
+    border: 0.1rem solid #0558CB;
+    font-size: 1.6rem;
+    height: 4.2rem;
+    line-height: 2.5;
+    color: #EBEFF5;
+}
+.nice-select:after {
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    height: 5px;
+    width: 5px;
+}
