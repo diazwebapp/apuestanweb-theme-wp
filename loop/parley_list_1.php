@@ -71,7 +71,7 @@ echo "<div class='parley_wrapper'>
                 }
             }
 
-            echo "<div class='parley_box'>
+            echo "<div class='parley_box mx-2'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
