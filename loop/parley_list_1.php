@@ -31,10 +31,11 @@ if(!isset($aw_system_location)):
 endif;
 
 $parley_id = get_the_ID();
+$alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
 echo "<div class='parley_wrapper'>
 <div class='parley_top_content'>
     <h2>Parley $fecha</h2>
-    <img src='img/logo2.svg' class='img-fluid' alt=''>
+    <img src='$alt_logo' class='img-fluid' alt=''>
 </div>";
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
