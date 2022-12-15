@@ -213,6 +213,7 @@
 .parley_btn_2{
 	margin-left: 2rem;
 }
+
 .parley-select .nice-select {
     background-color: white;
     border: 0.1rem solid #0558CB;
@@ -226,4 +227,226 @@
     border-right: 2px solid #0558CB;
     height: 5px;
     width: 5px;
+}
+@media (min-width: 1400px) {
+	.parley_box{
+		margin: auto;
+	}
+}
+@media (min-width: 1200px) and (max-width: 1409.98px){
+	.parley_box{
+		margin: auto;
+	}
+	   
+}
+@media (max-width: 1199.98px) { 
+	.parley_box{
+		width: auto;
+		padding: 2rem;
+	}
+
+}
+@media (max-width: 991.98px) {
+	  
+.parley_box {
+    width: auto;
+    padding: 2rem;
+}     
+.parley_right_content {
+    display: flex;
+    align-items: center;
+    margin-right: 10%;
+    font-size: 14px;
+}
+.parley_right_first{
+	margin-left: 4em;
+} 
+}
+
+@media (max-width: 767.98px){
+.parley_box {
+	width: auto;
+	flex-direction: column;
+	margin: 2rem 2.6rem 0 2.3rem;
+	padding: 3rem 2rem 2rem 2rem;
+}
+.parley_flag{
+	margin-left: -4rem;
+}
+
+.parley_left_content{
+	flex-direction: column;
+	align-items: baseline;
+	width: 100%;
+}
+.parley_right_content {
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+}
+.parley_right_first {
+	flex-direction: column;
+	padding-left: 2rem;
+	align-items: flex-end;
+	width: 18rem!important;
+}
+.parley_right_first .p1 {
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
+    margin-top: 1.5rem;
+}
+.parley_right_first .p2{
+	margin-top: 2.3rem;
+	display: inline-block;
+}
+
+.mobile_parley_time p{
+	font-size: 1.4rem;
+	line-height: 1.2;
+	color: #00203A;
+}
+.parley_game_name_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: 3rem;
+}
+.parley_game_name {
+
+    width: 10%;
+
+
+}
+
+
+.parley_match_time {
+    padding-left: 5rem;
+    display: flex;
+    align-items: center;
+    /* width: 25rem; */
+}
+.parley_team {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    width: 12em;
+}
+.event-link{
+	margin-top: 2rem;
+}
+.event-link button::before {
+	 width: 8px;
+	height: 6px;
+} 
+.parley_right_content2{
+	flex-wrap: wrap;
+}
+.parley_right_content2_mb{
+	flex-basis: 50%;
+	max-width: 50%;
+}
+.gana_box p{
+	margin-left: 0;
+	display: inline-block;
+}
+.parley_btn_2 {
+	margin-left: 0;
+}
+.parley_right_content2_mb{
+	text-align: center !important;
+}
+.parley_right_content2 .blog_select_box {
+	display: flex;
+	justify-content: center;
+}
+.gana_box,
+.parley_btn_2{
+	margin-top: 2rem;
+}  
+}
+@media (max-width: 575.98px) {
+
+
+.parley_box {
+	width: 48rem;
+	flex-direction: column;
+	margin: 2rem 2.6rem 0 2.3rem;
+	padding: 3rem 2rem 2rem 2rem;
+}
+.parley_flag{
+	margin-left: -4rem;
+}
+
+.parley_left_content{
+	flex-direction: column;
+	align-items: baseline;
+	width: 100%;
+}
+.parley_right_content {
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+}
+.parley_right_first {
+	flex-direction: column;
+	padding-left: 2rem;
+	align-items: flex-end;
+	width: 18rem!important;
+}
+.parley_right_first .p1 {
+    padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
+    margin-top: 1.5rem;
+}
+.parley_right_first .p2{
+	margin-top: 2.3rem;
+	display: inline-block;
+}
+
+.mobile_parley_time p{
+	font-size: 12px;
+	line-height: 1.2;
+	color: #00203A;
+}
+.parley_game_name_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: 3rem;
+}
+.parley_game_name {
+
+    width: 10%;
+
+
+}
+.parley_match_time {
+    padding-left: 5rem;
+    display: flex;
+    align-items: center;
+    /* width: 25rem; */
+}
+.parley_team {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    width: 12em;
+}
+.event-link{
+	margin-top: 2rem;
+}
+.event-link button::before {
+	 width: 8px;
+	height: 6px;
+}
 }
