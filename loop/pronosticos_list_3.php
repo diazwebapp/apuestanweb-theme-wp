@@ -1,7 +1,7 @@
 <?php
 $params = get_query_var('params');
 $vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
-$permalink = get_the_permalink();
+$permalink = get_the_permalink($args["forecast"]->ID);
 $predictions = carbon_get_post_meta($args["forecast"]->ID, 'predictions');
 $site_logo_url = get_template_directory_uri() . '/assets/img/event-logo.png';
 $lock_image_url = get_template_directory_uri() . '/assets/img/lock.png';
