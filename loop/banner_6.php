@@ -3,7 +3,7 @@
 
 $params = get_query_var("params");
 $alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
-if(!isset($params['src_logo'])){
+if(!$params['src_logo']){
     $params['src_logo'] = $alt_logo;
 }
 echo "<div class='eventbanner_wrapper'>
