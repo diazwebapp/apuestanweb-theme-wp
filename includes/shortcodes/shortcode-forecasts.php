@@ -13,13 +13,13 @@ function shortcode_forecast($atts)
         'paginate' => null,
         'title' => null
     ), $atts));
-    global $post;
+    /* global $post;
     
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'forecasts' ) ) {
         wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
     }else if(is_single(  )){
         wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
-    }
+    } */
     $ret = "";
 
     $geolocation = json_decode($_SESSION["geolocation"]);
