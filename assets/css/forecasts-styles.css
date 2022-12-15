@@ -83,4 +83,25 @@
     height: 5px;
     width: 5px;
 }
- 
+@media (max-width: 575.98px) {
+	.game_box {
+	    max-width: 315px;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+	.game_top,
+	.club_box,
+	.team_text {
+	    font-size: 1.8rem;
+	}
+	.game_btn,
+	.game_btn.v2 {
+	    font-size: 2rem;
+	}
+	.game_btn img {
+	    width: 14rem;
+	}
+	.game_btn.v2 {
+	    min-height: 4.2rem;
+	}
+}

@@ -1747,11 +1747,7 @@
 	.faq_area .title {
 	    font-size: 2.5rem;
 	}
-	.game_box {
-	    max-width: 315px;
-	    margin-left: auto;
-	    margin-right: auto;
-	}
+	
 	.banner p {
 	    font-size: 1.8rem;
 	    max-width: 34rem;
@@ -1770,21 +1766,7 @@
 		margin-left: 0;	
 		margin-right:0;
 	}
-	.game_top,
-	.club_box,
-	.team_text {
-	    font-size: 1.8rem;
-	}
-	.game_btn,
-	.game_btn.v2 {
-	    font-size: 2rem;
-	}
-	.game_btn img {
-	    width: 14rem;
-	}
-	.game_btn.v2 {
-	    min-height: 4.2rem;
-	}
+	
 	.blog_heading_right_content {
 	    display: none;
 	}
