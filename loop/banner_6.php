@@ -9,7 +9,7 @@ echo "<div class='eventbanner_wrapper'>
                 <div class='col-lg-9'>
                     <div class='event_banner_left_content_wrapper'>
                         <div class='event_banner_left_img'>
-                            <img src='{$params['src_logo']}' class='img-fluid' alt=''>
+                            <img width='140' height='95' src='".get_template_directory_uri() . '/assets/img/ApuestanPlusSVG'."'  alt='ApuestanPlus'>
                         </div>
                         <div class='event_banner_left_content'>
                             <h5>{$params['title']}</h5>

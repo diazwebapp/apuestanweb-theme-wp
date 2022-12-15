@@ -573,7 +573,7 @@ a.btn_2:hover{
 	line-height: 1.2;
 }
 .title-h2{
-	font-size: 2.2rem;
+	font-size: 2.6rem;
 	font-weight: 700;
 	color: #00203A;
 	line-height: 1.2;
@@ -1819,11 +1819,13 @@ footer .menu li a::before{
 	display: flex;
 	align-self: center;
 }
-.top_box3_img p{
-	font-size: 12px;
-	line-height: 1.2;
-	color: #00203A;
-	padding-left: 1.5rem;
+.top_box3_img p {
+    font-size: 12px;
+    line-height: 1.2;
+    color: #00203A;
+    padding-left: 1.5rem;
+    margin: auto;
+    margin-left: 1px;
 }
 .top_box3_img2{
 	margin-top: 1.5rem;
@@ -1972,6 +1974,7 @@ footer .menu li a::before{
 	line-height: 1.2;
 	font-weight: 700;
 	color: #FFFFFF;
+	margin: 0;
 }
 .parley_box {
     display: flex;
