@@ -1,0 +1,217 @@
+.parley_wrapper{
+	box-shadow: 0px 5px 30px #A2A6B126;
+	border-radius: 0 0 1rem 1rem;
+}
+.parley_top_content{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.6rem 3.7rem ;
+	background-color: #00203A;
+	border-radius: 1rem 1rem 0 0;
+}
+.parley_top_content h2{
+	font-size: 2rem;
+	line-height: 1.2;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+.parley_box {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.7rem 2.8rem 2.7rem 3.8rem;
+    box-shadow: 0px 15px 30px #A2A6B126;
+    align-items: center;
+    margin: 2rem 2.6rem 0 6.6rem;
+    border-radius: 1rem;
+	width: 730px;
+	border-bottom: 1mm ridge rgb(3 176 244);
+}
+.parley_left_content{
+	display: flex;
+	align-items: center;
+	width: 50%;
+}
+.parley_game_name_wrapper{
+	width: 15rem;
+}
+.parley_game_name{
+	text-align: center;
+	color: #051421;
+	line-height: 1.2;
+	width: 100%;
+	display: flex;
+	flex-direction: column-reverse;
+	grid-gap: .5rem;
+	gap: .5rem;
+
+}
+.parley_game_name h5{
+	font-size: 2rem;
+	line-height: 1.2;
+	color: #00203A;
+	font-weight: 500;
+	padding-left: 0.5rem;
+}
+
+.parley_team{
+	height: 5rem;
+	display: flex;
+	align-items: center;
+}
+.parley_team img{
+	height: 25px;
+	width: 25px;
+	object-fit:contain;
+}
+
+.parley_team p{
+	margin-left: 6px;
+	font-size: 1.4rem;
+	line-height: 1.2;
+	color: #00203A;
+	text-transform: uppercase;
+}
+.parley_match_time{
+	padding-left: 5rem;
+	display: flex;
+	align-items: center;
+	width: 25rem;
+}
+
+.parley_team2 {
+    margin-top: -1.2rem;
+}
+.parley_match_wrapper{
+	display: flex;
+	align-items: center;
+	padding-left: 4.2rem;
+	width: 29rem;
+}
+.parley_match{
+	border-right: 0.1rem solid #E4E6E8;
+	padding-right: 3.5rem;
+	margin-bottom: 20px;
+	width: 20rem;
+}
+.parley_match p{
+	font-size: 1.4rem;
+	line-height: 1.2;
+	color: #00203A;
+	text-transform: uppercase;
+}
+.parley_match .p2{
+	padding-top: 2.3rem;
+}
+.parley_match2{
+	padding-right: 0;
+	border-right: none;
+	padding-left: 2.4rem;
+}
+.date-par time{
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: #0060bf;
+    margin-bottom: 10px;
+}
+
+.parley_right_content {
+    display: flex;
+    align-items: center;
+    margin-right: 10%;
+    font-size: 14px;
+}
+.parley_right_first {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    width: 14rem;
+	text-align: center;
+}
+.parley_right_first .p1{
+	font-weight: 700;
+	padding: 0.6rem 2rem;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: #e8ecef;
+    background-color: #0558cb;
+    border-radius: 1.7rem;
+}
+.parley_right_first .p2 {
+    line-height: 1;
+    padding: .5rem 1.3rem;
+    background-color: #DDEAFD;
+    border-radius: 0.6rem;
+    color: #0558CB;
+    margin-left: 2rem;
+    font-weight: 700;
+}
+
+.event-link{
+	font-size: 14px;
+	margin-right: 2.7rem;
+}
+.event-link button {
+    background-color: transparent;
+    border: none;
+    color: #0558CB;
+    position: relative;
+    padding-right: 2.5rem;
+}
+.event-link button::before {
+    position: absolute;
+    content: '';
+    background-image: url(../img/s44.png);
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 0.8rem;
+    transition: 0.4s;
+}
+.event-link button[aria-expanded="true"]::before{
+	transform: translateY(-50%) rotate(-180deg);
+}
+.parley_box_shadow{
+	box-shadow: none;
+}
+.parley_collpase_content{
+	margin: 0 2.6rem;
+}
+.parley_collapse_wrapper{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-bottom: 1.5rem;
+}
+.parley_collapse{
+	padding: 2rem;
+	background-color: #F7F7F8;
+	border-radius: 1rem;
+}
+.parley_box2{
+	display: flex;
+	align-items: center;
+	padding: 2rem 2.6rem 2rem 2.6rem;
+	justify-content: space-between;
+}
+.parley_right_content2{
+	display: flex;
+	align-items: center;
+}
+
+.gana_box p{
+	font-weight: 500;
+	color: #7F8488;
+	padding: 1.2rem 2.5rem;
+	border-radius: 0.6rem;
+	margin-left: 2rem;
+	background-color: #F7F7F8;
+}
+.gana_box p span{
+	margin-left: 1rem;
+}
+.parley_btn_2{
+	margin-left: 2rem;
+}
