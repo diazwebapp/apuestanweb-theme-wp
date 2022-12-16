@@ -62,7 +62,11 @@ function aw_get_user_type(){
                             }
                             
                             $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user_2, $target_users, (isset($post_id)) ? $post_id : -1);
-                            var_dump($current_user->roles);
+                            if($current_user){
+                                if($current_user->roles[0] == "administrator" or $current_user->roles[0] == "author"){
+                                    $block = 0;
+                                }
+                            }
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
