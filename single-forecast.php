@@ -148,7 +148,23 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php var_dump($usuario_permitido,$vip); if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php var_dump($usuario_permitido,$vip); 
+                                        $str = false;
+                                        $post_meta = ihc_post_metas(get_the_ID());
+                                        ////////// RESTRICTIONS
+                                        if (!empty($post_meta['ihc_mb_who'])){
+                                            $str .= '<div class="ihc-dashboard-list-posts-col-restricted-posts">' . esc_html__(" Restricted", 'ihc') . '</div>';
+                                        }
+                            
+                                        //////////// DRIP CONTENT
+                                        if (!empty($post_meta['ihc_drip_content']) && $post_meta['ihc_mb_type']=='show' && !empty($post_meta['ihc_mb_who'])){
+                                            $str .= '<div class="ihc-dashboard-list-posts-col-drip-content">' . esc_html__(" Drip Content", 'ihc') . '</div>';
+                                        }
+                                        if (!empty($str))
+                                        $states[] = $str;
+
+                                        
+                                        if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
                                         <?php if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
