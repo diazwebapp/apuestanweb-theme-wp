@@ -42,13 +42,7 @@
                                 }
 
                                 ////TESTING USER
-                                $block = ihc_test_if_must_block(
-                                    $meta_arr['ihc_mb_type'], 
-                                    $current_user, 
-                                    $target_users, 
-                                    (isset($post_id)) ? $post_id : -1);
                                 
-                                var_dump($block,$post_id);
                                 var_dump("current_user ",$current_user);
                                 var_dump("user_targets ", $target_users);
 
@@ -182,9 +176,9 @@
                                         <?php 
 
                                         
-                                        if(!$block): echo do_shortcode("[predictions]"); endif; ?>		
+                                        if(!$post_restringido): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
-                                        <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php if(!$post_restringido): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
