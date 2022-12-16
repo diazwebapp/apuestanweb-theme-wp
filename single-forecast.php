@@ -28,7 +28,11 @@
                                     $data = $wpdb->get_var("SELECT meta_value FROM `$table` WHERE post_id='$post_id' AND meta_key = 'ihc_mb_who'");
                                                                         
                                     $array_posts_lid = explode(",",$data);
-                                    $usuario_permitido = in_array($user_levels,$array_posts_lid);                                    
+                                    if(count($array_posts_lid) > 0){
+
+                                        $usuario_permitido = in_array($user_levels,$array_posts_lid);  
+                                                                          
+                                    }
                                 }
                             }
                             
