@@ -16,7 +16,7 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-                            $usuario_permitido = false;
+                            $usuario_permitido = true;
                             if(is_user_logged_in(  )){
                                 $post_id = get_the_ID();
                                 $table = $wpdb->prefix."postmeta";
@@ -28,8 +28,7 @@
                                     $data = $wpdb->get_var("SELECT meta_value FROM `$table` WHERE post_id='$post_id' AND meta_key = 'ihc_mb_who'");
                                                                         
                                     $array_posts_lid = explode(",",$data);
-                                    $usuario_permitido = in_array($user_levels,$array_posts_lid);
-                                    
+                                    $usuario_permitido = in_array($user_levels,$array_posts_lid);                                    
                                 }
                             }
                             
@@ -145,9 +144,9 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php var_dump($usuario_permitido,$vip); if($usuario_permitido or empty($vip)): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php var_dump($usuario_permitido,$vip); if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
-                                        <?php if($usuario_permitido or empty($vip)): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
