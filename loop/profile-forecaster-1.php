@@ -17,9 +17,9 @@ if(isset($_GET['profile'])):
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
     $total_forecast = $acerted + $failed;
     $porcentage = $acerted * 100 / $total_forecast;
-    $stats_vip = get_user_stats($id_author,'=');
+     /* $stats_vip = get_user_stats($id_author,'=');
     $stats_free = get_user_stats($id_author,'!=');
-    /*  //estadisticas ultimos 2 meses
+    //estadisticas ultimos 2 meses
     $num = 4;
     $stats_months_vip_html = '';
     $stats_months_free_html = '';
