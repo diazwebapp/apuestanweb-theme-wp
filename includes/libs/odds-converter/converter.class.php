@@ -63,7 +63,7 @@ class Converter {
         if($iDecimal > 0){
             return $iDecimal / 100 +1 ;
         }else{
-            return $iDecimal + (100 * $iDecimal) ;
+            return $iDecimal + 100 * $iDecimal ;
         }
         /* if ($iDecimal < 1) {
             return '+' . abs(round(100 / $iDecimal));
