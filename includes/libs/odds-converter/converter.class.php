@@ -60,10 +60,10 @@ class Converter {
     public function convertUsFromDecimal($iDecimal) {
         //a > 0 ? a / 100 + 1 : 100 / a * -1 + 1
         $iDecimal -= 1;
-        if($iDecimal > 0){
-            return $iDecimal / 100 +1 ;
+        if($iDecimal < 1){
+            return "-" .  $iDecimal + 100/$iDecimal ;
         }else{
-            return round(($iDecimal + 100 * $iDecimal),3) ;
+            return "+" . round(($iDecimal + 100 * $iDecimal),3) ;
         }
         /* if ($iDecimal < 1) {
             return '+' . abs(round(100 / $iDecimal));
