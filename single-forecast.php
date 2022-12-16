@@ -182,9 +182,9 @@
                                         <?php 
 
                                         
-                                        if(!$post_restringido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        if(!$block): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
-                                        <?php if(!$post_restringido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
