@@ -8,6 +8,7 @@
                     if(have_posts()):
                         while(have_posts()): the_post();
                             global $wpdb;
+                            $post_id = get_the_ID();
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
@@ -18,7 +19,7 @@
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
                             $current_user = ihc_get_user_type();
-                            $meta_arr = ihc_post_metas($post->ID);
+                            $meta_arr = ihc_post_metas($post_id);
 
                             if (isset($meta_arr['ihc_mb_who'])){
                                 if ($meta_arr['ihc_mb_who']!=-1 && $meta_arr['ihc_mb_who']!=''){
@@ -28,7 +29,7 @@
                                 }
                             }
 
-                            $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post->ID)) ? $post->ID : -1);
+                            //$block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post_id)) ? $post_id : -1);
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
