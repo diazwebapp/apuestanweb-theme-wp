@@ -7,7 +7,7 @@
                 <?php 
                     if(have_posts()):
                         while(have_posts()): the_post();
-                            global $wpdb;
+                            global $wpdb, $current_user;
                             $post_id = get_the_ID();
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
@@ -19,13 +19,14 @@
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
                             $type = 'reg';
-                            $current_user = wp_get_current_user();
+                            var_dump($current_user);
+                            /* $current_user = wp_get_current_user();
                             $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
                             $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
             
                             if ($levels!==FALSE && $levels!=''){
                                     $type = $levels;
-                            }
+                            } */
                             
                             $meta_arr = ihc_post_metas($post_id);
 
@@ -37,8 +38,8 @@
                                 }
                             }
 
-                            //$block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post_id)) ? $post_id : -1);
-                            
+                            $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post_id)) ? $post_id : -1);
+                            var_dump($block);
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
                             $img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
