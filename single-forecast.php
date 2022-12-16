@@ -49,7 +49,7 @@ function aw_get_user_type(){
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
-                            $current_user = aw_get_user_type();
+                            $current_user_2 = aw_get_user_type();
                             
                             $meta_arr = ihc_post_metas($post_id);
 
