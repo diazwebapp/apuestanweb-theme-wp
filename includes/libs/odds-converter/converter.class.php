@@ -61,7 +61,7 @@ class Converter {
         //a > 0 ? a / 100 + 1 : 100 / a * -1 + 1
         $iDecimal -= 1;
         if($iDecimal < 1){
-            return "-" .  round(($iDecimal + 100/$iDecimal) * 10,2) ;
+            return "-" .  round(($iDecimal + 100/$iDecimal -1) * 10,2) ;
         }else{
             return "+" . round(($iDecimal + 100 * $iDecimal),3) ;
         }
