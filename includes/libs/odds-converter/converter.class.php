@@ -58,12 +58,17 @@ class Converter {
     }
 
     public function convertUsFromDecimal($iDecimal) {
-        
-        if ($iDecimal < 1) {
+        //a > 0 ? a / 100 + 1 : 100 / a * -1 + 1
+        if($iDecimal > 0){
+            return $iDecimal / 100 +1 ;
+        }else{
+            return 100 / $iDecimal * -1 + 1;
+        }
+        /* if ($iDecimal < 1) {
             return '+' . abs(round(100 / $iDecimal));
         } else {
             return '-' . round(($iDecimal * 100),3);
-        }
+        } */
     }
 
     public function convertFractionalFromDecimal($iDecimal) {

@@ -243,3 +243,4 @@ async function filter_date_items(e){
         document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
     }
 }
+
