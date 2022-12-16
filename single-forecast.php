@@ -60,8 +60,9 @@ function aw_get_user_type(){
                                     $target_users = FALSE;
                                 }
                             }
-
+                            
                             $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user_2, $target_users, (isset($post_id)) ? $post_id : -1);
+                            var_dump($current_user->roles);
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
