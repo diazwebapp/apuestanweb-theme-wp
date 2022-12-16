@@ -64,7 +64,7 @@ class Converter {
         if($iDecimal < 1){
             return "-" .  round(($iDecimal + 100/$iDecimal)) ;
         }else{
-            return "+" . ceil($iDecimal + (100 * $iDecimal)) ;
+            return "+" . round($iDecimal + (100 * $iDecimal)) ;
         }
 
         /* if ($iDecimal < 1) {
