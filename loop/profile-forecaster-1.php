@@ -8,7 +8,7 @@ if(isset($_GET['profile'])):
     $forecasts_vip = print_table("forecast",'vip',$id_author,true);
     $posts = print_table("post",false,$id_author,true);
 
-    $acerted = get_the_author_meta("forecast_acerted", $id_author );
+    /* $acerted = get_the_author_meta("forecast_acerted", $id_author );
     $failed = get_the_author_meta("forecast_failed", $id_author );
     $nulled = get_the_author_meta("forecast_nulled", $id_author );
     $rank = get_the_author_meta("rank", $id_author );
@@ -209,6 +209,6 @@ if(isset($_GET['profile'])):
                 <h4>Estadisticas</h4>
                 '.$stats_full.'
             </div>
-    ';
+    '; */
 endif;
 echo $html;
