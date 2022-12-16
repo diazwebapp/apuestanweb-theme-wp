@@ -175,7 +175,7 @@ function aw_get_user_type(){
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php if(!$block)echo do_shortcode("[predictions]"); ?>		
+                                        <?php if(!$block):echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
                                         <?php echo do_shortcode("[predictions]");  ?>		
                                     </div>
