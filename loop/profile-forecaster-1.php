@@ -8,7 +8,7 @@ if(isset($_GET['profile'])):
     $forecasts_vip = print_table("forecast",'vip',$id_author,true);
     $posts = print_table("post",false,$id_author,true);
 
-    /* $acerted = get_the_author_meta("forecast_acerted", $id_author );
+   $acerted = get_the_author_meta("forecast_acerted", $id_author );
     $failed = get_the_author_meta("forecast_failed", $id_author );
     $nulled = get_the_author_meta("forecast_nulled", $id_author );
     $rank = get_the_author_meta("rank", $id_author );
@@ -19,7 +19,7 @@ if(isset($_GET['profile'])):
     $porcentage = $acerted * 100 / $total_forecast;
     $stats_vip = get_user_stats($id_author,'=');
     $stats_free = get_user_stats($id_author,'!=');
-    //estadisticas ultimos 2 meses
+    /*  //estadisticas ultimos 2 meses
     $num = 4;
     $stats_months_vip_html = '';
     $stats_months_free_html = '';
