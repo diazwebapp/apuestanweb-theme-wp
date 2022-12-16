@@ -161,7 +161,7 @@
                                             $str .= '<div class="ihc-dashboard-list-posts-col-drip-content">' . esc_html__(" Drip Content", 'ihc') . '</div>';
                                         }
                                         if (!empty($str))
-                                        $states[] = $str;
+                                            echo $str;
 
                                         
                                         if($usuario_permitido): echo do_shortcode("[predictions]"); endif; ?>		
