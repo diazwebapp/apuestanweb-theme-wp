@@ -62,9 +62,8 @@ class Converter {
         if ($iDecimal < 1) {
             return '+' . abs(round(100 / $iDecimal));
         } else {
-            return '-' . floatval(($iDecimal * 100));
+            return '-' . round(($iDecimal * 100),3);
         }
-        return $iDecimal;
     }
 
     public function convertFractionalFromDecimal($iDecimal) {
