@@ -37,6 +37,7 @@ function aw_get_user_type(){
             <div class="row">
                 <?php 
                     if(have_posts()):
+                        var_dump(floatval(1));
                         while(have_posts()): the_post();
                             global $wpdb;
                             $post_id = get_the_ID();
@@ -202,4 +203,4 @@ function aw_get_user_type(){
         </div>
     </div>
 </main>
-<?php get_footer(); var_dump(floatval($this->iOddsFromUser));?>
+<?php get_footer(); ?>
