@@ -62,7 +62,7 @@ function aw_get_user_type(){
                             }
 
                             $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user_2, $target_users, (isset($post_id)) ? $post_id : -1);
-                            var_dump($block);
+                            
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
                             $img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
@@ -175,7 +175,7 @@ function aw_get_user_type(){
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php echo do_shortcode("[predictions]"); ?>		
+                                        <?php if(!$block)echo do_shortcode("[predictions]"); ?>		
                                         <?php the_content() ?>	
                                         <?php echo do_shortcode("[predictions]");  ?>		
                                     </div>
