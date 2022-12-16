@@ -59,10 +59,11 @@ class Converter {
 
     public function convertUsFromDecimal($iDecimal) {
         //a > 0 ? a / 100 + 1 : 100 / a * -1 + 1
+        $iDecimal -= 1;
         if($iDecimal > 0){
             return $iDecimal / 100 +1 ;
         }else{
-            return 100 / $iDecimal ;
+            return 100 * $iDecimal ;
         }
         /* if ($iDecimal < 1) {
             return '+' . abs(round(100 / $iDecimal));
