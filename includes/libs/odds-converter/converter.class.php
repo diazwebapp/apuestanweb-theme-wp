@@ -29,7 +29,7 @@ class Converter {
         if (is_numeric($iDecimal) ) {
             $aResult[0] = "ok";
             $aResult[1] = $this->convertFractionalFromDecimal($iDecimal);
-            $aResult[2] = round(($iDecimal * 100 ) / 100, 3);
+            $aResult[2] = round(($iDecimal * 100 ) / 100,3);
             $aResult[3] = $this->convertUsFromDecimal($iDecimal);
         }
         
