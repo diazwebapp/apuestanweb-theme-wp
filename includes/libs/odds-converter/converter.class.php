@@ -58,12 +58,12 @@ class Converter {
     }
 
     public function convertUsFromDecimal($iDecimal) {
-        /* $iDecimal -= 1;
+        
         if ($iDecimal < 1) {
             return '-' . abs(round(100 / $iDecimal));
         } else {
             return '+' . round(($iDecimal * 100), 3);
-        } */
+        }
         return $iDecimal;
     }
 
