@@ -24,7 +24,7 @@
                                 $post_restringido = true;
                             }
 
-                            if(is_user_logged_in()){
+                            //if(is_user_logged_in()){
                                 ///GETTING USER TYPE
                                 $current_user = ihc_get_user_type();
                                 $post_id = get_the_ID();
@@ -65,7 +65,7 @@
                                                                           
                                     }
                                 } */
-                            }
+                            //}
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
