@@ -44,7 +44,6 @@ class Converter {
         if (count($aNumbers) == 2 && is_numeric($aNumbers[0]) && is_numeric($aNumbers[1])) {
             return ($aNumbers[0] / $aNumbers[1]) + 1;
         }
-        return false;
     }
 
     public function convertDecimalFromUs($iDecimal) {
