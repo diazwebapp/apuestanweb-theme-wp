@@ -29,7 +29,7 @@
                                 $current_user = ihc_get_user_type();
                                 $post_id = get_the_ID();
                                 if($current_user=='admin'){
-                                    return do_shortcode($content);//show always for admin
+                                   // return do_shortcode($content);//show always for admin
                                 }
 
                                 // who can access the content
@@ -39,8 +39,6 @@
                                     } else {
                                         $target_users = FALSE;
                                     }
-                                }else{
-                                    return do_shortcode($content);
                                 }
 
                                 ////TESTING USER
