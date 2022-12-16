@@ -47,9 +47,9 @@ class Converter {
     }
 
     public function convertDecimalFromUs($iDecimal) {
-        if($iDecimal == 1): 
+        /* if($iDecimal == 1): 
             return $iDecimal;
-        endif;
+        endif; */
         if ($iDecimal > 0) {
             return ($iDecimal / 100) + 1;
         } else {
