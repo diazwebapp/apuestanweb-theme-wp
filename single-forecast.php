@@ -4,7 +4,7 @@
     <div class="event_area single_event_area pb_90">
         <div class="container">
             <div class="row">
-                <?php $current_user = wp_get_current_user();
+                <?php 
                     if(have_posts()):
                         while(have_posts()): the_post();
                             global $wpdb;
@@ -17,7 +17,15 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-
+                            
+                            $type = 'reg';
+                            $current_user = wp_get_current_user();
+                            $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
+                            $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
+            
+                            if ($levels!==FALSE && $levels!=''){
+                                    $type = $levels;
+                            }
                             
                             //$meta_arr = ihc_post_metas($post_id);
 
