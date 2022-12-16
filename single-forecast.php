@@ -38,8 +38,8 @@
                                 }
                             }
 
-                            $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post_id)) ? $post_id : -1);
-                            var_dump($block);
+                            //$block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post_id)) ? $post_id : -1);
+                            
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
                             $img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
