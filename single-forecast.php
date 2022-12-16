@@ -145,7 +145,7 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php if($usuario_permitido and empty($vip)): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php var_dump($usuario_permitido,$vip); if($usuario_permitido and empty($vip)): echo do_shortcode("[predictions]"); endif; ?>		
                                         <?php the_content() ?>	
                                         <?php if($usuario_permitido and empty($vip)): echo do_shortcode("[predictions]"); endif; ?>		
                                     </div>
