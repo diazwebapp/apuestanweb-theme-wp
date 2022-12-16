@@ -16,50 +16,7 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-                            $usuario_permitido = true;
-                            $post_restringido = false;
-                            $post_meta = ihc_post_metas(get_the_ID());
-                            ////////// RESTRICTIONS
-                            if (!empty($post_meta['ihc_mb_who'])){
-                                $post_restringido = true;
-                            }
-
-                            //if(is_user_logged_in()){
-                                ///GETTING USER TYPE
-                                $current_user = ihc_get_user_type();
-                                $post_id = get_the_ID();
-                                if($current_user=='admin'){
-                                   // return do_shortcode($content);//show always for admin
-                                }
-
-                                // who can access the content
-                                if (isset($post_meta['ihc_mb_who'])){
-                                    if ($post_meta['ihc_mb_who']!=-1 && $post_meta['ihc_mb_who']!=''){
-                                        $target_users = explode(',', $post_meta['ihc_mb_who']);
-                                    } else {
-                                        $target_users = FALSE;
-                                    }
-                                }
-
-                                ////TESTING USER
-                                
-                                var_dump("current_user ",$current_user);
-                                var_dump("user_targets ", $target_users);
-
-                                /* $user_id = get_current_user_id(  );
-                                $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $user_id, true );
-                                $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $user_id );
-                                
-                                if(!empty($user_levels)){
-
-                                    $array_posts_lid = explode(",",$post_meta['ihc_mb_who']);
-                                    if(count($array_posts_lid) > 0){
-
-                                        $usuario_permitido = in_array($user_levels,$array_posts_lid);  
-                                                                          
-                                    }
-                                } */
-                            //}
+                            
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
@@ -173,12 +130,9 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php 
-
-                                        
-                                        if(!$post_restringido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php echo do_shortcode("[predictions]"); ?>		
                                         <?php the_content() ?>	
-                                        <?php if(!$post_restringido): echo do_shortcode("[predictions]"); endif; ?>		
+                                        <?php echo do_shortcode("[predictions]");  ?>		
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="title_wrap single_event_title_wrap">
