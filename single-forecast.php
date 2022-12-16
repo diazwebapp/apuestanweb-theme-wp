@@ -17,7 +17,7 @@
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
                             $usuario_permitido = false;
-                            if(is_user_logged_in(  ) and $vip){
+                            if(is_user_logged_in(  )){
                                 $post_id = get_the_ID();
                                 $table = $wpdb->prefix."_postmeta";
                                 $user_id = get_current_user_id(  );
