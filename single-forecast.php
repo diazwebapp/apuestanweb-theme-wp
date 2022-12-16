@@ -37,7 +37,7 @@ function aw_get_user_type(){
             <div class="row">
                 <?php 
                     if(have_posts()):
-                        $oOddsConverter = new Converter("-100", 'usa');
+                        $oOddsConverter = new Converter("1.1", 'eu');
                         $odds_result = $oOddsConverter->doConverting();
                         var_dump($odds_result);
 
