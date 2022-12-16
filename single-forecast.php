@@ -19,7 +19,7 @@
                             $usuario_permitido = false;
                             if(is_user_logged_in(  )){
                                 $post_id = get_the_ID();
-                                $table = $wpdb->prefix."_postmeta";
+                                $table = $wpdb->prefix."postmeta";
                                 $user_id = get_current_user_id(  );
                                 $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $user_id, true );
                                 $user_levels = apply_filters( 'ihc_public_get_user_levels', $user_levels, $user_id );
