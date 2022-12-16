@@ -60,16 +60,16 @@ class Converter {
     public function convertUsFromDecimal($iDecimal) {
         
         if ($iDecimal < 1) {
-            return '-' . abs(round(100 / $iDecimal));
+            return '+' . abs(round(100 / $iDecimal));
         } else {
-            return '+' . round(($iDecimal * 100), 3);
+            return '-' . round(($iDecimal * 100),3);
         }
         return $iDecimal;
     }
 
     public function convertFractionalFromDecimal($iDecimal) {
         
-        $iDecimal = round(floatval($iDecimal), 3);
+        $iDecimal = round(floatval($iDecimal),3);
         $iNumber = round(($iDecimal - 1) * 10000);
         $iDom = round(10000);
 
