@@ -16,7 +16,19 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-                            
+
+                            $current_user = ihc_get_user_type();
+                            $meta_arr = ihc_post_metas($post->ID);
+
+                            if (isset($meta_arr['ihc_mb_who'])){
+                                if ($meta_arr['ihc_mb_who']!=-1 && $meta_arr['ihc_mb_who']!=''){
+                                    $target_users = explode(',', $meta_arr['ihc_mb_who']);
+                                } else {
+                                    $target_users = FALSE;
+                                }
+                            }
+
+                            $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post->ID)) ? $post->ID : -1);
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
