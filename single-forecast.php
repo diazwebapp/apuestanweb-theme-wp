@@ -48,7 +48,7 @@
                                     $target_users, 
                                     (isset($post_id)) ? $post_id : -1);
                                 
-                                var_dump($block);
+                                var_dump($block,$post_id);
                                 var_dump("current_user ",$current_user);
                                 var_dump("user_targets ", $target_users);
 
