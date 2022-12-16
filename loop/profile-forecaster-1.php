@@ -16,9 +16,11 @@ if(isset($_GET['profile'])):
     $avatar_url = get_avatar_url($id_author);
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
     $total_forecast = $acerted + $failed;
-    var_dump($total_forecast);
-    $porcentage = $acerted * 100 / $total_forecast;
-     /* $stats_vip = get_user_stats($id_author,'=');
+    $porcentage = 0; 
+    if($total_forecast > 0){
+        $porcentage = $acerted * 100 / $total_forecast;
+    }
+    $stats_vip = get_user_stats($id_author,'=');
     $stats_free = get_user_stats($id_author,'!=');
     //estadisticas ultimos 2 meses
     $num = 4;
@@ -210,6 +212,6 @@ if(isset($_GET['profile'])):
                 <h4>Estadisticas</h4>
                 '.$stats_full.'
             </div>
-    '; */
+    ';
 endif;
 echo $html;
