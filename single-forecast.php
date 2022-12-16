@@ -19,8 +19,9 @@
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
                             $type = 'reg';
-                            $current_user = wp_get_current_user();
-                            var_dump($current_user->roles[0]);
+                            $current_user_2 = wp_get_current_user();
+                            var_dump($current_user);
+                            var_dump($current_user_2);
                             /* $current_user = wp_get_current_user();
                             $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
                             $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
