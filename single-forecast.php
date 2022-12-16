@@ -17,7 +17,7 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-                            
+
                             $type = 'reg';
                             $current_user = wp_get_current_user();
                             $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
@@ -27,15 +27,15 @@
                                     $type = $levels;
                             }
                             
-                            //$meta_arr = ihc_post_metas($post_id);
+                            $meta_arr = ihc_post_metas($post_id);
 
-                            /* if (isset($meta_arr['ihc_mb_who'])){
+                            if (isset($meta_arr['ihc_mb_who'])){
                                 if ($meta_arr['ihc_mb_who']!=-1 && $meta_arr['ihc_mb_who']!=''){
                                     $target_users = explode(',', $meta_arr['ihc_mb_who']);
                                 } else {
                                     $target_users = FALSE;
                                 }
-                            } */
+                            }
 
                             //$block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post_id)) ? $post_id : -1);
                             
