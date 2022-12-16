@@ -4,7 +4,7 @@
     <div class="event_area single_event_area pb_90">
         <div class="container">
             <div class="row">
-                <?php
+                <?php $current_user = ihc_get_user_type();
                     if(have_posts()):
                         while(have_posts()): the_post();
                             global $wpdb;
@@ -18,7 +18,7 @@
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
-                            $current_user = ihc_get_user_type();
+                            
                             //$meta_arr = ihc_post_metas($post_id);
 
                             /* if (isset($meta_arr['ihc_mb_who'])){
