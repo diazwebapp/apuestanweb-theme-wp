@@ -1,4 +1,35 @@
-<?php get_header(); ?>
+<?php get_header(); 
+function aw_get_user_type(){
+	/*
+	 * @param none
+	 * @return string
+	 */
+	$type = 'unreg';
+	if (function_exists('is_user_logged_in') && is_user_logged_in()){
+		if (current_user_can('manage_options')){
+			 return 'admin';
+		}
+		//pending user
+		global $current_user;
+		if ($current_user){
+			if (isset($current_user->roles[0]) && $current_user->roles[0]=='pending_user'){
+				$type = 'pending';
+			}else{
+				$type = 'reg';
+				$current_user = wp_get_current_user();
+				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
+				$levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
+
+				if ($levels!==FALSE && $levels!=''){
+						$type = $levels;
+				}
+			}
+		}
+	}
+	return $type;
+}
+
+?>
 
 <main>
     <div class="event_area single_event_area pb_90">
@@ -19,8 +50,7 @@
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
                             $type = 'reg';
-                            $current_user_2 = wp_get_current_user();
-                            var_dump($current_user);
+                            $current_user_2 = aw_get_user_type();
                             var_dump($current_user_2);
                             /* $current_user = wp_get_current_user();
                             $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
