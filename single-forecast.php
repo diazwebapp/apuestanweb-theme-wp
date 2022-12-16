@@ -19,7 +19,7 @@
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
                             $current_user = ihc_get_user_type();
-                            $meta_arr = ihc_post_metas($post_id);
+                            //$meta_arr = ihc_post_metas($post_id);
 
                             /* if (isset($meta_arr['ihc_mb_who'])){
                                 if ($meta_arr['ihc_mb_who']!=-1 && $meta_arr['ihc_mb_who']!=''){
