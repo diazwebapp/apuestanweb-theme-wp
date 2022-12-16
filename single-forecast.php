@@ -202,9 +202,4 @@ function aw_get_user_type(){
         </div>
     </div>
 </main>
-<?php get_footer(); 
-$args = [];
-$args['post_type']      = 'forecast';
-$query = new WP_Query($args);
-var_dump($query->posts);
-?>
+<?php get_footer(); var_dump(floatval($this->iOddsFromUser));?>

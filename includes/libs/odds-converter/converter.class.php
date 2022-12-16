@@ -37,6 +37,9 @@ class Converter {
     }
 
     public function convertDecimalFromFraction($sFraction) {
+        if($sFraction == 1): 
+            return $sFraction;
+        endif;
         $aNumbers = explode("/", $sFraction);
         if (count($aNumbers) == 2 && is_numeric($aNumbers[0]) && is_numeric($aNumbers[1])) {
             return ($aNumbers[0] / $aNumbers[1]) + 1;
@@ -45,6 +48,9 @@ class Converter {
     }
 
     public function convertDecimalFromUs($iDecimal) {
+        if($iDecimal == 1): 
+            return $iDecimal;
+        endif;
         if ($iDecimal > 0) {
             return ($iDecimal / 100) + 1;
         } else {
@@ -62,6 +68,9 @@ class Converter {
     }
 
     public function convertFractionalFromDecimal($iDecimal) {
+        if($iDecimal == 1): 
+            return $iDecimal;
+        endif;
         $iDecimal = round(floatval($iDecimal), 3);
         $iNumber = round(($iDecimal - 1) * 10000);
         $iDom = round(10000);
