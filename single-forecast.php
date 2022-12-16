@@ -21,13 +21,13 @@
                             $current_user = ihc_get_user_type();
                             $meta_arr = ihc_post_metas($post_id);
 
-                            if (isset($meta_arr['ihc_mb_who'])){
+                            /* if (isset($meta_arr['ihc_mb_who'])){
                                 if ($meta_arr['ihc_mb_who']!=-1 && $meta_arr['ihc_mb_who']!=''){
                                     $target_users = explode(',', $meta_arr['ihc_mb_who']);
                                 } else {
                                     $target_users = FALSE;
                                 }
-                            }
+                            } */
 
                             //$block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user, $target_users, (isset($post_id)) ? $post_id : -1);
                             
