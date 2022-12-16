@@ -37,14 +37,6 @@ function aw_get_user_type(){
             <div class="row">
                 <?php 
                     if(have_posts()):
-                        $oOddsConverter = new Converter("2.2", 'eu');
-                        $odds_result = $oOddsConverter->doConverting();
-                        echo "<pre>";
-
-                        var_dump($odds_result);
-
-                        echo "</pre>";
-                        die;
 
                         while(have_posts()): the_post();
                             global $wpdb;
