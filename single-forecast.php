@@ -22,7 +22,8 @@
                             ////////// RESTRICTIONS
                             if (!empty($post_meta['ihc_mb_who'])){
                                 $post_restringido = true;
-                                var_dump($post_meta['ihc_mb_who']);
+                                $array_posts_lid = explode(",",$post_meta['ihc_mb_who']);
+                                var_dump($array_posts_lid);
                             }
 
                             if(is_user_logged_in(  ) and !empty($vip)){
