@@ -38,7 +38,7 @@ function aw_get_user_type(){
                 <?php 
                     if(have_posts()):
                         while(have_posts()): the_post();
-                            global $wpdb, $current_user;
+                            global $wpdb;
                             $post_id = get_the_ID();
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
@@ -49,16 +49,7 @@ function aw_get_user_type(){
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
 
-                            $type = 'reg';
-                            $current_user_2 = aw_get_user_type();
-                            var_dump($current_user_2);
-                            /* $current_user = wp_get_current_user();
-                            $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
-                            $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
-            
-                            if ($levels!==FALSE && $levels!=''){
-                                    $type = $levels;
-                            } */
+                            $current_user = aw_get_user_type();
                             
                             $meta_arr = ihc_post_metas($post_id);
 
