@@ -49,8 +49,8 @@
                                     (isset($post_id)) ? $post_id : -1);
                                 
                                 var_dump($block);
-                                var_dump($current_user);
-                                var_dump($target_users);
+                                var_dump("current_user ",$current_user);
+                                var_dump("user_targets ", $target_users);
 
                                 /* $user_id = get_current_user_id(  );
                                 $user_levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $user_id, true );
