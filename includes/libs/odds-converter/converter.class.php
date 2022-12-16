@@ -68,10 +68,8 @@ class Converter {
     }
 
     public function convertFractionalFromDecimal($iDecimal) {
-        if($iDecimal == 1): 
-            return $iDecimal;
-        endif;
-        /* $iDecimal = round(floatval($iDecimal), 3);
+        
+        $iDecimal = round(floatval($iDecimal), 3);
         $iNumber = round(($iDecimal - 1) * 10000);
         $iDom = round(10000);
 
@@ -79,7 +77,7 @@ class Converter {
         $iNumber = $aReduced[0];
         $iDom = $aReduced[1];
 
-        return $iNumber . '/' . $iDom; */
+        return $iNumber . '/' . $iDom;
     }
 
     public function reduce($iNumber, $iDom) {
