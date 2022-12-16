@@ -4,7 +4,7 @@
     <div class="event_area single_event_area pb_90">
         <div class="container">
             <div class="row">
-                <?php $current_user = ihc_get_user_type();
+                <?php $current_user = wp_get_current_user();
                     if(have_posts()):
                         while(have_posts()): the_post();
                             global $wpdb;
