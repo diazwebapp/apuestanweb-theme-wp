@@ -895,8 +895,8 @@ footer .menu li a::before{
 .social_icons a:not(:last-child){
 	margin-right: 2.5rem;
 }
-.copyright{
-	margin-top: 8.5rem;
+.p-reg{
+	margin-top: 3rem;
 	font-size: 1.8rem;
 }
 /*football page*/

@@ -39,23 +39,28 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     <!--menu end-->
                 </div>
                
-                <div class="col-lg-2 col-6 mt_20 text-right">
+                <div class="col-lg-2 col-6 mt_20 text-right"> 
+                    <div class="social_icons">
+                            <a href="#">
+                                <i class="fab fa-facebook"></i>
+                            </a>                        
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>                        
+                            <a href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                    </div>
+                </div>
+                <div class="d-inline-flex mt_30 p-2 bd-highlight mx-auto align-items-center">   
+                    <span class="mr-4">FORMATO DE CUOTAS</span>
+                        
                     <select id="select_odds_format" class="nice-select text-dark">
                         <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
                         <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
                     </select>
-                    <!-- <div class="social_icons">
-                        <a href="#">
-                            <i class="fab fa-facebook"></i>
-                        </a>                        
-                        <a href="#">
-                            <i class="fab fa-twitter"></i>
-                        </a>                        
-                        <a href="#">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div> -->
                 </div>
+
                 <div class="col-12 text-center">
                 <?php
                         $theme_regulation = carbon_get_theme_option( 'country_reg' );
@@ -65,7 +70,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
                                 if($regs["country_code"] == $current_country->country_code):
-                                    echo '<p class="copyright" style="word-break:break-word;">'.$regs["text_reg"].'</p> ';
+                                    echo '<p class="p-reg" style="word-break:break-word;">'.$regs["text_reg"].'</p> ';
                                     echo '<div class="row justify-content-center footer-reg">';
                                     echo '<div class="flex justify-center  flex-wrap">';
                                     foreach ($regs["images"] as $image) {
