@@ -1,7 +1,7 @@
 <?php
 
 $params = get_query_var("params");
-$alt_logo = get_template_directory_uri() . '/assets/img/event-logo.png';
+$alt_logo = get_template_directory_uri() . '/assets/img/apnpls.svg';
 $text = !empty($params['text']) ? $params['text'] : 'CONVIERTE EN MIEMBRO PREMIUM';
 
 $html_logo = "<img src='$alt_logo' class='w-100' alt='{$params['title']}' >";

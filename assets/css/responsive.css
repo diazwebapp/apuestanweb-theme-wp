@@ -553,14 +553,14 @@
 	.event2_header_wrapper {
 	    width: 100%;
 	}
-	.eventbanner_wrapper{
-		display: none;
+
+    .event_banner {
+		display: flex;
+		justify-content: center;
+		margin-top: 1rem;
+		border-top: 1px solid #3e3e3e;
+		padding: 1rem;
 	}
-    
-    
-    
-    
-    
     
     
     

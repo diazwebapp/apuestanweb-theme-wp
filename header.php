@@ -47,7 +47,7 @@
                                     <p class="d-inline-block text-truncate align-top" style="max-width:120px;">'.get_userdata(get_current_user_id( ))->user_login .'</p>
                                 </a>
 
-                                <div class="dropdown-menu position-absolute text-center" style="right:0;font-size: 1.3rem;" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
                                     <a class="dropdown-item text-dark font-weight-bold my-3" href="/picksplus"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
 
