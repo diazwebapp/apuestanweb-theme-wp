@@ -8,7 +8,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
-    $args['order']          = 'ASC';
+    $args['order']          = 'DESC';
 
     if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
@@ -84,7 +84,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
     $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
-    $args['order']          = 'ASC';
+    $args['order']          = 'DESC';
 
     if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);

@@ -12,6 +12,7 @@ function shortcode_forecast($atts)
         'time_format' => null,
         'paginate' => null,
         'title' => null
+        
     ), $atts));
     /* global $post;
     
@@ -113,7 +114,7 @@ function shortcode_forecast($atts)
                 $home_class = 'row';        
         
         $loop_html = ''; 
-        $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >{replace_loop}</div>";
+        $ret .="<div class='$home_class' id='games_list' >{replace_loop}</div>";
         $data_json = json_decode($query);
         
         $loop_html = $data_json->html;
