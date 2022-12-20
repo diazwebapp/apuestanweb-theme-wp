@@ -121,10 +121,10 @@ function aw_get_user_type(){
                                     $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
                                 endif;
                             endif;
-
+                            var_dump($sport);
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-                            var_dump($teams);
+                           
                             ?>
                             <div class="col-lg-8 mt_30">
                     
