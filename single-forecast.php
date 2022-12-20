@@ -69,7 +69,7 @@ function aw_get_user_type(){
                                     $block = 0;
                                 }
                             }
-                            
+                            var_dump($block);
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
                             $img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
@@ -80,7 +80,7 @@ function aw_get_user_type(){
                             //taxonomy league
                             $tax_leagues = wp_get_post_terms(get_the_ID(),'league');                            
                             $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';                           
-                            var_dump($tax_leagues);
+                            
                             //forecast sport
                             $sport = false;
                             if(isset($tax_leagues) and count($tax_leagues) > 0):
