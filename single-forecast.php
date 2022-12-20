@@ -191,8 +191,8 @@ function aw_get_user_type(){
                                         <div class="col-6">
                                             <h3 class="title-b order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h3>
                                         </div>
-                                        <div class="col-6">
-                                            <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="dropd order-lg-3">Ver Todo</a>
+                                        <div class="col-6 text-right">
+                                            <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="dropd order-lg-3 px-2">Ver Todo</a>
                                         </div>
                                     </div>
                                     <?php echo do_shortcode("[forecasts model='2' num='4' league='$sport->name']") ?>		
