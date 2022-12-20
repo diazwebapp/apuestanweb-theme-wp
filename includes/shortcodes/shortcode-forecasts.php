@@ -39,9 +39,9 @@ function shortcode_forecast($atts)
 
     if($filter):
         $ret .= "<div class='row'>                    
-                    <h1 class='title col-6'>".(isset($title) ? $title : '')."</h1>
+                    <h1 class='title col-8'>".(isset($title) ? $title : '')."</h1>
                     
-                    <div class='col-6 justify-content-end d-flex event_select'>
+                    <div class='col-4 justify-content-end d-flex event_select'>
                         <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)'>
                             <option value='' ".( !$date ? 'selected' : '').">".__('Todo','jbetting')."</option>
                             <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
