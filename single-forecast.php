@@ -188,10 +188,10 @@ function aw_get_user_type(){
                                     </div>
                                     <?php echo do_shortcode("[user_stats]") ?>	
                                     <div class="my-3 row">
-                                        <div class="col-md-6">
+                                        <div class="col-6">
                                             <h3 class="title-b order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h3>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-6">
                                             <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="dropd order-lg-3">Ver Todo</a>
                                         </div>
                                     </div>
