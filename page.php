@@ -8,6 +8,7 @@ $custom_banner_top = carbon_get_post_meta(get_the_ID(), 'custom_banner_top');
 $custom_banner_bottom = carbon_get_post_meta(get_the_ID(), 'custom_banner_bottom');
 $disable_title = carbon_get_post_meta(get_the_ID(), 'disable_title');
 
+
 if ( $textbefore ):
 	echo do_shortcode("{$textbefore}");
 endif;
@@ -35,11 +36,18 @@ endif;
 						
 						<?php 
 							if ( have_posts() ):the_post();
+							$content = get_the_content(get_the_ID());
 								if(!$disable_title):
 									echo "<h1 class='title mt_30 order-lg-1' >".(!empty($custom_h1) ? $custom_h1:get_the_title(get_the_ID()))."</h1>";
 								endif;
 
-								the_content();
+								echo "<div class='single_event_content text-break'>
+								<div class=''>
+									<div>
+										$content
+									</div>
+								</div>
+							</div>";
 							endif; 
 
 							if ( $faq_area ):
