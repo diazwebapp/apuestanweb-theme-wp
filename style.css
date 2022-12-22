@@ -2247,7 +2247,10 @@ blockquote{
   blockquote em{
 	font-style: italic;
   }
-
+  
+  p:empty {
+	display: none;
+  }
 .single_event_match_title_box2{
 	margin-top: 5.5rem;
 }

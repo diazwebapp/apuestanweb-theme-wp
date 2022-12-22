@@ -54,9 +54,7 @@ endif;
 								echo "<div class='single_event_content container_bottom text-break'>
 									<div class='row'>
 										<div>
-											<p>
-												$faq_area
-											</p>
+											$faq_area										
 										</div>
 									</div>
 								</div>";

@@ -242,6 +242,13 @@ add_action('init', function(){
        
 });
 
+function remove_empty_p( $content ) {
+	$content = force_balance_tags( $content );
+	$content = preg_replace( '#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content );
+	$content = preg_replace( '~\s?<p>(\s|&nbsp;)+</p>\s?~', '', $content );
+	return $content;
+}
+add_filter('the_content', 'remove_empty_p', 20, 1);
 
 // active code menu
     function active_menu( $classes, $item ) {
