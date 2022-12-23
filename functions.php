@@ -306,6 +306,10 @@ function aw_actions_after_register_user( $user_id ) {
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
 }
 
+function test_template(){
+    $body = "Saludos este es un test";
+    return $body;
+}
 
 function aw_notificacion_membership($payment_history_id=null){
     global $wpdb;
@@ -322,7 +326,7 @@ function aw_notificacion_membership($payment_history_id=null){
         }
         $headers[]= "From: Apuestan <$admin_email>";
 
-        $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+        $body= test_template();
         if(is_wp_error( $body )){
 
             $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
