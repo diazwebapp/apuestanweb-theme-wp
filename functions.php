@@ -301,7 +301,7 @@ function aw_actions_after_register_user( $user_id ) {
 
     $headers[]= "From: Apuestan <$admin_email>";
 
-    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
 
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
@@ -326,8 +326,12 @@ function aw_notificacion_membership($payment_history_id=null){
             return 'text/html';
         }
         $headers[]= "From: Apuestan <$admin_email>";
+        $vip_link = "#";
+        if(defined("PERMALINK_VIP")){
+            $vip_link = PERMALINK_VIP;
+        }
 
-        $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+        $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
         if(is_wp_error( $body )){
 
             $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";

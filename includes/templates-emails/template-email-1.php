@@ -1,5 +1,5 @@
 <?php
-function aw_email_templates($params=["blogname"=>"","username"=>""]){
+function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"#"]){
     $html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
@@ -351,8 +351,8 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
     </html>
     ';
     
-    $vip_link = PERMALINK_VIP;
-    $html = str_replace("{vip_page}",$vip_link,$html);
+    
+    $html = str_replace("{vip_page}",$params["vip_link"],$html);
     $html = str_replace("{blogname}",$params["blogname"],$html);
     $html = str_replace("{username}",$params["username"],$html);
 
