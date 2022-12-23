@@ -9,6 +9,7 @@ include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php"; 
 include "includes/templates-emails/template-email-1.php"; 
+include "includes/templates-emails/template-email-2.php"; 
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
@@ -326,7 +327,7 @@ function aw_notificacion_membership($payment_history_id=null){
         }
         $headers[]= "From: Apuestan <$admin_email>";
 
-        $body= test_template();
+        $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
         if(is_wp_error( $body )){
 
             $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
