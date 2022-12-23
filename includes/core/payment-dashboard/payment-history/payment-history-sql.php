@@ -113,4 +113,30 @@ function aw_get_history_insert_data($level_id,$payment_account_id,$username,$sta
 add_action('init','create_payment_control_table');
 add_action('init','create_payment_control_table_2');
 
+function aw_notificacion_membership($payment_history_id=null){
+    global $wpdb;
+    
+    if(isset($payment_history_id)){
+        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE id='$payment_history_id'"));
+        
+        $memberInfo = get_user_by( 'login', $data_notifi->username );
+        $blogname = get_bloginfo( "name" );
+        $admin_email = get_option( "admin_email" );
+
+        function fix_html() {
+            return 'text/html';
+        }
+        $headers[]= "From: Apuestan <$admin_email>";
+
+        $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+        if(is_wp_error( $body )){
+
+            $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
+        }
+    
+    
+       add_filter( "wp_mail_content_type", "fix_html" );
+       wp_mail($memberInfo->user_email,"Apuestan status user: $memberInfo->user_login" ,$body,$headers); 
+    }
+}
 ?>
