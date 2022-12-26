@@ -17,7 +17,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 </div>
                 <div class="col-lg-8 footer_menu_col mt_20">
                     <!--menu start-->
-                    <ul class="menu" >
+                    <ul class="menu text-uppercase" >
                         <?php
                         
                             if ( get_key() ):
@@ -58,9 +58,9 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 </div>'
                 ?>
                 <div class="d-inline-flex mt_30 p-2 bd-highlight mx-auto align-items-center">   
-                    <span class="mr-4 font-weight-bold">FORMATO DE CUOTAS</span>
+                    <span class="mr-4 font-weight-bold s-f">FORMATO DE CUOTAS</span>
                         
-                    <select id="select_odds_format" class="nice-select text-dark">
+                    <select id="select_odds_format" class="nice-select text-dark text-capitalize">
                         <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
                         <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
                     </select>
@@ -75,7 +75,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
                                 if($regs["country_code"] == $current_country->country_code):
-                                    echo '<p class="p-reg" style="word-break:break-word;">'.$regs["text_reg"].'</p> ';
+                                    echo '<p class="p-reg s-f text-break">'.$regs["text_reg"].'</p> ';
                                     echo '<div class="row justify-content-center footer-reg">';
                                     echo '<div class="flex justify-center  flex-wrap">';
                                     foreach ($regs["images"] as $image) {
@@ -102,7 +102,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
                        
                     ?>
-                    <p class="mt-5 py-2" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
+                    <p class="copy mt-5 py-2 s-f" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
                 
                 </div>
             </div>

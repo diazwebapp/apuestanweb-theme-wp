@@ -353,6 +353,7 @@
 		line-height: 1.2;
 		position: relative;
 		display: flex;
+		font-size: 2.3rem;
 	}
 	.menu li a::before{
 		display: none;
@@ -1681,6 +1682,7 @@
 	}
 	.headerbtn {
 	    width: 15rem;
+		font-size: 1.8rem;
 	}
 	.small_gutter{
 		margin-left: -7.5px !important;
@@ -1831,6 +1833,9 @@
 	.price_wrapper .price_box{
 		max-width: 100%;
 		width: 100%;
+	}
+	.s-f{
+		font-size: 2rem;
 	}
 
 	/*parley area*/

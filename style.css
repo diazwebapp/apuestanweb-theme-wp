@@ -4045,14 +4045,9 @@ blockquote{
 	display: none;
 }
 
-
-
-
-
-
-
-
-
+.copy {
+	font-size: 1.5rem;
+}
 
 .slider___hover--main a {
   width: 27%;
@@ -4251,10 +4246,10 @@ a.panel-button {
 }
 
 .nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
-    background-color: #001f39;
+    background-color: #f4f6f7;
 }
 .nice-select .option {
-    color: #7d7777;
+    color: #09172d;
 }
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
