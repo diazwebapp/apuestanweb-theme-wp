@@ -38,20 +38,25 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </ul>
                     <!--menu end-->
                 </div>
-               
-                <div class="col-lg-2 col-6 mt_20 text-right"> 
+                <!--RRSS-->
+                <?php
+                echo '<div class="col-lg-2 col-6 mt_20 text-right"> 
                     <div class="social_icons">
-                            <a href="#">
+                            <a href="'.tl.'" rel="nofollow noreferrer noopener" target="_blank">
+                                 <i class="fab fa-telegram-plane"></i>
+                            </a>                                                     
+                            <a href="'.fb.'" rel="nofollow noreferrer noopener" target="_blank">
                                 <i class="fab fa-facebook"></i>
                             </a>                        
-                            <a href="#">
+                            <a href="'.tw.'" rel="nofollow noreferrer noopener" target="_blank">
                                 <i class="fab fa-twitter"></i>
                             </a>                        
-                            <a href="#">
+                            <a href="'.ig.'" rel="nofollow noreferrer noopener" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
                     </div>
-                </div>
+                </div>'
+                ?>
                 <div class="d-inline-flex mt_30 p-2 bd-highlight mx-auto align-items-center">   
                     <span class="mr-4 font-weight-bold">FORMATO DE CUOTAS</span>
                         

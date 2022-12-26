@@ -28,6 +28,7 @@ function crb_attach_theme_options()
                     ]),
                 Field::make('text', 'geolocation_api_key', __("geolocation api key", "jbetting")),
                 Field::make('text', 'copy', __("copy", "jbetting"))
+
             ))
             ->add_tab(__("country regulations","jbetting"),array(
                 Field::make('complex', 'country_reg', __("country regulations", "jbetting"))
@@ -45,6 +46,15 @@ function crb_attach_theme_options()
                             Field::make('text', 'url', __("url", "jbetting"))
                         ))
                     ))
+            
+            ))
+            ->add_tab(__("Redes Sociales","jbetting"), array(
+                
+                Field::make('text', 'tl', __("Telegram", "jbetting")),
+                Field::make('text', 'fb', __("Facebok", "jbetting")),
+                Field::make('text', 'tw', __("Twitter", "jbetting")),
+                Field::make('text', 'ig', __("Instagram", "jbetting"))
+  
             
             ));
 

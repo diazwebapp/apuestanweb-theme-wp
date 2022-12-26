@@ -934,6 +934,10 @@ footer .menu li a::before{
 	margin-top: 0;
 	margin-bottom: 0;
 }
+.fa-user:before {
+    content: "\f007";
+	font-size: 1.8rem;
+}
 .title_wrap{
 	display: flex;
 	align-items: center;
@@ -2248,9 +2252,9 @@ blockquote{
 	font-style: italic;
   }
   
-  p:empty {
-	display: none;
-  }
+.single_event_content > p:empty  {
+    display: none;
+}
 .single_event_match_title_box2{
 	margin-top: 5.5rem;
 }
@@ -4273,3 +4277,86 @@ a.panel-button {
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
+  /* 404 page*/
+  #notfound {
+	position: relative;
+	height: 70vh;
+	background-color: #fafbfd;
+  }
+  
+
+  
+  #notfound .notfound {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+  }
+  
+  .notfound {
+	max-width: 520px;
+	width: 100%;
+	text-align: center;
+  }
+  
+  
+  .notfound h1 {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 86px;
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 8px;
+	color: #151515;
+  }
+  
+  .notfound h2 {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 26px;
+	margin: 0;
+	font-weight: 700;
+	color: #151515;
+  }
+  
+  .notfound a {
+	font-size: 14px;
+	text-decoration: none;
+	text-transform: uppercase;
+	background: #0558CB;
+	display: inline-block;
+	padding: 15px 30px;
+	border-radius: 5px;
+	color: #fff;
+	font-weight: 700;
+	margin-top: 20px;
+  }
+  
+  .apn-social {
+	margin-top: 20px;
+  }
+  .apn-social span {
+    font-weight: 700;
+    font-size: 3rem;
+    margin-right: 3rem;
+    color: #0558cb;
+}
+  .apn-social>a {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #051421;
+	margin: 3px;
+	padding: 0px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+  }
+  .apn-social>a:hover {
+	background-color: #0558CB;
+  }
+  
+  

@@ -242,13 +242,17 @@ add_action('init', function(){
        
 });
 
-function remove_empty_p( $content ) {
-	$content = force_balance_tags( $content );
-	$content = preg_replace( '#<p>\s*+(<br\s*/*>)?\s*</p>#i', '', $content );
-	$content = preg_replace( '~\s?<p>(\s|&nbsp;)+</p>\s?~', '', $content );
-	return $content;
+
+function tg_remove_empty_paragraph_tags_from_shortcodes_wordpress( $content ) {
+    $toFix = array( 
+        '<p>['    => '[', 
+        ']</p>'   => ']', 
+        ']<br />' => ']'
+    ); 
+    return strtr( $content, $toFix );
 }
-add_filter('the_content', 'remove_empty_p', 20, 1);
+add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordpress' );
+
 
 // active code menu
     function active_menu( $classes, $item ) {
@@ -288,6 +292,16 @@ function filter_webp_quality( $quality, $mime_type ){
   }
 
 add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
+
+/////Obtiene los enlaces de RRSS///////
+function get_rrss() {
+    define('tl',get_option('tl'));
+    define('fb',get_option('fb'));
+    define('tw',get_option('tw'));
+    define('ig',get_option('ig'));
+}
+
+add_action( 'wp_loaded', 'get_rrss' );
 
 
 /////configurando smtp///////
@@ -397,3 +411,5 @@ function setUserRating(){
         }
     endif;
 }
+  
+
