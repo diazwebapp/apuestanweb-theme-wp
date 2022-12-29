@@ -204,7 +204,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
     <p style="font-size: 14px; line-height: 140%;"> </p>
     <p style="font-size: 14px; line-height: 140%;">Once your Account is approved you can login using your credentials on:</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;"><a rel="noopener" href="{vip_page}" target="_blank">pagina vip</a></p>
+    <p style="font-size: 14px; line-height: 140%;"><a rel="noopener" href="{vip_page}" rel="nofollow noreferrer noopener" target="_blank">pagina vip</a></p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
     <p style="font-size: 14px; line-height: 140%;">Your Username: {username}</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>

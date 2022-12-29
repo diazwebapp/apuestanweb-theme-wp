@@ -244,6 +244,17 @@ add_action('init', function(){
 });
 
 
+function tg_remove_empty_paragraph_tags_from_shortcodes_wordpress( $content ) {
+    $toFix = array( 
+        '<p>['    => '[', 
+        ']</p>'   => ']', 
+        ']<br />' => ']'
+    ); 
+    return strtr( $content, $toFix );
+}
+add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordpress' );
+
+
 // active code menu
     function active_menu( $classes, $item ) {
         $classes['class'] = "nav-link"; // Add class to every "<a>" tags
@@ -283,6 +294,16 @@ function filter_webp_quality( $quality, $mime_type ){
 
 add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
+/////Obtiene los enlaces de RRSS///////
+function get_rrss() {
+    define('tl',get_option('tl'));
+    define('fb',get_option('fb'));
+    define('tw',get_option('tw'));
+    define('ig',get_option('ig'));
+}
+
+add_action( 'wp_loaded', 'get_rrss' );
+
 
 /////configurando smtp///////
 
@@ -312,11 +333,12 @@ function test_template(){
     return $body;
 }
 
-function aw_notificacion_membership($payment_history_id=null){
+function aw_notificacion_membership($payment_history_id=null,$status=null){
     global $wpdb;
     
     if(isset($payment_history_id)){
-        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE id='$payment_history_id'"));
+        $table = $wpdb->prefix . "aw_payment_history";
+        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE id='$payment_history_id'"));
         
         $memberInfo = get_user_by( 'login', $data_notifi->username );
         $blogname = get_bloginfo( "name" );
@@ -330,8 +352,18 @@ function aw_notificacion_membership($payment_history_id=null){
         if(defined("PERMALINK_VIP")){
             $vip_link = PERMALINK_VIP;
         }
+        if(isset($stats)){
+            if($status=="completed"){
 
-        $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+                $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>"completed"]);
+            }
+            if($status=="pending"){
+                $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>"pending"]);
+
+            }
+        }else{
+            $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+        }
         if(is_wp_error( $body )){
 
             $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
@@ -407,3 +439,5 @@ function setUserRating(){
         }
     endif;
 }
+  
+

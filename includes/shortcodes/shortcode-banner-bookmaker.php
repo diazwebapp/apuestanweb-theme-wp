@@ -52,7 +52,7 @@ function shortcode_banner_bookmaker($atts)
             </div>
             <div class="col-lg-6 my-4">
                 <p class="text-body text-center text-uppercase font-weight-bold mb-5">{bonus_slogan}</p>
-                <a href="{ref_link}" id="btn-bookmaker" class="text-uppercase badge badge-primary px-5 d-block py-4" rel="nofollow" target="_blank">visitar</a>
+                <a href="{ref_link}" id="btn-bookmaker" class="text-uppercase badge badge-primary px-5 d-block py-4" rel="nofollow noreferrer noopener" target="_blank">visitar</a>
             </div>
         </div>
     </div>

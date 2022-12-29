@@ -353,6 +353,7 @@
 		line-height: 1.2;
 		position: relative;
 		display: flex;
+		font-size: 2.3rem;
 	}
 	.menu li a::before{
 		display: none;
@@ -506,7 +507,7 @@
 	}
 	.league_box1{
 		display: flex;
-		justify-content: flex-end;
+		justify-content: center;
 		padding-bottom: 1.5rem;
 	}
 
@@ -553,14 +554,14 @@
 	.event2_header_wrapper {
 	    width: 100%;
 	}
-	.eventbanner_wrapper{
-		display: none;
+
+    .event_banner {
+		display: flex;
+		justify-content: center;
+		margin-top: 1rem;
+		border-top: 1px solid #3e3e3e;
+		padding: 1rem;
 	}
-    
-    
-    
-    
-    
     
     
     
@@ -956,6 +957,14 @@
 	}
 	.price_img_p p{
 		padding-top: 2rem;
+	}
+	.notfound .notfound-bg {
+		width: 287px;
+		margin: auto;
+	  }
+  
+	  .notfound .notfound-bg > div {
+		height: 85px;
 	}
 
 	/*parley area*/
@@ -1673,6 +1682,7 @@
 	}
 	.headerbtn {
 	    width: 15rem;
+		font-size: 1.8rem;
 	}
 	.small_gutter{
 		margin-left: -7.5px !important;
@@ -1823,6 +1833,9 @@
 	.price_wrapper .price_box{
 		max-width: 100%;
 		width: 100%;
+	}
+	.s-f{
+		font-size: 2rem;
 	}
 
 	/*parley area*/
@@ -1976,6 +1989,13 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
+	.notfound h1 {
+		font-size: 68px;
+	  }
+	
+	  .notfound h2 {
+		font-size: 18px;
+	  }
 
 }
 

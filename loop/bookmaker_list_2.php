@@ -32,7 +32,7 @@ echo "<div class='tbox'>
         echo $stars; 
 echo "</div>
     <p class='mt_30'>$bonus_slogan</p>
-    <a href='{$ref}' class='button mt_25 w-100'>apostar</a>
+    <a href='{$ref}' class='button mt_25 w-100' rel='nofollow'>apostar</a>
     <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
 </div>";
 echo "</div>";

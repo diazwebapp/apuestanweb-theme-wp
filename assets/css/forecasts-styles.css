@@ -27,6 +27,7 @@
 	font-size: 1.2rem;
 	justify-content: space-between;
 	margin-top: 2.5rem;
+	color: #051421;
 }
 .club_box img{
 	width: 6rem;
@@ -61,7 +62,8 @@
 	box-shadow: 0 .5rem 3.0rem rgba(103, 108, 121, 0.33);
 }
 .game_btn.v2{
-	background: transparent linear-gradient(180deg, #FFC100 0%, #ab850d 54%, #d7a300 100%) 0% 0% no-repeat padding-box;	justify-content: center;
+	background: #009fe3;
+	justify-content: center;
 	color: #F2E6E6;
 	font-size: 1.3rem;
 	min-height: 3rem;
@@ -104,4 +106,5 @@
 	.game_btn.v2 {
 	    min-height: 4.2rem;
 	}
+	
 }

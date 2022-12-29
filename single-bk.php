@@ -78,8 +78,9 @@ $bookmaker["background_color"] = null;
                                     <div class="col-12 my-4 special-single-bk-button" >
                                         <b style="background:lightgray;font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                                     </div>
-                                    <div class="col-12 my-4 special-single-bk-button">                                
-                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase button px-5" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
+                                    <div class="col-12 my-4 special-single-bk-button"> 
+                                                                       
+                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase button px-5" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
                                     </div>
                                 </div>
                             </div>
