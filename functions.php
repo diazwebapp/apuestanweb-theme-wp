@@ -352,7 +352,7 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
         if(defined("PERMALINK_VIP")){
             $vip_link = PERMALINK_VIP;
         }
-        if(isset($stats)){
+        if(isset($status)){
             if($status=="completed"){
 
                 $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>"completed"]);
