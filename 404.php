@@ -18,13 +18,9 @@
                     </a>                        
                     <a href="'.ig.'" rel="nofollow noreferrer noopener">
                         <i class="fab fa-instagram"></i>
-                    </a>
-                    
-                </div>'
+                    </a></div>'
             ?>
 		</div>
-
-
 </div>
 
 <?php get_footer(); ?>

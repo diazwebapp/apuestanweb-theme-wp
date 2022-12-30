@@ -16,8 +16,8 @@
 	justify-content: space-between;
 	font-size: 1.2rem;
 }
-.team_text{
-	font-size: 1.2rem;
+.game_box .team_text{
+	font-size: 1.5rem;
 	color: #051421;
 	margin-top: 1rem;
 }
@@ -94,7 +94,7 @@
 	.game_top,
 	.club_box,
 	.team_text {
-	    font-size: 1.8rem;
+	    font-size: 1.8rem!important;
 	}
 	.game_btn,
 	.game_btn.v2 {

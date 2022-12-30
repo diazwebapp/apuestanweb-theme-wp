@@ -36,21 +36,22 @@ endif;
 						
 						<?php 
 							if ( have_posts() ):the_post();
-							$content = get_the_content(get_the_ID());
+							$content = get_the_content(get_the_ID()); 
+							$content = str_replace(']]>', ']]>', $content);
+							$formatted_content = do_shortcode($content);
+
 								if(!$disable_title):
 									echo "<h1 class='title mt_30 order-lg-1' >".(!empty($custom_h1) ? $custom_h1:get_the_title(get_the_ID()))."</h1>";
 								endif;
+								
 
-								echo "<div class='single_event_content text-break'>
-								<div class=''>
-									<div>
-										$content
-									</div>
-								</div>
-							</div>";
+								echo "<div class='page_content text-break'>
+										$formatted_content
+									</div>";
 							endif; 
 
 							if ( $faq_area ):
+
 								echo "<div class='single_event_content container_bottom text-break'>
 									<div class='row'>
 										<div>

@@ -1630,11 +1630,12 @@ footer .menu li a::before{
 .pick_box img{
 	margin-right: 0.8rem;
 }
-.pick_box p{
+.pick_box  p{
 	font-size: 1.4rem;
 	line-height: 1.2;
 	color: #3E9A19;
 }
+
 .pick_box2 p{
 	color: #DC213E;
 }
@@ -2085,6 +2086,49 @@ footer .menu li a::before{
     color: #0558CB;
     font-weight: 700;
 }
+/*Page content*/
+.page_content > p{
+	font-size: 1.786rem;
+	color: #00203A;
+	max-width: 100%;
+	text-align: justify;
+	line-height: 1.9;
+	margin-bottom: 1em;
+	margin-block-start: 1em;
+
+}
+
+.page_content > h1, 
+.page_content > h2, 
+.page_content > h3, 
+.page_content > h4, 
+.page_content > h5 {
+    line-height: 1.2;
+    color: #00203A;
+    font-weight: 700;
+}
+
+.page_content > h1{
+	font-size: 4.209rem;
+
+}
+
+.page_content > h2{
+	font-size: 3.157rem;
+
+}
+.page_content > h3{
+	font-size: 2.369rem;
+
+}
+.page_content > h4{
+	font-size: 1.777rem;
+
+}
+.page_content > h5{
+	font-size: 12px;
+
+}
 
 /*Single event and single Bookmaker */
 .single_event_content{
@@ -2093,7 +2137,7 @@ footer .menu li a::before{
 	
 }
 
-.single_event_content p{
+.single_event_content > p{
 	font-size: 1.786rem;
 	color: #00203A;
 	max-width: 100%;
@@ -2107,30 +2151,35 @@ footer .menu li a::before{
 .single_event_title_wrap{
 	justify-content: space-between;
 }
-.single_event_content h1, h2, h3, h4, h5{
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 700;
+
+.single_event_content > h1, 
+.single_event_content > h2, 
+.single_event_content > h3, 
+.single_event_content > h4, 
+.single_event_content > h5 {
+    line-height: 1.2;
+    color: #00203A;
+    font-weight: 700;
 }
 
-.single_event_content h1{
+.single_event_content > h1{
 	font-size: 4.209rem;
 
 }
 
-.single_event_content h2{
+.single_event_content > h2{
 	font-size: 3.157rem;
 
 }
-.single_event_content h3{
+.single_event_content > h3{
 	font-size: 2.369rem;
 
 }
-.single_event_content h4{
+.single_event_content > h4{
 	font-size: 1.777rem;
 
 }
-.single_event_content h5{
+.single_event_content > h5{
 	font-size: 12px;
 
 }

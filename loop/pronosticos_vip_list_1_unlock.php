@@ -191,8 +191,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>
-                            <div class="text-break collapse" id="col1'.$id_collapse.'">
-                                <p class="more_text pt_30">'.$content.'</p>
+                            <div class="more_text pt_30 text-break collapse" id="col1'.$id_collapse.'">
+                                '.$content.'
                             </div>
                         </div>
                     </div>
