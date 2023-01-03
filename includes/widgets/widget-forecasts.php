@@ -61,11 +61,11 @@ class W_Forecasts extends WP_Widget {
                     
                             <div class='top_box3_left_content'>
                                 <div class='top_box3_img'>
-                                    <img width='25' height='28' src='{$teams['team1']['logo']}' class='img-fluid' alt='{$teams['team1']['name']}'>
+                                    <img width='25px' height='25px' src='{$teams['team1']['logo']}' class='img-fluid' alt='{$teams['team1']['name']}'>
                                     <p>{$teams['team1']['name']}</p>
                                 </div>
                                 <div class='top_box3_img top_box3_img2'>
-                                    <img width='25' height='28' src='{$teams['team2']['logo']}' class='img-fluid' alt='{$teams['team2']['name']}' >
+                                    <img width='25px' height='25px' src='{$teams['team2']['logo']}' class='img-fluid' alt='{$teams['team2']['name']}' >
                                     <p>{$teams['team2']['name']}</p>
                                 </div>
                             </div>

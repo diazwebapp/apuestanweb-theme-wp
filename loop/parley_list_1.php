@@ -7,7 +7,7 @@ $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$fecha = date('D M', strtotime($time));
+$fecha = __(date_i18n('j \d\e F', strtotime($time)), 'jbetting');
 $hora = date('g:i a', strtotime($time));
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 
@@ -34,7 +34,7 @@ $parley_id = get_the_ID();
 $alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
 echo "<div class='parley_wrapper'>
 <div class='parley_top_content'>
-    <h2>Parley $fecha</h2>
+    <h2>$fecha, Datos de Parley  </h2>
     <img src='$alt_logo' class='img-fluid' alt=''>
 </div>";
     if($forecasts and count($forecasts) > 0){

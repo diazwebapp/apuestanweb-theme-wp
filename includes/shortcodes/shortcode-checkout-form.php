@@ -48,7 +48,7 @@ function aw_checkout_form($attr=array()){
                         </p>
                     </div>                            
                     <input type="hidden" name="lid" value="'.$_GET['lid'].'"/>
-                    <div id="payment-select" >
+                    <div class="labelcol" id="payment-select" >
                         {awpayments}
                     </div>
 
@@ -124,7 +124,7 @@ function aw_checkout_form($attr=array()){
                         endforeach;
                         //recorremos todos los inputs para que el cliente registre su pago
                         foreach($register_inputs as $input):
-                            $data["html"] .= '<div class="form-group">';
+                            $data["html"] .= '<div class="form-group font-weight-bold">';
                             $data["html"] .= '<label>'.$input->name.'</label>';
                             $data["html"] .= '<input type="'.$input->type.'" name="'.$input->name.'" account-id="'.$account->id.'" class="form-control mt-2 register-input"/>';
                             $data["html"] .= '</div>';

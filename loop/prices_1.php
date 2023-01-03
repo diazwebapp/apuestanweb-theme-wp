@@ -66,8 +66,7 @@ echo "<div class='price_wrapper'>
     <div class='row justify-content-between'>
         <div class='col-lg-12'>
             <div class='price_heading'>
-                <img width='240' height='95' src='".get_template_directory_uri() . '/assets/img/apnpls.svg'."'  alt='ApuestanPlus'>
-                <h2>{$params['slogan']}</h2>
+                <img width='200' height='55' src='".get_template_directory_uri() . '/assets/img/apnpls.svg'."'  alt='ApuestanPlus'>
             </div>
         </div>
         <div class='col-lg-12 d-md-none d-block'>

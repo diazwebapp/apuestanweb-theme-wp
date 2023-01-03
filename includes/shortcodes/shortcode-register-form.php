@@ -105,25 +105,23 @@ function aw_register_form($attr=array()){
                         <div class="form-group col-12 my-4">
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="tos_check" name="tos" value="1">
-                                <label class="form-check-label ml-5" role="button" for="tos_check">Check me out</label>
+                                <label class="form-check-label ml-5" role="button" for="tos_check">Aceptar<a href="/tos"> términos de servicio</a></label>
                             </div>
                         </div>
                         <div class="form-group col-12">
                             <input type="hidden" name="membership_id" value="'.$_GET['lid'].'">
                             <input type="hidden" name="membership_paid" value="'.strval($register_membership_payment_type).'">
-                            <input type="submit" class="btn btn-primary px-5" value="Register">
+                            <input type="submit" class="btn btn-primary px-5" value="Registrarme">
                         </div>
                     </div>
                 </form>
                 <div class="col-md-5 col-lg-4">
                     <p class="font-weight-bolder text-uppercase text-body py-3">Conviertete en miembro de apuestan</p>
                     <p class="text-body" >
-                        En ApuestanWeb nos gustan los deportes, y los pronósticos de fútbol no podían pasar desapersibidos,
-                        no por nada, es el deporte mas visto del mundo, gracias a competiciones como la copa del mundo, Eurocopa, 
-                        Champion League, entre otras.
+                        Para ser miembro de Apuestan, primero debes completar el registro y aceptar nuestros términos de servicio.
                     </p>
                     <div class="mt-5" ></div>
-                    <a class="twitter-timeline" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/diazwebapp?ref_src=twsrc%5Etfw">Tweets by diazwebapp</a>
+                    <a class="twitter-timeline" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/Apuestan">Tweets por Apuestan</a>
                     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     
                 </div>

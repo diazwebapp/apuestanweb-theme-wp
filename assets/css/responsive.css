@@ -508,7 +508,7 @@
 	.league_box1{
 		display: flex;
 		justify-content: center;
-		padding-bottom: 1.5rem;
+		padding: 1rem;
 	}
 
 	/*price area*/
@@ -1894,6 +1894,7 @@
 		width: 100%;
 		font-size: 1.8rem;
 		margin-top: 1rem;
+		color: #000000;
 	}
 	.vip_lock_box.v2 .match_time_box{
 		justify-content: space-between;
@@ -1951,8 +1952,7 @@
 	    width: 10rem;
 	}
 	.vip_lock_box.v2 .team_flag img {
-	    height: 7rem;
-	    width: 7rem;
+
 	    object-fit: contain;
 	}
 	.vip_lock_box.v2 .rating {

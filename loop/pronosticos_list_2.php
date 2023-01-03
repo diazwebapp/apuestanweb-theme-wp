@@ -10,6 +10,8 @@ $permalink = get_the_permalink($args["forecast"]->ID);
 $sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
 $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
+$formatted_date = __(date_i18n('j M', strtotime($time)), 'jbetting');
+
 
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
@@ -100,7 +102,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
                         $time_format_html
-                        <time datetime='".$date->format('Y-m-d')."'>".$date->format('d M')."</time>
+                        <time datetime='".$date->format('Y-m-d')."'>".$formatted_date."</time>
                     </div>
                     <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
