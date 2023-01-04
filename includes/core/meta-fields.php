@@ -35,8 +35,8 @@ function crb_attach_theme_options()
                 ->set_layout("tabbed-horizontal")
                 ->setup_labels(["plural_name"=>"tests","singular_name"=>"test"])
                     ->add_fields(array(
-                        Field::make('textarea', 'text_reg', __("texto", "jbetting")),
-                        Field::make('textarea', 'text_reg2', __("texto 2", "jbetting")),
+                        Field::make('textarea', 'text_reg', __("Footer Regulation", "jbetting")),
+                        Field::make('textarea', 'text_reg2', __("PopUp text", "jbetting")),
                         Field::make('select', 'country_code', __("country", "jbetting"))
                             ->add_options($countries),
                         Field::make('complex', 'images', __("images", "jbetting"))

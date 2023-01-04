@@ -59,7 +59,7 @@ if ($sport_term) {
 }
 
 if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
-    $author_id = get_the_author_meta( 'ID' );
+    $author_id = get_post_field( 'post_author', get_the_ID() );
     $acerted = get_the_author_meta("forecast_acerted", $author_id );
     $failed = get_the_author_meta("forecast_failed", $author_id );
     $nulled = get_the_author_meta("forecast_nulled", $author_id );
@@ -109,6 +109,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                         </div>
                         <div class="vip_left_text">
                             <h5>'.$display_name.'</h5>
+                             '.var_dump($author_id).'
                             <div class="pick_box">
                                 <img src="'.$flechita_indicadora.'" class="img-fluid" alt="">
                                 <p>'.$acerted.'-'.$failed.', $'.$rank.', Ult 10 picks</p>
@@ -129,7 +130,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <div class="team_flag_box">
                                     <div class="team_item">
                                         <div class="team_flag team_flag1">
-                                            <img src="'.$teams['team1']['logo'].'" width="30px" height="30px" class="img-fluid" alt="'.$teams['team1']['name'].'">
+                                            <img src="'.$teams['team1']['logo'].'" width="40px" height="40px" class="img-fluid" alt="'.$teams['team1']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team1']['name'].'</p>
                                     </div>
@@ -141,7 +142,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     </div>
                                     <div class="team_item"> 
                                         <div class="team_flag team_flag2">
-                                            <img src="'.$teams['team2']['logo'].'" width="30px" height="30px" class="img-fluid" alt="'.$teams['team2']['name'].'">
+                                            <img src="'.$teams['team2']['logo'].'" width="40px" height="40px" class="img-fluid" alt="'.$teams['team2']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team2']['name'].'</p>
                                     </div>

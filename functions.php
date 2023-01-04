@@ -385,7 +385,7 @@ function setUserRating(){
                             $ok++;
                             $cuote = floatval($predictions[0]['cuote']);
                             $tvalue = floatval($predictions[0]['tvalue']);
-                            $inversion = $tvalue * 100;
+                            $inversion = $tvalue * 20;
                             $rank += $inversion * $cuote - $inversion;
                             update_user_meta( $user->ID, 'forecast_acerted', $ok);
                             update_user_meta( $user->ID, 'rank', $rank);
@@ -394,7 +394,7 @@ function setUserRating(){
                             $fail++;
                             $cuote = floatval($predictions[0]['cuote']);
                             $tvalue = floatval($predictions[0]['tvalue']);
-                            $inversion = $tvalue * 100;
+                            $inversion = $tvalue * 20;
                             $rank -= $inversion;
                             update_user_meta( $user->ID, 'forecast_failed', $fail);
                             update_user_meta( $user->ID, 'rank', $rank);
@@ -410,5 +410,15 @@ function setUserRating(){
         }
     endif;
 }
-  
+function user_rss( $contact_methods ) {
+    // Añade el campo de Twitter
+    $contact_methods['twitter'] = 'Twitter Username';
+    // Añade el campo de Facebook
+    $contact_methods['facebook'] = 'Facebook URL';
+    // Añade el campo de Instagram
+    $contact_methods['instagram'] = 'Instagram URL';
+    // Devuelve los campos de contacto modificados
+    return $contact_methods;
+  }
+  add_filter( 'user_contactmethods', 'user_rss' );  
 

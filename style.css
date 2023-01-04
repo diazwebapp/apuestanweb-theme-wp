@@ -3824,16 +3824,14 @@ blockquote{
   width: 666px;
   margin-left: 50px;
 }
-.sub__box--ri h3 {
-  font-size: 48px;
+.sub__box--ri h2 {
+  font-size: 24px;
   color: #00203A;
-  line-height: 64px;
   font-weight: 700;
-  margin-bottom: 12px;
 }
 .sub__box--ri p {
   margin: 0;
-  font-size: 20px;
+  font-size: 14px;
   color: #707070;
   line-height: 27px;
 }
@@ -3849,11 +3847,7 @@ blockquote{
   height: 100%;
   font-size: 18px;
   font-weight: 500;
-  background: #e2af34;
-  background: -moz-linear-gradient(left, #e2af34 0%, #b18800 100%);
-  background: -webkit-linear-gradient(left, #e2af34 0%,#b18800 100%);
-  background: linear-gradient(to right, #e2af34 0%,#b18800 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2af34', endColorstr='#b18800',GradientType=1 );
+  background: #009fe3;
   color: #fff;
   display: flex;
   align-items: center;
@@ -3878,7 +3872,7 @@ blockquote{
   border-radius: 10px;
 }
 .estad-link {
-  width: 120px;
+  width: auto;
   font-size: 2.5rem;
   color: #00203A;
   line-height: 37px;
@@ -3988,6 +3982,9 @@ blockquote{
   border-radius: 5px;
   margin-bottom: 5px;
 }
+.free__table {
+	text-align: center
+}
 
 .free-tabs {
   width: 100%;
@@ -3997,7 +3994,7 @@ blockquote{
   justify-content: space-between;
 }
 .free-link {
-  width: 120px;
+  width: auto;
   color: #00203A;
   line-height: 37px;
   font-weight: 700;
@@ -4311,20 +4308,20 @@ a.panel-button {
 	border-radius: 10px;
 	box-shadow: 2px 2px 15px #ccc;
 }
-.banner-bookmaker ul, li{
+.banner-bookmaker >ul > li{
 	list-style: none;
 	padding-inline-start: 10px;
 
 }
-.banner-bookmaker span{
+.banner-bookmaker > span{
 	font-size: 14px;
 }
-.banner-bookmaker i{
+.banner-bookmaker > i{
 	list-style:none;
 	font-size:1rem;
 }
 
-.banner-bookmaker p{
+.banner-bookmaker > p{
 	font-size: 18px;
 }
 

@@ -7,18 +7,19 @@ if(isset($_GET['profile'])):
     $forecasts = print_table("forecast",'free',$id_author,true);
     $forecasts_vip = print_table("forecast",'vip',$id_author,true);
     $posts = print_table("post",false,$id_author,true);
-
    $acerted = get_the_author_meta("forecast_acerted", $id_author );
     $failed = get_the_author_meta("forecast_failed", $id_author );
     $nulled = get_the_author_meta("forecast_nulled", $id_author );
     $rank = get_the_author_meta("rank", $id_author );
-    $display_name = get_the_author_meta("display_name", $id_author );
+    $display_name = get_the_author_meta("display_name", $id_author);
+    $biography = get_the_author_meta( 'description', $id_author );
+
     $avatar_url = get_avatar_url($id_author);
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
     $total_forecast = $acerted + $failed;
     $porcentage = 0; 
     if($total_forecast > 0){
-        $porcentage = $acerted * 100 / $total_forecast;
+        $porcentage = $acerted * 20 / $total_forecast;
     }
     $stats_vip = get_user_stats($id_author,'=');
     $stats_free = get_user_stats($id_author,'!=');
@@ -46,38 +47,46 @@ if(isset($_GET['profile'])):
                         </div>';
     }
     
-    $profile = '<div class="sub-inn">
-        <div class="sub-bx-lf">
-            <div class="subscribe__img">
-                <img src="'.$avatar.'" alt="">
-            </div>
-            <div class="subscribe__icon">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-        </div>
-        <div class="sub__box--ri">
-            <div class="subscribe__icon ic-mbl">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-            <h3>'.$display_name.'</h3>
-            <p>Algun texto aquí o quitar este elemento</p>
-        </div>
-        <div class="subscribe__btn">
-            <a href="#">RANKING '.$total_forecast.'</a>
-        </div>
 
-    </div>
-    <div class="mb-tx">
-        <p>El Manchester United es líder del grupo F pero no puede relajarse porque está a tan solo 2 puntos de la tercera posición.</p>
-    </div>'; 
+    
+    $profile = '<div class="sub-inn">
+    <div class="sub-bx-lf">
+        <div class="subscribe__img">
+            <img src="'.$avatar.'" alt="">
+        </div>
+        <div class="subscribe__icon">';
+            $twitter_handle = get_user_meta( $id_author, 'twitter', true );
+            $facebook_url = get_user_meta( $id_author, 'facebook', true );
+            $instagram_url = get_user_meta( $id_author, 'instagram', true );
+
+
+            if ( $twitter_handle ) {
+                $profile .= '<a href="https://twitter.com/' . esc_attr( $twitter_handle ) . '" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>';
+            }
+            if ( $facebook_url ) {
+                $profile .= '<a href="' . esc_url( $facebook_url ) . '" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook" ></i></a>';
+            }
+            if ( $instagram_url ) {
+                $profile .= '<a href="' . esc_url( $instagram_url ) . '" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-instagram" ></i></a>';
+            }
+            $profile .= '</div></div>
+            <div class="sub__box--ri">
+                    <h2>'.$display_name.'</h2>
+                     <p>'.$biography.'</p>                           
+                </div>
+                
+                <div class="subscribe__btn">
+                    <a href="/plus">Subscribete</a>
+                </div>
+
+        </div>';
+
+    
+     
     $stats = '<div class="estad__box">
         <ul class="nav estad-tabs" id="myTab" role="tablist">
             <li class="estad-item" role="presentation">
-                <a class="estad-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">VIP</a>
+                <a class="estad-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">ApuestanPlus</a>
             </li>
             <li class="estad-item" role="presentation">
                 <a class="estad-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Free</a>
@@ -103,12 +112,6 @@ if(isset($_GET['profile'])):
                             <h5>'.round($stats_vip['porcentaje'],2).'%</h5>
                         </div>
                         <p>%</p>
-                    </div>
-                    <div class="estad__single">
-                        <div class="estd__bt">
-                            <h5>'.$stats_vip['total'].'</h5>
-                        </div>
-                        <p>PRONÓSTICOS</p>
                     </div>
                 </div>
                 <div class="estad__tabl">
@@ -141,12 +144,6 @@ if(isset($_GET['profile'])):
                         </div>
                         <p>%</p>
                     </div>
-                    <div class="estad__single">
-                        <div class="estd__bt">
-                            <h5>'.$stats_free['total'].'</h5>
-                        </div>
-                        <p>PRONÓSTICOS</p>
-                    </div>
                 </div>
                 <div class="estad__tabl">
                     <div class="estad__tabl---head">
@@ -166,9 +163,9 @@ if(isset($_GET['profile'])):
     <div class="free__tab">
         <nav>
             <div class="nav free-tabs" id="nav-tab" role="tablist">
-                <a class="free-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">VIP</a>
-                <a class="free-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">FREE</a>
-                <a class="free-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">ARTICULOS</a>
+                <a class="free-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ApuestanPlus</a>
+                <a class="free-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Free</a>
+                <a class="free-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Articulos</a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -209,7 +206,7 @@ if(isset($_GET['profile'])):
                 '.$stats.'
             </div>
             <div class="estad__wrap est-sec">
-                <h4>Estadisticas</h4>
+                <h4>Publicaciones</h4>
                 '.$stats_full.'
             </div>
     ';

@@ -99,12 +99,12 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 </div>
                 <a href='$permalink'  >
                 <div class='d-flex align-items-center club_box'>
-                    <img width='24px' height='24px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
+                    <img width='40px' height='40px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
                         $time_format_html
                         <time datetime='".$date->format('Y-m-d')."'>".$formatted_date."</time>
                     </div>
-                    <img width='24px' height='24px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
+                    <img width='40px' height='40px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
                 <p class='team_text'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
             </a>
