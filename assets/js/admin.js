@@ -71,7 +71,12 @@ function change_payment_status(e){
     
     document.location = document.location.pathname + path
 }
-
+function modal_payment_details(e){
+    const {status,element,lid,username} = e.attributes
+    let path = `?view_payment_history_details=${element.textContent}&lid=${lid.textContent}`
+    
+    document.location = document.location.pathname + path
+}
 function aw_add_new_payment_data(action){
     
     const container = action.parentNode.parentNode;
@@ -116,7 +121,7 @@ async function aw_add_new_method(form){
                     received_inputs.filter(item=> item.name !== name ? received_inputs.push({type,name,show_ui}) : (()=>{
                         breack=true;
                         container.style.border = "1px solid red";
-                        show_toats({msg:"elementos duplicados"});
+                        show_toast({msg:"elementos duplicados"});
                     })())
                 }
                 if(received_inputs.length == 0){
@@ -134,7 +139,7 @@ async function aw_add_new_method(form){
                     register_inputs.map(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
                         breack=true;
                         container.style.border = "1px solid red";
-                        show_toats({msg:"elementos duplicados"});
+                        show_toast({msg:"elementos duplicados"});
                     })())
                 }
                 if(register_inputs.length == 0 && !breack){
@@ -147,7 +152,7 @@ async function aw_add_new_method(form){
                 button.textContent = original_text
                 button.disabled = false
             },1000)
-            show_toats({msg:"añada inputs para mostrar su información de pago"})
+            show_toast({msg:"añada inputs para mostrar su información de pago"})
         }
     }
     if(!breack){
@@ -172,7 +177,7 @@ async function aw_add_new_method(form){
         
         if(!response.status){
             button.textContent = "error"
-            show_toats({msg:response.msg})
+            show_toast({msg:response.msg})
         }
         if(response.status){
             location.reload()
@@ -185,16 +190,52 @@ async function aw_add_new_method(form){
     
 }
 
-function show_toats({msg}){
-    const toats = document.querySelector(".toast")
-    const toats_body = toats.querySelector(".toast-body")
-    toats_body.textContent = msg
-    toats.style.opacity = 1
+function show_toast({msg}){
+   
+    const toast = document.querySelector(".toast")
+    const toast_body = toast.querySelector(".toast-body")
+    toast_body.textContent = msg
+    toast.style.opacity = 1
     setTimeout(()=>{
-        toats.style.opacity = 0
-        toats_body.textContent = ""
+        toast.style.opacity = 0
+        toast_body.textContent = ""
     },4000)
 }
+async function modal_payment_details(button){
+    let payment_id = button.getAttribute("element")
+    try {
+        
+        const req = await fetch(php.rest_url+'aw-payment-history/payment-history-details',{
+            method:"POST",
+            body:JSON.stringify({payment_id}),
+            headers:{
+                "Content-type": "application/json"
+            }
+        })
+        const res = await req.json()
+        modal_event(button)
+        return console.log(res)
+    } catch (error) {
+        return console.log(error)
+    }
+}
+function modal_event(button){
+    let toastid = button.getAttribute("toastid")
+    let toastaction = button.getAttribute("toastaction")
+    if(toastid){
+        const toast = document.querySelector(`#${toastid}`)
+        const toast_body = toast.querySelector(".toast-body")
+        if(toast && toastaction == "show"){
+            toast_body.textContent = "hhhhhhhhh"
+            toast.style.display = 'grid';
+        }
+        if(toast && toastaction == "hide"){
+            toast.style.display = 'none';
+            toast_body.textContent = ""
+        }
+    }
+}
+
 async function aw_add_new_account(form){
     form.preventDefault()
     const {payment_method_name,payment_method_id,country_code,status} = form.target
@@ -215,4 +256,7 @@ async function aw_add_new_account(form){
     }
     await insert_account({account_data,metadata})
     location.reload()
+}
+async function get_payment_details(id){
+
 }

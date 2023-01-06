@@ -63,19 +63,17 @@ function select_payment_history($params=["status"=>"completed","username"=>"","d
     global $wpdb ;
     $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' ";
 
-    if($params["date"] and !$params["date_2"]){
+    if(isset($params["date"]) and !isset($params["date_2"])){
         $sql_ .= "AND DATE(payment_date) = '{$params["date"]}' ";
      }
-    if($params["date"] and $params["date_2"]){
+    if(isset($params["date"]) and isset($params["date_2"])){
         $sql_ .="AND DATE(payment_date) BETWEEN '{$params["date"]}' AND '{$params["date_2"]}' ";
      }
-    $sql_ .= "AND username LIKE '%{$params["username"]}%'";
+     if(isset($params["username"])){
+        $sql_ .= "AND username LIKE '%{$params["username"]}%'";
+    }
     
     $results = $wpdb->get_results($sql_);
-    foreach($results as $key => $rs):
-        $rs_metas = select_payment_history_meta($rs->id);
-        $results[$key]->metas = $rs_metas;
-    endforeach;
 
     return $results;
 }
