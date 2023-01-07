@@ -46,6 +46,7 @@ function aw_get_user_type(){
                             //forecast date
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
+                            var_dump($geolocation->timezone);
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
