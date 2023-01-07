@@ -80,7 +80,7 @@ function select_payment_history($params=["status"=>"completed","username"=>"","d
 
 function select_payment_history_meta($account_id){
     global $wpdb ;
-    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_PAYMENT_HISTORY_METAS." WHERE payment_history_id='$account_id'");
+    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_PAYMENT_HISTORY_METAS." WHERE payment_history_id = '$account_id' ");
     
     return $results;
 }
