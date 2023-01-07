@@ -44,10 +44,9 @@ function aw_get_user_type(){
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
-                            setlocale(LC_TIME,"es_ES.utf8");
-                            $string = "24/11/2014";
-                            $date = DateTime::createFromFormat("d/m/Y", $string);
-                            echo strftime("%A",$date->getTimestamp());
+                            setlocale(LC_ALL, "es_ES", 'Spanish_Spain', 'Spanish');
+echo iconv('ISO-8859-2', 'UTF-8', strftime("%A, %d de %B de %Y", strtotime($string)));
+
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
