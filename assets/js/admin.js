@@ -212,6 +212,7 @@ async function modal_payment_details(button){
                 "Content-type": "application/json"
             }
         })
+        console.log({payment_id})
         const res = await req.json()
         modal_event(button)
         return console.log(res)
