@@ -37,16 +37,19 @@ function aw_get_user_type(){
             <div class="row">
                 <?php 
                     if(have_posts()):
-                        setlocale(LC_ALL,"es_ES");
+                        
                         while(have_posts()): the_post();
                             global $wpdb;
                             $post_id = get_the_ID();
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
+                            setlocale(LC_ALL,"es_ES");
+$string = "24/11/2014";
+$date = DateTime::createFromFormat("d/m/Y", $string);
+echo strftime("%A",$date->getTimestamp());
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
-                            var_dump($geolocation->timezone);
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
