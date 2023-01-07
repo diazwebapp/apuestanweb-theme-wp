@@ -37,7 +37,7 @@ function aw_get_user_type(){
             <div class="row">
                 <?php 
                     if(have_posts()):
-
+                        setlocale(LC_TIME, "spanish");
                         while(have_posts()): the_post();
                             global $wpdb;
                             $post_id = get_the_ID();
