@@ -47,8 +47,8 @@ function aw_print_table($items,$post_type){
         endif;
         //Si es un post
         if($post_type === 'post'):
-            $fecha = get_the_date("d m",get_the_ID());
-            
+            $fecha = get_the_date("d M",get_the_ID());
+
                 $result .= '<tr>
                     <td>'.$fecha.'</td>
                     <td>'.get_the_title(get_the_ID()).'</td>
