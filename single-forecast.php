@@ -44,8 +44,8 @@ function aw_get_user_type(){
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
-                            setlocale(LC_ALL, "es_ES", 'Spanish_Spain', 'Spanish');
-echo iconv('ISO-8859-2', 'UTF-8', strftime("%A, %d de %B de %Y", strtotime($string)));
+                            setlocale(LC_ALL,"es_ES");
+                            echo strftime("%A %d de %B del %Y");
 
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
