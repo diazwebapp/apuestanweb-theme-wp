@@ -44,7 +44,7 @@ function aw_get_user_type(){
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
-                            setlocale(LC_TIME,"es_ES");
+                            setlocale(LC_TIME,"es_ES.utf8");
                             $string = "24/11/2014";
                             $date = DateTime::createFromFormat("d/m/Y", $string);
                             echo strftime("%A",$date->getTimestamp());
