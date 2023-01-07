@@ -123,8 +123,7 @@ function jbetting_src()
 	wp_dequeue_script( 'jquery' );
 	wp_dequeue_script( 'ihc-jquery-ui'); */
 
-	wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6 );
-    wp_enqueue_style('bootstrap.min', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/css/bootstrap.min.css', array(), null);
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/css/bootstrap.min.css', array(), '4.6.1');
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
     wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
     wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
@@ -137,14 +136,14 @@ function jbetting_src()
     /**esto de debe cargar selectivamente */
 
     wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), null, false);
+    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', true);
     
-    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/js/bootstrap.min.js', array(), null, false);
-    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, false);
+    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/js/bootstrap.min.js', array('jquery'), '4.6.1', true);
+    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    
+    wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
 }
 
 function enqueuing_admin_scripts(){
@@ -410,7 +409,7 @@ function setUserRating(){
                             $ok++;
                             $cuote = floatval($predictions[0]['cuote']);
                             $tvalue = floatval($predictions[0]['tvalue']);
-                            $inversion = $tvalue * 100;
+                            $inversion = $tvalue * 20;
                             $rank += $inversion * $cuote - $inversion;
                             update_user_meta( $user->ID, 'forecast_acerted', $ok);
                             update_user_meta( $user->ID, 'rank', $rank);
@@ -419,7 +418,7 @@ function setUserRating(){
                             $fail++;
                             $cuote = floatval($predictions[0]['cuote']);
                             $tvalue = floatval($predictions[0]['tvalue']);
-                            $inversion = $tvalue * 100;
+                            $inversion = $tvalue * 20;
                             $rank -= $inversion;
                             update_user_meta( $user->ID, 'forecast_failed', $fail);
                             update_user_meta( $user->ID, 'rank', $rank);
@@ -435,5 +434,15 @@ function setUserRating(){
         }
     endif;
 }
-  
+function user_rss( $contact_methods ) {
+    // Añade el campo de Twitter
+    $contact_methods['twitter'] = 'Twitter Username';
+    // Añade el campo de Facebook
+    $contact_methods['facebook'] = 'Facebook URL';
+    // Añade el campo de Instagram
+    $contact_methods['instagram'] = 'Instagram URL';
+    // Devuelve los campos de contacto modificados
+    return $contact_methods;
+  }
+  add_filter( 'user_contactmethods', 'user_rss' );  
 

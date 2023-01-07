@@ -50,7 +50,7 @@ function aw_get_user_type(){
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-
+                            
                             $current_user_2 = aw_get_user_type();
                             
                             $meta_arr = ihc_post_metas($post_id);
@@ -171,9 +171,14 @@ function aw_get_user_type(){
                                                 <img loading="lazy" src="<?php echo isset($teams["team1"]["logo"]) ? $teams["team1"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
                                                 <p><?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?></p>
                                             </div>
-                                            <div datetime="2022-09-20 08:30" class="single_match_time">                    
+                                            <div class="single_match_time">                    
                                                 <time datetime="<?php echo $datetime->format("Y-m-d h:i") ?>" ><?php echo $datetime->format("h:i a") ?></time>
+<<<<<<< HEAD
                                                 <?php echo strftime("%e %b", strtotime($datetime->format("y-m-d"))) ?>                          
+=======
+                                                <?php echo date_i18n("d M Y", strtotime($datetime->format("d M Y")));?>   
+                                                                       
+>>>>>>> fb914f0fe2d06af29d93d30287bddaa2380b916d
                                             </div>
                                             <div class="single_team1">
                                                 <img loading="lazy" src="<?php echo isset($teams["team2"]["logo"]) ? $teams["team2"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">

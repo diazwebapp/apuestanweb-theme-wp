@@ -59,7 +59,7 @@ if ($sport_term) {
 }
 
 if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
-    $author_id = get_the_author_meta( 'ID' );
+    $author_id = get_post_field( 'post_author', get_the_ID() );
     $acerted = get_the_author_meta("forecast_acerted", $author_id );
     $failed = get_the_author_meta("forecast_failed", $author_id );
     $nulled = get_the_author_meta("forecast_nulled", $author_id );
@@ -87,9 +87,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
 
     $html_status = "";
     if($status == 'ok')
-        $html_status = "<b class='winl'><i class='far fa-check-circle'></i></b>";
+        $html_status = "<b class='winl'><i class='far fa-check-circle' style= color:#3cc03c;></i></b>";
     if($status == 'fail')
-        $html_status = "<b class='winl loss'><i class='far fa-times-circle'></i></b>";
+        $html_status = "<b class='winl loss'><i class='far fa-times-circle' style= color:red;'></i></b>";
 
     if(floatval($acerted) > floatval($failed)):
         $flechita_indicadora = $flechita_up;
@@ -109,6 +109,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                         </div>
                         <div class="vip_left_text">
                             <h5>'.$display_name.'</h5>
+                             '.var_dump($author_id).'
                             <div class="pick_box">
                                 <img src="'.$flechita_indicadora.'" class="img-fluid" alt="">
                                 <p>'.$acerted.'-'.$failed.', $'.$rank.', Ult 10 picks</p>
@@ -129,7 +130,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <div class="team_flag_box">
                                     <div class="team_item">
                                         <div class="team_flag team_flag1">
-                                            <img src="'.$teams['team1']['logo'].'" class="img-fluid" alt="'.$teams['team1']['name'].'">
+                                            <img src="'.$teams['team1']['logo'].'" width="40px" height="40px" class="img-fluid" alt="'.$teams['team1']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team1']['name'].'</p>
                                     </div>
@@ -141,7 +142,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     </div>
                                     <div class="team_item"> 
                                         <div class="team_flag team_flag2">
-                                            <img src="'.$teams['team2']['logo'].'" class="img-fluid" alt="'.$teams['team2']['name'].'">
+                                            <img src="'.$teams['team2']['logo'].'" width="40px" height="40px" class="img-fluid" alt="'.$teams['team2']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team2']['name'].'</p>
                                     </div>
@@ -157,33 +158,30 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             <div class="d-lg-block d-none"> 
                                 <div class="league_box_wrapper align-items-center">
                                     <p class="d-lg-block d-none mr_30">
-                                    <time>'.$date->format('Y-m-d h:i:s').'</time>
+                                    <time>'.$date->format('d-m-Y h:i:s').'</time>
                                     </p>
-                                    <div class="league_box1">
-                                        <img src="'.$coronita.'" class="img-fluid img_30" alt="">
-                                        <i class="'.$sport['class'].'"></i>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <p class="team_name">'.$teams['team1']['name'].' vs '.$teams['team2']['name'].'</p>
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between mt_10">
                                 <div class="btn_text">
-                                    <span>Pick: '.$prediction.'</span>
+                                    <span>Pick: '.$prediction.' </span>
                                     <div class="rate_text d-sm-none">
                                         <span>'.$cuote.'</span>
                                     </div>
                                 </div>
                                 <div class="d-none d-sm-flex align-items-center">
+                                    <div class="rate_text">'.$cuote.'</div>
                                     <div class="rating">
                                         '.$stars.'
                                     </div>
-                                    <div class="rate_text">'.$cuote.'</div>
+                                    
                                 </div>
                             </div>
-                            <div class="d-flex mt-3 align-items-center justify-content-between">
-                                <p class="oddstex text-uppercase">Cuotas de:</p>
+                            <div class="d-flex mt-3 align-items-center justify-content-center mt_10">
+                                <p class="oddstex text-uppercase">Cuotas de</p>
                                 <img width="80" height="25" src="'.$bookmaker['logo_2x1'].'" alt="bk">
                             </div>
                             <div class="text-center accor_btn mt_15">
@@ -191,8 +189,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>
-                            <div class="text-break collapse" id="col1'.$id_collapse.'">
-                                <p class="more_text pt_30">'.$content.'</p>
+                            <div class="more_text pt_30 text-break collapse" id="col1'.$id_collapse.'">
+                                '.$content.'
                             </div>
                         </div>
                     </div>

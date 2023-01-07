@@ -1629,12 +1629,14 @@ footer .menu li a::before{
 }
 .pick_box img{
 	margin-right: 0.8rem;
+	width: 10px;
 }
-.pick_box p{
+.pick_box  p{
 	font-size: 1.4rem;
 	line-height: 1.2;
 	color: #3E9A19;
 }
+
 .pick_box2 p{
 	color: #DC213E;
 }
@@ -1642,6 +1644,7 @@ footer .menu li a::before{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	color: #000000;
 }
 .team_flag_box_wrapper{
 	display: flex;
@@ -1750,26 +1753,24 @@ footer .menu li a::before{
 /*price area*/
 .price_wrapper {
    /* margin-top: 8.5rem;*/
-    padding-bottom: 20.5rem;
+    padding-bottom: 8.5rem;
     background-color: #032451;
 }
 
 .price_heading {
-    /* text-align: center; */
     padding-top: 3rem;
-    /* color: lemonchiffon; */
-    background: #fbfbff;
-    /* background: white; */
-    /* border-radius: 1rem; */
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    /* width: 355px; */
-    /* top: 21px; */
     margin-top: 2rem;
+    background-position: center; /* Centra el fondo en el elemento */
+    background-size: 50%; /* Ajusta el tamaño del fondo al tamaño del elemento */
 }
-.price_heading img{
-	padding-bottom: 3rem;
+.price_heading img {
+    padding-bottom: 3rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 32px;
 }
 .price_heading h2{
 	font-size: 6rem;
@@ -2085,6 +2086,96 @@ footer .menu li a::before{
     color: #0558CB;
     font-weight: 700;
 }
+/*Page content*/
+.page_content > p{
+	font-size: 15px;
+	color: #00203A;
+	max-width: 100%;
+	text-align: justify;
+	line-height: 1.9;
+	margin-bottom: 1em;
+	margin-block-start: 1em;
+
+}
+
+.page_content > h1, 
+.page_content > h2, 
+.page_content > h3, 
+.page_content > h4, 
+.page_content > h5 {
+    line-height: 1.2;
+    color: #00203A;
+    font-weight: 700;
+	margin-block-start: 1rem;
+}
+
+.page_content > h1{
+	font-size: 4.209rem;
+
+}
+
+.page_content > h2{
+	font-size: 3.157rem;
+
+}
+.page_content > h3{
+	font-size: 2.369rem;
+
+}
+.page_content > h4{
+	font-size: 1.777rem;
+
+}
+.page_content > h5{
+	font-size: 12px;
+
+}
+
+.page_content > ul, 
+.page_content > ol{
+	font-size: 15px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+
+}
+
+.page_content > ul{
+	list-style-type: square;
+	color: #00203A;
+
+}
+.page_content > ul,
+.page_content > li{
+	
+	list-style: inherit;
+}
+.page_content > ol,
+.page_content > li{
+	
+	list-style: inherit;
+}
+.page_content > ul > li::marker{
+	
+    content: "\f058"; /* Código de icono de lupa en Font Awesome */
+	font-family: "Font Awesome 5 Pro";
+    color: #09b448; /* Color del icono */
+
+}
+
+.page_content > li {
+    margin: 0 0 10px;
+}
+
+.page_content > ol{
+	list-style-type: decimal;
+	color: #00203A;
+
+
+}
 
 /*Single event and single Bookmaker */
 .single_event_content{
@@ -2093,7 +2184,7 @@ footer .menu li a::before{
 	
 }
 
-.single_event_content p{
+.single_event_content  p{
 	font-size: 1.786rem;
 	color: #00203A;
 	max-width: 100%;
@@ -2107,30 +2198,35 @@ footer .menu li a::before{
 .single_event_title_wrap{
 	justify-content: space-between;
 }
-.single_event_content h1, h2, h3, h4, h5{
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 700;
+
+.single_event_content  h1, 
+.single_event_content  h2, 
+.single_event_content  h3, 
+.single_event_content  h4, 
+.single_event_content  h5 {
+    line-height: 1.2;
+    color: #00203A;
+    font-weight: 700;
 }
 
-.single_event_content h1{
+.single_event_content  h1{
 	font-size: 4.209rem;
 
 }
 
-.single_event_content h2{
+.single_event_content  h2{
 	font-size: 3.157rem;
 
 }
-.single_event_content h3{
+.single_event_content  h3{
 	font-size: 2.369rem;
 
 }
-.single_event_content h4{
+.single_event_content  h4{
 	font-size: 1.777rem;
 
 }
-.single_event_content h5{
+.single_event_content  h5{
 	font-size: 12px;
 
 }
@@ -2152,7 +2248,7 @@ footer .menu li a::before{
 }
 .single_event_content ul li{
 	
-	list-style: inherit;
+	list-style: disc;
 }
 .single_event_content ol li{
 	
@@ -2717,19 +2813,17 @@ blockquote{
 	font-weight: 500;
 }
 .winl{
-	color: #F1F2F3;
 	font-size: 2.2rem;
 	text-transform: uppercase;
 	padding: 0.12rem 1rem;
-	background-color: rgb(36 171 31);
 	border-radius: 0.6rem;
 	position: absolute;
 	right: 5rem;
 	top: 2.4rem;
 }
 .winl.loss{
-	background-color: rgb(236 17 17);
-}
+/* 	background-color: rgb(236 17 17);
+ */}
 
 /*event 2 area start*/
 .event2_box{
@@ -2763,12 +2857,12 @@ blockquote{
 	align-items: center;
 	justify-content: center;
 }
-.event_top_left img{
+/* .event_top_left img{
 	width: 4.3rem;
 }
 .event_top_right img {
     width: 5.4rem;
-}
+} */
 .event_top_middle .p1{
 	font-size: 1.7rem;
 	font-weight: 500;
@@ -3730,16 +3824,14 @@ blockquote{
   width: 666px;
   margin-left: 50px;
 }
-.sub__box--ri h3 {
-  font-size: 48px;
+.sub__box--ri h2 {
+  font-size: 24px;
   color: #00203A;
-  line-height: 64px;
   font-weight: 700;
-  margin-bottom: 12px;
 }
 .sub__box--ri p {
   margin: 0;
-  font-size: 20px;
+  font-size: 14px;
   color: #707070;
   line-height: 27px;
 }
@@ -3755,11 +3847,7 @@ blockquote{
   height: 100%;
   font-size: 18px;
   font-weight: 500;
-  background: #e2af34;
-  background: -moz-linear-gradient(left, #e2af34 0%, #b18800 100%);
-  background: -webkit-linear-gradient(left, #e2af34 0%,#b18800 100%);
-  background: linear-gradient(to right, #e2af34 0%,#b18800 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2af34', endColorstr='#b18800',GradientType=1 );
+  background: #009fe3;
   color: #fff;
   display: flex;
   align-items: center;
@@ -3784,7 +3872,7 @@ blockquote{
   border-radius: 10px;
 }
 .estad-link {
-  width: 120px;
+  width: auto;
   font-size: 2.5rem;
   color: #00203A;
   line-height: 37px;
@@ -3894,6 +3982,9 @@ blockquote{
   border-radius: 5px;
   margin-bottom: 5px;
 }
+.free__table {
+	text-align: center
+}
 
 .free-tabs {
   width: 100%;
@@ -3903,7 +3994,7 @@ blockquote{
   justify-content: space-between;
 }
 .free-link {
-  width: 120px;
+  width: auto;
   color: #00203A;
   line-height: 37px;
   font-weight: 700;
@@ -4091,7 +4182,9 @@ blockquote{
 .str.str-mobile {
 	display: none;
 }
-
+.labelcol{
+	color: #032451;
+}
  .reting__menu--ri.mbl--ret {
 	display: none;
 	margin-bottom: 24px;
@@ -4215,20 +4308,20 @@ a.panel-button {
 	border-radius: 10px;
 	box-shadow: 2px 2px 15px #ccc;
 }
-.banner-bookmaker ul, li{
+.banner-bookmaker >ul > li{
 	list-style: none;
 	padding-inline-start: 10px;
 
 }
-.banner-bookmaker span{
+.banner-bookmaker > span{
 	font-size: 14px;
 }
-.banner-bookmaker i{
+.banner-bookmaker > i{
 	list-style:none;
 	font-size:1rem;
 }
 
-.banner-bookmaker p{
+.banner-bookmaker > p{
 	font-size: 18px;
 }
 
@@ -4242,6 +4335,7 @@ a.panel-button {
 .oddstex {
 
     color: #5a5a5a;
+	font-size: 12px;
 
 }
 

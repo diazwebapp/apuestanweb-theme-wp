@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo substr(get_locale(), 0, 2); ?>">
 <head>
-    <title><?php wp_title(''); ?></title>
+    <title><?php wp_title('');?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<?php wp_head(); ?>
@@ -12,6 +12,7 @@
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
     endif;*/
+
 ?>
 <header class="sticky-top">
 <div class="container">
@@ -49,10 +50,10 @@
 
                                 <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
-                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="/picksplus"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
+                                    <a class="dropdown-item text-dark font-weight-bold my-3" href="/picks"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
 
                                     <hr class="mt-2 mb-3">
-                                    <a class="dropdown-item text-dark my-3" href="'. esc_url( !empty(get_option( 'ihc_general_logout_page' )) ? get_the_permalink(get_option( 'ihc_general_logout_page' )) : wp_logout_url()) .'"><i class="fas fa-sign-out"></i>'.__(' Cerrar sesion','jbetting').'</a>
+                                    <a class="dropdown-item text-dark my-3" href="'. add_query_arg( 'ihcdologout', 'true', wp_logout_url() ).'"><i class="fas fa-sign-out"></i>'.__(' Cerrar sesion','jbetting').'</a>
 
                                 </div>
                             </li>
