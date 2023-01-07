@@ -44,10 +44,10 @@ function aw_get_user_type(){
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
-                            setlocale(LC_ALL,"es_ES");
-$string = "24/11/2014";
-$date = DateTime::createFromFormat("d/m/Y", $string);
-echo strftime("%A",$date->getTimestamp());
+                            setlocale(LC_TIME,"es_ES");
+                            $string = "24/11/2014";
+                            $date = DateTime::createFromFormat("d/m/Y", $string);
+                            echo strftime("%A",$date->getTimestamp());
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
