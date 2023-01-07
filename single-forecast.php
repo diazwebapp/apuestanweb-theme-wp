@@ -173,7 +173,8 @@ function aw_get_user_type(){
                                             </div>
                                             <div class="single_match_time">                    
                                                 <time datetime="<?php echo $datetime->format("Y-m-d h:i") ?>" ><?php echo $datetime->format("h:i a") ?></time>
-                                                <?php echo strftime("%e %b", strtotime($datetime->format("y-m-d"))) ?>                          
+                                                <?php echo date_i18n("d M Y", strtotime($datetime->format("d M Y")));?>   
+                                                                       
                                             </div>
                                             <div class="single_team1">
                                                 <img loading="lazy" src="<?php echo isset($teams["team2"]["logo"]) ? $teams["team2"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
