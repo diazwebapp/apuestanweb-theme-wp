@@ -70,10 +70,12 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
     $flechita_up = get_template_directory_uri(  ) . '/assets/img/love2.png';
     $flechita_down = get_template_directory_uri(  ) . '/assets/img/love1.png';
     $coronita = get_template_directory_uri(  ) . '/assets/img/icon8.svg';
+    $fecha_publicacion = get_the_date('U', $args["forecast"]->ID);
+    $ahora = time();
+    $diferencia = $ahora - $fecha_publicacion;
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
     $link_profile = PERMALINK_PROFILE.'?profile='.$author_id;
     $flechita_indicadora = "";
-
     $rating_ceil = 0;
     $prediction = '';
     $cuote = 0;
@@ -110,13 +112,16 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                         <div class="vip_left_text">
                             <h5>'.$display_name.'</h5>
                              '.var_dump($author_id).'
+                             '.var_dump($display_name).'
                             <div class="pick_box">
                                 <img src="'.$flechita_indicadora.'" class="img-fluid" alt="">
                                 <p>'.$acerted.'-'.$failed.', $'.$rank.', Ult 10 picks</p>
                             </div>
                         </div>
+                        <div class="pplay_icon d-sm-none">
+                            <span class="badge badge-info">' . ($diferencia < 86400 ? 'Nuevo' : '') . '</span>
+                        </div>
                     </div>
-                    <img src="'.$coronita.'" class="pplay_icon d-sm-none" alt="">
                     <p class="game_time d-sm-none d-flex align-items-center justify-content-between">
                         <span>'.$league['name'].'</span>
                         <span>'.$date->format('Y-m-d h:i:s').'</span>
@@ -124,7 +129,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                     <div class="rating d-sm-none">
                         '.$stars.'
                     </div>
+                    
                     <div class="vip_right_content">
+                    <div class="bagde-neww d-sm-block d-none mb_10">
+                        <h3><span class="badge badge-info ">' . ($diferencia < 86400 ? 'Nuevo' : '') . '</span></h3>
+                    </div>
                         <div class="match_time_box">
                             <div class="team_flag_box_wrapper">
                                 <div class="team_flag_box">
@@ -152,10 +161,12 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <p>'.$league['name'].'</p>
                                 </div>
                             </div>
+                            
                             <div class="win_wrap d-sm-none">
                                 '.$html_status.'
                             </div>
                             <div class="d-lg-block d-none"> 
+                                
                                 <div class="league_box_wrapper align-items-center">
                                     <p class="d-lg-block d-none mr_30">
                                     <time>'.$date->format('d-m-Y h:i:s').'</time>
