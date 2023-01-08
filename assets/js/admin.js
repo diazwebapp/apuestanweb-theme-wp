@@ -215,14 +215,13 @@ async function modal_payment_details(button){
                 }
             })
             const res = await req.json()
-            if(res.metas){
+            if(res.metas && res.metas.length > 0){
                 let div = ''
                 for(metas of res.metas){
                     div += `<div><b>${metas.key} :</b> ${metas.value}</div>`
                 }
-                console.log(res.metas)
+                modal_event(button,div)
             }
-            modal_event(button,div)
             
         } catch (error) {
             return console.log(error)
