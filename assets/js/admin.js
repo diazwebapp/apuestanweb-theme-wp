@@ -218,8 +218,7 @@ async function modal_payment_details(button){
             if(res.metas && res.metas.length > 0){
                 let div = ''
                 for(metas of res.metas){
-                    console.log(metas)
-                    div += `<div><b>${metas.key} :</b> ${metas.value}</div>`
+                    div += `<div><b>${metas.meta_key} :</b> ${metas.meta_value}</div>`
                 }
                 modal_event(button,div)
             }
