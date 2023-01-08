@@ -221,6 +221,9 @@ async function modal_payment_details(button){
                     div += `<div><b>${metas.meta_key} :</b> ${metas.meta_value}</div>`
                 }
                 modal_event(button,div)
+            }else{
+                div = "no hay datos"
+                modal_event(button,div)
             }
             
         } catch (error) {
