@@ -204,7 +204,7 @@ function show_toast({msg}){
 async function modal_payment_details(button){
     let payment_id = button.getAttribute("element")
     let toastaction = button.getAttribute("toastaction")
-    if(toastaction === 'show'){
+    if(toastaction == 'show'){
         try {
         
             const req = await fetch(php.rest_url+'aw-payment-history/payment-history-details',{
