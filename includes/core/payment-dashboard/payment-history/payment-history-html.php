@@ -155,13 +155,13 @@ function aw_payment_history(){
               {toast}
         </main>';
         $toast = '<div id="toast-view-payment-details" style="backdrop-filter: blur(3px);display:none;align-content: center;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0, .2);z-index:99999999;" >
-        <div class="row bg-light mx-auto text-center" style="width:320px;height:320px;border-radius:5%;align-items:center;">
+        <div class="row bg-light mx-auto text-center" style="width:320px;min-height:320px;border-radius:5%;align-items:center;">
         
             <div class="col-12 text-center">
-              <div class="toast-body" >
+              <div class="toast-body" style="width:100%;max-height:440px;overflow:auto;" >
                 <b class="title d-block">mensaje</b>
               </div>
-            </div>
+            </div class="col-12 text-right">
                 <button type="button" class="btn btn-secondary px-4 m-5 text-uppercase" toastid="toast-view-payment-details" toastaction="hide" onclick="modal_payment_details(this)" ><p class="h2" >cerrar</p></button>
             </div>
         </div>
