@@ -203,21 +203,25 @@ function show_toast({msg}){
 }
 async function modal_payment_details(button){
     let payment_id = button.getAttribute("element")
-    try {
+    let toastaction = button.getAttribute("toastaction")
+    if(toastaction === 'show'){
+        try {
         
-        const req = await fetch(php.rest_url+'aw-payment-history/payment-history-details',{
-            method:"POST",
-            body:JSON.stringify({payment_id}),
-            headers:{
-                "Content-type": "application/json"
-            }
-        })
-        console.log({payment_id})
-        const res = await req.json()
+            const req = await fetch(php.rest_url+'aw-payment-history/payment-history-details',{
+                method:"POST",
+                body:JSON.stringify({payment_id}),
+                headers:{
+                    "Content-type": "application/json"
+                }
+            })
+            const res = await req.json()
+            modal_event(button)
+            return res
+        } catch (error) {
+            return console.log(error)
+        }
+    }else{
         modal_event(button)
-        return console.log(res)
-    } catch (error) {
-        return console.log(error)
     }
 }
 function modal_event(button){
