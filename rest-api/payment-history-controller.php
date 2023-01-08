@@ -34,7 +34,7 @@ function aw_get_payment_history_metas(WP_REST_Request $request){
     $params = $request->get_json_params();
     global $wpdb ;
     $table = $wpdb->prefix . "aw_payment_history_metas";
-    $sql = "SELECT * FROM $table WHERE payment_history_id = '$params->payment_id' ";
+    $sql = "SELECT * FROM $table WHERE payment_history_id = '{$params["payment_id"]}' ";
     $metas = $wpdb->get_results($sql);
     $response = [];
     $response["metas"] = $metas;
