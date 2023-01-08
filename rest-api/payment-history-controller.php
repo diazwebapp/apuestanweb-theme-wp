@@ -35,12 +35,9 @@ function aw_get_payment_history_metas(WP_REST_Request $request){
     global $wpdb ;
     $table = $wpdb->prefix . "aw_payment_history_metas";
     $sql = "SELECT * FROM $table WHERE payment_history_id = '{$params["payment_id"]}' ";
-    $metas = $wpdb->get_results($sql);
+    $metas = select_payment_history_meta($params["payment_id"]);
     $response = [];
     $response["metas"] = $metas;
-    $response["id"] = $params["payment_id"];
-    $response["id2"] = $$params->payment_id;
-    $response["sql"] = $sql;
     return $response;
 }
 ?>
