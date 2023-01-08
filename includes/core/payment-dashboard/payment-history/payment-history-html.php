@@ -161,7 +161,7 @@ function aw_payment_history(){
               <div class="toast-body" style="width:100%;max-height:440px;overflow:auto;" >
                 <b class="title d-block">mensaje</b>
               </div>
-            </div class="col-12 text-right">
+            <div class="col-12 text-right">
                 <button type="button" class="btn btn-secondary text-uppercase" toastid="toast-view-payment-details" toastaction="hide" onclick="modal_payment_details(this)" ><p class="h2" >cerrar</p></button>
             </div>
         </div>
