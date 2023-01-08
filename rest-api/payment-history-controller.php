@@ -39,7 +39,7 @@ function aw_get_payment_history_metas(WP_REST_Request $request){
     $response = [];
     $response["metas"] = $metas;
     $response["id"] = $params;
-    $response["id"] = $sql;
+    $response["sql"] = $sql;
     return $response;
 }
 ?>
