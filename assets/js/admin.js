@@ -216,9 +216,13 @@ async function modal_payment_details(button){
             })
             const res = await req.json()
             if(res.metas){
+                let div = ''
+                for(metas of res.metas){
+                    div += `<div><b>${metas.key} :</b> ${metas.value}</div>`
+                }
                 console.log(res.metas)
             }
-            modal_event(button)
+            modal_event(button,div)
             
         } catch (error) {
             return console.log(error)
@@ -234,12 +238,12 @@ function modal_event(button,message){
         const toast = document.querySelector(`#${toastid}`)
         const toast_body = toast.querySelector(".toast-body")
         if(toast && toastaction == "show"){
-            toast_body.textContent = "hhhhhhhhh"
+            toast_body.innerHTML = message
             toast.style.display = 'grid';
         }
         if(toast && toastaction == "hide"){
             toast.style.display = 'none';
-            toast_body.textContent = ""
+            toast_body.innerHTML = ""
         }
     }
 }
