@@ -215,8 +215,11 @@ async function modal_payment_details(button){
                 }
             })
             const res = await req.json()
+            if(res.metas){
+                console.log(res.metas)
+            }
             modal_event(button)
-            return res
+            
         } catch (error) {
             return console.log(error)
         }
@@ -224,7 +227,7 @@ async function modal_payment_details(button){
         modal_event(button)
     }
 }
-function modal_event(button){
+function modal_event(button,message){
     let toastid = button.getAttribute("toastid")
     let toastaction = button.getAttribute("toastaction")
     if(toastid){
