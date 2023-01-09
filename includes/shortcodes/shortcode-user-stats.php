@@ -19,73 +19,53 @@ function shortcode_user_stats($atts)
     $img_perc = get_template_directory_uri(  ) .'/assets/img/s56.png';
     $fail_gradient = $stats['porcentaje_fallidos'] + $stats['porcentaje_fallidos'];
     $null_gradient = $fail_gradient + $stats['porcentaje_nulos'];
-
-    $ret = "<div class='single_event_progress_box'>
+    $ret = "<style>
+                .user_graph,.user_graph::before{
+                    width:100px;
+                    height:100px;
+                    background:conic-gradient(#1f78b4 {$stats['porcentaje']}%,#8ed1fc {$stats['porcentaje']}% $fail_gradient%, #b2df8a $fail_gradient% $null_gradient%);
+                    position:relative;
+                    border-radius:50%;
+                }
+                .user_graph::before{
+                    content:'';
+                    left:0;
+                    top:0;
+                    background:white content-box;
+                    position:absolute;
+                    padding:10px;
+                }
+            </style>";
+    $ret .= "<div class='single_event_progress_box'>
     <div class='single_event_progress_left'>
         <img src='$avatar' class='img-fluid' alt=''>
         <p>$display_name</p>
-        
-
-    </div>";
-
-    $total = $acerted + $failed + $nulled;
-
-    if ($total >= 42) {
-    $ret .= "<div>
-    <canvas id='myChart' width='300px' height='140px'></canvas>
-    </div>";
-
-
-    echo "<script>
-    window.onload = function() {
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: ['Acertados', 'Fallidos', 'Nulos'],
-              datasets: [{
-                  label: 'Resultados',
-                  data: [$acerted, $failed, $nulled],
-                  backgroundColor: [
-                    '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56'
-                ],
-                borderColor: [
-                    '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56'
-                ],
-                  borderWidth: 1,
-                  fill: false
-              }]
-          },
-          options: {
-            responsive: true,
-            animation: {
-                duration: 500,
-                easing: 'easeInOutElastic'
-            },
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true
-                      }
-                  }]
-              }
-          }
-      });
-    };
-    </script>";
-}
-else{
-    $ret .= "<div>Estadisticas no disponibles.</div>";
-}
-    
+    </div>
+    <div class='single_event_progress_right'>
+        <div class='progress_img'>
+            <div class='user_graph'>
+            </div> 
+            <p>$rank</p>
+        </div>
+        <div class='progress_percent'>
+            <div class='progress_percent_box'>
+                <p>Aciertos</p>
+                <div class='percent_color text-sm-center'><b>$acerted</b></div>
+            </div>
+            <div class='progress_percent_box'>
+                <p>Fallos</p>
+                <div class='percent_color percent_color2 text-sm-center'><b>$failed</b></div>
+            </div>
+            <div class='progress_percent_box'>
+                <p>Nulos</p>
+                <div class='percent_color percent_color3 text-sm-center'><b>$nulled</b></div>
+            </div>
+        </div>
+    </div>
+</div>";
 
     return $ret;
 }
 
 
 add_shortcode('user_stats', 'shortcode_user_stats');
-?>
