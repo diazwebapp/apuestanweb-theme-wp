@@ -220,6 +220,7 @@ async function modal_payment_details(button){
                 for(metas of res.metas){
                     div += `<div><b>${metas.meta_key} :</b> ${metas.meta_value}</div>`
                 }
+                console.log(res.payment)
                 modal_event(button,div)
             }else{
                 div = "no hay datos"
