@@ -590,12 +590,13 @@ a.btn_2:hover{
 	align-items: center;
 	justify-content: space-between;
 	padding: 1.8rem 2.5rem;
-	border-radius: 4.1rem;
+	border-radius: 1.1rem;
 	margin-top: 1rem;
 }
 .event:nth-child(odd){
 	background-color: #F8FAFC;
 	color: #00203A;
+	border: 1px solid #00203a24;
 }
 .event>p,
 .event>div{
@@ -683,7 +684,12 @@ a.btn_2:hover{
    margin-top: 2rem!important;
    font-size: 1.8rem;
 }
-
+.vip_box a:hover {
+	background: #00b9f2; /* nuevo color de fondo al hacer hover */
+	box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* sombra al hacer hover */
+	cursor: pointer; /* cursor de tipo puntero al hacer hover */
+  }
+  
 /*small blog*/
 .small_blog_area{
 	padding: 8rem 0;
@@ -1598,6 +1604,7 @@ footer .menu li a::before{
 .vip_left_content {
     max-width: 17%;
     flex-basis: 17%;
+	margin-top: 2rem;
 }
 .vip_right_content{
 	max-width: 85%;
@@ -1605,8 +1612,8 @@ footer .menu li a::before{
 	padding-left: 6.5rem;
 }
 .vip_left_content .vip_img img{
-	height: 12rem;
-	width: 12rem;
+	height: 6rem;
+	width: 6rem;
 	border-radius: 50%;
 	object-fit: cover;
 }
@@ -2365,7 +2372,7 @@ blockquote{
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 22.8rem;
+    margin-right: 12.8rem;
 }
 .single_event_progress_left img{
 	height: 12rem;
@@ -3077,6 +3084,12 @@ blockquote{
 	box-shadow: none;
 	margin-top: 1.8rem;
 }
+.event2_box3_middle_content .button:hover {
+	background: #00b9f2; /* nuevo color de fondo al hacer hover */
+	box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* sombra al hacer hover */
+	cursor: pointer; /* cursor de tipo puntero al hacer hover */
+  }
+  
 .eventbanner_wrapper {
     background-color: #001F39;
     padding: 3rem;

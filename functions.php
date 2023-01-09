@@ -142,7 +142,9 @@ function jbetting_src()
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
+    wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js', array(), null, true);
     wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
+
 }
 
 function enqueuing_admin_scripts(){
