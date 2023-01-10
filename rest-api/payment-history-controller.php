@@ -41,11 +41,14 @@ function aw_get_payment_history_metas(WP_REST_Request $request){
     $level_meta = $wpdb->get_row("SELECT label, price FROM $table_levels WHERE id='$payment_history->membership_id' ");
 
     $metas = select_payment_history_meta($params["payment_id"]);
+
+    $level_meta->currency  = !empty(get_option( 'ihc_custom_currency_code', true )) ? get_option( 'ihc_custom_currency_code', true ) : get_option( 'ihc_currency', true );
+
     $response = [];
     $response["payment"] = $payment_history;
     $response["metas"] = $metas;
     $response["membership"] = $level_meta;
-    $response["lid"] = $payment_history->membership_id;
+    
     return $response;
 }
 ?>
