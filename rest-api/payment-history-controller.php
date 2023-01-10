@@ -37,7 +37,8 @@ function aw_get_payment_history_metas(WP_REST_Request $request){
     $sql_ = "SELECT * FROM $table WHERE id = '{$params["payment_id"]}' ";    
     $payment_history = $wpdb->get_row($sql_);
 
-    $level_meta = $wpdb->get_row("SELECT label, price FROM $table WHERE id='$payment_history->membership_id' ");
+    $table_levels = $wpdb->prefix."ihc_memberships";
+    $level_meta = $wpdb->get_row("SELECT label, price FROM $table_level WHERE id='$payment_history->membership_id' ");
 
     $metas = select_payment_history_meta($params["payment_id"]);
     $response = [];
