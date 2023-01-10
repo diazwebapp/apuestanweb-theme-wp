@@ -218,12 +218,15 @@ async function modal_payment_details(button){
             
             if(res.metas && res.metas.length > 0){
                 let div = ''
-                for(metas of res.metas){
-                    div += `<div><b>${metas.meta_key} :</b> ${metas.meta_value}</div>`
+                if(res.payment){
+                    div += `<div><b>username:</b> ${res.payment.username}</div>`
                 }
                 if(res.membership){
                     div += `<div><b>membership :</b> ${res.membership.label}</div>`
                     div += `<div><b>price :</b> ${res.membership.currency} ${res.membership.price}</div>`
+                }
+                for(metas of res.metas){
+                    div += `<div><b>${metas.meta_key} :</b> ${metas.meta_value}</div>`
                 }
                 modal_event(button,div)
             }else{
