@@ -215,13 +215,16 @@ async function modal_payment_details(button){
                 }
             })
             const res = await req.json()
-            console.log(res)
+            
             if(res.metas && res.metas.length > 0){
                 let div = ''
                 for(metas of res.metas){
                     div += `<div><b>${metas.meta_key} :</b> ${metas.meta_value}</div>`
                 }
-                console.log(res.payment)
+                if(res.membership){
+                    div += `<div><b>membership :</b> ${res.membership.label}</div>`
+                    div += `<div><b>price :</b> ${res.membership.currency} ${res.membership.price}</div>`
+                }
                 modal_event(button,div)
             }else{
                 div = "no hay datos"
