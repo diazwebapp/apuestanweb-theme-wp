@@ -215,6 +215,7 @@ async function modal_payment_details(button){
                 }
             })
             const res = await req.json()
+            console.log(res)
             if(res.metas && res.metas.length > 0){
                 let div = ''
                 for(metas of res.metas){
