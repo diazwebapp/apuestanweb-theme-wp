@@ -11,7 +11,7 @@ endif;
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
 $link = carbon_get_post_meta(get_the_ID(), 'link');
-$fecha = date('d M', strtotime($time));
+$fecha = date_i18n('d M', strtotime($time));
 $hora = date('g:i a', strtotime($time));
 $permalink = get_the_permalink();
 $cross_img = get_template_directory_uri(  ) . '/assets/img/cross.png';

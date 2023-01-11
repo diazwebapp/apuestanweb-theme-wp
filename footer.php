@@ -58,8 +58,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 </div>'
                 ?>
                 <div class="d-inline-flex mt_30 p-2 bd-highlight mx-auto align-items-center">   
-                    <span class="mr-4 font-weight-bold s-f f-f">FORMATO DE CUOTAS</span>
-                        
+                    <span class="mr-4 font-weight-bold s-f f-f">FORMATO DE CUOTAS</span>                       
                     <select id="select_odds_format" class="nice-select text-dark text-capitalize">
                         <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
                         <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
