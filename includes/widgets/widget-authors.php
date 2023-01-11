@@ -56,7 +56,7 @@ class w_authors extends WP_Widget {
                             </div>
                             <div class='text_box'>
                                 <h4>$display_name</h4>
-                                <div class='statswg'>  
+                                <div class='statswg text-center'>  
                                     <table class='table'>
                                         <thead>
                                             <tr>                                   

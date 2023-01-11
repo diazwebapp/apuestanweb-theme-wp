@@ -660,9 +660,12 @@ a.btn_2:hover{
 	text-align: center;
 	border-radius: 1rem;
 }
-.vip_box img{
-	width: 8.3rem;
-	margin-bottom: 2.2rem;
+.vip_box img {
+    width: 150px;
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 2.2rem;
 }
 .vip_box h2{
 	font-size: 3.4rem;
@@ -2278,7 +2281,7 @@ footer .menu li a::before{
 
 }
 
-.single_event_content a:link {
+.single_event_content > a:link {
     color: #0558CB;
 	text-decoration: underline;
 
@@ -3064,7 +3067,7 @@ blockquote{
 	align-items: center;
 }
 .event2_box3_middle_content .p1{
-	font-size: 1.2rem;
+	font-size: 1.4rem;
 	font-weight: 700;
 	color: #001F39;
 	text-transform: uppercase;
@@ -4484,7 +4487,7 @@ a.panel-button {
     font-size: 17px;
     font-weight: 600;
     margin-bottom: 8px;
-    color: #00000063;
+    color: #00203a;
 }
   .user-rank {
 	font-size: 18px;
@@ -4522,6 +4525,7 @@ a.panel-button {
   }
   .user-bio {
 	margin-bottom: 1rem;
+	color: #5c5c5c;
   }
 
   .user-social > a {

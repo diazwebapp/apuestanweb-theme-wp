@@ -64,7 +64,7 @@ function aw_get_parleys(WP_REST_Request $request){
     else:
         $home_url = get_home_url( null, '/', null );
         $loop_html["status"] = 'fail';
-        $loop_html["html"] = '<div class="mt-5 alert alert-primary mx-auto" role="alert"><div>'.__("Sin pronósticos disponibles, regresa más tarde!","jbetting").' <a href="'.$home_url.'" class="alert-link">'.__("Ir al Inicio","jbetting").'</a></div></div>';
+        $loop_html["html"] = '<div class="mt-5 alert alert-primary mx-auto w-50" role="alert"><div>'.__("Sin pronósticos disponibles, regresa más tarde!","jbetting").' <a href="'.$home_url.'" class="alert-link">'.__("Ir al Inicio","jbetting").'</a></div></div>';
 
     endif;
 

@@ -47,7 +47,7 @@ function shortcode_related_forecast($atts)
 
         $ret .= '<div class="title_wrap single_event_title_wrap">
                     <h3 class="title-b mt_30 order-lg-1">'.(isset($title) ? $title : '').'</h3>
-                    <a href="'.$sport_url.'" class="mt_10 dropd order-lg-3">Ver Todo</a>
+                    <a href="'.$sport_url.'" class="mt_30 dropd order-lg-3">Ver Todo</a>
                 </div>';
         
     endif;
