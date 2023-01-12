@@ -83,6 +83,35 @@ include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
 include "rest-api/parley-controller.php";
+// Función para obtener publicaciones del CPT "forecast" con la categoría VIP
+
+function get_vip_forecasts() {
+    $args = array(
+        'post_type' => 'forecast',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'league',
+                'field' => 'slug',
+                'terms' => 'vip',
+            ),
+        ),
+    );
+    $query = new WP_Query( $args );
+    return $query->posts;
+}
+
+// Función para guardar los resultados en un transient
+function set_vip_forecasts_transient() {
+    $vip_forecasts = get_vip_forecasts();
+    set_transient( 'vip_forecasts', $vip_forecasts, DAY_IN_SECONDS );
+}
+add_action( 'save_post', 'set_vip_forecasts_transient' );
+
+// función para obtener los datos del transient
+function get_vip_forecasts_transient() {
+    $vip_forecasts = get_transient( 'vip_forecasts' );
+    return $vip_forecasts;
+}
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
@@ -137,12 +166,15 @@ function jbetting_src()
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', true);
     
+
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/js/bootstrap.min.js', array('jquery'), '4.6.1', true);
     wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    wp_enqueue_script('chart-js', 'https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js', array(), null, true);
+    wp_register_script('noti-js', get_template_directory_uri() . '/assets/js/notifi.js', array(), null, true);
+    wp_enqueue_script( 'noti-js' );
+    wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
     wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
 
 }
@@ -423,4 +455,8 @@ function user_rss( $contact_methods ) {
     return $contact_methods;
   }
   add_filter( 'user_contactmethods', 'user_rss' );  
+
+//in functions.php
+
+
 
