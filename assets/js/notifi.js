@@ -1,44 +1,88 @@
-// Función para realizar la llamada AJAX
+
+if (typeof jQuery == 'undefined') {
+    console.log('jQuery is not loaded');
+} else {
+    console.log('jQuery is loaded');
+
+let notificationCount = 0;
+
 function check_vip_forecasts() {
 
     jQuery.ajax({        
         url: dcms_vars.ajaxurl, // URL generada por WordPress
         type: 'POST',
         data: {
-            action: 'get_vip_forecasts_transient', // Nombre de la acción a llamar
+            action: 'get_vip_forecasts_transient_callback', // Nombre de la acción a llamar
         },
         success: function(response) {
             // Procesa la respuesta
-            if (response.length) {
+            if (response.isVip) {
                 // Si hay publicaciones con la categoría VIP, se muestra una notificación
-                show_notification(response);
+                for (var i = 0; i < response.titles.length; i++) {
+                  show_notification(response.titles[i]);
+                }
             } else {
                 // Si no hay publicaciones con la categoría VIP, se oculta la notificación
                 hide_notification();
             }
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
         }
     });
 }
 
+
 // Función para mostrar la notificación
-function show_notification(forecasts) {
-    // Crea el elemento de la notificación
-    var notification = document.createElement('div');
-    notification.id = 'vip-forecasts-notification';
-    notification.innerHTML = 'Hay nuevos pronósticos VIP disponibles!';
-    notification.classList.add('vip-forecasts-notification');
+function show_notification(title) {
+  var dropdown = document.getElementById("notification-dropdown");
+  notificationCount++;
+  updateNotificationCount();
+  // Crea el elemento de la notificación
+  var item = document.createElement('a');
+  item.classList.add('dropdown-item');
+  item.innerHTML = 'Pick VIP: ' + title;
+  item.href = "#";
 
-    // Agrega la notificación a la página
-    document.getElementById("notification-container").appendChild(notification);
+  // Agrega la notificación al dropdown
+  dropdown.appendChild(item);
 }
 
-// Función para ocultar la notificación
+const notificationButton = document.getElementById("notification-button");
+const notificationCounter = document.getElementById("notification-counter");
+
+notificationButton.addEventListener("click", function() {
+    notificationCounter.innerHTML = 0; // Pasar el contador a cero
+    jQuery.ajax({
+        url: dcms_vars.ajaxurl,
+        type: 'POST',
+        data: {
+            action: 'mark_notifications_as_read_callback'
+        },
+        success: function(response) {
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
+    });
+});
+
 function hide_notification() {
-    var notification = document.getElementById('vip-forecasts-notification');
-    if (notification) {
-        notification.remove();
-    }
+  var notification = document.getElementById('vip-forecasts-notification');
+  if (notification) {
+      notification.remove();
+  }
+
+  notificationCount--;
+  updateNotificationCount();
 }
 
-// Ejecuta la función para comprobar las publicaciones VIP cada 10 segundos
-setInterval(check_vip_forecasts, 10000);
+function updateNotificationCount() {
+  document.getElementById("notification-counter").innerHTML = notificationCount;
+}
+
+
+
+}
+
+document.addEventListener('DOMContentLoaded', check_vip_forecasts);

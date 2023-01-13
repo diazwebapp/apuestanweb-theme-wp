@@ -114,3 +114,10 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
 </body>
 </html>
+<?php /*
+    $post_type = get_post_type( );
+    if($post_type == "bk" and is_single()):
+        echo do_shortcode("[slide_forecasts model='2']");
+    endif;*/
+    var_dump($vip_forecasts = get_transient( 'vip_forecasts' ));
+?>

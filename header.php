@@ -39,9 +39,20 @@
                 <?php 
                     if(is_user_logged_in( )):
                     echo '
+                    
+                    <div class="navbar navbar-expand-lg">
 
-                                      
-                    <div class="navbar navbar-expand-lg ">
+                    <div class="dropdown">
+                        <button id="notification-button" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="
+                        font-size: 2rem;">
+                            <i class="fas fa-bell"></i>
+                            <span id="notification-counter" class="badge badge-light">0</span>
+                        </button>
+                        <div class="dropdown-menu" id="notification-dropdown" aria-labelledby="dropdownMenuButton">
+                            <!-- Aquí se agregarán las notificaciones -->
+                        </div>
+                    </div>
+                  
 
                     <div class="navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
@@ -62,7 +73,6 @@
                             </li>
                         </ul>
                     </div>
-                    <div id="notification-container"></div>
                 </div>';
                     else:
                         echo '<a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_the_permalink(get_option( 'ihc_general_login_default_page' )) : wp_login_url()) .'" class="btn_2 headerlgn mr-2" aria-label="Acceder"><i class="far fa-user"></i></a>';

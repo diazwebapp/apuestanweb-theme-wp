@@ -102,9 +102,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                         <div class='event2_box3_middle'>
                             <div class='event2_box3_middle_content'>
                                 <div>
-                                    <img class='img-fluid' width='170px' height='70px' src='".get_template_directory_uri() . '/assets/img/apnpls.svg'."'  alt='ApuestanPlus'>
+                                    <img class='img-fluid' width='170px' height='40px' src='".get_template_directory_uri() . '/assets/img/apnpls.svg'."'  alt='ApuestanPlus'>
                                     <p class='p1'>CONVIERTE EN MIEMBRO PREMIUM</p>
-                                    <p class='p2'></p>
                                     <a href='{$params['vip_link']}' class='button'>
                                         {$params['text_vip_link']}
                                     </a>

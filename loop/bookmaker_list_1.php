@@ -10,7 +10,7 @@ $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 
 $rating_ceil = ceil(carbon_get_post_meta($args["post"]->ID, 'rating'));
 $ref = carbon_get_post_meta($args["post"]->ID, 'ref');
-$permalink = get_the_permalink($args["post"]->ID);
+$permalink = get_the_permalink();
 $bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
 $feactures = carbon_get_post_meta($args["post"]->ID, 'feactures');
 $html_feactures = "";
@@ -22,7 +22,7 @@ endif;
 
 $title = get_the_title($args["post"]->ID);             
 
-            echo "<div class='bookmaker_box_wrapper mt_30 col-12'>
+            echo "<div class='bookmaker_box_wrapper mt_30'>
                 <div class='bookmaker_left_content'>
                     <div class='d-md-none d-block'>
                         <div class='bookamker_rating_box'>
@@ -32,12 +32,12 @@ $title = get_the_title($args["post"]->ID);
                 echo "      </div>
                         </div>
                     </div>
-                    <div class='bookmaker_logo_box container_logo_review' style='background:$bg_att;' >
+                    <div class='bookmaker_logo_box' style='background:$bg_att;' >
                         <img src=' $image_png ' width='100' height='40' class='img-fluid' alt=' $title '>
                     </div>
                     <div class='bookmaker_left_text'>
                         <div class='bookmaker_left_heading'>
-                            <a href='$permalink' ><h4> $title </h4></a>
+                            <h4> $title </h4>
 
                         </div>
                         <div class='bookmaker_left_last_text'>
@@ -46,7 +46,7 @@ $title = get_the_title($args["post"]->ID);
                     </div>
                 </div>
                 <div class='bookmaker_left_check'>
-                    <img src='img/s21.svg' class='img-fluid' alt=''>
+                    <img src='img/s21.svg' class='img-fluid' alt='$title'>
                     <p>{$bonus_slogan}</p>
                 </div>
                 <div class='bookmaker_right_content'>
@@ -58,7 +58,7 @@ $title = get_the_title($args["post"]->ID);
             echo                "</div>
                         </div>
                     </div>
-                    <div class='bookmaker_right_btn mt-5'>
+                    <div class='bookmaker_right_btn'>
                         <a href='$ref' class='btn_2'>Quiero Apostar</a>
                     </div>
                 </div>

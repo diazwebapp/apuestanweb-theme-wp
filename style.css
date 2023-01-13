@@ -4588,8 +4588,17 @@ a.panel-button {
 .stat-box:hover{
     transform: scale(1.1);
 }
-#notification-container {
-    background-color: yellow;
-    border: 1px solid red;
-    padding: 10px;
-}
+#notification-panel{
+	display: none;
+  }
+  #notification-panel.show{
+	display: block;
+  }
+  
+  /* Estilos para el panel y las notificaciones */
+  .notification-panel {
+	/* estilos */
+  }
+  .notification-item {
+	/* estilos */
+  }
