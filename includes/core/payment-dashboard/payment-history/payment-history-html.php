@@ -21,7 +21,11 @@ function generate_history_payment_table(){
     
   }
   
-  $query = select_payment_history($params);
+  $params["paged"] = isset($_GET["paged"]) ? $_GET["paged"] : 20;
+  
+  $data_history = select_payment_history($params);
+  
+  
   $table_html = '<table class="table table-hover " >
       <thead>
         <tr>
@@ -37,9 +41,10 @@ function generate_history_payment_table(){
   $table_data["tbody"] = '';
     $html_th = "";
     $html_td;
-    if(!is_wp_error( $query ) and count($query) > 0):
+    
+    if(!is_wp_error( $data_history ) and count($data_history["posts"]) > 0):
       $col = 0;
-      foreach ($query as $key => $value) {
+      foreach ($data_history["posts"] as $key => $value) {
         $llaves = get_object_vars($value);
         $table_data["tbody"] .= '<tr>';
         $html_th = "<th>n</th>";
@@ -88,6 +93,18 @@ function generate_history_payment_table(){
 
     $table_html = str_replace("{thead_data}",$table_data["thead"],$table_html);
     $table_html = str_replace("{tbody_data}",$table_data["tbody"],$table_html);
+
+    $path = $_SERVER["REQUEST_URI"];
+    
+    if($data_history["total"] >= $data_history["current"]){
+      
+      $params["paged"] += 10;
+      if($data_history["total"] <= $params["paged"]){
+        $params["paged"] = $data_history["total"];
+      }
+      $table_html .= '<div class="mt-5 text-center"><a class="btn btn-primary" href="'.$path.'&paged='.$params["paged"].'">mas</a></div>';
+      
+    }
     return $table_html;
 }
 

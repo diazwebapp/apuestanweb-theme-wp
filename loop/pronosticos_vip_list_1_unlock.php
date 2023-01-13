@@ -111,8 +111,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                         </div>
                         <div class="vip_left_text">
                             <h5>'.$display_name.'</h5>
-                             '.var_dump($author_id).'
-                             '.var_dump($display_name).'
+                             '.$author_id.'
+                             '.$display_name.'
                             <div class="pick_box">
                                 <img src="'.$flechita_indicadora.'" class="img-fluid" alt="">
                                 <p>'.$acerted.'-'.$failed.', $'.$rank.', Ult 10 picks</p>

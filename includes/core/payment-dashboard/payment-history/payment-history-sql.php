@@ -59,7 +59,7 @@ function insert_payment_history_meta($data){
     return $insert;
 }
 
-function select_payment_history($params=["status"=>"completed","username"=>"","date"=>false,"date_2"=>false]){
+function select_payment_history($params=["status"=>"completed","username"=>"","date"=>false,"date_2"=>false,"paged"=>1]){
     global $wpdb ;
     $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' ";
 
@@ -73,7 +73,17 @@ function select_payment_history($params=["status"=>"completed","username"=>"","d
         $sql_ .= "AND username LIKE '%{$params["username"]}%'";
     }
     
-    $results = $wpdb->get_results($sql_);
+    $count= $wpdb->get_results($sql_);
+
+    $results["total"] = count($count);
+    $results["current"] = intval($params["paged"]);
+
+    if($results["total"] >= $results["current"]){
+        $sql_ .= "LIMIT {$results["current"]}";
+    }else{
+        $sql_ .= "LIMIT {$results["total"]}";
+    }
+    $results["posts"] = $wpdb->get_results($sql_);
 
     return $results;
 }
