@@ -186,7 +186,6 @@ function aw_get_user_type(){
                                     <div class="single_event_content text-break">
                                         
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
-                                        <?php remove_filter( 'the_content', 'wpautop' );?>		
                                         <?php the_content() ?>                                                                          	
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
                                     </div>
