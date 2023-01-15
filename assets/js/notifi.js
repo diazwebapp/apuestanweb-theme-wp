@@ -60,6 +60,7 @@ notificationButton.addEventListener("click", function() {
             action: 'mark_notifications_as_read_callback'
         },
         success: function(response) {
+            console.log("Notificaciones marcadas como leídas");
         },
         error: function(xhr, status, error) {
             console.log(error);
@@ -67,8 +68,24 @@ notificationButton.addEventListener("click", function() {
     });
 });
 
+document.getElementById("clear-btn").addEventListener("click", function(){
+    jQuery.ajax({
+        url: dcms_vars.ajaxurl,
+        type: 'POST',
+        data: {
+            action: 'clear_notifications'
+        },
+        success: function(response) {
+            // vaciar el contenedor de las notificaciones
+            document.getElementById("notification-dropdown").innerHTML = "";
+            // o ocultar el boton de "clear all"
+            document.getElementById("clear-btn").style.display = "none";
+        }
+    });
+});
+
 function hide_notification() {
-  var notification = document.getElementById('vip-forecasts-notification');
+  var notification = document.getElementById('notification-counter');
   if (notification) {
       notification.remove();
   }

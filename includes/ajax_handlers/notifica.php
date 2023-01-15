@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Función para obtener publicaciones del CPT "forecast" con la categoría VIP
 
@@ -28,10 +29,14 @@ function set_vip_forecasts_transient() {
     $vip_forecasts_with_terms = array();
     foreach ($vip_forecasts as $forecast) {
         $forecast->terms = wp_get_post_terms( $forecast->ID, 'league' );
+        $forecast->leido = false;
         $vip_forecasts_with_terms[] = $forecast;
     }
-    set_transient( 'vip_forecasts', $vip_forecasts_with_terms, DAY_IN_SECONDS );
+/*set_transient( 'vip_forecasts', $vip_forecasts_with_terms, DAY_IN_SECONDS );*/
+    $_SESSION['vip_forecasts'] = $vip_forecasts_with_terms;
+
 }
+
 add_action( 'save_post', 'set_vip_forecasts_transient' );
 
 
@@ -50,7 +55,9 @@ add_action( 'publish_post', 'custom_publish_vip_forecast' );
 
 // función para obtener los datos del transient
 function get_vip_forecasts_transient() {
-    $vip_forecasts = get_transient( 'vip_forecasts' );
+    // $vip_forecasts = get_transient( 'vip_forecasts' );
+    $vip_forecasts = $_SESSION['vip_forecasts'];
+
     return $vip_forecasts;
 }
 
@@ -74,7 +81,13 @@ function get_vip_forecasts_transient_callback() {
             }
         }
     }
+/*     wp_send_json( array( 'isVip' => $is_vip, 'titles' => $vip_forecasts_titles ) );
+ */
+if (!isset($_SESSION['vip_forecasts']) || !$_SESSION['vip_forecasts']) {
+    wp_send_json( array( 'isVip' => false, 'titles' => array() ) );
+} else {
     wp_send_json( array( 'isVip' => $is_vip, 'titles' => $vip_forecasts_titles ) );
+}
 }
 
 add_action( 'wp_ajax_get_vip_forecasts_transient_callback', 'get_vip_forecasts_transient_callback' );
@@ -92,3 +105,10 @@ function mark_notifications_as_read_callback() {
     wp_send_json_success();
 }
 add_action( 'wp_ajax_mark_notifications_as_read_callback', 'mark_notifications_as_read_callback' );
+
+
+function clear_notifications() {
+    $_SESSION['vip_forecasts'] = array();
+    unset($_SESSION['vip_forecasts']);
+}
+add_action( 'wp_ajax_clear_notifications', 'clear_notifications' );
