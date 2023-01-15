@@ -23,7 +23,7 @@ function get_vip_forecasts() {
     return $posts;
 }
 
-// Función para guardar los resultados en un transient
+// Función para guardar los resultados en una sesion
 function set_vip_forecasts_transient() {
     $vip_forecasts = get_vip_forecasts();
     $vip_forecasts_with_terms = array();
@@ -34,9 +34,9 @@ function set_vip_forecasts_transient() {
     }
 /*set_transient( 'vip_forecasts', $vip_forecasts_with_terms, DAY_IN_SECONDS );*/
     $_SESSION['vip_forecasts'] = $vip_forecasts_with_terms;
+    
 
 }
-
 add_action( 'save_post', 'set_vip_forecasts_transient' );
 
 
@@ -46,11 +46,13 @@ function custom_publish_vip_forecast( $post_id ) {
     if ( $post_type == 'forecast' ) {
         $terms = wp_get_post_terms( $post_id, 'league' );
         $vip_term = get_term_by( 'slug', 'vip', 'league' );
-        if ( in_array( $vip_term, $terms ) ) {
+        $is_new_post = get_post_meta($post_id, '_edit_last', true) == 0;
+        if ( in_array( $vip_term, $terms ) && $is_new_post ) {
             set_vip_forecasts_transient();
         }
     }
 }
+
 add_action( 'publish_post', 'custom_publish_vip_forecast' );
 
 // función para obtener los datos del transient
@@ -67,6 +69,7 @@ function register_vip_forecasts_ajax_action() {
 add_action( 'init', 'register_vip_forecasts_ajax_action' );
 
 // Callback de la acción AJAX
+
 function get_vip_forecasts_transient_callback() {
     $vip_forecasts = get_vip_forecasts();
     $is_vip = false;
@@ -81,8 +84,7 @@ function get_vip_forecasts_transient_callback() {
             }
         }
     }
-/*     wp_send_json( array( 'isVip' => $is_vip, 'titles' => $vip_forecasts_titles ) );
- */
+
 if (!isset($_SESSION['vip_forecasts']) || !$_SESSION['vip_forecasts']) {
     wp_send_json( array( 'isVip' => false, 'titles' => array() ) );
 } else {
@@ -101,7 +103,6 @@ function mark_notifications_as_read_callback() {
         return;
     }
     // aqui marcas como leido
-    set_transient( $transient_name, $notifications, DAY_IN_SECONDS );
     wp_send_json_success();
 }
 add_action( 'wp_ajax_mark_notifications_as_read_callback', 'mark_notifications_as_read_callback' );

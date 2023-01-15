@@ -44,8 +44,8 @@
                     <div class="navbar navbar-expand-lg">
 
                     <div class="dropdown">
-                        <button id="notification-button" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="
-                        font-size: 2rem;">
+                        <button id="notification-button" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="
+                        font-size: 1.5rem; margin-right: 1rem;">
                             <i class="fas fa-bell"></i>
                             <span id="notification-counter" class="badge badge-light">0</span>
                         </button>

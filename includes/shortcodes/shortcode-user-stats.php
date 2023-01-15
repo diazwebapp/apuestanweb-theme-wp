@@ -36,9 +36,9 @@ function shortcode_user_stats($atts)
             <li class='nav-item'>
             <a class='nav-link active' data-toggle='tab' href='#profile'>Perfil</a>
             </li>
-            <li class='nav-item'>
+            <!--  <li class='nav-item'>
             <a class='nav-link' data-toggle='tab' href='#stats'>Stats</a>
-            </li>
+            </li>-->
             <li class='nav-item'>
             <a class='nav-link' data-toggle='tab' href='#posts'>Picks</a>
             </li>
@@ -61,9 +61,9 @@ function shortcode_user_stats($atts)
             </div>
             </div>
             </div>
-            <div id='stats' class='container tab-pane'>
+           <!--<div id='stats' class='container tab-pane'>
             <h3 class='text-center mb-4'>Estadísticas</h3>
-            <div class='d-flex justify-content-center user-stats flex-wrap'>
+             <div class='d-flex justify-content-center user-stats flex-wrap'>
                 <div class='d-flex flex-column m-3 stat-box'>
                     <p class='stat-value'>$rank</p>
                     <p class='stat-label'>Profit</p>
@@ -81,7 +81,7 @@ function shortcode_user_stats($atts)
                     <p class='stat-label'>Nulos</p>
                 </div>
             </div>
-        </div>
+            </div>-->
             <div id='posts' class='container tab-pane'>
             <h3 class='section-title'>Últimos pronósticos</h3>
             <div class='list-group'>";

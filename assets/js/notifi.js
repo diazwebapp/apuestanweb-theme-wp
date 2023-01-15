@@ -67,7 +67,7 @@ notificationButton.addEventListener("click", function() {
         }
     });
 });
-
+// limpiar panel de notificaciones 
 document.getElementById("clear-btn").addEventListener("click", function(){
     jQuery.ajax({
         url: dcms_vars.ajaxurl,
@@ -83,6 +83,7 @@ document.getElementById("clear-btn").addEventListener("click", function(){
         }
     });
 });
+
 
 function hide_notification() {
   var notification = document.getElementById('notification-counter');
