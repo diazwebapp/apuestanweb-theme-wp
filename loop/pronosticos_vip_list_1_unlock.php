@@ -59,8 +59,7 @@ if ($sport_term) {
 }
 
 if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
-    $author_id = get_the_ID();
-    var_dump($args["forecast"]);
+    $author_id = $args["forecast"]->post_author;
     //$author_id = get_post_field( 'post_author', get_the_ID() );
     $acerted = get_the_author_meta("forecast_acerted", $author_id );
     $failed = get_the_author_meta("forecast_failed", $author_id );
