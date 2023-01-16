@@ -11,7 +11,7 @@ class w_bookmakers extends WP_Widget{
     }
 
     public function widget($args, $instance){
-        $title = isset($instance['title']) ? __( $instance['title'], 'jbetting' ) : __( 'TOP bookmaker', 'jbetting' );
+        $title = isset($instance['title']) ? __( $instance['title'], 'jbetting' ) : esc_html__( 'TOP bookmaker', 'jbetting' );
         $limit = !empty($instance['limit']) ? $instance['limit'] : 10;
         $location = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
@@ -41,7 +41,7 @@ class w_bookmakers extends WP_Widget{
                 endforeach;
             endif;
         endif;
-        
+
         if ($bookmakers and count($bookmakers) > 0) {
             echo '<div class="col-lg-12 col-md-6">
                     <div class="side_box mt_30">

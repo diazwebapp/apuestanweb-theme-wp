@@ -41,7 +41,7 @@ add_action( 'save_post', 'set_vip_forecasts_transient' );
 
 
 // verificando el tipo de publicación y si tiene la categoría vip
-function custom_publish_vip_forecast( $post_id ) {
+/* function custom_publish_vip_forecast( $post_id ) {
     $post_type = get_post_type( $post_id );
     if ( $post_type == 'forecast' ) {
         $terms = wp_get_post_terms( $post_id, 'league' );
@@ -53,7 +53,7 @@ function custom_publish_vip_forecast( $post_id ) {
     }
 }
 
-add_action( 'publish_post', 'custom_publish_vip_forecast' );
+add_action( 'publish_post', 'custom_publish_vip_forecast' ); */
 
 // función para obtener los datos del transient
 function get_vip_forecasts_transient() {
