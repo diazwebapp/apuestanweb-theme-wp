@@ -41,7 +41,12 @@ class w_bookmakers extends WP_Widget{
                 endforeach;
             endif;
         endif;
-        
+        echo "location <br/>";
+        var_dump($aw_system_location);
+        echo "arreglo de bk<br/>";
+        var_dump($bookmakers);
+        echo "query <br/>";
+        var_dump($query->posts);
         if ($bookmakers and count($bookmakers) > 0) {
             echo '<div class="col-lg-12 col-md-6">
                     <div class="side_box mt_30">
