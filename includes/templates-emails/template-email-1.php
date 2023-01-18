@@ -315,7 +315,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="color: #f5efef; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 140%; text-align: center;">Email sent from <a rel="noopener" href="{blogurl}" target="_blank">{blogname}</a></p>
+        <p style="font-size: 14px; line-height: 140%; text-align: center;">Email sent from <a rel="noopener" href="{blogurl}" target="_blank">{blogurl}</a></p>
       </div>
     
           </td>
@@ -352,7 +352,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
     <p style="font-size: 14px; line-height: 140%;"> </p>
     <p style="font-size: 14px; line-height: 140%;">Your Username: {username}</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Have a nice day! {blogurl}</p>';
+    <p style="font-size: 14px; line-height: 140%;">Have a nice day!</p>';
 
     if($params["message"] != ""){
       $message = $params["message"]; 
