@@ -1,5 +1,5 @@
 <?php
-function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"#","message"=>false]){
+function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"#","message"=>"","blogurl"=>"","admin_email"=>""]){
     $html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
@@ -143,7 +143,9 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
       <tbody>
         <tr>
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
-            
+          <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
+            <img src="https://www.apuestan.net/wp-content/themes/aw_wp_theme/assets/img/logo.svg" />
+        </div>
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%; text-align: center;"><strong>Notification</strong></p>
       </div>
@@ -278,7 +280,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="color: #ecf0f1; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 140%; text-align: center;">Please contact to member@apuestan.com</p>
+        <p style="font-size: 14px; line-height: 140%; text-align: center;">Please contact to {admin_email}</p>
       </div>
     
           </td>
@@ -313,7 +315,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="color: #f5efef; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 140%; text-align: center;">Email sent from <a rel="noopener" href="https://www.apuestan.com" target="_blank">www.apuestan.com</a></p>
+        <p style="font-size: 14px; line-height: 140%; text-align: center;">Email sent from <a rel="noopener" href="{blogurl}" target="_blank">{blogname}</a></p>
       </div>
     
           </td>
@@ -350,15 +352,17 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
     <p style="font-size: 14px; line-height: 140%;"> </p>
     <p style="font-size: 14px; line-height: 140%;">Your Username: {username}</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Have a nice day!</p>';
+    <p style="font-size: 14px; line-height: 140%;">Have a nice day! {blogurl}</p>';
 
-    if($params["message"]){
-     $message = $params["message"]; 
+    if($params["message"] != ""){
+      $message = $params["message"]; 
     }
     $html = str_replace("{message}",$message,$html);
     $html = str_replace("{vip_page}",$params["vip_link"],$html);
     $html = str_replace("{blogname}",$params["blogname"],$html);
     $html = str_replace("{username}",$params["username"],$html);
+    $html = str_replace("{blogurl}",$params["blogurl"],$html);
+    $html = str_replace("{admin_email}",$params["admin_email"],$html);
 
     return $html;
 }

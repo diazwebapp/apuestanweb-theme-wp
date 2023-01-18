@@ -339,6 +339,7 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
         
         $memberInfo = get_user_by( 'login', $data_notifi->username );
         $blogname = get_bloginfo( "name" );
+        $blogurl = get_bloginfo( "url" );
         $admin_email = get_option( "admin_email" );
 
         function fix_html() {
@@ -353,22 +354,22 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
             if($status=="completed"){
                 $message = '
                 <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is approved.</p>';
-                $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
             }
             if($status=="pending"){
                 $message = '
                 <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is waiting to be approved.</p>';
-                $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
 
             }
             if($status=="failed"){
                 $message = '
                 <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your membership could not be verified, please record your payment or contact technical support.</p>';
-                $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
 
             }
         }else{
-            $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+            $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
         }
         if(is_wp_error( $body )){
 
