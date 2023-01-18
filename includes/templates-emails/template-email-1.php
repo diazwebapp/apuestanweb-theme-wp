@@ -119,7 +119,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
       <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="left">
           
-          <img align="left" border="0" src="images/image-1.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 230px;" width="230"/>
+          <img align="left" border="0" src="https://www.apuestan.net/wp-content/themes/aw_wp_theme/assets/img/event-logo.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 230px;" width="230"/>
           
         </td>
       </tr>
@@ -143,9 +143,6 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
       <tbody>
         <tr>
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
-          <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
-            <img src="https://www.apuestan.net/wp-content/themes/aw_wp_theme/assets/img/logo.svg" />
-        </div>
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%; text-align: center;"><strong>Notification</strong></p>
       </div>
