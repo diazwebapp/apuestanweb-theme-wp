@@ -352,12 +352,12 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
         if(isset($status)){
             if($status=="completed"){
                 $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hellow {username}, Your account is approved.</p>';
+                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is approved.</p>';
                 $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
             }
             if($status=="pending"){
                 $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hellow {username}, Your account is approved.</p>';
+                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is waiting to be approved.</p>';
                 $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
 
             }
