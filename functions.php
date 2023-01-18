@@ -351,11 +351,14 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
         }
         if(isset($status)){
             if($status=="completed"){
-
-                $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>"completed"]);
+                $message = '
+                <p style="font-size: 14px; line-height: 140%;">Hellow {username}, Your account is approved.</p>';
+                $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
             }
             if($status=="pending"){
-                $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>"pending"]);
+                $message = '
+                <p style="font-size: 14px; line-height: 140%;">Hellow {username}, Your account is approved.</p>';
+                $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
 
             }
         }else{

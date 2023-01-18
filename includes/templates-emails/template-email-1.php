@@ -200,15 +200,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 140%;">Thanks for registering on {blogname}. Your account is waiting to be approved.</p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Once your Account is approved you can login using your credentials on:</p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;"><a rel="noopener" href="{vip_page}" rel="nofollow noreferrer noopener" target="_blank">pagina vip</a></p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Your Username: {username}</p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Have a nice day!</p>
+        {message}
       </div>
     
           </td>
@@ -350,8 +342,20 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
     
     </html>
     ';
-    
-    
+    $message = '<p style="font-size: 14px; line-height: 140%;">Thanks for registering on {blogname}. Your account is waiting to be approved.</p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;">Once your Account is approved you can login using your credentials on:</p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;"><a rel="noopener" href="{vip_page}" rel="nofollow noreferrer noopener" target="_blank">pagina vip</a></p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;">Your Username: {username}</p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;">Have a nice day!</p>';
+
+    if($params["message"]){
+     $message = $params["message"]; 
+    }
+    $html = str_replace("{message}",$message,$html);
     $html = str_replace("{vip_page}",$params["vip_link"],$html);
     $html = str_replace("{blogname}",$params["blogname"],$html);
     $html = str_replace("{username}",$params["username"],$html);
