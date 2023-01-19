@@ -59,30 +59,38 @@ function insert_payment_history_meta($data){
     return $insert;
 }
 
-function select_payment_history($params=["status"=>"completed","username"=>"","date"=>false,"date_2"=>false]){
+function select_payment_history($params=["status"=>"completed","username"=>"","date"=>false,"date_2"=>false,"paged"=>1]){
     global $wpdb ;
     $sql_ = "SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE status = '{$params["status"]}' ";
 
-    if($params["date"] and !$params["date_2"]){
+    if(isset($params["date"]) and !isset($params["date_2"])){
         $sql_ .= "AND DATE(payment_date) = '{$params["date"]}' ";
      }
-    if($params["date"] and $params["date_2"]){
+    if(isset($params["date"]) and isset($params["date_2"])){
         $sql_ .="AND DATE(payment_date) BETWEEN '{$params["date"]}' AND '{$params["date_2"]}' ";
      }
-    $sql_ .= "AND username LIKE '%{$params["username"]}%'";
+     if(isset($params["username"])){
+        $sql_ .= "AND username LIKE '%{$params["username"]}%'";
+    }
     
-    $results = $wpdb->get_results($sql_);
-    foreach($results as $key => $rs):
-        $rs_metas = select_payment_history_meta($rs->id);
-        $results[$key]->metas = $rs_metas;
-    endforeach;
+    $count= $wpdb->get_results($sql_);
+
+    $results["total"] = count($count);
+    $results["current"] = intval($params["paged"]);
+
+    if($results["total"] >= $results["current"]){
+        $sql_ .= "LIMIT {$results["current"]}";
+    }else{
+        $sql_ .= "LIMIT {$results["total"]}";
+    }
+    $results["posts"] = $wpdb->get_results($sql_);
 
     return $results;
 }
 
 function select_payment_history_meta($account_id){
     global $wpdb ;
-    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_PAYMENT_HISTORY_METAS." WHERE payment_history_id='$account_id'");
+    $results = $wpdb->get_results("SELECT * FROM ".MYSQL_PAYMENT_HISTORY_METAS." WHERE payment_history_id = '$account_id' ");
     
     return $results;
 }
@@ -90,7 +98,7 @@ function update_payment_history($data,$id){
     global $wpdb;
     
     $update = $wpdb->update(MYSQL_PAYMENT_HISTORY,$data,$id);
-    aw_notificacion_membership($id['id']);
+    aw_notificacion_membership($id['id'],$status=$data["status"]);
     return $update;
 }
 function aw_get_history_insert_data($level_id,$payment_account_id,$username,$status){
@@ -112,5 +120,6 @@ function aw_get_history_insert_data($level_id,$payment_account_id,$username,$sta
 }
 add_action('init','create_payment_control_table');
 add_action('init','create_payment_control_table_2');
+
 
 ?>

@@ -22,8 +22,8 @@ $params = get_query_var('params');
             $button_label = $level['button_label'];
         }
         $count++;
-        $table = $wpdb->prefix."ihc_memberships";
         global $wpdb;
+        $table = $wpdb->prefix."ihc_memberships";
         $level_meta = $wpdb->get_row("SELECT payment_type, short_description, label, price FROM $table WHERE id=$id");
         
         $html['tmp_menu_bar'] .= '<li class="nav-item">

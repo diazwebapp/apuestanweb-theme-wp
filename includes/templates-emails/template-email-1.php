@@ -1,5 +1,5 @@
 <?php
-function aw_email_templates($params=["blogname"=>"","username"=>""]){
+function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"#","message"=>"","blogurl"=>"","admin_email"=>""]){
     $html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
@@ -119,7 +119,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
       <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="left">
           
-          <img align="left" border="0" src="images/image-1.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 230px;" width="230"/>
+          <img align="left" border="0" src="{blogurl}/wp-content/themes/aw_wp_theme/assets/img/event-logo.png" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 230px; margin:auto;" width="230"/>
           
         </td>
       </tr>
@@ -143,7 +143,6 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
       <tbody>
         <tr>
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
-            
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
         <p style="font-size: 14px; line-height: 140%; text-align: center;"><strong>Notification</strong></p>
       </div>
@@ -200,15 +199,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 140%;">Thanks for registering on {blogname}. Your account is waiting to be approved.</p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Once your Account is approved you can login using your credentials on:</p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;"><a rel="noopener" href="{vip_page}" rel="nofollow noreferrer noopener" target="_blank">pagina vip</a></p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Your Username: {username}</p>
-    <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Have a nice day!</p>
+        {message}
       </div>
     
           </td>
@@ -286,7 +277,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="color: #ecf0f1; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 140%; text-align: center;">Please contact to member@apuestan.com</p>
+        <p style="font-size: 14px; line-height: 140%; text-align: center;">Please contact to {admin_email}</p>
       </div>
     
           </td>
@@ -321,7 +312,7 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
           <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div style="color: #f5efef; line-height: 140%; text-align: left; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 140%; text-align: center;">Email sent from <a rel="noopener" href="https://www.apuestan.com" target="_blank">www.apuestan.com</a></p>
+        <p style="font-size: 14px; line-height: 140%; text-align: center;">Email sent from <a rel="noopener" href="{blogurl}" target="_blank">{blogurl}</a></p>
       </div>
     
           </td>
@@ -350,11 +341,25 @@ function aw_email_templates($params=["blogname"=>"","username"=>""]){
     
     </html>
     ';
-    
-    $vip_link = PERMALINK_VIP;
-    $html = str_replace("{vip_page}",$vip_link,$html);
+    $message = '<p style="font-size: 14px; line-height: 140%;">Thanks for registering on {blogname}. Your account is waiting to be approved.</p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;">Once your Account is approved you can login using your credentials on:</p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;"><a rel="noopener" href="{vip_page}" rel="nofollow noreferrer noopener" target="_blank">pagina vip</a></p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;">Your Username: {username}</p>
+    <p style="font-size: 14px; line-height: 140%;"> </p>
+    <p style="font-size: 14px; line-height: 140%;">Have a nice day!</p>';
+
+    if($params["message"] != ""){
+      $message = $params["message"]; 
+    }
+    $html = str_replace("{message}",$message,$html);
+    $html = str_replace("{vip_page}",$params["vip_link"],$html);
     $html = str_replace("{blogname}",$params["blogname"],$html);
     $html = str_replace("{username}",$params["username"],$html);
+    $html = str_replace("{blogurl}",$params["blogurl"],$html);
+    $html = str_replace("{admin_email}",$params["admin_email"],$html);
 
     return $html;
 }

@@ -21,7 +21,11 @@ function generate_history_payment_table(){
     
   }
   
-  $query = select_payment_history($params);
+  $params["paged"] = isset($_GET["paged"]) ? $_GET["paged"] : 20;
+  
+  $data_history = select_payment_history($params);
+  
+  
   $table_html = '<table class="table table-hover " >
       <thead>
         <tr>
@@ -37,12 +41,13 @@ function generate_history_payment_table(){
   $table_data["tbody"] = '';
     $html_th = "";
     $html_td;
-    if(!is_wp_error( $query ) and count($query) > 0):
-      foreach ($query as $key => $value) {
+    
+    if(!is_wp_error( $data_history ) and count($data_history["posts"]) > 0):
+      $col = 0;
+      foreach ($data_history["posts"] as $key => $value) {
         $llaves = get_object_vars($value);
-        $keys = array_keys($llaves);
         $table_data["tbody"] .= '<tr>';
-        $html_th = "";
+        $html_th = "<th>n</th>";
         $html_td = "";
         
         //botones de accion
@@ -50,29 +55,34 @@ function generate_history_payment_table(){
         $btn_pending = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-clock" title="pending" status="pending" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
         $btn_fail = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-no-alt" title="fail" status="failed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
         $btn_trash = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-trash" title="trash" status="trashed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
-        
+        $btn_details = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-visibility" title="view" toastid="toast-view-payment-details" toastaction="show" element="'.strval($value->id).'" onClick="modal_payment_details(this)" ></i>';
+        $col++;
+        $html_td .= '<td>'.$col.'</td>';
         foreach($llaves as $keyth => $th){
-          
           if(!is_array($th)){
-            if($keyth!=='payment_account_id'):
+            if($keyth!=='payment_account_id' and $keyth!=='membership_id' and $keyth!=='id'):
+              
+              
               $user_link = '<a href="?page=ihc_manage&tab=user-details&uid={iduser}" >{username}</a>';
               if($keyth=='username'):
                 $id_user = username_exists( $th );
                 $user_link = str_replace("{username}",$th,$user_link);
                 $user_link = str_replace("{iduser}",$id_user,$user_link);
               endif;
+              
               $html_th .= '<th>'.$keyth.'</th>';
               $html_td .= '<td>'.($keyth=="username"?$user_link:$th).'</td>';
             endif;
           }
           
         }
-        $html_th .= '<th colspan="2" >Action</th>';
-        $html_td .= '<td colspan="2">
+        $html_th .= '<th colspan="3" >Action</th>';
+        $html_td .= '<td colspan="3">
           '.($value->status!='pending' ? $btn_pending:'').'
           '.($value->status!='completed' ? $btn_completed:'').'
           '.($value->status!='failed' ? $btn_fail:'').'
           '.$btn_trash.'
+          '.$btn_details.'
         </td>';
         $table_data["tbody"] .= $html_td;
         $table_data["tbody"] .= '</tr>';
@@ -83,6 +93,18 @@ function generate_history_payment_table(){
 
     $table_html = str_replace("{thead_data}",$table_data["thead"],$table_html);
     $table_html = str_replace("{tbody_data}",$table_data["tbody"],$table_html);
+
+    $path = $_SERVER["REQUEST_URI"];
+    
+    if($data_history["total"] >= $data_history["current"]){
+      
+      $params["paged"] += 10;
+      if($data_history["total"] <= $params["paged"]){
+        $params["paged"] = $data_history["total"];
+      }
+      $table_html .= '<div class="mt-5 text-center"><a class="btn btn-primary" href="'.$path.'&paged='.$params["paged"].'">mas</a></div>';
+      
+    }
     return $table_html;
 }
 
@@ -101,6 +123,7 @@ if(isset($_GET["update_payment_history_id"]) and isset($_GET["status"])){
   }
   header("Location:".$_SERVER["HTTP_REFERER"]."&error=1");
 }
+
 function aw_payment_history(){
   $path = $_SERVER['REQUEST_URI'] ."&status=";
   $table_payment_history = generate_history_payment_table();
@@ -119,7 +142,7 @@ function aw_payment_history(){
                                 </div>
                               </div>
                             </nav>';
-    $dashboard = '<main class="container-fluid">
+  $dashboard = '<main class="container-fluid">
     '.$payment_method_navbar.'
               <h4>'._x("payment history","jbetting").'</h4>
                 <div class="col-md-12 mb-2">
@@ -146,7 +169,20 @@ function aw_payment_history(){
                     '.$table_payment_history.'
                   </div>
                 </div>
-              
+              {toast}
         </main>';
+        $toast = '<div id="toast-view-payment-details" style="backdrop-filter: blur(3px);display:none;align-content: center;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0, .2);z-index:99999999;" >
+        <div class="row bg-light mx-auto text-center" style="width:320px;min-height:320px;border-radius:5%;align-items:center;position:relative;">
+        
+            <div class="col-12 text-center">
+              <div class="toast-body" style="width:100%;max-height:440px;overflow:auto;" >
+                <b class="title d-block">mensaje</b>
+              </div>
+            <div class="col-12 text-right">
+                <button type="button" class="btn btn-secondary text-uppercase mx-2" toastid="toast-view-payment-details" toastaction="hide" onclick="modal_payment_details(this)" ><p class="h5" >cerrar</p></button>
+            </div>
+        </div>
+    </div> ';
+        $dashboard = str_replace("{toast}",$toast,$dashboard);
     echo $dashboard ;
 }

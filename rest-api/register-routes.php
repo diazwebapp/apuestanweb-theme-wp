@@ -39,6 +39,14 @@ function register_routes(){
             return '__return_true';
           }
     ]);
+    //admin payment history
+    register_rest_route('aw-payment-history','/payment-history-details',[
+        'methods' => 'POST',
+        'callback' => 'aw_get_payment_history_metas',
+        'permission_callback' => function () {
+            return '__return_true';
+          }
+    ]);
     //shortcode prices
     register_rest_route('aw-user-levels','/check-user-level',[
         'methods' => 'POST',

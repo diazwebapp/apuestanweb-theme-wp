@@ -29,4 +29,26 @@ function aw_register_new_payment(WP_REST_Request $request){
         
     
 }
+
+function aw_get_payment_history_metas(WP_REST_Request $request){
+    $params = $request->get_json_params();
+    global $wpdb ;
+    $table = $wpdb->prefix . "aw_payment_history";
+    $sql_ = "SELECT * FROM $table WHERE id = '{$params["payment_id"]}' ";    
+    $payment_history = $wpdb->get_row($sql_);
+
+    $table_levels = $wpdb->prefix."ihc_memberships";
+    $level_meta = $wpdb->get_row("SELECT label, price FROM $table_levels WHERE id='$payment_history->membership_id' ");
+
+    $metas = select_payment_history_meta($params["payment_id"]);
+
+    $level_meta->currency  = !empty(get_option( 'ihc_custom_currency_code', true )) ? get_option( 'ihc_custom_currency_code', true ) : get_option( 'ihc_currency', true );
+
+    $response = [];
+    $response["payment"] = $payment_history;
+    $response["metas"] = $metas;
+    $response["membership"] = $level_meta;
+    
+    return $response;
+}
 ?>

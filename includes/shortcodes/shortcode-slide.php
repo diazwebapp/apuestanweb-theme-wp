@@ -34,18 +34,18 @@ function shortcode_slide($atts)
     $query = new WP_Query($args);
     if ($query->have_posts()) { 
         if($model==1):
-        $ret = "<div class='container mt_55 home_container'>
-            <div class='owl-carousel slider owl-loaded owl-drag' >
-                <div class='owl-stage-outer' >
-                    <div class='owl-stage' >";
-                        while ($query->have_posts()):
-                            $query->the_post();
-                            $ret .= load_template_part("loop/slide_$model");
-                        endwhile;
-        $ret .="        </div>
+            $ret = "<div class='container mt_55 home_container'>
+                <div class='owl-carousel slider owl-loaded owl-drag' >
+                    <div class='owl-stage-outer' >
+                        <div class='owl-stage' >";
+                            while ($query->have_posts()):
+                                $query->the_post();
+                                $ret .= load_template_part("loop/slide_$model");
+                            endwhile;
+            $ret .="        </div>
+                    </div>
                 </div>
-            </div>
-        </div>";
+            </div>";
         endif;
         if($model == 2): 
             $ret =  '<div class="slider__area">

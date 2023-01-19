@@ -27,7 +27,7 @@ function shortcode_banner_bookmaker($atts)
 
     $default = [];
     if (carbon_get_post_meta($post->ID, 'logo')):
-        $logo = carbon_get_post_meta(get_the_ID(), 'logo');
+        $logo = carbon_get_post_meta($post->ID, 'logo');
         $bookmaker['logo'] = wp_get_attachment_url($logo);
     endif;
     

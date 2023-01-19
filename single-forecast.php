@@ -37,13 +37,14 @@ function aw_get_user_type(){
             <div class="row">
                 <?php 
                     if(have_posts()):
-
+                        
                         while(have_posts()): the_post();
                             global $wpdb;
                             $post_id = get_the_ID();
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
+
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
@@ -63,7 +64,8 @@ function aw_get_user_type(){
                             }
                             
                             $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user_2, $target_users, (isset($post_id)) ? $post_id : -1);
-                            if($current_user and count($current_user->roles) > 0){
+                            
+                            if(count($current_user->roles) > 0){
                                 if($current_user->roles[0] == "administrator" or $current_user->roles[0] == "author"){
                                     $block = 0;
                                 }
@@ -120,10 +122,10 @@ function aw_get_user_type(){
                                     $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
                                 endif;
                             endif;
-
+                           
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-                            
+                           
                             ?>
                             <div class="col-lg-8 mt_30">
                     

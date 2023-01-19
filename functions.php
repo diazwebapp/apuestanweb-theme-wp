@@ -9,6 +9,7 @@ include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php"; 
 include "includes/templates-emails/template-email-1.php"; 
+include "includes/templates-emails/template-email-2.php"; 
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
@@ -117,12 +118,15 @@ function load_template_part($template_name, $part_name = null, $args=false)
 add_action('wp_enqueue_scripts', 'jbetting_src');
 function jbetting_src()
 {
-    /* wp_dequeue_style( 'ihc_front_end_style');
+    /* 
+    wp_dequeue_style( 'ihc_front_end_style');
 
 	wp_dequeue_style( 'ihc_templates_style');
 
 	wp_dequeue_script( 'jquery' );
-	wp_dequeue_script( 'ihc-jquery-ui'); */
+	wp_dequeue_script( 'ihc-jquery-ui'); 
+    wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
+    */
 
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/css/bootstrap.min.css', array(), '4.6.1');
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
@@ -334,32 +338,65 @@ function aw_actions_after_register_user( $user_id ) {
 
     $headers[]= "From: Apuestan <$admin_email>";
 
-    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
 
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
 }
-function aw_notificacion_membership($payment_history_id=null){
+
+
+function aw_notificacion_membership($payment_history_id=null,$status=null){
     global $wpdb;
     
     if(isset($payment_history_id)){
-        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".MYSQL_PAYMENT_HISTORY." WHERE id='$payment_history_id'"));
+        $table = $wpdb->prefix . "aw_payment_history";
+        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE id='$payment_history_id'"));
         
         $memberInfo = get_user_by( 'login', $data_notifi->username );
         $blogname = get_bloginfo( "name" );
+        $blogurl = get_bloginfo( "url" );
         $admin_email = get_option( "admin_email" );
 
         function fix_html() {
             return 'text/html';
         }
         $headers[]= "From: Apuestan <$admin_email>";
+        $vip_link = "#";
+        if(defined("PERMALINK_VIP")){
+            $vip_link = PERMALINK_VIP;
+        }
+        if(isset($status)){
+            if($status=="completed"){
+                $message = '
+                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is approved.</p>';
+                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+            }
+            if($status=="pending"){
+                $message = '
+                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is waiting to be approved.</p>';
+                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+
+            }
+            if($status=="failed"){
+                $message = '
+                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your membership could not be verified, please record your payment or contact technical support.</p>';
+                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+
+            }
+        }else{
+            $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+        }
+        if(is_wp_error( $body )){
+
+            $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
+        }
     
-        $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
     
        add_filter( "wp_mail_content_type", "fix_html" );
-       wp_mail($memberInfo->user_email,"Apuestan status user: $memberInfo->user_login" ,$body,$headers); 
+       wp_mail($memberInfo->user_email,"Apuestan status account" ,$body,$headers); 
     }
 }
+
 function setUserRating(){
     $users = get_users();
     if($users and count($users) > 0):
