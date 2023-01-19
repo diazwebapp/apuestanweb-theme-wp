@@ -1679,11 +1679,20 @@
 	header {
 	    height: 7.5rem;
 	}
+	.post-content {
+		padding-left: 0; /* para dejar espacio para los botones */
+	}
 	.share-buttons-container {
-        display: block;
-        position: absolute;
-        bottom: 0;
-    }
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		justify-content: center;
+		width: auto;
+		height: auto;
+		margin-right: 10px;
+		position: unset;
+	}
+
 	.headerbtn {
 	    width: 15rem;
 		font-size: 1.8rem;

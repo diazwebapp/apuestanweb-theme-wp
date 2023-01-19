@@ -149,30 +149,40 @@
             $('.parley_box').removeClass('parley_box_shadow');
         });
     });
+
     $(document).ready(function(){
+        // Verificar si la resolución es menor a 768px
         
-        $(".share-buttons-container").stick_in_parent({
-        offset_top: 20,
-        parent: ".post-content",
-        spacer: ".sticky-spacer"
-        });
-        });
-  
-        $(document).on("sticky_kit:unstick", ".share-buttons-container", function(e) {
-        $(".share-buttons-container").removeClass("is_stuck");
-        });
-        
-        $(document).on("sticky_kit:bottom", ".share-buttons-container", function(e) {
-        $(".share-buttons-container").removeClass("is_stuck");
-        });
-
-        $(document).on("sticky_kit:unbottom", ".share-buttons-container", function(e) {
-        $(".share-buttons-container").addClass("is_stuck");
-        });
-
-        $(document).on("sticky_kit:stick", ".share-buttons-container", function(e) {
-        $(".share-buttons-container").addClass("is_stuck");
+        if (window.innerWidth < 768) {
+            // Desactivar sticky
+            $(".share-buttons-container").trigger("sticky_kit:detach");
+        } else {
+            // Activar sticky
+            $(".share-buttons-container").stick_in_parent({
+                offset_top: 20,
+                parent: ".post-content",
+                spacer: ".sticky-spacer"
+            });
+    
+            // Eventos para agregar/eliminar clase is_stuck
+            $(document).on("sticky_kit:unstick", ".share-buttons-container", function(e) {
+                $(".share-buttons-container").removeClass("is_stuck");
+            });
+            
+            $(document).on("sticky_kit:bottom", ".share-buttons-container", function(e) {
+                $(".share-buttons-container").removeClass("is_stuck");
+            });
+    
+            $(document).on("sticky_kit:unbottom", ".share-buttons-container", function(e) {
+                $(".share-buttons-container").addClass("is_stuck");
+            });
+    
+            $(document).on("sticky_kit:stick", ".share-buttons-container", function(e) {
+                $(".share-buttons-container").addClass("is_stuck");
+            });
+        }
     });
+    
     
       
 
