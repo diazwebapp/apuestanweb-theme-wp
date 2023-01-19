@@ -1656,7 +1656,9 @@
 }
 /*parley area*/
    
-    
+.share-buttons-container {
+	display: none;
+}
     
     
     
@@ -1677,6 +1679,11 @@
 	header {
 	    height: 7.5rem;
 	}
+	.share-buttons-container {
+        display: block;
+        position: absolute;
+        bottom: 0;
+    }
 	.headerbtn {
 	    width: 15rem;
 		font-size: 1.8rem;
