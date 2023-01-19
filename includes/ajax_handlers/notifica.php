@@ -40,22 +40,8 @@ function set_vip_forecasts_transient() {
 add_action( 'save_post', 'set_vip_forecasts_transient' );
 
 
-// verificando el tipo de publicación y si tiene la categoría vip
-/* function custom_publish_vip_forecast( $post_id ) {
-    $post_type = get_post_type( $post_id );
-    if ( $post_type == 'forecast' ) {
-        $terms = wp_get_post_terms( $post_id, 'league' );
-        $vip_term = get_term_by( 'slug', 'vip', 'league' );
-        $is_new_post = get_post_meta($post_id, '_edit_last', true) == 0;
-        if ( in_array( $vip_term, $terms ) && $is_new_post ) {
-            set_vip_forecasts_transient();
-        }
-    }
-}
 
-add_action( 'publish_post', 'custom_publish_vip_forecast' ); */
-
-// función para obtener los datos del transient
+// función para obtener los datos
 function get_vip_forecasts_transient() {
     // $vip_forecasts = get_transient( 'vip_forecasts' );
     $vip_forecasts = $_SESSION['vip_forecasts'];
@@ -95,21 +81,23 @@ if (!isset($_SESSION['vip_forecasts']) || !$_SESSION['vip_forecasts']) {
 add_action( 'wp_ajax_get_vip_forecasts_transient_callback', 'get_vip_forecasts_transient_callback' );
 add_action( 'wp_ajax_nopriv_get_vip_forecasts_transient_callback', 'get_vip_forecasts_transient_callback' );
 
-
+// funcion para el contador
 function mark_notifications_as_read_callback() {
-    $transient_name = 'vip_forecasts_transient';
-    $notifications = get_transient( $transient_name );
+    $notifications = $_SESSION['vip_forecasts'];
     if ( false === $notifications ) {
         return;
     }
-    // aqui marcas como leido
-    wp_send_json_success();
+    $_SESSION['vip_forecasts'] = $notifications;
 }
 add_action( 'wp_ajax_mark_notifications_as_read_callback', 'mark_notifications_as_read_callback' );
 
-
+// funcion para limpiar las notificaciones
 function clear_notifications() {
+    // código para limpiar las notificaciones
+    foreach ($_SESSION['vip_forecasts'] as $forecast) {
+      array_push($_SESSION['read_vip_forecasts'], $forecast->ID);
+    }
     $_SESSION['vip_forecasts'] = array();
-    unset($_SESSION['vip_forecasts']);
-}
+  }
+  
 add_action( 'wp_ajax_clear_notifications', 'clear_notifications' );

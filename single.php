@@ -24,15 +24,62 @@ $sidebar=false;
                                 $author_name = get_the_author_meta("display_name" );
                                 $author_id =  get_the_author_meta('ID') ;
                                 $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
+                                $avatar_url = get_avatar_url($author_id);
+                                $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
+
+
+
                             ?>
                                     <h1 class="blog_title"><?php echo $title ?></h1>
-                                    <p class="mt_30 author_text">Por <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a> <?php echo $post_date ?></p>
-                                    <img src="<?php echo $thumbnail_url ?>" class="single_img" alt="<?php echo $title ?>">
-                                    <div class="single_event_content text-break">
+                                    <section class="post-author-section">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                            <div class="author-info d-flex align-items-center m-3">
+                                                <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
+                                                <div class="author-details d-flex flex-column">
+                                                    <h4 class="author-name mb-1">
+                                                    <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a>
+                                                    <div class="author-social-links d-flex align-items-center m-2">
+                                                    <a href="<?php echo $author_twitter ?>" class="author-social-link mr-3">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </a>
+                                                    <a href="<?php echo $author_facebook ?>" class="author-social-link mr-3">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </a>
+                                                    <a href="<?php echo $author_instagram ?>" class="author-social-link mr-3">
+                                                        <i class="fab fa-instagram"></i>
+                                                    </a>
+                                                    </div>
+                                                    </h4>
+                                                    <span class="post-date text-muted mb-0"><?php echo __("Publicado: $post_date");  ?></span>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                <img src="<?php echo $thumbnail_url ?>" class="post-featured-img img-fluid" alt="<?php echo $title ?>">
+                                            </div>
+                                        </div>
+                                    </section>
+
+   
+
+                                    <div class="post-content single_event_content text-break">
                                         <?php the_content(); ?>
-                                <?php   endwhile; }
-                            ?>
-                        </div>
+                                        <?php   endwhile; }?>
+                            
+                        
+
+                                        <div class="share-buttons-container">
+                                            <a href="#" class="share-button"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" class="share-button"><i class="fab fa-twitter"></i></a>
+                                            <a href="#" class="share-button"><i class="fab fa-instagram"></i></a>
+                                            <a href="#" class="share-button"><i class="fab fa-whatsapp"></i></a>
+                                        </div>
+                                    </div>
+
+
                         <?php echo do_shortcode( "[related_posts model='1' num='4' title='Lee también']" )?>
                     </div>
 						

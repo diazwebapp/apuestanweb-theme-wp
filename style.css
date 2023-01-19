@@ -721,6 +721,11 @@ a.btn_2:hover{
    padding: 6.8rem 6rem 5.5rem;
    text-align: center;
 }
+.tbox > p{
+
+	color: #000409db;
+	font-weight: 600;
+}
 .sub_title{
 	color: #0558CB;
 	font-size: 1.8rem;
@@ -1483,7 +1488,7 @@ footer .menu li a::before{
     object-fit: contain;
 }
 .top_box_content{
-	padding-left: 1.4rem;
+	padding-left: 0;
 }
 .top_box_content p {
     font-size: 1.8rem;
@@ -2264,7 +2269,7 @@ footer .menu li a::before{
 	
 	list-style: inherit;
 }
-.single_event_content ul li::marker{
+.single_event_content > ul > li::marker{
 	
 	color: #d42e11;
 
@@ -2288,7 +2293,7 @@ footer .menu li a::before{
 }
 
 /* visited link */
-.single_event_content a:visited {
+.single_event_content > a:visited {
     color: #ee76de;
 }
 
@@ -4324,7 +4329,7 @@ a.panel-button {
 	border-radius: 10px;
 	box-shadow: 2px 2px 15px #ccc;
 }
-.banner-bookmaker >ul > li{
+.banner-bookmaker > ul > li{
 	list-style: none;
 	padding-inline-start: 10px;
 
@@ -4338,6 +4343,9 @@ a.panel-button {
 }
 
 .banner-bookmaker > p{
+	font-size: 18px;
+}
+.list-feactures > ul{
 	font-size: 18px;
 }
 
@@ -4602,3 +4610,82 @@ a.panel-button {
   .notification-item {
 	/* estilos */
   }
+  .post-author-section {
+	margin-bottom: 30px;
+  }
+  
+  .author-img {
+	width: 40px;
+	height: 40px;
+  }
+  
+  .author-name {
+	font-size: 1.5rem;
+	font-weight: 400;
+  }
+  
+  .post-date {
+	font-size: 1.2rem;
+  }
+  
+  .author-social-links a {
+	font-size: 1.5rem;
+	color: #333;
+	transition: all 0.2s ease-in-out;
+  }
+  
+  .author-social-links a:hover {
+	color: #007bff;
+  }
+  .post-featured-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 1rem;
+  }
+
+
+  .share-buttons-container {
+    position: absolute;
+    top: 0; /* alto del contenido del post */
+    left: 0;
+    z-index: 1; /* para que los botones se muestren encima del contenido */
+}
+
+.post-content {
+    padding-left: 60px; /* para dejar espacio para los botones */
+    position: relative; /* para que el contenedor de los botones se posicione en relación a este elemento */
+}
+
+.share-buttons-container > a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    color: #000;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.share-buttons-container.is_stuck {
+	position: fixed;
+	top: 83px!important;
+	left: 2vw;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.sticky-spacer {
+	display: none; /* Ocultamos el elemento generado */
+  }
+.share-buttons-container.sticky-active {
+	left: 0; /* Ajusta la posición del botón cuando se activa el sticky */
+}
+.share-buttons-container.sticky-bottom {
+    left: 0;
+    bottom: 0;
+    position: absolute;
+}
+  

@@ -875,7 +875,7 @@
 	    margin-top: 5rem;
 	}
 	.top_box_content {
-	    text-align: right;
+	    text-align: center;
 	}
 	.bookmaker_left_text{
 		padding-left: 0;
@@ -2052,4 +2052,11 @@
 		display: none;
 
 	}
+}
+
+@media screen and (min-width: 1700px) and (max-width: 5280px) {
+
+.share-buttons-container.is_stuck {
+	left: 137px;
+}
 }
