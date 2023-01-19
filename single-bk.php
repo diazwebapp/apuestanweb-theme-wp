@@ -126,8 +126,10 @@ $bookmaker["background_color"] = null;
             <div class="single_event_content text-break">
                 <?php echo "content"; 
                     if(have_posts(  )){
-
-                        the_content() ;
+                        while (have_posts()):
+                            the_post(  );
+                            the_content() ;
+                        endwhile;
 
                     }
                 ?>
