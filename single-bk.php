@@ -124,7 +124,7 @@ $bookmaker["background_color"] = null;
             </div>
             <!-- Content -->
             <div class="single_event_content text-break">
-                <?php the_content() ?>
+                <?php echo "content"; the_content() ?>
             </div>
         </div>
 
