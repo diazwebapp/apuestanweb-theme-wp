@@ -45,7 +45,7 @@ function shortcode_banner_bookmaker($atts)
             <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:'.($bookmaker["background_color"] ? $bookmaker["background_color"] : "black").';min-height:100px;">
                 <img width="{w-logo}"  height="{h-logo}" src="{logo}" alt="{alt_logo}" style="margin:auto;" />
             </div>
-            <div class="list-feactures col-lg-3 my-4">
+            <div class="list-feactures col-lg-3 my-4 d-flex flex-column justify-content-center text-center">
                 <ul>
                     {feactures}
                 </ul>

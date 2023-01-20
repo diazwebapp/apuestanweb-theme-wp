@@ -10,6 +10,9 @@
 	.price_heading h2 {
 	    font-size: 5.5rem;
 	}
+	.share-buttons-container.is_stuck {
+		left: 1vw;
+	}   
 }
 @media (min-width: 1200px) { 
 	.form-xl-row{
@@ -23,7 +26,8 @@
 	.event-button-mv{
 		display: none;
 	
-	}   
+	}
+
 	   
 }
 @media (min-width: 1200px) and (max-width: 1409.98px){
@@ -36,6 +40,9 @@
 	.event-button-mv{
 		display: none;
 	}
+	.share-buttons-container.is_stuck {
+		left: 5vw;
+	}   
 	   
 }
 @media (min-width: 1200px) and (max-width: 1399.98px) { 
@@ -74,18 +81,6 @@
 		display: none;
 	
 	}   
-	   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
  .club__box {
 	width: 100%;
@@ -1680,7 +1675,7 @@
 	    height: 7.5rem;
 	}
 	.post-content {
-		padding-left: 0; /* para dejar espacio para los botones */
+		padding: 0; /* para dejar espacio para los botones */
 	}
 	.share-buttons-container {
 		display: flex;
@@ -2015,6 +2010,9 @@
 	#posts{
 		width: 40rem;
 	}
+	.text-success {
+		font-size: 1.8rem;
+	}  
 
 }
 
@@ -2040,6 +2038,10 @@
 		margin-top: 0 !important;
 		margin: 24px auto;
 	}
+	.share-buttons-container.is_stuck {
+		left: 5vw;
+	}  
+
 }
 @media screen and (min-width: 992px) and (max-width: 1200px) {
 	.mens__logo a {
@@ -2068,11 +2070,21 @@
 		display: none;
 
 	}
+	.share-buttons-container.is_stuck {
+		left: 1vw;
+	}  
 }
 
-@media screen and (min-width: 1700px) and (max-width: 5280px) {
+@media screen and (min-width: 800px) and (max-width: 880px) {
+	.share-buttons-container.is_stuck {
+		left: 10vw;
+	
+	}
+}
+
+@media screen and (min-width: 1600px) and (max-width: 5280px) {
 
 .share-buttons-container.is_stuck {
-	left: 137px;
+	left: 6vw;
 }
 }

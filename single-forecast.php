@@ -127,7 +127,7 @@ function aw_get_user_type(){
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
                            
                             ?>
-                            <div class="col-lg-8 mt_30">
+                            <div class="col-lg-8 mt_30 con-t">
                     
                                     <div class="single_envent_heading">						
                                         <h1 class="title_lg"><?php the_title() ?></h1>

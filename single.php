@@ -26,56 +26,48 @@ $sidebar=false;
                                 $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
                                 $avatar_url = get_avatar_url($author_id);
                                 $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
-
-
-
                             ?>
                                     <h1 class="blog_title"><?php echo $title ?></h1>
                                     <section class="post-author-section">
+                                    <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="author-info d-flex align-items-center m-3">
+                                        <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
+                                        <div class="author-details d-flex flex-column">
+                                            <h4 class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></h4>
+                                            <span class="post-date text-muted mb-0"><?php echo __("Publicado: $post_date");  ?></span>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
                                         <div class="row">
                                             <div class="col-sm-12">
-                                            <div class="author-info d-flex align-items-center m-3">
-                                                <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
-                                                <div class="author-details d-flex flex-column">
-                                                    <h4 class="author-name mb-1">
-                                                    <a href="<?php echo $author_url ?>"><?php echo $author_name ?></a>
-                                                    <div class="author-social-links d-flex align-items-center m-2">
-                                                    <a href="<?php echo $author_twitter ?>" class="author-social-link mr-3">
-                                                        <i class="fab fa-twitter"></i>
-                                                    </a>
-                                                    <a href="<?php echo $author_facebook ?>" class="author-social-link mr-3">
-                                                        <i class="fab fa-facebook-f"></i>
-                                                    </a>
-                                                    <a href="<?php echo $author_instagram ?>" class="author-social-link mr-3">
-                                                        <i class="fab fa-instagram"></i>
-                                                    </a>
-                                                    </div>
-                                                    </h4>
-                                                    <span class="post-date text-muted mb-0"><?php echo __("Publicado: $post_date");  ?></span>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12">
                                                 <img src="<?php echo $thumbnail_url ?>" class="post-featured-img img-fluid" alt="<?php echo $title ?>">
+                                                
+                                                <?php
+                                                if (has_post_thumbnail()) {
+                                                    $thumbnail_id = get_post_thumbnail_id();
+                                                    $thumbnail_caption = get_post($thumbnail_id)->post_excerpt;
+                                                    if (!empty($thumbnail_caption)) { ?>
+                                                        <div class="caption">
+                                                            <?php echo $thumbnail_caption; ?>
+                                                            
+                                                        </div>
+                                                    <?php }
+                                                } ?>
+                                                <hr class="mt-2 mb-3">
                                             </div>
                                         </div>
-                                    </section>
-
-   
-
+                                </section>
                                     <div class="post-content single_event_content text-break">
-                                        <?php the_content(); ?>
+                                    <?php the_content(); ?>
                                         <?php   endwhile; }?>
-                            
-                        
-
                                         <div class="share-buttons-container">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="https://twitter.com/home?status=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button"><i class="fab fa-twitter"></i></a>
-                                            <a href="#" class="share-button"><i class="fab fa-instagram"></i></a>
-                                            <a href="#" class="share-button"><i class="fab fa-whatsapp"></i></a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="https://twitter.com/home?status=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                            <a href="tg://msg?text=Mira este artículo interesante: '<?php echo urlencode(get_permalink( $post->ID )); ?>'" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-telegram-plane"></i></a>
                                         </div>
                                     </div>
 
