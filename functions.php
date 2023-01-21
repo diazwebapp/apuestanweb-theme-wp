@@ -473,7 +473,27 @@ function user_rss( $contact_methods ) {
   }
   add_filter( 'user_contactmethods', 'user_rss' );  
 
-//in functions.php
+  function crb_modify_association_field_query_args( $args, $name ) {
+    $args['orderby'] = 'date';
+    $args['order'] = 'DESC';
+    return $args;
+}
+add_filter( 'carbon_fields_association_field_options_forecasts_post_post', 'crb_modify_association_field_query_args', 10, 2 );
 
 
+  function crb_modify_association_field_title( $title, $name, $id, $type, $subtype ) {
+    if ( 'post' === $type ) {
+        // obtener las taxonomías del post
+        $leagues = wp_get_post_terms( $id, 'league' );
+        if ( ! empty( $leagues ) ) {
+            $league_names = array();
+            foreach ( $leagues as $league ) {
+                $league_names[] = $league->name;
+            }
+            $title .= ' (' . implode( ', ', $league_names ) . ')';
+        }
+    }
+    return $title;
+}
+add_filter( 'carbon_fields_association_field_title', 'crb_modify_association_field_title', 10, 5 );
 

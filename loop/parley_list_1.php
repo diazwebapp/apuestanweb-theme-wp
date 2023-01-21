@@ -53,7 +53,7 @@ echo "<div class='parley_wrapper'>
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
             $time = carbon_get_post_meta($event['id'], 'data');
-            $fecha =  date('d M', strtotime($time));
+            $fecha =  date_i18n('d M', strtotime($time));
             $hora =  date('g:i a', strtotime($time));
 
             $sport_term = wp_get_post_terms($event['id'], 'league', array('fields' => 'all'));
@@ -90,7 +90,7 @@ echo "<div class='parley_wrapper'>
                             </div>
                         </div>
                     </div>                  
-                    <div class='parley_match_time'>
+                    <div class='parley_match_time '>
                         <div class='parley_flag'>
                             <div class='parley_team'>
                                 <img src='{$teams['team1']['logo']}' class='img-fluid' alt=''>

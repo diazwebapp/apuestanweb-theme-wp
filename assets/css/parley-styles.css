@@ -75,6 +75,7 @@
 	display: flex;
 	align-items: center;
 	width: 25rem;
+	margin: auto;
 }
 
 .parley_team2 {
@@ -127,7 +128,7 @@
 	text-align: center;
 }
 .parley_right_first .p1{
-	font-weight: 700;
+	font-weight: 500;
 	padding: 0.6rem 2rem;
     font-size: 1.6rem;
     line-height: 1;
@@ -136,6 +137,7 @@
     border-radius: 1.7rem;
 }
 .parley_right_first .p2 {
+	font-size: 1.3rem;
     line-height: 1;
     padding: .5rem 1.3rem;
     background-color: #DDEAFD;
@@ -258,9 +260,13 @@
     margin-right: 10%;
     font-size: 14px;
 }
-.parley_right_first{
-	margin-left: 4em;
-} 
+.parley_right_first {
+    align-items: center;
+    margin-right: 2rem;
+    width: auto;
+    text-align: center;
+}
+
 }
 
 @media (max-width: 767.98px){
@@ -435,6 +441,7 @@
     display: flex;
     align-items: center;
     /* width: 25rem; */
+	margin: 0;
 }
 .parley_team {
     height: 5rem;
