@@ -76,7 +76,7 @@ echo "<div class='parley_wrapper'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
-                            <div class='category-grid'>
+                            <div style='background:lightgrey;'>
                                 <span>{$sport['name']}</span>
                             </div>
                         
