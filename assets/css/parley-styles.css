@@ -322,13 +322,6 @@
 	width: 100%;
 	padding-bottom: 3rem;
 }
-.parley_game_name {
-
-    width: 10%;
-
-
-}
-
 
 .parley_match_time {
     padding-left: 5rem;
@@ -430,12 +423,7 @@
 	width: 100%;
 	padding-bottom: 3rem;
 }
-.parley_game_name {
 
-    width: 10%;
-
-
-}
 .parley_match_time {
     padding-left: 5rem;
     display: flex;
