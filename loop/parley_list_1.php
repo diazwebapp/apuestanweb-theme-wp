@@ -74,8 +74,8 @@ echo "<div class='parley_wrapper'>
 
             echo "<div class='parley_box mx-2'>
                 <div class='parley_left_content'>
-                    <div class='parley_game_name_wrapper'>
-                        <div class='parley_game_name'>
+                    <div class='row w-100'>
+                        <div class='col-6'>
                             <div class='category-grid'>
                                 <span>{$sport['name']}</span>
                             </div>
@@ -84,7 +84,7 @@ echo "<div class='parley_wrapper'>
                                 <time>$fecha, $hora</time>
                             </div>
                         </div>
-                        <div class='d-lg-none d-block'>
+                        <div class='d-lg-none d-block col-6'>
                             <div class='mobile_parley_time'>
                                 <p>$fecha, $hora</p>
                             </div>
