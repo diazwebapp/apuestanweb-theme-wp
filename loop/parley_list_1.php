@@ -76,8 +76,8 @@ echo "<div class='parley_wrapper'>
                 <div class='parley_left_content'>
                     <div class='row w-100'>
                         <div class='col-6'>
-                            <div class='category-grid'>
-                                <span>{$sport['name']}</span>
+                            <div>
+                                <span style='display: inline-block;padding: 0.6rem 2rem;font-size: 1.6rem;line-height: 1;color: #00203A;background-color: #E4E6E8;border-radius: 1.7rem;'>{$sport['name']}</span>
                             </div>
                         
                             <div class='d-lg-block d-none'>
@@ -86,7 +86,7 @@ echo "<div class='parley_wrapper'>
                         </div>
                         <div class='d-lg-none d-block col-6'>
                             <div class='mobile_parley_time'>
-                                <p>$fecha, $hora</p>
+                                <p class='text-right' >$fecha, $hora</p>
                             </div>
                         </div>
                     </div>                  
