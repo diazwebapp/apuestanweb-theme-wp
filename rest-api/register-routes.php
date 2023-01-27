@@ -112,7 +112,7 @@ function register_routes(){
 
     //NOTIFICACIONES
     register_rest_route('aw-notificaciones','/all',[
-        'methods' => 'GET',
+        'methods' => 'POST',
         'callback' => 'aw_get_notifications',
         'permission_callback' => function () {
             return '__return_true';

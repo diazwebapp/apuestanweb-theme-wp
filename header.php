@@ -41,16 +41,16 @@
                        $noti = select_notification_not_view();
                        $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle btn btn-primary text-light font-weight-bold" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;"></i>
-                                        <span id="notification-counter" class="badge badge-light">'.count($noti).'</span>
+                                    <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;font-size:13px !important;"></i>
+                                        <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
 
                                     <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
                                         {list}
                                         
                                         <hr class="mt-2 mb-3">
-                                        <a class="dropdown-item text-dark my-3" href="#"><i class="fas fa-sign-out"></i>'.__('quitar todo','jbetting').'</a>
+                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-sign-out"></i>'.__('quitar todo','jbetting').'</p>
 
                                     </div>
                                 </li>
@@ -72,7 +72,7 @@
                                 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-light font-weight-bold" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <p class="d-inline-block text-truncate align-top" style="max-width:120px;">'.get_userdata(get_current_user_id( ))->user_login .'</p>
+                                        <p class="d-inline-block text-truncate align-top" style="max-width:120px;" id="header-username" >'.get_userdata(get_current_user_id( ))->user_login .'</p>
                                     </a>
 
                                     <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">

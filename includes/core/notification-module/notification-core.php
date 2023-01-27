@@ -29,11 +29,11 @@ if(!function_exists('aw_insert_notification_view')):
 endif;
 
 if(!function_exists('select_notification_not_view')):
-    function select_notification_not_view($setup=["post_type"=>'forecast',"post_meta"=>false]){
+    function select_notification_not_view($setup=["post_type"=>'forecast',"post_meta"=>false,"id_user"=>false]){
         global $wpdb;
         $table_notification = NOTIFICATIONS_MYSQL_TABLE;
         $table_posts = $wpdb->prefix."posts";
-        $current_user = get_current_user_id(  );
+        $current_user = ($setup['id_user'] ? $setup['id_user'] : get_current_user_id( ));
         $result = [];
         if(isset($current_user)):
             $sql = "SELECT * FROM $table_posts Where Not exists (select * from $table_notification Where $table_notification.id_pronostico = $table_posts.ID AND $table_notification.id_user = $current_user) ". ($setup['post_type'] ? " AND $table_posts.post_type = '{$setup['post_type']}' " :'' )." AND $table_posts.post_status='publish'";
@@ -43,9 +43,9 @@ if(!function_exists('select_notification_not_view')):
             if(count($result) > 0):
                 foreach($result as $post){
                     $vip = carbon_get_post_meta($post->ID,'vip');
+                    $new_result[] = $post;
                     if($vip){
 
-                        $new_result[] = $post;
                     }
                 }
             endif;
@@ -55,23 +55,20 @@ if(!function_exists('select_notification_not_view')):
 endif;
 
 if(!function_exists('add_notification_view')):
-    function add_notification_view(){
+    function add_notification_view($setup=['id_user'=>false]){
         global $wpdb;
         $table_notification = NOTIFICATIONS_MYSQL_TABLE;
         $table_posts = $wpdb->prefix."posts";
-        $current_user = get_current_user_id(  );
-        $result = [];
+        $current_user = ($setup['id_user'] ? $setup['id_user'] : get_current_user_id( ));
+        $result = false;
         if(isset($current_user)):
-            $sql = "SELECT * FROM $table_posts Where Not exists (select * from $table_notification Where $table_notification.id_pronostico = $table_posts.ID AND $table_notification.id_user = $current_user) AND $table_posts.post_status='publish'";
-
-            $result = $wpdb->get_results($sql);
-            if(count($result) > 0):
-                foreach($result as $post){
-                    $vip = carbon_get_post_meta($post->ID,'vip');
-                    $post->vip =$vip;
+            $notificaciones = select_notification_not_view(["post_type"=>'forecast',"id_user"=>$current_user]);
+            if(count($notificaciones) > 0){
+                foreach($notificaciones as $post){
+                    $result = $wpdb->insert($table_notification,["id_pronostico"=>$post->ID,"id_user"=>$current_user]);
                 }
-            endif;
+            }
         endif;
-        return $result;
+        return $result ;
     }
 endif;
