@@ -29,14 +29,40 @@ if(!function_exists('aw_insert_notification_view')):
 endif;
 
 if(!function_exists('select_notification_not_view')):
-    function select_notification_not_view(){
+    function select_notification_not_view($setup=["post_type"=>'forecast',"post_meta"=>false]){
         global $wpdb;
         $table_notification = NOTIFICATIONS_MYSQL_TABLE;
         $table_posts = $wpdb->prefix."posts";
         $current_user = get_current_user_id(  );
         $result = [];
         if(isset($current_user)):
-            $sql = "SELECT * FROM $table_posts Where Not exists (select * from $table_notification Where $table_notification.id_pronostico = $table_posts.ID AND $table_notification.id_user = $current_user) AND $table_posts.post_type='forecast' AND $table_posts.post_status='publish'";
+            $sql = "SELECT * FROM $table_posts Where Not exists (select * from $table_notification Where $table_notification.id_pronostico = $table_posts.ID AND $table_notification.id_user = $current_user) ". ($setup['post_type'] ? " AND $table_posts.post_type = '{$setup['post_type']}' " :'' )." AND $table_posts.post_status='publish'";
+
+            $result = $wpdb->get_results($sql);
+            $new_result = [];
+            if(count($result) > 0):
+                foreach($result as $post){
+                    $vip = carbon_get_post_meta($post->ID,'vip');
+                    if($vip){
+
+                        $new_result[] = $post;
+                    }
+                }
+            endif;
+        endif;
+        return $new_result;
+    }
+endif;
+
+if(!function_exists('add_notification_view')):
+    function add_notification_view(){
+        global $wpdb;
+        $table_notification = NOTIFICATIONS_MYSQL_TABLE;
+        $table_posts = $wpdb->prefix."posts";
+        $current_user = get_current_user_id(  );
+        $result = [];
+        if(isset($current_user)):
+            $sql = "SELECT * FROM $table_posts Where Not exists (select * from $table_notification Where $table_notification.id_pronostico = $table_posts.ID AND $table_notification.id_user = $current_user) AND $table_posts.post_status='publish'";
 
             $result = $wpdb->get_results($sql);
             if(count($result) > 0):
@@ -49,4 +75,3 @@ if(!function_exists('select_notification_not_view')):
         return $result;
     }
 endif;
-

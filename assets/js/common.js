@@ -4,7 +4,7 @@ $(document).ready(function () {
     select_odds.change(e =>handler_odds_format(e))
     $('.dropdown-toggle').dropdown()
     if (typeof(Storage) !== 'undefined') {
-        let respuesta = sessionStorage.age_user
+        let respuesta = localStorage.age_user
         
         if(respuesta !== undefined && respuesta === 'no'){
             document.write('')
@@ -22,11 +22,11 @@ function setAge(resp){
     let modal = document.getElementById('modal_age_terms')
     
     if(text == 'no'){
-        sessionStorage.setItem('age_user', 'no')
+        localStorage.setItem('age_user', 'no')
         document.write('')
     }
     if(text == 'si'){
-        sessionStorage.setItem('age_user', 'si')
+        localStorage.setItem('age_user', 'si')
     }
     
     modal.remove()
