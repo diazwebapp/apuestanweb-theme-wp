@@ -58,8 +58,7 @@
                        if(count($noti) > 0){
                             $li = '';
                             foreach($noti as $post){
-                                $li .= '<a class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" href="'. esc_url(  get_the_permalink(get_option( $post->ID )) ) .'">'. $post->post_title .'</a>
-                                ';
+                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post->ID.'" onclick="quitar_notificacion(this)">'. $post->post_title .'</p>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }

@@ -54,8 +54,8 @@ if(!function_exists('select_notification_not_view')):
     }
 endif;
 
-if(!function_exists('add_notification_view')):
-    function add_notification_view($setup=['id_user'=>false]){
+if(!function_exists('insert_multi_notificacions_views')):
+    function insert_multi_notificacions_views($setup=['id_user'=>false]){
         global $wpdb;
         $table_notification = NOTIFICATIONS_MYSQL_TABLE;
         $table_posts = $wpdb->prefix."posts";
@@ -65,9 +65,23 @@ if(!function_exists('add_notification_view')):
             $notificaciones = select_notification_not_view(["post_type"=>'forecast',"id_user"=>$current_user]);
             if(count($notificaciones) > 0){
                 foreach($notificaciones as $post){
-                    $result = $wpdb->insert($table_notification,["id_pronostico"=>$post->ID,"id_user"=>$current_user]);
+                    $result = insert_notification_view(["id_pronostico"=>$post->ID,"id_user"=>$current_user]);
                 }
             }
+        endif;
+        return $result ;
+    }
+endif;
+
+if(!function_exists('insert_notification_view')):
+    function insert_notification_view($setup=['id_post'=>false,"id_user"]){
+        global $wpdb;
+        $table_notification = NOTIFICATIONS_MYSQL_TABLE;
+
+        $current_user = ($setup['id_user'] ? $setup['id_user'] : get_current_user_id( ));
+        $result = false;
+        if(isset($current_user)):
+            $result = $wpdb->insert($table_notification,$setup);
         endif;
         return $result ;
     }

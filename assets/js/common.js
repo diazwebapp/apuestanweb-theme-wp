@@ -257,7 +257,7 @@ const quitar_notificaciones = async() =>{
     if(p_username){
         username = p_username.textContent
     }
-    let request = await fetch(`/wp-json/aw-notificaciones/all`,{
+    let request = await fetch(`/wp-json/aw-notificaciones/clear-all`,{
         method:'post',
         body:JSON.stringify({username}),
         headers:{
@@ -275,3 +275,30 @@ const quitar_notificaciones = async() =>{
     }
 }
 
+const quitar_notificacion = async(element)=>{
+    let post_id = element.getAttribute("data-postid")
+    let p_username = document.querySelector("#header-username")
+    let counter_html = document.querySelector("#notification-counter")
+    let username = false
+    if(p_username){
+        counter = parseInt(counter_html.textContent)
+        username = p_username.textContent
+    }
+    let request = await fetch(`/wp-json/aw-notificaciones/clear-one`,{
+        method:'post',
+        body:JSON.stringify({username,post_id}),
+        headers:{
+            "content-type" : "application/json"
+        }
+    });
+    if(request.status == 200){
+        let response = await request.json()
+        console.log(response.status)
+        if(counter_html && response.status == "ok"){
+            counter_html.textContent = counter - 1
+            element.remove()
+        }
+    }else{
+        console.log("hubo un error 500")
+    }
+}
