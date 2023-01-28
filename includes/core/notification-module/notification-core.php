@@ -43,9 +43,10 @@ if(!function_exists('select_notification_not_view')):
             if(count($result) > 0):
                 foreach($result as $post){
                     $vip = carbon_get_post_meta($post->ID,'vip');
-                    $new_result[] = $post;
                     if($vip){
-
+                        
+                        $new_result[] = $post;
+                        
                     }
                 }
             endif;
