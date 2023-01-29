@@ -62,12 +62,12 @@ $sidebar=false;
                                 </section>
                                     <div class="post-content single_event_content text-break">
                                     <?php the_content(); ?>
-                                        <?php   endwhile; }?>
+                            <?php  endwhile; }?>
                                         <div class="share-buttons-container">
                                             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                             <a href="https://twitter.com/home?status=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>
                                             <a href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                                            <a href="tg://msg?text=Mira este artículo interesante: '<?php echo urlencode(get_permalink( $post->ID )); ?>'" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                                            <a href="tg://msg?text=<?php echo urlencode('Mira este artículo interesante: ' . get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-telegram-plane"></i></a>
                                         </div>
                                     </div>
 

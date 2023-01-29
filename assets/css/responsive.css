@@ -1668,6 +1668,9 @@
 	html{
 		font-size: 1.76vw;
 	}
+	body{
+		zoom: 0%;
+	}
 	.bookmaker_wrapper {
 	    padding-top: 6rem;
 	}
@@ -1843,6 +1846,9 @@
 		width: 100%;
 	}
 	.s-f{
+		font-size: 2rem;
+	}
+	.media h3 {
 		font-size: 2rem;
 	}
 
