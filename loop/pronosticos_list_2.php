@@ -16,7 +16,7 @@ $formatted_date = __(date_i18n('j M', strtotime($time)), 'jbetting');
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
 $bookmaker = json_encode([]);
-/* //SI EL PAIS ESTÁ CONFIGURADO
+//SI EL PAIS ESTÁ CONFIGURADO
 
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
@@ -31,7 +31,7 @@ if(isset($aw_system_location)):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
 endif;
-if(!isset($aw_system_location)):
+/* if(!isset($aw_system_location)):
     $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
 endif;
 $date = new DateTime($time);
