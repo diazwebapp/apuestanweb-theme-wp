@@ -66,7 +66,7 @@ endif;
 
 //forecast League
 $league = false;
-/* 
+
 if(isset($sport)):
     $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
     if(isset($leagues) and count($leagues) > 0):
@@ -75,7 +75,7 @@ if(isset($sport)):
         $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
     endif;
 endif;
-
+/* 
 $time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
