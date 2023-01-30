@@ -68,14 +68,19 @@ endif;
 $league = false;
 
 if(isset($sport)):
-    $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
+    $leagues = [];
+    foreach($tax_leagues as $tax_league):
+        if($tax_league->parent == $sport->term_id):
+            $leagues[] = $tax_league;
+        endif;
+    endforeach;
     if(isset($leagues) and count($leagues) > 0):
         $league = $leagues[0]; //define forecast sport
         $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-        echo "<pre>";
+        /* echo "<pre>";
             var_dump($leagues);
-        echo "</pre>";
-        //$league->icon_html =  '<img loading="lazy" src="'.$icon_img.'" />';
+        echo "</pre>"; */
+        $league->icon_html =  '<img loading="lazy" src="'.$icon_img.'" />';
     endif;
 endif;
 /* 
