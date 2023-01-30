@@ -38,7 +38,7 @@
         <div class="col-6 order-lg-3 col-lg-2 text-right">
                 <?php 
                     if(is_user_logged_in( )):
-                       $noti = [];
+                       $noti = select_notification_not_view();
                        $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
                                     <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
