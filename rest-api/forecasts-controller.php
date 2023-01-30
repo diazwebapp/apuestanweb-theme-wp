@@ -10,7 +10,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     $args['orderby']        = 'meta_value';
     $args['order']          = 'DESC';
 
-    if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
+    /* if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
         $p = str_replace("]","",$params['leagues']);
         $args['tax_query'] = [
@@ -21,8 +21,8 @@ function aw_get_forecasts(WP_REST_Request $request){
             ]
         ];
     endif;
-
-    if (isset($params['date'])) {
+ */
+    /* if (isset($params['date'])) {
         if($params['date'] == 'hoy')
             $current_date = date('Y-m-d');
         if($params['date'] == 'ayer')
@@ -38,7 +38,7 @@ function aw_get_forecasts(WP_REST_Request $request){
                     'type' => 'DATE'
                 ]
             ];
-    }
+    } */
     
    
     $query = new WP_Query($args);
