@@ -83,17 +83,17 @@ if(isset($sport)):
         $league->icon_html =  '<img loading="lazy" src="'.$icon_img.'" />';
     endif;
 endif;
-/* 
+
 $time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
-endif; */
+endif; 
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
     
-   /* echo "<div class='col-lg-4 col-md-6 mt_30'>
+    echo "<div class='col-lg-4 col-md-6 mt_30'>
         
              <div class='game_box'>
                 <div class='game_top'>
@@ -118,6 +118,5 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             </a>
                 {$vipcomponent}
             </div>
-    </div>"; */
-    echo "hola";
+    </div>"; 
 endif; ?>
