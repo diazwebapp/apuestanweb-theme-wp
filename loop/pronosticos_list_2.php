@@ -66,7 +66,7 @@ endif;
 
 //forecast League
 $league = false;
-
+var_dump($sport);
 if(isset($sport)):
     $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
     if(isset($leagues) and count($leagues) > 0):
