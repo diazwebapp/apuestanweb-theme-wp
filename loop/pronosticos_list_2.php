@@ -31,7 +31,7 @@ if(isset($aw_system_location)):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
 endif;
-/* if(!isset($aw_system_location)):
+if(!isset($aw_system_location)):
     $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
 endif;
 $date = new DateTime($time);
@@ -42,7 +42,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                     <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
-if($vip !='yes')
+/* if($vip !='yes')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
                         <p>Haz una apuesta</p>
