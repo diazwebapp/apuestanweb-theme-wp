@@ -42,7 +42,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                     <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
-/* if($vip !='yes')
+if($vip !='yes')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
                         <p>Haz una apuesta</p>
@@ -66,7 +66,7 @@ endif;
 
 //forecast League
 $league = false;
-
+/* 
 if(isset($sport)):
     $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
     if(isset($leagues) and count($leagues) > 0):
