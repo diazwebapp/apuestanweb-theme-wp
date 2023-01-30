@@ -72,7 +72,7 @@ if(isset($sport)):
     if(isset($leagues) and count($leagues) > 0):
         $league = $leagues[0]; //define forecast sport
         $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-        $league->icon_html = isset($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+        $league->icon_html =  '<img loading="lazy" src="'.$icon_img.'" />';
     endif;
 endif;
 /* 
