@@ -51,9 +51,9 @@ function aw_get_forecasts(WP_REST_Request $request){
         "model" => $params['model']
     ] );
     if($query->posts):
-        /* foreach($query->posts as $forecast):
+        foreach($query->posts as $forecast):
             if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
-                $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
+                $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}.php",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
@@ -61,7 +61,7 @@ function aw_get_forecasts(WP_REST_Request $request){
                 ]);
             endif;
             if(!isset($params["exclude_post"])):
-                $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
+                $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}.php",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
@@ -73,7 +73,7 @@ function aw_get_forecasts(WP_REST_Request $request){
         $home_url = get_home_url( null, '/', null );
         $loop_html["status"] = 'fail';
         $loop_html["html"] = '<div class="mt-5 alert alert-primary w-50 mx-auto" role="alert"><div>'.__("Sin pronósticos disponibles, regresa más tarde!","jbetting").' <a href="'.$home_url.'" class="alert-link">'.__("Ir al Inicio","jbetting").'</a></div></div>';
-    */
+   
     endif ;
     return json_decode(json_encode($loop_html));
 }
