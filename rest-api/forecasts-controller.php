@@ -52,7 +52,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     ] );
     if($query->posts):
         foreach($query->posts as $forecast):
-            /* if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
+            if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
                 $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
@@ -67,7 +67,7 @@ function aw_get_forecasts(WP_REST_Request $request){
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
                     "odds" => isset($params['odds']) ? $params['odds'] : null
                 ]);
-            endif; */
+            endif;
         endforeach;
     else:
         $home_url = get_home_url( null, '/', null );
