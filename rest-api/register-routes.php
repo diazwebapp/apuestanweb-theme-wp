@@ -111,7 +111,7 @@ function register_routes(){
     ]);
 
     //NOTIFICACIONES
-    register_rest_route('aw-notificaciones','/clear-all',[
+    /* register_rest_route('aw-notificaciones','/clear-all',[
         'methods' => 'POST',
         'callback' => 'aw_delete_notifications',
         'permission_callback' => function () {
@@ -124,7 +124,7 @@ function register_routes(){
         'permission_callback' => function () {
             return '__return_true';
           }
-    ]);
+    ]); */
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );
 
