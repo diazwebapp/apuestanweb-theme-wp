@@ -585,6 +585,8 @@ a.btn_2:hover{
 	font-weight: 700;
 	color: #00203A;
 	line-height: 1.2;
+	font-family: "Segoe UI", sans-serif;
+
 }
 .event{
 	display: flex;
@@ -738,6 +740,8 @@ a.btn_2:hover{
 	color: #00203A;
 	font-weight: 700;
 	line-height: 1.2;
+	font-family: "Segoe UI", sans-serif;
+
 }
 .rating{
 	display: inline-flex;
@@ -2230,6 +2234,8 @@ footer .menu li a::before{
     line-height: 1.2;
     color: #00203A;
     font-weight: 700;
+	font-family: "Segoe UI", sans-serif;
+
 }
 
 .single_event_content  h1{
@@ -2528,6 +2534,7 @@ blockquote{
 	line-height: 1.2;
 	font-weight: 700;
 	font-family: "Segoe UI", sans-serif;
+	margin-bottom: 2rem;
 }
 .author_text{
 	font-size: 2rem;

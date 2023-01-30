@@ -45,7 +45,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
 if($vip !='yes')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
-                        <p>Haz una apuesta</p>
+                        <p>Visitar</p>
                     </a>";
 //Liga y deporte
 //taxonomy league
