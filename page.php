@@ -18,7 +18,13 @@ endif;
 
 	<main>
 	<?php 
-	
+	if($banner_top != 'yes'):
+		if($custom_banner_top):
+			echo do_shortcode($custom_banner_top);
+		else:
+			echo do_shortcode("[banner title=".(isset($custom_h1) ? $custom_h1:get_the_title( get_the_ID() ))."]");
+		endif;
+	endif;
 	?>
 		<div class="event_area pb_90">
 			<div class="container">
