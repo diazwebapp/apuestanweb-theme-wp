@@ -13,7 +13,7 @@ $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $formatted_date = __(date_i18n('j M', strtotime($time)), 'jbetting');
 
 
-$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
+/* $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
 $bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
@@ -82,14 +82,20 @@ if($params['time_format']  == 'count'):
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
-endif;
+endif; */
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
     
-    echo "<div class='col-lg-4 col-md-6 mt_30'>
+   /* echo "<div class='col-lg-4 col-md-6 mt_30'>
         
-            <div class='game_box'>
+             <div class='game_box'>
                 <div class='game_top'>
-                    
+                    <div class='d-flex align-items-center league_box1'>
+                        ".(isset($league->icon_html) ? $league->icon_html:'')." 
+                        ".(isset($league->name) ? $league->name:'')."
+                    </div>
+                    <div class='d-flex align-items-center'>
+                        ".(isset($sport->icon_html) ? $sport->icon_html : '')." 
+                    </div>
                 </div>
                 <a href='$permalink'  >
                 <div class='d-flex align-items-center club_box'>
@@ -104,6 +110,6 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             </a>
                 {$vipcomponent}
             </div>
-    </div>";
-    
+    </div>"; */
+    echo "hola";
 endif; ?>
