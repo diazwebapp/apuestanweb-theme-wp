@@ -46,8 +46,9 @@ function aw_get_forecasts(WP_REST_Request $request){
     $loop_html = ["status" => 'ok',"html"=>$part,"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts),"model"=>"loop/pronosticos_list_{$params['model']}"];
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
+        "memberships_page" => PERMALINK_MEMBERSHIPS,
         "text_vip_link" => $params['text_vip_link'],
-        "time_format" => isset($params['time_format']) ? $params['time_format'] : null,
+        "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
         "model" => $params['model']
     ] );
     if($query->posts):
