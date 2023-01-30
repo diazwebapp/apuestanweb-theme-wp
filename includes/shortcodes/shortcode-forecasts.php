@@ -108,7 +108,7 @@ function shortcode_forecast($atts)
     
     $query =  wp_remote_retrieve_body( $response );
     
-    if ($query) {
+    if (!is_wp_error( $query )) {
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)
                 $home_class = 'row';        
