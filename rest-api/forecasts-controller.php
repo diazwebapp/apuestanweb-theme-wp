@@ -43,7 +43,7 @@ function aw_get_forecasts(WP_REST_Request $request){
    
     $query = new WP_Query($args);
    
-    $loop_html = ["status" => 'ok',"html"=>$part,"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts),"model"=>"loop/pronosticos_list_{$params['model']}"];
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts)];
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "memberships_page" => PERMALINK_MEMBERSHIPS,
@@ -52,6 +52,7 @@ function aw_get_forecasts(WP_REST_Request $request){
         "model" => $params['model']
     ] );
     if($query->posts):
+        $loop_html["error"] = "error";
         foreach($query->posts as $forecast):
             if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
                 $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
