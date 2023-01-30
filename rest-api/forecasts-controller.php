@@ -43,7 +43,7 @@ function aw_get_forecasts(WP_REST_Request $request){
    
     $query = new WP_Query($args);
     
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts)];
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $params['text_vip_link'],
