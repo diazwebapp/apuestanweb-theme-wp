@@ -43,7 +43,7 @@ function aw_get_forecasts(WP_REST_Request $request){
    
     $query = new WP_Query($args);
     
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts)];
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts),"model"=>"loop/pronosticos_list_{$params['model']}"];
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $params['text_vip_link'],
@@ -51,7 +51,7 @@ function aw_get_forecasts(WP_REST_Request $request){
         "model" => $params['model']
     ] );
     if($query->posts):
-        foreach($query->posts as $forecast):
+        /* foreach($query->posts as $forecast):
             if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
                 $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
                     "forecast"=>$forecast,
@@ -73,7 +73,8 @@ function aw_get_forecasts(WP_REST_Request $request){
         $home_url = get_home_url( null, '/', null );
         $loop_html["status"] = 'fail';
         $loop_html["html"] = '<div class="mt-5 alert alert-primary w-50 mx-auto" role="alert"><div>'.__("Sin pronósticos disponibles, regresa más tarde!","jbetting").' <a href="'.$home_url.'" class="alert-link">'.__("Ir al Inicio","jbetting").'</a></div></div>';
-    endif;
+    */
+    endif ;
     return json_decode(json_encode($loop_html));
 }
 
