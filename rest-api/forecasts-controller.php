@@ -55,41 +55,54 @@ function aw_get_forecasts(WP_REST_Request $request){
         "model" => $params['model']
     ] );
     $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
-    
-    set_query_var( 'params', [
-        "vip_link" => PERMALINK_VIP,
-        "memberships_page" => PERMALINK_MEMBERSHIPS,
-        "text_vip_link" => $params['text_vip_link'],
-        "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
-        "model" => $params['model']
-    ] );
 
-    if($query->posts):
-        $loop_html["error"] = "error";
-        foreach($query->posts as $forecast):
-            if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
-                $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,[
+    if ($query->posts):
+        
+        if(isset($params['unlock'])):
+            
+            foreach ($query->posts as $key => $forecast):
+                if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => isset($params['odds']) ? $params['odds'] : null
-                ]);
-            endif;
-            if(!isset($params["exclude_post"])): 
-                $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}.php",null,[
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]); 
+                endif;
+                if(!isset($params["exclude_post"])):
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => isset($params['odds']) ? $params['odds'] : null
-                ]);
-            endif;
-        endforeach;
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]);
+                endif;
+            endforeach;
+
+        else:
+            
+            foreach ($query->posts as $key => $forecast):
+                if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]); 
+                endif;
+                if(!isset($params["exclude_post"])):
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]);
+                endif;
+            endforeach;
+            
+        endif;
+        
     else:
         $home_url = get_home_url( null, '/', null );
         $loop_html["status"] = 'fail';
         $loop_html["html"] = '<div class="mt-5 alert alert-primary w-50 mx-auto" role="alert"><div>'.__("Sin pronósticos disponibles, regresa más tarde!","jbetting").' <a href="'.$home_url.'" class="alert-link">'.__("Ir al Inicio","jbetting").'</a></div></div>';
-   
-    endif ;
+    endif;
     return json_decode(json_encode($loop_html));
 }
 
