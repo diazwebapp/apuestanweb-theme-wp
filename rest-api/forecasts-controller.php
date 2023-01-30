@@ -4,11 +4,11 @@ function aw_get_forecasts(WP_REST_Request $request){
     $params = $request->get_params();
     $args = [];
     $args['post_type']      = 'forecast';
-    $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
-    $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
-    $args['meta_key']       = '_data';
-    $args['orderby']        = 'meta_value';
-    $args['order']          = 'DESC';
+    //$args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
+    //$args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
+    //$args['meta_key']       = '_data';
+    //$args['orderby']        = 'meta_value';
+    //$args['order']          = 'DESC';
 
     /* if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
