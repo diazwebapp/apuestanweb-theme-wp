@@ -13,10 +13,10 @@ $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $formatted_date = __(date_i18n('j M', strtotime($time)), 'jbetting');
 
 
-/* $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
+$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
 $bookmaker = json_encode([]);
-//SI EL PAIS ESTÁ CONFIGURADO
+/* //SI EL PAIS ESTÁ CONFIGURADO
 
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
