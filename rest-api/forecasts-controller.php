@@ -42,8 +42,8 @@ function aw_get_forecasts(WP_REST_Request $request){
     
    
     $query = new WP_Query($args);
-    
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts),"model"=>"loop/pronosticos_list_{$params['model']}"];
+    $part = load_template_part("loop/pronosticos_list_{$params['model']}.php");
+    $loop_html = ["status" => 'ok',"html"=>$part,"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts),"model"=>"loop/pronosticos_list_{$params['model']}"];
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $params['text_vip_link'],
@@ -60,14 +60,14 @@ function aw_get_forecasts(WP_REST_Request $request){
                     "odds" => isset($params['odds']) ? $params['odds'] : null
                 ]);
             endif;
-            if(!isset($params["exclude_post"])): */
+            if(!isset($params["exclude_post"])): 
                 $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}.php",null,[
                     "forecast"=>$forecast,
                     "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                     "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
                     "odds" => isset($params['odds']) ? $params['odds'] : null
                 ]);
-            /* endif; */
+            endif; */
         endforeach;
     else:
         $home_url = get_home_url( null, '/', null );
