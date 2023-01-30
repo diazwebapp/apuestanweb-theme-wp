@@ -70,7 +70,7 @@ $league = false;
 if(isset($sport)):
     $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
     if(isset($leagues) and count($leagues) > 0):
-        //$league = $leagues[0]; //define forecast sport
+        $league = $leagues[0]; //define forecast sport
         //$icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
         //$league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
     endif;
