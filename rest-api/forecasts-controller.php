@@ -42,7 +42,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     
    
     $query = new WP_Query($args);
-    $part = load_template_part("loop/pronosticos_list_{$params['model']}");
+    $part = get_template_part("loop/pronosticos_list_{$params['model']}");
     $loop_html = ["status" => 'ok',"html"=>$part,"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"posts"=>count($query->posts),"model"=>"loop/pronosticos_list_{$params['model']}"];
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
