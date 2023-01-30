@@ -89,13 +89,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
         
             <div class='game_box'>
                 <div class='game_top'>
-                    <div class='d-flex align-items-center league_box1'>
-                        ".(isset($league->icon_html) ? $league->icon_html:'')." 
-                        ".(isset($league->name) ? $league->name:'')."
-                    </div>
-                    <div class='d-flex align-items-center'>
-                        ".(isset($sport->icon_html) ? $sport->icon_html : '')." 
-                    </div>
+                    
                 </div>
                 <a href='$permalink'  >
                 <div class='d-flex align-items-center club_box'>
