@@ -109,6 +109,22 @@ function register_routes(){
             return '__return_true';
           }
     ]);
+
+    //NOTIFICACIONES
+    register_rest_route('aw-notificaciones','/clear-all',[
+        'methods' => 'POST',
+        'callback' => 'aw_delete_notifications',
+        'permission_callback' => function () {
+            return '__return_true';
+          }
+    ]);
+    register_rest_route('aw-notificaciones','/clear-one',[
+        'methods' => 'POST',
+        'callback' => 'aw_delete_notification',
+        'permission_callback' => function () {
+            return '__return_true';
+          }
+    ]);
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );
 

@@ -68,11 +68,19 @@ endif;
 $league = false;
 
 if(isset($sport)):
-    $leagues = get_terms( 'league', array( 'hide_empty' => true, 'parent' => $sport->term_id ) );
+    $leagues = [];
+    foreach($tax_leagues as $tax_league):
+        if($tax_league->parent == $sport->term_id):
+            $leagues[] = $tax_league;
+        endif;
+    endforeach;
     if(isset($leagues) and count($leagues) > 0):
         $league = $leagues[0]; //define forecast sport
         $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-        $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+        /* echo "<pre>";
+            var_dump($leagues);
+        echo "</pre>"; */
+        $league->icon_html =  '<img loading="lazy" src="'.$icon_img.'" />';
     endif;
 endif;
 
@@ -82,12 +90,12 @@ if($params['time_format']  == 'count'):
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
-endif;
+endif; 
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
     
     echo "<div class='col-lg-4 col-md-6 mt_30'>
         
-            <div class='game_box'>
+             <div class='game_box'>
                 <div class='game_top'>
                     <div class='d-flex align-items-center league_box1'>
                         ".(isset($league->icon_html) ? $league->icon_html:'')." 
@@ -110,6 +118,5 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             </a>
                 {$vipcomponent}
             </div>
-    </div>";
-    
+    </div>"; 
 endif; ?>

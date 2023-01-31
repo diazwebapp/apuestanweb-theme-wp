@@ -9,7 +9,8 @@ include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php"; 
 include "includes/templates-emails/template-email-1.php"; 
-include "includes/templates-emails/template-email-2.php"; 
+include "includes/templates-emails/template-email-2.php";
+include "includes/core/notification-module/notification-core.php"; 
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
@@ -86,6 +87,7 @@ include "rest-api/user-register-controller.php";
 include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
 include "rest-api/parley-controller.php";
+include "rest-api/notification-controller.php";
 
 
 register_nav_menus(array(
@@ -157,10 +159,10 @@ function jbetting_src()
     wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
     wp_enqueue_script( 'stick-js' );
 
-    wp_register_script('noti-js', get_template_directory_uri() . '/assets/js/notifi.js', array('jquery'), null, true);
-    wp_enqueue_script( 'noti-js' );
-    wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
-    wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
+   // wp_register_script('noti-js', get_template_directory_uri() . '/assets/js/notifi.js', array('jquery'), null, true);
+    //wp_enqueue_script( 'noti-js' );
+    //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
+   // wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
 
 }
 
@@ -257,7 +259,7 @@ add_action('init', function(){
         $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
         $_SESSION["geolocation"] = json_encode($data);
     }
-       
+    
 });
 
 

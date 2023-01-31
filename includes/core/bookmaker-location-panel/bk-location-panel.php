@@ -54,11 +54,7 @@ function mysql_table_aw_bk_country_relations(){
 
   dbDelta($sql);
 }
-/*
-  FALTA MEJORA LA UI Y UX
-  FALTA BOTON PARA ELIMINAR BOOKMAKERS DE UN PAIS
-  FALTA BOTON PARA ELIMINAR UN PAIS
-*/
+
 add_action('init','mysql_table_aw_bk_country_relations');
 
 if(!function_exists('aw_select_countries')):
