@@ -48,7 +48,7 @@ if(!function_exists('select_notification_not_view')):
                     $vip = carbon_get_post_meta($notify_post->ID,'vip');
                     if($vip){
                         
-                        $new_result[] = $notify_post;
+                       // $new_result[] = $notify_post;
                         
                     }
                 }
