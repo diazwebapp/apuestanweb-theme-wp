@@ -37,9 +37,9 @@ if(!function_exists('select_notification_not_view')):
         $current_user = ($setup['id_user'] ? $setup['id_user'] : get_current_user_id( ));
         $result = [];
         $new_result = [];
-        /* if(isset($current_user)):
+        if(isset($current_user)):
             $sql = "SELECT * FROM $table_posts Where Not exists (select * from $table_notification Where $table_notification.id_pronostico = $table_posts.ID AND $table_notification.id_user = $current_user) ". ($setup['post_type'] ? " AND $table_posts.post_type = '{$setup['post_type']}' " :'' )." AND $table_posts.post_status='publish'";
-
+            /* 
             $result = $wpdb->get_results($sql);
             
             if(count($result) > 0):
@@ -52,7 +52,8 @@ if(!function_exists('select_notification_not_view')):
                     }
                 }
             endif;
-        endif; */
+            */
+        endif; 
         return $new_result;
     }
 endif;
