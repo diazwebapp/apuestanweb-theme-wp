@@ -52,11 +52,11 @@ if(!function_exists('select_notification_not_view')):
                         
                     }
                 }
-               return $new_result;
+               
             endif;
             
         endif; 
-        
+        return $new_result;
     }
 endif;
 

@@ -42,7 +42,7 @@
                        $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
                                     <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;font-size:13px !important;"></i>
+                                    <i class="fas fa-bell" style="color:font-size:13px !important;"></i>
                                         <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
 
