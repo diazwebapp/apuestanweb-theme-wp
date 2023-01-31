@@ -46,11 +46,11 @@ if(!function_exists('select_notification_not_view')):
                
               foreach($result as $notify_post){
                     $vip = carbon_get_post_meta($notify_post->ID,'vip');
-                     /* if($vip){
+                    if($vip){
                         
                         $new_result[] = $notify_post;
                         
-                     }*/
+                    }
                 }
                
             endif;
