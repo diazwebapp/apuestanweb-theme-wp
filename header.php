@@ -42,8 +42,8 @@
                        $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
                                     <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell" style="color:font-size:13px !important;"></i>
-                                        <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">0</span>
+                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;font-size:13px !important;"></i>
+                                        <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
 
                                     <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
@@ -57,8 +57,8 @@
                        </ul>';
                        if(count($noti) > 0){
                             $li = '';
-                            foreach($noti as $post){
-                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post->ID.'" onclick="quitar_notificacion(this)">'. $post->post_title .'</p>';
+                            foreach($noti as $post_noti){
+                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noti->ID.'" onclick="quitar_notificacion(this)">'. $post_noti->post_title .'</p>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
