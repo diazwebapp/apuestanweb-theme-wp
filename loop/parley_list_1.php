@@ -7,7 +7,7 @@ $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());
 $time = carbon_get_post_meta(get_the_ID(), 'data');
-$fecha = __(date_i18n('j \d\e F', strtotime($time)), 'jbetting');
+$fecha = date('D M', strtotime($time));
 $hora = date('g:i a', strtotime($time));
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 
@@ -31,11 +31,10 @@ if(!isset($aw_system_location)):
 endif;
 
 $parley_id = get_the_ID();
-$alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
 echo "<div class='parley_wrapper'>
 <div class='parley_top_content'>
-    <h2>$fecha, Datos de Parley  </h2>
-    <img src='$alt_logo' class='img-fluid' alt=''>
+    <h2>Parley $fecha</h2>
+    <img src='img/logo2.svg' class='img-fluid' alt=''>
 </div>";
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
@@ -48,12 +47,11 @@ echo "<div class='parley_wrapper'>
             $parley_cuotes = $parley_cuotes * $prediction['cuote'];
             $oOddsConverter = new Converter($prediction['cuote'], 'eu');
             $odds_result = $oOddsConverter->doConverting();
-            
             $prediction['cuote'] = $odds_result[$args["odds"]];
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
             $time = carbon_get_post_meta($event['id'], 'data');
-            $fecha =  date_i18n('d M', strtotime($time));
+            $fecha =  date('d M', strtotime($time));
             $hora =  date('g:i a', strtotime($time));
 
             $sport_term = wp_get_post_terms($event['id'], 'league', array('fields' => 'all'));
@@ -72,25 +70,25 @@ echo "<div class='parley_wrapper'>
                 }
             }
 
-            echo "<div class='parley_box mx-2'>
+            echo "<div class='parley_box'>
                 <div class='parley_left_content'>
-                    <div class='row w-100'>
-                        <div class='col-6'>
-                            <div>
-                                <span style='display: inline-block;padding: 0.6rem 2rem;font-size: 1.6rem;line-height: 1;color: #00203A;background-color: #E4E6E8;border-radius: 1.7rem;'>{$sport['name']}</span>
+                    <div class='parley_game_name_wrapper'>
+                        <div class='parley_game_name'>
+                            <div class='category-grid'>
+                                <span>{$sport['name']}</span>
                             </div>
                         
                             <div class='d-lg-block d-none'>
                                 <time>$fecha, $hora</time>
                             </div>
                         </div>
-                        <div class='d-lg-none d-block col-6'>
+                        <div class='d-lg-none d-block'>
                             <div class='mobile_parley_time'>
-                                <p class='text-right' >$fecha, $hora</p>
+                                <p>$fecha, $hora</p>
                             </div>
                         </div>
                     </div>                  
-                    <div class='parley_match_time '>
+                    <div class='parley_match_time'>
                         <div class='parley_flag'>
                             <div class='parley_team'>
                                 <img src='{$teams['team1']['logo']}' class='img-fluid' alt=''>
