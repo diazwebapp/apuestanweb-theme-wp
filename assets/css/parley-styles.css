@@ -327,7 +327,7 @@
     padding-left: 5rem;
     display: flex;
     align-items: center;
-    /* width: 25rem; */
+    width: 25rem;
 }
 .parley_team {
     height: 5rem;
