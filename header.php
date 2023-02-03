@@ -89,10 +89,10 @@
                                 $oldTime = $post_noticode->post_modified;
                                 $timeAgo = aw_timeAgo ($oldTime, $newTime);
 
-                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:120px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">
-                                    <span class="text-truncate" style="max-width:50px;" >'. $post_noticode->post_title .'</span> 
+                                $li .= '<li role="button" class="dropdown-item text-dark my-2" style="max-width:120px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">
+                                    <p class="text-truncate" style="max-width:50px;" >'. $post_noticode->post_title .'</p> 
                                     <span>'. $timeAgo .'</span>
-                                </p>';
+                                </li>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
