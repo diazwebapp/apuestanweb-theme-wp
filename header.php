@@ -66,7 +66,7 @@
                     }
                     if(is_user_logged_in( )):
                        $noti = select_notification_not_view();
-                       $html = '<ul class="navbar-nav mx-3 modal-dialog-scrollable">
+                       $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
                                     <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;font-size:13px !important;"></i>
@@ -74,8 +74,9 @@
                                     </a>
 
                                     <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
-                                        {list}
-                                        
+                                        <ul style="max-height:200px;overflow-y:scroll;">
+                                            {list}
+                                        </ul>
                                         <hr class="mt-2 mb-3">
                                         <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-sign-out"></i>'.__('quitar todo','jbetting').'</p>
 
