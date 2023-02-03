@@ -39,6 +39,7 @@ if(!function_exists('aw_paypal_create_order')):
             ] 
         ];
         $order = json_encode($order);
+        $dev_mode = carbon_get_theme_option('devmode');
         $paypal_api_uri = "https://api-m.paypal.com/v2/checkout/orders";
         if($dev_mode): // si el tema esta de desarrollo se activa en modo "sandbox"
             $paypal_api_uri = "https://api-m.sandbox.paypal.com/v2/checkout/orders";
@@ -80,6 +81,7 @@ if(!function_exists("aw_paypal_capture_order")):
         $token_data = get_paypal_token_data($paypal_credentials);
 
         $authorization = "Bearer ".$token_data->access_token;
+        $dev_mode = carbon_get_theme_option('devmode');
         $paypal_api_uri = "https://api-m.paypal.com/v2/checkout/orders";
         if($dev_mode): // si el tema esta de desarrollo se activa en modo "sandbox"
             $paypal_api_uri = "https://api-m.sandbox.paypal.com/v2/checkout/orders";
