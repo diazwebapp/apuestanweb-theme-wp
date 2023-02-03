@@ -158,6 +158,7 @@ const aw_submit_checkout_form = async (e)=>{
  
   if(payment_account_name.toLowerCase() == "paypal"){
     const {id,links,status} = await paypal_checkout({lid:lid.value,payment_account_id})
+    
         if(status === "CREATED"){
           window.location = links[1].href
         }
@@ -203,6 +204,7 @@ const paypal_checkout = async({lid,payment_account_id})=>{
   })
   if(req.status == 200){
     const res = req.json()
+    console.log(res)
     return res
   }
   return false
