@@ -40,27 +40,27 @@
                 function aw_timeAgo ($oldTime, $newTime) {
                     $timeCalc = strtotime($newTime) - strtotime($oldTime);
                     if ($timeCalc >= (60*60*24*30*12*2)){
-                        $timeCalc = intval($timeCalc/60/60/24/30/12) . " years ago";
+                        $timeCalc = "hace " . intval($timeCalc/60/60/24/30/12) . " años";
                         }else if ($timeCalc >= (60*60*24*30*12)){
-                            $timeCalc = intval($timeCalc/60/60/24/30/12) . " year ago";
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24/30/12) . " año";
                         }else if ($timeCalc >= (60*60*24*30*2)){
-                            $timeCalc = intval($timeCalc/60/60/24/30) . " months ago";
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24/30) . " meses";
                         }else if ($timeCalc >= (60*60*24*30)){
-                            $timeCalc = intval($timeCalc/60/60/24/30) . " month ago";
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24/30) . " mes";
                         }else if ($timeCalc >= (60*60*24*2)){
-                            $timeCalc = intval($timeCalc/60/60/24) . " days ago";
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24) . " dias";
                         }else if ($timeCalc >= (60*60*24)){
-                            $timeCalc = " Yesterday";
+                            $timeCalc = " ayer";
                         }else if ($timeCalc >= (60*60*2)){
-                            $timeCalc = intval($timeCalc/60/60) . " hours ago";
+                            $timeCalc = "hace " . intval($timeCalc/60/60) . " horas";
                         }else if ($timeCalc >= (60*60)){
-                            $timeCalc = intval($timeCalc/60/60) . " hour ago";
+                            $timeCalc = "hace " . intval($timeCalc/60/60) . " hora";
                         }else if ($timeCalc >= 60*2){
-                            $timeCalc = intval($timeCalc/60) . " minutes ago";
+                            $timeCalc = "hace " . intval($timeCalc/60) . " minutos";
                         }else if ($timeCalc >= 60){
-                            $timeCalc = intval($timeCalc/60) . " minute ago";
+                            $timeCalc = "hace " . intval($timeCalc/60) . " minuto";
                         }else if ($timeCalc > 0){
-                            $timeCalc .= " seconds ago";
+                            $timeCalc = "hace " . $timeCalc ." segundos";
                         }
                     return $timeCalc;
                     }
