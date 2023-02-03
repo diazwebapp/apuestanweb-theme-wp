@@ -40,8 +40,8 @@ if(!function_exists('aw_paypal_create_order')):
         ];
         $order = json_encode($order);
         $paypal_api_uri = "https://api-m.paypal.com/v2/checkout/orders";
-        $paypal_api_uri = "https://api-m.sandbox.paypal.com/v2/checkout/orders";
         if($dev_mode): // si el tema esta de desarrollo se activa en modo "sandbox"
+            $paypal_api_uri = "https://api-m.sandbox.paypal.com/v2/checkout/orders";
         endif;
         $response = wp_remote_post( $paypal_api_uri, array(
             'method'      => 'POST',
