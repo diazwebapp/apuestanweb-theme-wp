@@ -62,16 +62,14 @@
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
-                    $dev_mode = carbon_get_theme_option('devmode');
+                    
                     $notificaciones = carbon_get_theme_option('notificaciones');
 
-                    var_dump($dev_mode);
-                    var_dump($notificaciones);
                     echo '
                     
                     <div class="navbar navbar-expand-lg">
                         <div class="navbar-collapse row" id="navbarSupportedContent">
-                            '.$html.'
+                            '.(($notificaciones) ? $html : '').'
                             <ul class="navbar-nav">
                                 
                                 <li class="nav-item dropdown">

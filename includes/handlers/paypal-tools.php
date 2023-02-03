@@ -1,10 +1,13 @@
 <?php
 function get_paypal_token_data($paypal_credentials){
     $ch = curl_init();
- 
+        $dev_mode = carbon_get_theme_option('devmode');
+        $paypal_api_uri = "https://api-m.paypal.com/v1/oauth2/token";
+        if($dev_mode): // si el tema esta de desarrollo se activa en modo "sandbox"
+            $paypal_api_uri = "https://api-m.sandbox.paypal.com/v1/oauth2/token";
+        endif;
         // set path to PayPal API to generate token
-        // remove "sandbox" from URL when in live
-        curl_setopt($ch, CURLOPT_URL, 'https://api-m.sandbox.paypal.com/v1/oauth2/token');
+        curl_setopt($ch, CURLOPT_URL, $paypal_api_uri);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");

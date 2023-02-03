@@ -13,8 +13,7 @@ function crb_attach_theme_options()
             ->set_icon('dashicons-admin-site-alt2')
             ->add_tab(__("General settings", "jbetting"), array(
                 Field::make( 'checkbox', 'devmode', __( 'Dev mode','jbetting' ) )
-                    ->set_default_value( 'yes' )
-                    ->set_option_value( 'yes' ),
+                    ->set_default_value( true ),
                 Field::make('image', 'logo', __("Site logo(183*19)", "jbetting")),
                 //selecion de pagina vip por defecto
                 Field::make('association', 'page_vip', __("Select default vip", "jbetting"))
