@@ -203,7 +203,7 @@ const paypal_checkout = async({lid,payment_account_id})=>{
     }
   })
   if(req.status == 200){
-    const res = req.json()
+    const res = await req.json()
     console.log(res)
     return res
   }
