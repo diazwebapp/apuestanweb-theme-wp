@@ -90,7 +90,7 @@
                                 $timeAgo = aw_timeAgo ($oldTime, $newTime);
 
                                 $li .= '<p role="button" class="dropdown-item text-dark my-2" style="max-width:120px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">
-                                    <span class="text-truncate" style="max-width:50px;" >'. $post_noticode->post_title .'</span> 
+                                    <span class="w-100 d-block" >'. $post_noticode->post_title .'</span> 
                                     <span style="font-size:7px;" >'. $timeAgo .'</span>
                                 </p>';
                             }
