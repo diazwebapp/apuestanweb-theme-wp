@@ -84,8 +84,11 @@
                        </ul>';
                        if(count($noti) > 0){
                             $li = '';
+                            $newTime = date("Y-m-d H:i:s");
                             foreach($noti as $post_noticode){
-                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">'. $post_noticode->post_modified .'</p>';
+                                $oldTime = $post_noticode->post_modified;
+                                $timeAgo = aw_timeAgo ($oldTime, $newTime);
+                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">'. $timeAgo .'</p>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
