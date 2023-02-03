@@ -85,7 +85,7 @@
                        if(count($noti) > 0){
                             $li = '';
                             foreach($noti as $post_noticode){
-                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">'. $post_noticode->post_update .'</p>';
+                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">'. $post_noticode->post_modified .'</p>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
