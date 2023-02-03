@@ -161,6 +161,10 @@ const aw_submit_checkout_form = async (e)=>{
     
         if(status === "CREATED"){
           window.location = links[1].href
+        }else{
+          btn.disabled = false
+          btn.textContent = btn.textContent
+          alert("ha habido un error con paypal")
         }
     return
   }
@@ -204,7 +208,6 @@ const paypal_checkout = async({lid,payment_account_id})=>{
   })
   if(req.status == 200){
     const res = await req.json()
-    console.log(res)
     return res
   }
   return false
