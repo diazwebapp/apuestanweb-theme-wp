@@ -37,6 +37,33 @@
         </div>
         <div class="col-6 order-lg-3 col-lg-2 text-right">
                 <?php 
+                function aw_timeAgo ($oldTime, $newTime) {
+                    $timeCalc = strtotime($newTime) - strtotime($oldTime);
+                    if ($timeCalc >= (60*60*24*30*12*2)){
+                        $timeCalc = intval($timeCalc/60/60/24/30/12) . " years ago";
+                        }else if ($timeCalc >= (60*60*24*30*12)){
+                            $timeCalc = intval($timeCalc/60/60/24/30/12) . " year ago";
+                        }else if ($timeCalc >= (60*60*24*30*2)){
+                            $timeCalc = intval($timeCalc/60/60/24/30) . " months ago";
+                        }else if ($timeCalc >= (60*60*24*30)){
+                            $timeCalc = intval($timeCalc/60/60/24/30) . " month ago";
+                        }else if ($timeCalc >= (60*60*24*2)){
+                            $timeCalc = intval($timeCalc/60/60/24) . " days ago";
+                        }else if ($timeCalc >= (60*60*24)){
+                            $timeCalc = " Yesterday";
+                        }else if ($timeCalc >= (60*60*2)){
+                            $timeCalc = intval($timeCalc/60/60) . " hours ago";
+                        }else if ($timeCalc >= (60*60)){
+                            $timeCalc = intval($timeCalc/60/60) . " hour ago";
+                        }else if ($timeCalc >= 60*2){
+                            $timeCalc = intval($timeCalc/60) . " minutes ago";
+                        }else if ($timeCalc >= 60){
+                            $timeCalc = intval($timeCalc/60) . " minute ago";
+                        }else if ($timeCalc > 0){
+                            $timeCalc .= " seconds ago";
+                        }
+                    return $timeCalc;
+                    }
                     if(is_user_logged_in( )):
                        $noti = select_notification_not_view();
                        $html = '<ul class="navbar-nav mx-3">
@@ -58,7 +85,7 @@
                        if(count($noti) > 0){
                             $li = '';
                             foreach($noti as $post_noticode){
-                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">'. $post_noticode->post_title .'</p>';
+                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">'. $post_noticode->post_update .'</p>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
