@@ -133,7 +133,7 @@ function aw_get_user_type(){
                                         <h1 class="title_lg"><?php the_title() ?></h1>
                                     </div>
                                     <!-- breadcrumb -->
-                                    <div class="single_event_breadcrumb">
+                                    <div class="single_event_breadcrumb text-capitalize">
                                         <ul>
                                             <li>
                                                 <a href="<?php echo get_home_url() ?>">
@@ -171,7 +171,7 @@ function aw_get_user_type(){
                                                 <img loading="lazy" src="<?php echo isset($teams["team1"]["logo"]) ? $teams["team1"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
                                                 <p><?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?></p>
                                             </div>
-                                            <div class="single_match_time">                    
+                                            <div class="event_start">                    
                                                 <time datetime="<?php echo $datetime->format("Y-m-d h:i") ?>" ><?php echo $datetime->format("h:i a") ?></time>
                                                 <?php echo date_i18n("d M Y", strtotime($datetime->format("d M Y")));?>   
                                                                        
@@ -199,7 +199,7 @@ function aw_get_user_type(){
                                 </div>
                             <!-- sidebar -->
         
-                            <div class="col-lg-3 offset-1">
+                            <div class="col-lg-3">
                                 <div class="row justify-content-end"><?php dynamic_sidebar( "forecast-right" ) ?></div>
                                 
                             </div>

@@ -57,7 +57,6 @@ include "includes/handlers/geolocation.php";
 /*--------------------------------------------------------------*/
 
 include "includes/ajax_handlers/news_loadmore.php";
-include "includes/ajax_handlers/notifica.php";
 include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
 include "includes/handlers/author_posts_table.php";
@@ -185,6 +184,36 @@ add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
         });
     } */
 
+// convert images to .wepb
+function convert_to_webp($image_path) {
+        if(imagetypes() & IMG_WEBP) {
+          $extension = pathinfo($image_path['file'], PATHINFO_EXTENSION);
+          $webp_image = preg_replace("/\.{$extension}/", '.webp', $image_path['file']);
+          $image = null;
+          switch ($extension) {
+            case 'jpeg':
+            case 'jpg':
+            case 'png':
+            case 'jfif':
+              $image = imagecreatefromjpeg($image_path['file']);
+              break;
+            case 'png':
+              $image = imagecreatefrompng($image_path['file']);
+              break;
+          }
+          imagewebp($image, $webp_image, 50);
+          return array(
+            'file' => $webp_image,
+            'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),
+            'type' => 'image/webp'
+          );
+        }
+        return $image_path;
+      }
+      
+add_filter('wp_handle_upload', 'convert_to_webp');
+      
+      
 function draw_rating($rating)
 {
     $ret = '';
@@ -298,7 +327,7 @@ add_filter('upload_mimes', 'aw_mime_types');
 add_filter( 'upload_mimes', function() {
   $mimes = [
     'svg' => 'image/svg+xml',
-    'jpg|jpeg' => 'image/jpeg',
+    'jpg|jpeg|jfif' => 'image/jpeg',
     'png' => 'image/png',
   ];
   return $mimes;
@@ -315,10 +344,11 @@ add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 /////Obtiene los enlaces de RRSS///////
 function get_rrss() {
-    define('tl',get_option('tl'));
-    define('fb',get_option('fb'));
-    define('tw',get_option('tw'));
-    define('ig',get_option('ig'));
+    define('tl',carbon_get_theme_option('tl'));
+    define('fb',carbon_get_theme_option('fb'));
+    define('tw',carbon_get_theme_option('tw'));
+    define('ig',carbon_get_theme_option('ig'));
+    
 }
 
 add_action( 'wp_loaded', 'get_rrss' );

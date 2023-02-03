@@ -40,6 +40,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 </div>
                 <!--RRSS-->
                 <?php
+                echo get_option('tl');
                 echo '<div class="col-lg-2 col-6 mt_20 text-right"> 
                     <div class="social_icons">
                             <a href="'.tl.'" rel="nofollow noreferrer noopener" target="_blank">

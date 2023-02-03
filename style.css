@@ -1985,7 +1985,7 @@ footer .menu li a::before{
 	color: #FFFFFF;
 	padding-top: 1.2rem;
 }
-.single_match_time {
+.event_start {
     padding-left: 10.5rem;
     padding-right: 10.5rem;
     text-align: center;
@@ -1999,7 +1999,7 @@ footer .menu li a::before{
     grid-gap: .5rem;
     gap: .5rem;
 }
-.single_match_time time{
+.event_start time{
 	font-size: 2.5rem;
 	line-height: 1.2;
 	color: #FFFFFF;
@@ -4738,4 +4738,6 @@ a.panel-button {
   .ml_sidebar{
 	margin-left: 10rem;
   }
-  
+  .col-lg-2-5 {
+	width: 10% !important; /* 10% = 2.5 / 25 (25 es el número de columnas en Bootstrap) */
+  }

@@ -967,7 +967,7 @@
 	
 
 	/*single event area*/
-	.single_match_time {
+	.event_start {
 	    padding-left: 1.5rem;
 	    padding-right: 1.5rem;
 	}
@@ -1787,6 +1787,7 @@
 		margin-left: 0;	
 		margin-right:0;
 	}
+	
 	
 	.blog_heading_right_content {
 	    display: none;

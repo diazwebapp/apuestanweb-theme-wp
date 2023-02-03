@@ -156,7 +156,7 @@ function crb_attach_theme_options()
         Container::make('post_meta', __("Team", "jbetting"))
             ->where('post_type', '=', 'team')
             ->add_tab(__("1. General", "jbetting"), array(
-                Field::make('image', 'team_logo', __("Team logo(square .png)", "jbetting")),
+                Field::make('image', 'team_logo', __("Team logo( min 300x300px.png)", "jbetting")),
                 Field::make('text', 'acronimo', __("acronimo", "jbetting"))
             ));
 

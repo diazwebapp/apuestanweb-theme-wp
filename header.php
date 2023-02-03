@@ -12,6 +12,8 @@
     if($post_type == "bk" and is_single()):
         echo do_shortcode("[slide_forecasts model='2']");
     endif;*/
+    echo get_option('tl');
+
 ?>
 <header class="sticky-top">
 <div class="container">
@@ -34,30 +36,29 @@
             <!--logo end-->
             
         </div>
-        <div class="col-6 order-lg-3 col-lg-2 text-right">
+        <div class="col-6 order-lg-3 col-lg-2 d-flex justify-content-end">
                 <?php 
                     if(is_user_logged_in( )):
                        $noti = select_notification_not_view();
                        $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
                                     <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;font-size:13px !important;"></i>
+                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "##ffffff" : "" ) .' !important;font-size:13px !important;"></i>
                                         <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
 
-                                    <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
-                                        {list}
-                                        
+                                    <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
+                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
                                         <hr class="mt-2 mb-3">
-                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-sign-out"></i>'.__('quitar todo','jbetting').'</p>
+                                        {list}                                        
 
-                                    </div>
+                                   </div>
                                 </li>
                        </ul>';
                        if(count($noti) > 0){
                             $li = '';
                             foreach($noti as $post_noti){
-                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:90px;" data-postid="'.$post_noti->ID.'" onclick="quitar_notificacion(this)">'. $post_noti->post_title .'</p>';
+                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:110px;" data-postid="'.$post_noti->ID.'" onclick="quitar_notificacion(this)">Nuevo pick premium!</p>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
@@ -70,10 +71,10 @@
                                 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-light font-weight-bold" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <p class="d-inline-block text-truncate align-top" style="max-width:120px;" id="header-username" >'.get_userdata(get_current_user_id( ))->user_login .'</p>
+                                        <p class="d-inline-block text-truncate align-top" style="max-width:50px;" id="header-username" >'.get_userdata(get_current_user_id( ))->user_login .'</p>
                                     </a>
 
-                                    <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
+                                    <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem; left:auto; right:0; margin-top: 1rem;" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
                                         <a class="dropdown-item text-dark font-weight-bold my-3" href="/picks"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
 
