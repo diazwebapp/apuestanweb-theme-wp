@@ -92,7 +92,7 @@
 
                                 $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:120px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">
                                     '. $post_noticode->post_title .'
-                                    <span style="font-size:7px;" class="w-100 d-block">'. $timeAgo .'</span>
+                                    <span style="font-size:9px;" class="w-100 d-block">'. $timeAgo .'</span>
                                 </p>';
                             }
                             $html = str_replace("{list}",$li,$html);
