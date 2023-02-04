@@ -87,7 +87,7 @@
                             $li = '';
                             $newTime = date("Y-m-d H:i:s");
                             foreach($noti as $post_noticode){
-                                $oldTime = $post_noticode->post_date;
+                                $oldTime = $post_noticode->post_date_gmt;
                                 var_dump($oldTime);
                                 $timeAgo = aw_timeAgo ($oldTime, $newTime);
 
