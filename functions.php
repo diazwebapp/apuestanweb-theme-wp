@@ -186,6 +186,11 @@ add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
 
 // convert images to .wepb
 function convert_to_webp($image_path) {
+
+        if (pathinfo($image_path['file'], PATHINFO_EXTENSION) === 'svg') {
+            // Return the original file path if it is a .svg file
+            return $image_path;
+        }
         if(imagetypes() & IMG_WEBP) {
           $extension = pathinfo($image_path['file'], PATHINFO_EXTENSION);
           $webp_image = preg_replace("/\.{$extension}/", '.webp', $image_path['file']);
@@ -199,7 +204,7 @@ function convert_to_webp($image_path) {
               $image = imagecreatefrompng($image_path['file']);
               break;
           }
-          imagewebp($image, $webp_image, 70);
+          imagewebp($image, $webp_image, 100);
           return array(
             'file' => $webp_image,
             'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),
@@ -210,6 +215,7 @@ function convert_to_webp($image_path) {
       }
       
 add_filter('wp_handle_upload', 'convert_to_webp');
+
       
       
 function draw_rating($rating)
@@ -311,34 +317,37 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
   
-function aw_mime_types($mimes) {
-	$mimes['webp'] = 'image/webp';
-    $mime['avif'] = 'image/avif';
-    $mime['avis'] = 'image/avif-sequence';
+    add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+        $filetype = wp_check_filetype( $filename, $mimes );
+        return [
+            'ext'             => $filetype['ext'],
+            'type'            => $filetype['type'],
+            'proper_filename' => $data['proper_filename']
+        ];
+      
+      }, 10, 4 );
+      
+      function cc_mime_types( $mimes ){
+        $mimes['svg'] = 'image/svg+xml';
+        $mimes['webp'] = 'image/webp';
+        $mimes['avif'] = 'image/avif';
+        $mimes['avis'] = 'image/avif-sequence';
 
-    
+        return $mimes;
+      }
+      add_filter( 'upload_mimes', 'cc_mime_types' );
+      
+      function fix_svg() {
+        echo '<style type="text/css">
+              .attachment-266x266, .thumbnail img {
+                   width: 100% !important;
+                   height: auto !important;
+              }
+              </style>';
+      }
+      add_action( 'admin_head', 'fix_svg' );
 
-	return $mimes;
-}
-add_filter('upload_mimes', 'aw_mime_types');
 
-add_filter( 'upload_mimes', function() {
-  $mimes = [
-    'svg' => 'image/svg+xml',
-    'jpg|jpeg|jfif' => 'image/jpeg',
-    'png' => 'image/png',
-  ];
-  return $mimes;
-});
-
-function filter_webp_quality( $quality, $mime_type ){
-    if ( 'image/webp' === $mime_type ) {
-       return 50;
-    }
-    return $quality;
-  }
-
-add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 /////Obtiene los enlaces de RRSS///////
 function get_rrss() {
