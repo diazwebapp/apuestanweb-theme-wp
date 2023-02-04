@@ -60,7 +60,7 @@
                         }else if ($timeCalc >= 60){
                             $timeCalc = "hace " . intval($timeCalc/60) . " minuto";
                         }else if ($timeCalc > 0 or $timeCalc < 0){
-                            $timeCalc = "hace uno momento";
+                            $timeCalc = "hace " .$timeCalc. " segundos";
                         }
                     return $timeCalc;
                     }
@@ -85,7 +85,7 @@
                        </ul>';
                        if(count($noti) > 0){
                             $li = '';
-                            $newTime = date("Y-m-d H:i:s");
+                            $newTime = date_i18n("Y-m-d H:i:s");
                             foreach($noti as $post_noticode){
                                 $oldTime = $post_noticode->post_date_gmt;
                                 $timeAgo = aw_timeAgo ($oldTime, $newTime);
@@ -153,4 +153,4 @@
 </div>
 </header>
 
-<?php echo date_i18n("Y-m-d H:i:s");
+<?php 
