@@ -293,7 +293,7 @@ const quitar_notificacion = async(element)=>{
     });
     if(request.status == 200){
         let response = await request.json()
-        console.log(response.status)
+        console.log(response.redirect)
         if(counter_html && response.status == "ok"){
             counter_html.textContent = counter - 1
             element.remove()
