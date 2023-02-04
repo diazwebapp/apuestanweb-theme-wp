@@ -86,6 +86,7 @@
                        if(count($noti) > 0){
                             $li = '';
                             $newTime = date("Y-m-d H:i:s");
+                            var_dump($noti[0]->post_date);
                             foreach($noti as $post_noticode){
                                 $oldTime = $post_noticode->post_date;
                                 $timeAgo = aw_timeAgo ($oldTime, $newTime);
