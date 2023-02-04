@@ -166,6 +166,7 @@ function crb_attach_theme_options()
             ->where('post_type', '=', 'forecast')
             ->add_tab(__("1. General", "jbetting"), array(
                 Field::make('checkbox', 'vip', __("Premium event", "jbetting")),
+                Field::make('checkbox', 'disable_table', __("Desactivar tabla de contenidos", "jbetting")),
                 Field::make('date_time', 'data', __("Fecha&hora", "jbetting"))->set_required( true ),            
                 Field::make('complex', 'predictions', __("Pronósticos", "jbetting"))
                     ->set_layout("tabbed-horizontal")

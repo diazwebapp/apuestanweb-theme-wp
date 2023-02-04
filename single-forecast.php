@@ -50,7 +50,8 @@ function aw_get_user_type(){
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
-                            
+                            $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
+
                             $current_user_2 = aw_get_user_type();
                             
                             $meta_arr = ihc_post_metas($post_id);
@@ -187,23 +188,24 @@ function aw_get_user_type(){
                                         
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
                                         <?php remove_filter( 'the_content', 'wpautop' );?>	
+                                        <?php if ( !$disable_table ): ?>
+                                                <!-- Add the button to toggle the table of contents -->
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
+                                                    <?php echo __('Contenido del pronóstico', 'jbetting' );?>
+                                                    <i class="fas fa-angle-down"></i>
+                                                </button>
 
-                                        <!-- Add the button to toggle the table of contents -->
-                                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.5rem; margin-block-end: 1rem;">
-                                            <?php echo __('Tabla de Contenido', 'jbetting' );?>
-                                            <i class="fas fa-angle-down"></i>
-                                        </button>
-
-                                        <!-- Add the table of contents -->
-                                        <div class="collapse" id="table-of-contents">
-                                            <div class="card mt-3">
-                                                <div class="card-header">
-                                                <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                                <!-- Add the table of contents -->
+                                                <div class="collapse" id="table-of-contents">
+                                                    <div class="card mt-3">
+                                                        <div class="card-header">
+                                                        <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <ul class="list-group list-group-flush">
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        <?php endif; ?>
                                         <?php the_content() ?>                                                                          	
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
                                     </div>
@@ -231,7 +233,7 @@ function aw_get_user_type(){
 <script>  
   document.addEventListener("DOMContentLoaded", function() {
     const contentDiv = document.querySelector(".single_event_content");
-    const headers = contentDiv.querySelectorAll("h2, h3");
+    const headers = contentDiv.querySelectorAll("h2, h3, h4");
     const toc = document.querySelector("#table-of-contents .list-group");
 
     for (const header of headers) {
