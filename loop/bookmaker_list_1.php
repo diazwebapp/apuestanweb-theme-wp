@@ -45,8 +45,8 @@ $title = get_the_title($args["post"]->ID);
                         </div>
                     </div>
                 </div>
-                <div class='bookmaker_left_check'>
-                    <img src='img/s21.svg' class='img-fluid' alt='$title'>
+                <div class='bookmaker_left_check mr-3'>
+                    
                     <p>{$bonus_slogan}</p>
                 </div>
                 <div class='bookmaker_right_content'>

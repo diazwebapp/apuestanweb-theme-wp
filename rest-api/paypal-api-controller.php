@@ -29,7 +29,7 @@ if(!function_exists('aw_paypal_create_order')):
                     "value" => $paid->price,
                     "currency_code" => get_option( 'ihc_currency', true )
                 ],
-                "description" => "Subscripción"
+                "description" => $paid->label
             ]],
             "application_context" => [
                 "brand_name" => get_bloginfo( "title" ),
