@@ -153,4 +153,4 @@
 </div>
 </header>
 
-<?php echo date("Y-m-d H:i:s");
+<?php echo date_i18n("Y-m-d H:i:s");
