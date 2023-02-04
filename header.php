@@ -60,7 +60,7 @@
                         }else if ($timeCalc >= 60){
                             $timeCalc = "hace " . intval($timeCalc/60) . " minuto";
                         }else if ($timeCalc > 0 or $timeCalc < 0){
-                            $timeCalc = "hace " . $timeCalc ." segundos";
+                            $timeCalc = "hace unos segundos";
                         }
                     return $timeCalc;
                     }
