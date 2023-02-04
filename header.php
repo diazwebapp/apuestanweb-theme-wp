@@ -87,7 +87,7 @@
                             $li = '';
                             $newTime = date("Y-m-d H:i:s");
                             foreach($noti as $post_noticode){
-                                $oldTime = $post_noticode->post_modified;
+                                $oldTime = $post_noticode->post_date;
                                 $timeAgo = aw_timeAgo ($oldTime, $newTime);
 
                                 $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:120px;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">
