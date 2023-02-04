@@ -181,17 +181,14 @@
                 $(".share-buttons-container").addClass("is_stuck");
             });
         }
+
+        
     });
     
-    
-      
-
-    
-      
-      
-    
-     
-
-
+    $(document).ready(function(){
+        $("#table-of-contents").on("hide.bs.collapse show.bs.collapse", function(){
+          $(this).prev().find(".fas").toggleClass("fa-angle-down fa-angle-up");
+        });
+      });
 
 })(jQuery);

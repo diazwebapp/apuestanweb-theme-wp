@@ -108,7 +108,7 @@ function create_forecast() {
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
-		'rewrite' => array('slug' => 'pronosticos', 'with_front'=> true)
+		'rewrite' => array('slug' => 'prediccion', 'with_front'=> true)
 
 	);
 	register_post_type( 'forecast', $args );

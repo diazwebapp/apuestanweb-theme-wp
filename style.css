@@ -4741,3 +4741,22 @@ a.panel-button {
   .col-lg-2-5 {
 	width: 10% !important; /* 10% = 2.5 / 25 (25 es el número de columnas en Bootstrap) */
   }
+  #table-of-contents {
+    list-style: none;
+    padding: 0;
+  }
+
+  #table-of-contents li {
+    margin-bottom: 10px;
+  }
+
+  #table-of-contents a {
+    text-decoration: unset;
+    color: #00203a;
+    font-size: 14px;
+    display: block;
+    text-transform: capitalize;
+}
+#table-of-contents ul {
+	padding-inline-start: 0!important;
+}

@@ -193,15 +193,13 @@ function convert_to_webp($image_path) {
           switch ($extension) {
             case 'jpeg':
             case 'jpg':
-            case 'png':
-            case 'jfif':
               $image = imagecreatefromjpeg($image_path['file']);
               break;
             case 'png':
               $image = imagecreatefrompng($image_path['file']);
               break;
           }
-          imagewebp($image, $webp_image, 50);
+          imagewebp($image, $webp_image, 70);
           return array(
             'file' => $webp_image,
             'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),

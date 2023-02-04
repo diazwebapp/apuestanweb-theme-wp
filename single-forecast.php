@@ -177,7 +177,7 @@ function aw_get_user_type(){
                                                                        
                                             </div>
                                             <div class="single_team1">
-                                                <img loading="lazy" src="<?php echo isset($teams["team2"]["logo"]) ? $teams["team2"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
+                                                <img loading="lazy" src="<?php echo isset($teams["team2"]["logo"]) ? $teams["team2"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?>" title="<?php echo isset($teams["team2"]["name"]) ? $teams["team1"]["name"] : ''?>">
                                                 <p><?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?></p>
                                             </div>
                                         </div>
@@ -186,7 +186,24 @@ function aw_get_user_type(){
                                     <div class="single_event_content text-break">
                                         
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
-                                        <?php remove_filter( 'the_content', 'wpautop' );?>		
+                                        <?php remove_filter( 'the_content', 'wpautop' );?>	
+
+                                        <!-- Add the button to toggle the table of contents -->
+                                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.5rem; margin-block-end: 1rem;">
+                                            <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                            <i class="fas fa-angle-down"></i>
+                                        </button>
+
+                                        <!-- Add the table of contents -->
+                                        <div class="collapse" id="table-of-contents">
+                                            <div class="card mt-3">
+                                                <div class="card-header">
+                                                <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                                </div>
+                                                <ul class="list-group list-group-flush">
+                                                </ul>
+                                            </div>
+                                        </div>
                                         <?php the_content() ?>                                                                          	
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
                                     </div>
@@ -211,3 +228,27 @@ function aw_get_user_type(){
     </div>
 </main>
 <?php get_footer(); ?>
+<script>  
+  document.addEventListener("DOMContentLoaded", function() {
+    const contentDiv = document.querySelector(".single_event_content");
+    const headers = contentDiv.querySelectorAll("h2, h3");
+    const toc = document.querySelector("#table-of-contents .list-group");
+
+    for (const header of headers) {
+      header.id = header.innerText.toLowerCase().replace(/\s/g, "-");
+
+      const link = document.createElement("a");
+      link.href = "#" + header.id;
+      link.innerText = header.innerText;
+      link.classList.add("list-group-item", "list-group-item-action");
+
+      toc.appendChild(link);
+    }
+  });
+</script>
+
+
+
+
+
+
