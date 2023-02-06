@@ -235,9 +235,11 @@ function aw_get_user_type(){
     const contentDiv = document.querySelector(".single_event_content");
     const headers = contentDiv.querySelectorAll("h2, h3, h4");
     const toc = document.querySelector("#table-of-contents .list-group");
+    let headerCount = 0;
 
     for (const header of headers) {
-      header.id = header.innerText.toLowerCase().replace(/\s/g, "-");
+      header.id = header.innerText.toLowerCase().replace(/\s/g, "-") + "-" + headerCount;
+      headerCount++;
 
       const link = document.createElement("a");
       link.href = "#" + header.id;
@@ -248,6 +250,10 @@ function aw_get_user_type(){
     }
   });
 </script>
+
+
+
+
 
 
 

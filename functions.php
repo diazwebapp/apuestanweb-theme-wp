@@ -145,7 +145,7 @@ function jbetting_src()
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
     
-    wp_enqueue_script('popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array(), '1.16.1', true);
+    wp_enqueue_script('popper', get_template_directory_uri() . '/assets/js/popper.min.js', array(), '1.16.1', true);
 
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/js/bootstrap.min.js', array('jquery'), '4.6.1', true);
     wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
@@ -204,7 +204,7 @@ function convert_to_webp($image_path) {
               $image = imagecreatefrompng($image_path['file']);
               break;
           }
-          imagewebp($image, $webp_image, 100);
+          imagewebp($image, $webp_image, 70);
           return array(
             'file' => $webp_image,
             'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),
