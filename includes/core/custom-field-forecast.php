@@ -61,7 +61,8 @@ function aw_forecast_imagen_destacada_personalizada() {
         $equipo_1 = imagecreatefromwebp($no_team_img); 
     }
     if(empty($equipo_1)){
-        $equipo_1 = imagecreatefrompng($default_bg);    }
+        $equipo_1 = imagecreatefrompng($default_bg);   
+     }
     
     
     $equipo_1 = redimencionar_imagen($equipo_1,[100,100]);
@@ -79,14 +80,48 @@ function aw_forecast_imagen_destacada_personalizada() {
     
     // Damos salida a la imagen final 
     imagepng($plantilla,$dir);
+    
+   
+    // $filename should be the path to a file in the upload directory.
+    $filename = $dir;
 
-    $img = wp_get_image_editor( $no_team_img );
-    if ( ! is_wp_error( $img ) ) {
-        $img->resize( 500, 500, true );
-        $img->stream();
-    }else{
-        echo "error seleccionando editor<br/>";
-    }
+    // The ID of the post this attachment is for.
+    $parent_post_id = $post->ID;
+
+    // Check the type of file. We'll use this as the 'post_mime_type'.
+    $filetype = wp_check_filetype( basename( $filename ), null );
+
+    // Get the path to the upload directory.
+    $wp_upload_dir = wp_upload_dir();
+
+    // Prepare an array of post data for the attachment.
+    $attachment = array(
+        'guid'           => $wp_upload_dir['url'] , 
+        'post_mime_type' => $filetype['type'],
+        'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+        'post_content'   => '',
+    );
+
+    // Insert the attachment.
+    $attach_id = wp_insert_attachment( $attachment, $filename, $parent_post_id );
+
+    // Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
+    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+    // Generate the metadata for the attachment, and update the database record.
+    $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+    wp_update_attachment_metadata( $attach_id, $attach_data );
+
+    set_post_thumbnail( $parent_post_id, $attach_id );
+
+    if(extension_loaded("imagick")):
+        var_dump("loaded");
+    endif;
+    
+    $imagi = new Imagick($default_bg);
+    $dir2 = ABSPATH . '/wp-content/uploads/cuadrado.png';
+    $imagick->writeImage($dir2);
+
     $html = str_replace("{replacebg}","$default_bg",$html);
     $html = str_replace("{replace-team-1}","$no_team_img",$html);
     $html = str_replace("{replace-team-2}","$no_team_img",$html);
