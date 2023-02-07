@@ -138,8 +138,8 @@ function jbetting_src()
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
     /**esto de debe cargar selectivamente */
-    wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
-    wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
+    //wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
+    //wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
     /**esto de debe cargar selectivamente */
 
     wp_deregister_script('jquery');
