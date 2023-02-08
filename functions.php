@@ -129,11 +129,7 @@ function jbetting_src()
 	wp_dequeue_script( 'ihc-jquery-ui'); 
     wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
     */
- if (is_singular('forecast')) {
-        wp_dequeue_style( 'templates.min.css' );
-        wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
-    }
-    
+
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.6.1-dist/css/bootstrap.min.css', array(), '4.6.1');
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
     wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
@@ -147,7 +143,8 @@ function jbetting_src()
     /**esto de debe cargar selectivamente */
     wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
 
-   
+           wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
+
     
     /**esto de debe cargar selectivamente */
 
