@@ -113,7 +113,7 @@ function aw_get_user_type(){
                                         if($leaguefor->parent == $sport->term_id):
                                             $league = $leaguefor; //define forecast sport
                                             $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon" />';
                                         endif;
                                     endforeach;
                                 endif;
@@ -169,6 +169,7 @@ function aw_get_user_type(){
                                         </div>
                                         <div class="single_event_banner_middle">
                                             <div class="single_team1">
+                                                
                                                 <img loading="lazy" src="<?php echo isset($teams["team1"]["logo"]) ? $teams["team1"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
                                                 <p><?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?></p>
                                             </div>
@@ -231,6 +232,7 @@ function aw_get_user_type(){
 </main>
 <?php get_footer(); ?>
 <script>  
+
   document.addEventListener("DOMContentLoaded", function() {
     const contentDiv = document.querySelector(".single_event_content");
     const headers = contentDiv.querySelectorAll("h2, h3, h4");

@@ -15,7 +15,7 @@ echo "<div class='eventbanner_wrapper'>
                             <img width='120px' height='65px' src='{$params['src_logo']}' class='img-fluid' alt=''>
                         </div>
                         <div class='event_banner_left_content'>
-                            <h5>{$params['title']}</h5>
+                            <span>{$params['title']}</span>
                             <p>{$params['text']}</p>
                         </div>
                     </div>

@@ -190,5 +190,21 @@
           $(this).prev().find(".fas").toggleClass("fa-angle-down fa-angle-up");
         });
       });
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        // Busca todas las imágenes en la página
+        var images = document.querySelectorAll('img');
+      
+        // Añade la clase 'lazyload' a cada imagen
+        images.forEach(function (img) {
+          img.classList.add('lazyload');
+        });
+      
+        // Inicializa LazySizes
+        window.lazySizesConfig = window.lazySizesConfig || {};
+        lazySizesConfig.init = false;
+        lazySizes.init();
+      });
+      
 
 })(jQuery);

@@ -34,8 +34,8 @@ $sidebar=false;
                                         <div class="author-info d-flex align-items-center m-3">
                                         <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
                                         <div class="author-details d-flex flex-column">
-                                            <h4 class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></h4>
-                                            <span class="post-date text-muted mb-0"><?php echo __("Publicado: $post_date");  ?></span>
+                                            <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
+                                            <span class="post-date mb-0"><?php echo __("Publicado: $post_date");  ?></span>
                                         </div>
                                         </div>
                                     </div>
@@ -64,10 +64,10 @@ $sidebar=false;
                                     <?php the_content(); ?>
                             <?php  endwhile; }?>
                                         <div class="share-buttons-container">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink( $post->ID )); ?>&text=<?php echo urlencode(get_the_title( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>
-                                            <a href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                                            <a href="https://t.me/share/url?url=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink( $post->ID )); ?>" aria-label="Share to facebook" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink( $post->ID )); ?>&text=<?php echo urlencode(get_the_title( $post->ID )); ?>" aria-label="Share to twiiter" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_permalink( $post->ID )); ?>" aria-label="Share to whatsapp"  class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                            <a href="https://t.me/share/url?url=<?php echo urlencode(get_permalink( $post->ID )); ?>" aria-label="Share to instagram"  class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-telegram-plane"></i></a>
                                         </div>
                                     </div>
 

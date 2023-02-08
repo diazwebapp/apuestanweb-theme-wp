@@ -43,16 +43,16 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 echo get_option('tl');
                 echo '<div class="col-lg-2 col-6 mt_20 text-right"> 
                     <div class="social_icons">
-                            <a href="'.tl.'" rel="nofollow noreferrer noopener" target="_blank">
+                            <a href="'.tl.'" aria-label="follow us on telegram" rel="nofollow noreferrer noopener" target="_blank">
                                  <i class="fab fa-telegram-plane"></i>
                             </a>                                                     
-                            <a href="'.fb.'" rel="nofollow noreferrer noopener" target="_blank">
+                            <a href="'.fb.'" aria-label="follow us on facebook" rel="nofollow noreferrer noopener" target="_blank">
                                 <i class="fab fa-facebook"></i>
                             </a>                        
-                            <a href="'.tw.'" rel="nofollow noreferrer noopener" target="_blank">
+                            <a href="'.tw.'" aria-label="follow us on twitter" rel="nofollow noreferrer noopener" target="_blank">
                                 <i class="fab fa-twitter"></i>
                             </a>                        
-                            <a href="'.ig.'" rel="nofollow noreferrer noopener" target="_blank">
+                            <a href="'.ig.'" aria-label="follow us on instagram" rel="nofollow noreferrer noopener" target="_blank">
                                 <i class="fab fa-instagram"></i>
                             </a>
                     </div>
@@ -108,7 +108,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
             </div>
         </div>
         <!--====== BACK TO TOP START ======-->
-        <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+        <a href="#" aria-label="back to top" class="back-to-top"><i class="fa fa-angle-up"></i></a>
         <!--====== BACK TO TOP ENDS ======-->
 </footer>
 <?php wp_footer(); ?>

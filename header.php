@@ -3,7 +3,7 @@
 <head>
     <title><?php wp_title('');?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width">
 	<?php wp_head(); ?>
 </head>
 <body>
@@ -32,7 +32,7 @@
                     $logo =  get_template_directory_uri().'/assets/img/logo.svg';
                 endif;
             ?>
-            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
+            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanlogo"  src="<?php echo $logo; ?>"></a>
             <!--logo end-->
             
         </div>

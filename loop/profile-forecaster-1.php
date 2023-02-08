@@ -61,13 +61,13 @@ if(isset($_GET['profile'])):
 
 
             if ( $twitter_handle ) {
-                $profile .= '<a href="https://twitter.com/' . esc_attr( $twitter_handle ) . '" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>';
+                $profile .= '<a href="https://twitter.com/' . esc_attr( $twitter_handle ) . '" aria-label="follow me on twitter" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>';
             }
             if ( $facebook_url ) {
-                $profile .= '<a href="' . esc_url( $facebook_url ) . '" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook" ></i></a>';
+                $profile .= '<a href="' . esc_url( $facebook_url ) . '"  aria-label="follow me on facebook" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook" ></i></a>';
             }
             if ( $instagram_url ) {
-                $profile .= '<a href="' . esc_url( $instagram_url ) . '" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-instagram" ></i></a>';
+                $profile .= '<a href="' . esc_url( $instagram_url ) . '" aria-label="follow me on instagram" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-instagram" ></i></a>';
             }
             $profile .= '</div></div>
             <div class="sub__box--ri">
