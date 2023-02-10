@@ -235,7 +235,7 @@ function aw_get_user_type(){
 
   document.addEventListener("DOMContentLoaded", function() {
     const contentDiv = document.querySelector(".single_event_content");
-    const headers = contentDiv.querySelectorAll("h2, h3, h4");
+    const headers = contentDiv.querySelectorAll("h2, h3");
     const toc = document.querySelector("#table-of-contents .list-group");
     let headerCount = 0;
 

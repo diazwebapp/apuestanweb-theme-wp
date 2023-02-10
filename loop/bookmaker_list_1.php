@@ -46,7 +46,6 @@ $title = get_the_title($args["post"]->ID);
                     </div>
                 </div>
                 <div class='bookmaker_left_check'>
-                    <img src='img/s21.svg' class='img-fluid' alt='$title'>
                     <p>{$bonus_slogan}</p>
                 </div>
                 <div class='bookmaker_right_content'>
@@ -59,7 +58,7 @@ $title = get_the_title($args["post"]->ID);
                         </div>
                     </div>
                     <div class='bookmaker_right_btn'>
-                        <a href='$ref' class='btn_2'>Quiero Apostar</a>
+                        <a href='$ref' class='btn_2'>Reclamar bono</a>
                     </div>
                 </div>
             </div>";

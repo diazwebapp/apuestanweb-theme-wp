@@ -1384,20 +1384,8 @@
 	color: #fff;
 	margin-left: 0;
 	margin: auto;
-}    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-     .estad__wp {
+}   
+    .estad__wp {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -2020,6 +2008,9 @@
 	.text-success {
 		font-size: 1.8rem;
 	}  
+	.event2_top_box_wrapper a {
+		font-size: 1.8rem;
+	}
 
 }
 

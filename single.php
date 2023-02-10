@@ -43,7 +43,7 @@ $sidebar=false;
 
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <img src="<?php echo $thumbnail_url ?>" class="post-featured-img img-fluid" alt="<?php echo $title ?>">
+                                                <img src="<?php echo $thumbnail_url ?>" loading="lazy" class="post-featured-img img-fluid" alt="<?php echo $title ?>">
                                                 
                                                 <?php
                                                 if (has_post_thumbnail()) {
