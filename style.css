@@ -1696,6 +1696,7 @@ footer .menu li a::before{
 	gap:2px;
 	place-content: center;
 	margin-right: 1rem;
+	color: #2f2f2f;
 }
 .icon_leages b{
 	padding: 0 5px;
@@ -4647,6 +4648,9 @@ a.panel-button {
   .author-name {
 	font-size: 1.5rem;
 	font-weight: 400;
+  }
+  .author-name a{
+	color: #0558cb;
   }
   
   .post-date {

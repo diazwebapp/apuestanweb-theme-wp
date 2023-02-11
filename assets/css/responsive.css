@@ -2014,6 +2014,12 @@
 	.main_text .media-body {
 		padding-left: 0; 
 	}
+	.author-name {
+		font-size: 1.9rem;
+	}
+	.post-date {
+		font-size: 1.9rem;
+	}
 
 }
 

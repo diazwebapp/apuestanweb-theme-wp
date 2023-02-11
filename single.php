@@ -17,7 +17,8 @@ $sidebar=false;
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
-                                $post_date = get_the_date( "d M h:i a", get_the_ID());
+                                $post_date = get_the_date( "Y-m-d H:i:s", get_the_ID());
+                                $show_date = get_the_date( "F j, Y g:i a", get_the_ID());
                                 $time = carbon_get_post_meta(get_the_ID(), 'data');
                                 $title = get_the_title( get_the_ID() ); 
                                 $fecha = date('d M', strtotime($time)) .' - '. date('g:i a', strtotime($time));
@@ -31,11 +32,11 @@ $sidebar=false;
                                     <section class="post-author-section">
                                     <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="author-info d-flex align-items-center m-3">
+                                        <div class="author-info d-flex align-items-center m-3 mt-4">
                                         <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
                                         <div class="author-details d-flex flex-column">
                                             <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
-                                            <span class="post-date mb-0"><?php echo __("Publicado: $post_date");  ?></span>
+                                            <time datetime="<?php echo $post_date ?>" class="post-date mb-0"><?php echo __($show_date); ?></time>
                                         </div>
                                         </div>
                                     </div>
