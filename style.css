@@ -944,6 +944,11 @@ footer .menu li a::before{
 	width: 4.7rem;
 	margin-right: 2rem;
 }
+.inner_bg .icon-news{
+    font-size: 4.8rem;
+    font-weight: 500;
+    color: #fff;
+}
 .banner.v2{
 	border-radius: 0;
 	margin-top: 0;
