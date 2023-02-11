@@ -77,7 +77,7 @@ echo "<div class='owl-item' >
                                 <img style='width:40px;height:40px;' src=' {$teams['team1']['logo']} ' class='img-fluid' alt=' {$teams['team1']['name']} '>
                             </div>
                             <div class='cross_img d-lg-none d-block'>
-                                <img src='$cross_img' class='img-fluid' alt=''>
+                                <img src='$cross_img' class='img-fluid' alt='teamvs'>
                             </div>                                
                             <div class='team_logo'>
                                 <img style='width:40px;height:40px;' src=' {$teams['team2']['logo']} ' class='img-fluid' alt=' {$teams['team2']['name']} '>
@@ -97,11 +97,11 @@ echo "<div class='owl-item' >
                 </div>
                 <div class='col-lg-5 hero_team_col'>
                     <div class='team_box'>
-                        <img  src='{$teams['team1']['logo']}' class='img-fluid'  alt='{$teams['team1']['name']}'>
+                        <img width='60px' height='60px' src='{$teams['team1']['logo']}' class='img-fluid'  alt='{$teams['team1']['name']}'>
                         <div class='w-100'>
                             <p>vs</p>
                         </div>
-                        <img  src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
+                        <img width='60px' height='60px' src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
                     </div>                            
                             <div class='team_box mt_25'>
                                 <p> $p1 </p>

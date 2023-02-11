@@ -2011,6 +2011,9 @@
 	.event2_top_box_wrapper a {
 		font-size: 1.8rem;
 	}
+	.main_text .media-body {
+		padding-left: 0; 
+	}
 
 }
 

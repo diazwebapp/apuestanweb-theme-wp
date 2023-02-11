@@ -90,7 +90,7 @@ function aw_get_user_type(){
                                     if($tax_league->parent == 0):
                                         $sport = $tax_league; //define forecast sport
                                         $icon_class = carbon_get_term_meta($sport->term_id,'fa_icon_class');
-                                        $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                        $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon"/>';
                                     endif;
                                 endforeach;
                                 if($sport):
@@ -231,29 +231,6 @@ function aw_get_user_type(){
     </div>
 </main>
 <?php get_footer(); ?>
-<script>  
-
-  document.addEventListener("DOMContentLoaded", function() {
-    const contentDiv = document.querySelector(".single_event_content");
-    const headers = contentDiv.querySelectorAll("h2, h3");
-    const toc = document.querySelector("#table-of-contents .list-group");
-    let headerCount = 0;
-
-    for (const header of headers) {
-      header.id = header.innerText.toLowerCase().replace(/\s/g, "-") + "-" + headerCount;
-      headerCount++;
-
-      const link = document.createElement("a");
-      link.href = "#" + header.id;
-      link.innerText = header.innerText;
-      link.classList.add("list-group-item", "list-group-item-action");
-
-      toc.appendChild(link);
-    }
-  });
-</script>
-
-
 
 
 

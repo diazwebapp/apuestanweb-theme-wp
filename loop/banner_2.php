@@ -24,33 +24,33 @@ echo "<div class='blog_banner_wrapper'>
                                     </a>
                                 </div>
                                 <div class='col mt_30'>
-                                    <a href='#' class='blog_banner_box'>    
+                                    <a href='/pronosticos-nba' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
-                                            <img src='".get_template_directory_uri() . '/assets/img/s13.svg'."' class='img-fluid' alt=''>
+                                            <img src='".get_template_directory_uri() . '/assets/img/s13.svg'."' class='img-fluid' alt='basketball'>
                                         </div>
                                         <p>NBA</p>  
                                     </a>
                                 </div>
                                 <div class='col mt_30'>
-                                    <a href='#' class='blog_banner_box'>    
+                                    <a href='/mlb/pronosticos-mlb' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
-                                            <img src='".get_template_directory_uri() . '/assets/img/s14.svg'."' class='img-fluid' alt=''>
+                                            <img src='".get_template_directory_uri() . '/assets/img/s14.svg'."' class='img-fluid' alt='baseball'>
                                         </div>
                                         <p>MLB</p>  
                                     </a>
                                 </div>
                                 <div class='col mt_30'>
-                                    <a href='#' class='blog_banner_box'>    
+                                    <a href='/pronosticos-nfl' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
-                                            <img src='".get_template_directory_uri() . '/assets/img/s15.svg'."' class='img-fluid' alt=''>
+                                            <img src='".get_template_directory_uri() . '/assets/img/s15.svg'."' class='img-fluid' alt='americanfootaball'>
                                         </div>
                                         <p>NFL</p>  
                                     </a>
                                 </div>
                                 <div class='col mt_30'>
-                                    <a href='#' class='blog_banner_box'>    
+                                    <a href='/pronosticos-futbol' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
-                                            <img src='".get_template_directory_uri() . '/assets/img/s16.svg'."' class='img-fluid' alt=''>
+                                            <img src='".get_template_directory_uri() . '/assets/img/s16.svg'."' class='img-fluid' alt='football'>
                                         </div>
                                         <p>E-Sport</p>  
                                     </a>
