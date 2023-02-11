@@ -213,6 +213,12 @@ function convert_to_webp($image_path) {
             case 'png':
               $image = imagecreatefrompng($image_path['file']);
               break;
+            default:
+              $image = null;
+              break;
+          }
+          if (!$image) {
+            return $image_path;
           }
           imagewebp($image, $webp_image, 70);
           return array(
