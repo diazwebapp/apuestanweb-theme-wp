@@ -138,7 +138,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <div class="team_flag_box">
                                     <div class="team_item">
                                         <div class="team_flag team_flag1">
-                                            <img src="'.$teams['team1']['logo'].'" width="40px" height="40px" class="img-fluid" alt="'.$teams['team1']['name'].'">
+                                            <img src="'.$teams['team1']['logo'].'" width="40px" height="40px" alt="'.$teams['team1']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team1']['name'].'</p>
                                     </div>
@@ -150,7 +150,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     </div>
                                     <div class="team_item"> 
                                         <div class="team_flag team_flag2">
-                                            <img src="'.$teams['team2']['logo'].'" width="40px" height="40px" class="img-fluid" alt="'.$teams['team2']['name'].'">
+                                            <img src="'.$teams['team2']['logo'].'" width="40px" height="40px" alt="'.$teams['team2']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team2']['name'].'</p>
                                     </div>
