@@ -1316,9 +1316,9 @@ footer .menu li a::before{
 .pagination_list .next{
 	margin-left: 4.5rem;
 }
-.blog_banner_wrapper{
+/* .blog_banner_wrapper{
 	padding-top: 16rem;
-}
+} */
 .blog_banner_content_wrapper {
    background: linear-gradient(71deg, #0C1429 0%, #0A162B 13%, #00203A 100%);
    padding: 6rem 0 8rem;
@@ -4405,6 +4405,7 @@ a.panel-button {
 
     color: #5a5a5a;
 	font-size: 12px;
+	font-weight: 600;
 
 }
 
@@ -4813,3 +4814,6 @@ a.panel-button {
   .visit-site-button i {
 	font-size: 1.1em;
   }
+  .h-static {
+	height: 40px ; 
+ }

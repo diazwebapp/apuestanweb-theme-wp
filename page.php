@@ -51,8 +51,8 @@ endif;
 										$formatted_content
 									</div>";
 								endif; 
-							 if ( !$disable_table ):
-								echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' style='font-size: 1.8rem; margin-block-end: 1rem;'>
+							 if ($disable_table ):
+								echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' style='font-size: 1.8rem; margin-block-start: 1rem; margin-block-end: 1rem;'>
 										Tabla de Contenido
 										<i class='fas fa-angle-down'></i>
 									</button>

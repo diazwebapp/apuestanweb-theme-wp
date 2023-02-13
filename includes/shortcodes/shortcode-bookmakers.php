@@ -11,7 +11,7 @@ function shortcode_bookmaker($atts)
         'country'=>false
     ), $atts));
     $ret = '<div class="container" >
-        <div class="row small_gutter">{replace_loop}</div>
+        <div class="row d-flex justify-content-center">{replace_loop}</div>
     </div>';
     
     wp_reset_query();

@@ -31,7 +31,7 @@ echo "<div class='tbox'>
     <div class='rating mt_15'> ";
         echo $stars; 
 echo "</div>
-    <p class='mt_30'>$bonus_slogan</p>
+    <p class='h-static mt_30 '>$bonus_slogan</p>
     <a href='{$ref}' class='button mt_25 w-100' rel='nofollow'>apostar</a>
     <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
 </div>";
