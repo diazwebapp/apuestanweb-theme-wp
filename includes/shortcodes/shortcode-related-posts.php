@@ -78,7 +78,7 @@ function shortcode_news($atts)
         $ret .= "</div><hr class='mt-4 mb-4'/>";
     
      } else {
-        $ret = '<h1>Nó hay datos</h1>';
+        $ret = '<h2>Aún no hay contenido.</h2>';
     }
     
     return $ret;

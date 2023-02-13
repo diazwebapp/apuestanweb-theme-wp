@@ -119,7 +119,7 @@ function shortcode_forecast_vip($atts)
         endif;
         $ret .="</div>";
     else:
-        return '<h1>Nó hay datos</h1>';
+        return '<h2>Aún no hay contenido.</h2>';
     endif;
 
     return $ret;

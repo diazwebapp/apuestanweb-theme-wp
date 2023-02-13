@@ -168,7 +168,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 
                                 <div class="league_box_wrapper align-items-center">
                                     <p class="d-lg-block d-none mr_30">
-                                    <time>'.$date->format('Y-m-d h:i:s').'</time>
+                                    <time>'.$date->format('d-m-Y h:i:s').'</time>
                                     </p>
                                 </div>
                             </div>

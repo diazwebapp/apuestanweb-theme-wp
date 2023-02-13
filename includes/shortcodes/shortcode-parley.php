@@ -119,7 +119,7 @@ function shortcode_parley($atts)
         $ret .=" </div>";
         
     } else {
-        return '<h1>Nó hay datos</h1>';
+        return '<h2>Aún no hay contenido.</h2>';
     }
 
     return $ret;
