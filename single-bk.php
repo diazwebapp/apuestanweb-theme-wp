@@ -20,6 +20,8 @@ $bookmaker["background_color"] = null;
     $bookmaker["background_color"]= carbon_get_post_meta(get_the_ID(), 'background-color');
 
     $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
+    $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
+
 
     if (carbon_get_post_meta(get_the_ID(), 'logo')):
         $logo = carbon_get_post_meta(get_the_ID(), 'logo');
@@ -80,7 +82,7 @@ $bookmaker["background_color"] = null;
                                     </div>
                                     <div class="col-12 my-4 special-single-bk-button"> 
                                                                        
-                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="text-uppercase button px-5" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-5" aria-hidden="true"></i></a>                                    
+                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="visit-site-button" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-2" aria-hidden="true"></i></a>                                    
                                     </div>
                                 </div>
                             </div>
@@ -123,6 +125,24 @@ $bookmaker["background_color"] = null;
                 </div>               
             </div>
             <!-- Content -->
+            <?php if ( !$disable_table ): ?>
+                                                <!-- Add the button to toggle the table of contents -->
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
+                                                    <?php echo __('Contenido de la revision', 'jbetting' );?>
+                                                    <i class="fas fa-angle-down"></i>
+                                                </button>
+
+                                                <!-- Add the table of contents -->
+                                                <div class="collapse" id="table-of-contents">
+                                                    <div class="card mt-3">
+                                                        <div class="card-header">
+                                                        <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+            <?php endif; ?>
             <div class="single_event_content text-break">
                 <?php 
                     if(have_posts(  )){
@@ -163,10 +183,14 @@ $bookmaker["background_color"] = null;
                             ?>
                         </div>
                     </div>
+                    <div class="row">
+                            <?php dynamic_sidebar( 'forecast-right' ); ?>
+                        </div>	
 
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 </main>

@@ -302,3 +302,4 @@ const quitar_notificacion = async(element)=>{
         console.log("hubo un error 500")
     }
 }
+

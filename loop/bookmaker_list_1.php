@@ -10,7 +10,7 @@ $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 
 $rating_ceil = ceil(carbon_get_post_meta($args["post"]->ID, 'rating'));
 $ref = carbon_get_post_meta($args["post"]->ID, 'ref');
-$permalink = get_the_permalink();
+$permalink = get_the_permalink($args["post"]->ID);
 $bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
 $feactures = carbon_get_post_meta($args["post"]->ID, 'feactures');
 $html_feactures = "";
@@ -37,7 +37,7 @@ $title = get_the_title($args["post"]->ID);
                     </div>
                     <div class='bookmaker_left_text'>
                         <div class='bookmaker_left_heading'>
-                            <h4> $title </h4>
+                        <a href='$permalink' ><h2> $title </h2></a>
 
                         </div>
                         <div class='bookmaker_left_last_text'>
@@ -48,7 +48,7 @@ $title = get_the_title($args["post"]->ID);
                 <div class='bookmaker_left_check'>
                     <p>{$bonus_slogan}</p>
                 </div>
-                <div class='bookmaker_right_content'>
+                <div class='bookmaker_right_content ml-2'>
                     <div class='d-md-block d-none'>
                         <div class='bookamker_rating_box'>
                             <p> $rating_ceil </p>

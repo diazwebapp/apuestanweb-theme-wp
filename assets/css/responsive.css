@@ -1686,6 +1686,7 @@
 	.small_gutter{
 		margin-left: -7.5px !important;
 		margin-right: -7.5px !important;
+		flex-direction: column;
 	}
 	.small_gutter>div{
 		padding-left: 7.5px !important;
@@ -2020,6 +2021,10 @@
 	.post-date {
 		font-size: 1.9rem;
 	}
+/* 	.bookmaker_left_check {
+		width: 0;
+
+	} */
 
 }
 

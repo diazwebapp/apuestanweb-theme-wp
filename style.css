@@ -712,6 +712,10 @@ a.btn_2:hover{
 	color: #00203A;
 	margin-bottom: 0;
 }
+.media h3:hover{
+	color: #054f8b;
+	text-decoration: underline;
+}
 /*testimonial area*/
 .testimonial_area{
 	padding: 6rem 0 16rem;
@@ -1037,6 +1041,10 @@ footer .menu li a::before{
 	font-size: 1.8rem;
 	font-weight: 500;
 	color: #00203A;
+}
+.desc_box h3:hover{
+	color: #054f8b;
+	text-decoration: underline;
 }
 .side_box .box_header{
 	background: #051421;
@@ -1406,7 +1414,7 @@ footer .menu li a::before{
 	display: flex;
 	align-items: center;
 }
-.bookmaker_left_heading h4{
+.bookmaker_left_heading h2{
 	font-size: 2.2rem;
 	line-height: 1.2;
 	font-weight: 500;
@@ -1414,9 +1422,15 @@ footer .menu li a::before{
 	text-transform: uppercase;
 	padding-right: 4.5rem;
 }
-.bookmaker_left_check{
-	display: flex;
-	align-items: center;
+.bookmaker_left_heading h2:hover{
+	text-decoration: underline;
+
+}
+.bookmaker_left_check {
+    display: flex;
+    align-items: center;
+    width: 32rem;
+    text-align: center;
 }
 .bookmaker_left_check p{
 	font-size: 1.8rem;
@@ -3201,8 +3215,8 @@ blockquote{
 /*box in single bk*/
 
 .bk-box{
-	box-shadow: inset 0px 3px 6px #00000029, 0px 3px 6px #00000029;
 	border-radius:0 8px 8px 0;
+	border: 1px solid #dbdbdbb0;
 }
 .bk-box-mb-left{
 	position: absolute;
@@ -4741,6 +4755,7 @@ a.panel-button {
 }
   .col-aw{
 	color: #05142196;
+	font-size: 1.7rem;
   }
   .jumbotron{
 	background-color: #f7f7f7;
@@ -4771,3 +4786,30 @@ a.panel-button {
 #table-of-contents ul {
 	padding-inline-start: 0!important;
 }
+.visit-site-button {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.75em 1.5em;
+	font-size: 1.1em;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	border-radius: 50px;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #28a745;
+  }
+  
+  .visit-site-button:hover {
+	transform: translateY(-3px);
+	box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+	color:#000;
+	background-color:#fff;
+	border: 1px solid;
+  }
+  
+  .visit-site-button i {
+	font-size: 1.1em;
+  }
