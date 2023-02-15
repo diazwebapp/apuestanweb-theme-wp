@@ -1,5 +1,5 @@
 <?php
-function shortcode_forecast_vip($atts)
+function shortcode_parley_vip($atts)
 {
     extract(shortcode_atts(array(
         'num' => 6,
@@ -72,7 +72,7 @@ function shortcode_forecast_vip($atts)
     $args['unlock'] = $unlock;
     $args['time_format'] = $time_format ;
     $args['text_vip_link'] = $text_vip_link;
-    $args['rest_uri'] = get_rest_url(null,'aw-forecasts/parley/vip');
+    $args['rest_uri'] = get_rest_url(null,'aw-parleys/parley/vip');
     $args['country_code'] = $geolocation->country_code;
     $args['odds'] = $odds;
     $args['timezone'] = $geolocation->timezone;
@@ -112,7 +112,7 @@ function shortcode_forecast_vip($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
 
-        $ret .="<div class='container container_pagination_forecast_vip text-md-center'>";
+        $ret .="<div class='container container_pagination_parley_vip text-md-center'>";
         if($paginate=='yes' and $data_json->max_pages > 1):
 
             $ret .=$args['btn_load_more'];
@@ -126,4 +126,4 @@ function shortcode_forecast_vip($atts)
 }
 
 
-add_shortcode('forecasts_vip', 'shortcode_forecast_vip');
+add_shortcode('parley_vip', 'shortcode_parley_vip');
