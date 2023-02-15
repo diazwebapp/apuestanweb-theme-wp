@@ -72,7 +72,7 @@ function shortcode_parley_vip($atts)
     $args['unlock'] = $unlock;
     $args['time_format'] = $time_format ;
     $args['text_vip_link'] = $text_vip_link;
-    $args['rest_uri'] = get_rest_url(null,'aw-parleys/parley/vip');
+    $args['rest_uri'] = get_rest_url(null,'aw-parley/parley/vip');
     $args['country_code'] = $geolocation->country_code;
     $args['odds'] = $odds;
     $args['timezone'] = $geolocation->timezone;
@@ -90,7 +90,7 @@ function shortcode_parley_vip($atts)
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= "&odds=$odds";
-    var_dump($params);
+    
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
     $query =  wp_remote_retrieve_body( $response );
