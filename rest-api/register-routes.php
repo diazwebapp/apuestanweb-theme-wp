@@ -109,6 +109,13 @@ function register_routes(){
             return '__return_true';
           }
     ]);
+    register_rest_route('aw-parley','/parley/vip',[
+        'methods' => 'GET',
+        'callback' => 'aw_get_parleys_vip',
+        'permission_callback' => function () {
+            return '__return_true';
+          }
+    ]);
 
     //NOTIFICACIONES
     register_rest_route('aw-notificaciones','/clear-all',[

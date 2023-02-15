@@ -7,6 +7,7 @@ function shortcode_bookmaker($atts)
         'slogan' => false,
         'model' => 1,
         'payment' => wp_get_post_terms(get_the_ID(), 'bookmaker-payment-methods', array('field' => 'slug')),
+        'casino' => wp_get_post_terms(get_the_ID(), 'casinos', array('field' => 'slug')),
         'paginate'=>false,
         'country'=>false
     ), $atts));
@@ -21,20 +22,30 @@ function shortcode_bookmaker($atts)
     $args['order'] = 'DESC';
     $args['orderby'] = 'meta_value_num';
     $args['meta_key'] = '_rating';
-    
+    $args['tax_query'] = ["relation"=>"AND"];
     
     $terms = [];
+    $casinos = [];
     foreach($payment as $term){
         $terms[] = $term->slug;
     }
-    
+    foreach($casino as $term_casino){
+        $casinos[] = $term_casino->slug;
+    }
     if(count($terms) > 0){
-        $args['tax_query'] = [
+        $args['tax_query'][] = [
             [
                 'taxonomy' => 'bookmaker-payment-methods',
                 'field'    => 'slug',
                 'terms'    => $terms,
             ]
+        ];
+    }
+    if(count($casinos) > 0){
+        $args['tax_query'][]  = [
+            'taxonomy' => 'casinos',
+            'field'    => 'slug',
+            'terms'    => $casinos,
         ];
     }
     $query = new WP_Query($args);
