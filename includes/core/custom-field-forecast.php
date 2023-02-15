@@ -16,7 +16,9 @@ function aw_forecast_imagen_destacada_personalizada() {
         <div class="row">
         
             <div class="col-12">
-                
+            <input type="text" name="upload_image" id="upload_image" value="" size="40" />
+            <input type="button" class="button-secondary" id="upload_image_button" value="Subir imagen" />
+
                 <div id="imagen-destacada-personalizada" class="d-flex justify-content-around align-items-center" style="width:720px;height:360px;position:relative !important; background-image:url({replacebg});background-repeat:no-repeat;background-size:cover;background-position:center center;">
                 
                     <img src="{replace-team-1}" width="100" height="100" target-html-attr="src" ubicacion="left" onclick="aw_set_imgs(this)" id="logo-equipo-1"/>

@@ -1,7 +1,11 @@
 jQuery(function($){
-    
+
+	
+		
 });
 function aw_set_imgs(e){
+    var mediaUploader;
+    
         let id_html_id = e.getAttribute("target-html-id")
         let html_type = e.getAttribute("target-html-attr")
         
@@ -9,20 +13,23 @@ function aw_set_imgs(e){
         if(id_html_id){
             element = document.querySelector(`#${id_html_id}`)
         }
-        
-        aw_uploader = wp.media({
-            title: 'Custom image',
-            library: {
-                uploadedTo: wp.media.view.settings.post.id,
-                type: 'image'
-            },
-            button: {
-                text: 'Use this image'
-            },
-            multiple: false
-        }).on('select', function() {
-            var attachment = aw_uploader.state().get('selection').first().toJSON();
-            if(element){
+	  // If the uploader object has already been created, reopen the dialog
+		if (mediaUploader) {
+			mediaUploader.open();
+			return;
+		}
+
+	  // Extend the wp.media object
+	  mediaUploader = wp.media.frames.file_frame = wp.media({
+				title: 'Choose Image',
+				button: {
+				text: 'Choose Image'
+			}, multiple: false });
+
+	  // When a file is selected, grab the URL and set it as the text field's value
+	  mediaUploader.on('select', function() {
+			attachment = mediaUploader.state().get('selection').first().toJSON();
+			if(element){
                 if(element.tagName == 'DIV'){
                     
                     element.style.backgroundImage = "url('"+attachment.url+"')" //añadimos el src al <img />
@@ -37,10 +44,12 @@ function aw_set_imgs(e){
                     
                 }
             }
-            
-        })
-        .open();
-    }
+		});
+
+	  // Open the uploader dialog
+	  mediaUploader.open();
+        
+}
 function generate_base64(element){
     let base64 = document.querySelector("#base64")
     let previus_text = element.textContent

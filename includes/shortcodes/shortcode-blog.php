@@ -5,6 +5,7 @@ function shortcode_blog($atts)
         'model' => false,
         'filter' => false,
         'title' => false,
+        'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
         'num' => 6
     ), $atts));
     //Set default title
@@ -30,7 +31,24 @@ function shortcode_blog($atts)
                         </div>
                     </div>';
     endif;
-    $ret .= blog_posts_table('post',true,$num);
+    $league_arr = null;
+    
+    if(is_array($league) and count($league) > 0):
+        
+        $league_arr = "[{replace-leagues}]";
+        $temp_leages = '';
+        foreach ($league as $key => $value) {
+            $temp_leages .= $value->slug.',' ;
+        }
+        $league_arr = str_replace("{replace-leagues}",$temp_leages,$league_arr);
+    endif;
+    if(!is_array($league) and is_string($league)):
+        
+        $league_arr = "[{replace-leagues}]";
+        $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
+    endif;
+    
+    $ret .= blog_posts_table('post',true,$num,$league_arr);
     
     return $ret;
 }
