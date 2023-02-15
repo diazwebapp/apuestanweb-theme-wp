@@ -13,9 +13,7 @@ $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 if ( $textbefore ):
 	echo do_shortcode("{$textbefore}");
 endif;
-
-
- ?>
+?>
 
 	<main>
 	<?php 
@@ -100,6 +98,6 @@ endif;
 				if($custom_banner_bottom)
 					echo do_shortcode($custom_banner_bottom);
 					
-			?>
+		?>
 	</main>
-<?php get_footer(); ?>
+<?php get_footer();?>
