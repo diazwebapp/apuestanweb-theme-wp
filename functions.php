@@ -18,7 +18,7 @@ include "includes/core/notification-module/notification-core.php";
 
 include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
-include "includes/shortcodes/shortcode-parley-vip.php";
+//include "includes/shortcodes/shortcode-parley-vip.php";
 include "includes/shortcodes/shortcode-profile-forecaster.php";
 include "includes/shortcodes/shortcode-blog.php";
 include "includes/shortcodes/shortcode-forecasts.php";
