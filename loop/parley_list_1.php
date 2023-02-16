@@ -12,6 +12,8 @@ $hora = date('g:i a', strtotime($time));
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 $parley_title = get_the_title(get_the_ID());
 
+var_dump($vip);
+
 $bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
