@@ -75,6 +75,7 @@ echo "<div class='parley_wrapper'>
             $html =  "<div class='parley_box'>
 
                 {replace-content}
+
                 <div class='event-link'>
                     <a href='$permalink_event'>
                         Ver análisis
@@ -82,15 +83,15 @@ echo "<div class='parley_wrapper'>
                 </div>  
                 </div>";
             $html .= "<div class='parley_collpase_content'>
-            <div id='one{$event['id']}' class='collapse' >
-                <div class='parley_collapse_wrapper'>
-                    <div class='parley_collapse'>
-                        $content
+                <div id='one{$event['id']}' class='collapse' >
+                    <div class='parley_collapse_wrapper'>
+                        <div class='parley_collapse'>
+                            $content
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>";
+            </div>";
         }
     }
     $html .= "<div class='parley_box2'>
@@ -121,7 +122,7 @@ echo "<div class='parley_wrapper'>
                 </div>
             </div>
         </div>";
-echo $html;
+
 $unlock_content = "<div class='parley_left_content'>
 <div class='parley_game_name_wrapper'>
     <div class='parley_game_name'>
@@ -170,3 +171,7 @@ $unlock_content = "<div class='parley_left_content'>
 </div>";
 
 $loked_content = "<h3>Contenido bloqueado</h3>";
+
+$html = str_replace("{replace-content}",$loked_content,$html);
+
+echo $html;
