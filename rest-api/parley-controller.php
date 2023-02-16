@@ -131,7 +131,7 @@ function aw_get_parleys_vip(WP_REST_Request $request){
 
         while ($query->have_posts()):
             $query->the_post();
-            $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}",null,[
+            $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip",null,[
                 "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
                 "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
                 "odds" => isset($params['odds']) ? $params['odds'] : null
