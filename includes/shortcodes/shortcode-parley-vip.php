@@ -14,8 +14,8 @@ function shortcode_parley_vip($atts)
         'unlock' => null
     ), $atts));
     global $post;
-    
-    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'parley' ) ) {
+
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'parley_vip' ) ) {
         wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
     }else if(is_single(  )){
         wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
