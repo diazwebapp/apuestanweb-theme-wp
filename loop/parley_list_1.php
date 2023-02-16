@@ -34,8 +34,7 @@ endif;
 $parley_id = get_the_ID();
 echo "<div class='parley_wrapper'>
 <div class='parley_top_content'>
-    <h2>$parley_title $fecha</h2>
-    <img src='img/logo2.svg' class='img-fluid' alt=''>
+    
 </div>";
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
