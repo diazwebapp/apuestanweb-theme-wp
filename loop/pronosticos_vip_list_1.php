@@ -14,7 +14,7 @@ $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
-
+var_dump($vip);
 //Liga y deporte
 $sport['class'] = '' ;
 $sport['name'] = '';
