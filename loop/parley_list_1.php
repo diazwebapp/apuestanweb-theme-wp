@@ -34,6 +34,7 @@ endif;
 $parley_id = get_the_ID();
 echo "<div class='parley_wrapper'>
 <div class='parley_top_content'>
+    <h2>$parley_title $fecha</h2>
     
 </div>";
     if($forecasts and count($forecasts) > 0){
