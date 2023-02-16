@@ -14,7 +14,7 @@ $permalink = get_the_permalink($args["forecast"]->ID);
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
 $bookmaker = json_encode([]);
-var_dump($vip);
+
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
@@ -195,7 +195,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <img width="80" height="25" src="'.$bookmaker['logo_2x1'].'" alt="bk">
                             </div>
                             <div class="text-center accor_btn mt_15">
-                                <button type="button" data-toggle="collapse" data-target="#col1'.$id_collapse.'" aria-expanded="false">
+                                <button type="button" data-toggle="collapse" role="button" data-target="#col1'.$id_collapse.'" aria-expanded="false">
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>
