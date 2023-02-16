@@ -195,7 +195,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <img width="80" height="25" src="'.$bookmaker['logo_2x1'].'" alt="bk">
                             </div>
                             <div class="text-center accor_btn mt_15">
-                                
+                                <button type="button" data-toggle="collapse" role="button" data-target="#col1'.$id_collapse.'" aria-expanded="false">
+                                    <i class="fa fa-angle-down"></i>
+                                </button>
                             </div>
                             <div class="more_text pt_30 text-break collapse" id="col1'.$id_collapse.'">
                                 '.$content.'
