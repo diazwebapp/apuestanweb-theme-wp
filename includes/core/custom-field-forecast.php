@@ -114,11 +114,8 @@ function aw_forecast_imagen_destacada_personalizada() {
 add_action( "save_post", "update_forecast_thumbnail");
 
 function update_forecast_thumbnail($post_id){
-    
-    if(!isset($_POST["base64nonce"]) || !wp_verify_nonce( $_POST["base64nonce"], "base64nonce" )){
-        return;
-    }
-    if(isset($_POST["base64"])){
+   
+    if(isset($_POST["base64"]) and isset($_POST["base64nonce"]) and wp_verify_nonce( $_POST["base64nonce"], "base64nonce" )){
         if(!has_post_thumbnail( $post_id )):
             $base_64 = str_replace("data:image/png;base64,","",$_POST["base64"]);
             $bin = base64_decode($base_64);
