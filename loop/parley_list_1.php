@@ -10,6 +10,7 @@ $time = carbon_get_post_meta(get_the_ID(), 'data');
 $fecha = date('D M', strtotime($time));
 $hora = date('g:i a', strtotime($time));
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
+$parley_title = get_the_title(get_the_ID());
 
 $bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
@@ -33,7 +34,7 @@ endif;
 $parley_id = get_the_ID();
 echo "<div class='parley_wrapper'>
 <div class='parley_top_content'>
-    <h2>Parley $fecha</h2>
+    <h2>$parley_title $fecha</h2>
     <img src='img/logo2.svg' class='img-fluid' alt=''>
 </div>";
     if($forecasts and count($forecasts) > 0){
