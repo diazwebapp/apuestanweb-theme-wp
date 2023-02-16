@@ -14,7 +14,7 @@ $permalink = get_the_permalink($args["forecast"]->ID);
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
 $bookmaker = json_encode([]);
-
+var_dump($vip);
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
