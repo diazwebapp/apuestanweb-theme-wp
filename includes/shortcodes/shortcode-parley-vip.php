@@ -40,7 +40,7 @@ function shortcode_parley_vip($atts)
     $title = empty($custom_h1) ? $title : $custom_h1;
     
     if($filter)
-        $ret .= "<div class='row'>
+        $ret .= "<div class='row my-5'>
         <h1 class='title col-8'>$title</h1>       
             <div class='col-4 justify-content-end d-flex parley-select'>
                 <select name='ord' data-type='parley_vip' id='element_select_parley' onchange='filter_date_items(this)'>
