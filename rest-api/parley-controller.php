@@ -94,7 +94,7 @@ function aw_get_parleys_vip(WP_REST_Request $request){
     endif;
     $args['meta_query']  = [
         [
-            'key' => '_vip',
+            'key' => 'vip',
             'value' => 'false',
             'compare' => '!='
         ]
