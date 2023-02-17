@@ -54,7 +54,8 @@ async function generate_base64(element){
     jQuery(async function($){
         let canvas = await html2canvas($("#imagen-destacada-personalizada")[0])
         let code = canvas.toDataURL('image/png');
-        await aw_generate_image(code,post_id)
+        let response = await aw_generate_image(code,post_id)
+        alert(response.message)
         element.textContent = previus_text
         element.disabled = false
     });
@@ -70,7 +71,7 @@ async function aw_generate_image(base64,post_id){
         }
     })
     let response = await request.json()
-    console.log(response)
+    
     return response
     
 }
