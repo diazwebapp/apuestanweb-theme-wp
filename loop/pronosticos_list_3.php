@@ -74,6 +74,10 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
     
     if($vip == 'yes'){
+        if(function_exists("aw_get_user_type")):
+            $test = aw_get_user_type();
+            var_dump($test);
+        endif;
         echo "
             <div class='col-md-6 mt_30'>
                 
