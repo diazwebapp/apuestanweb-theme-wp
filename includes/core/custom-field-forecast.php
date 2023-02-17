@@ -29,7 +29,7 @@ function aw_forecast_imagen_destacada_personalizada() {
             <div class="col-12">
                 <div class="row mt-3">
                     <div class="col-md-4">
-                        <button class="btn btn-success" id="btnSave2" post-id="'.$post->ID.'" onclick="generate_base64(this)" >generar base64</button>
+                        <button class="btn btn-success" id="btnSave2" post-id="'.$post->ID.'" onclick="generate_base64(this)" >Aplicar imagen destacada</button>
                     </div>
                 </div>
             </div>
