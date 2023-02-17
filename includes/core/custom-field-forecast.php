@@ -35,12 +35,12 @@ function aw_forecast_imagen_destacada_personalizada() {
                         <button class="aw_upload_image_button btn btn-primary" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" >cambiar fondo</button>
                     </div>
                     <div class="col-md-4">
-                        <button class="btn btn-success" id="btnSave2" onclick="generate_base64(this)" >generar base64</button>
+                        <button class="btn btn-success" id="btnSave2" post-id="'.$post->ID.'" onclick="generate_base64(this)" >generar base64</button>
                     </div>
                 </div>
             </div>
         </div>
-        <input type="hidden" id="post_id" name="post_id" value="'.$post->ID.'" >
+       
     </div>
     ';
     
