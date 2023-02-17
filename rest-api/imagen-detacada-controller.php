@@ -5,7 +5,7 @@ if(!function_exists('aw_imagen_destacada_controller')):
         $params = $request->get_json_params();
         $resp = json_encode(["parametros"=>$params]);
 
-        if(has_post_thumbnail( $params["post_id"] ) && $params["base64"]):
+        if(isset( $params["post_id"] ) && isset($params["base64"])):
             $post = get_post($params["post_id"]);
             $base_64 = str_replace("data:image/png;base64,","",$params["base64"]);
             $bin = base64_decode($base_64);
