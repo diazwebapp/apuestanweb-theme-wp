@@ -54,6 +54,7 @@ async function generate_base64(element){
         let canvas = await html2canvas($("#imagen-destacada-personalizada")[0])
         let code = canvas.toDataURL('image/png');
         await aw_generate_image(element,code,previus_text,post_id)
+        
     });
 
 }
@@ -61,8 +62,13 @@ async function generate_base64(element){
 async function aw_generate_image(element,base64,message,post_id){    
     let request = await fetch(document.location.host+"/wp-json/aw-imagen-destacada/generate-apply",{
         method:"post",
-        body: JSON.stringify({base64,post_id})
+        body: JSON.stringify({base64,post_id}),
+        headers:{
+            "Content-type": "application/json"
+        }
     })
+    let response = await request.json()
+    console.log(response)
     element.textContent = message
     element.disabled = false
 }
