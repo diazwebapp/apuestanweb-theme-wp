@@ -70,6 +70,7 @@ async function aw_generate_image(base64,post_id){
         }
     })
     let response = await request.json()
+    console.log(response)
     return response
     
 }

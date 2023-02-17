@@ -9,9 +9,6 @@ function aw_forecast_imagen_destacada_personalizada() {
     $no_team_img =  get_template_directory_uri() . '/assets/img/logo2.svg';
     
 	$html = '
-    <input type="text" class="hidden" id="input-equipo-1" value="{replace-team-1}">
-    <input type="text" class="hidden" id="input-equipo-2" value="{replace-team-2}">
-    <input type="text" class="hidden" id="plantilla" value="{replacebg}">
     <div class="container">
         <div class="row">
         
@@ -38,13 +35,9 @@ function aw_forecast_imagen_destacada_personalizada() {
     </div>
     ';
     
-    wp_nonce_field( "base64nonce", "base64nonce" );
-    
     $html = str_replace("{replacebg}","$default_bg",$html);
     $html = str_replace("{replace-team-1}","$no_team_img",$html);
     $html = str_replace("{replace-team-2}","$no_team_img",$html);
-    
-    $html = str_replace("{post_name}",$post->post_name,$html);
  
     echo $html;
 }
