@@ -62,7 +62,7 @@ async function generate_base64(element){
 }
 
 async function aw_generate_image(base64,post_id){    
-    let request = await fetch(document.location.host+"/wp-json/aw-imagen-destacada/generate-apply",{
+    let request = await fetch("/wp-json/aw-imagen-destacada/generate-apply",{
         method:"post",
         body: JSON.stringify({base64,post_id}),
         headers:{
