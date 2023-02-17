@@ -153,7 +153,13 @@ function aw_get_user_type(){
                                             </li>
                                         </ul>
                                     </div>
+                                    <?php 
+
+                                        if(has_post_thumbnail( get_the_ID() )):
+                                            the_post_thumbnail(  );
+                                        endif;
                                     
+                                    ?>
                                     <!-- header forecast-->
                                     <div class="single_event_banner" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo $background_header ?>);">
                                         <div class="single_event_banner_top">
