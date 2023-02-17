@@ -12,7 +12,7 @@ $time = carbon_get_post_meta(get_the_ID(), 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
-$fecha = date_i18n('D M', strtotime($date->format("y-m-d h:i:s")));
+$fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
 $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
 ///Buscamos el pais en la base de datos
