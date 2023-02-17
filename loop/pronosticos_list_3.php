@@ -72,12 +72,15 @@ endif;
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
     $content = get_the_content(false,false,$args["forecast"]->ID) ;
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
-    
-    if($vip == 'yes'){
-        if(function_exists("aw_get_user_type")):
-            $test = aw_get_user_type();
-            var_dump($test);
+    $estado_usuario = "permitido";
+    if(function_exists("aw_get_user_type")):
+            $user_type = aw_get_user_type();
+            if($user_type = "unreg"){
+                $estado_usuario = "no permitido";
+            }
         endif;
+    if($vip == 'yes' and  $estado_usuario = "permitido"){
+        
         echo "
             <div class='col-md-6 mt_30'>
                 
