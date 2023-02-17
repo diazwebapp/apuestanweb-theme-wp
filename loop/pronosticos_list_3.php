@@ -84,7 +84,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     if(function_exists("aw_get_user_type")):
         $user_type = aw_get_user_type();
         if($user_type == "unreg"){
-            $estado_usuario = "no permitido";
+            $estado_usuario .= "no permitido";
         }
     endif;
     $html_vip_loked = "<div class='col-md-6 mt_30'>
