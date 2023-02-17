@@ -72,6 +72,13 @@ endif;
 if ($teams['team1']['logo'] and $teams['team2']['logo']):
     $content = get_the_content(false,false,$args["forecast"]->ID) ;
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
+    $tvalue['tvalue'] = isset($predictions[0]) ? $predictions[0]['tvalue'] : null;
+    $estrellas = "";
+    if(isset($tvalue)):
+        for($i=1; $i<=5;$i++):
+            $estrellas =  '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($tvalue) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
+        endfor;
+    endif;
 
     $estado_usuario = "permitido";
     if(function_exists("aw_get_user_type")):
@@ -149,6 +156,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             </div>
                         
                             <div class='event2_box_middle_content'>
+                                <div>$estrellas</div>
                                 <p class='p1'>Pronóstico:</p>
                                 {$html_predictions}
                                 <div class='event2_box_bonus'>
