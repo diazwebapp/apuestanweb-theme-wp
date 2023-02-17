@@ -7,7 +7,11 @@ function aw_forecast_imagen_destacada_personalizada() {
 	global $post;
     $default_bg =  get_template_directory_uri() . '/assets/img/event2-bg.png';
     $no_team_img =  get_template_directory_uri() . '/assets/img/logo2.svg';
-
+     
+    if ( has_post_thumbnail() ) {
+        $attachment_image = wp_get_attachment_url( get_post_thumbnail_id() );
+        $default_bg = esc_attr( $attachment_image ) ;	
+    } 
 	$html = '
     <div class="container">
         <div class="row">
