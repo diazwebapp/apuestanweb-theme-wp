@@ -59,6 +59,6 @@ function aw_set_imagen_destacada($image_full_path,$parent_post_id){
 
     $apply_thumb = set_post_thumbnail( $parent_post_id, $attach_id );
     if(empty($apply_thumb)){
-        return false
+        return false;
     }
 }
