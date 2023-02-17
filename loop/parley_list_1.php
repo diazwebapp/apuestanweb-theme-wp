@@ -1,19 +1,22 @@
 <?php
 
-///Buscamos el pais en la base de datos
-$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());
-$time = carbon_get_post_meta(get_the_ID(), 'data');
-$fecha = date('D M', strtotime($time));
-$hora = date('g:i a', strtotime($time));
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 $parley_title = get_the_title(get_the_ID());
 
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+$date = new DateTime($time);
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
+
+$fecha = date_i18n('D M', strtotime($date->format("y-m-d h:i:s")));
+$hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
 $bookmaker = json_encode([]);
+///Buscamos el pais en la base de datos
+$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
