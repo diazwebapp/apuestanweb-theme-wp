@@ -79,7 +79,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 $estado_usuario = "no permitido";
             }
         endif;
-    if($vip == 'yes' and  $estado_usuario = "permitido"){
+    if($vip == 'yes' and  $estado_usuario == "permitido"){
         
         echo "
             <div class='col-md-6 mt_30'>
