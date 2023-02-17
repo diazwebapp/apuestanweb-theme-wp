@@ -31,7 +31,7 @@ function aw_set_imagen_destacada($filename,$parent_post_id){
 
     // Prepare an array of post data for the attachment.
     $attachment = array(
-        'guid'           => $wp_upload_dir['url'] , 
+        'guid'           => $wp_upload_dir['url'] . "/$filename" , 
         'post_mime_type' => $filetype['type'],
         'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
         'post_content'   => '',
