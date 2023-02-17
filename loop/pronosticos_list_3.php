@@ -76,7 +76,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     $estrellas = "";
     if(isset($tvalue)):
         for($i=1; $i<=5;$i++):
-            $estrellas =  '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($tvalue) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
+            $estrellas .=  '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($tvalue) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
         endfor;
     endif;
 
@@ -84,7 +84,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     if(function_exists("aw_get_user_type")):
         $user_type = aw_get_user_type();
         if($user_type == "unreg"){
-            $estado_usuario .= "no permitido";
+            $estado_usuario = "no permitido";
         }
     endif;
     $html_vip_loked = "<div class='col-md-6 mt_30'>
