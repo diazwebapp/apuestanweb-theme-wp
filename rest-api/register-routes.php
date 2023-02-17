@@ -132,6 +132,15 @@ function register_routes(){
             return '__return_true';
           }
     ]);
+
+    //IMAGEN DESTACADA
+    register_rest_route('aw-imagen-destacada','/generate-apply',[
+        'methods' => 'POST',
+        'callback' => 'aw_imagen_destacada_controller',
+        'permission_callback' => function () {
+            return '__return_true';
+          }
+    ]);
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );
 

@@ -31,17 +31,12 @@ function aw_set_imgs(e){
 			attachment = mediaUploader.state().get('selection').first().toJSON();
 			if(element){
                 if(element.tagName == 'DIV'){
-                    
                     element.style.backgroundImage = "url('"+attachment.url+"')" //añadimos el src al <img />
-                    
                 }
                 
             }else{
-                if(e.tagName == 'IMG'){
-                    
+                if(e.tagName == 'IMG'){                    
                     e.src = attachment.url //añadimos el src al <img />
-                    
-                    
                 }
             }
 		});
@@ -59,10 +54,16 @@ function generate_base64(element){
     
        html2canvas($("#imagen-destacada-personalizada")[0]).then(function (canvas) {
             base64.value = canvas.toDataURL('image/png'); //o por 'image/jpeg' 
-            element.textContent = previus_text
-            element.disabled = false
+            
+            aw_generate_image(element,base64,previus_text)
         })
 
     });
 
+}
+
+async function aw_generate_image(element,base64,message){    
+    await alert(document.location.pathname)
+    element.textContent = message
+    element.disabled = false
 }
