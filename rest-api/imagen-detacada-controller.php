@@ -13,7 +13,7 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $bin = base64_decode($base_64);
             $im = imagecreatefromstring($bin);
             $thumb = imagecreatetruecolor(764,403);
-            imagecopyresampled($thumb,$im,0,0,0,0,$x,$y,imagesx($im),imagesy($im));
+            imagecopyresampled($thumb,$im,0,0,0,0,764,403,imagesx($im),imagesy($im));
             $filename = $post->ID.".png";
 
             $wp_upload_dir = wp_upload_dir();
