@@ -42,7 +42,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                         <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
                                         <div class="author-details d-flex flex-column">
                                             <h4 class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></h4>
-                                            <span class="post-date text-muted mb-0"><?php echo __("Publicado: $post_date");  ?></span>
+                                            <span class="post-date text-muted mb-0"><?php echo __("Publicado: $fecha $hora");  ?></span>
                                         </div>
                                         </div>
                                     </div>
