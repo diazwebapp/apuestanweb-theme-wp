@@ -23,7 +23,7 @@ function aw_forecast_imagen_destacada_personalizada() {
                         <span class="text-light text-bold" >VS</span>
                     <img src="{replace-team-2}" width="100" height="100" target-html-attr="src" ubicacion="right" onclick="aw_set_imgs(this)" id="logo-equipo-2" class="btn btn-outline-light"/>
                 </div>
-                <button class="aw_upload_image_button btn btn-primary" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" style="position:absolute !important;top:2px;left:18px;"><i class="dashicons dashicons-edit" ></i></button>
+                <button class="aw_upload_image_button btn btn-outline-light" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" style="position:absolute !important;top:2px;left:18px;background-color:rgba(0,0,0, .2) !important;"><i class="dashicons dashicons-edit" ></i></button>
 
             </div>
             <div class="col-12">
