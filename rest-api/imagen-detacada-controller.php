@@ -26,7 +26,7 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $resp["status"] = "error";
             $resp["message"] = "falta base64 o post_id";
         endif;
-        $resp = json_encode($resp);
+        $resp = json_decode(json_encode($resp));
         return $resp;
     }
 else:
