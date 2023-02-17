@@ -12,7 +12,7 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $base_64 = str_replace("data:image/png;base64,","",$params["base64"]);
             $bin = base64_decode($base_64);
             $im = imagecreatefromstring($bin);
-            $filename = $post->post_name.".png";
+            $filename = $post->ID.".png";
 
             $wp_upload_dir = wp_upload_dir();
             $ruta = $wp_upload_dir['path'] . "/" .$filename ;
