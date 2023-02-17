@@ -54,8 +54,10 @@ function generate_base64(element){
     
        html2canvas($("#imagen-destacada-personalizada")[0]).then(function (canvas) {
             base64.value = canvas.toDataURL('image/png'); //o por 'image/jpeg' 
-            
-            aw_generate_image(element,base64,previus_text)
+            let code = canvas.toDataURL('image/png');
+            //aw_generate_image(element,base64,previus_text)
+        }).then(function(code){
+            alert(code)
         })
 
     });
@@ -63,7 +65,7 @@ function generate_base64(element){
 }
 
 async function aw_generate_image(element,base64,message){    
-    await alert(document.location.pathname)
+    await alert(document.location.host)
     element.textContent = message
     element.disabled = false
 }
