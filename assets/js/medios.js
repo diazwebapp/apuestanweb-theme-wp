@@ -51,18 +51,9 @@ async function generate_base64(element){
     element.disabled = true
     element.textContent = "generando..."
     jQuery(async function($){
-    
-       /* html2canvas($("#imagen-destacada-personalizada")[0]).then(function (canvas) {
-            base64.value = canvas.toDataURL('image/png'); //o por 'image/jpeg' 
-            let code = canvas.toDataURL('image/png');
-            return code
-            //aw_generate_image(element,base64,previus_text)
-        }).then(function(code){
-            alert(code)
-        }) */
         let canvas = await html2canvas($("#imagen-destacada-personalizada")[0])
         let code = canvas.toDataURL('image/png');
-        await alert(code)
+        await aw_generate_image(element,code,previus_text)
     });
 
 }
