@@ -12,9 +12,9 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $im = imagecreatefromstring($bin);
             $wp_upload_dir = wp_upload_dir();
             $filename = $post->post_name.".png";
-            $ruta = $wp_upload_dir['url'] . "/" .preg_replace( '/\.[^.]+$/', '', $filename ) ;
+            $ruta = $wp_upload_dir['url'] . "/" .$filename ;
             imagepng($im,$ruta);
-            aw_set_imagen_destacada($ruta,$params["post_id"]);
+            aw_set_imagen_destacada($ruta,$post->ID);
         endif;
 
         return json_decode($resp);

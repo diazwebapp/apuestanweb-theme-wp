@@ -8,20 +8,10 @@ function aw_forecast_imagen_destacada_personalizada() {
     $default_bg =  get_template_directory_uri() . '/assets/img/event2-bg.png';
     $no_team_img =  get_template_directory_uri() . '/assets/img/logo2.svg';
 
-    $filetype = wp_check_filetype( basename( $default_bg ), null );
-
-    // Get the path to the upload directory.
     $wp_upload_dir = wp_upload_dir();
-
-    // Prepare an array of post data for the attachment.
-    $attachment = array(
-        'guid'           => $wp_upload_dir['url']."/". preg_replace( '/\.[^.]+$/', '', $default_bg) , 
-        'post_mime_type' => $filetype['type'],
-        'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $default_bg ) ),
-        'post_content'   => '',
-    );
-    var_dump($attachment);
-    
+    $filename = $post->post_name.".png";
+    $ruta = $wp_upload_dir['url'] . "/" .$filename ;
+    var_dump($ruta);
 	$html = '
     <div class="container">
         <div class="row">
