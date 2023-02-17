@@ -75,7 +75,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     $estado_usuario = "permitido";
     if(function_exists("aw_get_user_type")):
             $user_type = aw_get_user_type();
-            if($user_type = "unreg"){
+            if($user_type == "unreg"){
                 $estado_usuario = "no permitido";
             }
         endif;
