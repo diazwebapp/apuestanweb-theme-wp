@@ -3,7 +3,9 @@ if(!function_exists('aw_imagen_destacada_controller')):
     function aw_imagen_destacada_controller(WP_REST_Request $request){
         global $wpdb;
         $params = $request->get_json_params();
-        $resp = json_encode(["parametros"=>$params]);
+        $resp = [
+            "status" => "ok"
+        ];
 
         if(isset( $params["post_id"] ) && isset($params["base64"])):
             $post = get_post($params["post_id"]);
@@ -15,9 +17,16 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $wp_upload_dir = wp_upload_dir();
             $ruta = $wp_upload_dir['path'] . "/" .$filename ;
             imagepng($im,$ruta);
-            aw_set_imagen_destacada($ruta,$post->ID);
+            $result = aw_set_imagen_destacada($ruta,$post->ID);
+            if(empty($result)):
+                $resp["status"] = "error";
+                $resp["message"] = "error generando o aplicando la imagen destacada";
+            endif;
+        else:
+            $resp["status"] = "error";
+            $resp["message"] = "falta base64 o post_id";
         endif;
-
+        $resp = json_encode($resp);
         return json_decode($resp);
     }
 else:
@@ -38,7 +47,9 @@ function aw_set_imagen_destacada($image_full_path,$parent_post_id){
 
     // Insert the attachment.
     $attach_id = wp_insert_attachment( $attachment, $image_full_path, $parent_post_id );
-
+    if(is_wp_error(  $attach_id )){
+        return false;
+    }
     // Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
     require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
@@ -46,5 +57,8 @@ function aw_set_imagen_destacada($image_full_path,$parent_post_id){
     $attach_data = wp_generate_attachment_metadata( $attach_id, $image_full_path );
     wp_update_attachment_metadata( $attach_id, $attach_data );
 
-    set_post_thumbnail( $parent_post_id, $attach_id );
+    $apply_thumb = set_post_thumbnail( $parent_post_id, $attach_id );
+    if(empty($apply_thumb)){
+        return false
+    }
 }
