@@ -108,7 +108,7 @@ function shortcode_forecast($atts)
     
     $query =  wp_remote_retrieve_body( $response );
     if(function_exists("aw_get_user_type")):
-        $test = get_user_type();
+        $test = aw_get_user_type();
         var_dump($test);
     endif;
     
