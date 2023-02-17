@@ -23,7 +23,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                 $date = new DateTime($post_date);
                                 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
-                                $fecha = date_i18n('D M', strtotime($date->format("y-m-d h:i:s")));
+                                $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
                                 $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
                                 $title = get_the_title( get_the_ID() ); 
