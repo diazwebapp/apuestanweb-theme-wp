@@ -107,8 +107,8 @@ function shortcode_forecast($atts)
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
     $query =  wp_remote_retrieve_body( $response );
-    if(function_exists("ihc_user_type")):
-        $test = ihc_user_type();
+    if(function_exists("get_user_type")):
+        $test = get_user_type();
         var_dump($test);
     endif;
     
