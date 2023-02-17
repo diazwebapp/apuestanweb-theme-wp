@@ -33,7 +33,7 @@ else:
     echo "la funcion aw_imagen_destacada_controller ya existe";
 endif;
 function aw_set_imagen_destacada($image_full_path,$parent_post_id){
-
+    $status = true;
     // Check the type of file. We'll use this as the 'post_mime_type'.
     $filetype = wp_check_filetype( basename( $image_full_path ), null );
 
@@ -48,7 +48,8 @@ function aw_set_imagen_destacada($image_full_path,$parent_post_id){
     // Insert the attachment.
     $attach_id = wp_insert_attachment( $attachment, $image_full_path, $parent_post_id );
     if(is_wp_error(  $attach_id )){
-        return false;
+        $status = false;
+        return $status;
     }
     // Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
     require_once( ABSPATH . 'wp-admin/includes/image.php' );
@@ -59,6 +60,8 @@ function aw_set_imagen_destacada($image_full_path,$parent_post_id){
 
     $apply_thumb = set_post_thumbnail( $parent_post_id, $attach_id );
     if(empty($apply_thumb)){
-        return false;
+        $status = false;
+        return $status;
     }
+    return $status;
 }
