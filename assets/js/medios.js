@@ -55,7 +55,7 @@ async function generate_base64(element){
         let canvas = await html2canvas($("#imagen-destacada-personalizada")[0])
         let code = canvas.toDataURL('image/png');
         let response = await aw_generate_image(code,post_id)
-        console.log(response)
+        
         alert(response.message)
         element.textContent = previus_text
         element.disabled = false
