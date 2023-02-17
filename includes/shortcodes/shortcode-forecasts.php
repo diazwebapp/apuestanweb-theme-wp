@@ -107,6 +107,9 @@ function shortcode_forecast($atts)
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
     $query =  wp_remote_retrieve_body( $response );
+
+    $test = get_user_type();
+    var_dump($test);
     
     if (!is_wp_error( $query )) {
         $home_class = "event_wrap pt_30";
