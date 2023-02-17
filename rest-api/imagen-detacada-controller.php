@@ -6,11 +6,12 @@ if(!function_exists('aw_imagen_destacada_controller')):
         $resp = json_encode(["parametros"=>$params]);
 
         if(has_post_thumbnail( $params["post_id"] ) && $params["base64"]):
+            $post = get_post($params["post_id"]);
             $base_64 = str_replace("data:image/png;base64,","",$params["base64"]);
             $bin = base64_decode($base_64);
             $im = imagecreatefromstring($bin);
             
-            $ruta = ABSPATH . '/wp-content/uploads/'.$_POST["post_name"].".png";
+            $ruta = ABSPATH . '/wp-content/uploads/'.$post->post_name.".png";
             imagepng($im,$ruta);
             aw_set_imagen_destacada($ruta,$params["post_id"]);
         endif;

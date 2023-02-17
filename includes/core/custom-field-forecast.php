@@ -40,73 +40,18 @@ function aw_forecast_imagen_destacada_personalizada() {
                 </div>
             </div>
         </div>
-        <input type="hidden" id="base64" name="base64" >
-        <input type="hidden" name="post_name" value="{post_name}" />
+        <input type="hidden" id="post_id" name="post_id" value="'.$post->ID.'" >
     </div>
     ';
     
     wp_nonce_field( "base64nonce", "base64nonce" );
-    /* 
-    function redimencionar_imagen($ruta,$dimenciones=[100,100]){
-        $ruta = imagescale(
-            $ruta,
-            $dimenciones[0],
-            $dimenciones[1],
-            $mode = IMG_BILINEAR_FIXED
-        );
-        return $ruta;
-    }
-    $dir = ABSPATH . '/wp-content/uploads/cuadrado.png';
-   
-    // Creo dos imagenes, una es el fondo y la otra el texto que le voy a superponer 
-    $ext_plantilla = pathinfo($default_bg, PATHINFO_EXTENSION);
-    if($ext_plantilla == 'png'){
-        $plantilla = imagecreatefrompng($default_bg); 
-    }
-    if($ext_plantilla == 'jpeg'){
-        $plantilla = imagecreatefromjpeg($default_bg); 
-    }
-    if($ext_plantilla == 'webp'){
-        $plantilla = imagecreatefromwebp($default_bg); 
-    }
-    $plantilla = redimencionar_imagen($plantilla,[720,280]);
-
-    $ext_equipo_1 = pathinfo($no_team_img, PATHINFO_EXTENSION);
-    if($ext_equipo_1 == 'png'){
-        $equipo_1 = imagecreatefrompng($no_team_img); 
-    }
-    if($ext_equipo_1 == 'jpeg'){
-        $equipo_1 = imagecreatefromjpeg($no_team_img); 
-    }
-    if($ext_equipo_1 == 'webp'){
-        $equipo_1 = imagecreatefromwebp($no_team_img); 
-    }
-    if(empty($equipo_1)){
-        $equipo_1 = imagecreatefrompng($default_bg);   
-     }
     
-    
-    $equipo_1 = redimencionar_imagen($equipo_1,[100,100]);
-
-    // Obtengo los tamaños de las imagenes 
-    $plantillaAncho = imagesx($plantilla); 
-    $plantillaAlto = imagesy($plantilla); 
-    $equipo_1Ancho = imagesx($equipo_1); 
-    $equipo_1Alto = imagesy($equipo_1); 
-    // Posision horizontal del logo 1
-    $h = $plantillaAncho / 6;
-    $v = ($plantillaAlto / 2) + ($equipo_1Alto / 2) ;
-    // Copiamo la imágen de fondo a la imagen final  
-    imagecopy($plantilla,$equipo_1,$h,$v - $equipo_1Alto,0,0,$equipo_1Ancho,$equipo_1Alto); 
-    
-    // Damos salida a la imagen final 
-    imagepng($plantilla,$dir);
-     */
-
     $html = str_replace("{replacebg}","$default_bg",$html);
     $html = str_replace("{replace-team-1}","$no_team_img",$html);
     $html = str_replace("{replace-team-2}","$no_team_img",$html);
     
     $html = str_replace("{post_name}",$post->post_name,$html);
+    $post_tets = get_post($post->ID);
+    var_dump($post_tets);
     echo $html;
 }
