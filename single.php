@@ -19,9 +19,8 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
-                                $post_date = get_the_date( "d M h:i a", get_the_ID());
-                                $time = carbon_get_post_meta(get_the_ID(), 'data');
-                                $date = new DateTime($time);
+                                $post_date = get_the_date( "y-m-d h:i:s", get_the_ID());
+                                $date = new DateTime($post_date);
                                 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
                                 $fecha = date_i18n('D M', strtotime($date->format("y-m-d h:i:s")));
