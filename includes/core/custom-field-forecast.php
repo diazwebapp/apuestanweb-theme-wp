@@ -23,7 +23,7 @@ function aw_forecast_imagen_destacada_personalizada() {
                         <span class="text-light text-bold" >VS</span>
                     <img src="{replace-team-2}" width="100" height="100" target-html-attr="src" ubicacion="right" onclick="aw_set_imgs(this)" id="logo-equipo-2"/>
                 </div>
-                <button class="aw_upload_image_button btn btn-primary" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" style="position:absolute !important;top:-200px;">cambiar fondo</button>
+                <button class="aw_upload_image_button btn btn-primary" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" style="position:absolute !important;top:2px;left:2px;"><i class="dashicons dashicons-edit" ></i></button>
 
             </div>
             <div class="col-12">
@@ -31,8 +31,6 @@ function aw_forecast_imagen_destacada_personalizada() {
                     <div class="col-md-4">
                         <input type="checkbox" id="help_replace_thumb" name="replace_thumbnail">
                         <label for="help_replace_thumb" >remmplazar imagen destacada?</label>
-                    </div>
-                    <div class="col-md-4 mx-2">
                     </div>
                     <div class="col-md-4">
                         <button class="btn btn-success" id="btnSave2" post-id="'.$post->ID.'" onclick="generate_base64(this)" >generar base64</button>
