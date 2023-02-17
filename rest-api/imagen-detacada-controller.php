@@ -48,5 +48,5 @@ function aw_set_imagen_destacada($filename,$parent_post_id){
     wp_update_attachment_metadata( $attach_id, $attach_data );
 
     set_post_thumbnail( $parent_post_id, $attach_id );
-    unlink($filename);
+
 }
