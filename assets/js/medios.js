@@ -50,12 +50,12 @@ async function generate_base64(element){
     element.disabled = true
     element.textContent = "generando..."
     let post_id = element.getAttribute("post-id")
-    console.log(post_id)
+    
     jQuery(async function($){
         let canvas = await html2canvas($("#imagen-destacada-personalizada")[0])
         let code = canvas.toDataURL('image/png');
         await aw_generate_image(code,post_id)
-        element.textContent = message
+        element.textContent = previus_text
         element.disabled = false
     });
 
@@ -70,6 +70,6 @@ async function aw_generate_image(base64,post_id){
         }
     })
     let response = await request.json()
-    console.log(response)
+    return response
     
 }
