@@ -51,7 +51,6 @@ function aw_forecast_imagen_destacada_personalizada() {
     $html = str_replace("{replace-team-2}","$no_team_img",$html);
     
     $html = str_replace("{post_name}",$post->post_name,$html);
-    $post_tets = get_post($post->ID);
-    var_dump($post_tets);
+ 
     echo $html;
 }
