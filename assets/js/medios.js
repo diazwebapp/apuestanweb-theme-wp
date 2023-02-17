@@ -60,7 +60,7 @@ async function generate_base64(element){
         }).then(function(code){
             alert(code)
         }) */
-        let canvas = await ($("#imagen-destacada-personalizada")[0])
+        let canvas = await html2canvas($("#imagen-destacada-personalizada")[0])
         let code = canvas.toDataURL('image/png');
         await alert(code)
     });
