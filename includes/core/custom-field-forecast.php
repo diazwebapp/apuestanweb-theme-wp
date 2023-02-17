@@ -15,7 +15,7 @@ function aw_forecast_imagen_destacada_personalizada() {
 
     // Prepare an array of post data for the attachment.
     $attachment = array(
-        'guid'           => $wp_upload_dir['url'] , 
+        'guid'           => $wp_upload_dir['url']."/". preg_replace( '/\.[^.]+$/', '', basename( $default_bg ) ) , 
         'post_mime_type' => $filetype['type'],
         'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $default_bg ) ),
         'post_content'   => '',
