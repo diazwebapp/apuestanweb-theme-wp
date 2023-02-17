@@ -12,11 +12,13 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $base_64 = str_replace("data:image/png;base64,","",$params["base64"]);
             $bin = base64_decode($base_64);
             $im = imagecreatefromstring($bin);
+            $thumb = imagecreatetruecolor(764,403);
+            imagecopyresampled($thumb,$im,0,0,0,0,$x,$y,imagesx($im),imagesy($im));
             $filename = $post->ID.".png";
 
             $wp_upload_dir = wp_upload_dir();
             $ruta = $wp_upload_dir['path'] . "/" .$filename ;
-            imagepng($im,$ruta);
+            imagepng($thumb,$ruta);
             $result = aw_set_imagen_destacada($ruta,$post->ID);
             if(empty($result)):
                 $resp["status"] = "error";

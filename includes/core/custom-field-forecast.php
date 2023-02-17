@@ -18,7 +18,7 @@ function aw_forecast_imagen_destacada_personalizada() {
         
             <div class="col-12" style="position:relative !important;">
 
-                <div id="imagen-destacada-personalizada" class="d-flex justify-content-around align-items-center" style="width:720px;height:360px;position:relative !important; background-image:url({replacebg});background-repeat:no-repeat;background-size:cover;background-position:center center;">
+                <div id="imagen-destacada-personalizada" class="d-flex justify-content-around align-items-center" style="width:768px;height:403px;position:relative !important; background-image:url({replacebg});background-repeat:no-repeat;background-size:cover;background-position:center center;">
                 
                     <img src="{replace-team-1}" width="100" height="100" target-html-attr="src" ubicacion="left" onclick="aw_set_imgs(this)" id="logo-equipo-1" class="btn btn-outline-light"/>
                         
