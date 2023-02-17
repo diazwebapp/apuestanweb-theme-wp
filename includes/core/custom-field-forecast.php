@@ -8,10 +8,6 @@ function aw_forecast_imagen_destacada_personalizada() {
     $default_bg =  get_template_directory_uri() . '/assets/img/event2-bg.png';
     $no_team_img =  get_template_directory_uri() . '/assets/img/logo2.svg';
 
-    $wp_upload_dir = wp_upload_dir();
-    $filename = $post->post_name.".png";
-    $ruta = $wp_upload_dir['url'] . "/" .$filename ;
-    var_dump($ruta);
 	$html = '
     <div class="container">
         <div class="row">
