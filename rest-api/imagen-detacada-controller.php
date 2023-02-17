@@ -10,8 +10,9 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $base_64 = str_replace("data:image/png;base64,","",$params["base64"]);
             $bin = base64_decode($base_64);
             $im = imagecreatefromstring($bin);
+            $wp_upload_dir = wp_upload_dir();
             
-            $ruta = ABSPATH . '/wp-content/uploads/'.$post->post_name.".png";
+            $ruta = $wp_upload_dir['url'] . "/$post->post_name.png" ;
             imagepng($im,$ruta);
             aw_set_imagen_destacada($ruta,$params["post_id"]);
         endif;
@@ -31,7 +32,7 @@ function aw_set_imagen_destacada($filename,$parent_post_id){
 
     // Prepare an array of post data for the attachment.
     $attachment = array(
-        'guid'           => $wp_upload_dir['url'] . "/$filename" , 
+        'guid'           => $filename, 
         'post_mime_type' => $filetype['type'],
         'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
         'post_content'   => '',
