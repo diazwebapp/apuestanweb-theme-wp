@@ -19,19 +19,15 @@ function aw_forecast_imagen_destacada_personalizada() {
 
                 <div id="imagen-destacada-personalizada" class="d-flex justify-content-around align-items-center" style="width:720px;height:360px;position:relative !important; background-image:url({replacebg});background-repeat:no-repeat;background-size:cover;background-position:center center;">
                 
-                    <img src="{replace-team-1}" role="button" type="button" width="100" height="100" target-html-attr="src" ubicacion="left" onclick="aw_set_imgs(this)" id="logo-equipo-1" class="btn btn-primary"/>
+                    <img src="{replace-team-1}" width="100" height="100" target-html-attr="src" ubicacion="left" onclick="aw_set_imgs(this)" id="logo-equipo-1" class="btn btn-outline-light"/>
                         <span class="text-light text-bold" >VS</span>
-                    <img src="{replace-team-2}" width="100" height="100" target-html-attr="src" ubicacion="right" onclick="aw_set_imgs(this)" id="logo-equipo-2"/>
+                    <img src="{replace-team-2}" width="100" height="100" target-html-attr="src" ubicacion="right" onclick="aw_set_imgs(this)" id="logo-equipo-2" class="btn btn-outline-light"/>
                 </div>
                 <button class="aw_upload_image_button btn btn-primary" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" style="position:absolute !important;top:2px;left:18px;"><i class="dashicons dashicons-edit" ></i></button>
 
             </div>
             <div class="col-12">
                 <div class="row mt-3">
-                    <div class="col-md-4">
-                        <input type="checkbox" id="help_replace_thumb" name="replace_thumbnail">
-                        <label for="help_replace_thumb" >remmplazar imagen destacada?</label>
-                    </div>
                     <div class="col-md-4">
                         <button class="btn btn-success" id="btnSave2" post-id="'.$post->ID.'" onclick="generate_base64(this)" >generar base64</button>
                     </div>
