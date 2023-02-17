@@ -55,6 +55,7 @@ function generate_base64(element){
        html2canvas($("#imagen-destacada-personalizada")[0]).then(function (canvas) {
             base64.value = canvas.toDataURL('image/png'); //o por 'image/jpeg' 
             let code = canvas.toDataURL('image/png');
+            return code
             //aw_generate_image(element,base64,previus_text)
         }).then(function(code){
             alert(code)
