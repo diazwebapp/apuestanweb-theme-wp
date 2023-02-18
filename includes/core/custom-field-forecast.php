@@ -20,9 +20,9 @@ function aw_forecast_imagen_destacada_personalizada() {
 
                 <div id="imagen-destacada-personalizada" class="d-flex justify-content-around align-items-center" style="width:768px;height:403px;position:relative !important; background-image:url({replacebg});background-repeat:no-repeat;background-size:cover;background-position:center center;">
                 
-                    <img src="{replace-team-1}" width="100" height="100" target-html-attr="src" ubicacion="left" onclick="aw_set_imgs(this)" id="logo-equipo-1" class="btn btn-outline-light" style="margin-left:15px !important;"/>
+                    <img src="{replace-team-1}" width="130" height="130" target-html-attr="src" ubicacion="left" onclick="aw_set_imgs(this)" id="logo-equipo-1" class="btn btn-outline-light" style="margin-left:9px !important;"/>
                         
-                    <img src="{replace-team-2}" width="100" height="100" target-html-attr="src" ubicacion="right" onclick="aw_set_imgs(this)" id="logo-equipo-2" class="btn btn-outline-light" style="margin-right:15px !important;"/>
+                    <img src="{replace-team-2}" width="130" height="130" target-html-attr="src" ubicacion="right" onclick="aw_set_imgs(this)" id="logo-equipo-2" class="btn btn-outline-light" style="margin-right:9px !important;"/>
                 </div>
                 <button class="aw_upload_image_button btn btn-outline-light" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" style="position:absolute !important;top:2px;left:18px;background-color:rgba(0,0,0, .2) !important;"><i class="dashicons dashicons-edit" ></i></button>
 

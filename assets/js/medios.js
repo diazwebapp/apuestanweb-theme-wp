@@ -51,16 +51,8 @@ async function generate_base64(element){
     element.textContent = "generando..."
     let post_id = element.getAttribute("post-id")
     
-    /* jQuery(async function($){
-        let canvas = await html2canvas($("#imagen-destacada-personalizada")[0])
-        let code = canvas.toDataURL('image/png');
-        let response = await aw_generate_image(code,post_id)
-        
-        alert(response.message)
-        element.textContent = previus_text
-        element.disabled = false
-    }); */
     let node = document.getElementById('imagen-destacada-personalizada');
+    
     let options = {
         quality: 1.0
     };
