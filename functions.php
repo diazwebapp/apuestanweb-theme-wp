@@ -177,6 +177,7 @@ function enqueuing_admin_scripts(){
     
     wp_enqueue_script( 'admin_medios', get_template_directory_uri() . '/assets/js/medios.js', array('jquery','media-upload','thickbox'), null, false );
     wp_enqueue_script( 'html2canvas', get_template_directory_uri() . '/assets/js/html2canvas.min.js', array('jquery'), null, false );
+    wp_enqueue_script( 'dom-to-image', get_template_directory_uri() . '/assets/js/dom-to-image.min.js', array('jquery'), null, false );
 }
  
 add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
