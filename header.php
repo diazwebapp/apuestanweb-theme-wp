@@ -91,25 +91,25 @@
                     endif;
                 ?>
             </div>
-        <div class="col-6 col-lg-8 order-lg-2">
-            <!--menu start-->
-            <ul class="menu text-uppercase">                    
-            <?php
-                
-                $ret = strip_tags( wp_nav_menu( array(
-                    'theme_location' => 'top',
-                    'echo'           => false
-                ) ), '<li><a>' );
-                if ( $ret ):
-                    echo $ret;
-                else:
-                    echo "";
-                endif;
-                
-            ?>
-            </ul> <!--menu end-->
+            <div class="col-6 col-lg-8 order-lg-2">
+                <!--menu start-->
+                <ul class="menu text-uppercase">                    
+                    <?php
+                        
+                        $ret = strip_tags( wp_nav_menu( array(
+                            'theme_location' => 'top',
+                            'echo'           => false
+                        ) ), '<li><a>' );
+                        if ( $ret ):
+                            echo $ret;
+                        else:
+                            echo "";
+                        endif;
+                        
+                    ?>
+                </ul> <!--menu end-->
+            </div>
         </div>
-        
     </div>
 </div>
 </header>

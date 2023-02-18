@@ -852,6 +852,10 @@
 	}
 	.bookmaker_left_content {
 	    flex-direction: column;
+		width: 20rem;
+	}
+	.bookmaker_left_heading h2 {
+		padding-right: 0;
 	}
 	.bookmaker_logo_box{
 		width: 30rem;
@@ -1931,7 +1935,7 @@
 		display: none;
 	}
 	.btn_text {
-	    width: 100%;
+	    width: 65%;
 	    display: flex;
 	    justify-content: space-between;
 	    align-items: center;

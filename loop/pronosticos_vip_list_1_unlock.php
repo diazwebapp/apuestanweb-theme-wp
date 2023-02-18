@@ -123,7 +123,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                     </div>
                     <p class="game_time d-sm-none d-flex align-items-center justify-content-between">
                         <span>'.$league['name'].'</span>
-                        <span>'.$date->format('Y-m-d h:i:s').'</span>
+                        <span>'.$date->format('d-m-Y h:i:s A').'</span>
                     </p>
                     <div class="rating d-sm-none">
                         '.$stars.'
@@ -178,22 +178,23 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             <div class="d-flex align-items-center justify-content-between mt_10">
                                 <div class="btn_text">
                                     <span>Pick: '.$prediction.' </span>
-                                    <div class="rate_text d-sm-none">
-                                        <span>'.$cuote.'</span>
-                                    </div>
+
                                 </div>
+                                <div class="rate_text d-sm-none">
+                                <span>'.$cuote.'</span>
+                                <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk">
+                            </div>
                                 <div class="d-none d-sm-flex align-items-center">
-                                    <div class="rate_text">'.$cuote.'</div>
+                                    <div class="rate_text d-flex align-items-center justify-content-around">
+                                    <span>'.$cuote.'</span>
+                                    <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
                                     <div class="rating">
                                         '.$stars.'
                                     </div>
                                     
                                 </div>
                             </div>
-                            <div class="d-flex mt-3 align-items-center justify-content-center mt_10">
-                                <p class="oddstex text-uppercase">Cuotas de</p>
-                                <img width="80" height="25" src="'.$bookmaker['logo_2x1'].'" alt="bk">
-                            </div>
+
                             <div class="text-center accor_btn mt_15">
                                 <button type="button" data-toggle="collapse" data-target="#col1'.$id_collapse.'" aria-expanded="false">
                                     <i class="fa fa-angle-down"></i>

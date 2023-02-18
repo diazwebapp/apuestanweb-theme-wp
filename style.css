@@ -496,7 +496,6 @@ header {
 	color: #00203A;
 	background-color: #E4E6E8;
 	border-radius: 1.7rem;
-	margin-top: 1.5rem;
 }
 .category-grid span:hover{
 	background-color: #00203A;
@@ -1397,6 +1396,7 @@ footer .menu li a::before{
 .bookmaker_left_content{
 	display: flex;
 	align-items: center;
+	width: 520px;
 }
 .bookmaker_logo_box{
 	background: linear-gradient(135deg, #0558CB 0%, #023986 100%);
@@ -1789,9 +1789,10 @@ footer .menu li a::before{
 
 /*price area*/
 .price_wrapper {
-   /* margin-top: 8.5rem;*/
     padding-bottom: 8.5rem;
-    background-color: #032451;
+	background: transparent linear-gradient(222deg, #0558CB 0%, #023986 100%);
+
+
 }
 
 .price_heading {
@@ -1807,7 +1808,7 @@ footer .menu li a::before{
     padding-bottom: 3rem;
     background: white;
     padding: 1rem;
-    border-radius: 32px;
+    border-radius: 5px;
 }
 .price_heading h2{
 	font-size: 6rem;
@@ -1830,6 +1831,7 @@ footer .menu li a::before{
     margin-left: 1rem;
     margin-right: 1rem;
     background-color: #FFFFFF;
+	border-radius: 0.5rem;
 }
 .price_box1{
 	margin-left: 0;
@@ -2185,14 +2187,18 @@ footer .menu li a::before{
 	color: #00203A;
 
 }
-.page_content > ul,
-.page_content > li{
-	
+.page_content > ul > li{
+	margin-block-start: 1rem;
 	list-style: inherit;
+	text-align: justify;
 }
+.page_content > ul > li > strong{
+	margin-left: 0.5rem;
+}
+
 .page_content > ol,
 .page_content > li{
-	
+	margin: 0 0 10px;
 	list-style: inherit;
 }
 .page_content > ul > li::marker{
@@ -2203,9 +2209,6 @@ footer .menu li a::before{
 
 }
 
-.page_content > li {
-    margin: 0 0 10px;
-}
 
 .page_content > ol{
 	list-style-type: decimal;
@@ -2804,20 +2807,22 @@ blockquote{
     font-weight: 700;
     padding: 0.6rem 2rem;
     font-size: 1.6rem;
-    line-height: 1;
+    line-height: 2.6rem;
     color: #e8ecef;
     background-color: #0558cb;
-    border-radius: 1.7rem;
+    border-radius: 0.6rem;
 }
 .rate_text{
-	background-color: #DDEAFD;
-	padding: 0.6rem 1.3rem;
-	border-radius: 0.6rem;
-	color: #0558CB;
+	background: #4bc81a;	border-radius: 0.6rem;
+	color: #ffffff;
 	font-size: 1.4rem;
-	line-height: 1.1;
+	line-height: 2.6rem;
 	font-weight: 700;
+	width: 12rem;
 }
+.rate_text img {
+	margin-left: 1rem;
+ }
 .vip_right_content .rating i{
 	font-size: 1.5rem;
 }
@@ -4817,3 +4822,7 @@ a.panel-button {
   .h-static {
 	height: 40px ; 
  }
+
+
+ 
+ 
