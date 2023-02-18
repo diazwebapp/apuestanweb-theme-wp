@@ -23,7 +23,7 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $ruta = $wp_upload_dir['path'] . "/" .$filename ; // creamos un path
             imagepng($im,$ruta); // generamos la imagen en el disco
             
-            $result = true ;//aw_set_imagen_destacada($ruta,$post->ID);
+            $result = aw_set_imagen_destacada($ruta,$post->ID);
             if(empty($result)):
                 $resp["status"] = "error";
                 $resp["message"] = "error generando o aplicando la imagen destacada";
