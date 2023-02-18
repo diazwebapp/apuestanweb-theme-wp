@@ -9,7 +9,7 @@ if(!function_exists('aw_imagen_destacada_controller')):
         $resp["message"] = "imagen destacada creada y aplicada correctamente";
         if(isset( $params["post_id"] ) && isset($params["base64"])):
             $post = get_post($params["post_id"]);
-            $base_64 = str_replace("data:image/png;base64,","",$params["base64"]);
+            $base_64 = $params["base64"];
             $bin = base64_decode($base_64);
             $im = imagecreatefromstring($bin);
             $im = imagescale( $im, 764, 403 );
