@@ -6,7 +6,7 @@ function aw_forecast_img_destacada_personalizada() {
 function aw_forecast_imagen_destacada_personalizada() {
 	global $post;
     $default_bg =  get_template_directory_uri() . '/assets/img/plantilla-1.png';
-    $no_team_img =  get_template_directory_uri() . '/assets/img/event2-1.png';
+    $no_team_img =  get_template_directory_uri() . '/assets/img/cross.png';
      
     if ( has_post_thumbnail() ) {
         $attachment_image = wp_get_attachment_url( get_post_thumbnail_id() );
