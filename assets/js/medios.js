@@ -55,7 +55,7 @@ async function generate_base64(element){
     
     let dataurl = window.btoa(node.outerHTML)
     let response = await aw_generate_image(dataurl,post_id)
-   
+    console.log(response)
     alert(response.message)
     element.textContent = previus_text
     element.disabled = false
