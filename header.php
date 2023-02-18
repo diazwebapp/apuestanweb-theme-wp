@@ -37,6 +37,33 @@
         </div>
         <div class="col-6 order-lg-3 col-lg-2 d-flex justify-content-end">
                 <?php 
+                function aw_timeAgo ($oldTime, $newTime) {
+                    $timeCalc = strtotime($newTime) - strtotime($oldTime);
+                    if ($timeCalc >= (60*60*24*30*12*2)){
+                        $timeCalc = "hace " . intval($timeCalc/60/60/24/30/12) . " años";
+                        }else if ($timeCalc >= (60*60*24*30*12)){
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24/30/12) . " año";
+                        }else if ($timeCalc >= (60*60*24*30*2)){
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24/30) . " meses";
+                        }else if ($timeCalc >= (60*60*24*30)){
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24/30) . " mes";
+                        }else if ($timeCalc >= (60*60*24*2)){
+                            $timeCalc = "hace " . intval($timeCalc/60/60/24) . " dias";
+                        }else if ($timeCalc >= (60*60*24)){
+                            $timeCalc = " ayer";
+                        }else if ($timeCalc >= (60*60*2)){
+                            $timeCalc = "hace " . intval($timeCalc/60/60) . " horas";
+                        }else if ($timeCalc >= (60*60)){
+                            $timeCalc = "hace " . intval($timeCalc/60/60) . " hora";
+                        }else if ($timeCalc >= 60*2){
+                            $timeCalc = "hace " . intval($timeCalc/60) . " minutos";
+                        }else if ($timeCalc >= 60){
+                            $timeCalc = "hace " . intval($timeCalc/60) . " minuto";
+                        }else if ($timeCalc > 0 or $timeCalc < 0){
+                            $timeCalc = "hace " .$timeCalc. " segundos";
+                        }
+                    return $timeCalc;
+                    }
                     if(is_user_logged_in( )):
                        $noti = select_notification_not_view();
                        $html = '<ul class="navbar-nav mx-3">
@@ -46,8 +73,10 @@
                                         <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
 
-                                    <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
-                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
+                                    <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
+                                        <ul style="max-height:200px;overflow-y:scroll;">
+                                            {list}
+                                        </ul>
                                         <hr class="mt-2 mb-3">
                                         {list}                                        
 
@@ -56,16 +85,26 @@
                        </ul>';
                        if(count($noti) > 0){
                             $li = '';
-                            foreach($noti as $post_noti){
-                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:110px;" data-postid="'.$post_noti->ID.'" onclick="quitar_notificacion(this)">Nuevo pick premium!</p>';
+                            $newTime = date_i18n("Y-m-d H:i:s");
+                            foreach($noti as $post_noticode){
+                                $oldTime = $post_noticode->post_date_gmt;
+                                $timeAgo = aw_timeAgo ($oldTime, $newTime);
+
+                                $li .= '<p role="button" class="dropdown-item text-dark my-2 text-truncate" style="max-width:120px;cursor:pointer !important;" data-postid="'.$post_noticode->ID.'" onclick="quitar_notificacion(this)">
+                                    '. $post_noticode->post_title .'
+                                    <span style="font-size:9px;" class="w-100 d-block">'. $timeAgo .'</span>
+                                </p>';
                             }
                             $html = str_replace("{list}",$li,$html);
                        }
+                    
+                    $notificaciones = carbon_get_theme_option('notificaciones');
+
                     echo '
                     
                     <div class="navbar navbar-expand-lg">
                         <div class="navbar-collapse row" id="navbarSupportedContent">
-                            '.$html.'
+                            '.(($notificaciones) ? $html : '').'
                             <ul class="navbar-nav">
                                 
                                 <li class="nav-item dropdown">
@@ -114,4 +153,4 @@
 </div>
 </header>
 
-<?php
+<?php 

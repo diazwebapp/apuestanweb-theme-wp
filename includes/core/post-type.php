@@ -1,5 +1,5 @@
 <?php
-
+include 'custom-field-forecast.php';
 function create_bk() {
 
 	$labels = array(
@@ -108,6 +108,7 @@ function create_forecast() {
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
+		'register_meta_box_cb' => 'aw_forecast_img_destacada_personalizada',
 		'rewrite' => array('slug' => 'prediccion', 'with_front'=> true)
 
 	);
@@ -176,64 +177,6 @@ function create_team() {
 add_action( 'init', 'create_team', 0 );
 
 
-/* 
-function create_bonus() {
-
-	$labels = array(
-		'name'                  => __( 'bonus_slogan', 'jbetting' ),
-		'singular_name'         => __( 'bonus_slogan', 'jbetting' ),
-		'menu_name'             => __( 'bonus_slogan', 'jbetting' ),
-		'name_admin_bar'        => __( 'bonus_slogan', 'jbetting' ),
-		'archives'              => __( 'Archive', 'jbetting' ),
-		'attributes'            => __( 'Attributes', 'jbetting' ),
-		'parent_item_colon'     => __( 'Parent Item:', 'jbetting' ),
-		'all_items'             => __( 'All', 'jbetting' ),
-		'add_new_item'          => __( 'All', 'jbetting' ),
-		'add_new'               => __( 'Add', 'jbetting' ),
-		'new_item'              => __( 'Add', 'jbetting' ),
-		'edit_item'             => __( 'Update', 'jbetting' ),
-		'update_item'           => __( 'Update', 'jbetting' ),
-		'view_item'             => __( 'View', 'jbetting' ),
-		'view_items'            => __( 'View', 'jbetting' ),
-		'search_items'          => __( 'Find', 'jbetting' ),
-		'not_found'             => __( 'Nothing found', 'jbetting' ),
-		'not_found_in_trash'    => __( 'Nothing found', 'jbetting' ),
-		'featured_image'        => __( 'Thumbnail', 'jbetting' ),
-		'set_featured_image'    => __( 'Set Thumbnail', 'jbetting' ),
-		'remove_featured_image' => __( 'Delete Thumbnail', 'jbetting' ),
-		'use_featured_image'    => __( 'Use as Thumbnail', 'jbetting' ),
-		'insert_into_item'      => __( 'Paste', 'jbetting' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this item', 'jbetting' ),
-		'items_list'            => __( 'Items list', 'jbetting' ),
-		'items_list_navigation' => __( 'Items list navigation', 'jbetting' ),
-		'filter_items_list'     => __( 'Filter items list', 'jbetting' ),
-	);
-	$args   = array(
-		'label'               => __( 'bonus_slogan', 'jbetting' ),
-		'description'         => __( 'bonus_slogan', 'jbetting' ),
-		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'comments','thumbnail' ),
-		'hierarchical'        => false,
-		'show_in_menu'        => true,
-		'menu_position'       => 5,
-		'menu_icon'           => 'dashicons-buddicons-community',
-		'show_in_admin_bar'   => true,
-		'can_export'          => true,
-		'capability_type'     => 'page',
-		'public'              => false,
-		'publicly_queryable'  => true,
-		'show_ui'             => true,
-		'exclude_from_search' => true,
-		'show_in_nav_menus'   => false,
-		'has_archive'         => false,
-		'rewrite'             => false,
-	);
-	register_post_type( 'bonus_slogan', $args );
-
-}
-
-add_action( 'init', 'create_bonus', 0 );
- */
 function create_parley() {
 
 	$labels = array(

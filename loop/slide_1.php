@@ -11,16 +11,16 @@ endif;
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $prediction = carbon_get_post_meta(get_the_ID(), 'prediction');
 $link = carbon_get_post_meta(get_the_ID(), 'link');
-$fecha = date_i18n('d M', strtotime($time));
-$hora = date('g:i a', strtotime($time));
+
 $permalink = get_the_permalink();
 $cross_img = get_template_directory_uri(  ) . '/assets/img/cross.png';
 
-if ($time) {
-    $new_format_time = date('d.m.Y H:s', strtotime($time));
-} else {
-    $new_format_time = 'n/a';
-}
+$date = new DateTime($time);
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
+
+$fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
+$hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
+
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $arr_sport = array();
 

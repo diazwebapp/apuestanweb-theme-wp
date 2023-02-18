@@ -293,10 +293,10 @@ const quitar_notificacion = async(element)=>{
     });
     if(request.status == 200){
         let response = await request.json()
-        console.log(response.status)
+        
         if(counter_html && response.status == "ok"){
             counter_html.textContent = counter - 1
-            element.remove()
+            window.location = response.redirect
         }
     }else{
         console.log("hubo un error 500")

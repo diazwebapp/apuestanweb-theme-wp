@@ -8,6 +8,8 @@ if($term_page_att){
 }
 if(!$thumbnail_url): $thumbnail_url = get_template_directory_uri( ) . '/assets/img/baner2.png'; endif;
 $sidebar=false;
+
+$geolocation = json_decode($_SESSION["geolocation"]);
  ?>
 
 	<main>
@@ -17,11 +19,15 @@ $sidebar=false;
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
-                                $post_date = get_the_date( "Y-m-d H:i:s", get_the_ID());
-                                $show_date = get_the_date( "F j, Y g:i a", get_the_ID());
-                                $time = carbon_get_post_meta(get_the_ID(), 'data');
+                                $post_date = get_the_date( "y-m-d h:i:s", get_the_ID());
+                                $date = new DateTime($post_date);
+                                $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+
+                                $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
+                                $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
+
                                 $title = get_the_title( get_the_ID() ); 
-                                $fecha = date('d M', strtotime($time)) .' - '. date('g:i a', strtotime($time));
+                                
                                 $author_name = get_the_author_meta("display_name" );
                                 $author_id =  get_the_author_meta('ID') ;
                                 $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
@@ -36,7 +42,7 @@ $sidebar=false;
                                         <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
                                         <div class="author-details d-flex flex-column">
                                             <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
-                                            <time datetime="<?php echo $post_date ?>" class="post-date mb-0"><?php echo __($show_date); ?></time>
+                                            <time datetime="<?php echo $post_date ?>" class="post-date mb-0"><?php echo __("Publicado: $fecha $hora"); ?></time>
                                         </div>
                                         </div>
                                     </div>

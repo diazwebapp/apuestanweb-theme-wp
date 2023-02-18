@@ -29,7 +29,7 @@ if(!function_exists('aw_paypal_create_order')):
                     "value" => $paid->price,
                     "currency_code" => get_option( 'ihc_currency', true )
                 ],
-                "description" => "Subscripción"
+                "description" => $paid->label
             ]],
             "application_context" => [
                 "brand_name" => get_bloginfo( "title" ),
@@ -39,8 +39,12 @@ if(!function_exists('aw_paypal_create_order')):
             ] 
         ];
         $order = json_encode($order);
-
-        $response = wp_remote_post( "https://api-m.sandbox.paypal.com/v2/checkout/orders", array(
+        $dev_mode = carbon_get_theme_option('devmode');
+        $paypal_api_uri = "https://api-m.paypal.com/v2/checkout/orders";
+        if($dev_mode): // si el tema esta de desarrollo se activa en modo "sandbox"
+            $paypal_api_uri = "https://api-m.sandbox.paypal.com/v2/checkout/orders";
+        endif;
+        $response = wp_remote_post( $paypal_api_uri, array(
             'method'      => 'POST',
             'timeout'     => 45,
             'headers'     => ["Authorization"=>$authorization,"Content-Type"=> 'application/json'],
@@ -77,7 +81,12 @@ if(!function_exists("aw_paypal_capture_order")):
         $token_data = get_paypal_token_data($paypal_credentials);
 
         $authorization = "Bearer ".$token_data->access_token;
-        $response = wp_remote_post( "https://api-m.sandbox.paypal.com/v2/checkout/orders/{$params['token']}/capture", array(
+        $dev_mode = carbon_get_theme_option('devmode');
+        $paypal_api_uri = "https://api-m.paypal.com/v2/checkout/orders";
+        if($dev_mode): // si el tema esta de desarrollo se activa en modo "sandbox"
+            $paypal_api_uri = "https://api-m.sandbox.paypal.com/v2/checkout/orders";
+        endif;
+        $response = wp_remote_post( "$paypal_api_uri/{$params['token']}/capture", array(
             'method'      => 'POST',
             'timeout'     => 45,
             'headers'     => ["Authorization"=>$authorization,"Content-Type"=> 'application/json'],

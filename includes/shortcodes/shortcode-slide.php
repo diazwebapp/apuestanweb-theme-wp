@@ -8,6 +8,7 @@ function shortcode_slide($atts)
     ), $atts));
     
     $ret = '';
+    $geolocation = json_decode($_SESSION["geolocation"]);
     wp_reset_query();
     $alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
     $args = array(
@@ -40,7 +41,9 @@ function shortcode_slide($atts)
                         <div class='owl-stage' >";
                             while ($query->have_posts()):
                                 $query->the_post();
-                                $ret .= load_template_part("loop/slide_$model");
+                                $ret .= load_template_part("loop/slide_$model",null,[
+                                    "timezone" => isset($geolocation) ? $geolocation->timezone : null
+                                ]);
                             endwhile;
             $ret .="        </div>
                     </div>

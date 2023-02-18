@@ -14,9 +14,9 @@ $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
 $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
-$bookmaker = json_encode([]);
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
+$bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA

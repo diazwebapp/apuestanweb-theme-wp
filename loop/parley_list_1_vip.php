@@ -1,5 +1,6 @@
 <?php
 
+
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
@@ -14,9 +15,9 @@ $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
 $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
-$bookmaker = json_encode([]);
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
+$bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
@@ -75,72 +76,29 @@ echo "<div class='parley_wrapper'>
                 }
             }
 
-            echo "<div class='parley_box'>
-                <div class='parley_left_content'>
-                    <div class='parley_game_name_wrapper'>
-                        <div class='parley_game_name'>
-                            <div class='category-grid'>
-                                <span>{$sport['name']}</span>
-                            </div>
-                        
-                            <div class='d-lg-block d-none'>
-                                <time>$fecha, $hora</time>
-                            </div>
-                        </div>
-                        <div class='d-lg-none d-block'>
-                            <div class='mobile_parley_time'>
-                                <p>$fecha, $hora</p>
-                            </div>
-                        </div>
-                    </div>                  
-                    <div class='parley_match_time'>
-                        <div class='parley_flag'>
-                            <div class='parley_team'>
-                                <img src='{$teams['team1']['logo']}' class='img-fluid' alt=''>
-                                <p>{$teams['team1']['name']}</p>
-                            </div>
-                            <div class='parley_team parley_team2'>
-                                <img src='{$teams['team2']['logo']}' class='img-fluid' alt=''>
-                                <p class='p2'>{$teams['team2']['name']}</p>
-                             </div>
-                        </div>
-                        <div class=''>
-                            <div class='d-lg-none d-block'>
-                                <div class='parley_right_first'>
-                                    <p class='p1'>{$prediction['title']}</p>
-                                    <p class='p2'>{$prediction['cuote']}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class='parley_right_content'>
-                    <div class='d-lg-block d-none'>
-                        <div class='parley_right_first'>
-                            <p class='p1'>{$prediction['title']}</p>
-                            <p class='p2'>{$prediction['cuote']}</p>
-                        </div>
-                    </div>
-                </div>
+            $html =  "<div class='parley_box'>
+
+                {replace-content}
+
                 <div class='event-link'>
                     <a href='$permalink_event'>
                         Ver análisis
                     </a>
                 </div>  
                 </div>";
-            echo "<div class='parley_collpase_content'>
-            <div id='one{$event['id']}' class='collapse' >
-                <div class='parley_collapse_wrapper'>
-                    <div class='parley_collapse'>
-                        $content
+            $html .= "<div class='parley_collpase_content'>
+                <div id='one{$event['id']}' class='collapse' >
+                    <div class='parley_collapse_wrapper'>
+                        <div class='parley_collapse'>
+                            $content
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>";
+            </div>";
         }
     }
-    echo "<div class='parley_box2'>
+    $html .= "<div class='parley_box2'>
                 <div class='parley_left_content2 d-md-block d-none'>
                     <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                 </div>
@@ -166,5 +124,58 @@ echo "<div class='parley_wrapper'>
                         <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
                     </div>      
                 </div>
-            </div>";
-echo "</div>";
+            </div>
+        </div>";
+
+$unlock_content = "<div class='parley_left_content'>
+<div class='parley_game_name_wrapper'>
+    <div class='parley_game_name'>
+        <div class='category-grid'>
+            <span>{$sport['name']}</span>
+        </div>
+    
+        <div class='d-lg-block d-none'>
+            <time>$fecha, $hora</time>
+        </div>
+    </div>
+    <div class='d-lg-none d-block'>
+        <div class='mobile_parley_time'>
+            <p>$fecha, $hora</p>
+        </div>
+    </div>
+</div>                  
+<div class='parley_match_time'>
+    <div class='parley_flag'>
+        <div class='parley_team'>
+            <img src='{$teams['team1']['logo']}' class='img-fluid' alt=''>
+            <p>{$teams['team1']['name']}</p>
+        </div>
+        <div class='parley_team parley_team2'>
+            <img src='{$teams['team2']['logo']}' class='img-fluid' alt=''>
+            <p class='p2'>{$teams['team2']['name']}</p>
+         </div>
+    </div>
+    <div class=''>
+        <div class='d-lg-none d-block'>
+            <div class='parley_right_first'>
+                <p class='p1'>{$prediction['title']}</p>
+                <p class='p2'>{$prediction['cuote']}</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class='parley_right_content'>
+<div class='d-lg-block d-none'>
+    <div class='parley_right_first'>
+        <p class='p1'>{$prediction['title']}</p>
+        <p class='p2'>{$prediction['cuote']}</p>
+    </div>
+</div>
+</div>";
+
+$loked_content = "<h3>Contenido bloqueado</h3>";
+
+$html = str_replace("{replace-content}",$loked_content,$html);
+
+echo $html;

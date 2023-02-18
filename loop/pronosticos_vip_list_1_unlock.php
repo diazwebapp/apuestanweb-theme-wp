@@ -196,7 +196,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             </div>
 
                             <div class="text-center accor_btn mt_15">
-                                <button type="button" data-toggle="collapse" data-target="#col1'.$id_collapse.'" aria-expanded="false">
+                                <button type="button" data-toggle="collapse" role="button" data-target="#col1'.$id_collapse.'" aria-expanded="false">
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>

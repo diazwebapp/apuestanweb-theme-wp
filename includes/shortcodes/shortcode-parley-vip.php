@@ -1,5 +1,5 @@
 <?php
-function shortcode_parley($atts)
+function shortcode_parley_vip($atts)
 {
     extract(shortcode_atts(array(
         'num' => 6,
@@ -11,9 +11,11 @@ function shortcode_parley($atts)
         'text_vip_link' => 'VIP',
         'filter' => null,
         'time_format' => null,
+        'unlock' => null
     ), $atts));
     global $post;
-    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'parley' ) ) {
+
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'parley_vip' ) ) {
         wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
     }else if(is_single(  )){
         wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
@@ -23,7 +25,8 @@ function shortcode_parley($atts)
 
     $geolocation = json_decode($_SESSION["geolocation"]);
     $odds = get_option( 'odds_type' );
-
+    
+    //default title
     if(is_page() && !$title)
         $title = get_the_title( );
     if(is_post_type_archive() && !$title)
@@ -35,18 +38,19 @@ function shortcode_parley($atts)
 
     $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
     $title = empty($custom_h1) ? $title : $custom_h1;
-
+    
     if($filter)
         $ret .= "<div class='row my-5'>
-        <h1 class='title col-8'>$title</h1>
+        <h1 class='title col-8'>$title</h1>       
             <div class='col-4 justify-content-end d-flex parley-select'>
-                <select name='ord' data-type='parley' id='element_select_parley' onchange='filter_date_items(this)'>
+                <select name='ord' data-type='parley_vip' id='element_select_parley' onchange='filter_date_items(this)'>
                     <option value='' ".( !$date ? 'selected' : '').">".__('Todo','jbetting')."</option>
                     <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
                     <option value='hoy' ".( $date == 'hoy' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
                     <option value='mañana' ".( $date == 'mañana' ? 'selected' : '')." > ".__('Mañana','jbetting')." </option>
                 </select>
             </div>
+        
     </div>";
 
     $args = [];
@@ -73,57 +77,61 @@ function shortcode_parley($atts)
     $args['leagues'] =  $league_arr;
     $args['date'] = $date;
     $args['model'] = $model;
+    $args['unlock'] = $unlock;
     $args['time_format'] = $time_format ;
     $args['text_vip_link'] = $text_vip_link;
-    $args['rest_uri'] = get_rest_url(null,'aw-parley/parley');
+    $args['rest_uri'] = get_rest_url(null,'aw-parley/parley/vip');
     $args['country_code'] = $geolocation->country_code;
-    $args['timezone'] = $geolocation->timezone;
     $args['odds'] = $odds;
-    $args['exclude_parley'] = null;
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley' id='load_more_parley' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    $args['timezone'] = $geolocation->timezone;
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley_vip' id='load_more_parley_vip' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
 
-    if(is_single() or is_singular()):
-        $args['post__not_in']   = [get_the_ID()];
-    endif;
 
     $params = "?paged=".$args['paged'];
     $params .= "&posts_per_page={$args['posts_per_page']}";
     $params .= isset($args['leagues']) ? "&leagues=${args['leagues']}":"";
     $params .= isset($args['date']) ? "&date={$args['date']}":"";
     $params .= "&model=$model";
+    $params .= isset($args['unlock']) ? "&unlock={$args['unlock']}":"";
     $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
-    $params .= isset($args['exclude_parley']) ? "&exclude_parley={$args['exclude_parley']}":"";
     $params .= "&odds=$odds";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
+    
     $query =  wp_remote_retrieve_body( $response );
     
-    if ($query) {
+    set_query_var( 'params', [
+        "vip_link" => PERMALINK_VIP,
+        "memberships_page" => PERMALINK_MEMBERSHIPS,
+        "text_vip_link" => $text_vip_link
+    ] );
+
+    if ($query):
+        
         $loop_html = '';
         $ret .="<div id='games_list' >{replace_loop}</div>";
         $data_json = json_decode($query);
-        
         $loop_html = $data_json->html;
+
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
 
-        $ret .="<div class='container container_pagination_parley text-md-center'>";
+        $ret .="<div class='container container_pagination_parley_vip text-md-center'>";
         if($paginate=='yes' and $data_json->max_pages > 1):
 
             $ret .=$args['btn_load_more'];
         endif;
-        $ret .=" </div>";
-        
-    } else {
-        return '<h2>Aún no hay contenido.</h2>';
-    }
+        $ret .="</div>";
+    else:
+        return '<h1>Nó hay datos</h1>';
+    endif;
 
     return $ret;
 }
 
 
-add_shortcode('parley', 'shortcode_parley');
+add_shortcode('parley_vip', 'shortcode_parley_vip');

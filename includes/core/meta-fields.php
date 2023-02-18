@@ -7,11 +7,13 @@ add_action('carbon_fields_register_fields', 'crb_attach_theme_options');
 function crb_attach_theme_options()
 {
 
-    if (get_key()):
+    
         $countries = get_countries_for_carbonmeta();
         Container::make('theme_options', "Apuestan")
             ->set_icon('dashicons-admin-site-alt2')
             ->add_tab(__("General settings", "jbetting"), array(
+                Field::make( 'checkbox', 'devmode', __( 'Dev mode','jbetting' ) )
+                    ->set_default_value( true ),
                 Field::make('image', 'logo', __("Site logo(183*19)", "jbetting")),
                 //selecion de pagina vip por defecto
                 Field::make('association', 'page_vip', __("Select default vip", "jbetting"))
@@ -56,8 +58,13 @@ function crb_attach_theme_options()
                 Field::make('text', 'ig', __("Instagram", "jbetting"))
   
             
+            ))
+            ->add_tab(__("notificaciones","jbetting"), array(
+                
+                Field::make( 'checkbox', 'notificaciones', __( 'Notificaciones','jbetting' ) )
+                    ->set_option_value( 'yes' ),
+            
             ));
-
 
         Container::make('comment_meta', __("Review fields", "jbetting"))
             ->add_fields(array(
@@ -304,7 +311,7 @@ function crb_attach_theme_options()
                 Field::make( 'image', 'logo_2x1', __( 'icono horizontal' ) )
             ));
                        
-    endif;
+    
 }
 
 add_action('after_setup_theme', 'crb_load');
