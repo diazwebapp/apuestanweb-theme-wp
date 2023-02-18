@@ -16,17 +16,22 @@ function aw_forecast_imagen_destacada_personalizada() {
     <div class="container">
         <div class="row">
         
-            <div class="col-12" style="position:relative !important;">
+            <div class="col-12" >
+                <div style="position:relative !important;border:1px solid red;max-width:768px;" class="mx-auto">
+                    <img src="{replacebg}" width="768" height="403" id="plantilla" class="img-fluid" />
+                    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 38%;left: 20%;width: 13%;" id="equipo-1" />
+                    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 38%;left: 67%;width: 13%;" id="equipo-2" />
 
-                <img src="{replacebg}" width="768" height="403" id="plantilla" />
-                <img src="{replace-team-1}" width="105" height="105" class="d-none" style="position:absolute; absolute;top: 150px;left: 167px;" id="equipo-1" />
-                <img src="{replace-team-1}" width="105" height="105" class="d-none" style="position:absolute; absolute;top: 150px;right: 374px;" id="equipo-2" />
+                    <button class="btn btn-outline-light" type="button" style="position:absolute;top:5px;left:5px;background:rgba(0,0,0, .5);" target-html-id="plantilla" onclick="aw_set_imgs(this)">reemplazar plantilla <i class="dashicons dashicons-edit" ></i></button>
 
-                <button class="btn btn-outline-light" type="button" style="position:absolute;top:5px;left:5px;background:rgba(0,0,0, .5);" target-html-id="plantilla" onclick="aw_set_imgs(this)">reemplazar background <i class="dashicons dashicons-edit" ></i></button>
+                    <div role="button" class="d-flex justify-content-center align-items-center text-light" style="position: absolute;top: 37.3%;left: 19.7%;background: rgba(0,0,0, .3);width: 13.5%;height: 25.8%;" target-html-id="equipo-1" onclick="aw_set_imgs(this)">
+                        <i class="dashicons dashicons-edit" ></i>
+                    </div>
 
-                <button class="btn btn-outline-light" type="button" style="position:absolute; absolute;top: 150px;left: 165px;background:rgba(0,0,0, .5);min-width:105px !important;min-height:105px !important;" target-html-id="equipo-1" onclick="aw_set_imgs(this)"><i class="dashicons dashicons-edit" ></i></button>
-
-                <button class="btn btn-outline-light" type="button" style="position:absolute; absolute;top: 150px;left: 528px;background:rgba(0,0,0, .5);min-width:105px !important;min-height:105px !important;" target-html-id="equipo-2" onclick="aw_set_imgs(this)"><i class="dashicons dashicons-edit" ></i></button>
+                    <div type="button" class="d-flex justify-content-center align-items-center text-light" style="position: absolute;top: 37.3%;left: 67%;background:rgba(0,0,0, .3);width: 13.5%;height: 25.8%;" target-html-id="equipo-2" onclick="aw_set_imgs(this)">
+                        <i class="dashicons dashicons-edit" ></i>
+                    </div>
+                </div>
             </div>
             <div class="col-12">
                 <div class="row mt-3">
