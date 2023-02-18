@@ -11,7 +11,7 @@ if(!function_exists('aw_imagen_destacada_controller')):
             $post = get_post($params["post_id"]);
             $base_64 = $params["base64"];
             $bin = base64_decode($base_64);
-            $im = imagecreatefromstring($bin);
+            $im = imagecreatefromstring($base_64);
             $im = imagescale( $im, 764, 403 );
             $filename = $post->ID.".png";
 
