@@ -178,12 +178,6 @@ function enqueuing_admin_scripts(){
  
 add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
 
-function my_admin_styles() {
-    wp_enqueue_style('thickbox');
-    }
-    
-    
-add_action('admin_print_styles', 'my_admin_styles');
 
     /* if ('disable_gutenberg') {
         add_filter('use_block_editor_for_post_type', '__return_false', 100);
