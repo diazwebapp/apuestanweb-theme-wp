@@ -5,8 +5,8 @@ function aw_forecast_img_destacada_personalizada() {
 }
 function aw_forecast_imagen_destacada_personalizada() {
 	global $post;
-    $default_bg =  get_template_directory_uri() . '/assets/img/event2-bg.png';
-    $no_team_img =  get_template_directory_uri() . '/assets/img/logo2.svg';
+    $default_bg =  get_template_directory_uri() . '/assets/img/plantilla-1.png';
+    $no_team_img =  get_template_directory_uri() . '/assets/img/event2-1.png';
      
     if ( has_post_thumbnail() ) {
         $attachment_image = wp_get_attachment_url( get_post_thumbnail_id() );
@@ -18,14 +18,15 @@ function aw_forecast_imagen_destacada_personalizada() {
         
             <div class="col-12" style="position:relative !important;">
 
-                <div id="imagen-destacada-personalizada" class="d-flex justify-content-around align-items-center" style="width:768px;height:403px;position:relative !important; background-image:url({replacebg});background-repeat:no-repeat;background-size:cover;background-position:center center;">
-                
-                    <img src="{replace-team-1}" width="130" height="130" target-html-attr="src" ubicacion="left" onclick="aw_set_imgs(this)" id="logo-equipo-1" class="btn btn-outline-light" style="margin-left:19px !important;"/>
-                        
-                    <img src="{replace-team-2}" width="130" height="130" target-html-attr="src" ubicacion="right" onclick="aw_set_imgs(this)" id="logo-equipo-2" class="btn btn-outline-light" style="margin-right:19px !important;"/>
-                </div>
-                <button class="aw_upload_image_button btn btn-outline-light" onclick="aw_set_imgs(this)" target-html-id="imagen-destacada-personalizada" target-html-attr="background-image" style="position:absolute !important;top:2px;left:18px;background-color:rgba(0,0,0, .2) !important;"><i class="dashicons dashicons-edit" ></i></button>
+                <img src="{replacebg}" width="768" height="403" id="plantilla" />
+                <img src="{replace-team-1}" width="105" height="105" class="d-none" style="position:absolute; absolute;top: 150px;left: 167px;" id="equipo-1" />
+                <img src="{replace-team-1}" width="105" height="105" class="d-none" style="position:absolute; absolute;top: 150px;right: 374px;" id="equipo-2" />
 
+                <button class="btn btn-outline-light" type="button" style="position:absolute;top:5px;left:5px;background:rgba(0,0,0, .5);" target-html-id="plantilla" onclick="aw_set_imgs(this)">reemplazar background <i class="dashicons dashicons-edit" ></i></button>
+
+                <button class="btn btn-outline-light" type="button" style="position:absolute; absolute;top: 150px;left: 165px;background:rgba(0,0,0, .5);min-width:105px !important;min-height:105px !important;" target-html-id="equipo-1" onclick="aw_set_imgs(this)"><i class="dashicons dashicons-edit" ></i></button>
+
+                <button class="btn btn-outline-light" type="button" style="position:absolute; absolute;top: 150px;left: 528px;background:rgba(0,0,0, .5);min-width:105px !important;min-height:105px !important;" target-html-id="equipo-2" onclick="aw_set_imgs(this)"><i class="dashicons dashicons-edit" ></i></button>
             </div>
             <div class="col-12">
                 <div class="row mt-3">

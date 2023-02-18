@@ -10,15 +10,20 @@ if(!function_exists('aw_imagen_destacada_controller')):
         if(isset( $params["post_id"] ) && isset($params["base64"])):
             $post = get_post($params["post_id"]);
             $base_64 = str_replace("data:image/png;base64,","",$params["base64"]);
-            $bin = base64_decode($base_64);
-            $im = imagecreatefromstring($bin);
-            $im = imagescale( $im, 764, 403 );
-            $filename = $post->ID.".png";
-
             $wp_upload_dir = wp_upload_dir();
-            $ruta = $wp_upload_dir['path'] . "/" .$filename ;
-            imagepng($im,$ruta);
-            $result = aw_set_imagen_destacada($ruta,$post->ID);
+            $bin = base64_decode($base_64); //decodificamos
+            $size = getImageSizeFromString($bin);
+            if (empty($size['mime']) || strpos($size['mime'], 'image/') !== 0) {
+                $resp["status"] = "error";
+                $resp["message"] = 'Base64 value is not a valid image';
+                return $resp;
+              }
+            $im = imagecreatefromstring($bin); //creamos imagen
+            $filename = $post->ID.".png"; // le damos nombre
+            $ruta = $wp_upload_dir['path'] . "/" .$filename ; // creamos un path
+            imagepng($im,$ruta); // generamos la imagen en el disco
+            
+            $result = true ;//aw_set_imagen_destacada($ruta,$post->ID);
             if(empty($result)):
                 $resp["status"] = "error";
                 $resp["message"] = "error generando o aplicando la imagen destacada";

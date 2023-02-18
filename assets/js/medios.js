@@ -7,8 +7,6 @@ function aw_set_imgs(e){
     var mediaUploader;
     
         let id_html_id = e.getAttribute("target-html-id")
-        let html_type = e.getAttribute("target-html-attr")
-        
         let element = false;
         if(id_html_id){
             element = document.querySelector(`#${id_html_id}`)
@@ -30,14 +28,8 @@ function aw_set_imgs(e){
 	  mediaUploader.on('select', function() {
 			attachment = mediaUploader.state().get('selection').first().toJSON();
 			if(element){
-                if(element.tagName == 'DIV'){
-                    element.style.backgroundImage = "url('"+attachment.url+"')" //añadimos el src al <img />
-                }
-                
-            }else{
-                if(e.tagName == 'IMG'){                    
-                    e.src = attachment.url //añadimos el src al <img />
-                }
+                element.src = attachment.url
+                element.classList.remove("d-none")
             }
 		});
 
@@ -50,12 +42,23 @@ async function generate_base64(element){
     element.disabled = true
     element.textContent = "generando..."
     let post_id = element.getAttribute("post-id")
+
+    let plantilla = document.getElementById("plantilla")
+    let equipo1 = document.getElementById("equipo-1")
+    let equipo2 = document.getElementById("equipo-2")
+   
+    var canvas = document.createElement("canvas");
+    canvas.width = plantilla.getAttribute("width")
+    canvas.height = plantilla.getAttribute("height")
+    var ctx = canvas.getContext("2d");
     
-    let node = document.getElementById('imagen-destacada-personalizada');
+    ctx.drawImage(plantilla, 0, 0);    
+    ctx.drawImage(equipo1,150,150, 105,105);
+    ctx.drawImage(equipo2,513,150, 105,105);
     
-    let dataurl = window.btoa(node.outerHTML)
+    let dataurl = canvas.toDataURL()
+    
     let response = await aw_generate_image(dataurl,post_id)
-    console.log(response)
     alert(response.message)
     element.textContent = previus_text
     element.disabled = false
