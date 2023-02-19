@@ -67,7 +67,7 @@ endif;
 									</div>";
 								endif;
 							if ( $faq_area ):
-
+								
 								echo "<div class='single_event_content container_bottom text-break'>
 								
 									<div class='row'>

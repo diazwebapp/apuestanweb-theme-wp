@@ -35,7 +35,7 @@
             <!--logo end-->
             
         </div>
-        <div class="col-6 order-lg-3 col-lg-2 text-right">
+        <div class="col-6 order-lg-3 col-lg-2 d-flex justify-content-end">
                 <?php 
                 function aw_timeAgo ($oldTime, $newTime) {
                     $timeCalc = strtotime($newTime) - strtotime($oldTime);
@@ -69,16 +69,15 @@
                        $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
                                     <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;font-size:13px !important;"></i>
+                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "#ffffff" : "" ) .' !important;font-size:13px !important;"></i>
                                         <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
-
-                                    <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
+                                    <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
                                         <ul style="max-height:200px;overflow-y:scroll;">
+                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
                                             {list}
                                         </ul>
                                         <hr class="mt-2 mb-3">
-                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-sign-out"></i>'.__('quitar todo','jbetting').'</p>
 
                                     </div>
                                 </li>
@@ -146,7 +145,6 @@
                 endif;
                 
             ?>
-            <li id="menu-item-484" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-484"><a href="https://www.apuestan.com/contacto" class="nav-link">Contacto</a></li>
             </ul> <!--menu end-->
         </div>
         
