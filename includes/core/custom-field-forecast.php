@@ -19,8 +19,8 @@ function aw_forecast_imagen_destacada_personalizada() {
             <div class="col-12" >
                 <div style="position:relative !important;border:1px solid red;max-width:768px;" class="mx-auto">
                     <img src="{replacebg}" width="768" height="403" id="plantilla" class="img-fluid" />
-                    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 38%;left: 20%;width: 13%;" id="equipo-1" />
-                    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 38%;left: 67%;width: 13%;" id="equipo-2" />
+                    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 38%;left: 20%;width: 13%;max-height:25%;object-fit:contain;" id="equipo-1" />
+                    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 38%;left: 67%;width: 13%;max-height:25%;object-fit:contain;" id="equipo-2" />
 
                     <button class="btn btn-outline-light" type="button" style="position:absolute;top:5px;left:5px;background:rgba(0,0,0, .5);" target-html-id="plantilla" onclick="aw_set_imgs(this)">reemplazar plantilla <i class="dashicons dashicons-edit" ></i></button>
 
