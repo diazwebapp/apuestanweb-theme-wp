@@ -31,7 +31,7 @@
                     $logo =  get_template_directory_uri().'/assets/img/logo.svg';
                 endif;
             ?>
-            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
+            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestan logo" src="<?php echo $logo; ?>"></a>
             <!--logo end-->
             
         </div>
@@ -146,6 +146,7 @@
                 endif;
                 
             ?>
+            <li id="menu-item-484" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-484"><a href="https://www.apuestan.com/contacto" class="nav-link">Contacto</a></li>
             </ul> <!--menu end-->
         </div>
         
