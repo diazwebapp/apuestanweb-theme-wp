@@ -73,7 +73,7 @@
                                         <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
                                     <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
-                                        <ul style="max-height:200px;overflow-y:scroll;">
+                                        <ul style="max-height:200px;">
                                         <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
                                             {list}
                                         </ul>
@@ -108,12 +108,12 @@
                                 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-light font-weight-bold" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <p class="d-inline-block text-truncate align-top" style="max-width:120px;" id="header-username" >'.get_userdata(get_current_user_id( ))->user_login .'</p>
+                                        <p class="d-inline-block text-truncate align-top" style="max-width:70px;" id="header-username" >'.get_userdata(get_current_user_id( ))->user_login .'</p>
                                     </a>
 
                                     <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
-                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="/picks"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
+                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="/plus/picks"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
 
                                         <hr class="mt-2 mb-3">
                                         <a class="dropdown-item text-dark my-3" href="'. add_query_arg( 'ihcdologout', 'true', wp_logout_url() ).'"><i class="fas fa-sign-out"></i>'.__(' Cerrar sesion','jbetting').'</a>
