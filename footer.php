@@ -22,7 +22,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         
                             if ( get_key() ):
                                 $ret = strip_tags( wp_nav_menu( array(
-                                    'theme_location' => 'top',
+                                    'theme_location' => 'footer',
                                     'echo'           => false
                                 ) ), '<li><a>' );
                                 if ( $ret ):

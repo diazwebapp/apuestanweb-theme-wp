@@ -93,6 +93,7 @@ include "rest-api/imagen-detacada-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
+    'footer'=> __('Footer', 'jbetting'),
 ));
 
 
