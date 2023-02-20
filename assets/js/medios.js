@@ -53,7 +53,7 @@ async function generate_base64(element){
     var ctx = canvas.getContext("2d");
     
     ctx.drawImage(plantilla, 0, 0);    
-    ctx.drawImage(equipo1,150,150, 105,105);
+    ctx.drawImage(equipo1,150,150, 85,85);
     ctx.drawImage(equipo2,513,150, 105,105);
     
     let dataurl = canvas.toDataURL()

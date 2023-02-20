@@ -19,12 +19,12 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
-                                $post_date = get_the_date( "y-m-d h:i:s", get_the_ID());
+                                $post_date = get_the_date( "Y-m-d H:i:s", get_the_ID());
                                 $date = new DateTime($post_date);
                                 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
-                                $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
-                                $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
+                                $fecha = date_i18n('F j, Y', strtotime($date->format("F j, Y")));
+                                $hora = date('g:i a', strtotime($date->format('g:i a')));
 
                                 $title = get_the_title( get_the_ID() ); 
                                 
