@@ -259,7 +259,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
         </div> "
     ;
     if($vip == 'yes' and  $estado_usuario == "permitido"){
-        echo $html_vip_unloked;
+        echo $html_free;
     }
     if($vip == 'yes' and  $estado_usuario == "no permitido"){
         echo $html_vip_loked;
