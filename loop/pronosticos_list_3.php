@@ -1,6 +1,5 @@
 <?php
-$current_user = wp_get_current_user(  ) ;
-var_dump($current_user);
+
 $params = get_query_var('params');
 $vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
 $permalink = get_the_permalink($args["forecast"]->ID);
