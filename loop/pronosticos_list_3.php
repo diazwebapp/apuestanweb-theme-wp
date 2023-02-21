@@ -1,4 +1,5 @@
 <?php
+global $current_user;
 $params = get_query_var('params');
 $vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
 $permalink = get_the_permalink($args["forecast"]->ID);
@@ -82,7 +83,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
 
     $estado_usuario = "permitido";
     if(function_exists("aw_get_user_type")):
-        $user_type = aw_get_user_type();
+        $user_type = aw_get_user_type($current_user);
         var_dump($user_type);
         if($user_type == "unreg"){
             $estado_usuario = "no permitido";

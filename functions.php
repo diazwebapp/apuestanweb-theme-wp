@@ -1,5 +1,5 @@
 <?php
-function aw_get_user_type(){
+function aw_get_user_type($current_user){
 	/*
 	 * @param none
 	 * @return string
@@ -9,8 +9,7 @@ function aw_get_user_type(){
 		if (current_user_can('manage_options')){
 			 return 'admin';
 		}
-		//pending user
-		global $current_user;
+		
 		if ($current_user){
 			if (isset($current_user->roles[0]) && $current_user->roles[0]=='pending_user'){
 				$type = 'pending';
