@@ -53,8 +53,8 @@ async function generate_base64(element){
     var ctx = canvas.getContext("2d");
     
     ctx.drawImage(plantilla, 0, 0);    
-    ctx.drawImage(equipo1,150,150, 105,105);
-    ctx.drawImage(equipo2,513,150, 105,105);
+    ctx.drawImage(equipo1,153,150, equipo1.offsetWidth,equipo1.offsetHeight);
+    ctx.drawImage(equipo2,516,150, equipo1.offsetWidth,equipo1.offsetHeight);
     
     let dataurl = canvas.toDataURL()
     
@@ -73,7 +73,6 @@ async function aw_generate_image(base64,post_id){
         }
     })
     let response = await request.json()
-    
     return response
     
 }

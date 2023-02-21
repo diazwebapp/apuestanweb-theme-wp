@@ -19,11 +19,12 @@ if(!function_exists('aw_imagen_destacada_controller')):
                 return $resp;
               }
             $im = imagecreatefromstring($bin); //creamos imagen
-            $filename = $post->ID.".png"; // le damos nombre
+            $filename = $params["post_id"].".png"; // le damos nombre
             $ruta = $wp_upload_dir['path'] . "/" .$filename ; // creamos un path
             imagepng($im,$ruta); // generamos la imagen en el disco
+            imagedestroy($im);
             
-            $result = aw_set_imagen_destacada($ruta,$post->ID);
+            $result = aw_set_imagen_destacada($ruta,$params["post_id"]);
             if(empty($result)):
                 $resp["status"] = "error";
                 $resp["message"] = "error generando o aplicando la imagen destacada";

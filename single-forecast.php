@@ -15,7 +15,9 @@
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
                             //forecast date
-
+                            /* if(has_post_thumbnail( )):
+                                the_post_thumbnail();
+                            endif; */
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
