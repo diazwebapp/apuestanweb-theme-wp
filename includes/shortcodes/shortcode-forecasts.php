@@ -16,7 +16,7 @@ function shortcode_forecast($atts)
     ), $atts));
     var_dump(get_current_user_id(  ) . " user_id </br>" );
     var_dump(get_currentuserinfo(  ) . " user_data </br>" );
-    var_dump(wp_get_current_user(  ) . " user_data2 </br>");
+    //var_dump(wp_get_current_user(  ) . " user_data2 </br>");
     global $post;
     
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'forecasts' ) ) {
