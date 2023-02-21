@@ -1,8 +1,8 @@
 <?php
 
 function aw_get_forecasts(WP_REST_Request $request){
-    $current_user = wp_get_current_user(  );
     $params = $request->get_params();
+    $current_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'forecast';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
@@ -82,8 +82,8 @@ function aw_get_forecasts(WP_REST_Request $request){
 }
 
 function aw_get_forecasts_vip(WP_REST_Request $request){
-    $current_user = wp_get_current_user(  );
     $params = $request->get_params();
+    $current_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'forecast';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
