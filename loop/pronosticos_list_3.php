@@ -133,7 +133,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     ;
     $html_vip_unloked =  "<div class='col-md-6 mt_30'>
                 
-                    <div class='event2_box'>
+                    <div class='event2_box event2_box3'>
                                 
                         <div class='event2_top_box_wrapper'>
                             <div class='event2_top_box'>
