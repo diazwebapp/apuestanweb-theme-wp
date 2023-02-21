@@ -14,8 +14,7 @@ function shortcode_forecast($atts)
         'title' => null
         
     ), $atts));
-    global $current_user;
-    $current_user = wp_get_current_user(  ) ;
+    
     global $post;
     
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'forecasts' ) ) {
