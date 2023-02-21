@@ -132,7 +132,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     ;
     $html_vip_unloked =  "<div class='col-md-6 mt_30'>
                 
-                    <div class='event2_box'>
+                    <div class='event2_box event2_box3'>
                     
                             <div class='event2_top_box_wrapper'>
                                 <div class='event2_top_box'>
@@ -155,8 +155,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 </p>
                             </div>
                         
-                            <div class='event2_box_middle_content'>
-                                <div>$estrellas</div>
+                            <div class='event2_box_middle_content event2_box3'>
                                 <p class='p1'>Pronóstico:</p>
                                 {$html_predictions}
                                 <div class='event2_box_bonus'>
@@ -194,7 +193,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 </div>
                     
                 </div> "
-                ;
+            ;
     $html_free =  "<div class='col-md-6 mt_30'>
                 
                 <div class='event2_box'>
