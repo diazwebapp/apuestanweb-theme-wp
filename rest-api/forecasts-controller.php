@@ -62,7 +62,7 @@ function aw_get_forecasts(WP_REST_Request $request){
             "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
             "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
             "odds" => isset($params['odds']) ? $params['odds'] : null,
-            "current_user" => $current_user
+            "current_user" => isset($current_user) ? $current_user : null
         ];
         foreach ($query->posts as $key => $forecast):
             $view_params["forecast"]=$forecast;
@@ -142,7 +142,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
         $view_params = [
             "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
             "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-            "current_user" => $current_user
+            "current_user" => isset($current_user) ? $current_user : null
         ];
         if(isset($params['unlock'])):
             
