@@ -112,14 +112,14 @@ echo "<div class='parley_wrapper'>
                                 <p class='p2'>{$teams['team2']['name']}</p>
                              </div>
                         </div>
-                        <div class=''>
-                            <div class='d-lg-none d-block'>
-                                <div class='parley_right_first'>
-                                    <p class='p1'>{$prediction['title']}</p>
-                                    <p class='p2'>{$prediction['cuote']}</p>
-                                </div>
+                        
+                        <div class='d-lg-none d-block'>
+                            <div class='parley_right_first'>
+                                <p class='p1'>{$prediction['title']}</p>
+                                <p class='p2'>{$prediction['cuote']}</p>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class='parley_right_content'>
@@ -135,7 +135,6 @@ echo "<div class='parley_wrapper'>
                         Ver análisis
                     </a>
                 </div>  
-                </div>
             </div>";
         }
     }
