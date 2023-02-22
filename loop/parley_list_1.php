@@ -55,6 +55,7 @@ echo "<div class='parley_wrapper'>
             $prediction['cuote'] = $odds_result[$args["odds"]];
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
+            var_dump($teams);
             $time = carbon_get_post_meta($event['id'], 'data');
             $fecha =  date('d M', strtotime($time));
             $hora =  date('g:i a', strtotime($time));
