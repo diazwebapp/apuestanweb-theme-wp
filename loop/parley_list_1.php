@@ -6,7 +6,7 @@ $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 $parley_title = get_the_title(get_the_ID());
-
+var_dump($forecasts);
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
@@ -43,7 +43,7 @@ echo "<div class='parley_wrapper'>
 </div>";
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
-        var_dump($forecasts);
+        
         foreach ($forecasts as $event) {
             $predictions = carbon_get_post_meta($event['id'], 'predictions');
             $prediction = [];
