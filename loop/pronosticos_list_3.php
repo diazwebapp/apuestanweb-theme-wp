@@ -177,7 +177,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
 
                     
                         <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='false'>
-                            <div class='panel panel-default'>
+                            <div class='panel2 panel-default'>
                             <div class='panel-heading accor_btn' role='tab' id='headingOne'>
                                 <button type='button' data-toggle='collapse' data-target='#$idevent' aria-expanded='false'>
                                     <i class='fal fa-angle-down'></i>
