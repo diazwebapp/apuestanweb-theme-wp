@@ -1,12 +1,12 @@
 <?php
 
+var_dump("error");
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 $parley_title = get_the_title(get_the_ID());
-var_dump($forecasts);
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
