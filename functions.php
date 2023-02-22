@@ -6,25 +6,23 @@ function aw_get_user_type($wp_user){
 	 */
 	$type = 'unreg';
     
-	if (function_exists('is_user_logged_in') && is_user_logged_in()){
-        var_dump($wp_user->ID);
-		if (current_user_can('manage_options')){
-			 return 'admin';
-		}
-		
-		if (isset($wp_user)){
+	if (isset($wp_user)){
 			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
 				$type = 'pending';
-			}else{
-				$type = 'reg';
-				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $wp_user->ID, true );
-				$levels = apply_filters( 'ihc_public_get_user_levels', $levels, $wp_user->ID );
-
-				if ($levels!==FALSE && $levels!=''){
-						$type = $levels;
-				}
+                return $type;
 			}
-		}
+            if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='administrator'){
+				$type = 'admin';
+                return $type;
+			}
+            $type = 'reg';
+            $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $wp_user->ID, true );
+            $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $wp_user->ID );
+
+            if ($levels!==FALSE && $levels!=''){
+                    $type = $levels;
+            }
+			
 	}
     
 	return $type;
