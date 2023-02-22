@@ -52,14 +52,15 @@ function aw_get_parleys(WP_REST_Request $request){
     ] );
 
     if ($query->have_posts()) :
-
+        $view_params = [
+            "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+            "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
+            "odds" => isset($params['odds']) ? $params['odds'] : null,
+            "current_user" => isset($wp_user) ? $wp_user : null
+        ];
         while ($query->have_posts()):
             $query->the_post();
-            $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}",null,[
-                "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                "odds" => isset($params['odds']) ? $params['odds'] : null
-        ]); 
+            $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}",null,$view_params); 
         endwhile;
 
     else:
