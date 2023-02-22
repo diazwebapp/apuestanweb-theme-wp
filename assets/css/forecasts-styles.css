@@ -1,3 +1,27 @@
+.accor_btn button{
+	color: #0558CB;
+	font-size: 1.6rem;
+	font-weight: 400;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	transition: 0.3s;
+}
+.accor_btn button i{
+	font-size: 2rem;
+	margin-left: 0.8rem;
+	margin-bottom: -0.3rem;
+	transition: 0.3s;
+}
+.accor_btn button[aria-expanded="true"] i{
+	transform: rotate(-180deg);
+}
+.accor_btn button::before{
+	content: 'Ver análisis';
+}
+.accor_btn button[aria-expanded="true"]::before{
+	content: 'Ocultar análisis';
+}
 /*model 2*/
 .game_box{
 	background: #FFFFFF;
@@ -391,7 +415,7 @@
     color: #ffffff;
     margin-left: auto;
     margin-right: auto;
-    
+    cursor: pointer;
 }
 
 .panel-button {
