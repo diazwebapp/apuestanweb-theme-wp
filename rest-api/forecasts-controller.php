@@ -2,7 +2,7 @@
 
 function aw_get_forecasts(WP_REST_Request $request){
     $params = $request->get_params();
-    $current_user = get_user_by("id",$params["current_user_id"]);
+    $wp_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'forecast';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
@@ -62,7 +62,7 @@ function aw_get_forecasts(WP_REST_Request $request){
             "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
             "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
             "odds" => isset($params['odds']) ? $params['odds'] : null,
-            "current_user" => isset($current_user) ? $current_user : null
+            "current_user" => isset($wp_user) ? $wp_user : null
         ];
         foreach ($query->posts as $key => $forecast):
             $view_params["forecast"]=$forecast;
@@ -83,7 +83,7 @@ function aw_get_forecasts(WP_REST_Request $request){
 
 function aw_get_forecasts_vip(WP_REST_Request $request){
     $params = $request->get_params();
-    $current_user = get_user_by("id",$params["current_user_id"]);
+    $wp_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'forecast';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
@@ -142,7 +142,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
         $view_params = [
             "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
             "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-            "current_user" => isset($current_user) ? $current_user : null
+            "current_user" => isset($wp_user) ? $wp_user : null
         ];
         if(isset($params['unlock'])):
             
