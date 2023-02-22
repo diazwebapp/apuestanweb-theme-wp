@@ -7,11 +7,11 @@ function aw_get_user_type($wp_user){
 	$type = 'unreg';
     
 	if (function_exists('is_user_logged_in') && is_user_logged_in()){
+        var_dump($wp_user->ID);
 		if (current_user_can('manage_options')){
 			 return 'admin';
 		}
 		
-        var_dump($wp_user);
 		if (isset($wp_user)){
 			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
 				$type = 'pending';
