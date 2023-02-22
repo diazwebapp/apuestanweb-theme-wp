@@ -5,6 +5,7 @@ function aw_get_user_type($current_user){
 	 * @return string
 	 */
 	$type = 'unreg';
+    var_dump($current_user->roles[0]);
 	if (function_exists('is_user_logged_in') && is_user_logged_in()){
 		if (current_user_can('manage_options')){
 			 return 'admin';
