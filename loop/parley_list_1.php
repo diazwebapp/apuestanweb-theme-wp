@@ -176,8 +176,7 @@ $html_box_2 = "<div class='parley_box2'>
                     </div>      
                 </div>
             </div>"
-        ;
-
+;
 
 $html = str_replace("{replace-html-pronosticos}",$html_pronosticos,$html);
 $html = str_replace("{replace-html-box-2}",$html_box_2,$html);
