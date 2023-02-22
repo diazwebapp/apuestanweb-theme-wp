@@ -46,6 +46,7 @@ echo "<div class='parley_wrapper'>
         foreach ($forecasts as $event) {
             $predictions = carbon_get_post_meta($event['id'], 'predictions');
             $prediction = [];
+            var_dump($predictions);
             $permalink_event = get_the_permalink($event['id']);
             $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
             $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
@@ -55,7 +56,6 @@ echo "<div class='parley_wrapper'>
             $prediction['cuote'] = $odds_result[$args["odds"]];
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
-            var_dump($teams);
             $time = carbon_get_post_meta($event['id'], 'data');
             $fecha =  date('d M', strtotime($time));
             $hora =  date('g:i a', strtotime($time));
