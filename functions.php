@@ -25,7 +25,7 @@ function aw_get_user_type($current_user){
 			}
 		}
 	}
-    var_dump($type);
+    var_dump($current_user->ID);
 	return $type;
 }
 /*--------------------------------------------------------------*/
