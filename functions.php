@@ -1,5 +1,5 @@
 <?php
-function aw_get_user_type($current_user){
+function aw_get_user_type($wp_user){
 	/*
 	 * @param none
 	 * @return string
@@ -11,14 +11,14 @@ function aw_get_user_type($current_user){
 			 return 'admin';
 		}
 		
-		if (isset($current_user)){
-            var_dump($current_user->ID);
-			if (isset($current_user->roles[0]) && $current_user->roles[0]=='pending_user'){
+		if (isset($wp_user)){
+            var_dump($wp_user->ID);
+			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
 				$type = 'pending';
 			}else{
 				$type = 'reg';
-				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
-				$levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
+				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $wp_user->ID, true );
+				$levels = apply_filters( 'ihc_public_get_user_levels', $levels, $wp_user->ID );
 
 				if ($levels!==FALSE && $levels!=''){
 						$type = $levels;
