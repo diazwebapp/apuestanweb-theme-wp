@@ -48,7 +48,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                     <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
-if($vip !='yes' or $estado_usuario == 'permitido')
+if(!$vip or $estado_usuario == 'permitido')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
                         <p>Haz una apuesta</p>

@@ -36,12 +36,17 @@ endif;
 
 $parley_id = get_the_ID();
 
-
-$vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
+$estado_usuario = "permitido";
+if(function_exists("aw_get_user_type")):
+    $user_type = aw_get_user_type($args["current_user"]);
+    if($user_type == "unreg"){
+        $estado_usuario = "no permitido";
+    }
+endif;
+$html_pronosticos = "<a href='{$params['vip_link']}' class='game_btn v2'>
                     <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
-
 
 $html = "<div class='parley_wrapper'>
         <div class='parley_top_content'>
@@ -50,7 +55,9 @@ $html = "<div class='parley_wrapper'>
         {replace-html-pronosticos}
         {replace-html-box-2}
     </div>";
-$html_pronosticos = '';
+
+if(!$vip or $estado_usuario == 'permitido'){
+    $html_pronosticos = '';
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
         
@@ -141,6 +148,7 @@ $html_pronosticos = '';
             </div>";
         }
     }
+}
 $html_box_2 = "<div class='parley_box2'>
                 <div class='parley_left_content2 d-md-block d-none'>
                     <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
@@ -167,7 +175,9 @@ $html_box_2 = "<div class='parley_box2'>
                         <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
                     </div>      
                 </div>
-            </div>";
+            </div>"
+        ;
+
 
 $html = str_replace("{replace-html-pronosticos}",$html_pronosticos,$html);
 $html = str_replace("{replace-html-box-2}",$html_box_2,$html);
