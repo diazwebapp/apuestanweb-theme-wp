@@ -14,6 +14,7 @@ function aw_get_user_type($current_user){
 		if ($current_user){
 			if (isset($current_user->roles[0]) && $current_user->roles[0]=='pending_user'){
 				$type = 'pending';
+                var_dump($current_user->ID);
 			}else{
 				$type = 'reg';
 				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
@@ -25,7 +26,7 @@ function aw_get_user_type($current_user){
 			}
 		}
 	}
-    var_dump($current_user->ID);
+    
 	return $type;
 }
 /*--------------------------------------------------------------*/
