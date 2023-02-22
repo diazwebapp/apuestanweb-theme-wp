@@ -11,7 +11,7 @@ function aw_get_user_type($wp_user){
 			 return 'admin';
 		}
 		
-        var_dump($wp_user->ID);
+        var_dump($wp_user);
 		if (isset($wp_user)){
 			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
 				$type = 'pending';
