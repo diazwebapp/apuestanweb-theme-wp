@@ -43,10 +43,10 @@ echo "<div class='parley_wrapper'>
 </div>";
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
+        var_dump($forecasts);
         foreach ($forecasts as $event) {
             $predictions = carbon_get_post_meta($event['id'], 'predictions');
             $prediction = [];
-            var_dump($predictions);
             $permalink_event = get_the_permalink($event['id']);
             $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
             $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
