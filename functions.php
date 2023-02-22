@@ -11,7 +11,7 @@ function aw_get_user_type($current_user){
 			 return 'admin';
 		}
 		
-		if ($current_user){
+		if (isset($current_user)){
             var_dump($current_user->ID);
 			if (isset($current_user->roles[0]) && $current_user->roles[0]=='pending_user'){
 				$type = 'pending';
