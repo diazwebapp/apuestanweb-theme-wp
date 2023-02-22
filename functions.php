@@ -16,7 +16,6 @@ function aw_get_user_type($current_user){
 				$type = 'pending';
 			}else{
 				$type = 'reg';
-				$current_user = wp_get_current_user();
 				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
 				$levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
 
