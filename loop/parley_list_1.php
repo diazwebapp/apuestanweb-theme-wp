@@ -1,6 +1,5 @@
 <?php
 
-var_dump("error");
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
@@ -36,11 +35,19 @@ if(!isset($aw_system_location)):
 endif;
 
 $parley_id = get_the_ID();
+
+
+$vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
+                    <i class='far fa-lock'></i>
+                    <p>{$params['text_vip_link']}</p>
+                </a>";
+
+
 echo "<div class='parley_wrapper'>
-<div class='parley_top_content'>
-    <h2>$parley_title $fecha</h2>
-    
-</div>";
+        <div class='parley_top_content'>
+            <h2>$parley_title $fecha</h2>
+            
+        </div>";
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
         
@@ -128,17 +135,8 @@ echo "<div class='parley_wrapper'>
                         Ver análisis
                     </a>
                 </div>  
-                </div>";
-            echo "<div class='parley_collpase_content'>
-            <div id='one{$event['id']}' class='collapse' >
-                <div class='parley_collapse_wrapper'>
-                    <div class='parley_collapse'>
-                        $content
-                    </div>
                 </div>
-            </div>
-
-        </div>";
+            </div>";
         }
     }
     echo "<div class='parley_box2'>
