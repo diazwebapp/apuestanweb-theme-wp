@@ -1,32 +1,5 @@
 <?php
-function aw_get_user_type($wp_user){
-	/*
-	 * @param none
-	 * @return string
-	 */
-	$type = 'unreg';
-    
-	if (isset($wp_user)){
-			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
-				$type = 'pending';
-                return $type;
-			}
-            if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='administrator'){
-				$type = 'admin';
-                return $type;
-			}
-            $type = 'reg';
-            $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $wp_user->ID, true );
-            $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $wp_user->ID );
 
-            if ($levels!==FALSE && $levels!=''){
-                    $type = $levels;
-            }
-			
-	}
-    
-	return $type;
-}
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
 /*--------------------------------------------------------------*/
@@ -515,4 +488,31 @@ add_filter( 'carbon_fields_association_field_options_forecasts_post_post', 'crb_
 }
 add_filter( 'carbon_fields_association_field_title', 'crb_modify_association_field_title', 10, 5 );
 
+function aw_get_user_type($wp_user){
+	/*
+	 * @param none
+	 * @return string
+	 */
+	$type = 'unreg';
+    
+	if (isset($wp_user)){
+			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
+				$type = 'pending';
+                return $type;
+			}
+            if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='administrator'){
+				$type = 'admin';
+                return $type;
+			}
+            $type = 'reg';
+            $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $wp_user->ID, true );
+            $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $wp_user->ID );
 
+            if ($levels!==FALSE && $levels!=''){
+                    $type = $levels;
+            }
+			
+	}
+    
+	return $type;
+}
