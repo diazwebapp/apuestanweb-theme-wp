@@ -359,9 +359,12 @@
     border: none;
 }
 
-.panel-group .panel {
+.panel-group .panel,.panel-group .panel2 {
     border-radius: 0px 0px 8px 8px;
     background-color: #001f39;
+}
+.panel-group .panel2 {
+    background:#009fe3;
 }
 
 .panel-body {
