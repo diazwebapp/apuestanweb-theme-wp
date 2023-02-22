@@ -88,6 +88,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             $estado_usuario = "no permitido";
         }
     endif;
+    var_dump($estado_usuario);
     $html_vip_loked = "<div class='col-md-6 mt_30'>
                 
                         <div class='event2_box event2_box3'>
