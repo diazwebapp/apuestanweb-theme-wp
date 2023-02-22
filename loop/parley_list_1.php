@@ -43,11 +43,14 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                 </a>";
 
 
-echo "<div class='parley_wrapper'>
+$html = "<div class='parley_wrapper'>
         <div class='parley_top_content'>
             <h2>$parley_title $fecha</h2>
-            
-        </div>";
+        </div>
+        {replace-html-pronosticos}
+        {replace-html-box-2}
+    </div>";
+$html_pronosticos = '';
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
         
@@ -83,7 +86,7 @@ echo "<div class='parley_wrapper'>
                 }
             }
 
-            echo "<div class='parley_box'>
+            $html_pronosticos .= "<div class='parley_box'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
@@ -138,7 +141,7 @@ echo "<div class='parley_wrapper'>
             </div>";
         }
     }
-    echo "<div class='parley_box2'>
+$html_box_2 = "<div class='parley_box2'>
                 <div class='parley_left_content2 d-md-block d-none'>
                     <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                 </div>
@@ -165,4 +168,7 @@ echo "<div class='parley_wrapper'>
                     </div>      
                 </div>
             </div>";
-echo "</div>";
+
+$html = str_replace("{replace-html-pronosticos}",$html_pronosticos,$html);
+$html = str_replace("{replace-html-box-2}",$html_box_2,$html);
+echo $html;
