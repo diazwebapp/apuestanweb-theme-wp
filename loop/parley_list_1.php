@@ -49,14 +49,14 @@ $html_pronosticos = "<a href='{$params['vip_link']}' class='game_btn v2'>
                 </a>";
 
 $html = "<div class='parley_wrapper'>
-        <div class='parley_top_content event2_top_box_wrapper3'>
+        <div class='parley_top_content style='background-color:#009fe3 !important;'>
             <h2>$parley_title $fecha</h2>
         </div>
         {replace-html-pronosticos}
         {replace-html-box-2}
     </div>";
 if(!$vip ){
-    $html = str_replace("event2_top_box_wrapper3","",$html);
+    $html = str_replace("'background-color:#009fe3 !important;","",$html);
 }
 if(!$vip or $estado_usuario == 'permitido'){
     $html_pronosticos = '';
