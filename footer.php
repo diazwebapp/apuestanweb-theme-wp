@@ -70,7 +70,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         $theme_regulation = carbon_get_theme_option( 'country_reg' );
                         $current_country = json_decode($_SESSION["geolocation"]);
                         $agesvg = get_template_directory_uri() . '/assets/img/age.svg';
-                        
+                        var_dump($current_country);
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
                                 if($regs["country_code"] == $current_country->country_code):
