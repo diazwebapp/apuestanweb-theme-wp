@@ -55,9 +55,10 @@ $html = "<div class='parley_wrapper'>
         {replace-html-pronosticos}
         {replace-html-box-2}
     </div>";
-
-if(!$vip or $estado_usuario == 'permitido'){
+if(!$vip ){
     $html = str_replace("event2_top_box_wrapper3","",$html);
+}
+if(!$vip or $estado_usuario == 'permitido'){
     $html_pronosticos = '';
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
