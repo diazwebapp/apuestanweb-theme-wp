@@ -158,6 +158,9 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                         </div>
 
                         <div class='event2_box_middle_content'>
+                            <div class='text-center' >
+                                $estrellas
+                            </div>
                             <p class='p1'>Pronóstico:</p>
                             {$html_predictions}
                             <div class='event2_box_bonus'>
