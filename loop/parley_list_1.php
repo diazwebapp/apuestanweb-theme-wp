@@ -56,7 +56,7 @@ $html = "<div class='parley_wrapper'>
         {replace-html-box-2}
     </div>";
 if(!$vip ){
-    $html = str_replace("'background-color:#009fe3 !important;","",$html);
+    $html = str_replace("background-color:#009fe3 !important;","",$html);
 }
 if(!$vip or $estado_usuario == 'permitido'){
     $html_pronosticos = '';
