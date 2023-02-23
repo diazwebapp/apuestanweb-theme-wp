@@ -49,7 +49,7 @@ $html_pronosticos = "<a href='{$params['vip_link']}' class='game_btn v2'>
                 </a>";
 
 $html = "<div class='parley_wrapper'>
-        <div class='parley_top_content style='background-color:#009fe3 !important;'>
+        <div class='parley_top_content' style='background-color:#009fe3 !important;'>
             <h2>$parley_title $fecha</h2>
         </div>
         {replace-html-pronosticos}
