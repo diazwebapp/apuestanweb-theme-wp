@@ -43,10 +43,13 @@ if(function_exists("aw_get_user_type")):
         $estado_usuario = "no permitido";
     }
 endif;
-$html_pronosticos = "<a href='{$params['vip_link']}' class='game_btn v2'>
+$html_pronosticos = "<div>
+                <a href='{$params['vip_link']}' class='btn btn-primary mx-5'>
                     <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
-                </a>";
+                </a>
+            </div>"
+    ;
 
 $html = "<div class='parley_wrapper'>
         <div class='parley_top_content' style='background-color:#009fe3 !important;'>
