@@ -70,9 +70,12 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         $theme_regulation = carbon_get_theme_option( 'country_reg' );
                         $current_country = json_decode($_SESSION["geolocation"]);
                         $agesvg = get_template_directory_uri() . '/assets/img/age.svg';
-                        var_dump($current_country);
+                        
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
+                                var_dump($regs["country_code"]);
+                                var_dump("<br/>");
+                                var_dump( $current_country->country_code);
                                 if($regs["country_code"] == $current_country->country_code):
                                     echo '<p class="p-reg s-f text-break">'.$regs["text_reg"].'</p> ';
                                     echo '<div class="row justify-content-center footer-reg">';
