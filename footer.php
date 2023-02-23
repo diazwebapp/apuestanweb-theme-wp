@@ -73,10 +73,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
-                                var_dump($regs["country_code"]);
-                                var_dump("<br/>");
-                                var_dump( $current_country->country_code);
-                                if($regs["country_code"] == $current_country->country_code):
+                                if($regs["country_code"] == $current_country->country_code or $regs["country_code"] == "WW"):
                                     echo '<p class="p-reg s-f text-break">'.$regs["text_reg"].'</p> ';
                                     echo '<div class="row justify-content-center footer-reg">';
                                     echo '<div class="flex justify-center  flex-wrap">';
