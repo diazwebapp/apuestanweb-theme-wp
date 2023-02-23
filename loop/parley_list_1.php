@@ -49,7 +49,7 @@ $html_pronosticos = "<a href='{$params['vip_link']}' class='game_btn v2'>
                 </a>";
 
 $html = "<div class='parley_wrapper'>
-        <div class='parley_top_content'>
+        <div class='parley_top_content event2_top_box_wrapper3'>
             <h2>$parley_title $fecha</h2>
         </div>
         {replace-html-pronosticos}
@@ -57,6 +57,7 @@ $html = "<div class='parley_wrapper'>
     </div>";
 
 if(!$vip or $estado_usuario == 'permitido'){
+    $html = str_replace("event2_top_box_wrapper3","",$html);
     $html_pronosticos = '';
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
