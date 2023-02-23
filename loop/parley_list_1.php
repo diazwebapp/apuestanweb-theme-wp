@@ -45,8 +45,8 @@ if(function_exists("aw_get_user_type")):
 endif;
 $html_pronosticos = '<div class="text-center my-3">
             <a href="'.$params['vip_ink'].'" class="btn btn-primary mx-5 px-5">
-                <i class="far fa-lock"></i>
-                <span class="mx-3">VIP</span>
+                <i class="far fa-lock display-4"></i>
+                <span class="mx-3 display-4">VIP</span>
             </a>
     </div>'
     ;
