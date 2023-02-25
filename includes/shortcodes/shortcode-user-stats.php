@@ -20,7 +20,7 @@ function shortcode_user_stats($atts)
     $img_perc = get_template_directory_uri(  ) .'/assets/img/s56.png';
     $fail_gradient = $stats['porcentaje_fallidos'] + $stats['porcentaje_fallidos'];
     $null_gradient = $fail_gradient + $stats['porcentaje_nulos'];
-
+    $user_permalink = (defined("PERMALINK_PROFILE") ? PERMALINK_PROFILE : '#');
     $args = array(
         'post_type' => 'forecast',
         'author' => $id,
@@ -37,10 +37,10 @@ function shortcode_user_stats($atts)
             <a class='nav-link active' data-toggle='tab' href='#profile'>Perfil</a>
             </li>
             <!--  <li class='nav-item'>
-            <a class='nav-link' data-toggle='tab' href='#stats'>Stats</a>
+            <a class='nav-link' data-toggle='tab' href='$user_permalink'>Stats</a>
             </li>-->
             <li class='nav-item'>
-            <a class='nav-link' data-toggle='tab' href='#posts'>Picks</a>
+            <a class='nav-link' data-toggle='tab' href='$user_permalink'>Picks</a>
             </li>
             </ul>
             </div>
