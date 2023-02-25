@@ -496,7 +496,7 @@ function aw_get_user_type($wp_user){
 	 */
 	$type = 'unreg';
     
-	if (!empty($wp_user)){
+	if (!empty($wp_user) and $wp_user->ID > 0){
 			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
 				$type = 'pending';
                 return $type;
