@@ -34,7 +34,7 @@ function shortcode_user_stats($atts)
             <div class='tab-menu-container'>
             <ul class='nav nav-tabs flex-column'>
             <li class='nav-item'>
-            <a class='nav-link active' data-toggle='tab' href='#profile'>Perfil</a>
+            <a class='nav-link active' data-toggle='tab' href='$user_permalink'>Perfil</a>
             </li>
             <!--  <li class='nav-item'>
             <a class='nav-link' data-toggle='tab' href='$user_permalink'>Stats</a>
