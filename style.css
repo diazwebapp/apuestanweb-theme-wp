@@ -4825,4 +4825,11 @@ a.panel-button {
 
 
  
- 
+ .notice {
+	padding: 10px;
+	background-color: #f5f5f5;
+	color: #333;
+	font-size: 16px;
+	text-align: center;
+  }
+  

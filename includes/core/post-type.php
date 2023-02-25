@@ -43,6 +43,7 @@ function create_bk() {
 		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-star-filled',
 		'show_in_admin_bar'   => true,
+		'show_in_rest' 		  => true,
 		'show_in_nav_menus'   => true,
 		'can_export'          => true,
 		'has_archive'         => true,

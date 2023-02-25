@@ -91,6 +91,7 @@ include "rest-api/parley-controller.php";
 include "rest-api/notification-controller.php";
 include "rest-api/imagen-detacada-controller.php";
 
+
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
     'footer'=> __('Footer', 'jbetting'),
@@ -158,7 +159,6 @@ function jbetting_src()
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
-    wp_enqueue_script('lozad', get_template_directory_uri() . '/assets/js/lozad.min.js', array('jquery'), null, false);
 
 
 

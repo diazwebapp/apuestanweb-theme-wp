@@ -80,7 +80,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                     echo '<div class="flex justify-center  flex-wrap">';
                                     foreach ($regs["images"] as $image) {
                                         $file_uri =  wp_get_attachment_url( $image['image'] );
-                                        echo '<a href="'.$image['url'].'"  rel="nofollow" target="new" ><img height="43px" width="133px" class="img-fluid mx-2" src="'.$file_uri.'" /></a>';
+                                        $alt = get_the_title($image['image']); // Obtener el título de la imagen
+                                        echo '<a href="'.$image['url'].'"  rel="nofollow" target="new" ><img height="43px" width="133px" class="img-fluid mx-2" src="'.$file_uri.'" aria-label="'.$alt.'" alt="'.$alt.'" /></a>';
                                     }
                                     echo '</div>';
                                     echo '</div>';

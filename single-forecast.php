@@ -144,7 +144,7 @@
                                                 <p><?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?></p>
                                             </div>
                                             <div class="event_start">                    
-                                                <time datetime="<?php echo $datetime->format("Y-m-d h:i") ?>" ><?php echo $datetime->format("h:i a") ?></time>
+                                                <time datetime="<?php echo $datetime->format("Y-m-d H:i:s") ?>" ><?php echo $datetime->format("h:i a") ?></time>
                                                 <?php echo date_i18n("d M Y", strtotime($datetime->format("d M Y")));?>   
                                                                        
                                             </div>

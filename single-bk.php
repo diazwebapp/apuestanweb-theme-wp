@@ -21,6 +21,13 @@ $bookmaker["background_color"] = null;
 
     $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
     $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
+    $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
+    $author_name = get_the_author_meta("display_name" );
+    $author_id =  get_the_author_meta('ID') ;
+    $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
+    $avatar_url = get_avatar_url($author_id);
+    $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
+
 
 
     if (carbon_get_post_meta(get_the_ID(), 'logo')):
@@ -78,7 +85,7 @@ $bookmaker["background_color"] = null;
                                     </div>
             
                                     <div class="col-12 my-4 special-single-bk-button" >
-                                        <b style="background:lightgray;font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
+                                        <b style="font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                                     </div>
                                     <div class="col-12 my-4 special-single-bk-button"> 
                                                                        
@@ -124,11 +131,22 @@ $bookmaker["background_color"] = null;
 
                 </div>               
             </div>
+            <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="author-info d-flex align-items-center m-3 mt-4">
+                                        <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
+                                        <div class="author-details d-flex flex-column">
+                                            <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
+                                            <time datetime="<?php echo $post_date ?>" class="post-date mb-1"><?php echo __("Actualizado $post_date"); ?></time>
+                                        </div>
+                                        </div>
+                                    </div>
+             </div>
             <!-- Content -->
             <?php if ( !$disable_table ): ?>
                                                 <!-- Add the button to toggle the table of contents -->
                                                 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
-                                                    <?php echo __('Contenido de la revision', 'jbetting' );?>
+                                                    <?php echo __('Contenido de la reseña', 'jbetting' );?>
                                                     <i class="fas fa-angle-down"></i>
                                                 </button>
 

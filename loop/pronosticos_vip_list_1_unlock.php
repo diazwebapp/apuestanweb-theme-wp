@@ -185,7 +185,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk">
                             </div>
                                 <div class="d-none d-sm-flex align-items-center">
-                                    <div class="rate_text d-flex align-items-center justify-content-around">
+                                    <div class="rate_text d-flex align-items-center justify-content-center">
                                     <span>'.$cuote.'</span>
                                     <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
                                     <div class="rating">
@@ -196,7 +196,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             </div>
 
                             <div class="text-center accor_btn mt_15">
-                                <button type="button" data-toggle="collapse" role="button" data-target="#col1'.$id_collapse.'" aria-expanded="false">
+                                <button type="button" data-toggle="collapse" role="button" data-target="#col1'.$id_collapse.'" aria-expanded="false" aria-label="expand-content">
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>

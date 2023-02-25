@@ -14,7 +14,7 @@
                                         <div class="sub-inn">
                                             <div class="sub-bx-lf">
                                                 <div class="subscribe__img">
-                                                    <img src="img/new/s23.png" alt="">
+                                                    <img src="img/new/s23.png" alt="author-image">
                                                 </div>
                                                 <div class="subscribe__icon">
                                                     <a href="#"><i class="fa-brands fa-facebook"></i></a>
