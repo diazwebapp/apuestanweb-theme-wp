@@ -131,21 +131,18 @@ function aw_get_parleys_vip(WP_REST_Request $request){
     ] );
 
     if ($query->have_posts()) :
-
+        $view_params = [
+            "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+            "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
+            "odds" => isset($params['odds']) ? $params['odds'] : null,
+            "current_user" => isset($wp_user) ? $wp_user : null
+        ];
         while ($query->have_posts()):
             $query->the_post();
             if(isset($params['unlock'])):
-                $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip_unlock",null,[
-                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => isset($params['odds']) ? $params['odds'] : null
-                ]); 
+                $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip_unlock",null,); 
             else:
-                $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip",null,[
-                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                    "odds" => isset($params['odds']) ? $params['odds'] : null
-                ]); 
+                $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip",null,$view_params); 
             endif;
         endwhile;
 
