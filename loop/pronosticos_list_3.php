@@ -135,7 +135,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 
                     <div class='event2_box'>
                     
-                            <div class='event2_top_box_wrapper'>
+                            <div class='event2_top_box_wrapper event2_top_box_wrapper3'>
                                 <div class='event2_top_box'>
                                     <div class='event_top_left'>
                                         <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
