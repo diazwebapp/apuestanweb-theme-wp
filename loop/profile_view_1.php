@@ -22,7 +22,7 @@ if(isset($_GET['profile'])):
     $profile = '<div class="sub-inn">
         <div class="sub-bx-lf">
             <div class="subscribe__img">
-                <img src="'.$avatar.'" alt="">
+                <img class="rounded-circle" src="'.$avatar.'" alt="author-image">
             </div>
             <div class="subscribe__icon">
                 <a href="#"><i class="fa-brands fa-facebook"></i></a>

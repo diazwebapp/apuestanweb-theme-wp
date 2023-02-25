@@ -92,6 +92,7 @@ function crb_attach_theme_options()
             ->add_tab(__(__("custom texts", "jbetting")), array(                
                 Field::make('text', 'custom_h1', __("Custom h1", "jbetting")),
                 Field::make('checkbox', 'disable_title', __("disable_title", "jbetting")),
+                Field::make('checkbox', 'disable_table', __("Activar tabla de contenidos", "jbetting")),
                 Field::make('text', 'before_post', __("Replace sub-header? (shortcode only)", "jbetting")),
                 Field::make('rich_text', 'faq', __("faq area", "jbetting")),
             ))
@@ -105,6 +106,7 @@ function crb_attach_theme_options()
         Container::make('post_meta', __("Bookmaker", "jbetting"))
             ->where('post_type', '=', 'bk')
             ->add_tab(__("General", "jbetting"), array(
+                    Field::make('checkbox', 'disable_table', __("Desactivar tabla de contenidos", "jbetting")),
                     Field::make('text', 'ref', __("Refferal link", "jbetting")),
                     Field::make('select', 'rating', __("Rating(1,2,3,4,5)", "jbetting"))
                         ->add_options(array(
@@ -163,7 +165,7 @@ function crb_attach_theme_options()
         Container::make('post_meta', __("Team", "jbetting"))
             ->where('post_type', '=', 'team')
             ->add_tab(__("1. General", "jbetting"), array(
-                Field::make('image', 'team_logo', __("Team logo(square .png)", "jbetting")),
+                Field::make('image', 'team_logo', __("Team logo( min 300x300px.png)", "jbetting")),
                 Field::make('text', 'acronimo', __("acronimo", "jbetting"))
             ));
 
@@ -173,6 +175,7 @@ function crb_attach_theme_options()
             ->where('post_type', '=', 'forecast')
             ->add_tab(__("1. General", "jbetting"), array(
                 Field::make('checkbox', 'vip', __("Premium event", "jbetting")),
+                Field::make('checkbox', 'disable_table', __("Desactivar tabla de contenidos", "jbetting")),
                 Field::make('date_time', 'data', __("Fecha&hora", "jbetting"))->set_required( true ),            
                 Field::make('complex', 'predictions', __("Pronósticos", "jbetting"))
                     ->set_layout("tabbed-horizontal")

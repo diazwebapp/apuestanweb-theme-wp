@@ -54,8 +54,8 @@
 	color: #051421;
 }
 .club_box img{
-	width: 6rem;
-	height: 6rem;
+/* 	width: 6rem;
+	height: 6rem; */
 	object-fit: contain;
 	object-position: center center;
 }

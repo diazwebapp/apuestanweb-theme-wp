@@ -84,7 +84,10 @@ function shortcode_parley_vip($atts)
     $args['country_code'] = $geolocation->country_code;
     $args['odds'] = $odds;
     $args['timezone'] = $geolocation->timezone;
+<<<<<<< HEAD
     $args["current_user_id"] =  get_current_user_id();
+=======
+>>>>>>> d7f328ad493c831957bc8c178e9b41d4997e783a
     $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley_vip' id='load_more_parley_vip' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
 
 

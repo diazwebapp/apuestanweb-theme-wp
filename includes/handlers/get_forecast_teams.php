@@ -77,13 +77,13 @@ function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,
                         $user_stats['acertados'] += 1;
                         $cuote = floatval($predictions[0]['cuote']);
                         $tvalue = floatval($predictions[0]['tvalue']);
-                        $inversion = $tvalue * 100;
+                        $inversion = $tvalue * 20;
                         $user_stats['tvalue'] += $inversion * $cuote - $inversion;
                     endif;
                     if($status and $status == 'fail'):
                         $user_stats['fallidos'] += 1;
                         $tvalue = floatval($predictions[0]['tvalue']);
-                        $inversion = $tvalue * 100;
+                        $inversion = $tvalue * 20;
                         $user_stats['tvalue'] -= $inversion;
                     endif;
                     if($status and $status == 'null'):

@@ -19,12 +19,12 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                     <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
-                                $post_date = get_the_date( "y-m-d h:i:s", get_the_ID());
+                                $post_date = get_the_date( "Y-m-d H:i:s", get_the_ID());
                                 $date = new DateTime($post_date);
                                 $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
 
-                                $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
-                                $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
+                                $fecha = date_i18n('F j, Y', strtotime($date->format("F j, Y")));
+                                $hora = date('g:i a', strtotime($date->format('g:i a')));
 
                                 $title = get_the_title( get_the_ID() ); 
                                 
@@ -38,11 +38,11 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                     <section class="post-author-section">
                                     <div class="row">
                                     <div class="col-sm-12">
-                                        <div class="author-info d-flex align-items-center m-3">
+                                        <div class="author-info d-flex align-items-center m-3 mt-4">
                                         <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
                                         <div class="author-details d-flex flex-column">
-                                            <h4 class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></h4>
-                                            <span class="post-date text-muted mb-0"><?php echo __("Publicado: $fecha $hora");  ?></span>
+                                            <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
+                                            <time datetime="<?php echo $post_date ?>" class="post-date mb-0"><?php echo __("Publicado: $fecha $hora"); ?></time>
                                         </div>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
 
                                         <div class="row">
                                             <div class="col-sm-12">
-                                                <img src="<?php echo $thumbnail_url ?>" class="post-featured-img img-fluid" alt="<?php echo $title ?>">
+                                                <img src="<?php echo $thumbnail_url ?>" loading="lazy" class="post-featured-img img-fluid" alt="<?php echo $title ?>">
                                                 
                                                 <?php
                                                 if (has_post_thumbnail()) {
@@ -69,12 +69,12 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                 </section>
                                     <div class="post-content single_event_content text-break">
                                     <?php the_content(); ?>
-                                        <?php   endwhile; }?>
+                            <?php  endwhile; }?>
                                         <div class="share-buttons-container">
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="https://twitter.com/home?status=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>
-                                            <a href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_permalink( $post->ID )); ?>" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                                            <a href="tg://msg?text=Mira este artículo interesante: '<?php echo urlencode(get_permalink( $post->ID )); ?>'" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink( $post->ID )); ?>" aria-label="Share to facebook" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink( $post->ID )); ?>&text=<?php echo urlencode(get_the_title( $post->ID )); ?>" aria-label="Share to twiiter" class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a href="https://api.whatsapp.com/send?text=<?php echo urlencode(get_permalink( $post->ID )); ?>" aria-label="Share to whatsapp"  class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                                            <a href="https://t.me/share/url?url=<?php echo urlencode(get_permalink( $post->ID )); ?>" aria-label="Share to instagram"  class="share-button" rel="nofollow noreferrer noopener" target="_blank"><i class="fab fa-telegram-plane"></i></a>
                                         </div>
                                     </div>
 

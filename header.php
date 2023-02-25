@@ -2,11 +2,14 @@
 <html lang="<?php echo substr(get_locale(), 0, 2); ?>">
 <head>
     <title><?php wp_title('');?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<?php wp_head(); ?>
 </head>
 <body>
+<div class="notice">
+  <p>¡Atención! www.apuestan.com pasa a ser www.apuestanweb.com</p>
+</div>
 <?php /*
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
@@ -31,11 +34,11 @@
                     $logo =  get_template_directory_uri().'/assets/img/logo.svg';
                 endif;
             ?>
-            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestanweb logo" src="<?php echo $logo; ?>"></a>
+            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestan logo" src="<?php echo $logo; ?>"></a>
             <!--logo end-->
             
         </div>
-        <div class="col-6 order-lg-3 col-lg-2 text-right">
+        <div class="col-6 order-lg-3 col-lg-2 d-flex justify-content-end">
                 <?php 
                 function aw_timeAgo ($oldTime, $newTime) {
                     $timeCalc = strtotime($newTime) - strtotime($oldTime);
@@ -69,16 +72,15 @@
                        $html = '<ul class="navbar-nav mx-3">
                             <li class="nav-item dropdown">
                                     <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "green" : "" ) .' !important;font-size:13px !important;"></i>
+                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "#ffffff" : "" ) .' !important;font-size:13px !important;"></i>
                                         <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
                                     </a>
-
-                                    <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
-                                        <ul style="max-height:200px;overflow-y:scroll;">
+                                    <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
+                                        <ul style="max-height:200px;">
+                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
                                             {list}
                                         </ul>
                                         <hr class="mt-2 mb-3">
-                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-sign-out"></i>'.__('quitar todo','jbetting').'</p>
 
                                     </div>
                                 </li>
@@ -109,12 +111,12 @@
                                 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle text-light font-weight-bold" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <p class="d-inline-block text-truncate align-top" style="max-width:120px;" id="header-username" >'.get_userdata(get_current_user_id( ))->user_login .'</p>
+                                        <p class="d-inline-block text-truncate align-top" style="max-width:70px;" id="header-username" >'.get_userdata(get_current_user_id( ))->user_login .'</p>
                                     </a>
 
                                     <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
-                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="/picks"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
+                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="/plus/picks"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
 
                                         <hr class="mt-2 mb-3">
                                         <a class="dropdown-item text-dark my-3" href="'. add_query_arg( 'ihcdologout', 'true', wp_logout_url() ).'"><i class="fas fa-sign-out"></i>'.__(' Cerrar sesion','jbetting').'</a>
@@ -152,5 +154,3 @@
     </div>
 </div>
 </header>
-
-<?php 

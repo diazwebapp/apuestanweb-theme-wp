@@ -125,7 +125,7 @@ if(!function_exists('aw_check_user_level')):
             endif;
 
             if(!empty($user_levels) and strval($user_levels) != strval($params['lid'])): //Sí tiene una membresia diferente, eliminamos todas y activamos una nueva
-                $resp['msg'] = 'Tine otra membresia, desea reemplazar?';
+                $resp['msg'] = 'Tiene otra membresia, ¿desea reemplazarla?';
                 $resp['status'] = 'ok';
                 $_SESSION["checkout_action"] = "replace"; //seteamos variable de sesión que se usará en el checkout
             endif;

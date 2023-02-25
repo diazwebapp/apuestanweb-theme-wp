@@ -88,7 +88,6 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
             $estado_usuario = "no permitido";
         }
     endif;
-    
     $html_vip_loked = "<div class='col-md-6 mt_30'>
                 
                         <div class='event2_box event2_box3'>
@@ -135,53 +134,51 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     $html_vip_unloked =  "<div class='col-md-6 mt_30'>
                 
                     <div class='event2_box'>
-                                
-                        <div class='event2_top_box_wrapper event2_top_box_wrapper3'>
-                            <div class='event2_top_box'>
-                                <div class='event_top_left'>
-                                    <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
-                                </div>
-                                <div class='event_top_middle'>
-                                    <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
-                                        $time_format_html                                   
-                                    <p class='p2'><time datetime='".$date->format('Y-m-d h:i')."'>".date_i18n('d M', strtotime($date->format('Y-m-d')))."</time></p>                                    
-                                </div>
-                                <div class='event_top_right'>
-                                    <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
-                                </div>
-                            </div>
-                            <p class='p3' >
-                                <h2><a href='$permalink'>                               
-                                {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                </a> </h2>
-                            </p>
-                        </div>
-
-                        <div class='event2_box_middle_content'>
-                            <div class='text-center' >
-                                $estrellas
-                            </div>
-                            <p class='p1'>Pronóstico:</p>
-                            {$html_predictions}
-                            <div class='event2_box_bonus'>
-                                <p class='p2'>Bonus:</p>
-                                <p class='p3'>{$bookmaker['bonus_slogan']}</p>
-                            </div>
-                            <div class='event_btn_box'>
-                                <div class='event_btn_img'>
-                                    <a href='{$bookmaker['ref_link']}'>
-                                    <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt=''>
-                                    </a>
-                                </div>
-                                <div >
-                                    <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
-                                </div>
-                            </div>
-                        </div>
-
                     
+                            <div class='event2_top_box_wrapper'>
+                                <div class='event2_top_box'>
+                                    <div class='event_top_left'>
+                                        <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
+                                    </div>
+                                    <div class='event_top_middle'>
+                                        <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
+                                            $time_format_html                                   
+                                        <p class='p2'><time datetime='".$date->format('Y-m-d h:i')."'>".date_i18n('d M', strtotime($date->format('Y-m-d')))."</time></p>                                    
+                                    </div>
+                                    <div class='event_top_right'>
+                                        <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
+                                    </div>
+                                </div>
+                                <p class='p3' >
+                                    <h2><a href='$permalink'>                               
+                                    {$teams['team1']['name']} vs {$teams['team2']['name']}                              
+                                    </a> </h2>
+                                </p>
+                            </div>
+                        
+                            <div class='event2_box_middle_content'>
+                                <div>$estrellas</div>
+                                <p class='p1'>Pronóstico:</p>
+                                {$html_predictions}
+                                <div class='event2_box_bonus'>
+                                    <p class='p2'>Bonus:</p>
+                                    <p class='p3'>{$bookmaker['bonus_slogan']}</p>
+                                </div>
+                                <div class='event_btn_box'>
+                                    <div class='event_btn_img'>
+                                        <a href='{$bookmaker['ref_link']}'>
+                                        <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt=''>
+                                        </a>
+                                    </div>
+                                    <div >
+                                        <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        
                         <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='false'>
-                            <div class='panel2 panel-default'>
+                            <div class='panel panel-default'>
                             <div class='panel-heading accor_btn' role='tab' id='headingOne'>
                                 <button type='button' data-toggle='collapse' data-target='#$idevent' aria-expanded='false'>
                                     <i class='fal fa-angle-down'></i>
@@ -198,7 +195,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 </div>
                     
                 </div> "
-            ;
+                ;
     $html_free =  "<div class='col-md-6 mt_30'>
                 
                 <div class='event2_box'>
@@ -247,7 +244,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='false'>
                         <div class='panel panel-default'>
                         <div class='panel-heading accor_btn' role='tab' id='headingOne'>
-                            <button type='button' data-toggle='collapse' data-target='#$idevent' aria-expanded='false'>
+                            <button class='d-flex align-items-center justify-content-between'type='button' data-toggle='collapse' data-target='#$idevent' aria-expanded='false'>
                                 <i class='fal fa-angle-down'></i>
                             </button>
                         </div>
