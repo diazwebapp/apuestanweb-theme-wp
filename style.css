@@ -631,17 +631,17 @@ a.btn_2:hover{
 	width: 1.4rem;
 	margin-right: 0.6rem;
 }
-.event>div>h2:nth-child(2){
+.event>p>h2:nth-child(2){
 	padding: 0 3rem;
 	display: inline-block;
 }
-.event>div>h2:first-child,
-.event>div>h2:last-child{
+.event>p>h2:first-child,
+.event>p>h2:last-child{
 	width: 40%;
 }
-.event>div>h2:first-child {
+.event>p>h2:first-child {
     text-align: center;
-    width: 40rem;
+    width: 100%;
 }
 .img_logo img{
 	max-height: 4.3rem;
