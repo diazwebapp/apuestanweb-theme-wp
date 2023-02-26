@@ -34,14 +34,19 @@ if ($teams['team1'] && $teams['team2']){
             <div class='img_logo'>
                 <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
             </div>
-            <p class='d-none d-lg-flex'>
-                <h2>{$teams['team1']['acronimo']} vs {$teams['team2']['acronimo']}</h2>
+            <div class='d-none d-lg-flex'>
+                <h2>{$teams['team1']['name']} vs {$teams['team2']['name']}</h2>
 
-            </p> 
+            </div>
+            <div class='d-block d-sm-block d-md-none'>
+                <p>{$teams['team1']['acronimo']} VS {$teams['team2']['acronimo']}</p>
+
+            </div> 
             <div class='img_logo'>
                 <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
             </div>
             <div class='d-lg-none d-block'>
+            
                 <div class='match_time_box league_box1'>
                         <i class='{$sport['class']}'></i>
                     <p class='date_item_pronostico_top'>
