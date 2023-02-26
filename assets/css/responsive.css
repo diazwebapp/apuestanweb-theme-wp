@@ -408,8 +408,8 @@
 	.slider .owl-dots .owl-dot:last-child{
 		margin-right: 0;
 	}
-	.event>p>span:first-child, 
-	.event>p>span:last-child,
+	.event>p>h2:first-child, 
+	.event>p>h2:last-child,
 	.event>p:first-child,
 	.footer_menu_col,
 	.event>p:last-child{

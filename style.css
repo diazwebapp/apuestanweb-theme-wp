@@ -624,7 +624,7 @@ a.btn_2:hover{
 	text-align: center;
 }
 .event>p:nth-child(3){
-	width: 50%;
+	width: 0%;
 	justify-content: center;
 }
 .event>p>img{
