@@ -180,7 +180,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <span>Pick: '.$prediction.' </span>
 
                                 </div>
-                                <div class="rate_text d-sm-none">
+                                <div class="d-flex align-items-center justify-content-center rate_text d-sm-none">
                                 <span>'.$cuote.'</span>
                                 <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk">
                             </div>

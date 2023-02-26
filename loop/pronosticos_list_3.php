@@ -62,7 +62,7 @@ if(!empty($predictions)):
                             <p>{$prediction['cuote']}</p>
                             </div>";
 endif;
-$time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
+$time_format_html = "<p>".$date->format('g:i a')."</p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
@@ -99,8 +99,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                         <div class='event_top_middle'>
                                         <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                             $time_format_html
-                                            <p class='p2'><time datetime='".$date->format('Y-m-d h:i')."'>".date_i18n('d M', strtotime($date->format('Y-m-d')))."</time></p>                                    
-                                        </div>
+                                            <p class='p2'><time datetime='".$date->format('Y-m-d H:i:s')."'>".date_i18n('D, d M Y', strtotime($date->format('Y-m-d')))."</time></p>                                    
+                                            </div>
                                         <div class='event_top_right'>
 
                                             <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
@@ -142,8 +142,8 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                     <div class='event_top_middle'>
                                         <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                             $time_format_html                                   
-                                        <p class='p2'><time datetime='".$date->format('Y-m-d h:i')."'>".date_i18n('d M', strtotime($date->format('Y-m-d')))."</time></p>                                    
-                                    </div>
+                                            <p class='p2'><time datetime='".$date->format('Y-m-d H:i:s')."'>".date_i18n('D, d M Y', strtotime($date->format('Y-m-d')))."</time></p>                                    
+                                            </div>
                                     <div class='event_top_right'>
                                         <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                     </div>
@@ -207,7 +207,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 <div class='event_top_middle'>
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
                                         $time_format_html                                   
-                                    <p class='p2'><time datetime='".$date->format('Y-m-d h:i')."'>".date_i18n('d M', strtotime($date->format('Y-m-d')))."</time></p>                                    
+                                    <p class='p2'><time datetime='".$date->format('Y-m-d H:i:s')."'>".date_i18n('D, d M Y', strtotime($date->format('Y-m-d')))."</time></p>                                    
                                 </div>
                                 <div class='event_top_right'>
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >

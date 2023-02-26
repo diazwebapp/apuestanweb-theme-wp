@@ -474,14 +474,14 @@ header {
 	font-size: 2.2rem;
 	color: #fff;
 }
-.main_text h2{
+.main_text span{
 	font-size: 3.8rem;
 	font-weight: 400;
 	line-height: 1.2;
 	color: #ffffff;
 	margin-bottom: 0;
 }
-.main_text h2 strong{
+.main_text span strong{
 	margin: 0 1rem;
 	font-weight: 700;
 }
@@ -606,7 +606,7 @@ a.btn_2:hover{
 	display: flex;
 	align-items: center;
 }
-.event span:hover{
+.event h2:hover{
 	text-decoration: underline;
 }
 .event>p:first-child{
@@ -631,15 +631,15 @@ a.btn_2:hover{
 	width: 1.4rem;
 	margin-right: 0.6rem;
 }
-.event>p>span:nth-child(2){
+.event>p>h2:nth-child(2){
 	padding: 0 3rem;
 	display: inline-block;
 }
-.event>p>span:first-child,
-.event>p>span:last-child{
+.event>p>h2:first-child,
+.event>p>h2:last-child{
 	width: 40%;
 }
-.event>p>span:first-child {
+.event>p>h2:first-child {
     text-align: center;
     width: 100%;
 }
@@ -2279,7 +2279,7 @@ footer .menu li a::before{
 }
 
 .single_event_content ul, ol{
-	font-size: 15px;
+	font-size: 1.96rem;
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -2805,7 +2805,7 @@ blockquote{
 }
 .btn_text {
     font-weight: 700;
-    padding: 0.6rem 2rem;
+    padding: 1.1rem 2rem;
     font-size: 1.6rem;
     line-height: 2.6rem;
     color: #e8ecef;
@@ -2813,7 +2813,8 @@ blockquote{
     border-radius: 0.6rem;
 }
 .rate_text{
-	background: #4bc81a;	border-radius: 0.6rem;
+	background: #17a717;
+	border-radius: 0.6rem;
 	color: #ffffff;
 	font-size: 1.4rem;
 	line-height: 2.6rem;
@@ -2917,7 +2918,7 @@ blockquote{
 	font-weight: 500;
 	color: #E7ECF1;
 }
-.event_top_middle time{
+.event_top_middle p{
 	font-weight: 400;
 	color: #FFFFFF;
 	font-size: 1.65rem;
@@ -4758,6 +4759,10 @@ a.panel-button {
     border: 1px solid #e5e5e5;
     border-right: none;
     border-left: none;
+}
+p.has-background {
+    padding: 1.25em 2.375em;
+    border-radius: 1rem;
 }
   .col-aw{
 	color: #05142196;

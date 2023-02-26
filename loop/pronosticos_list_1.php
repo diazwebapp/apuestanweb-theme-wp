@@ -35,7 +35,7 @@ if ($teams['team1'] && $teams['team2']){
                 <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
             </div>
             <p class='d-none d-lg-flex'>
-                <span>{$teams['team1']['name']} vs {$teams['team2']['name']}</span>
+                <h2>{$teams['team1']['name']} vs {$teams['team2']['name']}</h2>
 
             </p>
             <div class='d-lg-none d-block'>
