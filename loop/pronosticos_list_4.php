@@ -34,14 +34,21 @@ $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 0;
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
-//Componente si es vip
 
+$estado_usuario = "permitido";
+    if(function_exists("aw_get_user_type")):
+        $user_type = aw_get_user_type($args["current_user"]);
+        if($user_type == "unreg"){
+            $estado_usuario = "no permitido";
+        }
+    endif;
+//Componente si es vip
 $vipcomponent ="<div class='plogo'>
                     <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                 </div>
                     <a href='{$params['vip_link']}'><p>{$params['text_vip_link']}</p></a>
                 <div class='rate'>?</div>";
-if(!$vip):
+if(!$vip or $estado_usuario=='permitido'):
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
     $prediction['cuote'] = $odds_result[$args["odds"]];

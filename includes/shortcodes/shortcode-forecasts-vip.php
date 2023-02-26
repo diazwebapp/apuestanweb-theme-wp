@@ -74,6 +74,7 @@ function shortcode_forecast_vip($atts)
     $args['text_vip_link'] = $text_vip_link;
     $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts/vip');
     $args['country_code'] = $geolocation->country_code;
+    $args["current_user_id"] =  get_current_user_id();
     $args['odds'] = $odds;
     $args['timezone'] = $geolocation->timezone;
     $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast_vip' id='load_more_forecast_vip' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
@@ -89,6 +90,7 @@ function shortcode_forecast_vip($atts)
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
+    $params .= "&current_user_id={$args['current_user_id']}";
     $params .= "&odds=$odds";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));

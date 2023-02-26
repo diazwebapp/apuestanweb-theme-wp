@@ -36,13 +36,19 @@ if(!isset($aw_system_location)):
 endif;
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
-
+$estado_usuario = "permitido";
+    if(function_exists("aw_get_user_type")):
+        $user_type = aw_get_user_type($args["current_user"]);
+        if($user_type == "unreg"){
+            $estado_usuario = "no permitido";
+        }
+    endif;
 //Componente si es vip
 $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                     <i class='far fa-lock'></i>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
-if($vip !='yes')
+if(!$vip or $estado_usuario == 'permitido')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
                         <p>Haz una apuesta</p>

@@ -79,6 +79,7 @@ function shortcode_parley($atts)
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
     $args['odds'] = $odds;
+    $args["current_user_id"] =  get_current_user_id();
     $args['exclude_parley'] = null;
     $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley' id='load_more_parley' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
 
@@ -96,6 +97,7 @@ function shortcode_parley($atts)
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['exclude_parley']) ? "&exclude_parley={$args['exclude_parley']}":"";
+    $params .= "&current_user_id={$args['current_user_id']}";
     $params .= "&odds=$odds";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));

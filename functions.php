@@ -1,4 +1,5 @@
 <?php
+
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
 /*--------------------------------------------------------------*/
@@ -91,7 +92,6 @@ include "rest-api/parley-controller.php";
 include "rest-api/notification-controller.php";
 include "rest-api/imagen-detacada-controller.php";
 
-
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
     'footer'=> __('Footer', 'jbetting'),
@@ -126,14 +126,10 @@ function jbetting_src()
 {
     /* 
     wp_dequeue_style( 'ihc_front_end_style');
-
 	wp_dequeue_style( 'ihc_templates_style');
-
-	wp_dequeue_script( 'jquery' );
 	wp_dequeue_script( 'ihc-jquery-ui'); 
-    wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
+    wp_dequeue_script( 'ihc-front_end_js' );
     */
-
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
     wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
@@ -181,6 +177,7 @@ function enqueuing_admin_scripts(){
     wp_enqueue_script('bootstrap.js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array(), '1.0.0', true);
     
     wp_enqueue_script( 'admin_medios', get_template_directory_uri() . '/assets/js/medios.js', array('jquery','media-upload','thickbox'), null, false );
+    wp_enqueue_script( 'dom-image-js', get_template_directory_uri() . '/assets/js/dom-to-image.min.js', array(), null, false );
     
 }
  
@@ -555,32 +552,30 @@ add_filter( 'carbon_fields_association_field_options_forecasts_post_post', 'crb_
 }
 add_filter( 'carbon_fields_association_field_title', 'crb_modify_association_field_title', 10, 5 );
 
-function aw_get_user_type(){
+function aw_get_user_type($wp_user){
 	/*
 	 * @param none
 	 * @return string
 	 */
 	$type = 'unreg';
-	if (function_exists('is_user_logged_in') && is_user_logged_in()){
-		if (current_user_can('manage_options')){
-			 return 'admin';
-		}
-		//pending user
-		global $current_user;
-		if ($current_user){
-			if (isset($current_user->roles[0]) && $current_user->roles[0]=='pending_user'){
+    
+	if (!empty($wp_user) and $wp_user->ID > 0){
+			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
 				$type = 'pending';
-			}else{
-				$type = 'reg';
-				$current_user = wp_get_current_user();
-				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
-				$levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
-
-				if ($levels!==FALSE && $levels!=''){
-						$type = $levels;
-				}
+                return $type;
 			}
-		}
+            if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='administrator'){
+				$type = 'admin';
+                return $type;
+			}
+            $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $wp_user->ID, true );
+            $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $wp_user->ID );
+
+            if ($levels!==FALSE && $levels!=''){
+                    $type = $levels;
+            }
+			
 	}
+    
 	return $type;
 }

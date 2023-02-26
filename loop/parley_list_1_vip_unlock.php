@@ -6,7 +6,6 @@ $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 $parley_title = get_the_title(get_the_ID());
-
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
@@ -14,9 +13,9 @@ $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
 $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
+$bookmaker = json_encode([]);
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
-$bookmaker = json_encode([]);
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
@@ -36,13 +35,29 @@ if(!isset($aw_system_location)):
 endif;
 
 $parley_id = get_the_ID();
-echo "<div class='parley_wrapper'>
-<div class='parley_top_content'>
-    <h2>$parley_title $fecha</h2>
-    
-</div>";
+
+$estado_usuario = "permitido";
+if(function_exists("aw_get_user_type")):
+    $user_type = aw_get_user_type($args["current_user"]);
+    if($user_type == "unreg"){
+        $estado_usuario = "no permitido";
+    }
+endif;
+
+
+$html = "<div class='parley_wrapper'>
+        <div class='parley_top_content' style='background-color:#009fe3 !important;'>
+            <h2>$parley_title $fecha</h2>
+        </div>
+        {replace-html-pronosticos}
+        {replace-html-box-2}
+    </div>";
+
+
+$html_pronosticos = '';
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
+        
         foreach ($forecasts as $event) {
             $predictions = carbon_get_post_meta($event['id'], 'predictions');
             $prediction = [];
@@ -75,7 +90,7 @@ echo "<div class='parley_wrapper'>
                 }
             }
 
-            echo "<div class='parley_box'>
+            $html_pronosticos .= "<div class='parley_box'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
@@ -104,14 +119,14 @@ echo "<div class='parley_wrapper'>
                                 <p class='p2'>{$teams['team2']['name']}</p>
                              </div>
                         </div>
-                        <div class=''>
-                            <div class='d-lg-none d-block'>
-                                <div class='parley_right_first'>
-                                    <p class='p1'>{$prediction['title']}</p>
-                                    <p class='p2'>{$prediction['cuote']}</p>
-                                </div>
+                        
+                        <div class='d-lg-none d-block'>
+                            <div class='parley_right_first'>
+                                <p class='p1'>{$prediction['title']}</p>
+                                <p class='p2'>{$prediction['cuote']}</p>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class='parley_right_content'>
@@ -127,20 +142,11 @@ echo "<div class='parley_wrapper'>
                         Ver análisis
                     </a>
                 </div>  
-                </div>";
-            echo "<div class='parley_collpase_content'>
-            <div id='one{$event['id']}' class='collapse' >
-                <div class='parley_collapse_wrapper'>
-                    <div class='parley_collapse'>
-                        $content
-                    </div>
-                </div>
-            </div>
-
-        </div>";
+            </div>";
         }
     }
-    echo "<div class='parley_box2'>
+
+$html_box_2 = "<div class='parley_box2'>
                 <div class='parley_left_content2 d-md-block d-none'>
                     <img width='90' height='30' style='object-fit:contain;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                 </div>
@@ -166,5 +172,9 @@ echo "<div class='parley_wrapper'>
                         <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
                     </div>      
                 </div>
-            </div>";
-echo "</div>";
+            </div>"
+;
+
+$html = str_replace("{replace-html-pronosticos}",$html_pronosticos,$html);
+$html = str_replace("{replace-html-box-2}",$html_box_2,$html);
+echo $html;

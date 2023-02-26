@@ -54,7 +54,8 @@ function shortcode_forecast($atts)
                 </div>";
     endif;
     
-    $args = [];
+    
+
     $league_arr = null;
     
     if(is_array($league) and count($league) > 0):
@@ -71,8 +72,8 @@ function shortcode_forecast($atts)
         $league_arr = "[{replace-leagues}]";
         $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
     endif;
-        
-    //$query = new WP_Query($args);
+   
+    $args = [];
     $args['paged']          = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1);
     $args['posts_per_page'] = $num;
     $args['leagues'] =  $league_arr;
@@ -85,6 +86,7 @@ function shortcode_forecast($atts)
     $args['timezone'] = $geolocation->timezone;
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
+    $args["current_user_id"] =  get_current_user_id();
     $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
     
     $post_type = get_post_type( );
@@ -102,6 +104,7 @@ function shortcode_forecast($atts)
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
+    $params .= "&current_user_id={$args['current_user_id']}";
     $params .= "&odds=$odds";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));

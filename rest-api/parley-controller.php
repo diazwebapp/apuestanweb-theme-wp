@@ -2,13 +2,14 @@
 
 function aw_get_parleys(WP_REST_Request $request){
     $params = $request->get_params();
+    $wp_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'parley';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
     $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
-    $args['order']          = 'ASC';
+    $args['order']          = 'DESC';
 
     if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
@@ -51,31 +52,21 @@ function aw_get_parleys(WP_REST_Request $request){
     ] );
 
     if ($query->have_posts()) :
-
+        $view_params = [
+            "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+            "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
+            "odds" => isset($params['odds']) ? $params['odds'] : null,
+            "current_user" => isset($wp_user) ? $wp_user : null
+        ];
         while ($query->have_posts()):
             $query->the_post();
-            $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}",null,[
-                "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-                "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-                "odds" => isset($params['odds']) ? $params['odds'] : null
-        ]); 
+            $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}",null,$view_params); 
         endwhile;
 
     else:
         $home_url = get_home_url( null, '/', null );
         $loop_html["status"] = 'fail';
-        $loop_html["html"] = '<div class="container">
-        <div class="row mt-5">
-          <div class="col-md-6 offset-md-3">
-            <div class="jumbotron">
-                <h2 class="display-5 col-aw">'.__("Sin pronósticos disponibles.","jbetting").'</h2>
-                <p class="small col-aw"><strong>'.__("Regresa más tarde para ver los pronósticos.","jbetting").'</strong></p>
-              <hr class="my-4">
-              <a href="'.$home_url.'" class="button btn-lg">'.__("Ir al Inicio","jbetting").'</a>
-            </div>
-          </div>
-        </div>
-      </div>';
+        $loop_html["html"] = '<div class="mt-5 alert alert-primary mx-auto w-50" role="alert"><div>'.__("Sin pronósticos disponibles, regresa más tarde!","jbetting").' <a href="'.$home_url.'" class="alert-link">'.__("Ir al Inicio","jbetting").'</a></div></div>';
 
     endif;
 
@@ -84,13 +75,14 @@ function aw_get_parleys(WP_REST_Request $request){
 
 function aw_get_parleys_vip(WP_REST_Request $request){
     $params = $request->get_params();
+    $wp_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'parley';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
     $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
-    $args['order']          = 'ASC';
+    $args['order']          = 'DESC';
 
     if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
