@@ -2942,10 +2942,10 @@ blockquote{
 .event2_box_middle_heading{
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
+	align-items: center;
 	padding-top: 0.8rem;
 }
-.event2_box_middle_heading h4{
+.event2_box_middle_heading h3{
 	font-size: 2.0rem;
 	line-height: 1.2;
 	color: #111111;
