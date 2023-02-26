@@ -58,7 +58,7 @@ if(!empty($predictions)):
     $prediction['cuote'] = $odds_result[$args["odds"]];
 
     $html_predictions = "<div class='event2_box_middle_heading'>
-                            <h4>{$prediction['title']}</h4>
+                            <h3>{$prediction['title']}</h3>
                             <p>{$prediction['cuote']}</p>
                             </div>";
 endif;
