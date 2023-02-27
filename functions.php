@@ -570,18 +570,17 @@ function aw_get_user_type($wp_user){
 	return $type;
 }
 
-function initCors(  ) {
-    $origin_url = '*';
-  
-    // Check if production environment or not
-    if (ENVIRONMENT === 'production') {
-      $origin_url = 'https://apuestan.net';
-    }
-  
-    header( 'Access-Control-Allow-Origin: ' . $origin_url );
-  header( 'Access-Control-Allow-Methods: GET' );
-  header( 'Access-Control-Allow-Credentials: true' );
-    return ;
+function initCors( $value ) {
+    $origin = get_http_origin();
+  $allowed_origins = [ 'apuestan.com' ];
+
+  if ( $origin && in_array( $origin, $allowed_origins ) ) {
+    header( 'Access-Control-Allow-Origin: ' . esc_url_raw( $origin ) );
+    header( 'Access-Control-Allow-Methods: GET' );
+    header( 'Access-Control-Allow-Credentials: true' );
+  }
+
+  return $value;
   }
 
   add_action( 'rest_api_init', function() {
