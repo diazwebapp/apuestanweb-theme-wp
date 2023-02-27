@@ -4471,12 +4471,13 @@ a.panel-button {
 } 
 .wp-block-media-text img{
 	border-radius: 1rem;
-  } 
+} 
   .wp-block-separator {
     border: 1px solid #e5e5e5;
     border-right: none;
     border-left: none;
 }
+
 p.has-background {
     padding: 1.25em 2.375em;
     border-radius: 1rem;
