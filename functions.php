@@ -572,7 +572,7 @@ function aw_get_user_type($wp_user){
 
 function initCors( $value ) {
     $origin = get_http_origin();
-  $allowed_origins = [ 'apuestan.com' ];
+    $allowed_origins = [  ];
 
   if ( $origin && in_array( $origin, $allowed_origins ) ) {
     header( 'Access-Control-Allow-Origin: ' . esc_url_raw( $origin ) );
