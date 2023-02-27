@@ -568,3 +568,10 @@ function aw_get_user_type($wp_user){
     
 	return $type;
 }
+
+add_action( 'pre_insert_term', function ( $term, $taxonomy )
+{
+    return ( 'bookmaker-payment-methods' === $taxonomy && !current_user_can( 'manage_options' ) )
+        ? new WP_Error( 'term_addition_blocked', __( 'No puedes añadir términos a esta taxonomía.' ) )
+        : $term;
+}, 0, 2 );
