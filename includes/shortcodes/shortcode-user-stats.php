@@ -20,7 +20,7 @@ function shortcode_user_stats($atts)
     $img_perc = get_template_directory_uri(  ) .'/assets/img/s56.png';
     $fail_gradient = $stats['porcentaje_fallidos'] + $stats['porcentaje_fallidos'];
     $null_gradient = $fail_gradient + $stats['porcentaje_nulos'];
-    $user_permalink = PERMALINK_PROFILE.'?profile='.$id;
+
     $args = array(
         'post_type' => 'forecast',
         'author' => $id,
@@ -34,24 +34,29 @@ function shortcode_user_stats($atts)
             <div class='tab-menu-container'>
             <ul class='nav nav-tabs flex-column'>
             <li class='nav-item'>
-            <a class='nav-link active' data-toggle='tab' href='$user_permalink'>Perfil</a>
+            <a class='nav-link active' data-toggle='tab' href='#profile'>Perfil</a>
             </li>
             <!--  <li class='nav-item'>
-            <a class='nav-link' data-toggle='tab' href='$user_permalink'>Stats</a>
+            <a class='nav-link' data-toggle='tab' href='#stats'>Stats</a>
             </li>-->
             <li class='nav-item'>
-            <a class='nav-link' data-toggle='tab' href='$user_permalink'>Picks</a>
+            <a class='nav-link' data-toggle='tab' href='#posts'>Picks</a>
             </li>
             </ul>
             </div>
-            <div class='tab-content'>
+            <div class='tab-content w-100'>
             <div id='profile' class='container tab-pane active'>
             <div class='row'>
-            <div class='col-4 image-container'>
+            <div class='col-3 image-container'>
             <img class='rounded-circle' src='$avatar' width='70px' height='70px' alt='$display_name'>
             </div>
+<<<<<<< HEAD
             <div class='col-8'>
             <span class='user-name'>$display_name</span>
+=======
+            <div class='col-9'>
+            <h2 class='user-name'>$display_name</h2>
+>>>>>>> 3512732c8990d32e214a24dd258ffb813efa1f9f
             <p class='user-bio'>".get_the_author_meta('description', $id)."</p>
             <div class='user-social'>
             ".(get_the_author_meta('facebook', $id) ? "<a href='".get_the_author_meta('facebook', $id)."' aria-label='follow me on facebook' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-facebook'></i></a>" : "")."
@@ -82,7 +87,7 @@ function shortcode_user_stats($atts)
                 </div>
             </div>
             </div>-->
-            <div id='posts' class='container tab-pane'>
+            <div id='posts' class='container tab-pane w-100'>
             <span class='section-title'>Últimos pronósticos</span>
             <div class='list-group'>";
             foreach ($posts as $post) {
