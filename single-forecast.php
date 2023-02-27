@@ -23,6 +23,8 @@
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
                             $link       = carbon_get_post_meta( get_the_ID(), 'link' );
                             $vip = carbon_get_post_meta(get_the_ID(),'vip');
+                            $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
+
                             
                             $current_user_2 = aw_get_user_type(wp_get_current_user(  ));
                             
