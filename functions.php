@@ -576,7 +576,7 @@ function initCors( $value ) {
 
   if ( $origin && in_array( $origin, $allowed_origins ) ) {
     header( 'Access-Control-Allow-Origin: ' . esc_url_raw( $origin ) );
-    header( 'Access-Control-Allow-Methods: GET' );
+    header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE' );
     header( 'Access-Control-Allow-Credentials: true' );
   }
 
