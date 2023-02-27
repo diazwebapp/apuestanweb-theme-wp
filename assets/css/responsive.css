@@ -11,7 +11,7 @@
 	    font-size: 5.5rem;
 	}
 	.share-buttons-container.is_stuck {
-		left: 1vw;
+		left: 5vw;
 	}   
 }
 @media (min-width: 1200px) { 
@@ -408,8 +408,8 @@
 	.slider .owl-dots .owl-dot:last-child{
 		margin-right: 0;
 	}
-	.event>p>span:first-child, 
-	.event>p>span:last-child,
+	.event>p>h2:first-child, 
+	.event>p>h2:last-child,
 	.event>p:first-child,
 	.footer_menu_col,
 	.event>p:last-child{
@@ -852,6 +852,10 @@
 	}
 	.bookmaker_left_content {
 	    flex-direction: column;
+		width: 20rem;
+	}
+	.bookmaker_left_heading h2 {
+		padding-right: 0;
 	}
 	.bookmaker_logo_box{
 		width: 30rem;
@@ -967,7 +971,7 @@
 	
 
 	/*single event area*/
-	.single_match_time {
+	.event_start {
 	    padding-left: 1.5rem;
 	    padding-right: 1.5rem;
 	}
@@ -1384,20 +1388,8 @@
 	color: #fff;
 	margin-left: 0;
 	margin: auto;
-}    
-    
-    
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-     .estad__wp {
+}   
+    .estad__wp {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -1668,6 +1660,9 @@
 	html{
 		font-size: 1.76vw;
 	}
+	body{
+		zoom: 0%;
+	}
 	.bookmaker_wrapper {
 	    padding-top: 6rem;
 	}
@@ -1785,6 +1780,7 @@
 		margin-right:0;
 	}
 	
+	
 	.blog_heading_right_content {
 	    display: none;
 	}
@@ -1816,7 +1812,7 @@
 	    padding: 6rem 15px 8rem;
 	    margin-left: -15px;
 	    margin-right: -15px;
-	    border-radius: 0;
+	    border-radius: 1.2rem;
 	    margin-bottom: 0;
 	}
 
@@ -1843,6 +1839,9 @@
 		width: 100%;
 	}
 	.s-f{
+		font-size: 2rem;
+	}
+	.media h3 {
 		font-size: 2rem;
 	}
 
@@ -1936,7 +1935,7 @@
 		display: none;
 	}
 	.btn_text {
-	    width: 100%;
+	    width: 65%;
 	    display: flex;
 	    justify-content: space-between;
 	    align-items: center;
@@ -2013,6 +2012,22 @@
 	.text-success {
 		font-size: 1.8rem;
 	}  
+	.event2_top_box_wrapper a {
+		font-size: 1.8rem;
+	}
+	.main_text .media-body {
+		padding-left: 0; 
+	}
+	.author-name {
+		font-size: 1.9rem;
+	}
+	.post-date {
+		font-size: 1.9rem;
+	}
+/* 	.bookmaker_left_check {
+		width: 0;
+
+	} */
 
 }
 
@@ -2039,7 +2054,7 @@
 		margin: 24px auto;
 	}
 	.share-buttons-container.is_stuck {
-		left: 5vw;
+		left: 10vw;
 	}  
 
 }
@@ -2071,7 +2086,7 @@
 
 	}
 	.share-buttons-container.is_stuck {
-		left: 1vw;
+		left: 13vw;
 	}  
 }
 

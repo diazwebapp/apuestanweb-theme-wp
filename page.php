@@ -7,14 +7,13 @@ $banner_top = carbon_get_post_meta(get_the_ID(), 'banner_top');
 $custom_banner_top = carbon_get_post_meta(get_the_ID(), 'custom_banner_top');
 $custom_banner_bottom = carbon_get_post_meta(get_the_ID(), 'custom_banner_bottom');
 $disable_title = carbon_get_post_meta(get_the_ID(), 'disable_title');
+$disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 
 
 if ( $textbefore ):
 	echo do_shortcode("{$textbefore}");
 endif;
-
-
- ?>
+?>
 
 	<main>
 	<?php 
@@ -40,6 +39,7 @@ endif;
 							$content = str_replace(']]>', ']]>', $content);
 							$formatted_content = do_shortcode($content);
 
+
 								if(!$disable_title):
 									echo "<h1 class='title mt_30 order-lg-1' >".(!empty($custom_h1) ? $custom_h1:get_the_title(get_the_ID()))."</h1>";
 								endif;
@@ -48,11 +48,28 @@ endif;
 								echo "<div class='page_content text-break'>
 										$formatted_content
 									</div>";
-							endif; 
+								endif; 
+							 if ($disable_table ):
+								echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' style='font-size: 1.8rem; margin-block-start: 1rem; margin-block-end: 1rem;'>
+										Tabla de Contenido
+										<i class='fas fa-angle-down'></i>
+									</button>
 
+									<!-- Add the table of contents -->
+									<div class='collapse' id='table-of-contents'>
+										<div class='card mt-3'>
+											<div class='card-header'>
+												Tabla de Contenido
+											</div>
+											<ul class='list-group list-group-flush'>
+											</ul>
+										</div>
+									</div>";
+								endif;
 							if ( $faq_area ):
-
+								
 								echo "<div class='single_event_content container_bottom text-break'>
+								
 									<div class='row'>
 										<div>
 											$faq_area										
@@ -81,6 +98,6 @@ endif;
 				if($custom_banner_bottom)
 					echo do_shortcode($custom_banner_bottom);
 					
-			?>
+		?>
 	</main>
-<?php get_footer(); ?>
+<?php get_footer();?>

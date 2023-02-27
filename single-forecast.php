@@ -62,7 +62,7 @@
                                     if($tax_league->parent == 0):
                                         $sport = $tax_league; //define forecast sport
                                         $icon_class = carbon_get_term_meta($sport->term_id,'fa_icon_class');
-                                        $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                        $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon"/>';
                                     endif;
                                 endforeach;
                                 if($sport):
@@ -85,7 +85,7 @@
                                         if($leaguefor->parent == $sport->term_id):
                                             $league = $leaguefor; //define forecast sport
                                             $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon" />';
                                         endif;
                                     endforeach;
                                 endif;
@@ -106,7 +106,7 @@
                                         <h1 class="title_lg"><?php the_title() ?></h1>
                                     </div>
                                     <!-- breadcrumb -->
-                                    <div class="single_event_breadcrumb">
+                                    <div class="single_event_breadcrumb text-capitalize">
                                         <ul>
                                             <li>
                                                 <a href="<?php echo get_home_url() ?>">
@@ -140,16 +140,17 @@
                                         </div>
                                         <div class="single_event_banner_middle">
                                             <div class="single_team1">
+                                                
                                                 <img loading="lazy" src="<?php echo isset($teams["team1"]["logo"]) ? $teams["team1"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
                                                 <p><?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?></p>
                                             </div>
-                                            <div class="single_match_time">                    
-                                                <time datetime="<?php echo $datetime->format("Y-m-d h:i") ?>" ><?php echo $datetime->format("h:i a") ?></time>
+                                            <div class="event_start">                    
+                                                <time datetime="<?php echo $datetime->format("Y-m-d H:i:s") ?>" ><?php echo $datetime->format("h:i a") ?></time>
                                                 <?php echo date_i18n("d M Y", strtotime($datetime->format("d M Y")));?>   
                                                                        
                                             </div>
                                             <div class="single_team1">
-                                                <img loading="lazy" src="<?php echo isset($teams["team2"]["logo"]) ? $teams["team2"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
+                                                <img loading="lazy" src="<?php echo isset($teams["team2"]["logo"]) ? $teams["team2"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?>" title="<?php echo isset($teams["team2"]["name"]) ? $teams["team1"]["name"] : ''?>">
                                                 <p><?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?></p>
                                             </div>
                                         </div>
@@ -158,20 +159,42 @@
                                     <div class="single_event_content text-break">
                                         
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
-                                        <?php remove_filter( 'the_content', 'wpautop' );?>		
+                                        <?php remove_filter( 'the_content', 'wpautop' );?>	
+                                        <?php if ( !$disable_table ): ?>
+                                                <!-- Add the button to toggle the table of contents -->
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
+                                                    <?php echo __('Contenido del pronóstico', 'jbetting' );?>
+                                                    <i class="fas fa-angle-down"></i>
+                                                </button>
+
+                                                <!-- Add the table of contents -->
+                                                <div class="collapse" id="table-of-contents">
+                                                    <div class="card mt-3">
+                                                        <div class="card-header">
+                                                        <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                        <?php endif; ?>
                                         <?php the_content() ?>                                                                          	
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
+                                        <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximacion, verifica antes de hacer tu apuesta')?></p>
+
                                     </div>
                                     <div class="stats-w"><?php echo do_shortcode("[user_stats]") ?></div>	
                                     <div class="title_wrap single_event_title_wrap">
                                         <h3 class="title-b mt_30 order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h3>
                                         <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="mt_30 dropd order-lg-3">Ver Todo</a>
                                     </div>
-                                    <?php echo do_shortcode("[forecasts model='2' num='4' league='$sport->name']") ?>		
-                            </div>
+                                        <?php echo do_shortcode("[forecasts model='2' num='3' league='$sport->name']") ?>		
+                                </div>
                             <!-- sidebar -->
-                            <div class="col-lg-4">
+        
+                            <div class="col-lg-3">
                                 <div class="row justify-content-end"><?php dynamic_sidebar( "forecast-right" ) ?></div>
+                                
                             </div>
                     <?php endwhile;
                     endif;
@@ -181,3 +204,11 @@
     </div>
 </main>
 <?php get_footer(); ?>
+
+
+
+
+
+
+
+

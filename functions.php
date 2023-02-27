@@ -59,7 +59,6 @@ include "includes/handlers/geolocation.php";
 /*--------------------------------------------------------------*/
 
 include "includes/ajax_handlers/news_loadmore.php";
-include "includes/ajax_handlers/notifica.php";
 include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
 include "includes/handlers/author_posts_table.php";
@@ -81,6 +80,8 @@ include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 
 include "rest-api/register-routes.php";
+//include "rest-api/telegram-post-publisher.php";
+//include "rest-api/translator-ia.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
@@ -93,6 +94,7 @@ include "rest-api/imagen-detacada-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
+    'footer'=> __('Footer', 'jbetting'),
 ));
 
 
@@ -145,10 +147,23 @@ function jbetting_src()
     wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
+    wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
+
+
 
 
 
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
+<<<<<<< HEAD
+=======
+    wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
+    wp_enqueue_script( 'stick-js' );
+
+    //wp_enqueue_script( 'noti-js' );
+    //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
+   // wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
+
+>>>>>>> 539737690e677c2ba0f631004ba72829e929f028
 }
 
 function enqueuing_admin_scripts(){
@@ -158,7 +173,10 @@ function enqueuing_admin_scripts(){
     wp_enqueue_script('bootstrap.js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array(), '1.0.0', true);
     
     wp_enqueue_script( 'admin_medios', get_template_directory_uri() . '/assets/js/medios.js', array('jquery','media-upload','thickbox'), null, false );
+<<<<<<< HEAD
     wp_enqueue_script( 'dom-image-js', get_template_directory_uri() . '/assets/js/dom-to-image.min.js', array(), null, false );
+=======
+>>>>>>> 539737690e677c2ba0f631004ba72829e929f028
     
 }
  
@@ -174,6 +192,46 @@ add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
         });
     } */
 
+// convert images to .wepb
+function convert_to_webp($image_path) {
+
+        if (pathinfo($image_path['file'], PATHINFO_EXTENSION) === 'svg') {
+            // Return the original file path if it is a .svg file
+            return $image_path;
+        }
+        if(imagetypes() & IMG_WEBP) {
+          $extension = pathinfo($image_path['file'], PATHINFO_EXTENSION);
+          $webp_image = preg_replace("/\.{$extension}/", '.webp', $image_path['file']);
+          $image = null;
+          switch ($extension) {
+            case 'jpeg':
+            case 'jpg':
+              $image = imagecreatefromjpeg($image_path['file']);
+              break;
+            case 'png':
+              $image = imagecreatefrompng($image_path['file']);
+              break;
+            default:
+              $image = null;
+              break;
+          }
+          if (!$image) {
+            return $image_path;
+          }
+          imagewebp($image, $webp_image, 70);
+          return array(
+            'file' => $webp_image,
+            'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),
+            'type' => 'image/webp'
+          );
+        }
+        return $image_path;
+      }
+      
+add_filter('wp_handle_upload', 'convert_to_webp');
+
+      
+      
 function draw_rating($rating)
 {
     $ret = '';
@@ -273,41 +331,45 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
   
-function aw_mime_types($mimes) {
-	$mimes['webp'] = 'image/webp';
-    $mime['avif'] = 'image/avif';
-    $mime['avis'] = 'image/avif-sequence';
+    add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+        $filetype = wp_check_filetype( $filename, $mimes );
+        return [
+            'ext'             => $filetype['ext'],
+            'type'            => $filetype['type'],
+            'proper_filename' => $data['proper_filename']
+        ];
+      
+      }, 10, 4 );
+      
+      function cc_mime_types( $mimes ){
+        $mimes['svg'] = 'image/svg+xml';
+        $mimes['webp'] = 'image/webp';
+        $mimes['avif'] = 'image/avif';
+        $mimes['avis'] = 'image/avif-sequence';
 
-    
+        return $mimes;
+      }
+      add_filter( 'upload_mimes', 'cc_mime_types' );
+      
+      function fix_svg() {
+        echo '<style type="text/css">
+              .attachment-266x266, .thumbnail img {
+                   width: 100% !important;
+                   height: auto !important;
+              }
+              </style>';
+      }
+      add_action( 'admin_head', 'fix_svg' );
 
-	return $mimes;
-}
-add_filter('upload_mimes', 'aw_mime_types');
 
-add_filter( 'upload_mimes', function() {
-  $mimes = [
-    'svg' => 'image/svg+xml',
-    'jpg|jpeg' => 'image/jpeg',
-    'png' => 'image/png',
-  ];
-  return $mimes;
-});
-
-function filter_webp_quality( $quality, $mime_type ){
-    if ( 'image/webp' === $mime_type ) {
-       return 50;
-    }
-    return $quality;
-  }
-
-add_filter( 'wp_editor_set_quality', 'filter_webp_quality', 10, 2 );
 
 /////Obtiene los enlaces de RRSS///////
 function get_rrss() {
-    define('tl',get_option('tl'));
-    define('fb',get_option('fb'));
-    define('tw',get_option('tw'));
-    define('ig',get_option('ig'));
+    define('tl',carbon_get_theme_option('tl'));
+    define('fb',carbon_get_theme_option('fb'));
+    define('tw',carbon_get_theme_option('tw'));
+    define('ig',carbon_get_theme_option('ig'));
+    
 }
 
 add_action( 'wp_loaded', 'get_rrss' );
@@ -489,12 +551,17 @@ add_filter( 'carbon_fields_association_field_options_forecasts_post_post', 'crb_
 }
 add_filter( 'carbon_fields_association_field_title', 'crb_modify_association_field_title', 10, 5 );
 
+<<<<<<< HEAD
 function aw_get_user_type($wp_user){
+=======
+function aw_get_user_type(){
+>>>>>>> 539737690e677c2ba0f631004ba72829e929f028
 	/*
 	 * @param none
 	 * @return string
 	 */
 	$type = 'unreg';
+<<<<<<< HEAD
     
 	if (!empty($wp_user) and $wp_user->ID > 0){
 			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
@@ -516,3 +583,28 @@ function aw_get_user_type($wp_user){
     
 	return $type;
 }
+=======
+	if (function_exists('is_user_logged_in') && is_user_logged_in()){
+		if (current_user_can('manage_options')){
+			 return 'admin';
+		}
+		//pending user
+		global $current_user;
+		if ($current_user){
+			if (isset($current_user->roles[0]) && $current_user->roles[0]=='pending_user'){
+				$type = 'pending';
+			}else{
+				$type = 'reg';
+				$current_user = wp_get_current_user();
+				$levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $current_user->ID, true );
+				$levels = apply_filters( 'ihc_public_get_user_levels', $levels, $current_user->ID );
+
+				if ($levels!==FALSE && $levels!=''){
+						$type = $levels;
+				}
+			}
+		}
+	}
+	return $type;
+}
+>>>>>>> 539737690e677c2ba0f631004ba72829e929f028

@@ -9,10 +9,15 @@ endif;
 
 echo "<div class='container mt_55 home_container'>
     <div class='inner_bg' style='background:{$params['src_bg']};background-size:cover;'>
-        <h1>
-            $html_logo
-            {$params['title']}
-        </h1>
-        <img src='$alt_logo' class='logo2' alt='apuestabweb mini logo'>
+
+        <p class='d-flex'>
+            <div class='p-2 icon-news'>
+                 $html_logo
+            </div>
+            <div class='p-2'>
+                <h1>{$params['title']}</h1>
+            </div>
+        </p>
+        <img src='$alt_logo' class='logo2' alt='apuestanlogo'>
     </div>
 </div>";

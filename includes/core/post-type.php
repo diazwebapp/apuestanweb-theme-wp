@@ -43,6 +43,7 @@ function create_bk() {
 		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-star-filled',
 		'show_in_admin_bar'   => true,
+		'show_in_rest' 		  => true,
 		'show_in_nav_menus'   => true,
 		'can_export'          => true,
 		'has_archive'         => true,
@@ -109,7 +110,7 @@ function create_forecast() {
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
 		'register_meta_box_cb' => 'aw_forecast_img_destacada_personalizada',
-		'rewrite' => array('slug' => 'pronosticos', 'with_front'=> true)
+		'rewrite' => array('slug' => 'prediccion', 'with_front'=> true)
 
 	);
 	register_post_type( 'forecast', $args );

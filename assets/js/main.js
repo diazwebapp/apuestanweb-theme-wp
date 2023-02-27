@@ -181,17 +181,32 @@
                 $(".share-buttons-container").addClass("is_stuck");
             });
         }
+
+        
     });
-    
-    
-      
+    $(document).ready(function(){
+        $("#table-of-contents").on("hide.bs.collapse show.bs.collapse", function(){
+          $(this).prev().find(".fas").toggleClass("fa-angle-down fa-angle-up");
+        });
+      });
 
+    document.addEventListener("DOMContentLoaded", function() {
+        const contentDiv = document.querySelector(".single_event_content");
+        const headers = contentDiv.querySelectorAll("h2, h3");
+        const toc = document.querySelector("#table-of-contents .list-group");
+        let headerCount = 0;
     
-      
-      
+        for (const header of headers) {
+          header.id = header.innerText.toLowerCase().replace(/\s/g, "-") + "-" + headerCount;
+          headerCount++;
     
-     
-
-
+          const link = document.createElement("a");
+          link.href = "#" + header.id;
+          link.innerText = header.innerText;
+          link.classList.add("list-group-item", "list-group-item-action");
+    
+          toc.appendChild(link);
+        }
+      });
 
 })(jQuery);

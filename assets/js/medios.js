@@ -43,20 +43,7 @@ async function generate_base64(element){
     element.textContent = "generando..."
     let post_id = element.getAttribute("post-id")
 
-    /* let plantilla = document.getElementById("plantilla")
-    let equipo1 = document.getElementById("equipo-1")
-    let equipo2 = document.getElementById("equipo-2")
-   
-    var canvas = document.createElement("canvas");
-    canvas.width = plantilla.getAttribute("width")
-    canvas.height = plantilla.getAttribute("height")
-    var ctx = canvas.getContext("2d");
     
-    ctx.drawImage(plantilla, 0, 0);    
-    ctx.drawImage(equipo1,153,150, equipo1.offsetWidth,equipo1.offsetHeight);
-    ctx.drawImage(equipo2,516,150, equipo1.offsetWidth,equipo1.offsetHeight);
-    
-    let dataurl = canvas.toDataURL() */
     let template = document.getElementById("thumb-template")
     let dataurl = await domtoimage.toPng(template)
     

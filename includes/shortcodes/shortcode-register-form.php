@@ -120,9 +120,6 @@ function aw_register_form($attr=array()){
                     <p class="text-body" >
                         Para ser miembro de Apuestan, primero debes completar el registro y aceptar nuestros términos de servicio.
                     </p>
-                    <div class="mt-5" ></div>
-                    <a class="twitter-timeline" data-height="500" data-dnt="true" data-theme="dark" href="https://twitter.com/Apuestan">Tweets por Apuestan</a>
-                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     
                 </div>
             </div>

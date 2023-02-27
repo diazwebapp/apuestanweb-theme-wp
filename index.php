@@ -1,4 +1,4 @@
-<?php get_header(); 
+<?php get_header();
 $args['post_type'] = 'post';
 $args['posts_per_page'] = 1;
 $args['paged'] = 1;
@@ -27,7 +27,7 @@ endif;
                     <div class="col-lg-12">
                         <div class="blog_hero_content">
                             <div class="blog_top_content">
-                                <img src="<?php echo $alt_logo ?>" class="img-fluid" alt="">
+                                <img src="<?php echo $alt_logo ?>" class="img-fluid" alt="icon-apuestan">
                                 <p>Blog &amp; Noticias</p>
                             </div>
                             <h2><?php echo $h1 ?></h2>
@@ -49,4 +49,4 @@ endif;
     </div>
 </main>
 
-<?php get_footer(); ?>
+<?php get_footer();?>
