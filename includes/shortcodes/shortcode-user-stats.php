@@ -50,13 +50,8 @@ function shortcode_user_stats($atts)
             <div class='col-3 image-container'>
             <img class='rounded-circle' src='$avatar' width='70px' height='70px' alt='$display_name'>
             </div>
-<<<<<<< HEAD
             <div class='col-8'>
             <span class='user-name'>$display_name</span>
-=======
-            <div class='col-9'>
-            <h2 class='user-name'>$display_name</h2>
->>>>>>> 3512732c8990d32e214a24dd258ffb813efa1f9f
             <p class='user-bio'>".get_the_author_meta('description', $id)."</p>
             <div class='user-social'>
             ".(get_the_author_meta('facebook', $id) ? "<a href='".get_the_author_meta('facebook', $id)."' aria-label='follow me on facebook' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-facebook'></i></a>" : "")."
