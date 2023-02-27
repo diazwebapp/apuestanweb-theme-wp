@@ -238,7 +238,7 @@ function draw_rating($rating)
 }
 
 add_action('init', function(){
-    initCors( $value );
+    
     if(!session_id()):
         session_start();
     endif;
@@ -581,3 +581,5 @@ function initCors( $value ) {
     header( 'Access-Control-Allow-Origin: ' . esc_url_raw( site_url() ) );
     return $value;
   }
+
+  header( 'Access-Control-Allow-Origin: ' . esc_url_raw( site_url() ) );
