@@ -189,7 +189,7 @@
                                         <h3 class="title-b mt_30 order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h3>
                                         <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="mt_30 dropd order-lg-3">Ver Todo</a>
                                     </div>
-                                        <?php echo do_shortcode("[forecasts model='2' num='3' league='$sport->name']") ?>		
+                                        <?php echo do_shortcode("[forecasts model='2' num='6' league='$sport->name']") ?>		
                                 </div>
                             <!-- sidebar -->
         

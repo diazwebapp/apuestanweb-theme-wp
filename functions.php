@@ -80,8 +80,8 @@ include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 
 include "rest-api/register-routes.php";
-include "rest-api/telegram-post-publisher.php";
-// include "rest-api/translator-ia.php";
+//include "rest-api/telegram-post-publisher.php";
+//include "rest-api/translator-ia.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
 include "rest-api/payment-history-controller.php";
@@ -155,11 +155,6 @@ function jbetting_src()
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
-
-
-
-
-
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
     wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
     wp_enqueue_script( 'stick-js' );
@@ -249,6 +244,7 @@ function draw_rating($rating)
 }
 
 add_action('init', function(){
+    
     if(!session_id()):
         session_start();
     endif;
@@ -579,3 +575,23 @@ function aw_get_user_type($wp_user){
     
 	return $type;
 }
+
+function initCors( $value ) {
+    $origin = get_http_origin();
+    $allowed_origins = ["apuestan.com","apuestan.net"];
+
+  if ( $origin && in_array( $origin, $allowed_origins ) ) {
+    header( 'Access-Control-Allow-Origin: ' . esc_url_raw( $origin ) );
+    header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE' );
+    header( 'Access-Control-Allow-Credentials: true' );
+  }
+
+  return $value;
+  }
+
+  add_action( 'rest_api_init', function() {
+
+	remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+
+	add_filter( 'rest_pre_serve_request', "initCors");
+}, 15 );

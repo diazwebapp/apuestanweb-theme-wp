@@ -81,6 +81,7 @@ function shortcode_related_forecast($atts)
     $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts');
     $args['country_code'] = $geolocation->country_code;
     $args['timezone'] = $geolocation->timezone;
+    $args["current_user_id"] =  get_current_user_id();
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
     $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
@@ -100,6 +101,8 @@ function shortcode_related_forecast($atts)
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
     $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
+    $params .= "&current_user_id={$args['current_user_id']}";
+
     $params .= "&odds=$odds";
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));

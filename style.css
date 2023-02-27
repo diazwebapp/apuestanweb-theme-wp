@@ -2848,11 +2848,9 @@ blockquote{
 	right: 5rem;
 	top: 2.4rem;
 }
-.winl.loss{
-/* 	background-color: rgb(236 17 17);
- */}
 
 /*event 2 area start*/
+<<<<<<< HEAD
 .event2_box{
 	border: 0.1rem solid #e5e5e5;
 	overflow: hidden;
@@ -2963,6 +2961,9 @@ blockquote{
 	position: relative;
 	top: 0rem;
 }
+=======
+
+>>>>>>> 67972e23d8373c261c8be69fa17e64451c2d5ede
 
   
 .eventbanner_wrapper {
@@ -4094,6 +4095,10 @@ blockquote{
     width: 155px;
 	padding: 1rem;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 67972e23d8373c261c8be69fa17e64451c2d5ede
 /*Collapse event2 new*/
 .panel-default {
     border: none;
@@ -4189,6 +4194,10 @@ a.panel-button {
   .container_bottom {
 	padding: 2rem;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 67972e23d8373c261c8be69fa17e64451c2d5ede
 .container_bottom p{
  	color: #00203A;
 	font-size: 15px;
@@ -4359,7 +4368,7 @@ a.panel-button {
 .user-profile {
 	display: flex;
 	align-items: center;
-	padding: 20px;
+	padding: 5px;
 	background-color: #f5f5f5;
 	border-radius: 8px;
 	box-shadow: 0px 1.5rem 3rem rgb(162 166 177 / 38%);  }
@@ -4461,9 +4470,7 @@ a.panel-button {
  #stats{
 	width: 80rem;
 }
-#posts{
-	width: 80rem;
-}
+
 .section-title{
 	text-align: center;
 	margin-bottom: 25px;
@@ -4488,12 +4495,7 @@ a.panel-button {
   }
   
   /* Estilos para el panel y las notificaciones */
-  .notification-panel {
-	/* estilos */
-  }
-  .notification-item {
-	/* estilos */
-  }
+ 
   .post-author-section {
 	margin-bottom: 30px;
   }
@@ -4586,12 +4588,13 @@ a.panel-button {
 } 
 .wp-block-media-text img{
 	border-radius: 1rem;
-  } 
+} 
   .wp-block-separator {
     border: 1px solid #e5e5e5;
     border-right: none;
     border-left: none;
 }
+
 p.has-background {
     padding: 1.25em 2.375em;
     border-radius: 1rem;
