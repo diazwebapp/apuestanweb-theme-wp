@@ -77,7 +77,7 @@
                                     </a>
                                     <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
                                         <ul style="max-height:200px;">
-                                        <p role="button" class="dropdown-item text-dark my-3" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
+                                        <p role="button" class="dropdown-item text-dark my-3" style="cursor:pointer !important;" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
                                             {list}
                                         </ul>
                                         <hr class="mt-2 mb-3">
