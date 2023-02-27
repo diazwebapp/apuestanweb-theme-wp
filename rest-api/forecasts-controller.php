@@ -40,7 +40,7 @@ function aw_get_forecasts(WP_REST_Request $request){
             $current_date = date('Y-m-d',strtotime('+1 days'));
             
             $args['meta_query'][]  = [
-                'key' => '_data',
+                'key' => 'data',
                 'compare' => '==',
                 'value' => $current_date,
                 'type' => 'DATE'
