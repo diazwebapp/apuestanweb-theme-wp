@@ -570,7 +570,7 @@ function aw_get_user_type($wp_user){
 	return $type;
 }
 
-function initCors( $value ) {
+function initCors(  ) {
     $origin_url = '*';
   
     // Check if production environment or not
@@ -579,7 +579,7 @@ function initCors( $value ) {
     }
   
     header( 'Access-Control-Allow-Origin: ' . esc_url_raw( site_url() ) );
-    return $value;
+    return ;
   }
 
   add_action( 'rest_api_init', function() {
