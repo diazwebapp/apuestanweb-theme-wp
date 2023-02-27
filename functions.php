@@ -575,10 +575,12 @@ function initCors(  ) {
   
     // Check if production environment or not
     if (ENVIRONMENT === 'production') {
-      $origin_url = 'https://linguinecode.com';
+      $origin_url = 'https://apuestan.net';
     }
   
-    header( 'Access-Control-Allow-Origin: ' . esc_url_raw( site_url() ) );
+    header( 'Access-Control-Allow-Origin: ' . $origin_url );
+  header( 'Access-Control-Allow-Methods: GET' );
+  header( 'Access-Control-Allow-Credentials: true' );
     return ;
   }
 
