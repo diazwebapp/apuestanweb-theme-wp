@@ -569,9 +569,16 @@ function aw_get_user_type($wp_user){
 	return $type;
 }
 
-add_action( 'pre_insert_term', function ( $term, $taxonomy )
-{
-    return ( 'bookmaker-payment-methods' === $taxonomy && !current_user_can( 'manage_options' ) )
-        ? new WP_Error( 'term_addition_blocked', __( 'No puedes añadir términos a esta taxonomía.' ) )
-        : $term;
-}, 0, 2 );
+add_filter( 'rest_authentication_errors', function( $result ) {
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
+    if ( ! is_user_logged_in() ) {
+        return new WP_Error( 
+        	'rest_not_logged_in', 
+        	'You are not currently logged in.', 
+        	array( 'status' => 401 ) 
+        );
+    }
+    return $result;
+});
