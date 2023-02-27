@@ -2,7 +2,6 @@
 
 function aw_get_forecasts(WP_REST_Request $request){
     $params = $request->get_params();
-    $wp_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'forecast';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
@@ -58,19 +57,23 @@ function aw_get_forecasts(WP_REST_Request $request){
     $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
 
     if ($query->posts):
-        $view_params = [
-            "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-            "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-            "odds" => isset($params['odds']) ? $params['odds'] : null,
-            "current_user" => isset($wp_user) ? $wp_user : null
-        ];
+        
         foreach ($query->posts as $key => $forecast):
-            $view_params["forecast"]=$forecast;
                 if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
-                    $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,$view_params); 
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
+                    "odds" => isset($params['odds']) ? $params['odds'] : null
+                    ]); 
                 endif;
                 if(!isset($params["exclude_post"])):
-                    $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,$view_params);
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
+                    "odds" => isset($params['odds']) ? $params['odds'] : null
+                    ]);
                 endif;
             endforeach;
     else:
@@ -94,7 +97,6 @@ function aw_get_forecasts(WP_REST_Request $request){
 
 function aw_get_forecasts_vip(WP_REST_Request $request){
     $params = $request->get_params();
-    $wp_user = get_user_by("id",$params["current_user_id"]);
     $args = [];
     $args['post_type']      = 'forecast';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
@@ -150,32 +152,42 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
     $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
 
     if ($query->posts):
-        $view_params = [
-            "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
-            "timezone" => isset($params['timezone']) ? $params['timezone'] : null,
-            "current_user" => isset($wp_user) ? $wp_user : null
-        ];
+        
         if(isset($params['unlock'])):
             
             foreach ($query->posts as $key => $forecast):
-                $view_params["forecast"]=$forecast;
                 if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
-                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,$view_params); 
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]); 
                 endif;
                 if(!isset($params["exclude_post"])):
-                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,$view_params);
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}_unlock",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]);
                 endif;
             endforeach;
 
         else:
             
             foreach ($query->posts as $key => $forecast):
-                $view_params["forecast"]=$forecast;
                 if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
-                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,$view_params); 
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]); 
                 endif;
                 if(!isset($params["exclude_post"])):
-                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,$view_params);
+                    $loop_html["html"] .= load_template_part("loop/pronosticos_vip_list_{$params['model']}",null,[
+                    "forecast"=>$forecast,
+                    "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
+                    "timezone" => isset($params['timezone']) ? $params['timezone'] : null
+                    ]);
                 endif;
             endforeach;
             

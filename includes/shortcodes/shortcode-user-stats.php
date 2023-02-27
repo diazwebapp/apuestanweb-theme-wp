@@ -50,8 +50,8 @@ function shortcode_user_stats($atts)
             <div class='col-3 image-container'>
             <img class='rounded-circle' src='$avatar' width='70px' height='70px' alt='$display_name'>
             </div>
-            <div class='col-9'>
-            <h2 class='user-name'>$display_name</h2>
+            <div class='col-8'>
+            <span class='user-name'>$display_name</span>
             <p class='user-bio'>".get_the_author_meta('description', $id)."</p>
             <div class='user-social'>
             ".(get_the_author_meta('facebook', $id) ? "<a href='".get_the_author_meta('facebook', $id)."' aria-label='follow me on facebook' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-facebook'></i></a>" : "")."
@@ -83,7 +83,7 @@ function shortcode_user_stats($atts)
             </div>
             </div>-->
             <div id='posts' class='container tab-pane w-100'>
-            <h3 class='section-title'>Últimos pronósticos</h3>
+            <span class='section-title'>Últimos pronósticos</span>
             <div class='list-group'>";
             foreach ($posts as $post) {
                 $ret .= "

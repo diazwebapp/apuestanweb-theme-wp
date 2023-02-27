@@ -120,7 +120,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     </div>
                     <img width='40px' height='40px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
-                <p class='team_text'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
+                <h3 class='team_text'>{$teams['team1']['name'] } - {$teams['team2']['name']}</h3>
             </a>
                 {$vipcomponent}
             </div>
