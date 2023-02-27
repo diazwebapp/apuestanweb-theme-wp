@@ -82,7 +82,7 @@ function shortcode_user_stats($atts)
                 </div>
             </div>
             </div>-->
-            <div id='posts' class='container tab-pane'>
+            <div id='posts' class='container tab-pane w-100'>
             <h3 class='section-title'>Últimos pronósticos</h3>
             <div class='list-group'>";
             foreach ($posts as $post) {

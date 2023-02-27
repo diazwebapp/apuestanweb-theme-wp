@@ -4249,7 +4249,7 @@ a.panel-button {
 .user-profile {
 	display: flex;
 	align-items: center;
-	padding: 20px;
+	padding: 5px;
 	background-color: #f5f5f5;
 	border-radius: 8px;
 	box-shadow: 0px 1.5rem 3rem rgb(162 166 177 / 38%);  }
@@ -4351,9 +4351,7 @@ a.panel-button {
  #stats{
 	width: 80rem;
 }
-#posts{
-	width: 80rem;
-}
+
 .section-title{
 	text-align: center;
 	margin-bottom: 25px;
