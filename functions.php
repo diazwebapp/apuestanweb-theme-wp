@@ -238,6 +238,7 @@ function draw_rating($rating)
 }
 
 add_action('init', function(){
+    initCors( $value );
     if(!session_id()):
         session_start();
     endif;
@@ -569,16 +570,14 @@ function aw_get_user_type($wp_user){
 	return $type;
 }
 
-add_filter( 'rest_authentication_errors', function( $result ) {
-    if ( ! empty( $result ) ) {
-        return $result;
+function initCors( $value ) {
+    $origin_url = '*';
+  
+    // Check if production environment or not
+    if (ENVIRONMENT === 'production') {
+      $origin_url = 'https://linguinecode.com';
     }
-    if ( ! is_user_logged_in() ) {
-        return new WP_Error( 
-        	'rest_not_logged_in', 
-        	'You are not currently logged in.', 
-        	array( 'status' => 401 ) 
-        );
-    }
-    return $result;
-});
+  
+    header( 'Access-Control-Allow-Origin: ' . esc_url_raw( site_url() ) );
+    return $value;
+  }
