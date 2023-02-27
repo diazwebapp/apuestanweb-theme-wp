@@ -43,7 +43,6 @@ async function generate_base64(element){
     element.textContent = "generando..."
     let post_id = element.getAttribute("post-id")
 
-    
     let template = document.getElementById("thumb-template")
     let dataurl = await domtoimage.toPng(template)
     
