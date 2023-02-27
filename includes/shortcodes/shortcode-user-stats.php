@@ -44,13 +44,13 @@ function shortcode_user_stats($atts)
             </li>
             </ul>
             </div>
-            <div class='tab-content'>
+            <div class='tab-content w-100'>
             <div id='profile' class='container tab-pane active'>
             <div class='row'>
-            <div class='col-4 image-container'>
+            <div class='col-3 image-container'>
             <img class='rounded-circle' src='$avatar' width='70px' height='70px' alt='$display_name'>
             </div>
-            <div class='col-8'>
+            <div class='col-9'>
             <h2 class='user-name'>$display_name</h2>
             <p class='user-bio'>".get_the_author_meta('description', $id)."</p>
             <div class='user-social'>
