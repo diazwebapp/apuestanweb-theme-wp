@@ -77,16 +77,16 @@ echo "<div class='owl-item' >
                                 <img style='width:40px;height:40px;' src=' {$teams['team1']['logo']} ' class='img-fluid' alt=' {$teams['team1']['name']} '>
                             </div>
                             <div class='cross_img d-lg-none d-block'>
-                                <img src='$cross_img' class='img-fluid' alt=''>
+                                <img src='$cross_img' class='img-fluid' alt='teamvs'>
                             </div>                                
                             <div class='team_logo'>
                                 <img style='width:40px;height:40px;' src=' {$teams['team2']['logo']} ' class='img-fluid' alt=' {$teams['team2']['name']} '>
                             </div>
                         </div>
                         <div class='media-body team_name'>
-                            <h2 class='d-none d-sm-none d-md-block' > {$teams['team1']['name']} <strong>VS</strong>  {$teams['team2']['name']} </h2>
+                            <span class='d-none d-sm-none d-md-block' > {$teams['team1']['name']} <strong>VS</strong>  {$teams['team2']['name']} </span>
                             <div class='d-block d-sm-block d-md-none'>
-                                <h2> {$teams['team1']['acronimo']} <strong>VS</strong>  {$teams['team2']['acronimo']} </h2>
+                                <span> {$teams['team1']['acronimo']} <strong>VS</strong>  {$teams['team2']['acronimo']} </span>
                             </div>
                             <p>$fecha $hora</p>
                         </div>
@@ -97,11 +97,11 @@ echo "<div class='owl-item' >
                 </div>
                 <div class='col-lg-5 hero_team_col'>
                     <div class='team_box'>
-                        <img  src='{$teams['team1']['logo']}' class='img-fluid'  alt='{$teams['team1']['name']}'>
+                        <img width='60px' height='60px' src='{$teams['team1']['logo']}' class='img-fluid'  alt='{$teams['team1']['name']}'>
                         <div class='w-100'>
                             <p>vs</p>
                         </div>
-                        <img  src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
+                        <img width='60px' height='60px' src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
                     </div>                            
                             <div class='team_box mt_25'>
                                 <p> $p1 </p>

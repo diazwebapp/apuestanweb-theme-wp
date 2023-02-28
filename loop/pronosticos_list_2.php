@@ -90,7 +90,7 @@ if(isset($sport)):
     endif;
 endif;
 
-$time_format_html = "<p><time datetime='".$date->format('h:i')."' >".$date->format('g:i a')."</time></p>";
+$time_format_html = "<p>".$date->format('g:i a')."</p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
@@ -116,11 +116,11 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                     <img width='40px' height='40px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
                         $time_format_html
-                        <time datetime='".$date->format('Y-m-d')."'>".$formatted_date."</time>
+                        <time datetime='".$date->format('Y-m-d H:i:s')."'>".$formatted_date."</time>
                     </div>
                     <img width='40px' height='40px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
-                <p class='team_text'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
+                <h3 class='team_text'>{$teams['team1']['name'] } - {$teams['team2']['name']}</h3>
             </a>
                 {$vipcomponent}
             </div>

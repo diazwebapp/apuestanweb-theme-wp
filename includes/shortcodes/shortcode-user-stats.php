@@ -44,19 +44,19 @@ function shortcode_user_stats($atts)
             </li>
             </ul>
             </div>
-            <div class='tab-content'>
+            <div class='tab-content w-100'>
             <div id='profile' class='container tab-pane active'>
             <div class='row'>
-            <div class='col-4 image-container'>
-            <img src='$avatar' width='70px' height='70px' alt='$display_name'>
+            <div class='col-3 image-container'>
+            <img class='rounded-circle' src='$avatar' width='70px' height='70px' alt='$display_name'>
             </div>
             <div class='col-8'>
-            <h2 class='user-name'>$display_name</h2>
+            <span class='user-name'>$display_name</span>
             <p class='user-bio'>".get_the_author_meta('description', $id)."</p>
             <div class='user-social'>
-            ".(get_the_author_meta('facebook', $id) ? "<a href='".get_the_author_meta('facebook', $id)."'rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-facebook'></i></a>" : "")."
-            ".(get_the_author_meta('twitter', $id) ? "<a href='".get_the_author_meta('twitter', $id)."' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-twitter'></i></a>" : "")."
-            ".(get_the_author_meta('instagram', $id) ? "<a href='".get_the_author_meta('instagram', $id)."' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-instagram'></i></a>" : "")."
+            ".(get_the_author_meta('facebook', $id) ? "<a href='".get_the_author_meta('facebook', $id)."' aria-label='follow me on facebook' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-facebook'></i></a>" : "")."
+            ".(get_the_author_meta('twitter', $id) ? "<a href='".get_the_author_meta('twitter', $id)."' aria-label='follow me on twitter' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-twitter'></i></a>" : "")."
+            ".(get_the_author_meta('instagram', $id) ? "<a href='".get_the_author_meta('instagram', $id)."' aria-label='follow me on instagram' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-instagram'></i></a>" : "")."
             </div>
             </div>
             </div>
@@ -82,8 +82,8 @@ function shortcode_user_stats($atts)
                 </div>
             </div>
             </div>-->
-            <div id='posts' class='container tab-pane'>
-            <h3 class='section-title'>Últimos pronósticos</h3>
+            <div id='posts' class='container tab-pane w-100'>
+            <span class='section-title'>Últimos pronósticos</span>
             <div class='list-group'>";
             foreach ($posts as $post) {
                 $ret .= "

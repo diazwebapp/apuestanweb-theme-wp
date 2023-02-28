@@ -48,10 +48,10 @@ function aw_print_table($items,$post_type){
         //Si es un post
         if($post_type === 'post'):
             $fecha = get_the_date("d M",get_the_ID());
-
+            $permalink = get_the_permalink( get_the_ID() );
                 $result .= '<tr>
                     <td>'.$fecha.'</td>
-                    <td>'.get_the_title(get_the_ID()).'</td>
+                    <td><a href="'.$permalink.'" >'.get_the_title(get_the_ID()).'</a></td>
                     <td>'.$sport.'</td>
                 </tr>';
         endif;

@@ -19,15 +19,15 @@ window.addEventListener("load",()=>{
       form.innerHTML += `
           <div class="form-group input-group">
               <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                  <span class="input-group-text"> <i class="fa fa-user" style="padding: 0 4px; "></i> </span>
               </div>
-              <input type="text" value="" class="form-control" id="iump_login_username" name="log" placeholder="Username">
+              <input type="text" value="" class="form-control" id="iump_login_username" name="log" placeholder="Username" style="padding: 15px; ">
           </div>
           <div class="form-group input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+              <span class="input-group-text"> <i class="fa fa-key"></i> </span>
           </div>
-              <input type="password" value="" class="form-control" id="iump_login_password" name="pwd" placeholder="Password">
+              <input type="password" value="" class="form-control" id="iump_login_password" name="pwd" placeholder="Password" style="padding: 15px; ">
           </div>
           <div class="form-group">
                   <input type="submit" value="Login" class="btn btn-primary btn-block">

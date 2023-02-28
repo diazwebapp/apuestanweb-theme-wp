@@ -54,8 +54,8 @@
 	color: #051421;
 }
 .club_box img{
-	width: 6rem;
-	height: 6rem;
+/* 	width: 6rem;
+	height: 6rem; */
 	object-fit: contain;
 	object-position: center center;
 }
@@ -152,7 +152,7 @@
 	font-weight: 500;
 	color: #E7ECF1;
 }
-.event_top_middle time{
+.event_top_middle p{
 	font-weight: 400;
 	color: #FFFFFF;
 	font-size: 1.65rem;
@@ -202,7 +202,7 @@
 	align-items: flex-end;
 	padding-top: 0.8rem;
 }
-.event2_box_middle_heading h4{
+.event2_box_middle_heading h3{
 	font-size: 2.0rem;
 	line-height: 1.2;
 	color: #111111;
