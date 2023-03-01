@@ -341,15 +341,15 @@ function aw_email_templates($params=["blogname"=>"","username"=>"","vip_link"=>"
     
     </html>
     ';
-    $message = '<p style="font-size: 14px; line-height: 140%;">Gracias por registrarte en {blogname}. Tu cuenta esta por ser aprobada.</p>
+    $message = '<p style="font-size: 14px; line-height: 140%;">¡Gracias por registrarte en {blogname}!</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Una vez tu cuenta sea aprobada podrás acceder con tus credenciales en:</p>
+    <p style="font-size: 14px; line-height: 140%;">Estamos revisando tu solicitud y nos pondremos en contacto contigo por correo electrónico una vez que tu cuenta haya sido aprobada. Mientras tanto, puedes explorar nuestro sitio y aprender más sobre Apuestan.com</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;"><a rel="noopener" href="{vip_page}" rel="nofollow noreferrer noopener" target="_blank">pagina vip</a></p>
+    <p style="font-size: 14px; line-height: 140%;">Recuerda que tu nombre de usuario es: {username}</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Username: {username}</p>
+    <p style="font-size: 14px; line-height: 140%;">Si tienes alguna pregunta o problema, no dudes en ponerte en contacto con nuestro equipo de soporte en contacto@apuestan.com.</p>
     <p style="font-size: 14px; line-height: 140%;"> </p>
-    <p style="font-size: 14px; line-height: 140%;">Feliz dia.</p>';
+    <p style="font-size: 14px; line-height: 140%;">¡Gracias de nuevo y que tengas un excelente día!</p>';
 
     if($params["message"] != ""){
       $message = $params["message"]; 

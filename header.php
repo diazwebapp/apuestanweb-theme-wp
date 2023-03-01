@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="notice">
-  <p>¡Atención! www.apuestan.com pasa a ser www.apuestanweb.com</p>
+  <p>¡Atención! www.</p>
 </div>
 <?php /*
     $post_type = get_post_type( );
