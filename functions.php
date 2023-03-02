@@ -239,9 +239,9 @@ function draw_rating($rating)
 
 add_action('init', function(){
     
-    if(!session_id()):
+    /* if(!session_id()):
         session_start();
-    endif;
+    endif; */
     
     if(!str_contains($_SERVER["PHP_SELF"], "wp-admin")) {
         setUserRating();
