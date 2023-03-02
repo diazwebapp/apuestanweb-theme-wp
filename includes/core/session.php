@@ -1,10 +1,11 @@
-<?php
-if(!session_id()):
+<?php 
+if( !headers_sent() && '' == session_id() ) {
 session_start();
-endif;
+}
 
-add_action('init', function(){
-    
+add_action('wp_loaded', function(){
+
+
     if(!str_contains($_SERVER["PHP_SELF"], "wp-admin")) {
         setUserRating();
     }
