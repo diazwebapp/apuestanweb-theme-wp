@@ -24,7 +24,12 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             </style>   
         </head>
         <body>
-            <div class="header">
+            <div style="background-color: #051421 !important;
+            display:flex;
+            flex-flow:row wrap;
+            justify-content:space-between;
+            align:items:center;
+            color:white;">
                 <img src="'.$logo_lg_uri.'" height="30"/>
                 <b>
                     Notification
