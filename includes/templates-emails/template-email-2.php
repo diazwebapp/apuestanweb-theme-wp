@@ -7,45 +7,32 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
         <head>
             <title>{blogname}</title> 
             <style>
-                table{
-                    margin:auto !important;
-                }
-                table *{
-                    border: hidden !important; 
-                }
-                table thead,table tfooter{
+                header{
                     background-color: #051421;
-                }
-                table thead th, table tfooter td{
+                    display:flex;
+                    flex-flow:row wrap;
+                    justify-content:space-between;
+                    align:items:center;
                     color:white;
+                }
+                header,main,footer{
+                    padding:0 20px;
                 }
             </style>   
         </head>
-    <body>
-            <table >
-                <thead>
-                    <tr>
-                        <th>
-                            <img src="'.$logo_lg_uri.'" height="30"/>
-                        </th>
-                        <th>
-                            Notification
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{message}</td>
-                    </tr>
-                </tbody>
-                <tfooter>
-                    <tr>
-                        <td>apuestan 2023</td>
-                    </tr>
-                </tfooter>
-            </table>
+        <body>
+            <header>
+                <img src="'.$logo_lg_uri.'" height="30"/>
+                <b>
+                    Notification
+                </b>
+            </header>
+            
+            <main>
+                <p>{message}</p>
+            </main>
         </body>
-        </html>'
+    </html>'
     ;
     
     
