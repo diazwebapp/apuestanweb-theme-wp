@@ -140,9 +140,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                     </div>
                                 </td>
                             </tr>
-                        </table>
 
-                        <table class="button_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                             <tr>
                                 <td class="pad" style="padding-bottom:15px;padding-top:20px;text-align:center;">
                                     <div class="alignment" align="center">
