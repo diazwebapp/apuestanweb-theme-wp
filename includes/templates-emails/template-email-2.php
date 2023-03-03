@@ -29,7 +29,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             header,footer,main{
                 background-color: #040636 !important;
                 display:flex !important;
-                flex-fow:row wrap !important;
+                flex-flow:row wrap !important;
                 justify-content:space-between !important;
                 align-content:center !important;
                 padding:20px;
@@ -45,9 +45,9 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             <img src="'.$logo_lg_uri.'" height="30"/>
             <b style="color:white;">apuestan<b>
         </header>
-        <div class="test"> 
+        <main> 
             {message}
-        </div>
+        </main>
     </body>
     
     </html>'
