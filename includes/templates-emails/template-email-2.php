@@ -10,6 +10,12 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 table{
                     margin:auto !important;
                 }
+                table thead,table tfooter{
+                    background-color: #051421;
+                }
+                table thead th, table tfooter td{
+                    color:white;
+                }
             </style>   
         </head>
     <body>
@@ -29,6 +35,11 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                         <td>{message}</td>
                     </tr>
                 </tbody>
+                <tfooter>
+                    <tr>
+                        <td>apuestan 2023</td>
+                    </tr>
+                </tfooter>
             </table>
         </body>
         </html>'
