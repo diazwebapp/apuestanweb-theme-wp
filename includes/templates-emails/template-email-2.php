@@ -94,7 +94,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                             <table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                                 <tr>
                                                     <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                                        <div class="alignment" align="center" style="line-height:10px"><a href="https://www.example.com" target="_self" style="outline:none" tabindex="-1"><img src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/7891/Your-logo.png" style="display: block; height: auto; border: 0; width: 155px; max-width: 100%;" width="155" alt="your logo" title="your logo"></a></div>
+                                                        <div class="alignment" align="center" style="line-height:10px"><a href="{blogurl}" target="_self" style="outline:none" tabindex="-1"><img src="'.$logo_lg_uri.'" style="display: block; height: auto; border: 0; width: 155px; max-width: 100%;" width="155" alt="your logo" title="your logo"></a></div>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -104,7 +104,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                                 <tr>
                                                     <td class="pad">
                                                         <div style="color:#ffffff;direction:ltr;font-family:Inter, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:right;mso-line-height-alt:16.8px;">
-                                                            <p style="margin: 0;">Copyright © 2023 Your Brand Here, All rights reserved.</p>
+                                                            <p style="margin: 0;">{blogname}</p>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -144,7 +144,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                             <tr>
                                 <td class="pad" style="padding-bottom:15px;padding-top:20px;text-align:center;">
                                     <div class="alignment" align="center">
-                                        <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://www.example.com" style="height:44px;width:118px;v-text-anchor:middle;" arcsize="0%" strokeweight="0.75pt" strokecolor="#201F42" fillcolor="#201f42"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Georgia, serif; font-size:16px"><![endif]--><a href="https://www.example.com" target="_self" style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#201f42;border-radius:0px;width:auto;border-top:1px solid #201F42;font-weight:400;border-right:1px solid #201F42;border-bottom:1px solid #201F42;border-left:1px solid #201F42;padding-top:5px;padding-bottom:5px;font-family:Noto Serif, Georgia, serif;font-size:16px;text-align:center;mso-border-alt:none;word-break:keep-all;"><span style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;letter-spacing:normal;"><span dir="ltr" style="word-break: break-word; line-height: 32px;">Donate</span></span></a>
+                                        <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{vip_page}" style="height:44px;width:118px;v-text-anchor:middle;" arcsize="0%" strokeweight="0.75pt" strokecolor="#201F42" fillcolor="#201f42"><w:anchorlock/><v:textbox inset="0px,0px,0px,0px"><center style="color:#ffffff; font-family:Georgia, serif; font-size:16px"><![endif]--><a href="{vip_page}" target="_self" style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#201f42;border-radius:0px;width:auto;border-top:1px solid #201F42;font-weight:400;border-right:1px solid #201F42;border-bottom:1px solid #201F42;border-left:1px solid #201F42;padding-top:5px;padding-bottom:5px;font-family:Noto Serif, Georgia, serif;font-size:16px;text-align:center;mso-border-alt:none;word-break:keep-all;"><span style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;letter-spacing:normal;"><span dir="ltr" style="word-break: break-word; line-height: 32px;">Donate</span></span></a>
                                         <!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
                                     </div>
                                 </td>
@@ -160,7 +160,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                         <table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                             <tr>
                                                 <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                                    <div class="alignment" align="center" style="line-height:10px"><a href="https://www.example.com" target="_self" style="outline:none" tabindex="-1"><img src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/7891/Your-logo.png" style="display: block; height: auto; border: 0; width: 155px; max-width: 100%;" width="155" alt="your logo" title="your logo"></a></div>
+                                                    <div class="alignment" align="center" style="line-height:10px"><a href="{blogurl}" target="_self" style="outline:none" tabindex="-1"><img src="'.$logo_lg_uri.'" style="display: block; height: auto; border: 0; width: 155px; max-width: 100%;" width="155" alt="your logo" title="your logo"></a></div>
                                                 </td>
                                             </tr>
                                         </table>
