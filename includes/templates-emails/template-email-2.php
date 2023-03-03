@@ -9,7 +9,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             <xml>
             <o:OfficeDocumentSettings>
                 <o:AllowPNG/>
-                <o:PixelsPerInch>96</o:PixelsPerInch>
+                <o:AllowSVG/>
             </o:OfficeDocumentSettings>
             </xml>
             <![endif]-->
@@ -24,7 +24,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 <thead>
                     <tr>
                         <th>
-                            <img src="'.$image_uri.'" width="150"/>
+                            <img src="'.$base64.'" width="150"/>
                         </th>
                         <th>
                             Notification
