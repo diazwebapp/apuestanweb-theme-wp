@@ -7,7 +7,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
         <head>
             <title>{blogname}</title> 
             <style>
-                header{
+                .header{
                     background-color: #051421 !important;
                     display:flex;
                     flex-flow:row wrap;
@@ -15,25 +15,25 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                     align:items:center;
                     color:white;
                 }
-                header,footer,main{
+                .header,.footer,.main{
                     width:100% !important;
                 }
-                header,footer{
+                .header,.footer{
                     padding:0 20px;
                 }
             </style>   
         </head>
         <body>
-            <header>
+            <div class="header">
                 <img src="'.$logo_lg_uri.'" height="30"/>
                 <b>
                     Notification
                 </b>
-            </header>
+            </div>
             
-            <main>
+            <div class="main">
                 <p>{message}</p>
-            </main>
+            </div>
         </body>
     </html>'
     ;
