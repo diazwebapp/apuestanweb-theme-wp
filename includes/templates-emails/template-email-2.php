@@ -29,21 +29,8 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 text-decoration: inherit !important;
             }
     
-            #MessageViewBody a {
-                color: inherit;
-                text-decoration: none;
-            }
-    
             p {
                 line-height: inherit
-            }
-    
-            .desktop_hide,
-            .desktop_hide table {
-                mso-hide: all;
-                display: none;
-                max-height: 0px;
-                overflow: hidden;
             }
     
             .image_block img+div {
@@ -51,43 +38,15 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             }
     
             @media (max-width:720px) {
-                .desktop_hide table.icons-inner {
-                    display: inline-block !important;
-                }
-    
-                .icons-inner {
-                    text-align: center;
-                }
-    
-                .icons-inner td {
-                    margin: 0 auto;
-                }
     
                 .row-content {
                     width: 100% !important;
                 }
     
-                .mobile_hide {
-                    display: none;
-                }
     
                 .stack .column {
                     width: 100%;
                     display: block;
-                }
-    
-                .mobile_hide {
-                    min-height: 0;
-                    max-height: 0;
-                    max-width: 0;
-                    overflow: hidden;
-                    font-size: 0px;
-                }
-    
-                .desktop_hide,
-                .desktop_hide table {
-                    display: table !important;
-                    max-height: none !important;
                 }
     
                 .row-2 .column-2 .block-1.paragraph_block td.pad>div,
@@ -127,11 +86,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
     </head>
     
     <body style="background-color: #f7f7f7; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
-        <table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f7f7f7;">
-            <tbody>
-                <tr>
-                    <td>
-                        <table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+        <table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                             <tbody>
                                 <tr>
                                     <td>
@@ -282,11 +237,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                 </tr>
                             </tbody>
                         </table>
-                        
-                    </td>
-                </tr>
-            </tbody>
-        </table><!-- End -->
+                        <!-- End -->
     </body>
     
     </html>'
