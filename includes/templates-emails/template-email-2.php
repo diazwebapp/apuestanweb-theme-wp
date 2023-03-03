@@ -1,5 +1,7 @@
 <?php
 function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=>"#","message"=>"","blogurl"=>"","admin_email"=>""]){
+    $image_uri = $params=["blogurl"] . "/wp-content/themes/aw_wp_theme/assets/img/apnpls.svg";
+    $base64 = base64_encode(file_get_contents($image_uri));
     $html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
         <head>
@@ -22,7 +24,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 <thead>
                     <tr>
                         <th>
-                            <img src="{blogurl}/wp-content/themes/aw_wp_theme/assets/img/apnpls.svg" width="150"/>
+                            <img src="'.$base64.'" width="150"/>
                         </th>
                         <th>
                             Notification
@@ -31,7 +33,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{message}</td>
+                        <td>'.$image_uri.' {message}</td>
                     </tr>
                 </tbody>
             </table>
