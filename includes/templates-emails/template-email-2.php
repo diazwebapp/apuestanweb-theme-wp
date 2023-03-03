@@ -8,14 +8,17 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             <title>{blogname}</title> 
             <style>
                 header{
-                    background-color: #051421;
+                    background-color: #051421 !important;
                     display:flex;
                     flex-flow:row wrap;
                     justify-content:space-between;
                     align:items:center;
                     color:white;
                 }
-                header,main,footer{
+                header,footer,main{
+                    width:100% !important;
+                }
+                header,footer{
                     padding:0 20px;
                 }
             </style>   
