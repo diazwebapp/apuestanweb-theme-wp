@@ -9,6 +9,8 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             <style>
                 table{
                     margin:auto !important;
+                }
+                table *{
                     border: hidden !important; 
                 }
                 table thead,table tfooter{
@@ -24,7 +26,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 <thead>
                     <tr>
                         <th>
-                            <img src="'.$logo_lg_uri.'" height="40"/>
+                            <img src="'.$logo_lg_uri.'" height="30"/>
                         </th>
                         <th>
                             Notification
