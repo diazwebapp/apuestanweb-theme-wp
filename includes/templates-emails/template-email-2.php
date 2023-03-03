@@ -1,7 +1,7 @@
 <?php
 function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=>"#","message"=>"","blogurl"=>"","admin_email"=>""]){
-    $image_uri = $params["blogurl"] . "/wp-content/themes/aw_wp_theme/assets/img/event-logo.png";
-    $base64 = base64_encode(file_get_contents($image_uri));
+    $logo_lg_uri = $params["blogurl"] . "/wp-content/themes/aw_wp_theme/assets/img/event-logo.png";
+    
     $html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
         <head>
@@ -24,7 +24,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 <thead>
                     <tr>
                         <th>
-                            <img src="'.$base64.'" width="150"/>
+                            <img src="'.$logo_lg_uri.'" width="150"/>
                         </th>
                         <th>
                             Notification
@@ -33,7 +33,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 </thead>
                 <tbody>
                     <tr>
-                        <td>'.$image_uri.' {message}</td>
+                        <td>{message}</td>
                     </tr>
                 </tbody>
             </table>
