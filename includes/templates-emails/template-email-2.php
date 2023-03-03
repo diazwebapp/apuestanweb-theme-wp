@@ -26,10 +26,21 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             .test{
                 background:red !important;
             }
+            header{
+                background-color: #040636 !important;
+                display:flex;
+                flex-fow:row;
+                justify-content:space-between;
+                align-content:center;
+                padding:20px;
+            }
         </style>
     </head>
     
     <body style="background-color: #f7f7f7; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+        <header>
+            apuestan
+        </header>
         <div class="test"> 
             {message}
         </div>
