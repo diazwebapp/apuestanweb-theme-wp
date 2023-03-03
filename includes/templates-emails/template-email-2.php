@@ -148,18 +148,14 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="row row-2" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-image: url('.$logo_lg_uri.'); background-repeat: no-repeat; background-size: cover; background-color: #4f5aba; border-radius: 0; color: #000000; width: 100px;" width="100">
+                        <table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; background-size: auto; background-color: #201f42; width: 700px;" width="700">
                                             <tbody>
                                                 <tr>
                                                     <td class="column column-1" width="33.333333333333336%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 20px; padding-left: 30px; padding-right: 10px; padding-top: 20px; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
                                                         <table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                                             <tr>
                                                                 <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                                                    <div class="alignment" align="center" style="line-height:10px"><a href="https://www.example.com" target="_self" style="outline:none" tabindex="-1"><img src="'.$logo_lg_uri.'" style="display: block; height: auto; border: 0; width: 193px; max-width: 100%;" width="193" alt="your-logo" title="your-logo"></a></div>
+                                                                    <div class="alignment" align="center" style="line-height:10px"><a href="https://www.example.com" target="_self" style="outline:none" tabindex="-1"><img src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/7891/Your-logo.png" style="display: block; height: auto; border: 0; width: 155px; max-width: 100%;" width="155" alt="your logo" title="your logo"></a></div>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -168,8 +164,8 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                                         <table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
                                                             <tr>
                                                                 <td class="pad">
-                                                                    <div style="color:#ffffff;direction:ltr;font-family:Inter, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:right;mso-line-height-alt:19.2px;">
-                                                                        <p style="margin: 0;">Lorem ipsum</p>
+                                                                    <div style="color:#ffffff;direction:ltr;font-family:Inter, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:right;mso-line-height-alt:16.8px;">
+                                                                        <p style="margin: 0;">Copyright © 2023 Your Brand Here, All rights reserved.</p>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -178,10 +174,6 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
                         <table class="row row-3" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                             <tbody>
                                 <tr>
