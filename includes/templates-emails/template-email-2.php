@@ -42,8 +42,12 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
     
     <body style="background-color: #f7f7f7; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
         <header>
-            <img src="'.$logo_lg_uri.'" height="30"/>
-            <b style="color:white;">apuestan<b>
+            <div>
+                <img src="'.$logo_lg_uri.'" height="30"/>
+            </div>
+            <div>
+                <b style="color:white;">apuestan<b>
+            </div>
         </header>
         <main> 
             {message}
