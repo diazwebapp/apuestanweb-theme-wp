@@ -28,10 +28,10 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             }
             header,footer,main{
                 background-color: #040636 !important;
-                display:flex;
-                flex-fow:row wrap;
-                justify-content:space-between;
-                align-content:center;
+                display:flex !important;
+                flex-fow:row wrap !important;
+                justify-content:space-between !important;
+                align-content:center !important;
                 padding:20px;
             }
             main{
