@@ -143,7 +143,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
 
                             <tr>
                                 <td class="pad" style="padding-bottom:15px;padding-top:20px;text-align:center;">
-                                <div class="alignment" align="center" style="line-height:10px"><a href="{blogurl}" target="_self" style="outline:none padding:10px;color:white;background-color: #201f42;text-decoration:none;text-transform:uppercase;" tabindex="-1">Apuestan plus</a></div>
+                                <div class="alignment" align="center" style="line-height:10px"><a href="{blogurl}" target="_self" style="outline:none padding:10px;color:white;background-color: #201f42;text-decoration:none;text-transform:uppercase;" >Apuestan plus</a></div>
                                 </td>
                             </tr>
                         </table>
