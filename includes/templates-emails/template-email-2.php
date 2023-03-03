@@ -9,6 +9,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
             <style>
                 table{
                     margin:auto !important;
+                    border: hidden !important; 
                 }
                 table thead,table tfooter{
                     background-color: #051421;
@@ -23,7 +24,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=
                 <thead>
                     <tr>
                         <th>
-                            <img src="'.$logo_lg_uri.'" width="150"/>
+                            <img src="'.$logo_lg_uri.'" height="40"/>
                         </th>
                         <th>
                             Notification
