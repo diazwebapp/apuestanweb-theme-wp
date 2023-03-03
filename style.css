@@ -4553,4 +4553,18 @@ p.has-background {
 	font-size: 16px;
 	text-align: center;
   }
-  
+  .h-parlay {
+	height: 13rem;
+  }
+  .h-parlay .button {
+    background: #009fe3;
+    box-shadow: none;
+    margin-top: 1.8rem;
+}
+.h-parlay .p1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #001F39;
+    text-transform: uppercase;
+    padding-top: 2.5rem;
+}
