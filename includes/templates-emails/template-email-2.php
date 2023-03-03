@@ -2,44 +2,39 @@
 function aw_email_templates_2($params=["blogname"=>"","username"=>"","vip_link"=>"#","message"=>"","blogurl"=>"","admin_email"=>""]){
     $logo_lg_uri = $params["blogurl"] . "/wp-content/themes/aw_wp_theme/assets/img/logo-email.png";
     
-    $html = '
-    <html>
-        <head>
-            <title>{blogname}</title> 
-            <style>
-                .header{
-                    background-color: #051421 !important;
-                    display:flex;
-                    flex-flow:row wrap;
-                    justify-content:space-between;
-                    align:items:center;
-                    color:white;
-                }
-                .header,.footer,.main{
-                    width:100% !important;
-                }
-                .header,.footer{
-                    padding:0 20px;
-                }
-            </style>   
-        </head>
-        <body>
-            <div style="background-color: #051421 !important;
-            display:flex;
-            flex-flow:row wrap;
-            justify-content:space-between;
-            align:items:center;
-            color:white;">
-                <img src="'.$logo_lg_uri.'" height="30"/>
-                <b>
-                    Notification
-                </b>
-            </div>
-            
-            <div class="main">
-                <p>{message}</p>
-            </div>
-        </body>
+    $html = '<!DOCTYPE html>
+    <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
+    
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--[if mso]><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml><![endif]-->
+        <!--[if !mso]><!-->
+        <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter&amp;family=Work+Sans:wght@700&amp;display=swap" rel="stylesheet" type="text/css">
+        <!--<![endif]-->
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+    
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .test{
+                background:red !important;
+            }
+        </style>
+    </head>
+    
+    <body style="background-color: #f7f7f7; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+        <div class="test"> 
+            {message}
+        </div>
+    </body>
+    
     </html>'
     ;
     
