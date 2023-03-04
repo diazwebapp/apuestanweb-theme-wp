@@ -22,7 +22,7 @@ function books_register_ref_page() {
     add_submenu_page(
         'options-general.php',
         __( 'emails', 'textdomain' ),
-        __( 'Personalización de emails', 'textdomain' ),
+        __( 'emails messages', 'textdomain' ),
         'manage_options',
         'emails-message-admin',
         'vista_configuracion_emails'
