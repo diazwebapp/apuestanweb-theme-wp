@@ -529,11 +529,11 @@ function initCors( $value ) {
  */
 function books_register_ref_page() {
     add_submenu_page(
-        'crb_carbon_fields_container_apuestan.php&manage',
+        'crb_carbon_fields_container_apuestan.php',
         __( 'emails', 'textdomain' ),
         __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
-        '?books-shortcode-ref',
+        '?page=books-shortcode-ref',
         'books_ref_page_callback'
     );
 }
