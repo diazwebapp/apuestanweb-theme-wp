@@ -9,6 +9,7 @@ include "includes/core/taxonomy.php";
 include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php"; 
+include "includes/templates-emails/settings.php"; 
 include "includes/templates-emails/template-email-1.php"; 
 include "includes/templates-emails/template-email-2.php";
 include "includes/core/notification-module/notification-core.php"; 
@@ -523,30 +524,3 @@ function initCors( $value ) {
 
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
-
-/**
- * Adds a submenu page under a custom post type parent.
- */
-function books_register_ref_page() {
-    add_submenu_page(
-        'tools.php',
-        __( 'emails', 'textdomain' ),
-        __( 'Personalización de emails', 'textdomain' ),
-        'manage_options',
-        '?page=books-shortcode-ref',
-        'books_ref_page_callback'
-    );
-}
-
-/**
- * Display callback for the submenu page.
- */
-function books_ref_page_callback() { 
-    ?>
-    <div class="wrap">
-        <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
-        <p><?php _e( 'Helpful stuff here', 'textdomain' ); ?></p>
-    </div>
-    <?php
-}
-add_action( 'admin_menu', 'books_register_ref_page' );
