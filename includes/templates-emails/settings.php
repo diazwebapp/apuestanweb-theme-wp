@@ -22,7 +22,7 @@ function books_register_ref_page() {
  */
 function books_ref_page_callback() { 
     $settings = array( 'textarea_name' => 'post_text' );
-    wp_editor( "test text", $settings );
+    wp_editor( get_option("email-bienvenida"), $settings );
     ?>
     <div class="wrap">
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
