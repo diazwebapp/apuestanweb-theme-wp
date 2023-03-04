@@ -549,3 +549,4 @@ function books_ref_page_callback() {
     </div>
     <?php
 }
+add_action( 'admin_menu', 'books_register_ref_page' );
