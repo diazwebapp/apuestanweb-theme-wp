@@ -60,7 +60,7 @@ function vista_configuracion_emails() {
                         <label for="">Mensaje Reqgistro</label>
                         <div class="card mx-auto">
 
-                            <?php wp_editor( get_option("email-registred"),"email-message", $registred ); ?>
+                            <?php wp_editor( get_option("email-registred"),"email", $registred ); ?>
                         </div>
                         <input type="submit" value="guardar">
                     </form>
@@ -71,7 +71,7 @@ function vista_configuracion_emails() {
                         <label for="">Mensaje pago completado</label>
                         <div class="card mx-auto">
 
-                            <?php // wp_editor( get_option("email-pago-completed"), $completed ); ?>
+                            <?php wp_editor( get_option("email-pago-completed"),"email", $completed ); ?>
                         </div>
                         <input type="submit" value="guardar">
                     </form>
@@ -81,7 +81,7 @@ function vista_configuracion_emails() {
                         <label for="">Mensaje pago pendiente</label>
                         <div class="card mx-auto">
 
-                            <?php // wp_editor( get_option("email-pago-pending"), $pending ); ?>
+                            <?php wp_editor( get_option("email-pago-pending"),"email", $pending ); ?>
                         </div>
                         <input type="submit" value="guardar">
                     </form>
@@ -91,7 +91,7 @@ function vista_configuracion_emails() {
                         <label for="">Mensaje pago fallido</label>
                         <div class="card mx-auto">
 
-                            <?php // wp_editor( get_option("email-pago-failed"), $failed ); ?>
+                            <?php wp_editor( get_option("email-pago-failed"),"email", $failed ); ?>
                         </div>
                         <input type="submit" value="guardar">
                     </form>
