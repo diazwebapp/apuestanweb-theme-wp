@@ -36,7 +36,7 @@ function books_ref_page_callback() {
                 <input type="submit" value="guardar">
             </form>
         </div>
-        <p><?php echo get_option("email-bienvenida") ?></p>
+        <?php echo get_option("email-bienvenida") ?>
     </div>
     <?php
 }
