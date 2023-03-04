@@ -55,7 +55,7 @@ function vista_configuracion_emails() {
         <div class="container">
             <div class="row">
                 <div class="col-12 my-5">
-                    <h1>Admonostracion de plantillas emails</h1>
+                    <h1>Administracion de plantillas emails</h1>
                     <h2>Variables a reemplazar</h2>
                     {year} -  {blogname} - {username} - {blogurl} - {admin_email}
                 </div>
