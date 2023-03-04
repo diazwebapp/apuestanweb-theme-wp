@@ -1,18 +1,18 @@
 <?php
 if(isset($_GET["registred"])){
-    update_option( "email-registred", $_GET["registred"]);
+    update_option( "email-pago-registred", $_GET["registred"]);
     header("location:".$_SERVER["HTTP_REFERER"]);
 }
 if(isset($_GET["completed"])){
-    update_option( "email-completed", $_GET["completed"]);
+    update_option( "email-pago-completed", $_GET["completed"]);
     header("location:".$_SERVER["HTTP_REFERER"]);
 }
 if(isset($_GET["pending"])){
-    update_option( "email-pending", $_GET["pending"]);
+    update_option( "email-pago-pending", $_GET["pending"]);
     header("location:".$_SERVER["HTTP_REFERER"]);
 }
 if(isset($_GET["failed"])){
-    update_option( "email-failed", $_GET["failed"]);
+    update_option( "email-pago-failed", $_GET["failed"]);
     header("location:".$_SERVER["HTTP_REFERER"]);
 }
 /**

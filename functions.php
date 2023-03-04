@@ -348,16 +348,16 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
         
         if(isset($status)){
             if($status=="completed"){
-                $message = get_option( "email-completed" );
+                $message = get_option( "email-pago-completed" );
                 $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
             }
             if($status=="pending"){
-                $message = get_option( "email-pending" );
+                $message = get_option( "email-pago-pending" );
                 $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
             if($status=="failed"){
-                $message = get_option( "email-failed" );
+                $message = get_option( "email-pago-failed" );
                 $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
