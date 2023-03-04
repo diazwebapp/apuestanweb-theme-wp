@@ -197,6 +197,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","message"=>
     if($params["message"] != ""){
         $message = $params["message"]; 
     }
+    
     $html = str_replace("{message}",$message,$html);
     $html = str_replace("{blogname}",$params["blogname"],$html);
     $html = str_replace("{username}",$params["username"],$html);
