@@ -13,26 +13,30 @@ function books_register_ref_page() {
         __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
         'books-shortcode-ref',
-        'books_ref_page_callback'
+        'vista_configuracion_emails'
     );
 }
 
 /**
  * Display callback for the submenu page.
  */
-function books_ref_page_callback() { 
+function vista_configuracion_emails() { 
     $settings = array(
         'teeny' => true,
         'textarea_name' => 'message'
     );
     
-    
+    //completed pending failed
     ?>
     <div class="wrap">
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
         <div class="container">
             <form action="">
-                <?php wp_editor( get_option("email-bienvenida"),"email", $settings ); ?>
+                <label for="">Mensaje Reqgistro</label>
+                <div class="card mx-auto">
+
+                    <?php wp_editor( get_option("email-bienvenida"),"email", $settings ); ?>
+                </div>
                 <input type="submit" value="guardar">
             </form>
         </div>
