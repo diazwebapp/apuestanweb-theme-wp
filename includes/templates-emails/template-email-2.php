@@ -113,24 +113,6 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","message"=>
                                     </tr>
                             </tbody>
                         </table>
-                        
-                    
-
-                        
-                        <table class="heading_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-                            <tr>
-                                <td class="pad" style="padding-bottom:10px;padding-top:10px;text-align:center;width:100%;">
-                                    <h1 style="margin: 0; color: #4f5aba; direction: ltr; font-family: Georgia, serif; font-size: 34px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0;"><span class="tinyMce-placeholder">Bienvenido</span></h1>
-                                </td>
-                            </tr>
-                        </table>
-                        <table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-                            <tr>
-                                <td class="pad" style="padding-bottom:15px;padding-top:10px;text-align:center;width:100%;">
-                                    <h2 style="margin: 0; color: #051421; direction: ltr; font-family: Georgia, serif; font-size: 24px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0;"><span class="tinyMce-placeholder">¡Gracias por registrarte en {blogname}!</span></h2>
-                                </td>
-                            </tr>
-                        </table>
 
                         <table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
                             <tr>
