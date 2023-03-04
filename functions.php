@@ -9,6 +9,7 @@ include "includes/core/taxonomy.php";
 include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php"; 
+include "includes/templates-emails/settings.php"; 
 include "includes/templates-emails/template-email-1.php"; 
 include "includes/templates-emails/template-email-2.php";
 include "includes/core/notification-module/notification-core.php"; 
@@ -322,7 +323,7 @@ function aw_actions_after_register_user( $user_id ) {
 
     $headers[]= "From: Apuestan <$admin_email>";
 
-    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+    $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
 
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
@@ -345,30 +346,25 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
             return 'text/html';
         }
         $headers[]= "From: Apuestan <$admin_email>";
-        $vip_link = "#";
-        if(defined("PERMALINK_VIP")){
-            $vip_link = PERMALINK_VIP;
-        }
+        
         if(isset($status)){
             if($status=="completed"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is approved.</p>';
-                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $message = get_option( "email-pago-completed" );
+                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
             }
             if($status=="pending"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is waiting to be approved.</p>';
-                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $message = get_option( "email-pago-pending" );
+                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
             if($status=="failed"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your membership could not be verified, please record your payment or contact technical support.</p>';
-                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $message = get_option( "email-pago-failed" );
+                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
         }else{
-            $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+            $message = get_option( "email-registred" );
+            $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
         }
         if(is_wp_error( $body )){
 
