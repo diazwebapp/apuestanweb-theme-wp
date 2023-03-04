@@ -8,7 +8,7 @@ function books_register_ref_page() {
         __( 'emails', 'textdomain' ),
         __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
-        '?page=books-shortcode-ref',
+        'books-shortcode-ref',
         'books_ref_page_callback'
     );
 }
@@ -31,7 +31,8 @@ function books_ref_page_callback() {
                     <textarea name="message" id="" cols="30" rows="10">
 
                     </textarea>
-                    <input type="button" value="guardar">
+                    <br/>
+                    <input type="submit" value="guardar">
                 </form>
             </div>
         </div>
