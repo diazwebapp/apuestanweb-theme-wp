@@ -21,12 +21,8 @@ function books_register_ref_page() {
  * Display callback for the submenu page.
  */
 function books_ref_page_callback() { 
-    $settings = array(
-        'teeny' => true,
-        'textarea_rows' => 15,
-        'tabindex' => 1
-    );
-    $text = wp_editor(esc_html( __(get_option('whatever_you_need', 'whatever'))), 'terms_wp_content', $settings);
+    $settings = array( 'textarea_name' => 'post_text' );
+    wp_editor( "test text", $settings );
     ?>
     <div class="wrap">
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
