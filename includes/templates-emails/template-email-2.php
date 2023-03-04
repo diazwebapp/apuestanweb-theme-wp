@@ -170,7 +170,7 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","message"=>
                                             <tr>
                                                 <td class="pad">
                                                     <div style="color:#ffffff;direction:ltr;font-family:Inter, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:right;mso-line-height-alt:16.8px;">
-                                                        <p style="margin: 0;">Copyright © 2023 {blogname}, All rights reserved.</p>
+                                                        <p style="margin: 0;">Copyright © {year} {blogname}, All rights reserved.</p>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -197,8 +197,9 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","message"=>
     if($params["message"] != ""){
         $message = $params["message"]; 
     }
-    
+    $year = date_i18n( "Y" );
     $html = str_replace("{message}",$message,$html);
+    $html = str_replace("{year}",$year,$html);
     $html = str_replace("{blogname}",$params["blogname"],$html);
     $html = str_replace("{username}",$params["username"],$html);
     $html = str_replace("{blogurl}",$params["blogurl"],$html);
