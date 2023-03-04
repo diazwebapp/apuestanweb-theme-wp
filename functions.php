@@ -348,24 +348,22 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
         
         if(isset($status)){
             if($status=="completed"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is approved.</p>';
+                $message = get_option( "email-completed" );
                 $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
             }
             if($status=="pending"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is waiting to be approved.</p>';
+                $message = get_option( "email-pending" );
                 $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
             if($status=="failed"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your membership could not be verified, please record your payment or contact technical support.</p>';
+                $message = get_option( "email-failed" );
                 $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
         }else{
-            $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login]);
+            $message = get_option( "email-registred" );
+            $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
         }
         if(is_wp_error( $body )){
 
