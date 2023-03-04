@@ -33,6 +33,7 @@ function books_ref_page_callback() {
         <div class="container">
             <form action="">
                 <?php wp_editor( get_option("email-bienvenida"),"email", $settings ); ?>
+                <input type="submit" value="guardar">
             </form>
         </div>
         <p><?php echo get_option("email-bienvenida") ?></p>
