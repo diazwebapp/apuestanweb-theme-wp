@@ -56,44 +56,52 @@ function vista_configuracion_emails() {
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <form class="form-group">
+                    <form>
                         <h2>Mensaje Reqgistro</h2>
-                        <div class="card mx-auto">
+                        <div class="form-group">
 
                             <?php wp_editor( get_option("email-registred"),"email", $registred ); ?>
                         </div>
-                        <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        <div class="form-group">
+                            <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        </div>
                     </form>
                 </div>
 
                 <div class="col-md-6">
-                    <form class="form-group">
+                    <form>
                         <h2>Mensaje pago completado</h2>
-                        <div class="card mx-auto">
+                        <div class="form-group">
 
                             <?php wp_editor( get_option("email-pago-completed"),"email2", $completed ); ?>
                         </div>
-                        <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        <div class="form-group">
+                            <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <form class="form-group">
+                    <form>
                         <h2>Mensaje pago pendiente</h2>
-                        <div class="card mx-auto">
+                        <div class="form-group">
 
                             <?php wp_editor( get_option("email-pago-pending"),"email3", $pending ); ?>
                         </div>
-                        <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        <div class="form-group">
+                            <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-6">
-                    <form class="form-group">
+                    <form>
                         <h2>Mensaje pago fallido</h2>
-                        <div class="card mx-auto">
+                        <div class="form-group">
 
                             <?php wp_editor( get_option("email-pago-failed"),"email4", $failed ); ?>
                         </div>
-                        <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        <div class="form-group">
+                            <input class="btn btn-primary mb-2" type="submit" value="guardar">
+                        </div>
                     </form>
                 </div>
             </div>
