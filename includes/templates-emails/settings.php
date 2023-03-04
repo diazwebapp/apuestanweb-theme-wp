@@ -52,10 +52,10 @@ function vista_configuracion_emails() {
     
     ?>
     <div class="wrap">
-        <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
         <div class="container">
             <div class="row">
                 <div class="col-12 my-5">
+                    <h1>Admonostracion de plantillas emails</h1>
                     <h2>Variables a reemplazar</h2>
                     {year} -  {blogname} - {username} - {blogurl} - {admin_email}
                 </div>
