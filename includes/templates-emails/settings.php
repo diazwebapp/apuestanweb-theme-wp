@@ -18,9 +18,23 @@ function books_register_ref_page() {
  */
 function books_ref_page_callback() { 
     add_option( "email-text-register", "gracias por registrarte" );
+    if(isset($_GET["message"])){
+        echo $_GET["message"];
+        return ;
+    }
     ?>
     <div class="wrap">
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
+        <div class="container">
+            <div class="card mx-auto">
+                <form>
+                    <textarea name="message" id="" cols="30" rows="10">
+
+                    </textarea>
+                    <input type="button" value="guardar">
+                </form>
+            </div>
+        </div>
         <p><?php echo get_option("email-text-register") ?></p>
     </div>
     <?php
