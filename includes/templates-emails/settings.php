@@ -55,6 +55,10 @@ function vista_configuracion_emails() {
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
         <div class="container">
             <div class="row">
+                <div class="col-12 my-5">
+                    <h2>Variables a reemplazar</h2>
+                    {year} -  {blogname} - {username} - {blogurl} - {admin_email}
+                </div>
                 <div class="col-md-6">
                     <form>
                         <h2>Mensaje Reqgistro</h2>
