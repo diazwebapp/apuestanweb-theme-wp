@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET["message"])){
-    echo $_GET["message"];
-    die ;
+    update_option( "email-bienvenida", $_GET["message"] );
+    header("location:".$_SERVER["HTTP_REFERER"]);
 }
 /**
  * Adds a submenu page under a custom post type parent.
@@ -21,7 +21,6 @@ function books_register_ref_page() {
  * Display callback for the submenu page.
  */
 function books_ref_page_callback() { 
-    add_option( "email-text-register", "gracias por registrarte" );
     
     ?>
     <div class="wrap">
@@ -37,7 +36,7 @@ function books_ref_page_callback() {
                 </form>
             </div>
         </div>
-        <p><?php echo get_option("email-text-register") ?></p>
+        <p><?php echo get_option("email-bienvenida") ?></p>
     </div>
     <?php
 }
