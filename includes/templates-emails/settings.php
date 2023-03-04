@@ -23,18 +23,16 @@ function books_register_ref_page() {
 function books_ref_page_callback() { 
     $settings = array(
         'teeny' => true,
-        'textarea_rows' => 15,
-        'tabindex' => 1,
         'textarea_name' => 'post_text'
     );
     
-    wp_editor( get_option("email-bienvenida"),"", $settings );
+    
     ?>
     <div class="wrap">
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
         <div class="container">
             <form action="">
-                <textarea name="" id="post_text" cols="30" rows="10"></textarea>
+                <?php wp_editor( get_option("email-bienvenida"),"email", $settings ); ?>
             </form>
         </div>
         <p><?php echo get_option("email-bienvenida") ?></p>
