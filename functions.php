@@ -529,7 +529,7 @@ function initCors( $value ) {
  */
 function books_register_ref_page() {
     add_submenu_page(
-        'admin.php?page=crb_carbon_fields_container_apuestan.php',
+        'crb_carbon_fields_container_apuestan.php',
         __( 'Books Shortcode Reference', 'textdomain' ),
         __( 'Shortcode Reference', 'textdomain' ),
         'manage_options',
