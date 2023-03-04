@@ -21,8 +21,8 @@ if(isset($_GET["failed"])){
 function books_register_ref_page() {
     add_submenu_page(
         'options-general.php',
-        __( 'emails', 'textdomain' ),
-        __( 'emails messages', 'textdomain' ),
+        __( 'emails', 'jbeting' ),
+        __( 'emails messages', 'jbeting' ),
         'manage_options',
         'emails-message-admin',
         'vista_configuracion_emails'
