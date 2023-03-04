@@ -23,7 +23,7 @@ function books_register_ref_page() {
 function books_ref_page_callback() { 
     $settings = array(
         'teeny' => true,
-        'textarea_name' => 'post_text'
+        'textarea_name' => 'message'
     );
     
     
