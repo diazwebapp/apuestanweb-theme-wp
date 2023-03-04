@@ -60,7 +60,7 @@ function vista_configuracion_emails() {
                         <label for="">Mensaje Reqgistro</label>
                         <div class="card mx-auto">
 
-                            <?php wp_editor( get_option("email-registred"), $registred ); ?>
+                            <?php wp_editor( get_option("email-registred"),"email-message", $registred ); ?>
                         </div>
                         <input type="submit" value="guardar">
                     </form>
