@@ -529,7 +529,7 @@ function initCors( $value ) {
  */
 function books_register_ref_page() {
     add_submenu_page(
-        'crb_carbon_fields_container_apuestan.php',
+        'tools',
         __( 'emails', 'textdomain' ),
         __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
