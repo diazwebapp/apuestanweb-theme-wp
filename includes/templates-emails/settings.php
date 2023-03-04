@@ -21,19 +21,17 @@ function books_register_ref_page() {
  * Display callback for the submenu page.
  */
 function books_ref_page_callback() { 
-    /* $settings = array(
+    $settings = array(
         'teeny' => true,
         'textarea_rows' => 15,
         'tabindex' => 1
-    ); */
-    //wp_editor(esc_html( __(get_option('whatever_you_need', 'whatever'))), 'terms_wp_content', $settings);
+    );
+    $text = wp_editor(esc_html( __(get_option('whatever_you_need', 'whatever'))), 'terms_wp_content', $settings);
     ?>
     <div class="wrap">
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
         <div class="container">
-            <div class="card mx-auto">
-            <textarea class="wp-editor-area" rows="15" tabindex="1" autocomplete="off" cols="40" name="terms_wp_content" id="terms_wp_content" style="display: none;" aria-hidden="true">whatever</textarea>
-            </div>
+            
         </div>
         <p><?php echo get_option("email-bienvenida") ?></p>
     </div>
