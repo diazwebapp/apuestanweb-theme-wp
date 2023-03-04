@@ -1,4 +1,8 @@
 <?php
+if(isset($_GET["message"])){
+    echo $_GET["message"];
+    die ;
+}
 /**
  * Adds a submenu page under a custom post type parent.
  */
@@ -18,10 +22,7 @@ function books_register_ref_page() {
  */
 function books_ref_page_callback() { 
     add_option( "email-text-register", "gracias por registrarte" );
-    if(isset($_GET["message"])){
-        echo $_GET["message"];
-        die ;
-    }
+    
     ?>
     <div class="wrap">
         <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
