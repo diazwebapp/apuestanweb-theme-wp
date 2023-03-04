@@ -533,7 +533,7 @@ function books_register_ref_page() {
         __( 'emails', 'textdomain' ),
         __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
-        'books-shortcode-ref',
+        '?books-shortcode-ref',
         'books_ref_page_callback'
     );
 }
