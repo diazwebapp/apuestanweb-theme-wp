@@ -20,7 +20,7 @@ if(isset($_GET["failed"])){
  */
 function books_register_ref_page() {
     add_submenu_page(
-        'tools.php',
+        'options-general.php',
         __( 'emails', 'textdomain' ),
         __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
