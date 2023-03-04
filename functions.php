@@ -529,7 +529,7 @@ function initCors( $value ) {
  */
 function books_register_ref_page() {
     add_submenu_page(
-        'tools',
+        'tools.php',
         __( 'emails', 'textdomain' ),
         __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
