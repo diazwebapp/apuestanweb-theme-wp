@@ -94,6 +94,7 @@ include "rest-api/imagen-detacada-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
+    'movil'=> __('Movil menu', 'jbetting'),
     'footer'=> __('Footer', 'jbetting'),
 ));
 
@@ -526,3 +527,4 @@ function initCors( $value ) {
 
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
+
