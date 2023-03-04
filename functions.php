@@ -530,8 +530,8 @@ function initCors( $value ) {
 function books_register_ref_page() {
     add_submenu_page(
         'crb_carbon_fields_container_apuestan.php',
-        __( 'Books Shortcode Reference', 'textdomain' ),
-        __( 'Shortcode Reference', 'textdomain' ),
+        __( 'emails', 'textdomain' ),
+        __( 'Personalización de emails', 'textdomain' ),
         'manage_options',
         'books-shortcode-ref',
         'books_ref_page_callback'
@@ -544,7 +544,7 @@ function books_register_ref_page() {
 function books_ref_page_callback() { 
     ?>
     <div class="wrap">
-        <h1><?php _e( 'Books Shortcode Reference', 'textdomain' ); ?></h1>
+        <h1><?php _e( 'Books Personalización de emails', 'textdomain' ); ?></h1>
         <p><?php _e( 'Helpful stuff here', 'textdomain' ); ?></p>
     </div>
     <?php
