@@ -20,7 +20,7 @@ function books_ref_page_callback() {
     add_option( "email-text-register", "gracias por registrarte" );
     if(isset($_GET["message"])){
         echo $_GET["message"];
-        return ;
+        die ;
     }
     ?>
     <div class="wrap">
