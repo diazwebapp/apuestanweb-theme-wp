@@ -99,7 +99,7 @@ function vista_configuracion_emails() {
             </div>
             
         </div>
-        <?php echo get_option("email-bienvenida") ?>
+        
     </div>
     <?php
 }
