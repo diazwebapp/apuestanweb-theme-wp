@@ -21,7 +21,13 @@ function books_register_ref_page() {
  * Display callback for the submenu page.
  */
 function books_ref_page_callback() { 
-    $settings = array( 'textarea_name' => 'post_text' );
+    $settings = array(
+        'teeny' => true,
+        'textarea_rows' => 15,
+        'tabindex' => 1,
+        'textarea_name' => 'post_text'
+    );
+    
     wp_editor( get_option("email-bienvenida"),"", $settings );
     ?>
     <div class="wrap">
