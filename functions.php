@@ -95,6 +95,7 @@ include "rest-api/imagen-detacada-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
+    'movil'=> __('Movil menu', 'jbetting'),
     'footer'=> __('Footer', 'jbetting'),
 ));
 
@@ -131,7 +132,6 @@ function jbetting_src()
 	wp_dequeue_script( 'ihc-jquery-ui'); 
     wp_dequeue_script( 'ihc-front_end_js' );
     */
-    //wp_enqueue_script('popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array(), '1.16.1', true);
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
     wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
@@ -144,15 +144,16 @@ function jbetting_src()
 
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
-    
+
+    wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
     wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
-    wp_enqueue_script( 'stick-js' );
+    // wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
+    // wp_enqueue_script( 'stick-js' );
 
     //wp_enqueue_script( 'noti-js' );
     //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
@@ -372,7 +373,7 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
     
     
        add_filter( "wp_mail_content_type", "fix_html" );
-       wp_mail($memberInfo->user_email,"Apuestan status account" ,$body,$headers); 
+       wp_mail($memberInfo->user_email,"Apuestan actualizacion" ,$body,$headers); 
     }
 }
 
@@ -522,3 +523,4 @@ function initCors( $value ) {
 
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
+

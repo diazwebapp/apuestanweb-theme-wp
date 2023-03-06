@@ -49,7 +49,7 @@ function create_bk() {
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'page',
+		'capability_type'     => 'bk',
 		'rewrite' => array('slug' => 'casas-apuestas', 'with_front'=> true)
 	);
 	register_post_type( 'bk', $args );
@@ -94,7 +94,7 @@ function create_forecast() {
 		'label'               => __( 'Forecast', 'jbetting' ),
 		'description'         => __( 'Forecast', 'jbetting' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'author', 'comments', 'thumbnail'),
+		'supports'            => array( 'title', 'editor', 'author', 'thumbnail'),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
@@ -108,7 +108,7 @@ function create_forecast() {
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'post',
+		'capability_type'     => 'forecast',
 		'register_meta_box_cb' => 'aw_forecast_img_destacada_personalizada',
 		'rewrite' => array('slug' => 'prediccion', 'with_front'=> true)
 
@@ -162,7 +162,7 @@ function create_team() {
 		'menu_icon'           => 'dashicons-networking',
 		'show_in_admin_bar'   => true,
 		'can_export'          => true,
-		'capability_type'     => 'page',
+		'capability_type'     => 'team',
 		'public'              => false,
 		'publicly_queryable'  => true,
 		'show_ui'             => true,
@@ -226,7 +226,7 @@ function create_parley() {
 		'has_archive'         => false,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'page',
+		'capability_type'     => 'parley',
 	);
 	register_post_type( 'parley', $args );
 

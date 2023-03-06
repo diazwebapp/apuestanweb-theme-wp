@@ -2804,6 +2804,31 @@ blockquote{
 .vip_right_content .rating i{
 	font-size: 1.5rem;
 }
+
+.accor_btn button{
+	color: #0558CB;
+	font-size: 1.6rem;
+	font-weight: 400;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	transition: 0.3s;
+}
+.accor_btn button i{
+	font-size: 2rem;
+	margin-left: 0.8rem;
+	margin-bottom: -0.3rem;
+	transition: 0.3s;
+}
+.accor_btn button[aria-expanded="true"] i{
+	transform: rotate(-180deg);
+}
+.accor_btn button::before{
+	content: 'Ver análisis';
+}
+.accor_btn button[aria-expanded="true"]::before{
+	content: 'Ocultar análisis';
+}
 .analysis{
 	color: #ABAEB1;
 	font-family: "Helvetica Neue";
@@ -4553,4 +4578,18 @@ p.has-background {
 	font-size: 16px;
 	text-align: center;
   }
-  
+  .h-parlay {
+	height: 13rem;
+  }
+  .h-parlay .button {
+    background: #009fe3;
+    box-shadow: none;
+    margin-top: 1.8rem;
+}
+.h-parlay .p1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #001F39;
+    text-transform: uppercase;
+    padding-top: 2.5rem;
+}

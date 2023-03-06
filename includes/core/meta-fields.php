@@ -29,7 +29,7 @@ function crb_attach_theme_options()
                         "ipwhois" => "ipwhois",
                     ]),
                 Field::make('text', 'geolocation_api_key', __("geolocation api key", "jbetting")),
-                Field::make('text', 'copy', __("copy", "jbetting"))
+                Field::make('text', 'copy', __("Copyright", "jbetting"))
 
             ))
             ->add_tab(__("country regulations","jbetting"),array(
@@ -62,9 +62,13 @@ function crb_attach_theme_options()
             ->add_tab(__("notificaciones","jbetting"), array(
                 
                 Field::make( 'checkbox', 'notificaciones', __( 'Notificaciones','jbetting' ) )
-                    ->set_option_value( 'yes' ),
+                ->set_option_value( 'yes' ),
             
-            ));
+            ))
+            ->add_tab(__("Header/footer","jbetting"), array(
+                Field::make( 'header_scripts', 'crb_header_script' ),
+                Field::make( 'footer_scripts', 'crb_footer_script' ),
+            ) );
 
         Container::make('comment_meta', __("Review fields", "jbetting"))
             ->add_fields(array(
