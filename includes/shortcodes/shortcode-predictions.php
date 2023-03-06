@@ -55,7 +55,7 @@ endif;
 
                 $ret .= "<div class='single_event_match_title_box'>
                             <div class='tip-p row mx-1 px-4 py-4'>
-                            <a href='{$bookmaker['ref_link']}' rel='nofollow'><img width='80' height='20' loading='lazy' src='{$bookmaker['logo_2x1']}'  style='object-fit-contain;' alt='{$bookmaker['name']}'></a>
+                            <a href='{$bookmaker['ref_link']}' rel='nofollow'><img width='80' height='20' loading='lazy' src='{$bookmaker['logo_2x1']}'  style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 4px;height: 3rem;' alt='{$bookmaker['name']}'></a>
                             </div>
                             <table class='table-single-predict'>
                             <thead>

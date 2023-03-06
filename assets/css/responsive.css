@@ -2026,6 +2026,10 @@
 		width: 0;
 
 	} */
+	.event_btn_box .event_btn_img img {
+		height: 30px!important; 
+
+	}
 
 }
 
