@@ -114,7 +114,7 @@ function crb_attach_theme_options()
                     Field::make('text', 'ref', __("Refferal link", "jbetting")),
                     
                     Field::make( 'html', 'calificacion', __("Rating(1,2,3,4,5)", "jbetting"))
-                        ->set_html( '<input type="range" min="5" max="10" step="0.01">' ),
+                        ->set_html( '<input type="range" min="1" max="5" step="0.1">' ),
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
                     Field::make('image', 'logo', __("logo cuadrado", "jbetting")),
