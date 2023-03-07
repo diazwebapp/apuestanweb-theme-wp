@@ -184,14 +184,16 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <span>'.$cuote.'</span>
                                 <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk">
                             </div>
-                                <div class="d-none d-sm-flex align-items-center">
-                                    <a class="rate_text d-flex align-items-center justify-content-center" href="'.$permalink.'">
-                                        <span>'.$cuote.'</span>
-                                        <img width="65" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
+                            <div class="d-none d-sm-flex align-items-center">
+                                <div class="rate_text d-flex align-items-center justify-content-center">
+                                        <a href="'.$permalink.'">
+                                            <span>'.$cuote.'</span>
+                                            <img width="65" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
+                                        </a>
                                         <div class="rating">
                                             '.$stars.'
                                         </div>
-                                    </a>
+                                </div>
                             </div>
 
                             <div class="text-center accor_btn mt_15">
