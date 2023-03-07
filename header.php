@@ -85,8 +85,8 @@
                                     </div>
                                 </li>
                        </ul>';
+                       $li = '';
                        if(count($noti) > 0){
-                            $li = '';
                             $newTime = date_i18n("Y-m-d H:i:s");
                             foreach($noti as $post_noticode){
                                 $oldTime = $post_noticode->post_date_gmt;
@@ -97,8 +97,8 @@
                                     <span style="font-size:9px;" class="w-100 d-block">'. $timeAgo .'</span>
                                 </p>';
                             }
-                            $html = str_replace("{list}",$li,$html);
-                       }
+                        }
+                        $html = str_replace("{list}",$li,$html);
                     
                     $notificaciones = carbon_get_theme_option('notificaciones');
 

@@ -8,7 +8,8 @@ else:
 endif;
 $bg_att = carbon_get_post_meta($args["bookmaker"]->ID, 'background-color');
 
-$rating_ceil = ceil(carbon_get_post_meta($args["bookmaker"]->ID, 'rating'));
+$rating_float = carbon_get_post_meta($args["bookmaker"]->ID, 'rating');
+$rating_ceil = floor($rating_float);
 $ref = carbon_get_post_meta($args["bookmaker"]->ID, 'ref');
 $permalink = get_the_permalink($args["bookmaker"]->ID);
 $bonus_slogan = carbon_get_post_meta($args["bookmaker"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["bookmaker"]->ID, 'bonus_slogan') : 'n/a';
