@@ -53,6 +53,7 @@ class w_bookmakers extends WP_Widget{
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_ceil = ceil(carbon_get_post_meta($bookmaker->ID, 'rating'));
+                $rating_float = carbon_get_post_meta($bookmaker->ID, 'rating');
                 $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') ? carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') : 'n/a';
                 $ref = carbon_get_post_meta($bookmaker->ID, 'ref');
                 $color = carbon_get_post_meta($bookmaker->ID, 'background-color');
@@ -65,7 +66,7 @@ class w_bookmakers extends WP_Widget{
                                 <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="" style="background:'.$color.';padding: 6px;border-radius: 6px;width: 10rem;height: 3.3rem;">
                             </div>
                             <div class="ratings">
-                                <span>'.$rating_ceil.'</span>
+                                <span>'.$rating_float.'</span>
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
