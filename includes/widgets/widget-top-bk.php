@@ -17,8 +17,8 @@ class w_bookmakers extends WP_Widget{
         $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
         $args = ["post_type" => "bk","posts_per_page" => $limit];
         $args['order'] = 'DESC';
-        //$args['orderby'] = 'meta_value_num';
-        $args['meta_key'] = '_calificacion';
+        $args['orderby'] = 'meta_value_num';
+        $args['meta_key'] = '_rating';
         $query = new WP_Query($args);
         
         $bookmakers = [];
@@ -52,7 +52,7 @@ class w_bookmakers extends WP_Widget{
                 $key++;
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
                 $image_png = wp_get_attachment_url($image_att);
-                $rating_ceil = ceil(carbon_get_post_meta($bookmaker->ID, 'calificacion'));
+                $rating_ceil = ceil(carbon_get_post_meta($bookmaker->ID, 'rating'));
                 $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') ? carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') : 'n/a';
                 $ref = carbon_get_post_meta($bookmaker->ID, 'ref');
                 $color = carbon_get_post_meta($bookmaker->ID, 'background-color');
