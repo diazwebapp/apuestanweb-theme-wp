@@ -9,6 +9,8 @@ endif;
 $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 
 $rating_ceil = ceil(carbon_get_post_meta($args["post"]->ID, 'rating'));
+$cali = ceil(carbon_get_post_meta($args["post"]->ID, 'calificacion'));
+var_dump($cali);
 $ref = carbon_get_post_meta($args["post"]->ID, 'ref');
 $permalink = get_the_permalink($args["post"]->ID);
 $bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
