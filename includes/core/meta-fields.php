@@ -113,7 +113,7 @@ function crb_attach_theme_options()
                     Field::make('checkbox', 'disable_table', __("Desactivar tabla de contenidos", "jbetting")),
                     Field::make('text', 'ref', __("Refferal link", "jbetting")),
                     
-                    Field::make( 'html', 'rating', __("Rating(1,2,3,4,5)", "jbetting"))
+                    Field::make( 'html', 'rating')
                         ->set_html( '<h2>Lorem ipsum</h2><p>Quisque mattis ligula.</p>' ),
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
