@@ -9,7 +9,7 @@ endif;
 $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 
 $rating_ceil = ceil(carbon_get_post_meta($args["post"]->ID, 'rating'));
-
+$rating_float = carbon_get_post_meta($args["post"]->ID, 'rating');
 $ref = carbon_get_post_meta($args["post"]->ID, 'ref');
 $permalink = get_the_permalink($args["post"]->ID);
 $bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
@@ -53,7 +53,7 @@ $title = get_the_title($args["post"]->ID);
                 <div class='bookmaker_right_content ml-2'>
                     <div class='d-md-block d-none'>
                         <div class='bookamker_rating_box'>
-                            <p> $rating_ceil </p>
+                            <p> $rating_float </p>
                             <div class='bookmaker_rating_list rating '>";
                             echo draw_rating($rating_ceil); 
             echo                "</div>
