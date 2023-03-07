@@ -120,7 +120,8 @@ function crb_attach_theme_options()
                             '4' => '4',
                             '5' => '5',
                         )),
-                       
+                    Field::make( 'html', 'crb_information_text' )
+                        ->set_html( '<h2>Lorem ipsum</h2><p>Quisque mattis ligula.</p>' ),
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
                     Field::make('image', 'logo', __("logo cuadrado", "jbetting")),
