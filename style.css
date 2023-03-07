@@ -722,7 +722,7 @@ a.btn_2:hover{
 .tbox{
 	background: #FFFFFF;
    box-shadow: 0 1.5rem 3.0rem #efefef;
-   padding: 6.8rem 6rem 5.5rem;
+   padding: 5px 10px;
    text-align: center;
 }
 .tbox > p{
