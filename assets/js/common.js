@@ -64,7 +64,7 @@ function updateCountdown(html_element) {
     if(INPUT_DATE){
 
         const DATE_TARGET = new Date(INPUT_DATE.value);
-    
+        
         // Milliseconds for the calculations
         const MILLISECONDS_OF_A_SECOND = 1000;
         const MILLISECONDS_OF_A_MINUTE = MILLISECONDS_OF_A_SECOND * 60;
@@ -78,19 +78,23 @@ function updateCountdown(html_element) {
         const REMAINING_HOURS = Math.floor((DURATION % MILLISECONDS_OF_A_DAY) / MILLISECONDS_OF_A_HOUR);
         const REMAINING_MINUTES = Math.floor((DURATION % MILLISECONDS_OF_A_HOUR) / MILLISECONDS_OF_A_MINUTE);
         const REMAINING_SECONDS = Math.floor((DURATION % MILLISECONDS_OF_A_MINUTE) / MILLISECONDS_OF_A_SECOND);
-    
+   
         // Render
-        if(SPAN_DAYS)   SPAN_DAYS.textContent = REMAINING_DAYS;
-        if(SPAN_HOURS)  SPAN_HOURS.textContent = REMAINING_HOURS;
-        if(SPAN_MINUTES)    SPAN_MINUTES.textContent = REMAINING_MINUTES;
-        if(SPAN_SECONDS)    SPAN_SECONDS.textContent = REMAINING_SECONDS;
+        
+        if(SPAN_DAYS){
+            console.log(SPAN_DAYS)
+            SPAN_DAYS.innerHTML = REMAINING_DAYS + "D:" ;
+        }   
+        if(SPAN_HOURS)  SPAN_HOURS.innerHTML = REMAINING_HOURS + "H:";
+        if(SPAN_MINUTES)    SPAN_MINUTES.innerHTML = REMAINING_MINUTES + "M:";
+        if(SPAN_SECONDS)    SPAN_SECONDS.innerHTML = REMAINING_SECONDS + "S";
     
         if(REMAINING_DAYS <= 0 && REMAINING_HOURS <= 0 && REMAINING_MINUTES <= 0){
             let hora = DATE_TARGET.getHours() % 12
             let minutos = DATE_TARGET.getMinutes().toString().padStart(2,'0')
             let ampm = DATE_TARGET.getHours() > 12 ? 'pm' : 'am'
             html_element.innerHTML = `
-                            <time datetime="${DATE_TARGET.getHours()}:${minutos}" >${hora}:${minutos} ${ampm}</time>
+                            <time datetime="${hora}:${minutos}" >${hora}:${minutos} ${ampm}</time>
             `
         }
     }
