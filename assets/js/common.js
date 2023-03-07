@@ -82,7 +82,6 @@ function updateCountdown(html_element) {
         // Render
         
         if(SPAN_DAYS){
-            console.log(SPAN_DAYS)
             SPAN_DAYS.innerHTML = REMAINING_DAYS + "D:" ;
         }   
         if(SPAN_HOURS)  SPAN_HOURS.innerHTML = REMAINING_HOURS + "H:";
