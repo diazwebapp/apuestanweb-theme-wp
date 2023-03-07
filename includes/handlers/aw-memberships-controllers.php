@@ -7,7 +7,7 @@ if(!function_exists("aw_generate_activation_membership_data")):
           $membership_metas = $wpdb->get_results("SELECT * FROM $table_leve_metas WHERE membership_id={$activation_data['lid']} ");
           $type_level=[];
           $user_id = username_exists( $activation_data['username'] );
-          $user_activation["status"] = $activation_data['status'];
+          
           if($membership_metas and !is_wp_error( $membership_metas ) and $user_id):
               $type = ["D"=>"day","W"=>"week","M"=>"month","Y"=>"year"];
               $date_ = ["dias" => false,"type"=>false];
@@ -110,8 +110,8 @@ else:
 endif;
 
 //////Activa la membresía
-if(!function_exists('aw_activate_membership')):
-    function aw_activate_membership($data){
+if(!function_exists('aw_update_user_membership')):
+    function aw_update_user_membership($data){
         global $wpdb;
         $table = $wpdb->prefix."ihc_user_levels";
         

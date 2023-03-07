@@ -53,7 +53,7 @@ if(!function_exists('aw_paypal_user_level_operations')):
         
         if($_SESSION["checkout_action"] == 'renew'):   //Renovar una membresia         
             $activate_sql_params = aw_generate_activation_membership_data(["lid"=>$params['lid'],"username"=>$_SESSION["current_user"]["user_login"]]);
-            $activated = aw_activate_membership($activate_sql_params);
+            $activated = aw_update_user_membership($activate_sql_params);
             
             //Rellenamos los datos para payment history
             $sql_data = aw_get_history_insert_data($params['lid'],$_SESSION["payment_account_id"],$_SESSION["current_user"]['user_login'],true);
@@ -75,7 +75,7 @@ if(!function_exists('aw_paypal_user_level_operations')):
             if(!is_wp_error( $deleted )):
                 $insert_data = aw_assign_membership(["lid"=>$params['lid'],"username"=>$_SESSION["current_user"]["user_login"]]);                
                 $activate_sql_params = aw_generate_activation_membership_data(["lid"=>$params['lid'],"username"=>$_SESSION["current_user"]["user_login"]]);
-                $activated = aw_activate_membership($activate_sql_params);                
+                $activated = aw_update_user_membership($activate_sql_params);                
             endif;
             //Rellenamos los datos para payment history
             $sql_data = aw_get_history_insert_data($params['lid'],$_SESSION["payment_account_id"],$_SESSION["current_user"]['user_login'],true);

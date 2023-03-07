@@ -127,7 +127,7 @@ const aw_detect_user_level = async (e)=>{
         if(status == 'ok'){
             if(action && action == "new"){
                 if(level_type=="free"){
-                    const {redirect} = await aw_activate_membership({lid:level_id})
+                    const {redirect} = await aw_update_user_membership({lid:level_id})
                     location = redirect //Redirigimos a pagina de gracias
                     return;
                 }
@@ -138,7 +138,7 @@ const aw_detect_user_level = async (e)=>{
             }
             if(confirm(msg)){
                 if(level_type=="free"){
-                    const {redirect} = await aw_activate_membership({lid:level_id})
+                    const {redirect} = await aw_update_user_membership({lid:level_id})
                     location = redirect //Redirigimos a pagina de gracias
                 }
                 if(level_type=="payment"){
@@ -168,7 +168,7 @@ const aw_check_user_level = async ({lid})=>{
     const resp = await req.json()
     return resp
 }
-const aw_activate_membership = async({lid})=>{
+const aw_update_user_membership = async({lid})=>{
     const {rest_uri} = php_js_prices
     const uri = rest_uri + 'aw-user-levels/user-level-opeations/'
     const req = await fetch(uri,{
