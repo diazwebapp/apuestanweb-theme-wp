@@ -51,11 +51,11 @@ function generate_history_payment_table(){
         $html_td = "";
         
         //botones de accion
-        $btn_completed = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-yes" title="complete" status="completed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
-        $btn_pending = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-clock" title="pending" status="pending" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
-        $btn_fail = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-no-alt" title="fail" status="failed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
-        $btn_trash = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-trash" title="trash" status="trashed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
-        $btn_details = '<i role="button" style="margin:0 5px;" class="dashicons dashicons-visibility" title="view" toastid="toast-view-payment-details" toastaction="show" element="'.strval($value->id).'" onClick="modal_payment_details(this)" ></i>';
+        $btn_completed = '<i role="button" style="margin:0 7px;cursor:pointer;" class="dashicons dashicons-yes" title="complete" status="completed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
+        $btn_pending = '<i role="button" style="margin:0 7px;cursor:pointer;" class="dashicons dashicons-clock" title="pending" status="pending" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
+        $btn_fail = '<i role="button" style="margin:0 7px;cursor:pointer;" class="dashicons dashicons-no-alt" title="fail" status="failed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
+        $btn_trash = '<i role="button" style="margin:0 7px;cursor:pointer;" class="dashicons dashicons-trash" title="trash" status="trashed" username="'.$value->username.'" lid="'.$value->membership_id.'" element="'.strval($value->id).'" onClick="change_payment_status(this)" ></i>';
+        $btn_details = '<i role="button" style="margin:0 7px;cursor:pointer;" class="dashicons dashicons-visibility" title="view" toastid="toast-view-payment-details" toastaction="show" element="'.strval($value->id).'" onClick="modal_payment_details(this)" ></i>';
         $col++;
         $html_td .= '<td>'.$col.'</td>';
         foreach($llaves as $keyth => $th){

@@ -1,6 +1,6 @@
 <?php
 function aw_email_templates_2($params=["blogname"=>"","username"=>"","message"=>"","blogurl"=>"","admin_email"=>""]){
-    $logo_lg_uri = $params["blogurl"] . "/wp-content/themes/apuestan/assets/img/logo-email.png";
+    $logo_lg_uri = get_template_directory_uri() . '/assets/img/logo-email.png';
     
     $html = '<!DOCTYPE html>
     <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
@@ -90,16 +90,16 @@ function aw_email_templates_2($params=["blogname"=>"","username"=>"","message"=>
                         <table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; background-size: auto; background-color: #051421; width: 100%;">
                             <tbody>
                                     <tr>
-                                        <td class="column column-1" width="33.333333333333336%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 20px; padding-left: 30px; padding-right: 10px; padding-top: 20px; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+                                        <td class="column column-1" width="25%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 20px; padding-left: 30px; padding-right: 10px; padding-top: 20px; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
                                             <table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                                 <tr>
                                                     <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                                        <div class="alignment" align="center" style="line-height:10px"><a href="{blogurl}" target="_self" style="outline:none" tabindex="-1"><img src="'.$logo_lg_uri.'" style="display: block; height: auto; border: 0; width: 155px; max-width: 100%;" width="155" alt="{blogname}" title="{blogname}"></a></div>
+                                                        <div class="alignment" align="center" style="line-height:10px"><a href="{blogurl}" target="_self" style="outline:none" tabindex="-1"><img src="'.$logo_lg_uri.'" style="display: block; height: auto; border: 0; width: 155px; max-width: 100%;" width="120" alt="{blogname}" title="{blogname}"></a></div>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td class="column column-2" width="66.66666666666667%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-left: 25px; padding-right: 30px; padding-top: 5px; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+                                        <td class="column column-2" width="75%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-left: 25px; padding-right: 30px; padding-top: 5px; vertical-align: middle; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
                                             <table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
                                                 <tr>
                                                     <td class="pad">
