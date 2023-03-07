@@ -18,7 +18,7 @@ class w_bookmakers extends WP_Widget{
         $args = ["post_type" => "bk","posts_per_page" => $limit];
         $args['order'] = 'DESC';
         $args['orderby'] = 'meta_value_num';
-        $args['meta_key'] = 'calificacion';
+        $args['meta_key'] = '_calificacion';
         $query = new WP_Query($args);
         
         $bookmakers = [];
