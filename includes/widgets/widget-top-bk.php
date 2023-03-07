@@ -17,7 +17,7 @@ class w_bookmakers extends WP_Widget{
         $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
         $args = ["post_type" => "bk","posts_per_page" => $limit];
         $args['order'] = 'DESC';
-        $args['orderby'] = 'meta_value_num';
+        //$args['orderby'] = 'meta_value_num';
         $args['meta_key'] = '_calificacion';
         $query = new WP_Query($args);
         
