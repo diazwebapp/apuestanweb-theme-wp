@@ -3,12 +3,13 @@
 /*--------------------------------------------------------------*/
 /*                            CORE                              */
 /*--------------------------------------------------------------*/
-
+include "includes/core/session.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/core/meta-fields.php";
 include "includes/libs/aqua-resize/aqua-resize.php";
 include "includes/libs/odds-converter/converter.class.php"; 
+include "includes/templates-emails/settings.php"; 
 include "includes/templates-emails/template-email-1.php"; 
 include "includes/templates-emails/template-email-2.php";
 include "includes/core/notification-module/notification-core.php"; 
@@ -80,7 +81,7 @@ include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 
 include "rest-api/register-routes.php";
-//include "rest-api/telegram-post-publisher.php";
+include "rest-api/telegram-post-publisher.php";
 //include "rest-api/translator-ia.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";
@@ -94,6 +95,7 @@ include "rest-api/imagen-detacada-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),
+    'movil'=> __('Movil menu', 'jbetting'),
     'footer'=> __('Footer', 'jbetting'),
 ));
 
@@ -130,7 +132,6 @@ function jbetting_src()
 	wp_dequeue_script( 'ihc-jquery-ui'); 
     wp_dequeue_script( 'ihc-front_end_js' );
     */
-    //wp_enqueue_script('popper', 'https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array(), '1.16.1', true);
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
     wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
@@ -143,15 +144,16 @@ function jbetting_src()
 
     wp_deregister_script('jquery');
     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
-    
+
+    wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
     wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
     wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
-    wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
-    wp_enqueue_script( 'stick-js' );
+    // wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
+    // wp_enqueue_script( 'stick-js' );
 
     //wp_enqueue_script( 'noti-js' );
     //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
@@ -208,7 +210,7 @@ function convert_to_webp($image_path) {
           if (!$image) {
             return $image_path;
           }
-          imagewebp($image, $webp_image, 70);
+          imagewebp($image, $webp_image, 95);
           return array(
             'file' => $webp_image,
             'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),
@@ -237,68 +239,6 @@ function draw_rating($rating)
     return $ret;
 }
 
-add_action('init', function(){
-    
-    /* if(!session_id()):
-        session_start();
-    endif; */
-    
-    if(!str_contains($_SERVER["PHP_SELF"], "wp-admin")) {
-        setUserRating();
-    }
-    
-    remove_action( 'wp_head', 'wp_generator' );
-    remove_action( 'wp_head', 'rsd_link' );
-    remove_action( 'wp_head', 'wlwmanifest_link' );
-    remove_action( 'wp_head', 'start_post_rel_link' );
-    remove_action( 'wp_head', 'index_rel_link' );
-    remove_action( 'wp_head', 'wp_shortlink_wp_head' );
-    remove_action( 'wp_head', 'adjacent_posts_rel_link' );
-    remove_action( 'wp_head', 'parent_post_rel_link' );
-    remove_action( 'wp_head', 'feed_links_extra', 3 );
-    remove_action( 'wp_head', 'feed_links', 2 );
-    remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-    remove_action( 'wp_print_styles', 'print_emoji_styles' );
-    //Definimos configuraciones globales del tema
-    
-    //Zona horaria
-    date_default_timezone_set('America/Caracas');
-
-    //vip page
-    $page_id_vip = isset(carbon_get_theme_option('page_vip')[0]) ? carbon_get_theme_option('page_vip')[0]['id']: "#";
-    if($page_id_vip):
-        define('PERMALINK_VIP',get_the_permalink($page_id_vip));
-    endif;
-    //buy page
-    
-    $page_id_buy = empty(get_option( 'ihc_subscription_plan_page')) ? "#":get_option( 'ihc_subscription_plan_page',0);
-    if($page_id_buy):
-        define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
-    endif;
-
-    $page_forecaster = empty(get_option( 'ihc_general_register_view_user')) ? "#":get_option( 'ihc_general_register_view_user');
-    if($page_forecaster):
-        define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
-    endif;
-    
-
-    //odds-converter
-    if(!isset($_SESSION['odds_format'])):
-        $_SESSION['odds_format'] = 2;
-    endif;
-    if(isset($_GET['odds_format'])):
-        update_option( "odds_type", $_GET['odds_format']);
-    endif;
-
-    ///////////geolocation
-
-    if(!isset($_SESSION["geolocation"])){
-        
-        $data = geolocation_api($_SERVER["REMOTE_ADDR"]);
-        $_SESSION["geolocation"] = json_encode($data);
-    }
-    
-});
 
 
 function tg_remove_empty_paragraph_tags_from_shortcodes_wordpress( $content ) {
@@ -383,7 +323,7 @@ function aw_actions_after_register_user( $user_id ) {
 
     $headers[]= "From: Apuestan <$admin_email>";
 
-    $body= aw_email_templates(["blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+    $body= aw_email_templates_2(["blogname"=>$blogname,"username"=>$memberInfo->user_login]);
 
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
@@ -406,30 +346,25 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
             return 'text/html';
         }
         $headers[]= "From: Apuestan <$admin_email>";
-        $vip_link = "#";
-        if(defined("PERMALINK_VIP")){
-            $vip_link = PERMALINK_VIP;
-        }
+        
         if(isset($status)){
             if($status=="completed"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is approved.</p>';
-                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $message = get_option( "email-pago-completed" );
+                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
             }
             if($status=="pending"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your account is waiting to be approved.</p>';
-                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $message = get_option( "email-pago-pending" );
+                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
             if($status=="failed"){
-                $message = '
-                <p style="font-size: 14px; line-height: 140%;">Hi {username}, Your membership could not be verified, please record your payment or contact technical support.</p>';
-                $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link,"message"=>$message]);
+                $message = get_option( "email-pago-failed" );
+                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
 
             }
         }else{
-            $body= aw_email_templates(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"vip_link"=>$vip_link]);
+            $message = get_option( "email-registred" );
+            $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
         }
         if(is_wp_error( $body )){
 
@@ -438,7 +373,7 @@ function aw_notificacion_membership($payment_history_id=null,$status=null){
     
     
        add_filter( "wp_mail_content_type", "fix_html" );
-       wp_mail($memberInfo->user_email,"Apuestan status account" ,$body,$headers); 
+       wp_mail($memberInfo->user_email,"Apuestan actualizacion" ,$body,$headers); 
     }
 }
 
@@ -569,7 +504,6 @@ function aw_get_user_type($wp_user){
     
 	return $type;
 }
-
 function initCors( $value ) {
     $origin = get_http_origin();
     $allowed_origins = ["apuestan.com","apuestan.net"];
@@ -589,3 +523,4 @@ function initCors( $value ) {
 
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
+

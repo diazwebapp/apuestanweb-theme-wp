@@ -158,7 +158,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             </div>
                         
                             <div class='event2_box_middle_content'>
-                                <div>$estrellas</div>
+                                <div class='text-center'>$estrellas</div>
                                 <p class='p1'>Pronóstico:</p>
                                 {$html_predictions}
                                 <div class='event2_box_bonus'>
@@ -168,7 +168,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                                 <div class='event_btn_box'>
                                     <div class='event_btn_img'>
                                         <a href='{$bookmaker['ref_link']}'>
-                                        <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt=''>
+                                        <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt='' style='background:{$bookmaker['background_color']}'>
                                         </a>
                                     </div>
                                     <div >
@@ -232,7 +232,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                             <div class='event_btn_box'>
                                 <div class='event_btn_img'>
                                     <a href='{$bookmaker['ref_link']}'>
-                                    <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt=''>
+                                    <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt='' style='background:{$bookmaker['background_color']}'>
                                     </a>
                                 </div>
                                 <div >

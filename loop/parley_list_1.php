@@ -43,14 +43,16 @@ if(function_exists("aw_get_user_type")):
         $estado_usuario = "no permitido";
     }
 endif;
-$html_pronosticos = '<div class="text-center my-3">
-            <a href="'.$params['vip_ink'].'" class="btn btn-primary mx-5 px-5">
-                <i class="far fa-lock display-4"></i>
-                <span class="mx-3 display-4">VIP</span>
-            </a>
-    </div>'
+$html_pronosticos = '
+    <div class="d-flex flex-column align-items-center justify-content-center h-parlay">
+    <img class="img-fluid mt-5" src="'. get_template_directory_uri() . '/assets/img/apnpls.svg'.'" width="170" height="40" alt="ApuestanPlus">
+    <p class="p1 m-0">CONVIERTE EN MIEMBRO PREMIUM</p>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <a href="'. $params['vip_link'].'" class="button mt-3">'.$params['text_vip_link'].'</a>
+    </div>
+  </div>'
     ;
-
+     
 $html = "<div class='parley_wrapper'>
         <div class='parley_top_content' style='background-color:#009fe3 !important;'>
             <h2>$parley_title $fecha</h2>

@@ -104,7 +104,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                        
                     ?>
                     <p class="copy mt-5 py-2 s-f" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
-                
+                    <?php echo carbon_get_theme_option( 'footer_code' ) ?>
+
                 </div>
             </div>
         </div>

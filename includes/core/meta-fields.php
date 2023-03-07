@@ -29,7 +29,7 @@ function crb_attach_theme_options()
                         "ipwhois" => "ipwhois",
                     ]),
                 Field::make('text', 'geolocation_api_key', __("geolocation api key", "jbetting")),
-                Field::make('text', 'copy', __("copy", "jbetting"))
+                Field::make('text', 'copy', __("Copyright", "jbetting"))
 
             ))
             ->add_tab(__("country regulations","jbetting"),array(
@@ -62,9 +62,13 @@ function crb_attach_theme_options()
             ->add_tab(__("notificaciones","jbetting"), array(
                 
                 Field::make( 'checkbox', 'notificaciones', __( 'Notificaciones','jbetting' ) )
-                    ->set_option_value( 'yes' ),
+                ->set_option_value( 'yes' ),
             
-            ));
+            ))
+            ->add_tab(__("Header/footer","jbetting"), array(
+                Field::make( 'header_scripts', 'crb_header_script' ),
+                Field::make( 'footer_scripts', 'crb_footer_script' ),
+            ) );
 
         Container::make('comment_meta', __("Review fields", "jbetting"))
             ->add_fields(array(
@@ -110,12 +114,49 @@ function crb_attach_theme_options()
                     Field::make('text', 'ref', __("Refferal link", "jbetting")),
                     Field::make('select', 'rating', __("Rating(1,2,3,4,5)", "jbetting"))
                         ->add_options(array(
-                            '1' => '1',
-                            '2' => '2',
-                            '3' => '3',
-                            '4' => '4',
-                            '5' => '5',
+                            '1' => '1.0',
+                            '1.1' => '1.1',
+                            '1.2' => '1.2',
+                            '1.3' => '1.3',
+                            '1.4' => '1.4',
+                            '1.5' => '1.5',
+                            '1.6' => '1.6',
+                            '1.7' => '1.7',
+                            '1.8' => '1.8',
+                            '1.9' => '1.9',
+                            '2' => '2.0',
+                            '2.1' => '2.1',
+                            '2.2' => '2.2',
+                            '2.3' => '2.3',
+                            '2.4' => '2.4',
+                            '2.5' => '2.5',
+                            '2.6' => '2.6',
+                            '2.7' => '2.7',
+                            '2.8' => '2.8',
+                            '2.9' => '2.9',
+                            '3' => '3.0',
+                            '3.1' => '3.1',
+                            '3.2' => '3.2',
+                            '3.3' => '3.3',
+                            '3.4' => '3.4',
+                            '3.5' => '3.5',
+                            '3.6' => '3.6',
+                            '3.7' => '3.7',
+                            '3.8' => '3.8',
+                            '3.9' => '3.9',
+                            '4' => '4.0',
+                            '4.1' => '4.1',
+                            '4.2' => '4.2',
+                            '4.3' => '4.3',
+                            '4.4' => '4.4',
+                            '4.5' => '4.5',
+                            '4.6' => '4.6',
+                            '4.7' => '4.7',
+                            '4.8' => '4.8',
+                            '4.9' => '4.9',
+                            '5' => '5.0',
                         )),
+                    
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
                     Field::make('image', 'logo', __("logo cuadrado", "jbetting")),
