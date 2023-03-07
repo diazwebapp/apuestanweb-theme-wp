@@ -55,12 +55,14 @@ class w_bookmakers extends WP_Widget{
                 $rating_ceil = ceil(carbon_get_post_meta($bookmaker->ID, 'rating'));
                 $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') ? carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') : 'n/a';
                 $ref = carbon_get_post_meta($bookmaker->ID, 'ref');
+                $color = carbon_get_post_meta($bookmaker->ID, 'background-color');
+                
 
                 echo '<div class="top_box">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="top_serial">
                                 <span class="serial">'.$key.'</span>
-                                <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="" >
+                                <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="" style="background:'.$color.';padding: 6px;border-radius: 6px;width: 10rem;height: 3.3rem;">
                             </div>
                             <div class="ratings">
                                 <span>'.$rating_ceil.'</span>

@@ -50,7 +50,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                 </a>";
 if(!$vip or $estado_usuario == 'permitido')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
-                        <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}'>
+                        <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
                         <p>Haz una apuesta</p>
                     </a>";
 //Liga y deporte

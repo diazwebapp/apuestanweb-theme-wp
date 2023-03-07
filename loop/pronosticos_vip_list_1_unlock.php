@@ -187,7 +187,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                 <div class="d-none d-sm-flex align-items-center">
                                     <div class="rate_text d-flex align-items-center justify-content-center">
                                     <span>'.$cuote.'</span>
-                                    <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
+                                    <img width="65" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
                                     <div class="rating">
                                         '.$stars.'
                                     </div>
