@@ -19,7 +19,7 @@ $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
 $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
-$hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
+$hora = date('g:i a', strtotime($date->format('g:i a')));
 
 $sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
 $arr_sport = array();
