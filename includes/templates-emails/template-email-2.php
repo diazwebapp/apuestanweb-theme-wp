@@ -1,6 +1,6 @@
 <?php
 function aw_email_templates_2($params=["blogname"=>"","username"=>"","message"=>"","blogurl"=>"","admin_email"=>""]){
-    $logo_lg_uri = $params["blogurl"] . "/wp-content/themes/apuestan/assets/img/logo-email.png";
+    $logo_lg_uri = get_template_directory_uri() . '/assets/img/logo-email.png';
     
     $html = '<!DOCTYPE html>
     <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
