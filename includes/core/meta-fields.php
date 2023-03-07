@@ -112,14 +112,11 @@ function crb_attach_theme_options()
             ->add_tab(__("General", "jbetting"), array(
                     Field::make('checkbox', 'disable_table', __("Desactivar tabla de contenidos", "jbetting")),
                     Field::make('text', 'ref', __("Refferal link", "jbetting")),
-                    Field::make('select', 'rating', __("Rating(1,2,3,4,5)", "jbetting"))
-                        ->add_options(array(
-                            '1' => '1',
-                            '2' => '2',
-                            '3' => '3',
-                            '4' => '4',
-                            '5' => '5',
-                        )),
+                    Field::make('number', 'rating', __("Rating(1,2,3,4,5)", "jbetting"))
+                        ->set_step('0.1')
+                        ->set_attribute("min","1")
+                        ->set_attribute("max","5"),
+                    
                     Field::make('text', 'bonus_slogan', __("Bonus slogan", "jbetting")),
                     Field::make('text', 'bonus_amount', __("Bonus ammount", "jbetting")),
                     Field::make('image', 'logo', __("logo cuadrado", "jbetting")),
