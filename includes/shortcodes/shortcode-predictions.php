@@ -25,27 +25,14 @@ if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
     if(is_page()){
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        
     }
     
     //SI EL SHORTCODE ES USADO EN single
     if(is_single() or is_singular( )):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
-        
     endif;
 endif;
-if(!isset($aw_system_location)):
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        
-    }
-    
-    //SI EL SHORTCODE ES USADO EN single
-    if(is_single() or is_singular( )):
-        $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true,"on_single"=>true]);
-        var_dump($bookmaker);
-    endif;
-endif;
+
         
         $predictions = carbon_get_post_meta($id_post, 'predictions');
         if($predictions and count($predictions)> 0):
