@@ -18,7 +18,7 @@ function shortcode_predictions($atts)
         $geolocation = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
-        $bookmaker = json_encode([]);
+$bookmaker = json_encode([]);
 
         //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
@@ -29,10 +29,7 @@ if(isset($aw_system_location)):
             $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
         }
     }
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(!is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-    }
+    
     //SI EL SHORTCODE ES USADO EN single
     if(is_single()):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
