@@ -186,7 +186,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             </div>
                             <div class="d-none d-sm-flex align-items-center">
                                 <div class="rate_text d-flex align-items-center justify-content-center">
-                                        <a href="'.$permalink.'" class="ml-2">
+                                        <a href="'.$permalink.'" class="ml-2 d-flex align-items-center justify-content-center">
                                             <span>'.$cuote.'</span>
                                             <img width="50" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
                                         </a>

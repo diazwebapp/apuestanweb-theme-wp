@@ -2802,7 +2802,7 @@ blockquote{
 	margin-left: 1rem;
  }
 
- .rate_text span {
+ .rate_text > a > span {
 	color: #fff;
  }
 .vip_right_content .rating i{
