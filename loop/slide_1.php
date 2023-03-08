@@ -65,7 +65,7 @@ if (!$p2) {
     $p2 = 'n/a';
 }
 
-if ($teams['team1']['logo'] and $teams['team2']['logo']): 
+ 
 echo "<div class='owl-item' >
         <div class='item' style='background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%),url( $slide_bg ); background-repeat:no-repeat;background-size:cover;'>
             <div class='row align-items-center'>
@@ -117,4 +117,3 @@ echo "<div class='owl-item' >
         </div>  
     </div>";
 
-endif; 

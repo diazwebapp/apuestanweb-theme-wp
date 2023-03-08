@@ -33,24 +33,13 @@ if ($sport_term) {
 $teams = get_forecast_teams(get_the_ID());
 //bk
 $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
-$bookmaker = json_encode([]);
+$bookmaker = [];
 
-//SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
-    }
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(!is_page()){
+    $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
-endif;
-if(!isset($aw_system_location)):
-    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
 endif;
 
 $p1 = carbon_get_post_meta(get_the_ID(), 'p1');
@@ -78,7 +67,7 @@ if (!$p2) {
     $p2 = 'n/a';
 }
 
-if ($teams['team1']['logo'] and $teams['team2']['logo']): 
+ 
     echo '<div class="slider__single--box">
     <div class="slider__box--top">
         <p>'.$sport['name'].'</p>
@@ -124,5 +113,3 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
         <a href="'.$bookmaker['ref_link'].'"><img src="'.$bookmaker['logo'].'" alt="'.$bookmaker['name'].'"></a>
     </div>
     </div>';
-    
-endif; 

@@ -18,29 +18,24 @@ function shortcode_predictions($atts)
         $geolocation = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
-$bookmaker = json_encode([]);
+$bookmaker = [];
 
         //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
     //SI EL SHORTCODE ES USADO EN UNA PAGINA
     if(is_page()){
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
     }
     
     //SI EL SHORTCODE ES USADO EN single
-    if(is_single()):
+    if(is_single() or is_singular( )):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
+    endif;
+    if(!is_single() and !is_singular( ) and !is_page()):
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     endif;
 endif;
-if(!isset($aw_system_location)):
-    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
-endif;
+
         
         $predictions = carbon_get_post_meta($id_post, 'predictions');
         if($predictions and count($predictions)> 0):

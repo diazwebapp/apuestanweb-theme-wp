@@ -33,7 +33,7 @@ if ($sport_term) {
     }
 }
 
-if ($teams['team1']['logo'] and $teams['team2']['logo']):
+
     $author_id = $args["forecast"]->post_author;
     // $author_id = get_the_author_meta( 'ID' );
     $acerted = get_the_author_meta("forecast_acerted", $author_id );
@@ -105,4 +105,3 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
         </div>
     </div>
 </div>";
-endif; ?>

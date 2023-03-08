@@ -29,25 +29,16 @@ $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
-$bookmaker = json_encode([]);
+$bookmaker = [];
 
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
-    }
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(!is_page()){
+    $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
 endif;
-if(!isset($aw_system_location)):
-    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
-endif;
+
 $html_predictions = '';
 
 if(!empty($predictions)):
@@ -70,7 +61,8 @@ if($params['time_format']  == 'count'):
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
 endif;                              
-if ($teams['team1']['logo'] and $teams['team2']['logo']):
+
+
     $content = get_the_content(false,false,$args["forecast"]->ID) ;
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
     $tvalue = isset($predictions[0]) ? $predictions[0]['tvalue'] : null;
@@ -270,4 +262,4 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
     if(!$vip){
         echo $html_free;
     }
-endif; 
+    

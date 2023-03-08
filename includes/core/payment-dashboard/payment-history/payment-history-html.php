@@ -112,15 +112,22 @@ function generate_history_payment_table(){
 if(isset($_GET["update_payment_history_id"]) and isset($_GET["status"])){
   $array_id['id'] = $_GET["update_payment_history_id"];
   $array_data["status"] = $_GET["status"];
+  
   $activate_send_data["username"] = $_GET["username"];
   $activate_send_data["lid"] = $_GET["lid"];
   $activate_sql_params = aw_generate_activation_membership_data($activate_send_data);
-  $activated = aw_activate_membership($activate_sql_params);
-  if(!is_wp_error( $activated )){
-    $update = update_payment_history($array_data,$array_id);
+  $updated_user_membership = null;
+  if($_GET["status"] != 'completed'){
+    $activate_sql_params["update"]["expire_time"] = "0000-00-00 00:00:00";
+  }
+  $updated_user_membership = aw_update_user_membership($activate_sql_params);
+  
+  if(!is_wp_error( $updated_user_membership ) ){
+    update_payment_history($array_data,$array_id);
     header("Location:".$_SERVER["HTTP_REFERER"]);
     die;
   }
+  
   header("Location:".$_SERVER["HTTP_REFERER"]."&error=1");
 }
 

@@ -15,24 +15,13 @@ $formatted_date = __(date_i18n('j M', strtotime($time)), 'jbetting');
 
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
-$bookmaker = json_encode([]);
+$bookmaker = [];
 //SI EL PAIS ESTÁ CONFIGURADO
-
 if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
-    }
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(!is_page()){
+    $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
-endif;
-if(!isset($aw_system_location)):
-    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
 endif;
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
@@ -97,8 +86,7 @@ if($params['time_format']  == 'count'):
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
 endif; 
-if ($teams['team1']['logo'] and $teams['team2']['logo']):
-    
+
     echo "<div class='col-lg-4 col-md-6 mt_30'>
         
              <div class='game_box'>
@@ -125,4 +113,4 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 {$vipcomponent}
             </div>
     </div>"; 
-endif; ?>
+

@@ -5,24 +5,13 @@ $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
-$bookmaker = json_encode([]);
+$bookmaker = [];
 
-//SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
-    }
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(!is_page()){
+    $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
-endif;
-if(!isset($aw_system_location)):
-    $bookmaker = aw_select_relate_bookmakers(1, ["unique"=>true,"random"=>true]);
 endif;
 
 $vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
