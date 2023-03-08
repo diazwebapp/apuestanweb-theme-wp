@@ -31,6 +31,9 @@ if(isset($aw_system_location)):
     if(is_single() or is_singular( )):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
     endif;
+    if(!is_single() and !is_singular( ) and !is_page()):
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    endif;
 endif;
 
         
