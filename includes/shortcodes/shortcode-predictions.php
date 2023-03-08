@@ -18,7 +18,7 @@ function shortcode_predictions($atts)
         $geolocation = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
-$bookmaker = json_encode([]);
+$bookmaker = [];
 
         //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):

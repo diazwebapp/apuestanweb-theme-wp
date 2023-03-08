@@ -18,15 +18,9 @@ $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]])
 $bookmaker = [];
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
     $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(is_single() or is_singular( )){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
-        
+    if($bookmaker["name"] == "no bookmaker"){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
 endif;
 $date = new DateTime($time);

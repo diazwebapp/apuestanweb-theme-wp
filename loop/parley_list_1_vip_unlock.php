@@ -13,24 +13,13 @@ $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
 $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
-$bookmaker = json_encode([]);
+$bookmaker = [];
 ///Buscamos el pais en la base de datos
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
-//SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
-    }
-    //SI EL SHORTCODE NÓ ES USADO EN UNA PAGINA
-    if(is_single() or is_singular( )){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
-        if($bookmaker["name"] == "no bookmaker"){
-            $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-        }
+    $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
 endif;
 
