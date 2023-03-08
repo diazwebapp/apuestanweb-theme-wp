@@ -78,7 +78,7 @@ if (!$p2) {
     $p2 = 'n/a';
 }
 
-if ($teams['team1']['logo'] and $teams['team2']['logo']): 
+ 
     echo '<div class="slider__single--box">
     <div class="slider__box--top">
         <p>'.$sport['name'].'</p>
@@ -124,5 +124,3 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
         <a href="'.$bookmaker['ref_link'].'"><img src="'.$bookmaker['logo'].'" alt="'.$bookmaker['name'].'"></a>
     </div>
     </div>';
-    
-endif; 

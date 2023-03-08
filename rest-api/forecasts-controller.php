@@ -55,7 +55,7 @@ function aw_get_forecasts(WP_REST_Request $request){
         "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
         "model" => $params['model']
     ] );
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>count($query->posts),"page"=>$args['paged']];
 
     if ($query->posts):
         $view_params = [
@@ -65,6 +65,7 @@ function aw_get_forecasts(WP_REST_Request $request){
             "current_user" => isset($wp_user) ? $wp_user : null
         ];
         foreach ($query->posts as $key => $forecast):
+            
             $view_params["forecast"]=$forecast;
                 if(isset($params["exclude_post"]) and $params["exclude_post"] != $forecast->ID):
                     $loop_html["html"] .= load_template_part("loop/pronosticos_list_{$params['model']}",null,$view_params); 

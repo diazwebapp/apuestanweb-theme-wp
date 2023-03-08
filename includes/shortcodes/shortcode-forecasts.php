@@ -121,6 +121,7 @@ function shortcode_forecast($atts)
         $data_json = json_decode($query);
         
         $loop_html = $data_json->html;
+        
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );

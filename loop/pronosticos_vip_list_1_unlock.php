@@ -58,7 +58,7 @@ if ($sport_term) {
     }
 }
 
-if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
+if ($teams['team1'] and $teams['team2'] ):
     $author_id = $args["forecast"]->post_author;
     //$author_id = get_post_field( 'post_author', get_the_ID() );
     $acerted = get_the_author_meta("forecast_acerted", $author_id );

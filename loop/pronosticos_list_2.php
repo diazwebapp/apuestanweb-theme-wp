@@ -92,8 +92,7 @@ if($params['time_format']  == 'count'):
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
 endif; 
-if ($teams['team1']['logo'] and $teams['team2']['logo']):
-    
+
     echo "<div class='col-lg-4 col-md-6 mt_30'>
         
              <div class='game_box'>
@@ -120,4 +119,4 @@ if ($teams['team1']['logo'] and $teams['team2']['logo']):
                 {$vipcomponent}
             </div>
     </div>"; 
-endif; ?>
+
