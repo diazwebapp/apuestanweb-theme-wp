@@ -55,7 +55,7 @@ function aw_get_forecasts(WP_REST_Request $request){
         "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
         "model" => $params['model']
     ] );
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>count($query->posts),"page"=>$args['paged']];
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
 
     if ($query->posts):
         $view_params = [
