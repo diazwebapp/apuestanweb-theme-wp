@@ -197,7 +197,6 @@ async function load_more_items(e){
     params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
     params += forecasts_fetch_vars.current_user_id ? "&current_user_id="+forecasts_fetch_vars.current_user_id:"";
     params += "&odds="+forecasts_fetch_vars.odds;
-    console.log(params)
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
     
@@ -271,7 +270,6 @@ const quitar_notificaciones = async() =>{
     });
     if(request.status == 200){
         let response = await request.json()
-        console.log(response.status)
         if(counter_html && response.status == "ok"){
             counter_html.textContent = 0
         }

@@ -150,40 +150,40 @@
         });
     });
 
-    $(document).ready(function(){
-        // Verificar si la resolución es menor a 768px
+    // $(document).ready(function(){
+    //     // Verificar si la resolución es menor a 768px
         
-        if (window.innerWidth < 768) {
-            // Desactivar sticky
-            $(".share-buttons-container").trigger("sticky_kit:detach");
-        } else {
-            // Activar sticky
-            $(".share-buttons-container").stick_in_parent({
-                offset_top: 20,
-                parent: ".post-content",
-                spacer: ".sticky-spacer"
-            });
+    //     if (window.innerWidth < 768) {
+    //         // Desactivar sticky
+    //         $(".share-buttons-container").trigger("sticky_kit:detach");
+    //     } else {
+    //         // Activar sticky
+    //         $(".share-buttons-container").stick_in_parent({
+    //             offset_top: 20,
+    //             parent: ".post-content",
+    //             spacer: ".sticky-spacer"
+    //         });
     
-            // Eventos para agregar/eliminar clase is_stuck
-            $(document).on("sticky_kit:unstick", ".share-buttons-container", function(e) {
-                $(".share-buttons-container").removeClass("is_stuck");
-            });
+    //         // Eventos para agregar/eliminar clase is_stuck
+    //         $(document).on("sticky_kit:unstick", ".share-buttons-container", function(e) {
+    //             $(".share-buttons-container").removeClass("is_stuck");
+    //         });
             
-            $(document).on("sticky_kit:bottom", ".share-buttons-container", function(e) {
-                $(".share-buttons-container").removeClass("is_stuck");
-            });
+    //         $(document).on("sticky_kit:bottom", ".share-buttons-container", function(e) {
+    //             $(".share-buttons-container").removeClass("is_stuck");
+    //         });
     
-            $(document).on("sticky_kit:unbottom", ".share-buttons-container", function(e) {
-                $(".share-buttons-container").addClass("is_stuck");
-            });
+    //         $(document).on("sticky_kit:unbottom", ".share-buttons-container", function(e) {
+    //             $(".share-buttons-container").addClass("is_stuck");
+    //         });
     
-            $(document).on("sticky_kit:stick", ".share-buttons-container", function(e) {
-                $(".share-buttons-container").addClass("is_stuck");
-            });
-        }
+    //         $(document).on("sticky_kit:stick", ".share-buttons-container", function(e) {
+    //             $(".share-buttons-container").addClass("is_stuck");
+    //         });
+    //     }
 
         
-    });
+    // });
     $(document).ready(function(){
         $("#table-of-contents").on("hide.bs.collapse show.bs.collapse", function(){
           $(this).prev().find(".fas").toggleClass("fa-angle-down fa-angle-up");
