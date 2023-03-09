@@ -2801,6 +2801,10 @@ blockquote{
 .rate_text img {
 	margin-left: 1rem;
  }
+
+ .rate_text > a > span {
+	color: #fff;
+ }
 .vip_right_content .rating i{
 	font-size: 1.5rem;
 }
