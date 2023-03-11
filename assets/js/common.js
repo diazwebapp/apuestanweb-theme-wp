@@ -327,3 +327,7 @@ const quitar_notificacion = async(element)=>{
     }
 }
 
+
+window.addEventListener('popstate', function (e) {
+    window.history.back()
+});
