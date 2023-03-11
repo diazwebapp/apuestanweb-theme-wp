@@ -3,10 +3,14 @@
 function aw_get_forecasts(WP_REST_Request $request){
     $params = $request->get_params();
     $wp_user = get_user_by("id",$params["current_user_id"]);
+    if(isset($params['paged']) and isset($params['posts_per_page'])){
+        $params['posts_per_page_2'] = ceil($params['paged'] * $params['posts_per_page']);
+        
+    }
     $args = [];
     $args['post_type']      = 'forecast';
-    $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
-    $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
+    $args['paged']          = 1;
+    $args['posts_per_page'] = isset($params['posts_per_page_2']) ? $params['posts_per_page_2'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
     $args['order']          = 'DESC';
@@ -47,6 +51,9 @@ function aw_get_forecasts(WP_REST_Request $request){
             ];
     }
     $query = new WP_Query($args);
+    $args['paged'] = isset($params['paged']) ? $params['paged'] : 1;
+    $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
+    $pagination_data = new WP_Query($args);
 
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
@@ -55,7 +62,7 @@ function aw_get_forecasts(WP_REST_Request $request){
         "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
         "model" => $params['model']
     ] );
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$pagination_data->max_num_pages,"page"=>$args['paged']];
 
     if ($query->posts):
         $view_params = [
@@ -96,10 +103,15 @@ function aw_get_forecasts(WP_REST_Request $request){
 function aw_get_forecasts_vip(WP_REST_Request $request){
     $params = $request->get_params();
     $wp_user = get_user_by("id",$params["current_user_id"]);
+
+    if(isset($params['paged']) and isset($params['posts_per_page'])){
+        $params['posts_per_page_2'] = ceil($params['paged'] * $params['posts_per_page']);
+    }
+
     $args = [];
     $args['post_type']      = 'forecast';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
-    $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
+    $args['posts_per_page'] = isset($params['posts_per_page_2']) ? $params['posts_per_page_2'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
     $args['order']          = 'DESC';
@@ -140,7 +152,8 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
             ];
     }
     $query = new WP_Query($args);
-
+    $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
+    $pagination_data = new WP_Query($args);
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "memberships_page" => PERMALINK_MEMBERSHIPS,
@@ -148,7 +161,7 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
         "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
         "model" => $params['model']
     ] );
-    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
+    $loop_html = ["status" => 'ok',"html"=>'',"max_pages"=>$pagination_data->max_num_pages,"page"=>$args['paged']];
 
     if ($query->posts):
         $view_params = [

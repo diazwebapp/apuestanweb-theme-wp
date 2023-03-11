@@ -17,7 +17,7 @@ function shortcode_forecast_vip($atts)
 
     $geolocation = json_decode($_SESSION["geolocation"]);
     $odds = get_option( 'odds_type' );
-    
+   
     //default title
     if(is_page() && !$title)
         $title = get_the_title( );
@@ -118,7 +118,11 @@ function shortcode_forecast_vip($atts)
         if($paginate=='yes' and $data_json->max_pages > 1):
 
             $ret .=$args['btn_load_more'];
-            $ret .= '<div class="my-2 text-center text-muted" >'.__("pagina $data_json->page de / $data_json->max_pages","jbetting").'</div>';
+            $ret .= '<div class="my-2 text-center text-muted" >
+                '.__("pagina ","jbetting").'
+                <span id="current-page-number">'.$data_json->page.' </span> de 
+                <span>'.$data_json->max_pages.'</span>
+                </div>';
         endif;
         $ret .="</div>";
     else:

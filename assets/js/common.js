@@ -38,8 +38,6 @@ function setAge(resp){
     modal.remove()
 }
 let date_items = document.querySelectorAll('.date_item_pronostico_top');
-/////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
-const div_game_list = document.querySelector('#games_list')
     
 //////////////FILTRADO DE FECHAS EN PRONOSTICOS
 
@@ -181,9 +179,13 @@ const aw_update_user_membership = async({lid})=>{
     const resp = await req.json()
     return resp
 }
+/////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
+const div_game_list = document.querySelector('#games_list')
 async function load_more_items(e){
+    const inditator_page = document.querySelector('#current-page-number')
     const previus_text = e.textContent
-    e.textContent = 'loading...'
+    e.innerHTML = '<span class="spinner-border spinner-border " role="status" aria-hidden="true"></span>'
+    let old_page = forecasts_fetch_vars.paged
     forecasts_fetch_vars.paged++
     let params = "?paged="+forecasts_fetch_vars.paged;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
@@ -203,9 +205,28 @@ async function load_more_items(e){
     if(response.max_pages == forecasts_fetch_vars.paged){
         e.remove()
     }
+    
     if(response.status == 'ok'){
+        const searchTerm = 'page/';
+        const indexOfFirst = window.location.pathname.indexOf(searchTerm)
+        if(inditator_page){
+            inditator_page.textContent = response.page
+        }
+        if(indexOfFirst == -1){
+            let param_page = window.location.pathname+searchTerm + response.page
+            window.history.pushState(null,"",param_page)
+        }else{
+            old_page = "/"+old_page
+            const old_page_number = window.location.pathname.indexOf(old_page)
+            if(old_page_number != -1){
+                let param_page = window.location.pathname.replace(new RegExp(old_page, 'ig'), "/");
+                
+                param_page += response.page
+                window.history.pushState(null,"",param_page)
+            }
+        }
         forecasts_fetch_vars.paged = response.page
-        div_game_list.innerHTML += response.html
+        div_game_list.innerHTML = response.html
         e.textContent = previus_text 
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
         if(date_items.length > 0){

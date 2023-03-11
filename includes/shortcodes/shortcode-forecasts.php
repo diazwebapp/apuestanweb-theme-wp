@@ -87,7 +87,10 @@ function shortcode_forecast($atts)
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
     $args["current_user_id"] =  get_current_user_id();
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> 
+    
+    ".__( 'Cargar más', 'jbetting' ) ."
+    </button><br/>";
     
     $post_type = get_post_type( );
     if($post_type == "forecast" and is_single()):
@@ -128,9 +131,13 @@ function shortcode_forecast($atts)
         
         $ret .="<div class='container container_pagination_forecast text-md-center'>";
         if($paginate=='yes' and $data_json->max_pages > 1):
-
-            $ret .=$args['btn_load_more'];
-            $ret .= '<div class="my-2 text-center text-muted" >'.__("pagina $data_json->page de / $data_json->max_pages","jbetting").'</div>';
+            
+            $ret .= $args['btn_load_more'];
+            $ret .= '<div class="my-2 text-center text-muted" >
+                '.__("pagina ","jbetting").'
+                <span id="current-page-number">'.$data_json->page.' </span> de 
+                <span>'.$data_json->max_pages.'</span>
+                </div>';
 
         endif;
         $ret .=" </div>";

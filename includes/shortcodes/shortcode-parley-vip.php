@@ -126,6 +126,11 @@ function shortcode_parley_vip($atts)
         if($paginate=='yes' and $data_json->max_pages > 1):
 
             $ret .=$args['btn_load_more'];
+            $ret .= '<div class="my-2 text-center text-muted" >
+                '.__("pagina ","jbetting").'
+                <span id="current-page-number">'.$data_json->page.' </span> de 
+                <span>'.$data_json->max_pages.'</span>
+                </div>';
         endif;
         $ret .="</div>";
     else:
