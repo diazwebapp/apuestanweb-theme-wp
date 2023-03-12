@@ -394,7 +394,7 @@ function setUserRating(){
             //Query Args
             $forecast_args['author'] = $user->ID;
             $forecast_args['post_type'] = 'forecast';
-            $forecast_args['post_per_page'] = 10;
+            $forecast_args['post_per_page'] = 100;
             $forecast_args['paged'] = 1;
             $args['meta_key']       = '_data';
             $args['orderby']        = 'meta_value';

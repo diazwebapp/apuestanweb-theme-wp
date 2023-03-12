@@ -186,13 +186,12 @@ async function load_more_items(e){
     const inditator_page = document.querySelector('#current-page-number')
     const previus_text = e.textContent
     e.innerHTML = '<span class="spinner-border spinner-border " role="status" aria-hidden="true"></span>'
-    const current_page = e.getAttribute('data-page') 
-    let old_page = current_page
-    forecasts_fetch_vars.paged = current_page 
+    
+    let old_page = forecasts_fetch_vars.paged
     
     forecasts_fetch_vars.paged++
-    e.setAttribute("data-page",forecasts_fetch_vars.paged)
-    console.log(current_page)
+    
+    
     let params = "?paged="+forecasts_fetch_vars.paged;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
     params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
@@ -210,19 +209,22 @@ async function load_more_items(e){
     
     if(response.max_pages == forecasts_fetch_vars.paged){
         e.remove()
+        inditator_page.textContent = forecasts_fetch_vars.paged
     }
     
     if(response.status == 'ok'){
+        e.setAttribute("data-page",forecasts_fetch_vars.paged)
         const searchTerm = 'page/';
         const indexOfFirst = window.location.pathname.indexOf(searchTerm)
         if(inditator_page){
-            inditator_page.textContent = response.page
+            inditator_page.textContent = forecasts_fetch_vars.paged
         }
         if(indexOfFirst == -1){
-            let param_page = window.location.pathname+searchTerm + response.page
+            let param_page = window.location.pathname+searchTerm + forecasts_fetch_vars.paged
             window.history.pushState(null,"",param_page)
         }else{
             old_page = "/"+old_page
+            
             const old_page_number = window.location.pathname.indexOf(old_page)
             if(old_page_number != -1){
                 let param_page = window.location.pathname.replace(new RegExp(old_page, 'ig'), "/");
