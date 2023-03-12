@@ -180,7 +180,7 @@ const aw_update_user_membership = async({lid})=>{
     return resp
 }
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
-console.log(forecasts_fetch_vars.paged)
+
 const div_game_list = document.querySelector('#games_list')
 async function load_more_items(e){
     const inditator_page = document.querySelector('#current-page-number')
@@ -189,7 +189,10 @@ async function load_more_items(e){
     const current_page = e.getAttribute('data-page') 
     let old_page = current_page
     forecasts_fetch_vars.paged = current_page 
+    
     forecasts_fetch_vars.paged++
+    e.setAttribute("data-page",forecasts_fetch_vars.paged)
+    console.log(current_page)
     let params = "?paged="+forecasts_fetch_vars.paged;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
     params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
