@@ -87,7 +87,7 @@ function shortcode_forecast($atts)
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
     $args["current_user_id"] =  get_current_user_id();
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> 
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-page='{$args['paged']}' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> 
     
     ".__( 'Cargar más', 'jbetting' ) ."
     </button><br/>";
@@ -109,11 +109,11 @@ function shortcode_forecast($atts)
     $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
     $params .= "&current_user_id={$args['current_user_id']}";
     $params .= "&odds=$odds";
+    wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
     
     $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
     
     $query =  wp_remote_retrieve_body( $response );
-    
     if (!is_wp_error( $query )) {
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)
@@ -127,10 +127,8 @@ function shortcode_forecast($atts)
         
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
-        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
-        
         $ret .="<div class='container container_pagination_forecast text-md-center'>";
-        if($paginate=='yes' and $data_json->max_pages > 1):
+        if($data_json->page < $data_json->max_pages):
             
             $ret .= $args['btn_load_more'];
             $ret .= '<div class="my-2 text-center text-muted" >
