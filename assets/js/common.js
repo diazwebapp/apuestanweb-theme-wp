@@ -340,3 +340,8 @@ const quitar_notificacion = async(element)=>{
         console.log("hubo un error 500")
     }
 }
+
+
+window.addEventListener('popstate', function (e) {
+    window.history.back()
+});
