@@ -196,7 +196,7 @@
         const toc = document.querySelector("#table-of-contents .list-group");
         let headerCount = 0;
     
-        if(headers){
+        if(headers.length > 0){
             for (const header of headers) {
                 header.id = header.innerText.toLowerCase().replace(/\s/g, "-") + "-" + headerCount;
                 headerCount++;

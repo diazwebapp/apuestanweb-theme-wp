@@ -183,12 +183,8 @@ const aw_update_user_membership = async({lid})=>{
 
 const div_game_list = document.querySelector('#games_list')
 
-let cano = document.querySelector('[rel="canonical"]')
-if(cano){
-    console.log(cano)
-}
 async function load_more_items(e){
-
+    let cano = document.querySelector('[rel="canonical"]')
     const inditator_page = document.querySelector('#current-page-number')
     const previus_text = e.textContent
     e.innerHTML = '<span class="spinner-border spinner-border " role="status" aria-hidden="true"></span>'
@@ -219,24 +215,30 @@ async function load_more_items(e){
     
     if(response.status == 'ok'){
         e.setAttribute("data-page",forecasts_fetch_vars.paged)
+        
         const searchTerm = 'page/';
-        const indexOfFirst = window.location.pathname.indexOf(searchTerm)
         if(inditator_page){
             inditator_page.textContent = forecasts_fetch_vars.paged
         }
-        if(indexOfFirst == -1){
-            let param_page = window.location.pathname+searchTerm + forecasts_fetch_vars.paged + "/"
-            window.history.pushState(null,"",param_page)
-        }else{
+        
+        const url = new URL(window.location);
+        let page = window.location.pathname.indexOf(searchTerm)
+        if(page == -1){
+            url.pathname += 'page/'+forecasts_fetch_vars.paged+'/'
+        } else {
             old_page = "/"+old_page
-            
-            const old_page_number = window.location.pathname.indexOf(old_page)
+            const old_page_number = url.pathname.indexOf(old_page)
             if(old_page_number != -1){
-                let param_page = window.location.pathname.replace(new RegExp(old_page, 'ig'), "");                
-                param_page += response.page + "/"
-                window.history.pushState(null,"",param_page)
+                url.pathname = url.pathname.replace(new RegExp(old_page, 'ig'), "");              
+                url.pathname += response.page + "/"
             }
         }
+        
+        window.history.pushState({}, '', url);
+        if(cano){
+            cano.href = url
+        }
+        
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML += response.html
         e.textContent = previus_text 
@@ -338,8 +340,3 @@ const quitar_notificacion = async(element)=>{
         console.log("hubo un error 500")
     }
 }
-
-
-window.addEventListener('popstate', function (e) {
-    window.history.back()
-});
