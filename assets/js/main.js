@@ -196,16 +196,18 @@
         const toc = document.querySelector("#table-of-contents .list-group");
         let headerCount = 0;
     
-        for (const header of headers) {
-          header.id = header.innerText.toLowerCase().replace(/\s/g, "-") + "-" + headerCount;
-          headerCount++;
-    
-          const link = document.createElement("a");
-          link.href = "#" + header.id;
-          link.innerText = header.innerText;
-          link.classList.add("list-group-item", "list-group-item-action");
-    
-          toc.appendChild(link);
+        if(headers){
+            for (const header of headers) {
+                header.id = header.innerText.toLowerCase().replace(/\s/g, "-") + "-" + headerCount;
+                headerCount++;
+          
+                const link = document.createElement("a");
+                link.href = "#" + header.id;
+                link.innerText = header.innerText;
+                link.classList.add("list-group-item", "list-group-item-action");
+          
+                toc.appendChild(link);
+              }
         }
       });
 

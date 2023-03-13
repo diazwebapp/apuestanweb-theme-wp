@@ -182,7 +182,13 @@ const aw_update_user_membership = async({lid})=>{
 /////////////BOTON CARGAR MÁS (PAGINACIÓN) DE PRONOSTICOS
 
 const div_game_list = document.querySelector('#games_list')
+
+let cano = document.querySelector('[rel="canonical"]')
+if(cano){
+    console.log(cano)
+}
 async function load_more_items(e){
+
     const inditator_page = document.querySelector('#current-page-number')
     const previus_text = e.textContent
     e.innerHTML = '<span class="spinner-border spinner-border " role="status" aria-hidden="true"></span>'
@@ -227,14 +233,13 @@ async function load_more_items(e){
             
             const old_page_number = window.location.pathname.indexOf(old_page)
             if(old_page_number != -1){
-                let param_page = window.location.pathname.replace(new RegExp(old_page, 'ig'), "/");
-                
+                let param_page = window.location.pathname.replace(new RegExp(old_page, 'ig'), "/");                
                 param_page += response.page
                 window.history.pushState(null,"",param_page)
             }
         }
         forecasts_fetch_vars.paged = response.page
-        div_game_list.innerHTML = response.html
+        div_game_list.innerHTML += response.html
         e.textContent = previus_text 
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
         if(date_items.length > 0){

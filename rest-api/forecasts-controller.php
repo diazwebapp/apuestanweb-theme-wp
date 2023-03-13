@@ -10,8 +10,8 @@ function aw_get_forecasts(WP_REST_Request $request){
     }
     $args = [];
     $args['post_type']      = 'forecast';
-    $args['paged']          = 1;
-    $args['posts_per_page'] = isset($params['posts_per_page_2']) ? $params['posts_per_page_2'] : 1;
+    $args['paged'] = isset($params['paged']) ? $params['paged'] : 1;
+    $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
     $args['order']          = 'DESC';
