@@ -197,7 +197,6 @@ async function load_more_items(e){
     
     forecasts_fetch_vars.paged++
     
-    
     let params = "?paged="+forecasts_fetch_vars.paged;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
     params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
@@ -226,15 +225,15 @@ async function load_more_items(e){
             inditator_page.textContent = forecasts_fetch_vars.paged
         }
         if(indexOfFirst == -1){
-            let param_page = window.location.pathname+searchTerm + forecasts_fetch_vars.paged
+            let param_page = window.location.pathname+searchTerm + forecasts_fetch_vars.paged + "/"
             window.history.pushState(null,"",param_page)
         }else{
             old_page = "/"+old_page
             
             const old_page_number = window.location.pathname.indexOf(old_page)
             if(old_page_number != -1){
-                let param_page = window.location.pathname.replace(new RegExp(old_page, 'ig'), "/");                
-                param_page += response.page
+                let param_page = window.location.pathname.replace(new RegExp(old_page, 'ig'), "");                
+                param_page += response.page + "/"
                 window.history.pushState(null,"",param_page)
             }
         }
