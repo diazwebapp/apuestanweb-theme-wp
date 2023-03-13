@@ -115,14 +115,16 @@ function shortcode_parley($atts)
 
         $ret .="<div class='container container_pagination_parley text-md-center'>";
         if($data_json->page < $data_json->max_pages):
+            
+            $ret .= $args['btn_load_more'];
+            
 
-            $ret .=$args['btn_load_more'];
-            $ret .= '<div class="my-2 text-center text-muted" >
+        endif;
+        $ret .= '<div class="my-2 text-center text-muted" >
                 '.__("pagina ","jbetting").'
                 <span id="current-page-number">'.$data_json->page.' </span> de 
                 <span>'.$data_json->max_pages.'</span>
                 </div>';
-        endif;
         $ret .=" </div>";
         
     } else {
