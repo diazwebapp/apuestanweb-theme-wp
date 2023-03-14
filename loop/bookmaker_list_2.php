@@ -11,6 +11,8 @@ $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 $rating_ceil = floor(carbon_get_post_meta($args["post"]->ID, 'rating'));
 
 $permalink = get_the_permalink($args["post"]->ID);
+
+$bonuses = carbon_get_post_meta($args["post"]->ID, 'country_bonus');
 $bonus["country_bonus_slogan"]="";
 $bonus["country_bonus_amount"]="";
 $bonus["country_bonus_ref_link"]="";

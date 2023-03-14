@@ -19,11 +19,11 @@ function shortcode_slide_bk($atts)
     $args['meta_key'] = '_rating';
     
     $query = new WP_Query($args);
-
+    $location = json_decode($_SESSION["geolocation"]);
+    $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
     if ($query) {
         $new_bks = [];
-        $location = json_decode($_SESSION["geolocation"]);
-        $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+        
         foreach ($query->posts as $bookmaker): 
             $exists = null;
             if(isset($aw_system_country->id)):
@@ -35,6 +35,7 @@ function shortcode_slide_bk($atts)
         endforeach;
     }
     if (count($new_bks) > 0) { 
+        $view_params = [];
         $ret =  "<div class='testimonial_area'>
                 <div class='container'>
                     <div class='row small_gutter'>
@@ -52,7 +53,9 @@ function shortcode_slide_bk($atts)
                         <div class='owl-stage-outer'>
                             <div class='owl-stage' style='linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%);transform: translate3d(-517px, 0px, 0px); transition: all 1s ease 0s; width: 1410px; padding-left: 15px; padding-right: 15px;'>";
                         foreach ($new_bks as $keybk => $bookmaker):
-                            $html .= load_template_part("loop/slide_bk_$model",null,['bookmaker'	=> $bookmaker,]);                            
+                            $view_params['country'] = $aw_system_country;
+                            $view_params['bookmaker'] = $bookmaker;
+                            $html .= load_template_part("loop/slide_bk_$model",null,$view_params);                            
                         endforeach;
             $html .=  "          </div>
                         </div>
@@ -66,7 +69,10 @@ function shortcode_slide_bk($atts)
             $html =  "<div style='margin:15px auto;' class='container bonus_wrap'>
                         <div class='row'>";
                         foreach ($new_bks as $keybk => $bookmaker):
-                            $html .= load_template_part("loop/slide_bk_$model",null,['bookmaker'=> $bookmaker,"position"=>$keybk+1]);                            
+                            $view_params['country'] = $aw_system_country;
+                            $view_params['bookmaker'] = $bookmaker;
+                            $view_params['position'] = $keybk+1;
+                            $html .= load_template_part("loop/slide_bk_$model",null,$view_params);                            
                         endforeach;
             $html .=  " </div>
                 </div>";
@@ -76,7 +82,10 @@ function shortcode_slide_bk($atts)
             $html =  "<div style='margin:15px auto;' class='container small_gutter'>
                         <div class='row'>";
                         foreach ($new_bks as $keybk => $bookmaker):
-                            $html .= load_template_part("loop/slide_bk_$model",null,['bookmaker'=> $bookmaker,"position"=>$keybk+1]);                            
+                            $view_params['country'] = $aw_system_country;
+                            $view_params['bookmaker'] = $bookmaker;
+                            $view_params['position'] = $keybk+1;
+                            $html .= load_template_part("loop/slide_bk_$model",null,$view_params);                            
                         endforeach;
             $html .=  " </div>
                 </div>";
