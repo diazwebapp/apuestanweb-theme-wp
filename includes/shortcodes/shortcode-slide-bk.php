@@ -29,9 +29,6 @@ function shortcode_slide_bk($atts)
             if(isset($aw_system_country->id)):
                 $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
             endif;
-            if(!isset($aw_system_country->id)):
-                $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
-            endif;
             if(isset($exists)):
                 $new_bks[] = $bookmaker;
             endif;

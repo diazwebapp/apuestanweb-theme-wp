@@ -10,9 +10,23 @@ $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 
 $rating_float = carbon_get_post_meta($args["post"]->ID, 'rating');
 $rating_ceil = floor($rating_float);
-$ref = carbon_get_post_meta($args["post"]->ID, 'ref');
+
 $permalink = get_the_permalink($args["post"]->ID);
-$bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
+
+$bonuses = carbon_get_post_meta($args["post"]->ID, 'country_bonus');
+
+$bonus["country_bonus_slogan"]="";
+$bonus["country_bonus_amount"]="";
+$bonus["country_bonus_ref_link"]="";
+$bonus["country_code"]= "";
+
+if(isset($bonuses) and count($bonuses) > 0):
+    foreach($bonuses as $bonus_data):
+        if(strtoupper($bonus_data["country_code"]) == strtoupper($args["country"]->country_code)):
+            $bonus = $bonus_data;
+        endif;
+    endforeach;
+endif;
 $feactures = carbon_get_post_meta($args["post"]->ID, 'feactures');
 $html_feactures = "";
 if(!empty($feactures) and count($feactures) > 0):
@@ -48,7 +62,7 @@ $title = get_the_title($args["post"]->ID);
                 </div>
                 <div class='bookmaker_left_check mr-3'>
                     
-                    <p>{$bonus_slogan}</p>
+                    <p>{$bonus["country_bonus_slogan"]}</p>
                 </div>
                 <div class='bookmaker_right_content ml-2'>
                     <div class='d-md-block d-none'>
@@ -60,7 +74,7 @@ $title = get_the_title($args["post"]->ID);
                         </div>
                     </div>
                     <div class='bookmaker_right_btn'>
-                        <a href='$ref' class='btn_2'>Reclamar bono</a>
+                        <a href='{$bonus["country_bonus_ref_link"]}' class='btn_2'>Reclamar bono</a>
                     </div>
                 </div>
             </div>";
