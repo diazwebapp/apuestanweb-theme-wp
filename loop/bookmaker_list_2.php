@@ -9,9 +9,22 @@ endif;
 $bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
 
 $rating_ceil = floor(carbon_get_post_meta($args["post"]->ID, 'rating'));
-$ref = carbon_get_post_meta($args["post"]->ID, 'ref');
+
 $permalink = get_the_permalink($args["post"]->ID);
-$bonus_slogan = carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["post"]->ID, 'bonus_slogan') : 'n/a';
+
+$bonuses = carbon_get_post_meta($args["post"]->ID, 'country_bonus');
+$bonus["country_bonus_slogan"]="";
+$bonus["country_bonus_amount"]="";
+$bonus["country_bonus_ref_link"]="";
+$bonus["country_code"]= "";
+
+if(isset($bonuses) and count($bonuses) > 0):
+    foreach($bonuses as $bonus_data):
+        if(strtoupper($bonus_data["country_code"]) == strtoupper($args["country"]->country_code)):
+            $bonus = $bonus_data;
+        endif;
+    endforeach;
+endif;
 $feactures = carbon_get_post_meta($args["post"]->ID, 'feactures');
 $html_feactures = "";
 if(!empty($feactures) and count($feactures) > 0):
@@ -31,8 +44,8 @@ echo "<div class='tbox'>
     <div class='rating mt_15'> ";
         echo $stars; 
 echo "</div>
-    <p class='mt_30'>$bonus_slogan</p>
-    <a href='{$ref}' class='button mt_25 w-100' rel='nofollow'>apostar</a>
+    <p class='mt_30'>{$bonus["country_bonus_slogan"]}</p>
+    <a href='{$bonus["country_bonus_ref_link"]}' class='button mt_25 w-100' rel='nofollow'>apostar</a>
     <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
 </div>";
 echo "</div>";

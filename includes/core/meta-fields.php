@@ -201,8 +201,20 @@ function crb_attach_theme_options()
                     )),
                 )
                 
-            );
-        
+            )
+
+        ->add_tab(__("country bonus", "jbetting"), array(
+            Field::make('complex', 'country_bonus', __("country bonus", "jbetting"))
+                ->add_fields(array(
+                    Field::make('text', 'country_bonus_slogan', __("Slogan", "jbetting")),
+                    Field::make('text', 'country_bonus_amount', __("amount $", "jbetting")),
+                    Field::make('text', 'country_bonus_ref_link', __("ref_link", "jbetting")),
+                    Field::make('select', 'country_code', __("country", "jbetting"))
+                            ->add_options($countries),
+                ))
+         ));
+
+
         Container::make('post_meta', __("Team", "jbetting"))
             ->where('post_type', '=', 'team')
             ->add_tab(__("1. General", "jbetting"), array(

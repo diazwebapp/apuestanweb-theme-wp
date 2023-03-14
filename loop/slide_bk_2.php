@@ -8,13 +8,25 @@ else:
 endif;
 
 $rating_ceil = ceil(carbon_get_post_meta($args["bookmaker"]->ID, 'rating'));
-$ref = carbon_get_post_meta($args["bookmaker"]->ID, 'ref');
+
 $permalink = get_the_permalink();
 $num_comments = get_comments_number();
-$bonus_slogan = carbon_get_post_meta($args["bookmaker"]->ID, 'bonus_slogan') ? carbon_get_post_meta($args["bookmaker"]->ID, 'bonus_slogan') : 'n/a';
-$bonus_amount = carbon_get_post_meta($args["bookmaker"]->ID, 'bonus_amount') ? carbon_get_post_meta($args["bookmaker"]->ID, 'bonus_amount') : 'n/a';
 $title = get_the_title($args["bookmaker"]->ID);             
 $stars = draw_rating($rating_ceil); 
+
+$bonuses = carbon_get_post_meta($args["bookmaker"]->ID, 'country_bonus');
+$bonus["country_bonus_slogan"]="";
+$bonus["country_bonus_amount"]="";
+$bonus["country_bonus_ref_link"]="";
+$bonus["country_code"]= "";
+
+if(isset($bonuses) and count($bonuses) > 0):
+    foreach($bonuses as $bonus_data):
+        if(strtoupper($bonus_data["country_code"]) == strtoupper($args["country"]->country_code)):
+            $bonus = $bonus_data;
+        endif;
+    endforeach;
+endif;
 
 echo "<div class='col-3'>
                 <div class='bonus_box'>
@@ -26,11 +38,11 @@ echo "<div class='col-3'>
                                 echo $stars;
             echo "          </div>
                         </div>
-                        <p>$bonus_slogan</p>
+                        <p>{$bonus["country_bonus_slogan"]}</p>
                     </div>
                     <div class='bonus_bottom'>
                         <a href='$permalink' ><p>Review</p></a>
-                        <a href='$ref' class='button'>Obtener bono</a>
+                        <a href='{$bonus["country_bonus_ref_link"]}' class='button'>Obtener bono</a>
                     </div>
                 </div>
             </div>";

@@ -3,29 +3,32 @@ function shortcode_bookmaker($atts)
 {
     extract(shortcode_atts(array(
         'num' => 4,
-        'title' => false,
-        'slogan' => false,
+        'title' => null,
+        'slogan' => null,
         'model' => 1,
         'payment' => wp_get_post_terms(get_the_ID(), 'bookmaker-payment-methods', array('field' => 'slug')),
         'casino' => wp_get_post_terms(get_the_ID(), 'casinos', array('field' => 'slug')),
-        'paginate'=>false,
-        'country'=>false
+        'paginate'=>null,
+        'country'=>null
     ), $atts));
     $ret = '<div class="container" >
         <div class="row d-flex justify-content-center">{replace_loop}</div>
     </div>';
     
     wp_reset_query();
-
+   
     $args['post_type'] = 'bk';
+    //$args['paged'] = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1);
+    //$args['posts_per_page'] = $num;
     $args['posts_per_page'] = -1;
-    $args['order'] = 'DESC';
-    $args['orderby'] = 'meta_value_num';
+    $args['orderby'] = 'meta_value';
     $args['meta_key'] = '_rating';
+    $args['order'] = 'DESC';
     $args['tax_query'] = ["relation"=>"AND"];
     
     $terms = [];
     $casinos = [];
+    
     foreach($payment as $term){
         $terms[] = $term->slug;
     }
@@ -49,68 +52,41 @@ function shortcode_bookmaker($atts)
         ];
     }
     $query = new WP_Query($args);
+    
     if ($query) {
         $new_bks = [];
         $location = json_decode($_SESSION["geolocation"]);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
         $aw_system_country_2 = aw_select_country(["country_code"=>strtoupper($country)]);
+        
+        $view_list_bk = '';
         foreach ($query->posts as $bookmaker): 
             $exists = null;
-            if(empty($country)):
-                if(isset($aw_system_country->id)):
-                    $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
-                endif;
-                if(!isset($aw_system_country->id)):
-                    $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
-                endif;
+            $view_params = [];
+            if(!isset($aw_system_country_2) and isset($aw_system_country)):
+                $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
+                
                 if(isset($exists)):
-                    $new_bks[] = $bookmaker;
+                    $view_params['country'] = $aw_system_country;
+                    $view_params['post'] = $bookmaker;
+                    $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,$view_params);
                 endif;
-            else:
+            endif;
+            if(isset($aw_system_country_2)):
+                $view_params['country'] = $aw_system_country_2;
+                $view_params['post'] = $bookmaker;
                 if(isset($aw_system_country_2->id)):
                     $exists = aw_detect_bookmaker_on_country($aw_system_country_2->id,$bookmaker->ID);
                 endif;
-                if(!isset($aw_system_country_2->id)):
-                    $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
-                endif;
                 if(isset($exists)):
-                    $new_bks[] = $bookmaker;
+                    $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,$view_params);
                 endif;
             endif;
         endforeach;
-        //Elementos de la paginación
-        $path = $_SERVER["REQUEST_URI"];
-
-        $total_pages = ceil(count($new_bks) / $num);
-        $current_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-        
-        if(isset($_GET["page"])){
-            $current_page = intval($_GET["page"]) > $total_pages ? $total_pages :intval($_GET["page"]);
-        }
-        $cut = $current_page * $num -2;
-        if($cut > count($new_bks)){
-            $cut = $cut - count($new_bks)  ;
-            $cut = $cut * $current_page;
-        }
-        array_splice($new_bks,0, ($current_page == 1) ? $current_page -1 : $cut );
-        $view_list_bk = '';
-
-        foreach ($new_bks as $key_bk => $bookmaker):
-            if($current_page == 1 and  $key_bk  <= ($num - 1))
-                $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,[
-                    'post'	=> $bookmaker,
-                ]);
-            if($current_page > 1 and  $key_bk  <= ($num - 1))
-                $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,[
-                    'post'	=> $bookmaker,
-                ]);
-            
-        endforeach;
-
-        
+    
         $ret = str_replace("{replace_loop}",$view_list_bk,$ret);
 
-        if(count($new_bks) > 0 and $paginate=="yes"){
+        /* if($paginate=="yes"){
             $links = '';
             for($i=1;$i<=$total_pages;$i++){
                 $path2 = str_replace("page/$current_page/","",$path);
@@ -131,7 +107,7 @@ function shortcode_bookmaker($atts)
                 </div>
             </div>
             ';
-        }
+        } */
     } else {
         return '<p>no hay datos</p>';
     }
