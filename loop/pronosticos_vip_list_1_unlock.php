@@ -175,7 +175,7 @@ if ($teams['team1'] and $teams['team2'] ):
                             </div>
                             <div class="d-none d-sm-flex align-items-center">
                                 <div class="rate_text d-flex align-items-center justify-content-center">
-                                        <a href="'.$bookmaker['ref_link'].'" class="ml-2">
+                                        <a href="'.$bookmaker['ref_link'].'" class="ml-2  d-flex align-items-center justify-content-center">
                                             <span>'.$cuote.'</span>
                                             <img width="50" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
                                         </a>
