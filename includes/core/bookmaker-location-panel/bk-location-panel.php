@@ -89,7 +89,7 @@ if(!function_exists('aw_select_country')):
       $sentencia = "SELECT * FROM $table WHERE id = '{$params["table_id"]}' ";
     endif;
     $country = $wpdb->get_row($sentencia);
-    
+    var_dump($country);
     return $country;
   }
 else:
