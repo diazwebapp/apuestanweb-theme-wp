@@ -20,9 +20,9 @@ class w_bonus_bookmakers extends WP_Widget{
         $args['orderby'] = 'meta_value_num';
         $args['meta_key'] = '_rating';
         $query = new WP_Query($args);
+
         $bookmakers = [];
         if(!isset($aw_system_location) and $query->posts):
-            //$bookmakers = aw_select_relate_bookmakers(1,["random"=>true,"limit"=>$limit]);
             foreach ($query->posts as $key => $bookmaker):
                 $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
                 if($exists):
@@ -30,7 +30,7 @@ class w_bonus_bookmakers extends WP_Widget{
                 endif;
             endforeach;
         else:
-            //$bookmakers = aw_select_relate_bookmakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
+            
             if($query->posts):
                 foreach ($query->posts as $key => $bookmaker):
                     $exists = aw_detect_bookmaker_on_country($aw_system_location->id,$bookmaker->ID);
@@ -51,10 +51,19 @@ class w_bonus_bookmakers extends WP_Widget{
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_ceil = floor(carbon_get_post_meta($bookmaker->ID, 'rating'));
-                $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_slogan') ? carbon_get_post_meta($bookmaker->ID, 'bonus_slogan') : 'n/a';
-                $ref = carbon_get_post_meta($bookmaker->ID, 'ref');
+                $bonus_slogan = "";
+                $ref = "";
                 $color = carbon_get_post_meta($bookmaker->ID, 'background-color');
 
+                $bonuses = carbon_get_post_meta($bookmaker->ID, 'country_bonus');
+                if(isset($bonuses) and count($bonuses) > 0):
+                    foreach($bonuses as $bonus_data):
+                        if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_location->country_code)):
+                            $bonus_slogan = $bonus_data["country_bonus_slogan"];
+                            $ref = $bonus_data["country_bonus_ref_link"];
+                        endif;
+                    endforeach;
+                endif;
 
                 echo '<div class="top_box top_box2">
                         <div class="d-flex align-items-center justify-content-between">
@@ -62,7 +71,7 @@ class w_bonus_bookmakers extends WP_Widget{
                                 <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="" style="background:'.$color.';padding: 6px;border-radius: 6px;margin-right: 2rem;height: 7rem;width: 9.5rem;">
                             </div>
                             <div class="top_box_content text-center">
-									<p>'.$bonus.'</p>
+									<p>'.$bonus_slogan.'</p>
 									<a href="'.$ref.'" class="button">Obtener bono</a>
 							</div>
                         </div>

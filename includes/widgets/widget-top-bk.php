@@ -54,9 +54,19 @@ class w_bookmakers extends WP_Widget{
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_float = carbon_get_post_meta($bookmaker->ID, 'rating');
                 $rating_ceil = floor($rating_float);
-                $bonus = carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') ? carbon_get_post_meta($bookmaker->ID, 'bonus_amount_table') : 'n/a';
-                $ref = carbon_get_post_meta($bookmaker->ID, 'ref');
+                
+                $ref = "";
+                $ref = "";
                 $color = carbon_get_post_meta($bookmaker->ID, 'background-color');
+
+                $bonuses = carbon_get_post_meta($bookmaker->ID, 'country_bonus');
+                if(isset($bonuses) and count($bonuses) > 0):
+                    foreach($bonuses as $bonus_data):
+                        if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_location->country_code)):
+                            $ref = $bonus_data["country_bonus_ref_link"];
+                        endif;
+                    endforeach;
+                endif;
                 
 
                 echo '<div class="top_box">

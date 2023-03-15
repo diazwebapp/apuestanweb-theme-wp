@@ -66,7 +66,7 @@ if(!$vip or $estado_usuario == 'permitido'){
             $parley_cuotes = $parley_cuotes * $prediction['cuote'];
             $oOddsConverter = new Converter($prediction['cuote'], 'eu');
             $odds_result = $oOddsConverter->doConverting();
-            $prediction['cuote'] = $odds_result[$args["odds"]];
+            $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
             $time = carbon_get_post_meta($event['id'], 'data');
