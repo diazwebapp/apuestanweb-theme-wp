@@ -85,8 +85,7 @@ if(!function_exists('aw_select_country')):
     if(isset($params["table_id"]) and !empty($params["table_id"])):
       $sentencia = "SELECT * FROM $table WHERE id = '{$params["table_id"]}' ";
     endif;
-    $prepare = $wpdb->prepare($sentencia);
-    $country = $wpdb->get_row($prepare);
+    $country = $wpdb->get_row($sentencia);
     
     return $country;
   }
