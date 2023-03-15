@@ -14,7 +14,7 @@ $formatted_date = __(date_i18n('j M', strtotime($time)), 'jbetting');
 
 
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
-
+var_dump($aw_system_location);
 $bookmaker = [];
 //SI EL PAIS ESTÁ CONFIGURADO
 if(isset($aw_system_location)):
