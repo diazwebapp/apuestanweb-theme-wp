@@ -47,8 +47,9 @@ if(!empty($predictions)):
 
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
-    
-    $prediction['cuote'] = $odds_result[$args["odds"]];
+    if(is_array($odds_result)):
+        $prediction['cuote'] = $odds_result[$args["odds"]];
+    endif;
 
     $html_predictions = "<div class='event2_box_middle_heading'>
                             <h3>{$prediction['title']}</h3>
