@@ -42,7 +42,6 @@ endif;
 $html_predictions = '';
 
 if(!empty($predictions)):
-    $prediction = [];
     $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title'] : '';
     $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote'] : 1;
 
