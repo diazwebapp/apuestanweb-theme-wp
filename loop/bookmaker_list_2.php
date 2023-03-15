@@ -17,7 +17,7 @@ $bonus["country_bonus_slogan"]="";
 $bonus["country_bonus_amount"]="";
 $bonus["country_bonus_ref_link"]="";
 $bonus["country_code"]= "";
-var_dump($args["country"]->country_code);
+
 if(isset($bonuses) and count($bonuses) > 0):
     foreach($bonuses as $bonus_data):
         if(strtoupper($bonus_data["country_code"]) == strtoupper($args["country"]->country_code)):
