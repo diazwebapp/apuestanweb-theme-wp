@@ -40,7 +40,7 @@ $vipcomponent ="<div class='plogo'>
 if(!$vip or $estado_usuario=='permitido'):
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
-    $prediction['cuote'] = $odds_result[$args["odds"]];
+    $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
     $vipcomponent ="<div class='plogo'>
                         <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                     </div>
