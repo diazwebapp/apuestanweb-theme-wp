@@ -81,7 +81,10 @@ if(!function_exists('aw_select_country')):
   function aw_select_country($params=["country_code"=>"WW","table_id"=>null]){
     global $wpdb;
     $table = MYSQL_TABLE_COUNTRIES;
-    $sentencia = "SELECT * FROM $table WHERE country_code = '{$params["country_code"]}' ";
+    $sentencia = "SELECT * FROM $table WHERE 1";
+    if(isset($params["country_code"])):
+      $sentencia = "SELECT * FROM $table WHERE country_code = '{$params["country_code"]}' ";
+    endif;
     if(isset($params["table_id"]) and !empty($params["table_id"])):
       $sentencia = "SELECT * FROM $table WHERE id = '{$params["table_id"]}' ";
     endif;
