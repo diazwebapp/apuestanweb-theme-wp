@@ -42,12 +42,13 @@ endif;
 $html_predictions = '';
 
 if(!empty($predictions)):
+    $prediction = [];
     $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title'] : '';
     $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote'] : 1;
 
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
-    $prediction = [];
+    
     $prediction['cuote'] = $odds_result[$args["odds"]];
 
     $html_predictions = "<div class='event2_box_middle_heading'>
