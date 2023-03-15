@@ -72,6 +72,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         $current_country = json_decode($_SESSION["geolocation"]);
                         $agesvg = get_template_directory_uri() . '/assets/img/age.svg';
                         $aw_system_location = aw_select_country(["country_code"=>$current_country->country_code]);
+                        var_dump($aw_system_location);
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             foreach($theme_regulation as $regs):
                                 if(isset($aw_system_location) and $regs["country_code"] == $aw_system_location->country_code):
