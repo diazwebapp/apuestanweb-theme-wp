@@ -12,7 +12,7 @@ function mysql_table_aw_countries(){
     global $charset_collate;
     $table_1 = MYSQL_TABLE_COUNTRIES;
 
-    $sql = "CREATE TABLE IF NOT EXISTS $table_1 (
+    $sql = "CREATE TABLE $table_1 (
         id bigint(50) NOT NULL auto_increment,
         country_name TEXT,
         country_code TEXT,
@@ -78,10 +78,14 @@ endif;
 
 
 if(!function_exists('aw_select_country')):
-  function aw_select_country($params=["country_code"=>"WW"]){
+  function aw_select_country($params=["country_code"=>"WW","table_id"=>null]){
     global $wpdb;
     $table = MYSQL_TABLE_COUNTRIES;
-    $prepare = $wpdb->prepare("SELECT * FROM $table WHERE country_code = %s ",$params["country_code"]);
+    $sentencia = "SELECT * FROM $table WHERE country_code = '{$params["country_code"]}' ";
+    if(isset($params["table_id"]) and !empty($params["table_id"])):
+      $sentencia = "SELECT * FROM $table WHERE id = '{$params["table_id"]}' ";
+    endif;
+    $prepare = $wpdb->prepare($sentencia);
     $country = $wpdb->get_row($prepare);
     
     return $country;
@@ -140,9 +144,19 @@ if(!function_exists('aw_select_relate_bookmakers')):
       //Si existe una casa de apuesta seteamos sus valores
       if($list):
         $bookmaker['name'] = $list->post_title;
-        $bookmaker["bonus_amount"] = carbon_get_post_meta($list->ID, 'bonus_amount');
-        $bookmaker["ref_link"] = carbon_get_post_meta($list->ID, 'ref');
-        $bookmaker["bonus_slogan"] = carbon_get_post_meta($list->ID, 'bonus_slogan');
+        $aw_system_country = aw_select_country(["table_id"=>$country_id]);
+        
+        $bonuses = carbon_get_post_meta($list->ID, 'country_bonus');
+        if(isset($bonuses) and count($bonuses) > 0):
+          foreach($bonuses as $bonus_data):
+              if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
+                $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
+                $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
+                $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+              endif;
+          endforeach;
+        endif;
+       
         $bookmaker["background_color"] = carbon_get_post_meta($list->ID, 'background-color');
         $bookmaker["feactures"] = carbon_get_post_meta($list->ID, 'feactures');
         if (carbon_get_post_meta($list->ID, 'logo')):
