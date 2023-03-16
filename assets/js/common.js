@@ -255,6 +255,7 @@ async function filter_date_items(e){
     const inditator_page = document.querySelector('#current-page-number')
     const indicator_max_page = document.querySelector('#max-page-number')
     forecasts_fetch_vars.date = e.value
+    console.log(forecasts_fetch_vars.current_user_id);
     let params = "?paged="+1;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
     params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
