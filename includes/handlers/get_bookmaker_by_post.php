@@ -27,23 +27,27 @@ function get_bookmaker_by_post($id){
 function get_bookmaker_payments($bookmaker_id){
     $methods = carbon_get_post_meta(get_the_ID(), 'payment_methods');
     $bookmaker_payment_methods = [];
-    if(!empty($methods) and count($methods) > 0){
+    if(isset($methods) and count($methods) > 0){
         foreach($methods as $key_item => $item){
             $term = get_term($item['payment_method'][0]["id"],$item['payment_method'][0]["subtype"]);
             $default_logo = get_template_directory_uri( ) . "/assets/img/logo2.svg";
             
             $logo = carbon_get_term_meta($term->term_id,'logo_1x1'); 
-            $logo = !empty(wp_get_attachment_url( $logo )) ? wp_get_attachment_url( $logo ) : $default_logo; 
+            if(isset($logo)):
+                $logo = (wp_get_attachment_url( $logo ) ) ? wp_get_attachment_url( $logo ) : $default_logo; 
+            endif;
 
             $logo_2x1 = carbon_get_term_meta($term->term_id,'logo_2x1');
-            $logo_2x1 = !empty(wp_get_attachment_url( $logo_2x1 )) ? wp_get_attachment_url( $logo_2x1 ) : $default_logo;
+            if(isset($logo_2x1)):
+                $logo_2x1 = (wp_get_attachment_url( $logo_2x1 )) ? wp_get_attachment_url( $logo_2x1 ) : $default_logo;
+            endif;
 
             $bookmaker_payment_methods[$key_item] = $term;
             $bookmaker_payment_methods[$key_item]->logo_1x1 = $logo;
             $bookmaker_payment_methods[$key_item]->logo_2x1 = $logo_2x1;
             $bookmaker_payment_methods[$key_item]->payment_method_chars = [];
 
-            if(!empty($item["caracteristicas"]) and count($item["caracteristicas"]) > 0){
+            if(isset($item["caracteristicas"]) and count($item["caracteristicas"]) > 0){
                 foreach($item["caracteristicas"] as $char){
                     $bookmaker_payment_methods[$key_item]->payment_method_chars[] = [
                         "titulo" => $char["title"],

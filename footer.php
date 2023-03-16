@@ -76,6 +76,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
                             $regulation = null;
                             foreach($theme_regulation as $regs):
+                                
                                 if($regs["country_code"] == "WW"):
                                     $regulation = $regs;
                                 endif;
