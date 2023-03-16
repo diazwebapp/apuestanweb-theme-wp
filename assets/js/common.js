@@ -280,7 +280,7 @@ async function filter_date_items(e){
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
         if(response.max_pages > 1){
-            div_container_pagination_forecasts.innerHTML += forecasts_fetch_vars.btn_load_more            
+            div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more            
             inditator_page.textContent = forecasts_fetch_vars.paged
             indicator_max_page.textContent = response.max_pages
         }else{
