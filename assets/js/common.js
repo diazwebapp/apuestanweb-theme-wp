@@ -252,6 +252,8 @@ async function load_more_items(e){
     }
 }
 async function filter_date_items(e){
+    const inditator_page = document.querySelector('#current-page-number')
+    const indicator_max_page = document.querySelector('#max-page-number')
     forecasts_fetch_vars.date = e.value
     let params = "?paged="+1;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
@@ -276,9 +278,13 @@ async function filter_date_items(e){
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
         if(response.max_pages > 1){
-            div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
+            div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more            
+            inditator_page.textContent = forecasts_fetch_vars.paged
+            indicator_max_page.textContent = response.max_pages
         }else{
             document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
+            inditator_page.textContent = response.page
+            indicator_max_page.textContent = response.max_pages
         }
         if(date_items.length > 0){
             init_countdown(date_items)
