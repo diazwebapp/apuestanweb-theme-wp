@@ -281,10 +281,12 @@ async function filter_date_items(e){
             div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more            
             inditator_page.textContent = forecasts_fetch_vars.paged
             indicator_max_page.textContent = response.max_pages
+            console.log("max > 1")
         }else{
             document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
             inditator_page.textContent = response.page
             indicator_max_page.textContent = response.max_pages
+            console.log("max else 1")
         }
         if(date_items.length > 0){
             init_countdown(date_items)
