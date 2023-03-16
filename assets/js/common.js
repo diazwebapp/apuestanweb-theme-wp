@@ -274,7 +274,7 @@ async function filter_date_items(e){
     
     let class_item =  e.getAttribute('data-type') 
     const div_container_pagination_forecasts = document.querySelector('.container_pagination_'+class_item)
-    const div_container_indicator = document.querySelector('.page-status-indicator')
+    
     if(response.status == 'ok'){
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html

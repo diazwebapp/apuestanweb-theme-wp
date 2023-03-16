@@ -7,7 +7,7 @@ function shortcode_banner_bookmaker($atts)
     ), $atts));
     //geolocation
     $location = json_decode($_SESSION["geolocation"]);
-    $aw_system_location = !empty(aw_select_country(["country_code"=>$location->country_code])) ? aw_select_country(["country_code"=>$location->country_code]) : aw_select_country(["country_code"=>"WW"]);
+    $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
     
 
     //default bookmaker
@@ -20,9 +20,19 @@ function shortcode_banner_bookmaker($atts)
 
     //obtener datos del bookmaker
     $post = get_post($id);
+    $bonuses = carbon_get_post_meta($post->ID, 'country_bonus');
+    if(isset($bonuses) and count($bonuses) > 0):
+        foreach($bonuses as $bonus_data):
+            if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
+            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
+            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
+            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+            endif;
+        endforeach;
+    endif;
+
+    
     $bookmaker["feactures"] = carbon_get_post_meta($post->ID, 'feactures');
-    $bookmaker["bonus_slogan"] = carbon_get_post_meta($post->ID,'bonus_slogan');
-    $bookmaker["ref_link"] = carbon_get_post_meta($post->ID,'ref');
     $bookmaker["background_color"]= carbon_get_post_meta($post->ID, 'background-color');
 
     $default = [];
