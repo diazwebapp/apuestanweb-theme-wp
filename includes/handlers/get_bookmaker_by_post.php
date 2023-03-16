@@ -25,6 +25,9 @@ function get_bookmaker_by_post($id){
 } 
 
 function get_bookmaker_payments($bookmaker_id){
+    if(is_single( )):
+        var_dump("---");
+    endif;
     $methods = carbon_get_post_meta($bookmaker_id, 'payment_methods');
     $bookmaker_payment_methods = [];
     if(isset($methods) and count($methods) > 0){
