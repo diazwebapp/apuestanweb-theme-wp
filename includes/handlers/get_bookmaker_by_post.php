@@ -31,9 +31,7 @@ function get_bookmaker_payments($bookmaker_id){
     if(isset($methods) and count($methods) > 0){
         
         foreach($methods as $key_item => $item){
-            echo "<pre>";
-            var_dump($item['payment_method'][0]['id']);
-            echo "</pre>";
+            
             
             $term = get_term($item['payment_method'][0]["id"],$item['payment_method'][0]["subtype"]);
             if(isset($term)):
