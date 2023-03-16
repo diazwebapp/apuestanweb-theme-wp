@@ -2,7 +2,7 @@
 
 function aw_get_forecasts(WP_REST_Request $request){
     $params = $request->get_params();
-    $wp_user = get_user_by("id",$params["current_user_id"]);
+    $wp_user = get_user_by("id",isset($params["current_user_id"]) ? $params["current_user_id"] : 0);
 
     $args = [];
     $args['post_type']      = 'forecast';
