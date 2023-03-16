@@ -32,8 +32,9 @@ function get_bookmaker_payments($bookmaker_id){
         
         foreach($methods as $key_item => $item){
             echo "<pre>";
-            var_dump($item['payment_method']);
+            var_dump($item['payment_method'][0]);
             echo "</pre>";
+            
             $term = get_term($item['payment_method'][0]["id"],$item['payment_method'][0]["subtype"]);
             
             $default_logo = get_template_directory_uri( ) . "/assets/img/logo2.svg";
