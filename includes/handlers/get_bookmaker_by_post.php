@@ -25,14 +25,13 @@ function get_bookmaker_by_post($id){
 } 
 
 function get_bookmaker_payments($bookmaker_id){
-    $methods = carbon_get_post_meta(get_the_ID(), 'payment_methods');
+    $methods = carbon_get_post_meta($bookmaker_id, 'payment_methods');
     $bookmaker_payment_methods = [];
     if(isset($methods) and count($methods) > 0){
         
         foreach($methods as $key_item => $item){
             $term = get_term($item['payment_method'][0]["id"],$item['payment_method'][0]["subtype"]);
-            var_dump($term);
-            return
+            
             $default_logo = get_template_directory_uri( ) . "/assets/img/logo2.svg";
             
             $logo = carbon_get_term_meta($term->term_id,'logo_1x1'); 
