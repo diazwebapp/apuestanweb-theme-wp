@@ -123,7 +123,7 @@ function shortcode_forecast_vip($atts)
         endif;
         $ret .= '<div class="my-2 text-center text-muted" >
                 '.__("pagina ","jbetting").'
-                <span id="current-page-number">'.$data_json->page.' </span> de 
+                <span id="current-page-number">'.($data_json->max_pages == 0 ? 0 :$data_json->page).' </span> de 
                 <span>'.$data_json->max_pages.'</span>
                 </div>';
         $ret .=" </div>";
