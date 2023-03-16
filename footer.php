@@ -71,24 +71,22 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         $theme_regulation = carbon_get_theme_option( 'country_reg' );
                         $current_country = json_decode($_SESSION["geolocation"]);
                         $agesvg = get_template_directory_uri() . '/assets/img/age.svg';
-                        var_dump($current_country->country_code);
+                        
                         if(isset($theme_regulation) and count($theme_regulation) > 0):
                             $regulation = null;
                             $configured = null;
                             foreach($theme_regulation as $regs):
-                                if($regs["country_code"] == $current_country->country_code):
-                                    $configured = true;
-                                    $regulation = $regs;
-                                endif;
-                            endforeach;
-                            if(!isset($configured)):
-                                foreach($theme_regulation as $regs):
-                                    if($regs["country_code"] == $current_country->country_code):
-                                        $configured = true;
+                                if($regs["country_code"] == "WW"):
+                                    if(!isset($configured)):
                                         $regulation = $regs;
                                     endif;
-                                endforeach;
-                            endif;
+                                endif;
+                                if($regs["country_code"] == $current_country->country_code):
+                                    $regulation = $regs;
+                                endif;
+                                
+                            endforeach;
+                            
                             echo '<p class="p-reg s-f text-break">'.$regulation["text_reg"].'</p> ';
                             echo '<div class="row justify-content-center footer-reg">';
                             echo '<div class="flex justify-center  flex-wrap">';
