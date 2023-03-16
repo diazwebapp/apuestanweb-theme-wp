@@ -18,7 +18,7 @@ $bookmaker["background_color"] = null;
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
     $bookmaker["background_color"]= carbon_get_post_meta(get_the_ID(), 'background-color');
-    var_dump(get_the_ID());
+    
     $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
     $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
     $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
