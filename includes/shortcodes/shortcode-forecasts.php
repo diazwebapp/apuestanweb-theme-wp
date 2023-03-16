@@ -135,12 +135,14 @@ function shortcode_forecast($atts)
             
 
         endif;
-        $ret .= '<div class="my-2 text-center text-muted" >
+        $ret .=" </div>";
+
+        $ret .= '<div class="container my-2 text-center text-muted page-status-indicator" >
                 '.__("pagina ","jbetting").'
                 <span id="current-page-number">'.($data_json->max_pages == 0 ? 0 :$data_json->page).' </span> de 
                 <span id="max-page-number" >'.$data_json->max_pages.'</span>
                 </div>';
-        $ret .=" </div>";
+        
     } else {
         return '<h1>No hay datos. Vuelve más tarde.</h1>';
     }

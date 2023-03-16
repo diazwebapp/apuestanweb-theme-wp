@@ -273,20 +273,19 @@ async function filter_date_items(e){
     
     let class_item =  e.getAttribute('data-type') 
     const div_container_pagination_forecasts = document.querySelector('.container_pagination_'+class_item)
+    const div_container_indicator = document.querySelector('.page-status-indicator')
     if(response.status == 'ok'){
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
         if(response.max_pages > 1){
-            div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more            
+            div_container_pagination_forecasts.innerHTML += forecasts_fetch_vars.btn_load_more            
             inditator_page.textContent = forecasts_fetch_vars.paged
             indicator_max_page.textContent = response.max_pages
-            console.log("max > 1")
         }else{
             document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
             inditator_page.textContent = response.page
             indicator_max_page.textContent = response.max_pages
-            console.log("max else 1")
         }
         if(date_items.length > 0){
             init_countdown(date_items)
