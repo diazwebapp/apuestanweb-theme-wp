@@ -132,7 +132,6 @@ function shortcode_forecast($atts)
         if($data_json->page < $data_json->max_pages):
             
             $ret .= $args['btn_load_more'];
-            
 
         endif;
         $ret .=" </div>";

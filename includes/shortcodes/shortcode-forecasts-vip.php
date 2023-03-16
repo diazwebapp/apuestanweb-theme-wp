@@ -119,14 +119,14 @@ function shortcode_forecast_vip($atts)
             
             $ret .= $args['btn_load_more'];
             
-
         endif;
-        $ret .= '<div class="my-2 text-center text-muted" >
+        $ret .=" </div>";
+
+        $ret .= '<div class="container my-2 text-center text-muted page-status-indicator" >
                 '.__("pagina ","jbetting").'
                 <span id="current-page-number">'.($data_json->max_pages == 0 ? 0 :$data_json->page).' </span> de 
                 <span id="max-page-number" >'.$data_json->max_pages.'</span>
                 </div>';
-        $ret .=" </div>";
     else:
         return '<h2>Aún no hay contenido.</h2>';
     endif;

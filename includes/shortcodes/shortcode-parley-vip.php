@@ -126,13 +126,15 @@ function shortcode_parley_vip($atts)
         if($data_json->page < $data_json->max_pages):
 
             $ret .=$args['btn_load_more'];
-            $ret .= '<div class="my-2 text-center text-muted" >
+            
+        endif;
+        $ret .=" </div>";
+
+        $ret .= '<div class="container my-2 text-center text-muted page-status-indicator" >
                 '.__("pagina ","jbetting").'
                 <span id="current-page-number">'.($data_json->max_pages == 0 ? 0 :$data_json->page).' </span> de 
                 <span id="max-page-number" >'.$data_json->max_pages.'</span>
                 </div>';
-        endif;
-        $ret .="</div>";
     else:
         return '<h1>Nó hay datos</h1>';
     endif;
