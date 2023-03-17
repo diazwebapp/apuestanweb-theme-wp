@@ -281,7 +281,7 @@ async function filter_date_items(e){
             alert("no existe")
         }else{
            
-            let url = window.location.pathname.replace(/[^0-9]+/g, "")
+            let url = window.location.pathname.replace(/[0-9]+/g, "")
             url = url.replace("page/","")
             window.history.pushState({}, '', url);
         }
