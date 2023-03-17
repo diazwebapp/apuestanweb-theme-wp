@@ -279,6 +279,9 @@ async function filter_date_items(e){
         let page = window.location.pathname.indexOf("/page/")
         if(page == -1){
             alert("no existe")
+        }else{
+            let url = window.location.pathname.replace("page/","")
+            window.history.pushState({}, '', url);
         }
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html
