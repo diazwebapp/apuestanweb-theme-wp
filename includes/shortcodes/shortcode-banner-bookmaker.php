@@ -41,19 +41,10 @@ function shortcode_banner_bookmaker($atts)
     $bookmaker["feactures"] = carbon_get_post_meta($post->ID, 'feactures');
     $bookmaker["background_color"]= carbon_get_post_meta($post->ID, 'background-color');
 
-    $default = [];
     if (carbon_get_post_meta($post->ID, 'logo')):
         $logo = carbon_get_post_meta($post->ID, 'logo');
         $bookmaker['logo'] = wp_get_attachment_url($logo);
-    endif;
-    
-    //detectamos si el pais está configurado
-    
-    //Detectando si existe en el pais actual
-    $exists = aw_detect_bookmaker_on_country($aw_system_location->id,$id);
-    if(!isset($exists)): //si nó existe pedimos un bookmaker aleatorio 
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"limit"=>1]);
-    endif;    
+    endif; 
     
     $ret = '
     <div class="banner-bookmaker container my-4">
