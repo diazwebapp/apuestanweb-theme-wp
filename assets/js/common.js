@@ -282,7 +282,7 @@ async function filter_date_items(e){
         }else{
            
             let url = window.location.pathname.replace(/[0-9]+/g, "")
-            url = url.replace("page/","")
+            url = url.replace("/page/","")
             window.history.pushState({}, '', url);
         }
         forecasts_fetch_vars.paged = response.page
