@@ -5,16 +5,6 @@ get_header(); ?>
 $location = json_decode($_SESSION["geolocation"]);
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
 $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
-var_dump($bookmaker);
-return;
-//Seteamos valores por defecto de la casa de apuesta
-
-$bookmaker["name"] = "no bookmaker";
-$bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
-$bookmaker["background_color"] = null;
-$bookmaker["bonus_slogan"] = "";
-$bookmaker["bonus_amount"] = 0;
-$bookmaker["ref_link"] = "#";
 
 //Buscamos la casa de apuesta del pronostico
 
