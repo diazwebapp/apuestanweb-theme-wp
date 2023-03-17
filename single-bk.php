@@ -37,7 +37,7 @@ else: #si esta configurado el pais, pero no existen bookmakers buscamos un WW
     $aw_system_country = aw_select_country(["country_code"=>"WW"]);
     $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
 endif;
-return;
+
 
 $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
