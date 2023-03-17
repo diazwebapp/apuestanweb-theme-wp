@@ -3,7 +3,8 @@ get_header(); ?>
 
 <?php 
 $location = json_decode($_SESSION["geolocation"]);
-$bookmaker = aw_select_relate_bookmakers($country_id, ["unique"=>true,"random"=>false]);
+$aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+$bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
 var_dump($bookmaker);
 return;
 //Seteamos valores por defecto de la casa de apuesta
