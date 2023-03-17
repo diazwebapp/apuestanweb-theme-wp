@@ -3,17 +3,23 @@ get_header(); ?>
 
 <?php 
 $location = json_decode($_SESSION["geolocation"]);
+$bookmaker = aw_select_relate_bookmakers($country_id, ["unique"=>true,"random"=>false]);
+var_dump($bookmaker);
+return;
 //Seteamos valores por defecto de la casa de apuesta
+
 $bookmaker["name"] = "no bookmaker";
 $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
 $bookmaker["background_color"] = null;
 $bookmaker["bonus_slogan"] = "";
 $bookmaker["bonus_amount"] = 0;
 $bookmaker["ref_link"] = "#";
+
 //Buscamos la casa de apuesta del pronostico
 
     //Si existe una casa de apuesta seteamos sus valores
-    $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
+
+    /* $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
     if(isset($bonuses) and count($bonuses) > 0):
         foreach($bonuses as $bonus_data):
             if(strtoupper($bonus_data["country_code"]) == "WW"):
@@ -27,9 +33,9 @@ $bookmaker["ref_link"] = "#";
             $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
             endif;
         endforeach;
-    endif;
+    endif; */
 
-    $bookmaker['name'] = get_the_title( get_the_ID() );
+    /* $bookmaker['name'] = get_the_title( get_the_ID() );
     $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
@@ -49,7 +55,7 @@ $bookmaker["ref_link"] = "#";
     if (carbon_get_post_meta(get_the_ID(), 'logo')):
         $logo = carbon_get_post_meta(get_the_ID(), 'logo');
         $bookmaker['logo'] = wp_get_attachment_url($logo);
-    endif;
+    endif; */
 ?>
 <main>
 <div class="container">
