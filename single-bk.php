@@ -6,14 +6,13 @@ $location = json_decode($_SESSION["geolocation"]);
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
 $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
 
-
-    $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
-    $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
-    $author_name = get_the_author_meta("display_name" );
-    $author_id =  get_the_author_meta('ID') ;
-    $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
-    $avatar_url = get_avatar_url($author_id);
-    $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
+$disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
+$post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
+$author_name = get_the_author_meta("display_name" );
+$author_id =  get_the_author_meta('ID') ;
+$author_url = PERMALINK_PROFILE.'?profile='.$author_id;
+$avatar_url = get_avatar_url($author_id);
+$avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
    
 ?>
 <main>
