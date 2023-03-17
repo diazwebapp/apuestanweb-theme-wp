@@ -63,7 +63,7 @@ $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true
                         <div class="d-md-none text-center bk-box-mb-left">
                             <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
                             <?php 
-                                if(isset($bookmaker["rating"])):
+                                if(is_array($bookmaker["rating"]) and count($bookmaker["rating"]) > 0):
                                     for($i=1; $i<=5;$i++):
                                         echo '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
                                     endfor;
