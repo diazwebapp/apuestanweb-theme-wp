@@ -7,7 +7,9 @@ function shortcode_banner_bookmaker($atts)
     ), $atts));
     //geolocation
     $location = json_decode($_SESSION["geolocation"]);
-    $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
+    #Detectamos si está configurado el pais
+    $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+    $bookmaker_detected = aw_detect_bookmaker_on_country($aw_system_country->id,$id);
     
 
     //default bookmaker
@@ -15,37 +17,30 @@ function shortcode_banner_bookmaker($atts)
     $bookmaker["logo"]= get_template_directory_uri( ) . "/assets/img/logo2.svg";
     $bookmaker["ref_link"]="#" ;
     $bookmaker["bonus_slogan"]= "" ;
-    $bookmaker["bonus_amount"]= "0";
     $bookmaker["feactures"]= [];
 
     //obtener datos del bookmaker
-    $post = get_post($id);
-    $bonuses = carbon_get_post_meta($post->ID, 'country_bonus');
-    if(isset($bonuses) and count($bonuses) > 0):
+    if(isset($bookmaker_detected)):
+        $bookmaker['name'] = get_the_title( $id );
+        
+        $bonuses = carbon_get_post_meta($id, 'country_bonus');
+        if(isset($bonuses) and count($bonuses) > 0):
         foreach($bonuses as $bonus_data):
-            if(strtoupper($bonus_data["country_code"]) == "WW"):
+            if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
                 $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
-                $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
                 $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
             endif;
-
-            if(strtoupper($bonus_data["country_code"]) == strtoupper($location->country_code)):
-            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
-            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
-            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
-            endif;
         endforeach;
+        endif;
+
+        $bookmaker["feactures"] = carbon_get_post_meta($id, 'feactures');
+
+        if (carbon_get_post_meta($id, 'logo')):
+            $logo = carbon_get_post_meta($id, 'logo');
+            $bookmaker["logo"] = wp_get_attachment_url($logo);
+        endif; 
     endif;
 
-    
-    $bookmaker["feactures"] = carbon_get_post_meta($post->ID, 'feactures');
-    $bookmaker["background_color"]= carbon_get_post_meta($post->ID, 'background-color');
-
-    if (carbon_get_post_meta($post->ID, 'logo')):
-        $logo = carbon_get_post_meta($post->ID, 'logo');
-        $bookmaker['logo'] = wp_get_attachment_url($logo);
-    endif; 
-    
     $ret = '
     <div class="banner-bookmaker container my-4">
         <div class="row px-5 py-3">
