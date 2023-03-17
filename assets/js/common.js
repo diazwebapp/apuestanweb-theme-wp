@@ -278,10 +278,10 @@ async function filter_date_items(e){
     if(response.status == 'ok'){
         let page = window.location.pathname.indexOf("/page/")
         if(page != -1){
-           
-            let url = window.location.pathname.replace(/[0-9]+/g, "")
-            url = url.replace("/page/","")
-            window.history.pushState({}, '', url);
+            let url = window.location.pathname.replace(/\[([/page/[0-9]]*)\]/g, "")
+            alert(url)
+            //url = url.replace("/page/","")
+            //window.history.pushState({}, '', url);
         }
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html
