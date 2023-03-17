@@ -281,6 +281,7 @@ async function filter_date_items(e){
             alert("no existe")
         }else{
             let url = window.location.pathname.replace("page/","")
+            url = window.location.pathname.replace(/[0-9]+/g, "")
             window.history.pushState({}, '', url);
         }
         forecasts_fetch_vars.paged = response.page
