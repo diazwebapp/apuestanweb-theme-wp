@@ -206,7 +206,7 @@
                 link.innerText = header.innerText;
                 link.classList.add("list-group-item", "list-group-item-action");
           
-                //toc.appendChild(link);
+                toc.appendChild(link);
               }
         }
       });
