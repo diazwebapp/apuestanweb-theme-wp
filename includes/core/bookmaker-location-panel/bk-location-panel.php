@@ -146,7 +146,9 @@ if(!function_exists('aw_select_relate_bookmakers')):
       $bookmaker["bonus_slogan"] = "";
       $bookmaker["bonus_amount"] = 0;
       $bookmaker["feactures"] = [];
+      $bookmaker["general_feactures"] = [];
       $bookmaker["rating"] = 0;
+      $bookmaker["payment_methods"] = [];
                 
       $list = $wpdb->get_row($query);
       //Si existe una casa de apuesta seteamos sus valores
@@ -168,6 +170,8 @@ if(!function_exists('aw_select_relate_bookmakers')):
         $bookmaker["background_color"] = carbon_get_post_meta($list->ID, 'background-color');
         $bookmaker["feactures"] = carbon_get_post_meta($list->ID, 'feactures');
         $bookmaker["rating"] = carbon_get_post_meta($list->ID, 'rating');
+        $bookmaker["general_feactures"] = carbon_get_post_meta($list->ID, 'general_feactures');
+        $bookmaker["payment_methods"] = get_bookmaker_payments($list->ID);
         if (carbon_get_post_meta($list->ID, 'logo')):
           $logo = carbon_get_post_meta($list->ID, 'logo');
           $bookmaker["logo"] = wp_get_attachment_url($logo);

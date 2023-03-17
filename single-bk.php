@@ -6,33 +6,7 @@ $location = json_decode($_SESSION["geolocation"]);
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
 $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
 
-//Buscamos la casa de apuesta del pronostico
 
-    //Si existe una casa de apuesta seteamos sus valores
-
-    /* $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
-    if(isset($bonuses) and count($bonuses) > 0):
-        foreach($bonuses as $bonus_data):
-            if(strtoupper($bonus_data["country_code"]) == "WW"):
-                $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
-                $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
-                $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
-            endif;
-            if(strtoupper($bonus_data["country_code"]) == strtoupper($location->country_code)):
-            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
-            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
-            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
-            endif;
-        endforeach;
-    endif; */
-
-    /* $bookmaker['name'] = get_the_title( get_the_ID() );
-    $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
-    $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
-    $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
-    $bookmaker["background_color"]= carbon_get_post_meta(get_the_ID(), 'background-color');
-    
-    $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
     $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
     $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
     $author_name = get_the_author_meta("display_name" );
@@ -40,13 +14,7 @@ $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true
     $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
     $avatar_url = get_avatar_url($author_id);
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
-
-
-
-    if (carbon_get_post_meta(get_the_ID(), 'logo')):
-        $logo = carbon_get_post_meta(get_the_ID(), 'logo');
-        $bookmaker['logo'] = wp_get_attachment_url($logo);
-    endif; */
+   
 ?>
 <main>
 <div class="container">
