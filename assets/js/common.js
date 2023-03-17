@@ -276,6 +276,7 @@ async function filter_date_items(e){
     const div_container_pagination_forecasts = document.querySelector('.container_pagination_'+class_item)
     
     if(response.status == 'ok'){
+        window.history.back()
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
