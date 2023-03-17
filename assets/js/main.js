@@ -207,6 +207,9 @@
                 link.classList.add("list-group-item", "list-group-item-action");
           
                 toc.appendChild(link);
+                link.addEventListener("click",(e)=>{
+                    e.preventDefault()
+                })
               }
         }
       });
