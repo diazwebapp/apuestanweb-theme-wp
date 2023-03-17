@@ -278,8 +278,8 @@ async function filter_date_items(e){
     if(response.status == 'ok'){
         let page = window.location.pathname.indexOf("/page/")
         if(page != -1){
-            let url = window.location.pathname.replace(/\[([/page/[0-9]]*)\]/g, "")
-            alert(url)
+            let url_analizada = /^(\w+):\/\/([^\/]+)([^]+)$/.exec(window.location.pathname);
+            console.log(url_analizada)
             //url = url.replace("/page/","")
             //window.history.pushState({}, '', url);
         }
