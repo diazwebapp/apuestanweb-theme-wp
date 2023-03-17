@@ -23,7 +23,13 @@ function shortcode_banner_bookmaker($atts)
     $bonuses = carbon_get_post_meta($post->ID, 'country_bonus');
     if(isset($bonuses) and count($bonuses) > 0):
         foreach($bonuses as $bonus_data):
-            if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
+            if(strtoupper($bonus_data["country_code"]) == "WW"):
+                $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
+                $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
+                $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+            endif;
+
+            if(strtoupper($bonus_data["country_code"]) == strtoupper($location->country_code)):
             $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
             $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
             $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
@@ -99,7 +105,7 @@ function shortcode_banner_bookmaker_payments_methods($atts){
         'bookmaker_id' => get_post_type() == 'bk' ? get_the_ID() : false 
     ), $atts));
     $location = json_decode($_SESSION["geolocation"]);
-    $aw_system_location = !empty(aw_select_country(["country_code"=>$location->country_code])) ? aw_select_country(["country_code"=>$location->country_code]) : aw_select_country(["country_code"=>"WW"]);
+    $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
     
     $payment_methods = get_bookmaker_payments($bookmaker_id);
     
