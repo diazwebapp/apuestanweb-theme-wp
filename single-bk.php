@@ -16,6 +16,11 @@ $bookmaker["ref_link"] = "#";
     $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
     if(isset($bonuses) and count($bonuses) > 0):
         foreach($bonuses as $bonus_data):
+            if(strtoupper($bonus_data["country_code"]) == "WW"):
+                $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
+                $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
+                $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+            endif;
             if(strtoupper($bonus_data["country_code"]) == strtoupper($location->country_code)):
             $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
             $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
