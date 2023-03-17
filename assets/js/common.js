@@ -281,9 +281,7 @@ async function filter_date_items(e){
             const url = new URL(window.location)
             let new_pathname = url.pathname.split("/");
             url.pathname = new_pathname[1]
-            console.log(url.pathname)
-            //url = url.replace("/page/","")
-            //window.history.pushState({}, '', url);
+            window.history.pushState({}, '', url);
         }
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html
