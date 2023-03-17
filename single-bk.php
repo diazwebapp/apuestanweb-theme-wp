@@ -5,7 +5,8 @@ get_header(); ?>
 $location = json_decode($_SESSION["geolocation"]);
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
 $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
-
+var_dump($bookmaker["rating"]);
+return;
 //Buscamos la casa de apuesta del pronostico
 
     //Si existe una casa de apuesta seteamos sus valores
