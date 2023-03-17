@@ -41,6 +41,9 @@ function shortcode_banner_bookmaker($atts)
             $logo = carbon_get_post_meta($id, 'logo');
             $bookmaker["logo"] = wp_get_attachment_url($logo);
         endif; 
+    else:
+        $aw_system_country = aw_select_country(["country_code"=>"WW"]);
+        $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
     endif;
 
     $ret = '
