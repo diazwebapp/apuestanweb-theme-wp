@@ -8,6 +8,7 @@ $aw_system_country = aw_select_country(["country_code"=>$location->country_code]
 $bookmaker_detected = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker["ID"]);
 if(isset($bookmaker_detected)): #si esta configurado en el pais
     $bookmaker['name'] = get_the_title( $bookmaker["ID"] );
+
     $bonuses = carbon_get_post_meta($bookmaker["ID"], 'country_bonus');
     if(isset($bonuses) and count($bonuses) > 0):
       foreach($bonuses as $bonus_data):
@@ -18,6 +19,20 @@ if(isset($bookmaker_detected)): #si esta configurado en el pais
           endif;
       endforeach;
     endif;
+    
+    $bookmaker["background_color"] = carbon_get_post_meta($bookmaker["ID"], 'background-color');
+    $bookmaker["feactures"] = carbon_get_post_meta($bookmaker["ID"], 'feactures');
+    $bookmaker["rating"] = carbon_get_post_meta($bookmaker["ID"], 'rating');
+    $bookmaker["general_feactures"] = carbon_get_post_meta($bookmaker["ID"], 'general_feactures');
+    $bookmaker["payment_methods"] = get_bookmaker_payments($bookmaker["ID"]);
+    if (carbon_get_post_meta($bookmaker["ID"], 'logo')):
+        $logo = carbon_get_post_meta($bookmaker["ID"], 'logo');
+        $bookmaker["logo"] = wp_get_attachment_url($logo);
+    endif; 
+    if (carbon_get_post_meta($bookmaker["ID"], 'logo_2x1')):
+        $logo = carbon_get_post_meta($bookmaker["ID"], 'logo_2x1');
+        $bookmaker["logo_2x1"] = wp_get_attachment_url($logo);
+    endif;     
 else: #si esta configurado el pais, pero no existen bookmakers buscamos un WW
     $aw_system_country = aw_select_country(["country_code"=>"WW"]);
     $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
