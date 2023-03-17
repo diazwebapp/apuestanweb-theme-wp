@@ -1,26 +1,34 @@
 <?php 
-function get_bookmaker_by_post($id){
-    //Seteamos valores por defecto de la casa de apuesta
-    $bookmaker["name"] = "no bookmaker";
-    $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
-    $bookmaker["background_color"] = '';
-    //Buscamos la casa de apuesta del pronostico
-    $bk = isset(carbon_get_post_meta($id, 'bk')[0]) ? carbon_get_post_meta($id, 'bk')[0]['id'] : false ;
-    if($bk):
-        //Si existe una casa de apuesta seteamos sus valores
-        $bookmaker['name'] = get_the_title( $bk );
-        $bookmaker["bonus_amount"] = carbon_get_post_meta($bk, 'bonus_amount');
-        $bookmaker["ref_link"] = carbon_get_post_meta($bk, 'ref');
-        $bookmaker["bonus_slogan"] = carbon_get_post_meta($bk, 'bonus_slogan');
-        $bookmaker["background_color"] = carbon_get_post_meta($bk,'background-color');
-
-        if (carbon_get_post_meta($bk, 'logo')):
-            $logo = carbon_get_post_meta($bk, 'logo');
-            $bookmaker['logo'] = wp_get_attachment_url($logo);
+function get_bookmaker_custom_data($id){
+   
+    $bookmaker['name'] = get_the_title( $id );
+     $aw_system_country = aw_select_country(["table_id"=>$country_id]);
+        
+        $bonuses = carbon_get_post_meta($list->ID, 'country_bonus');
+        if(isset($bonuses) and count($bonuses) > 0):
+          foreach($bonuses as $bonus_data):
+              if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
+                $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
+                $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
+                $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+              endif;
+          endforeach;
         endif;
-
-    endif;
-    
+       
+        $bookmaker["background_color"] = carbon_get_post_meta($list->ID, 'background-color');
+        $bookmaker["feactures"] = carbon_get_post_meta($list->ID, 'feactures');
+        $bookmaker["rating"] = carbon_get_post_meta($list->ID, 'rating');
+        $bookmaker["general_feactures"] = carbon_get_post_meta($list->ID, 'general_feactures');
+        $bookmaker["payment_methods"] = get_bookmaker_payments($list->ID);
+        if (carbon_get_post_meta($list->ID, 'logo')):
+          $logo = carbon_get_post_meta($list->ID, 'logo');
+          $bookmaker["logo"] = wp_get_attachment_url($logo);
+        endif; 
+        if (carbon_get_post_meta($list->ID, 'logo_2x1')):
+          $logo = carbon_get_post_meta($list->ID, 'logo_2x1');
+          $bookmaker["logo_2x1"] = wp_get_attachment_url($logo);
+        endif;        
+      
     return $bookmaker;
 } 
 

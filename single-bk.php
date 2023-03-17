@@ -6,14 +6,23 @@ $location = json_decode($_SESSION["geolocation"]);
 #Detectamos si está configurado el pais
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
 $bookmaker_detected = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker["ID"]);
-var_dump($bookmaker_detected);
-return;
-$bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
-#si esta configurado el pais, pero no existen bookmakers buscamos un WW
-if($bookmaker["name"] == "no bookmaker"):
+if(isset($bookmaker_detected)): #si esta configurado en el pais
+    $bookmaker['name'] = get_the_title( $bookmaker["ID"] );
+    $bonuses = carbon_get_post_meta($bookmaker["ID"], 'country_bonus');
+    if(isset($bonuses) and count($bonuses) > 0):
+      foreach($bonuses as $bonus_data):
+          if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
+            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
+            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
+            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+          endif;
+      endforeach;
+    endif;
+else: #si esta configurado el pais, pero no existen bookmakers buscamos un WW
     $aw_system_country = aw_select_country(["country_code"=>"WW"]);
     $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
 endif;
+return;
 
 $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
