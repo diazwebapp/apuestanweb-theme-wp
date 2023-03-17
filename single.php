@@ -53,16 +53,18 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                                 <img src="<?php echo $thumbnail_url ?>" loading="lazy" class="post-featured-img img-fluid" alt="<?php echo $title ?>">
                                                 
                                                 <?php
-                                                if (has_post_thumbnail()) {
-                                                    $thumbnail_id = get_post_thumbnail_id();
-                                                    $thumbnail_caption = get_post($thumbnail_id)->post_excerpt;
-                                                    if (!empty($thumbnail_caption)) { ?>
-                                                        <div class="caption">
-                                                            <?php echo $thumbnail_caption; ?>
-                                                            
-                                                        </div>
-                                                    <?php }
-                                                } ?>
+                                                    if (has_post_thumbnail()) {
+                                                        $thumbnail_id = get_post_thumbnail_id();
+                                                        if ($thumbnail_id) { // Add this check
+                                                            $thumbnail_caption = get_post($thumbnail_id)->post_excerpt;
+                                                            if (!empty($thumbnail_caption)) { ?>
+                                                                <div class="caption">
+                                                                    <?php echo $thumbnail_caption; ?>
+                                                                </div>
+                                                            <?php }
+                                                        }
+                                                    }
+                                                    ?>
                                                 <hr class="mt-2 mb-3">
                                             </div>
                                         </div>
