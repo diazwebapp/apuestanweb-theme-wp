@@ -7,6 +7,9 @@ $location = json_decode($_SESSION["geolocation"]);
 $bookmaker["name"] = "no bookmaker";
 $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
 $bookmaker["background_color"] = null;
+$bookmaker["bonus_slogan"] = "";
+$bookmaker["bonus_amount"] = 0;
+$bookmaker["ref_link"] = "#";
 //Buscamos la casa de apuesta del pronostico
 
     //Si existe una casa de apuesta seteamos sus valores
