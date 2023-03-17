@@ -146,7 +146,7 @@ if(!function_exists('aw_select_relate_bookmakers')):
       $bookmaker["bonus_slogan"] = "";
       $bookmaker["bonus_amount"] = 0;
       $bookmaker["feactures"] = [];
-      $bookmaker["rating"] = [];
+      $bookmaker["rating"] = 0;
                 
       $list = $wpdb->get_row($query);
       //Si existe una casa de apuesta seteamos sus valores
