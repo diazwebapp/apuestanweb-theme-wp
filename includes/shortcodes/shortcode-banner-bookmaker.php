@@ -22,7 +22,9 @@ function shortcode_banner_bookmaker($atts)
     //obtener datos del bookmaker
     if(isset($bookmaker_detected)):
         $bookmaker['name'] = get_the_title( $id );
-        
+
+        $bookmaker["background_color"] = carbon_get_post_meta($id, 'background-color');
+
         $bonuses = carbon_get_post_meta($id, 'country_bonus');
         if(isset($bonuses) and count($bonuses) > 0):
         foreach($bonuses as $bonus_data):
