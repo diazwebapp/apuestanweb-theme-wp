@@ -203,7 +203,7 @@ async function load_more_items(e){
     params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
     params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
     params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
-    params += forecasts_fetch_vars.current_user_id ? "&current_user_id="+forecasts_fetch_vars.current_user_id:"";
+    params += "&current_user_id="+forecasts_fetch_vars.current_user_id;
     params += "&odds="+forecasts_fetch_vars.odds;
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
     const response = await request.json()
@@ -252,7 +252,10 @@ async function load_more_items(e){
     }
 }
 async function filter_date_items(e){
+    const inditator_page = document.querySelector('#current-page-number')
+    const indicator_max_page = document.querySelector('#max-page-number')
     forecasts_fetch_vars.date = e.value
+    console.log(forecasts_fetch_vars.current_user_id);
     let params = "?paged="+1;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
     params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
@@ -263,7 +266,7 @@ async function filter_date_items(e){
     params += forecasts_fetch_vars.timezone ? "&timezone="+forecasts_fetch_vars.timezone:"";
     params += forecasts_fetch_vars.text_vip_link ? "&text_vip_link="+forecasts_fetch_vars.text_vip_link:"";
     params += forecasts_fetch_vars.unlock ? "&unlock="+forecasts_fetch_vars.unlock:"";
-    params += forecasts_fetch_vars.current_user_id ? "&current_user_id="+forecasts_fetch_vars.current_user_id:"";
+    params += "&current_user_id="+forecasts_fetch_vars.current_user_id;
     params += "&odds="+forecasts_fetch_vars.odds;
 
     const request = await fetch(forecasts_fetch_vars.rest_uri+params)
@@ -271,14 +274,19 @@ async function filter_date_items(e){
     
     let class_item =  e.getAttribute('data-type') 
     const div_container_pagination_forecasts = document.querySelector('.container_pagination_'+class_item)
+    
     if(response.status == 'ok'){
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
         if(response.max_pages > 1){
-            div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more
+            div_container_pagination_forecasts.innerHTML = forecasts_fetch_vars.btn_load_more            
+            inditator_page.textContent = forecasts_fetch_vars.paged
+            indicator_max_page.textContent = response.max_pages
         }else{
             document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
+            inditator_page.textContent = response.page
+            indicator_max_page.textContent = response.max_pages
         }
         if(date_items.length > 0){
             init_countdown(date_items)
@@ -286,6 +294,8 @@ async function filter_date_items(e){
     }else{
         div_game_list.innerHTML = response.html
         document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
+        inditator_page.textContent = 0
+        indicator_max_page.textContent = 0
     }
 }
 

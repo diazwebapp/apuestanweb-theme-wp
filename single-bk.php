@@ -7,13 +7,24 @@ $location = json_decode($_SESSION["geolocation"]);
 $bookmaker["name"] = "no bookmaker";
 $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg';
 $bookmaker["background_color"] = null;
+$bookmaker["bonus_slogan"] = "";
+$bookmaker["bonus_amount"] = 0;
+$bookmaker["ref_link"] = "#";
 //Buscamos la casa de apuesta del pronostico
 
     //Si existe una casa de apuesta seteamos sus valores
+    $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
+    if(isset($bonuses) and count($bonuses) > 0):
+        foreach($bonuses as $bonus_data):
+            if(strtoupper($bonus_data["country_code"]) == strtoupper($location->country_code)):
+            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
+            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
+            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+            endif;
+        endforeach;
+    endif;
+
     $bookmaker['name'] = get_the_title( get_the_ID() );
-    $bookmaker["bonus_amount"] = carbon_get_post_meta(get_the_ID(), 'bonus_amount');
-    $bookmaker["ref_link"] = carbon_get_post_meta(get_the_ID(), 'ref');
-    $bookmaker["bonus_slogan"] = carbon_get_post_meta(get_the_ID(), 'bonus_slogan');
     $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
     $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
     $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');

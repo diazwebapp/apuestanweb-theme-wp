@@ -2,7 +2,7 @@
 
 function aw_get_parleys(WP_REST_Request $request){
     $params = $request->get_params();
-    $wp_user = get_user_by("id",$params["current_user_id"]);
+    $wp_user = get_user_by("id",isset($params["current_user_id"]) ? $params["current_user_id"] : 0);
     $args = [];
     $args['post_type']      = 'parley';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
@@ -85,7 +85,7 @@ function aw_get_parleys(WP_REST_Request $request){
 
 function aw_get_parleys_vip(WP_REST_Request $request){
     $params = $request->get_params();
-    $wp_user = get_user_by("id",$params["current_user_id"]);
+    $wp_user = get_user_by("id",isset($params["current_user_id"]) ? $params["current_user_id"] : 0);
     $args = [];
     $args['post_type']      = 'parley';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
