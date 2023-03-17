@@ -1,14 +1,20 @@
 <?php 
-get_header(); ?>
+get_header();
 
-<?php 
+$bookmaker["ID"] = get_the_ID();
 $location = json_decode($_SESSION["geolocation"]);
+#Detectamos si está configurado el pais
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+$bookmaker_detected = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker["ID"]);
+var_dump($bookmaker_detected);
+return;
 $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
+#si esta configurado el pais, pero no existen bookmakers buscamos un WW
 if($bookmaker["name"] == "no bookmaker"):
     $aw_system_country = aw_select_country(["country_code"=>"WW"]);
     $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
 endif;
+
 $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
 $author_name = get_the_author_meta("display_name" );
