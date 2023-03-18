@@ -255,7 +255,7 @@ async function filter_date_items(e){
     const inditator_page = document.querySelector('#current-page-number')
     const indicator_max_page = document.querySelector('#max-page-number')
     forecasts_fetch_vars.date = e.value
-    console.log(forecasts_fetch_vars.current_user_id);
+    
     let params = "?paged="+1;
     params += "&posts_per_page="+forecasts_fetch_vars.posts_per_page;
     params += forecasts_fetch_vars.leagues ? "&leagues="+forecasts_fetch_vars.leagues:"";
@@ -276,6 +276,13 @@ async function filter_date_items(e){
     const div_container_pagination_forecasts = document.querySelector('.container_pagination_'+class_item)
     
     if(response.status == 'ok'){
+        let page = window.location.pathname.indexOf("/page/")
+        if(page != -1){
+            const url = new URL(window.location)
+            let new_pathname = url.pathname.split("/");
+            url.pathname = new_pathname[1]
+            window.history.pushState({}, '', url);
+        }
         forecasts_fetch_vars.paged = response.page
         div_game_list.innerHTML = response.html
         let date_items = document.querySelectorAll('.date_item_pronostico_top');
