@@ -280,7 +280,7 @@ async function filter_date_items(e){
         if(page != -1){
             const url = new URL(window.location)
             let new_pathname = url.pathname.split("/");
-            url.pathname = new_pathname[1]
+            url.pathname = new_pathname[1] + "/"
             window.history.pushState({}, '', url);
         }
         forecasts_fetch_vars.paged = response.page
