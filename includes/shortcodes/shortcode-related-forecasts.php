@@ -1,6 +1,6 @@
 <?php
 
-function shortcode_forecastrelated_($atts)
+function shortcode_related_forecast($atts)
 {
     extract(shortcode_atts(array(
         'num' => 6,
@@ -136,4 +136,4 @@ function shortcode_forecastrelated_($atts)
 }
 
 
-add_shortcode('related_forecasts', 'shortcode_related_forecast');
+add_shortcode('related-forecasts', 'shortcode_related_forecast');
