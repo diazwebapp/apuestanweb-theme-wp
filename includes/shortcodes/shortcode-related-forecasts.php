@@ -136,4 +136,4 @@ function shortcode_forecastrelated_($atts)
 }
 
 
-add_shortcode('related-forecasts', 'shortcode_related_forecast');
+add_shortcode('related_forecasts', 'shortcode_related_forecast');
