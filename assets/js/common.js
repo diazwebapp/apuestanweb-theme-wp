@@ -303,6 +303,14 @@ async function filter_date_items(e){
         document.querySelector("#load_more_"+class_item) ? document.querySelector("#load_more_"+class_item).remove() : null
         inditator_page.textContent = 0
         indicator_max_page.textContent = 0
+        
+        let page = window.location.pathname.indexOf("/page/")
+        if(page != -1){
+            const url = new URL(window.location)
+            let new_pathname = url.pathname.split("/");
+            url.pathname = new_pathname[1] + "/"
+            window.history.pushState({}, '', url);
+        }
     }
 }
 
