@@ -108,6 +108,10 @@ class w_authors extends WP_Widget {
             <label for="<?php echo $this->get_field_id('limit'); ?>">Limit del Widget</label>
             <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo esc_attr($instance["limit"]); ?>" />
          </p>
+         <p>
+            <label for="<?php echo $this->get_field_id('forecasts_limit'); ?>">limkite de pronosticos del Widget</label>
+            <input class="widefat" id="<?php echo $this->get_field_id('forecasts_limit'); ?>" name="<?php echo $this->get_field_name('forecasts_limit'); ?>" type="text" value="<?php echo esc_attr($instance["forecasts_limit"]); ?>" />
+         </p>
          <?php
     }
 }
