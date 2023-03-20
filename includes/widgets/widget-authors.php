@@ -81,7 +81,7 @@ class w_authors extends WP_Widget {
                     </div>";
             }
             
-			echo '<h3>Ultimos 10 picks</h3></div> </div></div>';
+			echo '<h3>Ultimos '.$forecasts_limit.' picks</h3></div> </div></div>';
 		} else {
 			echo 'Nothing found!';
 		}
