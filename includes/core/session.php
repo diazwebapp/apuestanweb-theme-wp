@@ -5,10 +5,6 @@ session_start();
 
 add_action('wp_loaded', function(){
 
-
-    if(!str_contains($_SERVER["PHP_SELF"], "wp-admin")) {
-        setUserRating();
-    }
     
     remove_action( 'wp_head', 'wp_generator' );
     remove_action( 'wp_head', 'rsd_link' );

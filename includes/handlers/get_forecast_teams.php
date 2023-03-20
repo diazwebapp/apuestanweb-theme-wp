@@ -46,7 +46,7 @@ function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,
     
         $forecast_args['author'] = $user_id;
         $forecast_args['post_type'] = 'forecast';
-        $forecast_args['post_per_page'] = $limit;
+        $forecast_args['posts_per_page'] = $limit;
         
         $forecast_args['meta_query']     = [
             ($vip) ? [

@@ -4,27 +4,23 @@ $url = get_the_permalink(get_the_ID());
 $html = "<h3 style='color:red;'>ingrese el id del perfil ejemplo $url?profile=1</h3>" ;
 if(isset($_GET['profile'])):
     $id_author = isset($_GET['profile']) ? $_GET['profile'] : 1;
+    $wp_profile = get_user_by( 'id', $id_author );
+    
     $forecasts = print_table("forecast",'free',$id_author,true);
     $forecasts_vip = print_table("forecast",'vip',$id_author,true);
     $posts = print_table("post",false,$id_author,true);
-   $acerted = get_the_author_meta("forecast_acerted", $id_author );
-    $failed = get_the_author_meta("forecast_failed", $id_author );
-    $nulled = get_the_author_meta("forecast_nulled", $id_author );
-    $rank = get_the_author_meta("rank", $id_author );
+    
+    
     $display_name = get_the_author_meta("display_name", $id_author);
     $biography = get_the_author_meta( 'description', $id_author );
 
     $avatar_url = get_avatar_url($id_author);
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
-    $total_forecast = $acerted + $failed;
-    $porcentage = 0; 
-    if($total_forecast > 0){
-        $porcentage = $acerted * 20 / $total_forecast;
-    }
+    
     $stats_vip = get_user_stats($id_author,'=');
     $stats_free = get_user_stats($id_author,'!=');
     //estadisticas ultimos 2 meses
-    $num = 4;
+    $num = 3;
     $stats_months_vip_html = '';
     $stats_months_free_html = '';
     for($i=1;$i<$num;$i++){
