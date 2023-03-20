@@ -28,7 +28,7 @@ class w_authors extends WP_Widget {
                         <div class="box_body">
                         ';
 			foreach ($users->get_results() as $key => $user) {
-                $stats = get_user_stats($user->ID,'=',null,$forecasts_limit);
+                $stats = get_user_stats($user->ID,'=',[],$forecasts_limit);
                 $acerted = $stats["acertados"];
                 $failed = $stats["fallidos"];
                 $nulled = $stats["nullos"];
