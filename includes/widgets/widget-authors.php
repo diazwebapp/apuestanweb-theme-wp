@@ -31,7 +31,7 @@ class w_authors extends WP_Widget {
                 $stats = get_user_stats($user->ID,'=',[],$forecasts_limit);
                 $acerted = $stats["acertados"];
                 $failed = $stats["fallidos"];
-                $nulled = $stats["nullos"];
+                $nulled = $stats["nulos"];
                 $rank = $stats["tvalue"];
                 $latest = floatval($acerted) + floatval($failed) + floatval($nulled);
                 $display_name = get_the_author_meta("display_name", $user->ID );
