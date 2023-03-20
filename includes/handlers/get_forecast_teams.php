@@ -56,7 +56,7 @@ function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,
                 ] : '',
                 [
                     'key'     => 'data',
-                    'value'   => ($interval_date["start_date"] and $interval_date["last_date"]) ? [$interval_date["start_date"],$interval_date["last_date"]] : [],
+                    'value'   => (isset($interval_date["start_date"]) and isset($interval_date["last_date"])) ? [$interval_date["start_date"],$interval_date["last_date"]] : [],
                     'compare' => 'BETWEEN',
                     'type'    => 'DATE'
                 ],
