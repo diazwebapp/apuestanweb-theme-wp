@@ -53,7 +53,7 @@ if(!empty($predictions)):
     endif;
 
     $html_predictions = "<div class='event2_box_middle_heading'>
-                            <h3>{$prediction['title']}</h3>
+                            <h4>{$prediction['title']}</h4>
                             <p>{$prediction['cuote']}</p>
                             </div>";
 endif;
@@ -107,9 +107,9 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                             <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                         </div>
                                     </div>
-                                    <h2><a href='$permalink'>                               
+                                    <h3><a href='$permalink'>                               
                                     {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                    </a> </h2>
+                                    </a> </h3>
                                 </div>
                             
                                 <div class='event2_box3_middle'>
@@ -150,9 +150,9 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                     </div>
                                 </div>
                                 <p class='p3' >
-                                    <h2><a href='$permalink'>                               
+                                    <h3><a href='$permalink'>                               
                                     {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                    </a> </h2>
+                                    </a> </h3>
                                 </p>
                             </div>
                         
@@ -171,7 +171,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                         </a>
                                     </div>
                                     <div >
-                                        <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
+                                        <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                     </div>
                                 </div>
                             </div>
@@ -215,9 +215,9 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                 </div>
                             </div>
                             <p class='p3' >
-                                <h2><a href='$permalink'>                               
+                                <h3><a href='$permalink'>                               
                                 {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                </a> </h2>
+                                </a> </h3>
                             </p>
                         </div>
                     
@@ -235,7 +235,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                     </a>
                                 </div>
                                 <div >
-                                    <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
