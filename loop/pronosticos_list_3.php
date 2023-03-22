@@ -251,7 +251,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
 
                         <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
                             <div class='panel-body text-break'>
-                            <p>$$content_without_headers</p> 
+                            <p>$content_without_headers</p> 
                             </div>
                         </div>
                     </div>
