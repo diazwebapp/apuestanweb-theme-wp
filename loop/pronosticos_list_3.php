@@ -10,6 +10,7 @@ $idevent = "match_".$args["forecast"]->ID;
 
 $sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
 
+
 $sport['class'] = '' ;
 $sport['name'] = '';
 if ($sport_term) {
@@ -62,10 +63,14 @@ if($params['time_format']  == 'count'):
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
-endif;                              
+endif;  
 
 
-    $content = get_the_content(false,false,$args["forecast"]->ID) ;
+$content = get_the_content(false, false, $args["forecast"]->ID);
+$content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $content);
+
+
+
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
     $tvalue = isset($predictions[0]) ? $predictions[0]['tvalue'] : null;
     $estrellas = "";
@@ -182,7 +187,7 @@ endif;
 
                             <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
                                 <div class='panel-body text-break'>
-                                <p>$content</p> 
+                                <p>$content_without_headers</p> 
                                 </div>
                             </div>
                         </div>
@@ -246,7 +251,7 @@ endif;
 
                         <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
                             <div class='panel-body text-break'>
-                            <p>$content</p> 
+                            <p>$$content_without_headers</p> 
                             </div>
                         </div>
                     </div>

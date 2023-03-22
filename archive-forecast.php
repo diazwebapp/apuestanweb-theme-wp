@@ -19,9 +19,11 @@ if($term_page_att){
 }
 if(!$thumbnail_url): $thumbnail_url = false; endif;
 if(!$custom_h1)
-	$custom_h1 = ' Forecast ';
-
+	$custom_h1 = ' Predicciones Deportivas ';
+				
  ?>
+
+
 
 	<main>
 	<?php if ( $textbefore ):echo $textbefore; endif;?>
@@ -32,8 +34,17 @@ if(!$custom_h1)
 					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-9 mt_25'; endif;?>" >
 					<div class="title_wrap">
 						<h1 class="title mt_30 order-lg-1"><?php echo $custom_h1 ?></h1>
+
 					</div>
-						<?php echo do_shortcode("[forecasts model='2' paginate='yes']") ?>
+					<div class="mt_50 d-flex flex-row">
+						<div class="p-2"><a href="/pronosticos-nba/">Pronósticos NBA</a></div>
+						<div class="p-2"><a href="/pronosticos-futbol/">Pronósticos Fútbol</a></div>
+						<div class="p-2"><a href="/pronosticos-mlb/">Pronósticos MLB</a></div>
+						<div class="p-2"><a href="/pronosticos-nfl/">Pronósticos NFL</a></div>
+
+					</div>
+
+						<?php echo do_shortcode("[forecasts model='2' league='all' paginate='yes']") ?>
 						<?php
                             if ( $textafter ):
 								echo '<br/> <br/>' ;
