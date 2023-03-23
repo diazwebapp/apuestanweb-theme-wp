@@ -6,9 +6,9 @@ if(isset($_GET['profile'])):
     $id_author = isset($_GET['profile']) ? $_GET['profile'] : 1;
     $wp_profile = get_user_by( 'id', $id_author );
     
-    $forecasts = print_table("forecast",'free',$id_author,true);
-    $forecasts_vip = print_table("forecast",'vip',$id_author,true);
-    $posts = print_table("post",false,$id_author,true);
+    $forecasts = print_table("forecast",'free',$id_author,true,3);
+    $forecasts_vip = print_table("forecast",'vip',$id_author,true,3);
+    $posts = print_table("post",false,$id_author,true,3);
     
     
     $display_name = get_the_author_meta("display_name", $id_author);
