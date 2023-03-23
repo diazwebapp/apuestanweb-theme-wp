@@ -24,7 +24,7 @@ function shortcode_parley($atts)
     $geolocation = json_decode($_SESSION["geolocation"]);
     $odds = get_option( 'odds_type' );
 
-    if(is_page() && !$title)
+    /* if(is_page() && !$title)
         $title = get_the_title( );
     if(is_post_type_archive() && !$title)
         $title = post_type_archive_title( '', false );
@@ -34,7 +34,7 @@ function shortcode_parley($atts)
         $title = single_tag_title('',false );
 
     $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-    $title = empty($custom_h1) ? $title : $custom_h1;
+    $title = empty($custom_h1) ? $title : $custom_h1; */
 
     if($filter)
         $ret .= "<div class='row my-5'>

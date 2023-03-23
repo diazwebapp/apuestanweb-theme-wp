@@ -96,9 +96,10 @@ function aw_print_pagination($wp_query,$paged){
     return $html;
 }
 
-function print_table($post_type,$meta_key,$author,$paginate_view){
+function print_table($post_type,$meta_key,$author,$paginate_view,$page=1){
     wp_reset_postdata();
-    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : $page;
+    
     $args['post_type'] = $post_type;
     $args['author'] = $author;
     $args['paged'] = $paged;
