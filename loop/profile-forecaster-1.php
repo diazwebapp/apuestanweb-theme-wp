@@ -6,6 +6,7 @@ if(isset($_GET['profile'])):
     $id_author = isset($_GET['profile']) ? $_GET['profile'] : 1;
     $wp_profile = get_user_by( 'id', $id_author );
     $page = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    var_dump($page);
     $forecasts = print_table("forecast",'free',$id_author,true,$page);
     $forecasts_vip = print_table("forecast",'vip',$id_author,true,$page);
     $posts = print_table("post",false,$id_author,true,$page);
