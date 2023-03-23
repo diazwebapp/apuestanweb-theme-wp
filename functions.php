@@ -306,6 +306,7 @@ function get_rrss() {
 add_action( 'wp_loaded', 'get_rrss' );
 
 
+
 /////configurando smtp///////
 
 

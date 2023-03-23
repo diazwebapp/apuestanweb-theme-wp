@@ -172,7 +172,7 @@
 	text-transform: uppercase;
 	text-align: center;
 }
-.event2_top_box_wrapper h2 {
+.event2_top_box_wrapper h3 {
     font-size: 1.6rem;
     line-height: 1.2;
     color: #E8EAEB;
@@ -205,7 +205,7 @@
 	align-items: flex-end;
 	padding-top: 0.8rem;
 }
-.event2_box_middle_heading h3{
+.event2_box_middle_heading h4{
 	font-size: 2.0rem;
 	line-height: 1.2;
 	color: #111111;

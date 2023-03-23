@@ -10,6 +10,7 @@ $idevent = "match_".$args["forecast"]->ID;
 
 $sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
 
+
 $sport['class'] = '' ;
 $sport['name'] = '';
 if ($sport_term) {
@@ -52,7 +53,7 @@ if(!empty($predictions)):
     endif;
 
     $html_predictions = "<div class='event2_box_middle_heading'>
-                            <h3>{$prediction['title']}</h3>
+                            <h4>{$prediction['title']}</h4>
                             <p>{$prediction['cuote']}</p>
                             </div>";
 endif;
@@ -62,10 +63,14 @@ if($params['time_format']  == 'count'):
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
-endif;                              
+endif;  
 
 
-    $content = get_the_content(false,false,$args["forecast"]->ID) ;
+$content = get_the_content(false, false, $args["forecast"]->ID);
+$content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $content);
+
+
+
     $flechita = get_template_directory_uri() . '/assets/img/s55.png';
     $tvalue = isset($predictions[0]) ? $predictions[0]['tvalue'] : null;
     $estrellas = "";
@@ -102,9 +107,9 @@ endif;
                                             <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                         </div>
                                     </div>
-                                    <h2><a href='$permalink'>                               
+                                    <h3><a href='$permalink'>                               
                                     {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                    </a> </h2>
+                                    </a> </h3>
                                 </div>
                             
                                 <div class='event2_box3_middle'>
@@ -145,9 +150,9 @@ endif;
                                     </div>
                                 </div>
                                 <p class='p3' >
-                                    <h2><a href='$permalink'>                               
+                                    <h3><a href='$permalink'>                               
                                     {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                    </a> </h2>
+                                    </a> </h3>
                                 </p>
                             </div>
                         
@@ -166,7 +171,7 @@ endif;
                                         </a>
                                     </div>
                                     <div >
-                                        <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
+                                        <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +187,7 @@ endif;
 
                             <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
                                 <div class='panel-body text-break'>
-                                <p>$content</p> 
+                                <p>$content_without_headers</p> 
                                 </div>
                             </div>
                         </div>
@@ -210,9 +215,9 @@ endif;
                                 </div>
                             </div>
                             <p class='p3' >
-                                <h2><a href='$permalink'>                               
+                                <h3><a href='$permalink'>                               
                                 {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                </a> </h2>
+                                </a> </h3>
                             </p>
                         </div>
                     
@@ -230,7 +235,7 @@ endif;
                                     </a>
                                 </div>
                                 <div >
-                                    <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' class='button-ev2' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
@@ -246,7 +251,7 @@ endif;
 
                         <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
                             <div class='panel-body text-break'>
-                            <p>$content</p> 
+                            <p>$content_without_headers</p> 
                             </div>
                         </div>
                     </div>

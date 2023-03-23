@@ -7,9 +7,6 @@
 	<?php wp_head(); ?>
 </head>
 <body>
-<div class="notice">
-  <p>¡Atención! www.</p>
-</div>
 <?php /*
     $post_type = get_post_type( );
     if($post_type == "bk" and is_single()):
