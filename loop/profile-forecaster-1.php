@@ -5,7 +5,7 @@ $html = "<h3 style='color:red;'>ingrese el id del perfil ejemplo $url?profile=1<
 if(isset($_GET['profile'])):
     $id_author = isset($_GET['profile']) ? $_GET['profile'] : 1;
     $wp_profile = get_user_by( 'id', $id_author );
-    $page = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $page = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
     var_dump($page);
     $forecasts = print_table("forecast",'free',$id_author,true,$page);
     $forecasts_vip = print_table("forecast",'vip',$id_author,true,$page);
