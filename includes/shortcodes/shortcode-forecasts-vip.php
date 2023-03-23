@@ -33,7 +33,7 @@ function shortcode_forecast_vip($atts)
     
     if($filter)
         $ret .= "<div class='row'>
-        <h1 class='title col-8'>$title</h1>       
+        <h2 class='title col-8'>$title</h2>       
             <div class='col-4 event_select d-flex justify-content-end'>
                 <select name='ord' data-type='forecast_vip' id='element_select_forecasts' onchange='filter_date_items(this)'>
                     <option value='' ".( !$date ? 'selected' : '').">".__('Todo','jbetting')."</option>
