@@ -1,4 +1,6 @@
 <?php get_header();
+wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
+
 $textafter = carbon_get_post_meta(get_the_ID(), 'after_post');
 $textbefore = carbon_get_post_meta(get_the_ID(), 'before_post');
 $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
@@ -19,8 +21,9 @@ if($term_page_att){
 }
 if(!$thumbnail_url): $thumbnail_url = false; endif;
 if(!$custom_h1)
-	$custom_h1 = ' Predicciones Deportivas ';
-				
+	$custom_h1 = ' Predicciones Deportivas ';    
+
+			
  ?>
 
 
@@ -44,7 +47,7 @@ if(!$custom_h1)
 
 					</div>
 
-						<?php echo do_shortcode("[forecasts model='2' league='all' paginate='yes']") ?>
+						<?php echo do_shortcode("[forecasts model='2' league='all' num='8' paginate='yes']") ?>
 						<?php
                             if ( $textafter ):
 								echo '<br/> <br/>' ;
