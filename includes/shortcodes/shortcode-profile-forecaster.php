@@ -6,7 +6,8 @@ function shortcode_profile_forecaster($atts)
     ), $atts));
 
     $ret = "";
-    
+    $page = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
+    var_dump($page);
     $ret = load_template_part("loop/profile-forecaster-{$model}"); 
 
     return $ret;
