@@ -41,7 +41,7 @@ function shortcode_forecast($atts)
 
     if($filter):
         $ret .= "<div class='row'>                    
-                    <h2 class='title col-8'>".(isset($title) ? $title : '')."</h2>
+                    <h2 class='title-h2 col-8'>".(isset($title) ? $title : '')."</h2>
                     
                     <div class='col-4 justify-content-end d-flex event_select'>
                         <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)'>

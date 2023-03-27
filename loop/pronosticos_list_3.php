@@ -149,11 +149,11 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                         <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                     </div>
                                 </div>
-                                <p class='p3' >
+                                
                                     <h3><a href='$permalink'>                               
                                     {$teams['team1']['name']} vs {$teams['team2']['name']}                              
                                     </a> </h3>
-                                </p>
+                                
                             </div>
                         
                             <div class='event2_box_middle_content'>
@@ -194,8 +194,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                     </div>          
                 </div>
                     
-                </div> "
-                ;
+                </div> ";
     $html_free =  "<div class='col-md-6 mt_30'>
                 
                 <div class='event2_box'>
@@ -214,11 +213,9 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                     <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                 </div>
                             </div>
-                            <p class='p3' >
                                 <h3><a href='$permalink'>                               
                                 {$teams['team1']['name']} vs {$teams['team2']['name']}                              
                                 </a> </h3>
-                            </p>
                         </div>
                     
                         <div class='event2_box_middle_content'>

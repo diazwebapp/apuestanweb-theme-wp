@@ -31,7 +31,7 @@ endif;
 				<div class="row" >
 			<?php endif;?>
 							
-					<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '<div class="col-lg-9 mt_25">'; ?>
+					<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '<section class="col-lg-9 mt_25">'; ?>
 						
 						<?php 
 							if ( have_posts() ):the_post();
@@ -41,13 +41,13 @@ endif;
 
 
 								if(!$disable_title):
-									echo "<h1 class='title mt_30 order-lg-1' >".(!empty($custom_h1) ? $custom_h1:get_the_title(get_the_ID()))."</h1>";
+									echo "<h1 class='title mt_30 mb_30 order-lg-1' >".(!empty($custom_h1) ? $custom_h1:get_the_title(get_the_ID()))."</h1>";
 								endif;
 								
 
-								echo "<div class='page_content text-break'>
+								echo "<section class='page_content text-break'>
 										$formatted_content
-									</div>";
+									</section>";
 								endif; 
 							 if ($disable_table ):
 								echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' style='font-size: 1.8rem; margin-block-start: 1rem; margin-block-end: 1rem;'>
@@ -68,25 +68,25 @@ endif;
 								endif;
 							if ( $faq_area ):
 								
-								echo "<div class='single_event_content container_bottom text-break'>
+								echo "<section class='single_event_content container_bottom text-break'>
 								
 									<div class='row'>
 										<div>
 											$faq_area										
 										</div>
 									</div>
-								</div>";
+								</section >";
 							endif;
                         ?>
 
-					<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '</div>'; ?>
+					<?php if(!$disable_sidebar or $disable_sidebar == 'no') echo '</section>'; ?>
 				
 					<?php if($disable_sidebar == 'yes'): echo '' ; else: ?> 
-						<div class="col-lg-3">
+						<section class="col-lg-3">
 							<div class="row">
 								<?php dynamic_sidebar( 'forecast-right' ); ?>
 							</div>
-						</div>
+						</section>
 					<?php endif;?>
 			
 			<?php if($disable_sidebar == 'yes'): echo '' ; else: ?>				

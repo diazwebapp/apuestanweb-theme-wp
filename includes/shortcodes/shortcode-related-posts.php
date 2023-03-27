@@ -63,7 +63,7 @@ function shortcode_news($atts)
         
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
-        $ret = "<hr class='mt-4 mb-4'/><div class='row small_gutter'>";
+        $ret = "<hr class='mt-4 mb-4'/><section class='row small_gutter'>";
         $ret .= $heading;
                     while ($query->have_posts()):
                         $query->the_post();
@@ -75,7 +75,7 @@ function shortcode_news($atts)
                             $ret .= load_template_part("/loop/posts-grid_{$model}");
                         endif;
                     endwhile;
-        $ret .= "</div><hr class='mt-4 mb-4'/>";
+        $ret .= "</section><hr class='mt-4 mb-4'/>";
     
      } else {
         $ret = '<h2>Aún no hay contenido.</h2>';
