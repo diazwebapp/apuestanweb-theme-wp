@@ -33,7 +33,7 @@ function aw_get_forecaster_data(WP_REST_Request $request){
     
     $html = aw_print_table($query,$params["post_type"]);
     
-    $loop_html = ["status" => 'ok',"html"=>$html,"page"=>$page,"max_pages"=>$query->max_num_pages];
+    $loop_html = ["status" => 'ok',"html"=>$html,"page"=>$paged,"max_pages"=>$query->max_num_pages];
 
     return json_decode(json_encode($loop_html));
 }
