@@ -10,7 +10,7 @@ function aw_get_forecaster_data(WP_REST_Request $request){
     $args['post_type'] = $params["post_type"];
     $args['author'] = $author_id;
     $args['paged'] = $paged;
-    $args['posts_per_page'] = 2;
+    $args['posts_per_page'] = 6;
 
     if($meta_key == 'vip'):
         $args['meta_query'] = [
