@@ -22,7 +22,7 @@ function shortcode_profile_forecaster($atts)
         $request_vip = wp_remote_get($args['rest_uri'].$get_params_vip,array('timeout'=>10));
         $response_vip =  wp_remote_retrieve_body( $request_vip );
         $data_json_vip = json_decode($response_vip);
-        var_dump($data_json_vip);
+        var_dump($response_vip);
         echo "<br/>";
         $table_vip = $data_json_vip->html;
         $paginate_vip = '<ul class="pagination_list">
