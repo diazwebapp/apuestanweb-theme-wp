@@ -96,7 +96,7 @@ function aw_print_pagination($wp_query,$paged){
     return $html;
 }
 
-function print_table($post_type,$meta_key,$author,$paginate_view,$page=1){
+function print_table($post_type,$meta_key,$author,$paginate_view=null,$page=1){
     wp_reset_postdata();
     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : $page;
     
@@ -124,7 +124,8 @@ function print_table($post_type,$meta_key,$author,$paginate_view,$page=1){
     $query = new Wp_Query($args);
     
     $html = aw_print_table($query,$post_type);
-    if($paginate_view)
+    if(isset($paginate_view)):
         $html .= aw_print_pagination($query,$paged);
+    endif;
     return $html;
 }

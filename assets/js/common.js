@@ -19,7 +19,6 @@ $(document).ready(function () {
       }
       let btn_quitar_notificaciones = $('p#btn_quitar_notificaciones');
       btn_quitar_notificaciones.click(e =>quitar_notificaciones())
-      
 });
 
 function setAge(resp){
@@ -359,7 +358,6 @@ const quitar_notificacion = async(element)=>{
         console.log("hubo un error 500")
     }
 }
-
 
 window.addEventListener('popstate', function (e) {
     window.history.back()
