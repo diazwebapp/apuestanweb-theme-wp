@@ -30,6 +30,7 @@ function shortcode_profile_forecaster($atts)
             </ul>'
             ;
         $a_elements = '';
+        var_dump($data_json_vip->max_pages);
         if(intval($data_json_vip->max_pages) > 1):
             for($i=0;$i<=intval($data_json_vip->max_pages);$i++):
                 $a_elements .= '<a class="page-numbers '.($args['paged_vip'] == $i ? 'current' : '').'" href="?profile='.$args["author_id"].'&page_vip='.($i+1).'">'.($i+1).'</a>';
