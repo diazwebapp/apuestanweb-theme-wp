@@ -5,7 +5,8 @@ function aw_get_forecaster_data(WP_REST_Request $request){
     $author_id = isset($params["author_id"]) ? $params["author_id"] : 1;
     $paged = isset($params["paged"]) ? $params["paged"] : 1;
     $meta_key = isset($params["vip"]) ? "vip" : "free";
-
+    
+    wp_reset_postdata();
     $args['post_type'] = $params["post_type"];
     $args['author'] = $author_id;
     $args['paged'] = $paged;
