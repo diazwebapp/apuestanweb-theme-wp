@@ -16,7 +16,7 @@ if(isset($_GET['profile'])):
     
     $stats_vip = get_user_stats($id_author,'=',-1);
     
-    $stats_free = get_user_stats($id_author,'!='-1);
+    $stats_free = get_user_stats($id_author,'!=',-1);
     //estadisticas ultimos 2 meses
     $num = 3;
     $stats_months_vip_html = '';
