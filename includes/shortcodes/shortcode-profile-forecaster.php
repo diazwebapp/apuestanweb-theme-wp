@@ -23,14 +23,14 @@ function shortcode_profile_forecaster($atts)
         $response_vip =  wp_remote_retrieve_body( $request_vip );
         $data_json_vip = json_decode($response_vip);
         
-        echo "<br/>";
+       
         $table_vip = $data_json_vip->html;
         $paginate_vip = '<ul class="pagination_list">
             {replace_a_vip}
             </ul>'
             ;
         $a_elements = '';
-        var_dump($data_json_vip->max_pages);
+        
         if(intval($data_json_vip->max_pages) > 0):
             for($i=1;$i<=intval($data_json_vip->max_pages);$i++):
                 $a_elements .= '<a class="page-numbers '.($args['paged_vip'] == $i ? 'current' : '').'" href="?profile='.$args["author_id"].'&page_vip='.$i.'">'.$i.'</a>';
