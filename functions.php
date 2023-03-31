@@ -18,6 +18,7 @@ include "includes/core/notification-module/notification-core.php";
 /*                         SHORTCODES                           */
 /*--------------------------------------------------------------*/
 
+include "includes/shortcodes/shortcode-social-contact.php";
 include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
 include "includes/shortcodes/shortcode-parley-vip.php";
