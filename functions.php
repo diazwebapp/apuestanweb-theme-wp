@@ -18,6 +18,7 @@ include "includes/core/notification-module/notification-core.php";
 /*                         SHORTCODES                           */
 /*--------------------------------------------------------------*/
 
+include "includes/shortcodes/shortcode-social-contact.php";
 include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
 include "includes/shortcodes/shortcode-parley-vip.php";
@@ -92,6 +93,7 @@ include "rest-api/forecasts-controller.php";
 include "rest-api/parley-controller.php";
 include "rest-api/notification-controller.php";
 include "rest-api/imagen-detacada-controller.php";
+include "rest-api/forecaster-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),

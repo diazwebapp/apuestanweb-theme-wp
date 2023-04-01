@@ -141,6 +141,15 @@ function register_routes(){
             return '__return_true';
           }
     ]);
+
+    //FORECASTER DATA
+    register_rest_route('forecaster','/forecasts',[
+        'methods' => 'GET',
+        'callback' => 'aw_get_forecaster_data',
+        'permission_callback' => function () {
+            return '__return_true';
+          }
+    ]);
 }
 add_action( 'rest_api_init', 'register_routes', 10, 0 );
 

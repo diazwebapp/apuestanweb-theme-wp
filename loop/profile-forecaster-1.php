@@ -4,10 +4,7 @@ $url = get_the_permalink(get_the_ID());
 $html = "<h3 style='color:red;'>ingrese el id del perfil ejemplo $url?profile=1</h3>" ;
 if(isset($_GET['profile'])):
     $id_author = isset($_GET['profile']) ? $_GET['profile'] : 1;
-    $wp_profile = get_user_by( 'id', $id_author );
-    
-    $forecasts = print_table("forecast",'free',$id_author,true);
-    $forecasts_vip = print_table("forecast",'vip',$id_author,true);
+
     $posts = print_table("post",false,$id_author,true);
     
     
@@ -17,8 +14,9 @@ if(isset($_GET['profile'])):
     $avatar_url = get_avatar_url($id_author);
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
     
-    $stats_vip = get_user_stats($id_author,'=');
-    $stats_free = get_user_stats($id_author,'!=');
+    $stats_vip = get_user_stats($id_author,'=',-1);
+    
+    $stats_free = get_user_stats($id_author,'!=',-1);
     //estadisticas ultimos 2 meses
     $num = 3;
     $stats_months_vip_html = '';
@@ -169,7 +167,7 @@ if(isset($_GET['profile'])):
 
                 <div class="free__table-wd">
                     <div class="free__table">
-                        '.$forecasts_vip.'
+                        '.$args["table_forecasts_vip"].'
                     </div>
                 </div>
 
@@ -178,7 +176,7 @@ if(isset($_GET['profile'])):
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div class="free__table-wd">
                     <div class="free__table">
-                        '.$forecasts.'
+                        '.$args["table_forecasts_free"].'
                     </div>
                 </div>
             </div>
