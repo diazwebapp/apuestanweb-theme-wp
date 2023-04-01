@@ -4270,9 +4270,12 @@ a.panel-button {
 	padding: 0px;
 	-webkit-transition: 0.2s all;
 	transition: 0.2s all;
+	text-align: center;
+
   }
   .apn-social>a:hover {
 	background-color: #0558CB;
+	border-radius: 5px;
   }
   
 .user-profile {

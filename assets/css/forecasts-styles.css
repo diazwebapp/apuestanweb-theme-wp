@@ -13,6 +13,14 @@
 	margin-bottom: -0.3rem;
 	transition: 0.3s;
 }
+.event_top_left img {
+	width: 5.3rem !important;
+	height: auto !important;
+  }
+  .event_top_right img {
+	width: 5.3rem !important;
+	height: auto !important;
+  }
 .accor_btn button[aria-expanded="true"] i{
 	transform: rotate(-180deg);
 }

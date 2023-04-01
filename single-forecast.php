@@ -102,8 +102,8 @@
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
                            
                             ?>
-                            <div class="col-lg-8 mt_30 con-t">
-                    
+                            <section class="col-lg-8 mt_30 con-t">
+                                <article>                   
                                     <div class="single_envent_heading">						
                                         <h1 class="title_lg"><?php the_title() ?></h1>
                                     </div>
@@ -185,19 +185,23 @@
                                         <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximacion, verifica antes de hacer tu apuesta')?></p>
 
                                     </div>
-                                    <div class="stats-w"><?php echo do_shortcode("[user_stats]") ?></div>	
-                                    <div class="title_wrap single_event_title_wrap">
-                                        <h2 class="title-b mt_30 order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h2>
-                                        <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="mt_30 dropd order-lg-3">Ver Todo</a>
-                                    </div>
+                                    <div class="stats-w"><?php echo do_shortcode("[user_stats]") ?></div>
+                                    <section>	
+                                        <div class="title_wrap single_event_title_wrap">
+                                            <h2 class="title-b mt_30 order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h2>
+                                            <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="mt_30 dropd order-lg-3">Ver Todo</a>
+                                        </div>
                                         <?php echo do_shortcode("[related-forecasts model='2' num='6' league='$sport->name']") ?>		
-                                </div>
+                                    </section>
+                                </article>
+                            </section>
+                        
                             <!-- sidebar -->
         
-                            <div class="col-lg-3">
+                            <section class="col-lg-3">
                                 <div class="row justify-content-end"><?php dynamic_sidebar( "forecast-right" ) ?></div>
                                 
-                            </div>
+                            </section>
                     <?php endwhile;
                     endif;
                 ?>
