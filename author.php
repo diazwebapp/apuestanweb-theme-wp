@@ -368,7 +368,7 @@
             <div class="row align-items-center form-row">
                 <div class="col-lg-2 col-6 mt_20">
                     <!--logo start-->
-                    <a href="index.html">
+                    <a href="/">
                         <img src="img/logo.svg" class="img-fluid" alt="">
                     </a>
                     <!--logo end-->

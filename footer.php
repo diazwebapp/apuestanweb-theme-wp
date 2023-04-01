@@ -10,7 +10,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 					$logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
 				?>
                     <!--logo start-->
-                    <a href="index.html">
+                    <a href="/">
                         <img src="<?php echo $logo; ?>" class="img-fluid" alt="Apuestanweb">
                     </a>
                     <!--logo end-->
