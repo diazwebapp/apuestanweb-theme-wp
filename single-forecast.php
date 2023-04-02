@@ -180,8 +180,9 @@
                                                     </div>
                                                 </div>
                                         <?php endif; ?>
-                                        <?php the_content() ?>                                                                          	
+                                        <?php the_content() ?>                                                                        	
                                         <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
+                                        <?php echo do_shortcode("[social_contact]");?> 
                                         <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximacion, verifica antes de hacer tu apuesta')?></p>
 
                                     </div>

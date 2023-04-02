@@ -4251,7 +4251,9 @@ a.panel-button {
   
   .apn-social {
 	margin-top: 20px;
-  }
+	border: 1px solid #0558cb;
+	border-radius: 1rem;
+	}
   .apn-social span {
     font-weight: 700;
     font-size: 3rem;
@@ -4271,6 +4273,7 @@ a.panel-button {
 	-webkit-transition: 0.2s all;
 	transition: 0.2s all;
 	text-align: center;
+	border-radius: 5px;
 
   }
   .apn-social>a:hover {
