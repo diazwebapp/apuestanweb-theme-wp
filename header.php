@@ -125,8 +125,8 @@
                     </div>';
                     else:
                         echo '<a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_the_permalink(get_option( 'ihc_general_login_default_page' )) : wp_login_url()) .'" class="btn_2 headerlgn mr-2" aria-label="Acceder"><i class="far fa-user"></i></a>';
-/*                         echo '<a href="'. PERMALINK_MEMBERSHIPS .'" class="headerbtn">'.__('SÉ MIEMBRO','jbetting').'</a>';
- */                    endif;
+                        echo '<a href="'. PERMALINK_MEMBERSHIPS .'" class="headerbtn">'.__('SÉ MIEMBRO','jbetting').'</a>';
+                   endif;
                 ?>
             </div>
         <div class="col-6 col-lg-8 order-lg-2">
