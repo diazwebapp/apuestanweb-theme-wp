@@ -2279,7 +2279,7 @@ footer .menu li a::before{
 }
 
 .single_event_content ul, ol{
-	font-size: 1.96rem;
+	font-size: 15px;
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -4146,8 +4146,8 @@ a.panel-button {
 		margin-block-end: 0;
 		margin-inline-start: 0;
 		margin-inline-end: 0;
-		padding-inline-start: 0;
-}
+		padding-inline-start: 40px;
+	}
 
 
 #btn-bookmaker {
