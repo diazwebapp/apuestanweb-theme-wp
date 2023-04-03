@@ -36,7 +36,7 @@ function shortcode_profile_forecaster($atts)
                 $a_elements_vip .= '<a class="page-numbers '.($args['paged_vip'] == $i ? 'current' : '').'" href="?profile='.$args["author_id"].'&page_vip='.$i.'">'.$i.'</a>';
             endfor;
         endif;
-        $paginate_vip = str_replace("{replace_a_vip}",$a_elements,$paginate_vip);
+        $paginate_vip = str_replace("{replace_a_vip}",$a_elements_vip,$paginate_vip);
         
         $table_vip .= $paginate_vip;
     //TABLE FREE
@@ -55,7 +55,7 @@ function shortcode_profile_forecaster($atts)
                 $a_elements_free .= '<a class="page-numbers '.($args['paged_vip'] == $i ? 'current' : '').'" href="?profile='.$args["author_id"].'&page_free='.$i.'">'.$i.'</a>';
             endfor;
         endif;
-        $paginate_free = str_replace("{replace_a_vip}",$a_elements,$paginate_free);
+        $paginate_free = str_replace("{replace_a_vip}",$a_elements_free,$paginate_free);
         
         $table_free .= $paginate_free;
     //TABLE POSTS
@@ -74,7 +74,7 @@ function shortcode_profile_forecaster($atts)
                 $a_elements_posts .= '<a class="page-numbers '.($args['paged_vip'] == $i ? 'current' : '').'" href="?profile='.$args["author_id"].'&page_posts='.$i.'">'.$i.'</a>';
             endfor;
         endif;
-        $paginate_posts = str_replace("{replace_a_posts}",$a_elements,$paginate_posts);
+        $paginate_posts = str_replace("{replace_a_posts}",$a_elements_posts,$paginate_posts);
         
         $table_posts .= $paginate_posts;
     
