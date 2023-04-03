@@ -9,7 +9,7 @@ function shortcode_profile_forecaster($atts)
    
     $args = [];
     $args['paged_vip']  = isset($_GET['page_vip']) ? $_GET['page_vip'] : 1 ;
-    $args['paged']  = isset($_GET['current_page']) ? $_GET['current_page'] : 1 ;
+    $args['paged']  = isset($_GET['page_free']) ? $_GET['page_free'] : 1 ;
     $args['paged_posts']  = isset($_GET['page_posts']) ? $_GET['page_posts'] : 1 ;
     $args['rest_uri'] = get_rest_url(null,'forecaster/forecasts');
     $args["author_id"] =  isset($_GET['profile']) ? $_GET['profile'] : 1;
