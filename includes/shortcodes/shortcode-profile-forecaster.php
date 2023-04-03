@@ -71,7 +71,7 @@ function shortcode_profile_forecaster($atts)
         $a_elements_posts = '';        
         if(intval($data_json_posts->max_pages) > 0):
             for($i=1;$i<=intval($data_json_posts->max_pages);$i++):
-                $a_elements_posts .= '<a class="page-numbers '.($args['paged_vip'] == $i ? 'current' : '').'" href="?profile='.$args["author_id"].'&page_posts='.$i.'">'.$i.'</a>';
+                $a_elements_posts .= '<a class="page-numbers '.($args['paged_posts'] == $i ? 'current' : '').'" href="?profile='.$args["author_id"].'&page_posts='.$i.'">'.$i.'</a>';
             endfor;
         endif;
         $paginate_posts = str_replace("{replace_a_posts}",$a_elements_posts,$paginate_posts);
