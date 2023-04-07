@@ -464,3 +464,5 @@ function initCors( $value ) {
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
 
+
+  

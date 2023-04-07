@@ -24,7 +24,9 @@
                         </div>
                                 
                         <div class="blog_content">
-                            <p>'.get_the_title().'</p>
+                            <a href="'.get_the_permalink(get_the_ID()).'">
+                                '.get_the_title().'
+                            </a>
                             <span>#'.$sport.'</span>
                         </div>
                     </div>';
