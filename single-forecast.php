@@ -109,6 +109,7 @@
                                     </div>
                                     <!-- breadcrumb -->
                                     <div class="single_event_breadcrumb text-capitalize">
+                                    <?php migas_de_pan(); ?>
                                         <ul>
                                             <li>
                                                 <a href="<?php echo get_home_url() ?>">

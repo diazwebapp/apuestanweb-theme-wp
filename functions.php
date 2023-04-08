@@ -464,3 +464,22 @@ function initCors( $value ) {
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
 
+//* Integra migas de pan a WordPress sin plugin
+function migas_de_pan() {
+  if (!is_front_page()) {
+     echo '<a href="/">Inicio</a> » ';
+     if (is_category() || is_single() || is_page()) {
+        if(is_category()){
+           $category = get_the_category();
+        echo $category[0]->cat_name;
+        }else{
+            the_category(' - ');
+        }if(is_page()) {
+            echo the_title();
+        }if (is_single()) {
+            echo " » ";
+            the_title();
+        }
+     }
+  }
+}
