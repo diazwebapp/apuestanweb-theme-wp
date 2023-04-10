@@ -93,14 +93,16 @@
                                 endif;
                                 if($league):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    /* new WP_Query([
-                                        "post_type"=>"forecast";
-                                    ]) */
+                                    wp_reset_postdata(  );
+                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $league->name) );
+                                    foreach($pages->posts as $page){
+                                        echo  $page->post_title . "<br/>";
+                                    }
                                     $league_page = get_page_by_title($league->name);
                                     $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
                                 endif;
                             endif;
-                           
+                            
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
                            
@@ -116,6 +118,19 @@
                                         <ul>
                                             <?php echo migas_de_pan(); ?>
                                         </ul>
+
+                                        <ul>
+                                            <li>
+                                                <a href="/" >home</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo $sport->permalink ?>" ><?php echo $sport->name ?></a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo $league->permalink ?>" ><?php echo $league->name ?></a>
+                                            </li>
+                                        </ul>
+
                                     </div>
                                     <!-- header forecast-->
                                     <div class="single_event_banner" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo $background_header ?>);">
