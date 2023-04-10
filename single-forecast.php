@@ -69,7 +69,11 @@
                                 endforeach;
                                 if($sport):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    $sport_page = get_page_by_title($sport->name);
+                                    wp_reset_postdata(  );
+                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $sport->name) );
+                                    foreach($pages->posts as $page){
+                                        $sport_page = $page;
+                                    }
                                     $sport->permalink = isset($sport_page->ID) ? get_permalink($sport_page->ID) : get_term_link($sport, 'league');
                                 endif;
                             endif;
