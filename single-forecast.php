@@ -96,9 +96,9 @@
                                     wp_reset_postdata(  );
                                     $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $league->name) );
                                     foreach($pages->posts as $page){
-                                        echo  $page->post_title . "<br/>";
+                                        $league_page = $page;
                                     }
-                                    $league_page = get_page_by_title($league->name);
+                                    
                                     $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
                                 endif;
                             endif;
