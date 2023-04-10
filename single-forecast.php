@@ -106,7 +106,7 @@
                                     $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
                                 endif;
                             endif;
-                            var_dump($league);
+                          
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
                            
@@ -128,10 +128,16 @@
                                                 <a href="/" >home</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $sport->permalink ?>" ><?php echo $sport->name ?></a>
+                                                <?php if($sport){
+                                                    echo '<a href="'.$sport->permalink.'" >'.$sport->name.'</a>';
+                                                }
+                                                ?>
                                             </li>
                                             <li>
-                                                <a href="<?php echo $league->permalink ?>" ><?php echo $league->name ?></a>
+                                                <?php if($league){
+                                                    echo '<a href="'.$league->permalink.'" >'.$league->name .'</a>';
+                                                    }
+                                                ?>
                                             </li>
                                         </ul>
 
