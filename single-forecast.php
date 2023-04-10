@@ -106,7 +106,7 @@
                                     $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
                                 endif;
                             endif;
-                            
+                            var_dump($league);
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
                            
