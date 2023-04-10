@@ -69,7 +69,7 @@
                                 endforeach;
                                 if($sport):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    wp_reset_postdata(  );
+                                    
                                     $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $sport->name) );
                                     foreach($pages->posts as $page){
                                         $sport_page = $page;
@@ -97,7 +97,7 @@
                                 endif;
                                 if($league):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    wp_reset_postdata(  );
+                                    
                                     $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $league->name) );
                                     foreach($pages->posts as $page){
                                         $league_page = $page;
