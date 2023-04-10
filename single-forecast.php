@@ -59,53 +59,12 @@
                             
                             //forecast sport
                             $sport = false;
-                            if(isset($tax_leagues) and count($tax_leagues) > 0):
-                                foreach($tax_leagues as $tax_league):
-                                    if($tax_league->parent == 0):
-                                        $sport = $tax_league; //define forecast sport
-                                        $icon_class = carbon_get_term_meta($sport->term_id,'fa_icon_class');
-                                        $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon"/>';
-                                    endif;
-                                endforeach;
-                                if($sport):
-                                    // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    
-                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $sport->name) );
-                                    foreach($pages->posts as $page){
-                                        $sport_page = $page;
-                                    }
-                                    $sport->permalink = isset($sport_page->ID) ? get_permalink($sport_page->ID) : get_term_link($sport, 'league');
-                                endif;
-                            endif;
+                            
 
                             //forecast League
                             $league = false;
                             
-                            if(isset($sport)):
-                                $img_att   = carbon_get_term_meta( $sport->term_id, 'wbg' );
-                                if(!empty($img_att)):
-                                    $background_header    = aq_resize(wp_get_attachment_url( $img_att ), 1080, 600, true,true,true);
-                                endif;
-                                if(isset($tax_leagues) and count($tax_leagues) > 0):
-                                    foreach($tax_leagues as $leaguefor):
-                                        if($leaguefor->parent == $sport->term_id):
-                                            $league = $leaguefor; //define forecast sport
-                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon" />';
-                                        endif;
-                                    endforeach;
-                                endif;
-                                if($league):
-                                    // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    
-                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $league->name) );
-                                    foreach($pages->posts as $page){
-                                        $league_page = $page;
-                                    }
-                                    
-                                    $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
-                                endif;
-                            endif;
+                            
                           
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
