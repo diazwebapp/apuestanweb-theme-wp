@@ -466,20 +466,38 @@ function initCors( $value ) {
 
 //* Integra migas de pan a WordPress sin plugin
 function migas_de_pan() {
+    $html = "";
   if (!is_front_page()) {
-     echo '<a href="/">Inicio</a> » ';
-     if (is_category() || is_single() || is_page()) {
-        if(is_category()){
-           $category = get_the_category();
-        echo $category[0]->cat_name;
+     $html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
+     if (is_tax() || is_single() || is_page()) {
+        if(is_tax()){
+            $category = get_the_taxonomies(get_the_ID(),'league');
+            $terms = get_the_terms( get_the_ID(),'league' );
+            
+            foreach($terms as $term){
+                $url = get_term_link( $term, 'league' );
+                $html .= '<li><a href="'.$url.'" >'.$term->name.'</a></li>' ;
+            }
         }else{
             the_category(' - ');
         }if(is_page()) {
-            echo the_title();
+            $category = get_the_taxonomies(get_the_ID(),'league');
+            $terms = get_the_terms( get_the_ID(),'league' );
+            
+            foreach($terms as $term){
+                $url = get_term_link( $term, 'league' );
+                $html .= '<li><a href="'.$url.'" >'.$term->name.'</a></li>' ;
+            }
         }if (is_single()) {
-            echo " » ";
-            the_title();
+            $category = get_the_taxonomies(get_the_ID(),'league');
+            $terms = get_the_terms( get_the_ID(),'league' );
+            
+            foreach($terms as $term){
+                $url = get_term_link( $term, 'league' );
+                $html .= '<li><a href="'.$url.'" >'.$term->name.'</a></li>' ;
+            }
         }
      }
   }
+  return $html;
 }

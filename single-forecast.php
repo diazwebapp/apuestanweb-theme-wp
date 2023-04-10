@@ -93,6 +93,9 @@
                                 endif;
                                 if($league):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
+                                    /* new WP_Query([
+                                        "post_type"=>"forecast";
+                                    ]) */
                                     $league_page = get_page_by_title($league->name);
                                     $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
                                 endif;
@@ -109,24 +112,9 @@
                                     </div>
                                     <!-- breadcrumb -->
                                     <div class="single_event_breadcrumb text-capitalize">
-                                    <?php migas_de_pan(); ?>
+                                    
                                         <ul>
-                                            <li>
-                                                <a href="<?php echo get_home_url() ?>">
-                                                    <i style="margin:0 5px;" ></i>
-                                                    inicio
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo isset($sport->permalink) ? $sport->permalink : '/'  ?>">
-                                                    <?php echo isset($sport->name) ? $sport->name : '' ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo isset($league->permalink) ? $league->permalink : '/'  ?>">
-                                                    <?php echo isset($league->name) ? $league->name : '' ?>
-                                                </a>
-                                            </li>
+                                            <?php echo migas_de_pan(); ?>
                                         </ul>
                                     </div>
                                     <!-- header forecast-->
