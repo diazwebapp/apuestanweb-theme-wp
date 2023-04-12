@@ -74,7 +74,9 @@
                                     foreach($pages->posts as $page){
                                         $sport_page = $page;
                                     }
-                                    $sport->permalink = isset($sport_page->ID) ? get_permalink($sport_page->ID) : get_term_link($sport, 'league');
+                                    $taxonomy_page = carbon_get_term_meta($sport->term_id,'taxonomy_page');
+                                    $sport->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                    $sport->permalink = isset($sport->redirect) ? get_permalink($sport->redirect["id"]) : get_term_link($sport, 'league');
                                 endif;
                             endif;
 
@@ -90,7 +92,7 @@
                                     foreach($tax_leagues as $leaguefor):
                                         if($leaguefor->parent == $sport->term_id):
                                             $league = $leaguefor; //define forecast sport
-                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
+                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');                                            
                                             $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon" />';
                                         endif;
                                     endforeach;
@@ -102,14 +104,15 @@
                                     foreach($pages->posts as $page){
                                         $league_page = $page;
                                     }
-                                    
-                                    $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
+                                    $taxonomy_page = carbon_get_term_meta($league->term_id,'taxonomy_page');
+                                    $league->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                    $league->permalink = isset($league->redirect) ? get_permalink($league->redirect["id"]) : get_term_link($league, 'league');
                                 endif;
                             endif;
                             wp_reset_postdata(  );
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-                           
+                            
                             ?>
                             <section class="col-lg-8 mt_30 con-t">
                                 <article>                   
@@ -117,31 +120,7 @@
                                         <h1 class="title_lg"><?php the_title() ?></h1>
                                     </div>
                                     <!-- breadcrumb -->
-                                    <div class="single_event_breadcrumb text-capitalize">
-                                    
-                                        <ul>
-                                            <?php echo migas_de_pan(); ?>
-                                        </ul>
-
-                                        <ul>
-                                            <li>
-                                                <a href="/" >home</a>
-                                            </li>
-                                            <li>
-                                                <?php if($sport){
-                                                    echo '<a href="'.$sport->permalink.'" >'.$sport->name.'</a>';
-                                                }
-                                                ?>
-                                            </li>
-                                            <li>
-                                                <?php if($league){
-                                                    echo '<a href="'.$league->permalink.'" >'.$league->name .'</a>';
-                                                    }
-                                                ?>
-                                            </li>
-                                        </ul>
-
-                                    </div>
+                                    <?php echo migas_de_pan(); ?>
                                     <!-- header forecast-->
                                     <div class="single_event_banner" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo $background_header ?>);">
                                         <div class="single_event_banner_top">

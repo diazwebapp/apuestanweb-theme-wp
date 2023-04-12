@@ -466,38 +466,34 @@ function initCors( $value ) {
 
 //* Integra migas de pan a WordPress sin plugin
 function migas_de_pan() {
-    $html = "";
+    $html = '"<div class="single_event_breadcrumb text-capitalize">                              
+    <ul>"';
   if (!is_front_page()) {
      $html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
-     if (is_tax() || is_single() || is_page()) {
-        if(is_tax()){
-            $category = get_the_taxonomies(get_the_ID(),'league');
+     if (is_single() || is_page()) {
+       
+        if(is_page()) {
             $terms = get_the_terms( get_the_ID(),'league' );
             
             foreach($terms as $term){
-                $url = get_term_link( $term, 'league' );
-                $html .= '<li><a href="'.$url.'" >'.$term->name.'</a></li>' ;
-            }
-        }else{
-            the_category(' - ');
-        }if(is_page()) {
-            $category = get_the_taxonomies(get_the_ID(),'league');
-            $terms = get_the_terms( get_the_ID(),'league' );
-            
-            foreach($terms as $term){
-                $url = get_term_link( $term, 'league' );
-                $html .= '<li><a href="'.$url.'" >'.$term->name.'</a></li>' ;
+                $taxonomy_page = carbon_get_term_meta($term->term_id,'taxonomy_page');
+                $term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
+                $html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
             }
         }if (is_single()) {
-            $category = get_the_taxonomies(get_the_ID(),'league');
             $terms = get_the_terms( get_the_ID(),'league' );
             
             foreach($terms as $term){
-                $url = get_term_link( $term, 'league' );
-                $html .= '<li><a href="'.$url.'" >'.$term->name.'</a></li>' ;
+                $taxonomy_page = carbon_get_term_meta($term->term_id,'taxonomy_page');
+                $term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
+                $html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
             }
         }
      }
   }
+  $html .= '</ul>
+  </div>';
   return $html;
 }
