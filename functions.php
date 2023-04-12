@@ -469,7 +469,7 @@ function migas_de_pan() {
     $html = '"<div class="single_event_breadcrumb text-capitalize">                              
     <ul>"';
   if (!is_front_page()) {
-     $html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
+     $html .= '<li><a href="'.get_home_url().'">Inicio</a></li>';
      if (is_single() || is_page()) {
        
         if(is_page()) {
