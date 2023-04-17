@@ -110,7 +110,7 @@ function create_forecast() {
 		'publicly_queryable'  => true,
 		'capability_type'     => 'forecast',
 		'register_meta_box_cb' => 'aw_forecast_img_destacada_personalizada',
-		'rewrite' => array('slug' => 'prediccion', 'with_front'=> true)
+		'rewrite' => array('slug' => '', 'with_front'=> false)
 
 	);
 	register_post_type( 'forecast', $args );

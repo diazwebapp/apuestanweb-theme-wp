@@ -115,7 +115,17 @@ function get_key()
 {
      return true;
 }
-
+//insertar img destacada en feeds
+function insert_featured_image_in_feed( $content ) {
+    global $post;
+    if ( has_post_thumbnail( $post->ID ) ) {
+       $content = '' . get_the_post_thumbnail( $post->ID, 'medium' ) . '' . $content;
+    }
+    return $content;
+ }
+ add_filter( 'the_excerpt_rss', 'insert_featured_image_in_feed', 1000 );
+ add_filter( 'the_content_feed', 'insert_featured_image_in_feed', 1000 );
+ 
 function load_template_part($template_name, $part_name = null, $args=false)
 {
     ob_start();
@@ -464,5 +474,69 @@ function initCors( $value ) {
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
 
+// function custom_permalink_structure($permalink, $post_id, $leavename) {
+//     $post = get_post($post_id);
+//     $post_date = strtotime($post->post_date);
+//     $change_date = strtotime('2023-04-02'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
 
+//     if ($post_date < $change_date) {
+//         // Estructura de enlace permanente antigua.
+//         $permalink = home_url(date('/Y/m/d/', $post_date) . $post->post_name . '/');
+//     }
+//     return $permalink;
+// }
+// add_filter('post_link', 'custom_permalink_structure', 10, 3);
+
+function custom_breadcrumb_json_ld( $data ) {
+    if ( is_single() && isset( $data['breadcrumb'] ) ) {
+      global $post;
+      $league_term = wp_get_post_terms( $post->ID, 'league' ); // Reemplaza 'League' con el nombre real de la taxonomía
   
+      if ( ! is_wp_error( $league_term ) && ! empty( $league_term ) ) {
+        $term_slug = $league_term[0]->slug;
+        $term_name = $league_term[0]->name;
+  
+        $breadcrumb = &$data['breadcrumb'];
+        $itemListElement = &$breadcrumb['itemListElement'];
+  
+        // Cambiar información del segundo ListItem
+        $itemListElement[1]['name'] = $term_name;
+        $itemListElement[1]['item'] = home_url( '/pronosticos-' . $term_slug . '/' );
+      }
+    }
+  
+    return $data;
+  }
+  add_filter( 'wpseo_json_ld_output', 'custom_breadcrumb_json_ld', 10, 1 );
+  
+// Filtrar el enlace para eliminar la base del CPT
+function eliminar_forecast_slug( $post_link, $post, $leavename ) {
+    if ( 'forecast' === $post->post_type && 'publish' === $post->post_status ) {
+        $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
+    }
+    return $post_link;
+}
+add_filter( 'post_type_link', 'eliminar_forecast_slug', 10, 3 );
+
+
+function gp_add_cpt_post_names_to_main_query( $query ) {
+
+	// Bail if this is not the main query.
+	if ( ! $query->is_main_query() ) {
+		return;
+	}
+
+	// Bail if this query doesn't match our very specific rewrite rule.
+	if ( ! isset( $query->query['page'] ) || 2 !== count( $query->query ) ) {
+		return;
+	}
+
+	// Bail if we're not querying based on the post name.
+	if ( empty( $query->query['name'] ) ) {
+		return;
+	}
+
+	// Add CPT to the list of post types WP will include when it queries based on the post name.
+	$query->set( 'post_type', array( 'post', 'page', 'forecast' ) );
+}
+add_action( 'pre_get_posts', 'gp_add_cpt_post_names_to_main_query' );

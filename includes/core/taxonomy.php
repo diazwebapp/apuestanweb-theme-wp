@@ -32,7 +32,9 @@ function custom_taxonomy_league() {
 		'show_admin_column' => true,
 		'show_in_nav_menus' => true,
 		'show_tagcloud'     => true,
-		'show_in_rest' => true
+		'show_in_rest' => true,
+		'query_var' => true,
+		'rewrite' => array('slug' => 'league')
 	);
 	register_taxonomy( 'league', array( 'forecast', 'page', 'post', 'parley' ), $args );
 

@@ -2279,7 +2279,7 @@ footer .menu li a::before{
 }
 
 .single_event_content ul, ol{
-	font-size: 15px;
+	font-size: 1.96rem;
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
