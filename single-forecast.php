@@ -69,8 +69,14 @@
                                 endforeach;
                                 if($sport):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    $sport_page = get_page_by_title($sport->name);
-                                    $sport->permalink = isset($sport_page->ID) ? get_permalink($sport_page->ID) : get_term_link($sport, 'league');
+                                    wp_reset_postdata(  );
+                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $sport->name) );
+                                    foreach($pages->posts as $page){
+                                        $sport_page = $page;
+                                    }
+                                    $taxonomy_page = carbon_get_term_meta($sport->term_id,'taxonomy_page');
+                                    $sport->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                    $sport->permalink = isset($sport->redirect) ? get_permalink($sport->redirect["id"]) : get_term_link($sport, 'league');
                                 endif;
                             endif;
 
@@ -86,21 +92,27 @@
                                     foreach($tax_leagues as $leaguefor):
                                         if($leaguefor->parent == $sport->term_id):
                                             $league = $leaguefor; //define forecast sport
-                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
+                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');                                            
                                             $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon" />';
                                         endif;
                                     endforeach;
                                 endif;
                                 if($league):
                                     // Para mejorar el seo detectamos si existe una pagina para el deporte
-                                    $league_page = get_page_by_title($league->name);
-                                    $league->permalink = isset($league_page->ID) ? get_permalink($league_page->ID) : get_term_link($league, 'league');
+                                    wp_reset_postdata(  );
+                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $league->name) );
+                                    foreach($pages->posts as $page){
+                                        $league_page = $page;
+                                    }
+                                    $taxonomy_page = carbon_get_term_meta($league->term_id,'taxonomy_page');
+                                    $league->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                    $league->permalink = isset($league->redirect) ? get_permalink($league->redirect["id"]) : get_term_link($league, 'league');
                                 endif;
                             endif;
-                           
+                            wp_reset_postdata(  );
                             //forecast teams
                             $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-                           
+                            
                             ?>
                             <section class="col-lg-8 mt_30 con-t">
                                 <article>                   
@@ -108,26 +120,7 @@
                                         <h1 class="title_lg"><?php the_title() ?></h1>
                                     </div>
                                     <!-- breadcrumb -->
-                                    <div class="single_event_breadcrumb text-capitalize">
-                                        <ul>
-                                            <li>
-                                                <a href="<?php echo get_home_url() ?>">
-                                                    <i style="margin:0 5px;" ></i>
-                                                    inicio
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo isset($sport->permalink) ? $sport->permalink : '/'  ?>">
-                                                    <?php echo isset($sport->name) ? $sport->name : '' ?>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo isset($league->permalink) ? $league->permalink : '/'  ?>">
-                                                    <?php echo isset($league->name) ? $league->name : '' ?>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <?php echo migas_de_pan(); ?>
                                     <!-- header forecast-->
                                     <div class="single_event_banner" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo $background_header ?>);">
                                         <div class="single_event_banner_top">

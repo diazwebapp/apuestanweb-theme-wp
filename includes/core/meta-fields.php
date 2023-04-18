@@ -352,7 +352,14 @@ function crb_attach_theme_options()
             ->add_fields(array(
                 Field::make('image', 'wbg', __("Sidebar background", "jbetting")),
                 Field::make('text', 'h1', __("Custom H1", "jbetting")),
-                Field::make('text', 'fa_icon_class', __("FA icon class", "jbetting"))
+                Field::make('text', 'fa_icon_class', __("FA icon class", "jbetting")),
+                Field::make('association', 'taxonomy_page', __("Select taxonomy page", "jbetting"))
+                    ->set_types(array(
+                        array(
+                            'type' => 'post',
+                            'post_type' => 'page',
+                        )
+                    ))->set_min(1)->set_max(1)
             ));
         Container::make('term_meta', __("bookmaker payment methods", "jbetting"))
             ->where('term_taxonomy', '=', 'bookmaker-payment-methods')

@@ -474,42 +474,36 @@ function initCors( $value ) {
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
 
-// function custom_permalink_structure($permalink, $post_id, $leavename) {
-//     $post = get_post($post_id);
-//     $post_date = strtotime($post->post_date);
-//     $change_date = strtotime('2023-04-02'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
 
-//     if ($post_date < $change_date) {
-//         // Estructura de enlace permanente antigua.
-//         $permalink = home_url(date('/Y/m/d/', $post_date) . $post->post_name . '/');
-//     }
-//     return $permalink;
-// }
-// add_filter('post_link', 'custom_permalink_structure', 10, 3);
+//////////////////////// Estructura de enlaces
 
-function custom_breadcrumb_json_ld( $data ) {
-    if ( is_single() && isset( $data['breadcrumb'] ) ) {
-      global $post;
-      $league_term = wp_get_post_terms( $post->ID, 'league' ); // Reemplaza 'League' con el nombre real de la taxonomía
-  
-      if ( ! is_wp_error( $league_term ) && ! empty( $league_term ) ) {
-        $term_slug = $league_term[0]->slug;
-        $term_name = $league_term[0]->name;
-  
-        $breadcrumb = &$data['breadcrumb'];
-        $itemListElement = &$breadcrumb['itemListElement'];
-  
-        // Cambiar información del segundo ListItem
-        $itemListElement[1]['name'] = $term_name;
-        $itemListElement[1]['item'] = home_url( '/pronosticos-' . $term_slug . '/' );
-      }
+function custom_permalink_structure($permalink, $post_id, $leavename) {
+    $post = get_post($post_id);
+    $post_date = strtotime($post->post_date);
+    $change_date = strtotime('2023-04-02'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
+
+    if ($post_date < $change_date) {
+        // Estructura de enlace permanente antigua.
+        $permalink = home_url(date('/Y/m/d/', $post_date) . $post->post_name . '/');
     }
-  
-    return $data;
-  }
-  add_filter( 'wpseo_json_ld_output', 'custom_breadcrumb_json_ld', 10, 1 );
-  
-// Filtrar el enlace para eliminar la base del CPT
+    return $permalink;
+}
+add_filter('post_link', 'custom_permalink_structure', 10, 3);
+
+function custom_rewrite_rules() {
+    add_rewrite_tag('%custom_post_date%', '([0-9]{4}/[0-9]{2}/[0-9]{2})');
+    add_rewrite_rule('^([0-9]{4}/[0-9]{2}/[0-9]{2})/([^/]+)/?$', 'index.php?custom_post_date=$matches[1]&name=$matches[2]', 'top');
+}
+add_action('init', 'custom_rewrite_rules');
+
+function custom_query_vars($query_vars) {
+    $query_vars[] = 'custom_post_date';
+    return $query_vars;
+}
+add_filter('query_vars', 'custom_query_vars');
+////////////////////////
+
+////////////////////////// Filtrar el enlace para eliminar la base del CPT
 function eliminar_forecast_slug( $post_link, $post, $leavename ) {
     if ( 'forecast' === $post->post_type && 'publish' === $post->post_status ) {
         $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
@@ -540,3 +534,65 @@ function gp_add_cpt_post_names_to_main_query( $query ) {
 	$query->set( 'post_type', array( 'post', 'page', 'forecast' ) );
 }
 add_action( 'pre_get_posts', 'gp_add_cpt_post_names_to_main_query' );
+
+
+//* Integra migas de pan a WordPress sin plugin
+function migas_de_pan() {
+    $html = '<div class="single_event_breadcrumb text-capitalize">                              
+    <ul>';
+  if (!is_front_page()) {
+     $html .= '<li><a href="'.get_home_url().'">Inicio</a></li>';
+     if (is_single() || is_page()) {
+       
+        if(is_page()) {
+            $terms = get_the_terms( get_the_ID(),'league' );
+            
+            foreach($terms as $term){
+                $taxonomy_page = carbon_get_term_meta($term->term_id,'taxonomy_page');
+                $term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
+                $html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
+            }
+        }if (is_single()) {
+            $terms = get_the_terms( get_the_ID(),'league' );
+            
+            foreach($terms as $term){
+                $taxonomy_page = carbon_get_term_meta($term->term_id,'taxonomy_page');
+                $term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
+                $html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
+            }
+        }
+     }
+  }
+  $html .= '</ul>
+  </div>';
+  return $html;
+}
+function custom_yoast_breadcrumb_links( $links ) {
+    if ( is_single() ) {
+        global $post;
+        $league_term = wp_get_post_terms( $post->ID, 'league' );
+
+        if ( ! is_wp_error( $league_term ) && ! empty( $league_term ) ) {
+            $term = $league_term[0];
+            $taxonomy_page = carbon_get_term_meta( $term->term_id, 'taxonomy_page' );
+            $redirect = isset( $taxonomy_page[0] ) ? $taxonomy_page[0] : null;
+            $term_permalink = isset( $redirect ) ? get_permalink( $redirect["id"] ) : get_term_link( $term, 'league' );
+
+            $new_link = array(
+                'url' => $term_permalink,
+                'text' => $term->name,
+                'allow_html' => true,
+            );
+
+            // Reemplaza el segundo elemento del breadcrumb con el enlace personalizado
+            if ( isset( $links[1] ) ) {
+                $links[1] = $new_link;
+            }
+        }
+    }
+
+    return $links;
+}
+add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
