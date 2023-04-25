@@ -480,7 +480,7 @@ function initCors( $value ) {
 function custom_permalink_structure($permalink, $post_id, $leavename) {
     $post = get_post($post_id);
     $post_date = strtotime($post->post_date);
-    $change_date = strtotime('2023-04-02'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
+    $change_date = strtotime('2023-04-24'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
 
     if ($post_date < $change_date) {
         // Estructura de enlace permanente antigua.
@@ -504,36 +504,37 @@ add_filter('query_vars', 'custom_query_vars');
 ////////////////////////
 
 ////////////////////////// Filtrar el enlace para eliminar la base del CPT
-function eliminar_forecast_slug( $post_link, $post, $leavename ) {
-    if ( 'forecast' === $post->post_type && 'publish' === $post->post_status ) {
-        $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
-    }
-    return $post_link;
-}
-add_filter( 'post_type_link', 'eliminar_forecast_slug', 10, 3 );
+
+// function eliminar_forecast_slug( $post_link, $post, $leavename ) {
+//     if ( 'forecast' === $post->post_type && 'publish' === $post->post_status ) {
+//         $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
+//     }
+//     return $post_link;
+// }
+// add_filter( 'post_type_link', 'eliminar_forecast_slug', 10, 3 );
 
 
-function gp_add_cpt_post_names_to_main_query( $query ) {
+// function gp_add_cpt_post_names_to_main_query( $query ) {
 
-	// Bail if this is not the main query.
-	if ( ! $query->is_main_query() ) {
-		return;
-	}
+// 	// Bail if this is not the main query.
+// 	if ( ! $query->is_main_query() ) {
+// 		return;
+// 	}
 
-	// Bail if this query doesn't match our very specific rewrite rule.
-	if ( ! isset( $query->query['page'] ) || 2 !== count( $query->query ) ) {
-		return;
-	}
+// 	// Bail if this query doesn't match our very specific rewrite rule.
+// 	if ( ! isset( $query->query['page'] ) || 2 !== count( $query->query ) ) {
+// 		return;
+// 	}
 
-	// Bail if we're not querying based on the post name.
-	if ( empty( $query->query['name'] ) ) {
-		return;
-	}
+// 	// Bail if we're not querying based on the post name.
+// 	if ( empty( $query->query['name'] ) ) {
+// 		return;
+// 	}
 
-	// Add CPT to the list of post types WP will include when it queries based on the post name.
-	$query->set( 'post_type', array( 'post', 'page', 'forecast' ) );
-}
-add_action( 'pre_get_posts', 'gp_add_cpt_post_names_to_main_query' );
+// 	// Add CPT to the list of post types WP will include when it queries based on the post name.
+// 	$query->set( 'post_type', array( 'post', 'page', 'forecast' ) );
+// }
+// add_action( 'pre_get_posts', 'gp_add_cpt_post_names_to_main_query' );
 
 
 //* Integra migas de pan a WordPress sin plugin
