@@ -480,7 +480,7 @@ function initCors( $value ) {
 function custom_permalink_structure($permalink, $post_id, $leavename) {
     $post = get_post($post_id);
     $post_date = strtotime($post->post_date);
-    $change_date = strtotime('2023-04-12'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
+    $change_date = strtotime('2023-04-24'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
 
     if ($post_date < $change_date) {
         // Estructura de enlace permanente antigua.
