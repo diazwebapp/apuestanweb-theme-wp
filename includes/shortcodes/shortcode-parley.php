@@ -10,7 +10,6 @@ function shortcode_parley($atts)
         'paginate' => null,
         'text_vip_link' => 'VIP',
         'filter' => null,
-        'time_format' => null,
     ), $atts));
     global $post;
     if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'parley' ) ) {
@@ -24,17 +23,6 @@ function shortcode_parley($atts)
     $geolocation = json_decode($_SESSION["geolocation"]);
     $odds = get_option( 'odds_type' );
 
-    /* if(is_page() && !$title)
-        $title = get_the_title( );
-    if(is_post_type_archive() && !$title)
-        $title = post_type_archive_title( '', false );
-    if(is_category() or is_tax())
-        $title = single_term_title('',false );
-    if(is_tag())
-        $title = single_tag_title('',false );
-
-    $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-    $title = empty($custom_h1) ? $title : $custom_h1; */
 
     if($filter)
         $ret .= "<div class='row my-5'>
@@ -73,7 +61,6 @@ function shortcode_parley($atts)
     $args['leagues'] =  $league_arr;
     $args['date'] = $date;
     $args['model'] = $model;
-    $args['time_format'] = $time_format ;
     $args['text_vip_link'] = $text_vip_link;
     $args['rest_uri'] = get_rest_url(null,'aw-parley/parley');
     $args['country_code'] = $geolocation->country_code;
@@ -92,7 +79,6 @@ function shortcode_parley($atts)
     $params .= isset($args['leagues']) ? "&leagues=${args['leagues']}":"";
     $params .= isset($args['date']) ? "&date={$args['date']}":"";
     $params .= "&model=$model";
-    $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";

@@ -5,36 +5,31 @@ function shortcode_predictions($atts)
     
     extract(shortcode_atts(array(
         'model' => 1,
-        'text' => '',
-        'title' => '',
-        'src_logo' => false,
-        'src_bg' => false,
-        'link' => false
+        'id' => null,
     ), $atts));
     $ret = "";
     if($model == 1){
 
-        $id_post = get_the_ID();
+        $id_post = isset($id) ? $id : get_the_ID();
         $geolocation = json_decode($_SESSION["geolocation"]);
         $aw_system_location = aw_select_country(["country_code"=>$geolocation->country_code]);
 
-$bookmaker = [];
+        $bookmaker = [];
 
-        //SI EL PAIS ESTÁ CONFIGURADO
-if(isset($aw_system_location)):
-    //SI EL SHORTCODE ES USADO EN UNA PAGINA
-    if(is_page()){
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
-    }
-    
-    //SI EL SHORTCODE ES USADO EN single
-    if(is_single() or is_singular( )):
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
-    endif;
-    if(!is_single() and !is_singular( ) and !is_page()):
-        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
-    endif;
-endif;
+            //SI EL PAIS ESTÁ CONFIGURADO
+        if(isset($aw_system_location)):
+            //SI EL SHORTCODE ES USADO EN UNA PAGINA
+            if(is_page()){
+                $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+            }            
+            //SI EL SHORTCODE ES USADO EN single
+            if(is_single() or is_singular( )):
+                $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_single"=>true]);
+            endif;
+            if(!is_single() and !is_singular( ) and !is_page()):
+                $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+            endif;
+        endif;
 
         
         $predictions = carbon_get_post_meta($id_post, 'predictions');

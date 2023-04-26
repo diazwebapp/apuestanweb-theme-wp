@@ -2,9 +2,6 @@
 function shortcode_slide_bk($atts)
 {
     extract(shortcode_atts(array(
-        'num' => 10,
-        'orderby' => 'meta_value_num',
-        'order' => 'DESC',
         'title' => false,
         'slogan' => false,
         'model' => 1

@@ -6,11 +6,11 @@ function shortcode_bookmaker($atts)
         'title' => null,
         'slogan' => null,
         'model' => 1,
-        'payment' => wp_get_post_terms(get_the_ID(), 'bookmaker-payment-methods', array('field' => 'slug')),
-        'casino' => wp_get_post_terms(get_the_ID(), 'casinos', array('field' => 'slug')),
         'paginate'=>null,
         'country'=>null
     ), $atts));
+    $payment = wp_get_post_terms(get_the_ID(), 'bookmaker-payment-methods', array('field' => 'slug'));
+    $casino = wp_get_post_terms(get_the_ID(), 'casinos', array('field' => 'slug'));
     $ret = '<div class="container" >
         <div class="row d-flex justify-content-center">{replace_loop}</div>
     </div>';

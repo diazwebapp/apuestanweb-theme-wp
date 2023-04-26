@@ -76,13 +76,13 @@ echo "<div class='prediction_box'>
 
             <div class='d-flex align-items-center justify-content-between mt_15'>
                 <div class='media align-items-center'>
-                    <img src='{$teams['team1']['logo']}' class='mr_45' alt='{$teams['team1']['name']}'>
+                    <img width='70' height='70' src='{$teams['team1']['logo']}' class='mr_45' alt='{$teams['team1']['name']}'>
                 </div> 
                 <div>
                     <p style='margin:0 5px;'>{$teams['team1']['acronimo']} vs {$teams['team2']['name']}</p> 
                 </div>                               
                 <div class='media align-items-center'>
-                    <img src='{$teams['team2']['logo']}' class='ml_45' alt='{$teams['team2']['name']}'>
+                    <img width='70' height='70' src='{$teams['team2']['logo']}' class='ml_45' alt='{$teams['team2']['name']}'>
                 </div>
             </div>
             <div class='rate_box'>

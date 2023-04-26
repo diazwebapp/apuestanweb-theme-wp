@@ -131,12 +131,11 @@ function aw_get_parleys_vip(WP_REST_Request $request){
     }
     //var_dump($args);
     $query = new WP_Query($args);
-    $loop_html = ["args"=>$args,"status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
+    $loop_html = ["args"=>$args,"status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged'],"total"=>"0"];
     
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $params['text_vip_link'],
-        "time_format" => isset($params['time_format']) ? $params['time_format'] : null,
         "model" => $params['model']
     ] );
 
@@ -150,7 +149,7 @@ function aw_get_parleys_vip(WP_REST_Request $request){
         while ($query->have_posts()):
             $query->the_post();
             if(isset($params['unlock'])):
-                $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip_unlock",null,); 
+                $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip_unlock",null,$view_params); 
             else:
                 $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}_vip",null,$view_params); 
             endif;

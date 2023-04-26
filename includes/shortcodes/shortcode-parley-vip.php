@@ -10,7 +10,6 @@ function shortcode_parley_vip($atts)
         'paginate' => null,
         'text_vip_link' => 'VIP',
         'filter' => null,
-        'time_format' => null,
         'unlock' => null
     ), $atts));
     global $post;
@@ -26,18 +25,6 @@ function shortcode_parley_vip($atts)
     $geolocation = json_decode($_SESSION["geolocation"]);
     $odds = get_option( 'odds_type' );
     
-    //default title
-    /* if(is_page() && !$title)
-        $title = get_the_title( );
-    if(is_post_type_archive() && !$title)
-        $title = post_type_archive_title( '', false );
-    if(is_category() or is_tax())
-        $title = single_term_title('',false );
-    if(is_tag())
-        $title = single_tag_title('',false );
-
-    $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-    $title = empty($custom_h1) ? $title : $custom_h1; */
     
     if($filter)
         $ret .= "<div class='row my-5'>
@@ -78,7 +65,6 @@ function shortcode_parley_vip($atts)
     $args['date'] = $date;
     $args['model'] = $model;
     $args['unlock'] = $unlock;
-    $args['time_format'] = $time_format ;
     $args['text_vip_link'] = $text_vip_link;
     $args['rest_uri'] = get_rest_url(null,'aw-parley/parley/vip');
     $args['country_code'] = $geolocation->country_code;
@@ -94,7 +80,6 @@ function shortcode_parley_vip($atts)
     $params .= isset($args['date']) ? "&date={$args['date']}":"";
     $params .= "&model=$model";
     $params .= isset($args['unlock']) ? "&unlock={$args['unlock']}":"";
-    $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
     $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
     $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
     $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
@@ -117,7 +102,7 @@ function shortcode_parley_vip($atts)
         $ret .="<div id='games_list' >{replace_loop}</div>";
         $data_json = json_decode($query);
         $loop_html = $data_json->html;
-
+        
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );

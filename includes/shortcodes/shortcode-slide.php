@@ -63,7 +63,7 @@ function shortcode_slide($atts)
                                             <div class="slider__live__menu">
                                                 <ul>
                                                     <li><a href="#">Partidos</a></li>
-                                                    <li><a href="apuestanweb.com" >Live</a></li>
+                                                    <li><a href="#" >Live</a></li>
                                                 </ul>
                                             </div>
                                         </div>

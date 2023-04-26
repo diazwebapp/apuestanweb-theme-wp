@@ -8,7 +8,6 @@ function shortcode_forecast_vip($atts)
         'model' => 1,
         'unlock' => null,
         'title' => null,
-        'paginate' => null,
         'text_vip_link' => 'VIP',
         'time_format' => null,
         'filter' => null
@@ -17,19 +16,7 @@ function shortcode_forecast_vip($atts)
 
     $geolocation = json_decode($_SESSION["geolocation"]);
     $odds = get_option( 'odds_type' );
-   
-    //default title
-    /* if(is_page() && !$title)
-        $title = get_the_title( );
-    if(is_post_type_archive() && !$title)
-        $title = post_type_archive_title( '', false );
-    if(is_category() or is_tax())
-        $title = single_term_title('',false );
-    if(is_tag())
-        $title = single_tag_title('',false );
 
-    $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-    $title = empty($custom_h1) ? $title : $custom_h1; */
     
     if($filter)
         $ret .= "<div class='row'>

@@ -2,7 +2,6 @@
 function shortcode_banner_bookmaker($atts)
 {
     extract(shortcode_atts(array(
-        'model' => false,
         'id' => get_post_type() == 'bk' ? get_the_ID() : false 
     ), $atts));
     //geolocation
@@ -92,7 +91,6 @@ add_shortcode('banner_bookmaker', 'shortcode_banner_bookmaker');
 
 function shortcode_banner_bookmaker_payments_methods($atts){
     extract(shortcode_atts(array(
-        'model' => false,
         'bookmaker_id' => get_post_type() == 'bk' ? get_the_ID() : false 
     ), $atts));
     $location = json_decode($_SESSION["geolocation"]);

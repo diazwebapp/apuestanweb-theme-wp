@@ -10,7 +10,6 @@ function shortcode_forecast($atts)
         'text_vip_link' => 'VIP',
         'filter' => null,
         'time_format' => null,
-        'paginate' => null,
         'title' => null
         
     ), $atts));
