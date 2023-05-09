@@ -82,7 +82,7 @@ include "includes/core/payment-dashboard/payment-dashboard.php";
 /*--------------------------------------------------------------*/
 
 include "rest-api/register-routes.php";
-//include "rest-api/telegram-post-publisher.php";
+include "rest-api/telegram-post-publisher.php";
 //include "rest-api/translator-ia.php";
 include "rest-api/payment-accounts-controller.php";
 include "rest-api/payment-methods-controller.php";

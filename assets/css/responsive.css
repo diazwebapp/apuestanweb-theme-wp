@@ -1102,9 +1102,11 @@
 
 	}
     .list-feactures{
-		text-align: center;
+		margin-left: 5rem;
+		margin-right: auto;
+		line-height: 3rem;
 	}
-    
+
    .club__box {
 	width: 100%;
 	background: #fff;

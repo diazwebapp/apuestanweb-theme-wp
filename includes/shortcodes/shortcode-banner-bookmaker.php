@@ -52,12 +52,12 @@ function shortcode_banner_bookmaker($atts)
             <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:'.($bookmaker["background_color"] ? $bookmaker["background_color"] : "black").';min-height:100px;">
                 <img width="{w-logo}"  height="{h-logo}" src="{logo}" alt="{alt_logo}" style="margin:auto;" />
             </div>
-            <div class="list-feactures col-lg-3 my-4 d-flex flex-column justify-content-center text-center">
+            <div class="list-feactures col-lg-4 my-4 d-flex flex-column justify-content-left">
                 <ul>
                     {feactures}
                 </ul>
             </div>
-            <div class="col-lg-6 my-4">
+            <div class="col-lg-5 my-4">
                 <p class="text-body text-center text-uppercase font-weight-bold mb-5">{bonus_slogan}</p>
                 <a href="{ref_link}" id="btn-bookmaker" class="text-uppercase badge badge-primary px-5 d-block py-4" rel="nofollow noreferrer noopener" target="_blank">visitar</a>
             </div>
@@ -71,7 +71,7 @@ function shortcode_banner_bookmaker($atts)
         foreach($bookmaker["feactures"] as $key => $feacture):
             $feactures_html .= '<li class="my-1">
                 <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light"></i>
-                <span class="text-uppercase text-success align-middle ml-3">'.$feacture["feacture"].'</span>
+                <span class="text-uppercase text-success">'.$feacture["feacture"].'</span>
             </li>';
         endforeach;
     endif;
