@@ -87,7 +87,7 @@ if($params['time_format']  == 'count'):
                         </div>";
 endif; 
 
-    echo "<div class='col-lg-4 col-md-6 mt_30'>
+    echo "<div class='col-lg-4 col-md-6 mt_40'>
         
              <div class='game_box'>
                 <div class='game_top'>
