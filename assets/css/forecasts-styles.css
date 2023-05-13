@@ -475,9 +475,10 @@ a.panel-button {
 
 @media (max-width: 575.98px) {
 	.game_box {
-	    max-width: 315px;
+	    max-width: 50rem;
 	    margin-left: auto;
 	    margin-right: auto;
+	    /* border: 1px solid; */
 	}
 	.game_top,
 	.club_box,
@@ -487,6 +488,7 @@ a.panel-button {
 	.game_btn,
 	.game_btn.v2 {
 	    font-size: 2rem;
+	    margin-top: 4rem;
 	}
 	.game_btn img {
 	    width: 14rem;
