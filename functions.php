@@ -597,3 +597,4 @@ function custom_yoast_breadcrumb_links( $links ) {
     return $links;
 }
 add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
+

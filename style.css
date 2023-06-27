@@ -4112,6 +4112,13 @@ a.panel-button {
 	font-size: 15px;
 }
 
+.container_bottom img{
+	max-width: 100%;
+	margin: 0 auto;
+	display: block;
+	border-radius: 1rem;
+}
+
 .banner-bookmaker{
 	border-radius: 10px;
 	box-shadow: 2px 2px 15px #ccc;
