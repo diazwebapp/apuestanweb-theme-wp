@@ -52,6 +52,8 @@ function shortcode_bookmaker($atts)
         ];
     }
     $query = new WP_Query($args);
+
+    var_dump($query->posts);
     
     if ($query) {
         $new_bks = [];
