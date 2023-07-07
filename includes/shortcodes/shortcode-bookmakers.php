@@ -72,7 +72,7 @@ function shortcode_bookmaker($atts)
                     $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,$view_params);
                 endif;
             endif;
-            if(isset($aw_system_country_2)):
+            if(isset($aw_system_country_2) and !isset($aw_system_country)):
                 $view_params['country'] = $aw_system_country_2;
                 $view_params['post'] = $bookmaker;
                 if(isset($aw_system_country_2->id)):
