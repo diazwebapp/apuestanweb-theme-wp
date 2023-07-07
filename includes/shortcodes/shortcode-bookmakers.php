@@ -57,13 +57,13 @@ function shortcode_bookmaker($atts)
         $new_bks = [];
         $location = json_decode($_SESSION["geolocation"]);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
-        $aw_system_country_2 = aw_select_country(["country_code"=>strtoupper($country)]);
-        var_dump($aw_system_country_2);
+        
         $view_list_bk = '';
         foreach ($query->posts as $bookmaker): 
             $exists = null;
             $view_params = [];
-            if(!isset($aw_system_country_2) and isset($aw_system_country)):
+
+            if(isset($aw_system_country)):
                 $exists = aw_detect_bookmaker_on_country($aw_system_country->id,$bookmaker->ID);
                 
                 if(isset($exists)):
@@ -72,16 +72,7 @@ function shortcode_bookmaker($atts)
                     $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,$view_params);
                 endif;
             endif;
-            if(isset($aw_system_country_2) and !isset($aw_system_country)):
-                $view_params['country'] = $aw_system_country_2;
-                $view_params['post'] = $bookmaker;
-                if(isset($aw_system_country_2->id)):
-                    $exists = aw_detect_bookmaker_on_country($aw_system_country_2->id,$bookmaker->ID);
-                endif;
-                if(isset($exists)):
-                    $view_list_bk .= load_template_part("loop/bookmaker_list_{$model}",null,$view_params);
-                endif;
-            endif;
+            
         endforeach;
     
         $ret = str_replace("{replace_loop}",$view_list_bk,$ret);
