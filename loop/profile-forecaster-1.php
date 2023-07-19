@@ -173,7 +173,7 @@ if(isset($_GET['profile'])):
 
 
             </div>
-            <div class="tab-pane fade '.(isset($_GET['page_free']) ? "sow active": "").'" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="tab-pane fade '.(isset($_GET['page_free']) ? "show active": "").'" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div class="free__table-wd">
                     <div class="free__table">
                         '.$args["table_forecasts_free"].'
