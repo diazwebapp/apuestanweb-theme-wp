@@ -163,7 +163,7 @@ if(isset($_GET['profile'])):
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade '.(!isset($_GET['page_free']) and !isset($_GET['page_posts']) ? "show active ": "").'" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade '.((!isset($_GET['page_free']) and !isset($_GET['page_posts'])) ? "show active ": "").'" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                 <div class="free__table-wd">
                     <div class="free__table">
