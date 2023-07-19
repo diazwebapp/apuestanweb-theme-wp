@@ -77,28 +77,7 @@ function shortcode_bookmaker($atts)
     
         $ret = str_replace("{replace_loop}",$view_list_bk,$ret);
 
-        /* if($paginate=="yes"){
-            $links = '';
-            for($i=1;$i<=$total_pages;$i++){
-                $path2 = str_replace("page/$current_page/","",$path);
-                if($current_page !=$i)
-                    $links .= '
-                    <a class="page-numbers" href="'.$path2.'page/'.$i.'">'.$i.'</a>';               
-                
-                if($current_page == $i)
-                    $links .= '
-                    <span aria-current="page" class="page-numbers current">'.$i.'</span>';
-            }
-            $ret .= '
-            <div class="col-lg-12">
-                <div class="blog_pagination">
-                    <ul class="pagination_list">
-                        '.$links.'
-                    </ul>
-                </div>
-            </div>
-            ';
-        } */
+        
     } else {
         return '<p>no hay datos</p>';
     }
