@@ -159,11 +159,11 @@ if(isset($_GET['profile'])):
             <div class="nav free-tabs" id="nav-tab" role="tablist">
                 <a class="free-link '.(isset($_GET['page_vip']) ? "active": "").'" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ApuestanPlus</a>
                 <a class="free-link '.(isset($_GET['page_free']) ? "active": "").'" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Free</a>
-                <a class="free-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Articulos</a>
+                <a class="free-link '.(isset($_GET['page_posts']) ? "active": "").'" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Articulos</a>
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="tab-pane fade '.(!isset($_GET['page_free']) and !isset($_GET['page_posts']) ? "show active ": "").'" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
                 <div class="free__table-wd">
                     <div class="free__table">
@@ -173,14 +173,14 @@ if(isset($_GET['profile'])):
 
 
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="tab-pane fade '.(isset($_GET['page_free']) ? "sow active": "").'" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                 <div class="free__table-wd">
                     <div class="free__table">
                         '.$args["table_forecasts_free"].'
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <div class="tab-pane fade '.(isset($_GET['page_posts']) ? "show active": "").'" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                 <div class="free__table-wd">
                     <div class="free__table">
                         '.$posts.'
