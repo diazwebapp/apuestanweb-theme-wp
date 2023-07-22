@@ -66,10 +66,10 @@ function geolocation_api($param){
             if(empty($geolocation_api) or empty($geolocation_api_key) or $geolocation_api == 'ipwhois'):
                 
                 if(!empty($geolocation_api_key)):
-                    $response = wp_remote_get("http://ipwho.pro/bulk/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
+                    $response = wp_remote_get("http://ipwhois.pro/{$geolocation["ip"]}?key=$geolocation_api_key",array('timeout'=>10));
                 endif;
                 if(empty($geolocation_api_key)):
-                    $response = wp_remote_get("http://ipwho.is/{$geolocation["ip"]}",array('timeout'=>10));
+                    $response = wp_remote_get("http://ipwhois.is/{$geolocation["ip"]}",array('timeout'=>10));
                 endif;
                 if(!is_wp_error( $response )):
                     $geolocation_resp =  wp_remote_retrieve_body( $response );
