@@ -1,0 +1,26 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - update-112024  # Puedes cambiar esto a la rama principal que uses
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install SSH key
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Sync files
+      run: |
+        rsync -avz --delete \
+        -e 'ssh -o StrictHostKeyChecking=no' \
+        --exclude='.git*' \
+        ./u731262011@185.173.111.47:/home/usuario123/public_html/wp-content/themes/apuestan
