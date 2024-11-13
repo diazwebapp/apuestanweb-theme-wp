@@ -23,4 +23,4 @@ jobs:
         rsync -avz --delete \
         -e 'ssh -o StrictHostKeyChecking=no' \
         --exclude='.git*' \
-        ./u731262011@185.173.111.47:/home/usuario123/public_html/wp-content/themes/apuestan
+        ./u731262011@185.173.111.47:/home/u731262011/public_html/wp-content/themes/apuestan
