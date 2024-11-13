@@ -8,6 +8,7 @@ function shortcode_slide($atts)
     ), $atts));
     
     $ret = '';
+    $geolocation = json_decode($_SESSION["geolocation"]);
     wp_reset_query();
     $alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
     $args = array(
@@ -15,11 +16,11 @@ function shortcode_slide($atts)
         'posts_per_page' => $num,
     );
     if ($date and $date != "") {
-        if($date == 'today')
+        if($date == 'hoy')
             $current_date = date('Y-m-d');
-        if($date == 'yesterday')
+        if($date == 'ayer')
             $current_date = date('Y-m-d', strtotime('-1 days'));
-        if($date == 'tomorrow')
+        if($date == 'mañana')
             $current_date = date('Y-m-d',strtotime('+1 days'));
             
         $args['meta_query']   = [
@@ -34,18 +35,20 @@ function shortcode_slide($atts)
     $query = new WP_Query($args);
     if ($query->have_posts()) { 
         if($model==1):
-        $ret = "<div class='container mt_55 home_container'>
-            <div class='owl-carousel slider owl-loaded owl-drag' >
-                <div class='owl-stage-outer' >
-                    <div class='owl-stage' >";
-                        while ($query->have_posts()):
-                            $query->the_post();
-                            $ret .= load_template_part("loop/slide_$model");
-                        endwhile;
-        $ret .="        </div>
+            $ret = "<div class='container mt_55 home_container'>
+                <div class='owl-carousel slider owl-loaded owl-drag' >
+                    <div class='owl-stage-outer' >
+                        <div class='owl-stage' >";
+                            while ($query->have_posts()):
+                                $query->the_post();
+                                $ret .= load_template_part("loop/slide_$model",null,[
+                                    "timezone" => isset($geolocation) ? $geolocation->timezone : null
+                                ]);
+                            endwhile;
+            $ret .="        </div>
+                    </div>
                 </div>
-            </div>
-        </div>";
+            </div>";
         endif;
         if($model == 2): 
             $ret =  '<div class="slider__area">
@@ -60,7 +63,7 @@ function shortcode_slide($atts)
                                             <div class="slider__live__menu">
                                                 <ul>
                                                     <li><a href="#">Partidos</a></li>
-                                                    <li><a href="apuestanweb.com" >Live</a></li>
+                                                    <li><a href="#" >Live</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -74,15 +77,15 @@ function shortcode_slide($atts)
             $ret .='                        </div>
                                         </div>
                                     </div>
-                                </div">
+                                </div>
                             </div>
-                         </div">
+                         </div>
                     </div>';
         endif;
     } else {
         echo do_shortcode('[banner]');
     }
-    
+    wp_reset_postdata( );
     return $ret;
 }
 

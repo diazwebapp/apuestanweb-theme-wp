@@ -11,86 +11,82 @@ class w_bookmakers extends WP_Widget{
     }
 
     public function widget($args, $instance){
-        $title = isset($instance['title']) ? __( $instance['title'], 'jbetting' ) : __( 'TOP bookmaker', 'jbetting' );
-        $limit = isset($instance['limit']) ? $instance['limit'] : 10;
-
-        wp_reset_query();
-        $args = array(
-            'post_type' => 'bk',
-            'posts_per_page' => $limit,
-            'order' => 'DESC',
-            'meta_key' => '_rating',
-            'orderby' => 'meta_value_num',
-
-        );
-
+        $title = isset($instance['title']) ? __( $instance['title'], 'jbetting' ) : esc_html__( 'TOP bookmaker', 'jbetting' );
+        $limit = !empty($instance['limit']) ? $instance['limit'] : 10;
+        $location = json_decode($_SESSION["geolocation"]);
+        $aw_system_location = aw_select_country(["country_code"=>$location->country_code]);
+        $args = ["post_type" => "bk","posts_per_page" => $limit];
+        $args['order'] = 'DESC';
+        $args['orderby'] = 'meta_value_num';
+        $args['meta_key'] = '_rating';
         $query = new WP_Query($args);
-        if ($query->have_posts()) {
-            $key = 0;
+        
+        $bookmakers = [];
+        if(!isset($aw_system_location) and $query->posts):
+            //$bookmakers = aw_select_relate_bookmakers(1,["random"=>true,"limit"=>$limit]);
+            foreach ($query->posts as $key => $bookmaker):
+                $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
+                if($exists):
+                    $bookmakers[] = $bookmaker;
+                endif;
+            endforeach;
+        else:
+            //$bookmakers = aw_select_relate_bookmakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
+            if($query->posts):
+                foreach ($query->posts as $key => $bookmaker):
+                    $exists = aw_detect_bookmaker_on_country($aw_system_location->id,$bookmaker->ID);
+                    if($exists):
+                        $bookmakers[] = $bookmaker;
+                    endif;
+                endforeach;
+            endif;
+        endif;
+
+        if ($bookmakers and count($bookmakers) > 0) {
             echo '<div class="col-lg-12 col-md-6">
                     <div class="side_box mt_30">
                         <div class="box_header">' . $title . '</div>
                         <div class="box_body">
                         ';
-            while ($query->have_posts()):
-                
-                $query->the_post();
-                $image_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
+            foreach ($bookmakers as $key => $bookmaker):
+                $key++;
+                $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
                 $image_png = wp_get_attachment_url($image_att);
-                $rating_ceil = ceil(carbon_get_post_meta(get_the_ID(), 'rating'));
-                $bonus = carbon_get_post_meta(get_the_ID(), 'bonus_sum_table') ? carbon_get_post_meta(get_the_ID(), 'bonus_sum_table') : 'n/a';
-                $ref = carbon_get_post_meta(get_the_ID(), 'ref');
+                $rating_float = carbon_get_post_meta($bookmaker->ID, 'rating');
+                $rating_ceil = floor($rating_float);
+                
+                $ref = "";
+                $ref = "";
+                $color = carbon_get_post_meta($bookmaker->ID, 'background-color');
 
-                $bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
-                $location = json_decode(GEOLOCATION);
-                if($location->success == true and $bk_countries and count($bk_countries) > 0):
-                    foreach($bk_countries as $country):
-                        if($country['country_code'] == $location->country_code):
-                            $key++;
-                            echo '<div class="top_box">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="top_serial">
-                                            <span class="serial">'.$key.'</span>
-                                            <img src="'.$image_png.'" class="img-fluid" alt="">
-                                        </div>
-                                        <div class="ratings">
-                                            <span>'.$rating_ceil.'</span>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="btn_groups">
-                                        <a href="'.get_the_permalink().'" class="button">Revision</a>
-                                        <a href="'.$country['ref'].'" class="button">Apostar</a>
-                                    </div>
-                                </div>';
-                            else:
-                                echo "";
-                            endif;
+                $bonuses = carbon_get_post_meta($bookmaker->ID, 'country_bonus');
+                if(isset($bonuses) and count($bonuses) > 0):
+                    foreach($bonuses as $bonus_data):
+                        if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_location->country_code)):
+                            $ref = $bonus_data["country_bonus_ref_link"];
+                        endif;
                     endforeach;
                 endif;
-                if(!$location->success):
-                    $key++;
-                    echo '<div class="top_box">
+                
+
+                echo '<div class="top_box">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="top_serial">
                                 <span class="serial">'.$key.'</span>
-                                <img src="'.$image_png.'" class="img-fluid" alt="">
+                                <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="" style="background:'.$color.';padding: 6px;border-radius: 6px;width: 10rem;height: 3.3rem;">
                             </div>
                             <div class="ratings">
-                                <span>'.$rating_ceil.'</span>
+                                <span>'.$rating_float.'</span>
                                 <i class="fas fa-star"></i>
                             </div>
                         </div>
                         
                         <div class="btn_groups">
-                            <a href="'.get_the_permalink().'" class="button">Revision</a>
-                            <a href="'.$ref.'" class="button">Apostar</a>
+                            <a href="'.get_the_permalink($bookmaker->ID).'" class="button">Revision</a>
+                            <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="button">Apostar</a>
                         </div>
                     </div>';
-                endif;
-            endwhile;
-            
+            endforeach;
             echo '</div> </div> </div>';
         } else {
             echo 'Nothing found';

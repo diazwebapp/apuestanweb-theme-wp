@@ -1,10 +1,12 @@
 <?php get_header();
+wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
+
 $textafter = carbon_get_post_meta(get_the_ID(), 'after_post');
 $textbefore = carbon_get_post_meta(get_the_ID(), 'before_post');
 $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
 $sidebar = carbon_get_post_meta(get_the_ID(), 'sidebar');
 // logo
-$page_logo_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
+$page_logo_att = carbon_get_post_meta(get_the_ID(), 'logo');
 if($page_logo_att){
     $page_logo_src = aq_resize(wp_get_attachment_url($page_logo_att), 50, 50, true, true, true);
 }else{
@@ -19,9 +21,12 @@ if($term_page_att){
 }
 if(!$thumbnail_url): $thumbnail_url = false; endif;
 if(!$custom_h1)
-	$custom_h1 = ' Forecast ';
+	$custom_h1 = ' Predicciones Deportivas ';    
 
+			
  ?>
+
+
 
 	<main>
 	<?php if ( $textbefore ):echo $textbefore; endif;?>
@@ -32,8 +37,17 @@ if(!$custom_h1)
 					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-9 mt_25'; endif;?>" >
 					<div class="title_wrap">
 						<h1 class="title mt_30 order-lg-1"><?php echo $custom_h1 ?></h1>
+
 					</div>
-						<?php echo do_shortcode("[forecasts model='2' paginate='yes']") ?>
+					<div class="mt_50 d-flex flex-row">
+						<div class="p-2"><a href="/pronosticos-nba/">Pronósticos NBA</a></div>
+						<div class="p-2"><a href="/pronosticos-futbol/">Pronósticos Fútbol</a></div>
+						<div class="p-2"><a href="/pronosticos-mlb/">Pronósticos MLB</a></div>
+						<div class="p-2"><a href="/pronosticos-nfl/">Pronósticos NFL</a></div>
+
+					</div>
+
+						<?php echo do_shortcode("[forecasts model='2' league='all' num='8' paginate='yes']") ?>
 						<?php
                             if ( $textafter ):
 								echo '<br/> <br/>' ;

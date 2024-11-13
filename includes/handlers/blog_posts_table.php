@@ -14,7 +14,7 @@
                 endif;
             endforeach;
         endif;
-        $result .= '<div class="col-lg-3 col-md-4 col-6">
+        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
                         <div class="blog_box">
                             <div class="img_box">
                                 <a href="'.get_the_permalink(get_the_ID()).'" class="blog_img">
@@ -24,7 +24,9 @@
                         </div>
                                 
                         <div class="blog_content">
-                            <p>'.get_the_title().'</p>
+                            <a href="'.get_the_permalink(get_the_ID()).'">
+                                '.get_the_title().'
+                            </a>
                             <span>#'.$sport.'</span>
                         </div>
                     </div>';
@@ -58,12 +60,24 @@ function aw_blog_posts_pagination($wp_query,$paged){
     return str_replace("{pagination}",$pagination,$template);
 }
 
-function blog_posts_table($post_type,$paginate,$per_page){
+function blog_posts_table($post_type,$paginate,$per_page,$leagues=false){
     wp_reset_postdata();
     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     $args['post_type'] = $post_type;
     $args['posts_per_page'] = $per_page;
     $args['paged'] = $paged;
+
+    if(isset($leagues) and $leagues !== '[all]'):
+        $p = str_replace("[","",$leagues);
+        $p = str_replace("]","",$leagues);
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'league',
+                'field' => 'slug',
+                'terms' => [$p]
+            ]
+        ];
+    endif;
     $query = new Wp_Query($args);
     
     $html = aw_blog_posts_table($query);

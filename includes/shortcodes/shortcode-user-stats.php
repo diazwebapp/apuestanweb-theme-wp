@@ -2,8 +2,9 @@
 function shortcode_user_stats($atts)
 {
     extract(shortcode_atts(array(
-        'id' => 1,
+        'id' =>  !empty(get_post_field( 'post_author', get_the_ID() )) ? get_post_field( 'post_author', get_the_ID() ) : 0,
     ), $atts));
+    
     if($id):
         $acerted = get_the_author_meta("forecast_acerted", $id );
         $failed = get_the_author_meta("forecast_failed", $id );
@@ -13,58 +14,91 @@ function shortcode_user_stats($atts)
         $avatar_url = get_avatar_url($id);
         $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
         $stats = get_user_stats($id,true);
+        
     endif;
     
     $img_perc = get_template_directory_uri(  ) .'/assets/img/s56.png';
     $fail_gradient = $stats['porcentaje_fallidos'] + $stats['porcentaje_fallidos'];
     $null_gradient = $fail_gradient + $stats['porcentaje_nulos'];
-    $ret = "<style>
-                .user_graph,.user_graph::before{
-                    width:100px;
-                    height:100px;
-                    background:conic-gradient(#1f78b4 {$stats['porcentaje']}%,#8ed1fc {$stats['porcentaje']}% $fail_gradient%, #b2df8a $fail_gradient% $null_gradient%);
-                    position:relative;
-                    border-radius:50%;
-                }
-                .user_graph::before{
-                    content:'';
-                    left:0;
-                    top:0;
-                    background:white content-box;
-                    position:absolute;
-                    padding:10px;
-                }
-            </style>";
-    $ret .= "<div class='single_event_progress_box'>
-    <div class='single_event_progress_left'>
-        <img src='$avatar' class='img-fluid' alt=''>
-        <p>$display_name</p>
-    </div>
-    <div class='single_event_progress_right'>
-        <div class='progress_img'>
-            <div class='user_graph'>
-            </div> 
-            <p>$rank</p>
-        </div>
-        <div class='progress_percent'>
-            <div class='progress_percent_box'>
-                <p>Aciertos</p>
-                <div class='percent_color text-sm-center'><b>$acerted</b></div>
-            </div>
-            <div class='progress_percent_box'>
-                <p>Fallos</p>
-                <div class='percent_color percent_color2 text-sm-center'><b>$failed</b></div>
-            </div>
-            <div class='progress_percent_box'>
-                <p>Nulos</p>
-                <div class='percent_color percent_color3 text-sm-center'><b>$nulled</b></div>
-            </div>
-        </div>
-    </div>
-</div>";
 
-    return $ret;
+    $args = array(
+        'post_type' => 'forecast',
+        'author' => $id,
+        'posts_per_page' => 5,
+      );
+
+    $posts = get_posts($args);
+
+    
+    $ret = "<div class='user-profile'>
+            <div class='tab-menu-container'>
+            <ul class='nav nav-tabs flex-column'>
+            <li class='nav-item'>
+            <a class='nav-link active' data-toggle='tab' href='#profile'>Perfil</a>
+            </li>
+            <!--  <li class='nav-item'>
+            <a class='nav-link' data-toggle='tab' href='#stats'>Stats</a>
+            </li>-->
+            <li class='nav-item'>
+            <a class='nav-link' data-toggle='tab' href='#posts'>Picks</a>
+            </li>
+            </ul>
+            </div>
+            <div class='tab-content w-100'>
+            <div id='profile' class='container tab-pane active'>
+            <div class='row'>
+            <div class='col-3 image-container'>
+            <img class='rounded-circle' src='$avatar' width='70px' height='70px' alt='$display_name'>
+            </div>
+            <div class='col-8'>
+            <span class='user-name'>$display_name</span>
+            <p class='user-bio'>".get_the_author_meta('description', $id)."</p>
+            <div class='user-social'>
+            ".(get_the_author_meta('facebook', $id) ? "<a href='".get_the_author_meta('facebook', $id)."' aria-label='follow me on facebook' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-facebook'></i></a>" : "")."
+            ".(get_the_author_meta('twitter', $id) ? "<a href='".get_the_author_meta('twitter', $id)."' aria-label='follow me on twitter' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-twitter'></i></a>" : "")."
+            ".(get_the_author_meta('instagram', $id) ? "<a href='".get_the_author_meta('instagram', $id)."' aria-label='follow me on instagram' rel='nofollow noreferrer noopener' target='_blank'><i class='fab fa-instagram'></i></a>" : "")."
+            </div>
+            </div>
+            </div>
+            </div>
+           <!--<div id='stats' class='container tab-pane'>
+            <h3 class='text-center mb-4'>Estadísticas</h3>
+             <div class='d-flex justify-content-center user-stats flex-wrap'>
+                <div class='d-flex flex-column m-3 stat-box'>
+                    <p class='stat-value'>$rank</p>
+                    <p class='stat-label'>Profit</p>
+                </div>
+                <div class='d-flex flex-column m-3 stat-box'>
+                    <p class='stat-value'>$acerted</p>
+                    <p class='stat-label'>Aciertos</p>
+                </div>
+                <div class='d-flex flex-column m-3 stat-box'>
+                    <p class='stat-value'>$failed</p>
+                    <p class='stat-label'>Fallos</p>
+                </div>
+                <div class='d-flex flex-column m-3 stat-box'>
+                    <p class='stat-value'>$nulled</p>
+                    <p class='stat-label'>Nulos</p>
+                </div>
+            </div>
+            </div>-->
+            <div id='posts' class='container tab-pane w-100'>
+            <span class='section-title'>Últimos pronósticos</span>
+            <div class='list-group'>";
+            foreach ($posts as $post) {
+                $ret .= "
+                <a href='" . get_permalink($post->ID) . "' class='list-group-item list-group-item-action d-flex align-items-center'>
+                    <div class='post-title'>" . get_the_title($post->ID) . "</div>
+                    <div class='ml-auto'>" . get_the_date( '', $post->ID ) . "</div>
+                </a>";
+            }
+            $ret .= "</div></div></div>
+        </div>";
+
+
+
+
+  return $ret;
 }
-
 
 add_shortcode('user_stats', 'shortcode_user_stats');

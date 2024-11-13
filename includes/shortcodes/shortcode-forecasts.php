@@ -1,137 +1,148 @@
 <?php
+
 function shortcode_forecast($atts)
 {
     extract(shortcode_atts(array(
         'num' => 6,
         'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
-        'date' => false,
+        'date' => null,
         'model' => 1,
         'text_vip_link' => 'VIP',
-        'filter' => false,
-        'time_format' => false,
-        'paginate' => false
+        'filter' => null,
+        'time_format' => null,
+        'title' => null
+        
     ), $atts));
+    global $post;
+    
+    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'forecasts' ) ) {
+        wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
+    }else if(is_single(  )){
+        wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
+    }
     $ret = "";
-   
+
+    $geolocation = json_decode($_SESSION["geolocation"]);
+    
+    $odds = get_option( 'odds_type' );
+    
+    /* if(is_page() && !$title)
+        $title = get_the_title( );
+    if(is_post_type_archive() && !$title)
+        $title = post_type_archive_title( '', false );
+    if(is_category() or is_tax())
+        $title = single_term_title('',false );
+    if(is_tag())
+        $title = single_tag_title('',false );
+
     $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-    $title = empty($custom_h1) ? get_the_title( get_the_ID() ) : $custom_h1;
+    $title = empty($custom_h1) ? $title : $custom_h1; */
 
     if($filter):
-        $ret .= "<div class='title_wrap'>
-                    <h1 class='title mt_30 order-lg-1'>$title</h1>
-                    <div class='mt_30 dropd order-lg-3'>
-                        <div class='blog_select_box'>
-                            <select name='ord' id='element_select_forecasts'>
-                                <option value=''>Ordenar</option>
-                                <option value='yesterday'> ".__('Yesterday','jbetting')." </option>
-                                <option value='today'> ".__('Today','jbetting')." </option>
-                                <option value='tomorrow'> ".__('Tomorrow','jbetting')." </option>
-                            </select>
-                        </div>
+        $ret .= "<div class='row'>                    
+                    <h2 class='title-h2 col-8'>".(isset($title) ? $title : '')."</h2>
+                    
+                    <div class='col-4 justify-content-end d-flex event_select'>
+                        <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)'>
+                            <option value='' ".( !$date ? 'selected' : '').">".__('Todo','jbetting')."</option>
+                            <option value='ayer' ".( $date == 'ayer' ? 'selected' : '')." > ".__('Ayer','jbetting')." </option>
+                            <option value='hoy' ".( $date == 'hoy' ? 'selected' : '')." >".__('Hoy','jbetting')." </option>
+                            <option value='mañana' ".( $date == 'mañana' ? 'selected' : '')." > ".__('Mañana','jbetting')." </option>
+                        </select>
                     </div>
-                    <div class='tag_wrap order-lg-2'>
-                        <ul class='tag mt_25'>
-                        </ul>
-                    </div>
+                    
                 </div>";
     endif;
-    wp_reset_query();
-    $args = [];
-    $args['post_status']    = 'publish';
-    $args['post_type']      = 'forecast';
-    $args['posts_per_page'] = $num;
-    $args['meta_key']       = '_data';
-    $args['orderby']        = 'meta_value';
-    $args['order']          = 'ASC';
-
-  
-    $league_arr=[];
     
-    if(is_array($league)):
+    
+
+    $league_arr = null;
+    
+    if(is_array($league) and count($league) > 0):
+        
+        $league_arr = "[{replace-leagues}]";
+        $temp_leages = '';
         foreach ($league as $key => $value) {
-            $league_arr[]= $value->slug ;
+            $temp_leages .= $value->slug.',' ;
         }
+        $league_arr = str_replace("{replace-leagues}",$temp_leages,$league_arr);
     endif;
-    if(!is_array($league)):
-        $league_arr = explode(',',$league);
+    if(!is_array($league) and is_string($league)):
+        
+        $league_arr = "[{replace-leagues}]";
+        $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
     endif;
-    if($league !== 'all' or !$league):
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'league',
-                'field' => 'slug',
-                'terms' => $league_arr
-            ]
-        ];
-    endif;
-
+   
+    $args = [];
+    $args['paged']          = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1);
+    $args['posts_per_page'] = $num;
+    $args['leagues'] =  $league_arr;
+    $args['date'] = $date;
+    $args['model'] = $model;
+    $args['time_format'] = $time_format ;
+    $args['text_vip_link'] = $text_vip_link;
+    $args['rest_uri'] = get_rest_url(null,'aw-forecasts/forecasts');
+    $args['country_code'] = $geolocation->country_code;
+    $args['timezone'] = $geolocation->timezone;
+    $args['odds'] = $odds;
+    $args['exclude_post'] = null;
+    $args["current_user_id"] =  get_current_user_id();
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-page='{$args['paged']}' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'> 
     
-    if ($date and $date != "") {
-        if($date == 'today')
-            $current_date = date('Y-m-d');
-        if($date == 'yesterday')
-            $current_date = date('Y-m-d', strtotime('-1 days'));
-        if($date == 'tomorrow')
-            $current_date = date('Y-m-d',strtotime('+1 days'));
-            
-        $args['meta_query']   = [
-                [
-                    'key' => '_data',
-                    'compare' => '==',
-                    'value' => $current_date,
-                    'type' => 'DATE'
-                ]
-            ];
-    }
-
-    set_query_var( 'params', [
-        "vip_link" => PERMALINK_VIP,
-        "text_vip_link" => $text_vip_link,
-        "time_format" => $time_format
-    ] );
-
-    $query = new WP_Query($args);
+    ".__( 'Cargar más', 'jbetting' ) ."
+    </button><br/>";
     
-    if ($query->have_posts()) {
+    $post_type = get_post_type( );
+    if($post_type == "forecast" and is_single()):
+        $args['exclude_post']   = get_the_ID();
+    endif;
+    
+    $params = "?paged=".$args['paged'];
+    $params .= "&posts_per_page={$args['posts_per_page']}";
+    $params .= isset($args['leagues']) ? "&leagues=${args['leagues']}":"";
+    $params .= isset($args['date']) ? "&date={$args['date']}":"";
+    $params .= "&model=$model";
+    $params .= isset($args['time_format']) ? "&time_format={$args['time_format']}":"";
+    $params .= isset($args['text_vip_link']) ? "&text_vip_link={$args['text_vip_link']}":"";
+    $params .= isset($args['country_code']) ? "&country_code={$args['country_code']}":"";
+    $params .= isset($args['timezone']) ? "&timezone={$args['timezone']}":"";
+    $params .= isset($args['exclude_post']) ? "&exclude_post={$args['exclude_post']}":"";
+    $params .= "&current_user_id={$args['current_user_id']}";
+    $params .= "&odds=$odds";
+    wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
+    
+    $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
+    
+    $query =  wp_remote_retrieve_body( $response );
+    if (!is_wp_error( $query )) {
         $home_class = "event_wrap pt_30";
             if($model and $model != 1)
                 $home_class = 'row';        
+        
+        $loop_html = ''; 
+        $ret .="<div class='$home_class' id='games_list' >{replace_loop}</div>";
+        $data_json = json_decode($query);
+        
+        $loop_html = $data_json->html;
+        
+        $ret = str_replace("{replace_loop}",$loop_html,$ret);
+        
+        $ret .="<div class='container container_pagination_forecast text-md-center'>";
+        if($data_json->page < $data_json->max_pages):
             
-        $ret .="<div class='$home_class' style='align-items:baseline;' id='games_list' >";
-                while ($query->have_posts()):
-                    $query->the_post();
-                    $ret .= load_template_part("loop/pronosticos_list_{$model}"); 
-                endwhile; 
-        $ret .="</div>";
+            $ret .= $args['btn_load_more'];
 
-        ?>
-            <script>
-                var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
-                var posts = '<?php echo serialize( $query->query_vars ); ?>';
-                var current_page = <?php echo ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; ?>;
-                var max_pages = '<?php echo $query->max_num_pages; ?>';
-                var model = '<?php echo $model ?>';
-                //Parametros del shortcode 
-                var time_format = '<?php echo $time_format ?>'
-                var text_vip_link = '<?php echo $text_vip_link ?>'
-                var vip = 'no';
-                var unlock = 'no';
-                var cpt = 'forecast';
-            </script>
-
-        <?php 
-        if($query->max_num_pages > 1 and $paginate=='yes'):
-
-            $ret .="<div class='container container_pagination text-md-center'>
-                <br/>
-                <br/>
-                <button class='loadmore forecasts btn headerbtn'> ".__( 'Load more', 'jbetting' ) ."</button><br/>
-                <br/>
-            </div>";
         endif;
+        $ret .=" </div>";
+
+        $ret .= '<div class="container my-2 text-center text-muted page-status-indicator" >
+                '.__("pagina ","jbetting").'
+                <span id="current-page-number">'.($data_json->max_pages == 0 ? 0 :$data_json->page).' </span> de 
+                <span id="max-page-number" >'.$data_json->max_pages.'</span>
+                </div>';
         
     } else {
-        return '<h1>Nó hay datos</h1>';
+        return '<h1>No hay datos. Vuelve más tarde.</h1>';
     }
     
     return $ret;

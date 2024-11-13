@@ -23,8 +23,8 @@ $textafter = carbon_get_term_meta( $term_id, 'after_list' );
                             <h3 class="title mt_30 w-100"><?php echo $h1 ?></h3>
                             <a href="#" class="mt_30 dropd">Hoy <i class="fa fa-angle-down"></i></a>
                         </div>
-                        
-                        <?php echo do_shortcode("[related_posts model='4' cat='$term->slug 'paginate='yes']") ?>
+                        <?php echo do_shortcode("[blog paginate='yes']") ?>
+                        <?php echo do_shortcode("[related_posts model='4' cat='$term->slug' paginate='yes']") ?>
                        
                         <?php if ( $textafter ): echo $textafter ; endif; ?>
                         </div>
