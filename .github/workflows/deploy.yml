@@ -23,4 +23,6 @@ jobs:
         rsync -avz --delete \
         -e 'ssh -o StrictHostKeyChecking=no' \
         --exclude='.git*' \
-        ./wp-content/themes/apuestan u731262011@185.173.111.47:/home/u731262011/domains/darkgrey-koala-352680.hostingersite.com/public_html/wp-content/themes/apuestan
+        ./wp-content/themes/apuestan \
+        u731262011@185.173.111.47:/home/u731262011/domains/darkgrey-koala-352680.hostingersite.com/public_html/wp-content/themes/apuestan \
+        --log-file=rsync.log --verbose
