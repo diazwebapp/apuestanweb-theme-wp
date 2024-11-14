@@ -148,6 +148,21 @@ function load_template_part($template_name, $part_name = null, $args=false)
 
     return $var;
 }
+
+function disable_all_styles() { 
+    // Desregistrar estilos de WordPress core y plugins 
+    wp_dequeue_style('wp-block-library'); 
+    // Gutenberg 
+    wp_dequeue_style('wp-block-library-theme');
+    // Gutenberg Theme 
+    wp_dequeue_style('wc-blocks-style'); 
+    // WooCommerce blocks 
+    // Desregistrar estilos específicos de plugins si conoces sus handles // 
+    wp_dequeue_style('plugin-style-handle'); 
+    // Reemplazar con el handle específico del plugin 
+} 
+add_action('wp_enqueue_scripts', 'disable_all_styles', 100);
+
 add_action('wp_enqueue_scripts', 'jbetting_src');
 function jbetting_src()
 {
