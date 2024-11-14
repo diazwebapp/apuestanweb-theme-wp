@@ -43,7 +43,7 @@ endif;
     <div class="blog_box_wrapper">
         <div class="container">
             <?php 
-                echo do_shortcode("[blog filter='yes' title='Lo más reciente 1']"); 
+                echo do_shortcode("[blog filter='yes' title='Lo más reciente']"); 
             ?>
         </div>
     </div>
