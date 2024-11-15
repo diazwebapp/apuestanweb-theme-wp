@@ -148,6 +148,11 @@ function load_template_part($template_name, $part_name = null, $args=false)
 
     return $var;
 }
+add_filter('wp_get_attachment_image_attributes', 'add_lazy_loading_to_images'); 
+
+function add_lazy_loading_to_images($attr) { 
+    $attr['loading'] = 'lazy'; return $attr; 
+}
 
 function disable_all_styles() { 
     // Desregistrar estilos de WordPress core y plugins 
@@ -156,9 +161,13 @@ function disable_all_styles() {
     wp_dequeue_style('wp-block-library-theme');
     // Gutenberg Theme 
     wp_dequeue_style('wc-blocks-style'); 
-    // WooCommerce blocks 
+    wp_dequeue_style('woocommerce-inline'); 
+    // WooCommerce
+    
+    wp_dequeue_style('contact-form-7');
+    // Contact Form 7
     // Desregistrar estilos específicos de plugins si conoces sus handles // 
-    wp_dequeue_style('plugin-style-handle'); 
+    //wp_dequeue_style('plugin-style-handle'); 
     // Reemplazar con el handle específico del plugin 
 } 
 add_action('wp_enqueue_scripts', 'disable_all_styles', 100);
@@ -183,7 +192,7 @@ function jbetting_src()
 
 
     wp_deregister_script('jquery');
-    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
+    //wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
 
     wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
@@ -200,10 +209,10 @@ function jbetting_src()
     //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
    // wp_enqueue_script( 'ihc-front_end_js', IHC_URL . 'assets/js/functions.min.js', ['jquery'], 10.6, true );
 
-   wp_enqueue_script('custom-search', get_template_directory_uri() . '/assets/js/custom-search.js', array('jquery'), null, true);
+   //wp_enqueue_script('custom-search', get_template_directory_uri() . '/assets/js/custom-search.js', array('jquery'), null, true);
 
    // Variables que se pasan a script.js con wp_localize_script
-   wp_localize_script('custom-search', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
+   //wp_localize_script('custom-search', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
 
 }
 
