@@ -1,5 +1,5 @@
 <?php
-include 'custom-field-forecast.php';
+//include 'custom-field-forecast.php';
 function create_bk() {
 
 	$labels = array(
@@ -49,7 +49,7 @@ function create_bk() {
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'bk',
+		'capability_type'     => 'post',
 		'rewrite' => array('slug' => 'casas-apuestas', 'with_front'=> true)
 	);
 	register_post_type( 'bk', $args );
@@ -108,7 +108,7 @@ function create_forecast() {
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'forecast',
+		'capability_type'     => 'post',
 		'register_meta_box_cb' => 'aw_forecast_img_destacada_personalizada',
 		'rewrite' => array('slug' => 'prediccion')
 
@@ -130,10 +130,10 @@ function create_team() {
 		'archives'              => __( 'Archive', 'jbetting' ),
 		'attributes'            => __( 'Attributes', 'jbetting' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'jbetting' ),
-		'all_items'             => __( 'All', 'jbetting' ),
-		'add_new_item'          => __( 'All', 'jbetting' ),
+		'all_items'             => __( 'All teams', 'jbetting' ),
+		'add_new_item'          => __( 'new team', 'jbetting' ),
 		'add_new'               => __( 'Add', 'jbetting' ),
-		'new_item'              => __( 'Add', 'jbetting' ),
+		'new_item'              => __( 'new', 'jbetting' ),
 		'edit_item'             => __( 'Edit', 'jbetting' ),
 		'update_item'           => __( 'Update', 'jbetting' ),
 		'view_item'             => __( 'View', 'jbetting' ),
@@ -155,14 +155,14 @@ function create_team() {
 		'label'               => __( 'Team', 'jbetting' ),
 		'description'         => __( 'Team', 'jbetting' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title',  ),
+		'supports'            => array( 'title', 'Thumbnail' ),
 		'hierarchical'        => false,
 		'show_in_menu'        => true,
 		'menu_position'       => 4,
 		'menu_icon'           => 'dashicons-networking',
 		'show_in_admin_bar'   => true,
 		'can_export'          => true,
-		'capability_type'     => 'team',
+		'capability_type'     => 'post',
 		'public'              => false,
 		'publicly_queryable'  => true,
 		'show_ui'             => true,
@@ -226,7 +226,7 @@ function create_parley() {
 		'has_archive'         => false,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'parley',
+		'capability_type'     => 'post',
 	);
 	register_post_type( 'parley', $args );
 
@@ -273,4 +273,4 @@ function crear_content_hub_cpt() {
 
     register_post_type('content_hub', $args);
 }
-add_action('init', 'crear_content_hub_cpt');
+//add_action('init', 'crear_content_hub_cpt');
