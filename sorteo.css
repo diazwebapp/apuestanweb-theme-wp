@@ -1,0 +1,87 @@
+.sorteo-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.sorteo-container h1 {
+    text-align: center;
+}
+
+.sorteo-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.sorteo-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sorteo-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sorteo-container button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.sorteo-container button:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+.sorteo-container .hidden {
+    display: none;
+}
+
+.sorteo-container #loading {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sorteo-container #resultado {
+    margin-top: 20px;
+}
+
+.sorteo-container #numero-aleatorio {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF5722;
+}
+
+.sorteo-container .numeros-disponibles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.sorteo-container .numeros-disponibles div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.sorteo-container .numero-tachado {
+    background-color: red;
+    color: white;
+}

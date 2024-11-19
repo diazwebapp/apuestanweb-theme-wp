@@ -788,3 +788,88 @@ function enlaces_internos_forecast($atts) {
 add_shortcode('enlaces_internos_forecast', 'enlaces_internos_forecast');
 
 
+////////////////shortcode sorteos//////////////
+
+function sorteo_shortcode($atts) {
+    global $wpdb;
+
+    // Crear la tabla si no existe
+    $tabla_sorteos = $wpdb->prefix . 'sorteos';
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE IF NOT EXISTS $tabla_sorteos (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        nombre varchar(255) NOT NULL,
+        telefono varchar(15) NOT NULL,
+        numero_sorteado int(11) NOT NULL,
+        PRIMARY KEY  (id)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+
+    // Procesar atributos del shortcode
+    $atts = shortcode_atts(array(
+        'reservados' => ''
+    ), $atts);
+
+    // Convertir la cadena de números de teléfono en un array
+    $reservas_array = explode(',', $atts['reservados']);
+    $reservas = array();
+    if (count($reservas_array) > 0) {
+        foreach ($reservas_array as $index => $telefono) {
+            $reservas[trim($telefono)] = $index + 1;
+        }
+    }
+
+    // Encolar los scripts y estilos
+    wp_enqueue_style('sorteo-css', get_template_directory_uri() . '/sorteo.css');
+    wp_enqueue_script('sorteo-js', get_template_directory_uri() . '/sorteo.js', array('jquery'), null, true);
+    wp_localize_script('sorteo-js', 'sorteoReservas', $reservas);
+    wp_localize_script('sorteo-js', 'ajaxurl', admin_url('admin-ajax.php'));
+
+    // Crear el HTML del shortcode
+    ob_start();
+    ?>
+
+    <div class="sorteo-container">
+        <h1>Sorteo de Números</h1>
+        <div id="numeros-disponibles" class="numeros-disponibles"></div>
+        <form id="sorteo-form">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="telefono">Número de Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+            <button type="submit" id="participar-btn">Participar</button>
+        </form>
+        <div id="loading" class="hidden">Cargando...</div>
+        <div id="resultado" class="hidden">
+            <p>El número asignado es: <span id="numero-aleatorio"></span></p>
+        </div>
+    </div>
+
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('sorteo_numeros', 'sorteo_shortcode');
+
+function procesar_sorteo() {
+    global $wpdb;
+    $tabla_sorteos = $wpdb->prefix . 'sorteos';
+    $nombre = sanitize_text_field($_POST['nombre']);
+    $telefono = sanitize_text_field($_POST['telefono']);
+    $reservas = json_decode(stripslashes($_POST['reservas']), true);
+
+    $numeroAsignado = isset($reservas[$telefono]) ? $reservas[$telefono] : mt_rand(1, 20);
+
+    $wpdb->insert($tabla_sorteos, array(
+        'nombre' => $nombre,
+        'telefono' => $telefono,
+        'numero_sorteado' => $numeroAsignado
+    ));
+
+    wp_send_json_success(array('numero_asignado' => $numeroAsignado));
+}
+
+add_action('wp_ajax_procesar_sorteo', 'procesar_sorteo');
+add_action('wp_ajax_nopriv_procesar_sorteo', 'procesar_sorteo');
