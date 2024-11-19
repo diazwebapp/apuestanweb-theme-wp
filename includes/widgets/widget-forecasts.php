@@ -24,7 +24,7 @@ class W_Forecasts extends WP_Widget {
             );
             $query = new WP_Query($args);
             if ($query):
-                echo "<div class='col-lg-12 col-md-6'> 
+                echo "<div class='col-lg-12 col-md-12'> 
                         <div class='side_box mt_30'>
                             <div class='box_header'>
                                 $title
@@ -54,21 +54,24 @@ class W_Forecasts extends WP_Widget {
                     }
 
                     echo "<a href='$permalink' class='top_box top_box3'>
+
+                            <div class='top_box3_right_content league_box1'>
+                                {$sport['name']}                             
+                            </div>
+                    
                             <div class='top_box3_left_content'>
                                 <div class='top_box3_img'>
-                                    <img width='14' height='14' src='{$teams['team1']['logo']}' class='img-fluid' alt='{$teams['team1']['name']}'>
+                                    <img width='25px' height='25px' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                                     <p>{$teams['team1']['name']}</p>
                                 </div>
                                 <div class='top_box3_img top_box3_img2'>
-                                    <img width='14' height='14' src='{$teams['team2']['logo']}' class='img-fluid' alt='{$teams['team2']['name']}' >
+                                    <img width='25px' height='25px' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' >
                                     <p>{$teams['team2']['name']}</p>
                                 </div>
                             </div>
                             
-                            <div class='top_box3_right_content league_box1'>
-                                <i class='{$sport['class']}' ></i>
-                                {$sport['name']}
-                            </div>
+
+                            <i class='fas fa-chevron-right'></i>
                        </a> ";
                 endwhile;
                 echo "</div> </div> </div>";

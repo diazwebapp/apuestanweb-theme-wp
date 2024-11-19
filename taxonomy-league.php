@@ -1,37 +1,26 @@
 <?php
 get_header();
-$term    = get_queried_object();
-$term_id = $term->term_id;
-if ( carbon_get_term_meta( $term_id, 'h1' ) ) {
-	$h1 = carbon_get_term_meta( $term_id, 'h1' );
-} else {
-	$h1 = single_term_title( '', false );
-}
-$textbefore = carbon_get_term_meta( $term_id, 'before_list' );
-$textafter = carbon_get_term_meta( $term_id, 'after_list' );
+$term = get_term_by('name',$term,'league' );
+
+$migas_de_pan_html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
+$taxonomy_page = !empty($term) ? carbon_get_term_meta($term->term_id,'taxonomy_page') : null ;
+$term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+
+$term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
+$migas_de_pan_html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
+wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
 
  ?>
-       <?php echo do_shortcode("[menu_leagues deporte='{$term->name}']") ?>
 	<main>
     
-        <?php if ( $textbefore ): echo $textbefore ; endif; ?>
-        <?php echo do_shortcode('[banner]') ?>
-
             <div class="event_area pb_90">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9 mt_25">
-                        <div class="title_wrap">
-                            <h3 class="title mt_30 order-lg-1"><?php echo $h1 ?></h3>
-                            <span onclick="filter()" class="mt_30 dropd order-lg-3">Hoy <i class="fa fa-angle-down"></i></span>
-                            <?php echo do_shortcode("[menu_leagues deporte='{$term->name}' model='2']") ?>
-                        </div>
+                        <?php echo $migas_de_pan_html ?>
                         
-                        <!-- game list -->
-                        <?php echo do_shortcode("[forecasts model='2' paginate='yes' league='$term->slug']") ?>
-                        <?php echo do_shortcode("[related_posts model='4' cat='$term->slug' title='Noticias {$term->name}' link='/']") ?>
-                       
-                        <?php if ( $textafter ): echo $textafter ; endif; ?>
+                        <?php echo do_shortcode("[forecasts model='2' num='6' filter='yes' league='$term->slug']") ?>
+
                         </div>
                         <div class="col-lg-3">
                             <div class="row">

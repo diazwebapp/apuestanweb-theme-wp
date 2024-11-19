@@ -1,8 +1,9 @@
 <?php
 function load_forecast() {
-
+	wp_reset_postdata();
+	set_query_var( 'paged' , $_POST["page"] +1 );
 	$args                = unserialize( stripslashes( $_POST['query'] ) );
-	$args['paged'] = $_POST['page'] +1;
+	$args['paged'] = get_query_var( 'paged' );
 	$args['post_type']   = $_POST['cpt'];
 	
 	$model = $_POST['model'];
@@ -27,60 +28,46 @@ function load_forecast() {
         "text_vip_link" => $text_vip_link,
 		"time_format" => $time_format
 	] );
-	wp_reset_query();
+	
 	$query = new WP_Query( $args );
-	// print_r($query);
-	if ( $query->have_posts() ) :
+	
+	if ( count($query->posts) > 0 ) :
+		$html = '';
 		if($vip == 'yes'):
 			if($unlock == 'yes'):
-				while ($query->have_posts()):
-					$query->the_post();
+				foreach ($query->posts as $key => $forecast):
 					if($_POST['cpt'] == 'parley'):
-						get_template_part("loop/parley_list_{$model}");
+						$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						get_template_part("loop/pronosticos_vip_list_{$model}_unlock"); 
+						$html .= load_template_part("loop/pronosticos_vip_list_{$model}_unlock",null,["forecast"=>$forecast]); 
 					endif;
-				endwhile;
+				endforeach;
 			else:
-				while ($query->have_posts()):
-					$query->the_post();
+				foreach ($query->posts as $key => $forecast):
 					if($_POST['cpt'] == 'parley'):
-						get_template_part("loop/parley_list_{$model}");
+						$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
 					endif;
 					if($_POST['cpt'] == 'forecast'):
-						get_template_part("loop/pronosticos_vip_list_{$model}"); 
+						$html .= load_template_part("loop/pronosticos_vip_list_{$model}",null,["forecast"=>$forecast]); 
 					endif; 
-				endwhile;
+				endforeach;
 			endif;
 		endif;
 		if($vip != 'yes'):
-			while ( $query->have_posts() ): $query->the_post();
+			foreach ( $query->posts as $key => $forecast ):
 				if($_POST['cpt'] == 'parley'):
-					get_template_part("loop/parley_list_{$model}");
+					$html .= load_template_part("loop/parley_list_{$model}",null,["forecast"=>$forecast]);
 				endif;
 				if($_POST['cpt'] == 'forecast'):
-					get_template_part("loop/pronosticos_list_{$model}"); 
+					$html .= load_template_part("loop/pronosticos_list_{$model}",null,["forecast"=>$forecast]); 
 				endif;
-			endwhile;
+			endforeach;
 		endif;
-
-	endif;
+		echo $html;
 	?>
 		<script>
-			var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
-			var posts = '<?php echo serialize( $query->query_vars ); ?>';
-			var current_page = <?php echo $args['paged'] ?>;
-			var max_pages = '<?php echo $query->max_num_pages; ?>';
-			var model = '<?php echo $model ?>';
-			var league = '<?php echo $league ?>';
-			var vip_link = '<?php echo $vip_link?>'
-			var text_vip_link = '<?php echo $text_vip_link ?>'
-			var vip =  '<?php echo $vip ?>';
-			var unlock = '<?php echo $unlock ?>';
-			var cpt = '<?php echo $_POST['cpt'] ?>';
-			var time_format = '<?php echo $time_format ?>'
-			const date_items_2 = document.querySelectorAll('.date_item_pronostico_top');
+			var date_items_2 = document.querySelectorAll('.date_item_pronostico_top');
 			if(date_items_2.length > 0){
 				date_items_2.forEach(item=>{
 					setInterval(()=>{
@@ -90,7 +77,8 @@ function load_forecast() {
 			}
 		</script>
 		
-	<?php  
+	<?php  endif;
+	
 	die();
 }
 

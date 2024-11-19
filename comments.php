@@ -1,4 +1,4 @@
-<?
+<?php
 wp_reset_query();
 $post_id = get_the_ID();
 if ($_SERVER['REQUEST_METHOD'] == "POST") {

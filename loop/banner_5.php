@@ -10,7 +10,7 @@ echo "<div class='blog_hero_area'>
                 <div class='col-lg-12'>
                     <div class='blog_hero_content'>
                         <div class='blog_top_content'>
-                            <img style='width:80px;height:80px;' src='{$params['src_logo']}' alt='{$params['text']}' title='{$params['text']}' class='img-fluid' alt=''>
+                            <img style='width:80px;height:80px;' src='{$params['src_logo']}' alt='{$params['text']}' title='{$params['text']}' class='img-fluid' alt='$title'>
                             <p style='text-transform:capitalize;' ><b>{$params['title']}</b></p>
                         </div>
                         <h2>".get_bloginfo( 'description' )."</h2>

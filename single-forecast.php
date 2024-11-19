@@ -1,149 +1,193 @@
-<?php get_header(); ?>
+<?php get_header(); 
+
+?>
+
 <main>
-<div class="event_area single_event_area pb_90">
-    <div class="container">
-		<div class="row">
-			<div class="col-lg-9 mt_30">
-				<?php
-					while ( have_posts() ){
-                        the_post();
-                        $img_src    = get_template_directory_uri() . '/assets/img/banner2.png';
-						$img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
-						if($img_att):$img_src    = aq_resize(wp_get_attachment_url( $img_att ), 1080, 600, true,true,true);  endif;
-						$time       = carbon_get_post_meta( get_the_ID(), 'data' );
-						$link       = carbon_get_post_meta( get_the_ID(), 'link' );
-
-                        $geolocation = json_decode(GEOLOCATION);
-                        $date = new DateTime($time);
-                        if($geolocation->success !== false):
-                            $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
-                        endif;
-						$sport_term = wp_get_post_terms( get_the_ID(), 'league', array( 'fields' => 'all' ) );
-						$arr_sport  = array();
-						if ( $sport_term ) {
-							foreach ( $sport_term as $item ) {
-								$logo_league_src = aq_resize(wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'mini_img')), 24, 24, true, true, true);
-								if(!$logo_league_src)$logo_league_src = get_template_directory_uri() . '/assets/img/logo2.svg';
-                                $arr_sport[] = "<div class='single_banner_top_left'>
-                                    <img loading='lazy' src='{$logo_league_src}' class='img-fluid' alt='{$item->name}' title='{$item->name}'>
-                                    <p>{$item->name}</p>
-                                </div>";
-							}
-							$arr_sport = array_reverse( $arr_sport );
-						}
-
-						$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
+    <div class="event_area single_event_area pb_90">
+        <div class="container">
+            <div class="row">
+                <?php 
+                    if(have_posts()):
                         
-						// datos casa de apuesta
+                        while(have_posts()): the_post();
+                            global $wpdb;
+                            $post_id = get_the_ID();
+                            //forecast geolocation
+                            $geolocation = json_decode($_SESSION["geolocation"]);
+                            
+                            $date      = carbon_get_post_meta( get_the_ID(), 'data' );
+                            $datetime = new DateTime($date);
+                            $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
+                            $link       = carbon_get_post_meta( get_the_ID(), 'link' );
+                            $vip = carbon_get_post_meta(get_the_ID(),'vip');
+                            $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 
-                        $sport['title'] = '';
-                        $sport['slug'] = '';
-                        $sport['class'] = '';
-
-                        $home['title'] = '';
-                        $home['slug'] = '';
-                        $home['class'] = '';
-
-                        $league['title'] = '';
-                        $league['slug'] = '';
-                        $league['class'] = '';
-                        foreach($sport_term as $term):
-                            if($term->parent == 0){
-                                $page = get_page_by_title($term->name);
-                                $sport['title'] = get_the_title($page->ID);
-                                $sport['class'] = carbon_get_post_meta($page->ID,'fa_icon_class');
-                                $sport['slug'] = get_the_permalink( $page->ID );
-                            }
-                            if($term->parent != 0){
-                                $league_page = get_page_by_title($term->name);
-                                if(!is_wp_error( $league_page ) and !empty($league_page)):
-                                    $league['title'] = get_the_title($league_page->ID);
-                                    $league['class'] = carbon_get_post_meta($league_page->ID,'fa_icon_class');
-                                    $league['slug'] = get_the_permalink( $league_page->ID );
+                            
+                            
+                            //forecast backround
+                            $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
+                            $img_att    = carbon_get_post_meta( get_the_ID(), 'wbg' );
+                            if(!empty($img_att)):
+                                $background_header    = aq_resize(wp_get_attachment_url( $img_att ), 1080, 600, true,true,true);
+                            endif;
+                            
+                            //taxonomy league
+                            $tax_leagues = wp_get_post_terms(get_the_ID(),'league');                            
+                            $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';                           
+                            
+                            //forecast sport
+                            $sport = false;
+                            if(isset($tax_leagues) and count($tax_leagues) > 0):
+                                foreach($tax_leagues as $tax_league):
+                                    if($tax_league->parent == 0):
+                                        $sport = $tax_league; //define forecast sport
+                                        $icon_class = carbon_get_term_meta($sport->term_id,'fa_icon_class');
+                                        $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon"/>';
+                                    endif;
+                                endforeach;
+                                if($sport):
+                                    // Para mejorar el seo detectamos si existe una pagina para el deporte
+                                    wp_reset_postdata(  );
+                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $sport->name) );
+                                    foreach($pages->posts as $page){
+                                        $sport_page = $page;
+                                    }
+                                    $taxonomy_page = carbon_get_term_meta($sport->term_id,'taxonomy_page');
+                                    $sport->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                    $sport->permalink = isset($sport->redirect) ? get_permalink($sport->redirect["id"]) : get_term_link($sport, 'league');
                                 endif;
-                            }
-                        endforeach;
-                        $homepage = get_page_by_title('home');
-                        $home['title'] = get_the_title($homepage->ID);
-                        $home['class'] = carbon_get_post_meta($homepage->ID,'fa_icon_class');
-                        $home['slug'] = get_the_permalink( $homepage->ID );
+                            endif;
 
-						?>
-
-						<div class="single_envent_heading">						
-                            <h1 class="title_lg"><?php echo get_the_title(); ?></h1>
-                        </div>
-                        <div class="single_event_breadcrumb">
-                            <ul>
-                                <li>
-                                    <a href="<?php echo bloginfo( 'url' ) ?>">
-                                    <i style="margin:0 5px;" class="<?php echo $home['class'] ?>" ></i><?php echo $home['title'] ?>
-
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo $sport['slug'] ?>">
-                                        <i style="margin:0 5px;" class="<?php echo $sport['class'] ?>" ></i><?php echo $sport['title'] ?>
-                                    </a>
-                                </li>
-                                <?php if($league['title'] != ''):
-                                    echo '<li>
-                                        <a href="'.$sport['slug'].'">
-                                            <i style="margin:0 5px;" class="'.$league['class'].'" ></i>"'.$league['title'].'
-                                        </a>';
+                            //forecast League
+                            $league = false;
+                            
+                            if(isset($sport)):
+                                $img_att   = carbon_get_term_meta( $sport->term_id, 'wbg' );
+                                if(!empty($img_att)):
+                                    $background_header    = aq_resize(wp_get_attachment_url( $img_att ), 1080, 600, true,true,true);
                                 endif;
-                                ?>
-                                </li>
-                                <li>
-                                    <span>
-                                        <?php echo $teams['team1']['name'] . " - " . $teams['team2']['name'] ?>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-						<div class="single_event_banner" style="background-image: url(<?php echo $img_src ?>)">
-                            <div class="single_event_banner_top">
-                                <?php echo implode( ' ', $arr_sport ); ?>
-                            </div>
-                            <div class="single_event_banner_middle">
-                                <div class="single_team1">
-                                    <img loading="lazy" src="<?php echo $teams['team1']['logo'] ?>" alt="<?php echo $teams['team1']['name'] ?>" title="<?php echo $teams['team1']['name'] ?>">
-                                    <p><?php echo $teams['team1']['name'] ?></p>
-                                </div>
-                                <div datetime="<?php echo $date->format('Y-m-d h:i')?>" class="single_match_time">                    
-                                    <time><?php echo $date->format('g:i a')?></time>
-                                    <?php echo $date->format('d M Y')?>                           
-                                </div>
-                                <div class="single_team1">
-                                    <img loading="lazy" src="<?php echo $teams['team2']['logo'] ?>" alt="<?php echo $teams['team2']['name'] ?>">
-                                    <p><?php echo $teams['team2']['name'] ?></p>
-                                </div>
-                            </div>
-                        </div>
+                                if(isset($tax_leagues) and count($tax_leagues) > 0):
+                                    foreach($tax_leagues as $leaguefor):
+                                        if($leaguefor->parent == $sport->term_id):
+                                            $league = $leaguefor; //define forecast sport
+                                            $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');                                            
+                                            $league->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" alt="icon" />';
+                                        endif;
+                                    endforeach;
+                                endif;
+                                if($league):
+                                    // Para mejorar el seo detectamos si existe una pagina para el deporte
+                                    wp_reset_postdata(  );
+                                    $pages = new WP_Query( array( 'post_type' => 'page', 'title' => $league->name) );
+                                    foreach($pages->posts as $page){
+                                        $league_page = $page;
+                                    }
+                                    $taxonomy_page = carbon_get_term_meta($league->term_id,'taxonomy_page');
+                                    $league->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                    $league->permalink = isset($league->redirect) ? get_permalink($league->redirect["id"]) : get_term_link($league, 'league');
+                                endif;
+                            endif;
+                            wp_reset_postdata(  );
+                            //forecast teams
+                            $teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
+                            
+                            ?>
+                            <section class="col-lg-8 mt_30 con-t">
+                                <article>                   
+                                    <div class="single_envent_heading">						
+                                        <h1 class="title_lg"><?php the_title() ?></h1>
+                                    </div>
+                                    <!-- breadcrumb -->
+                                    <?php echo migas_de_pan(); ?>
+                                    <!-- header forecast-->
+                                    <div class="single_event_banner" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo $background_header ?>);">
+                                        <div class="single_event_banner_top">
+                                            <div class='single_banner_top_left'>
+                                                <?php echo isset($sport->icon_html) ? $sport->icon_html : '' ?>
+                                                <p><?php echo (isset($sport->name) ? $sport->name : '') ?></p>
+                                            </div>
+                                            <div class='single_banner_top_left'>
+                                                <?php echo isset($league->icon_html) ? $league->icon_html : '' ?>
+                                                <p><?php echo (isset($league->name) ? $league->name : '') ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="single_event_banner_middle">
+                                            <div class="single_team1">
+                                                
+                                                <img loading="lazy" src="<?php echo isset($teams["team1"]["logo"]) ? $teams["team1"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>" title="<?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?>">
+                                                <p><?php echo isset($teams["team1"]["name"]) ? $teams["team1"]["name"] : ''?></p>
+                                            </div>
+                                            <div class="event_start">                    
+                                                <time datetime="<?php echo $datetime->format("Y-m-d H:i:s") ?>" ><?php echo $datetime->format("h:i a") ?></time>
+                                                <?php echo date_i18n("d M Y", strtotime($datetime->format("d M Y")));?>   
+                                                                       
+                                            </div>
+                                            <div class="single_team1">
+                                                <img loading="lazy" src="<?php echo isset($teams["team2"]["logo"]) ? $teams["team2"]["logo"] : $icon_img?>" alt="<?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?>" title="<?php echo isset($teams["team2"]["name"]) ? $teams["team1"]["name"] : ''?>">
+                                                <p><?php echo isset($teams["team2"]["name"]) ? $teams["team2"]["name"] : ''?></p>
+                                            </div>
+                                        </div>
+                                    </div>
 
-						<?php echo do_shortcode("[predictions]") ?>					
-							
-						<div class="single_event_content text-break">
-						
-							<?php
-                                the_content();
-                                wp_reset_query();
-							?>
-						</div>
+                                    <div class="single_event_content text-break">
+                                        
+                                        <?php echo do_shortcode("[predictions]"); ?>
+                                        <?php remove_filter( 'the_content', 'wpautop' );?>	
+                                        <?php if ( !$disable_table ): ?>
+                                                <!-- Add the button to toggle the table of contents -->
+                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
+                                                    <?php echo __('Contenidos', 'jbetting' );?>
+                                                    <i class="fas fa-angle-down"></i>
+                                                </button>
+
+                                                <!-- Add the table of contents -->
+                                                <div class="collapse" id="table-of-contents">
+                                                    <div class="card mt-3">
+                                                        <div class="card-header">
+                                                        <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                        <?php endif; ?>
+                                        <?php the_content() ?>                                                                        	
+                                        <?php echo do_shortcode("[predictions]"); ?>
+                                        <?php echo do_shortcode("[social_contact]");?> 
+                                        <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximacion, verifica antes de hacer tu apuesta')?></p>
+
+                                    </div>
+                                    <div class="stats-w"><?php echo do_shortcode("[user_stats]") ?></div>
+                                    <section>	
+                                        <div class="title_wrap single_event_title_wrap">
+                                            <h2 class="title-b mt_30 order-lg-1">Otros pronósticos de <?php echo (isset($sport->name) ? $sport->name : '') ?></h2>
+                                            <a href="<?php echo (isset($sport->permalink) ? $sport->permalink : '/') ?>" class="mt_30 dropd order-lg-3">Ver Todo</a>
+                                        </div>
+                                        <?php echo do_shortcode("[related-forecasts model='2' num='6' league='$sport->name']") ?>		
+                                    </section>
+                                </article>
+                            </section>
                         
-						<?php wp_reset_query();?>
-						
-					<?php } ?>
-		
-			</div>
-			<div class="col-lg-3">
-                <div class="row">
-					<?php dynamic_sidebar( 'forecast-right' ); ?>
-				</div>
-			</div>
-		</div>
+                            <!-- sidebar -->
+        
+                            <section class="col-lg-3">
+                                <div class="row justify-content-end"><?php dynamic_sidebar( "forecast-right" ) ?></div>
+                                
+                            </section>
+                    <?php endwhile;
+                    endif;
+                ?>
+            </div>
+        </div>
     </div>
-    
-</div>
 </main>
+
 <?php get_footer(); ?>
+
+
+
+
+
+
+
+

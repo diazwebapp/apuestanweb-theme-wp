@@ -27,10 +27,10 @@ endif;
                     <div class="col-lg-12">
                         <div class="blog_hero_content">
                             <div class="blog_top_content">
-                                <img src="<?php echo $alt_logo ?>" class="img-fluid" alt="">
+                                <img src="<?php echo $alt_logo ?>" class="img-fluid" alt="icon-apuestan">
                                 <p></p>
                             </div>
-                            <h2>Resultados de Busqueda:</h2>
+                            <span>Resultados de Busqueda:</span>
                         </div>
                     </div>
                 </div> 
@@ -44,7 +44,7 @@ endif;
                     if(have_posts()):
                         while (have_posts()):
                             the_post();
-                            get_template_part("loop/posts-grid_1"); 
+                            load_template_part("loop/posts-grid_1"); 
                         endwhile; 
                     endif;
                 ?>

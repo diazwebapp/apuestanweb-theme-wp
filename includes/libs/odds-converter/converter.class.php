@@ -6,11 +6,13 @@ class Converter {
     private $sUserOddsType;
 
     public function __construct($iOddsFromUser, $sUserOddsType) {
-        $this->iOddsFromUser = $iOddsFromUser;
+        $custom_cuote = str_replace(",",".",$iOddsFromUser);
+        $this->iOddsFromUser = $custom_cuote;
         $this->sUserOddsType = $sUserOddsType;
     }
 
     public function doConverting() {
+
         switch ($this->sUserOddsType) {
             case "uk":
                 $iDecimal = $this->convertDecimalFromFraction($this->iOddsFromUser);
@@ -22,25 +24,32 @@ class Converter {
                 $iDecimal = $this->convertDecimalFromUs($this->iOddsFromUser);
                 break;
         }
+        
         $aResult = array();
-        if (is_numeric($iDecimal) && $iDecimal > 0) {
+        if (is_numeric($iDecimal) ) {
             $aResult[0] = "ok";
             $aResult[1] = $this->convertFractionalFromDecimal($iDecimal);
-            $aResult[2] = round(($iDecimal * 100 ) / 100, 3);
+            $aResult[2] = round(($iDecimal * 100 ) / 100,3);
             $aResult[3] = $this->convertUsFromDecimal($iDecimal);
         }
+        
         return $aResult;
     }
 
     public function convertDecimalFromFraction($sFraction) {
+        if($sFraction == 1): 
+            return $sFraction;
+        endif;
         $aNumbers = explode("/", $sFraction);
         if (count($aNumbers) == 2 && is_numeric($aNumbers[0]) && is_numeric($aNumbers[1])) {
             return ($aNumbers[0] / $aNumbers[1]) + 1;
         }
-        return false;
     }
 
     public function convertDecimalFromUs($iDecimal) {
+        /* if($iDecimal == 1): 
+            return $iDecimal;
+        endif; */
         if ($iDecimal > 0) {
             return ($iDecimal / 100) + 1;
         } else {
@@ -49,16 +58,28 @@ class Converter {
     }
 
     public function convertUsFromDecimal($iDecimal) {
-        $iDecimal -= 1;
-        if ($iDecimal < 1) {
-            return '-' . abs(round(100 / $iDecimal));
-        } else {
-            return '+' . round(($iDecimal * 100), 3);
+        //a > 0 ? a / 100 + 1 : 100 / a * -1 + 1
+        if($iDecimal == 1){
+            return 1;
         }
+        $iDecimal -= 1;
+        
+        if($iDecimal < 1){
+            return "-" .  floor($iDecimal + 100/$iDecimal) ;
+        }else{
+            return "+" . round($iDecimal + (100 * $iDecimal) - 1 ) ;
+        }
+
+        /* if ($iDecimal < 1) {
+            return '+' . abs(round(100 / $iDecimal));
+        } else {
+            return '-' . round(($iDecimal * 100),3);
+        } */
     }
 
     public function convertFractionalFromDecimal($iDecimal) {
-        $iDecimal = round(floatval($iDecimal), 3);
+        
+        $iDecimal = round(floatval($iDecimal),3);
         $iNumber = round(($iDecimal - 1) * 10000);
         $iDom = round(10000);
 

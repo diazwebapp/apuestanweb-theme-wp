@@ -16,12 +16,15 @@ $params = get_query_var('params');
     $count = 0;
     
     foreach($params['memberships'] as $id => $level):
-        $button_label = '';
+        $button_label = 'buy';
         $currency = !empty(get_option( 'ihc_custom_currency_code', true )) ? get_option( 'ihc_custom_currency_code', true ) : get_option( 'ihc_currency', true );
         if(isset($level['button_label']) && $level['button_label'] != ''){
             $button_label = $level['button_label'];
         }
         $count++;
+        global $wpdb;
+        $table = $wpdb->prefix."ihc_memberships";
+        $level_meta = $wpdb->get_row("SELECT payment_type, short_description, label, price FROM $table WHERE id=$id");
         
         $html['tmp_menu_bar'] .= '<li class="nav-item">
                     <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-'."{$id}".'">'.ihc_correct_text($level['label']).'</a>
@@ -29,11 +32,11 @@ $params = get_query_var('params');
         $html['tmp_body_items'] .= "<div class='price_box price_box$count'>
                                         <h5>".ihc_correct_text($level['label'])."</h5>
                                         <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
-                                        <div class='box_p'>
-                                            <p>". ihc_correct_text($level['description']) ."</p>
+                                        <div class='box_p'>                                        
+                                            <div>". ihc_correct_text(wpautop($level['description'])) ."</div>
                                         </div>
                                         <div class='price_btn'>
-                                        ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, $params['select_payment'], TRUE ) ."
+                                            <button class='btn w-100' lid='".$id."' type='".$level_meta->payment_type."' onClick='aw_detect_user_level(this)' dest='".$params['register_url']."?lid=".$id."' >".$button_label."</buton>
                                         </div>
                             </div>";
         $html['tmp_body_items_mobile'] .= "<div class='tab-pane fade' id='pills-$id'>
@@ -41,10 +44,10 @@ $params = get_query_var('params');
                                                 <h5>".ihc_correct_text($level['label'])."</h5>
                                                 <p class='price'>".$currency. ihc_correct_text($level['price']) ."</p>
                                                 <div class='box_p'>
-                                                    <p>". ihc_correct_text($level['description']) ."</p>
+                                                    <p>". ihc_correct_text(wpautop($level['description'])) ."</p>
                                                 </div>
                                                 <div class='price_btn'>
-                                                    ".ihc_print_level_link( array('id'=>$id, 'register_page' => $params['register_url'] ), $button_label, $params['select_payment'], TRUE ) ."
+                                                    <button class='btn w-100' lid='".$id."' type='".$level_meta->payment_type."' onClick='aw_detect_user_level(this)' dest='".$params['register_url']."?lid=".$id."' >".$button_label."</button>
                                                 </div>
                                             </div>
                                         </div>";
@@ -63,8 +66,7 @@ echo "<div class='price_wrapper'>
     <div class='row justify-content-between'>
         <div class='col-lg-12'>
             <div class='price_heading'>
-                <img src='$logo' class='img-fluid' alt=''>
-                <h2>{$params['slogan']}</h2>
+                <img width='200' height='55' src='".get_template_directory_uri() . '/assets/img/apnpls.svg'."'  alt='ApuestanPlus'>
             </div>
         </div>
         <div class='col-lg-12 d-md-none d-block'>

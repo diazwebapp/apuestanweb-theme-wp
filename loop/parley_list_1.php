@@ -1,33 +1,72 @@
 <?php
 
 $params = get_query_var('params');
-$bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>50,"h"=>12]);
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
 $content = get_the_content(get_the_ID());
-$time = carbon_get_post_meta(get_the_ID(), 'data');
-$fecha = date('D M', strtotime($time));
-$hora = date('g:i a', strtotime($time));
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
+$parley_title = get_the_title(get_the_ID());
+$time = carbon_get_post_meta(get_the_ID(), 'data');
+$date = new DateTime($time);
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
+
+$fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
+$hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
+
+$bookmaker = [];
+///Buscamos el pais en la base de datos
+$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
+if(isset($aw_system_location)):
+    $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    }
+endif;
 
 $parley_id = get_the_ID();
-echo "<div class='parley_wrapper'>
-<div class='parley_top_content'>
-    <h2>Parley $fecha</h2>
-    <img src='img/logo2.svg' class='img-fluid' alt=''>
-</div>";
+
+$estado_usuario = "permitido";
+if(function_exists("aw_get_user_type")):
+    $user_type = aw_get_user_type($args["current_user"]);
+    if($user_type == "unreg"){
+        $estado_usuario = "no permitido";
+    }
+endif;
+$html_pronosticos = '
+    <div class="d-flex flex-column align-items-center justify-content-center h-parlay">
+    <img class="img-fluid mt-5" src="'. get_template_directory_uri() . '/assets/img/apnpls.svg'.'" width="170" height="40" alt="ApuestanPlus">
+    <p class="p1 m-0">CONVIERTE EN MIEMBRO PREMIUM</p>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <a href="'. $params['vip_link'].'" class="button mt-3">'.$params['text_vip_link'].'</a>
+    </div>
+  </div>'
+    ;
+     
+$html = "<div class='parley_wrapper'>
+        <div class='parley_top_content' style='background-color:#009fe3 !important;'>
+            <h2>$parley_title - $fecha</h2>
+        </div>
+        {replace-html-pronosticos}
+        {replace-html-box-2}
+    </div>";
+if(!$vip ){
+    $html = str_replace("background-color:#009fe3 !important;","",$html);
+}
+if(!$vip or $estado_usuario == 'permitido'){
+    $html_pronosticos = '';
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
+        
         foreach ($forecasts as $event) {
             $predictions = carbon_get_post_meta($event['id'], 'predictions');
             $prediction = [];
+            $permalink_event = get_the_permalink($event['id']);
             $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
             $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
-            
-            
-            if($parley_cuotes >= 1){
-                $parley_cuotes *= floatval($prediction['cuote']);
-            }
+            $parley_cuotes = $parley_cuotes * $prediction['cuote'];
+            $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+            $odds_result = $oOddsConverter->doConverting();
+            $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
             
             $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
             $time = carbon_get_post_meta($event['id'], 'data');
@@ -42,33 +81,29 @@ echo "<div class='parley_wrapper'>
             if ($sport_term) {
                 foreach ( $sport_term as $item ) {
                     if($item->parent == 0){
-                        $sport_logo = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'mini_img'));
+                        $sport_logo = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'logo'));
                         if($sport_logo)
                             $sport['logo'] = $sport_logo;
                         $sport['name'] = $item->name;
                     }
                 }
             }
-            if(is_float($prediction['cuote'])):
-                $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-                $odds_result = $oOddsConverter->doConverting();
-                $prediction['cuote'] = $odds_result[$_SESSION['odds_format']];
-            endif;
 
-
-            echo "<div class='parley_box'>
+            $html_pronosticos .= "<div class='parley_box'>
                 <div class='parley_left_content'>
                     <div class='parley_game_name_wrapper'>
                         <div class='parley_game_name'>
-                            <h5>{$sport['name']}</h5>
+                            <div class='category-grid'>
+                                <span>{$sport['name']}</span>
+                            </div>
                         
-                        <div class='d-lg-block d-none'>
-                            <time>$fecha, $hora</time>
-                        </div>
+                            <div class='d-lg-block d-none'>
+                                <time>$fecha, $hora</time>
+                            </div>
                         </div>
                         <div class='d-lg-none d-block'>
                             <div class='mobile_parley_time'>
-                                <p>$fecha / $hora</p>
+                                <p>$fecha, $hora</p>
                             </div>
                         </div>
                     </div>                  
@@ -83,14 +118,14 @@ echo "<div class='parley_wrapper'>
                                 <p class='p2'>{$teams['team2']['name']}</p>
                              </div>
                         </div>
-                        <div class=''>
-                            <div class='d-lg-none d-block'>
-                                <div class='parley_right_first'>
-                                    <p class='p1'>{$prediction['title']}</p>
-                                    <p class='p2'>{$prediction['cuote']}</p>
-                                </div>
+                        
+                        <div class='d-lg-none d-block'>
+                            <div class='parley_right_first'>
+                                <p class='p1'>{$prediction['title']}</p>
+                                <p class='p2'>{$prediction['cuote']}</p>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class='parley_right_content'>
@@ -100,33 +135,26 @@ echo "<div class='parley_wrapper'>
                             <p class='p2'>{$prediction['cuote']}</p>
                         </div>
                     </div>
-                    <div class='question2'>
-                      <a href='$permalink'>
-                            Ver análisis
-                        </a>
-                    </div>
-                </div>  
-                </div>";
-            echo "<div class='parley_collpase_content'>
-            <div id='one{$event['id']}' class='collapse' >
-                <div class='parley_collapse_wrapper'>
-                    <div class='parley_collapse'>
-                        $content
-                    </div>
                 </div>
-            </div>
-
-        </div>";
+                <div class='event-link'>
+                    <a href='$permalink_event'>
+                        Ver análisis
+                    </a>
+                </div>  
+            </div>";
         }
     }
-    echo "<div class='parley_box2'>
+}
+$html_box_2 = "<div class='parley_box2'>
                 <div class='parley_left_content2 d-md-block d-none'>
-                    <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
+                    <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >
+                        <img width='90' height='30' style='object-fit:contain;background:{$bookmaker['background_color']};border-radius: 6px;padding: 6px;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
+                    </a>
                 </div>
                 <div class='parley_right_content2'>
 
                     <div class='blog_select_box parley_right_content2_mb'>
-                        <select class='form-select' onchange='test(this)' name='apu' id='apu' data='$parley_id' >
+                        <select class='form-select' onchange='parley_calc_cuotes(this)' name='apu' id='apu' data='$parley_id' >
                             <option value='10'>Apuesta $10</option>
                             <option value='15'>Apuesta $15</option>
                             <option value='20'>Apuesta $20</option>
@@ -136,14 +164,20 @@ echo "<div class='parley_wrapper'>
                     </div>
                     <div class='gana_box parley_right_content2_mb'>
                     <input type='hidden' id='jscuote_$parley_id' value='$parley_cuotes'/>
-                       <p>Gana: $ <span id='jsresult_$parley_id' >". $parley_cuotes * 10 ."</span></p>
+                       <p>Gana: $ <span id='jsresult_$parley_id' >". round($parley_cuotes * 10,2) ."</span></p>
                     </div>
                     <div class='parley_left_content2 parley_right_content2_mb d-md-none d-block'>
-                    <img style='width:102px;height:33px;object-fit:contain;' src='{$bookmaker['logo']}' class='img-fluid' alt=''>
+                        <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >
+                            <img width='90' height='30' style='object-fit:contain;background:{$bookmaker['background_color']};border-radius: 6px;padding: 6px;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
+                        </a>
                     </div>
                     <div class='parley_btn_2 parley_right_content2_mb'> 
-                        <a href='{$bookmaker['ref_link']}' class='button'>Apostar ahora</a>
+                        <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
                     </div>      
                 </div>
-            </div>";
-echo "</div>";
+            </div>"
+;
+
+$html = str_replace("{replace-html-pronosticos}",$html_pronosticos,$html);
+$html = str_replace("{replace-html-box-2}",$html_box_2,$html);
+echo $html;

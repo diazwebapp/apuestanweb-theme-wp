@@ -1,7 +1,4 @@
 window.addEventListener("load",()=>{
-    /////////Cambiamos el backgroun de color
-    const wp_content = document.getElementById("wpcontent")
-    //wp_content.style.background = '#1d2327'
     //////////////seleccionamos el formulario de añadir metodos de pago
     const form_add_method = document.getElementById("aw-add-payment-method-form")
     /////////verificamos que exista en el DOM
@@ -17,8 +14,26 @@ window.addEventListener("load",()=>{
         /////////añadimos el controlador que manejara el formulario
         form_add_maccounts.addEventListener("submit",async e => await aw_add_new_account(e))
     }
+   const add_date_2_btn = document.querySelector('#add_date_input')
+   if(add_date_2_btn){
+        add_date_2_btn.addEventListener('click',()=>add_date_input())
+   }
+   
 })
 
+let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
+<input type="date" name="date_2" class="form-control"/>`;
+function add_date_input(){
+   let date_2 =  document.querySelector('.filter_history > .date_2')
+   date_2.classList.add('col')
+   date_2.innerHTML = elemtn;
+   
+}
+function remove_date_input(element){
+    let date_2 =  document.querySelector('.filter_history > .date_2')
+    date_2.classList.remove('col')
+   date_2.innerHTML = '';
+}
 ///////////////// funcion que añade metodos de pago usando la api rest
 const insert_payment_method = async({received_inputs,register_inputs,payment_method_data})=>{
     try {
@@ -58,7 +73,12 @@ function change_payment_status(e){
     
     document.location = document.location.pathname + path
 }
-
+function modal_payment_details(e){
+    const {status,element,lid,username} = e.attributes
+    let path = `?view_payment_history_details=${element.textContent}&lid=${lid.textContent}`
+    
+    document.location = document.location.pathname + path
+}
 function aw_add_new_payment_data(action){
     
     const container = action.parentNode.parentNode;
@@ -92,71 +112,74 @@ async function aw_add_new_method(form){
     payment_method_data[status.name] = status.checked
 
     let breack = false
-    if(containers_received_inputs && containers_received_inputs.length > 0){
-        for(container of containers_received_inputs){
-            const inputs = container.querySelectorAll("input")
-            const type = inputs[0].value
-            const name = inputs[1].value
-            const show_ui = inputs[2].checked
-            if(received_inputs.length > 0){
-                received_inputs.filter(item=> item.name !== name ? received_inputs.push({type,name,show_ui}) : (()=>{
-                    breack=true;
-                    container.style.border = "1px solid red";
-                    show_toats({msg:"elementos duplicados"});
-                })())
+    if(payment_method.value.toLowerCase() !== 'paypal'){
+        if(containers_received_inputs && containers_received_inputs.length > 0){
+            for(container of containers_received_inputs){
+                const inputs = container.querySelectorAll("input")
+                const type = inputs[0].value
+                const name = inputs[1].value
+                const show_ui = inputs[2].checked
+                if(received_inputs.length > 0){
+                    received_inputs.filter(item=> item.name !== name ? received_inputs.push({type,name,show_ui}) : (()=>{
+                        breack=true;
+                        container.style.border = "1px solid red";
+                        show_toast({msg:"elementos duplicados"});
+                    })())
+                }
+                if(received_inputs.length == 0){
+                    received_inputs.push({type,name,show_ui})
+                }             
             }
-            if(received_inputs.length == 0){
-                received_inputs.push({type,name,show_ui})
-            }             
-        }
-    }
-    
-    if(containers_register_inputs && containers_register_inputs.length > 0){
-        for(container of containers_register_inputs){
-            const inputs = container.querySelectorAll("input")
-            const type = inputs[0].value
-            const name = inputs[1].value
-            if(register_inputs.length > 0){
-                register_inputs.map(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
-                    breack=true;
-                    container.style.border = "1px solid red";
-                    show_toats({msg:"elementos duplicados"});
-                })())
-            }
-            if(register_inputs.length == 0 && !breack){
-                register_inputs.push({type,name})
-            } 
         }
         
-    }
-    if(received_inputs.length < 1){
-        setTimeout(()=>{
-            button.textContent = original_text
-            button.disabled = false
-        },1000)
-        show_toats({msg:"añada inputs para mostrar su información de pago"})
+        if(containers_register_inputs && containers_register_inputs.length > 0){
+            for(container of containers_register_inputs){
+                const inputs = container.querySelectorAll("input")
+                const type = inputs[0].value
+                const name = inputs[1].value
+                if(register_inputs.length > 0){
+                    register_inputs.map(item=> item.name !== name ? register_inputs.push({type,name}) : (()=>{
+                        breack=true;
+                        container.style.border = "1px solid red";
+                        show_toast({msg:"elementos duplicados"});
+                    })())
+                }
+                if(register_inputs.length == 0 && !breack){
+                    register_inputs.push({type,name})
+                } 
+            }        
+        }
+        if(received_inputs.length < 1){
+            setTimeout(()=>{
+                button.textContent = original_text
+                button.disabled = false
+            },1000)
+            show_toast({msg:"añada inputs para mostrar su información de pago"})
+        }
     }
     if(!breack){
         ///////////eliminamos duplicados
-        let received_inputsMap = received_inputs.map(item=>{
-            return [item.name,item]
-        });
-        let received_inputsMapArr = new Map(received_inputsMap); // Pares de clave y valor
-        received_inputs = false
-        received_inputs = [...received_inputsMapArr.values()];
-
-        let register_inputsMap = register_inputs.map(item=>{
-            return [item.name,item]
-        });
-        let register_inputsMapArr = new Map(register_inputsMap); // Pares de clave y valor
-        register_inputs = false
-        register_inputs = [...register_inputsMapArr.values()];
+        if(received_inputs.length > 0 || register_inputs.length > 0){
+            let received_inputsMap = received_inputs.map(item=>{
+                return [item.name,item]
+            });
+            let received_inputsMapArr = new Map(received_inputsMap); // Pares de clave y valor
+            received_inputs = false
+            received_inputs = [...received_inputsMapArr.values()];
+    
+            let register_inputsMap = register_inputs.map(item=>{
+                return [item.name,item]
+            });
+            let register_inputsMapArr = new Map(register_inputsMap); // Pares de clave y valor
+            register_inputs = false
+            register_inputs = [...register_inputsMapArr.values()];
+        }
         ////////////
         const response = await insert_payment_method({received_inputs,register_inputs,payment_method_data})
         
         if(!response.status){
             button.textContent = "error"
-            show_toats({msg:response.msg})
+            show_toast({msg:response.msg})
         }
         if(response.status){
             location.reload()
@@ -169,16 +192,74 @@ async function aw_add_new_method(form){
     
 }
 
-function show_toats({msg}){
-    const toats = document.querySelector(".toast")
-    const toats_body = toats.querySelector(".toast-body")
-    toats_body.textContent = msg
-    toats.style.opacity = 1
+function show_toast({msg}){
+   
+    const toast = document.querySelector(".toast")
+    const toast_body = toast.querySelector(".toast-body")
+    toast_body.textContent = msg
+    toast.style.opacity = 1
     setTimeout(()=>{
-        toats.style.opacity = 0
-        toats_body.textContent = ""
+        toast.style.opacity = 0
+        toast_body.textContent = ""
     },4000)
 }
+async function modal_payment_details(button){
+    let payment_id = button.getAttribute("element")
+    let toastaction = button.getAttribute("toastaction")
+    if(toastaction == 'show'){
+        try {
+        
+            const req = await fetch(php.rest_url+'aw-payment-history/payment-history-details',{
+                method:"POST",
+                body:JSON.stringify({payment_id}),
+                headers:{
+                    "Content-type": "application/json"
+                }
+            })
+            const res = await req.json()
+            
+            if(res.metas && res.metas.length > 0){
+                let div = ''
+                if(res.payment){
+                    div += `<div><b>username:</b> ${res.payment.username}</div>`
+                }
+                if(res.membership){
+                    div += `<div><b>membership :</b> ${res.membership.label}</div>`
+                    div += `<div><b>price :</b> ${res.membership.currency} ${res.membership.price}</div>`
+                }
+                for(metas of res.metas){
+                    div += `<div><b>${metas.meta_key} :</b> ${metas.meta_value}</div>`
+                }
+                modal_event(button,div)
+            }else{
+                div = "no hay datos"
+                modal_event(button,div)
+            }
+            
+        } catch (error) {
+            return console.log(error)
+        }
+    }else{
+        modal_event(button)
+    }
+}
+function modal_event(button,message){
+    let toastid = button.getAttribute("toastid")
+    let toastaction = button.getAttribute("toastaction")
+    if(toastid){
+        const toast = document.querySelector(`#${toastid}`)
+        const toast_body = toast.querySelector(".toast-body")
+        if(toast && toastaction == "show"){
+            toast_body.innerHTML = message
+            toast.style.display = 'grid';
+        }
+        if(toast && toastaction == "hide"){
+            toast.style.display = 'none';
+            toast_body.innerHTML = ""
+        }
+    }
+}
+
 async function aw_add_new_account(form){
     form.preventDefault()
     const {payment_method_name,payment_method_id,country_code,status} = form.target
@@ -199,4 +280,7 @@ async function aw_add_new_account(form){
     }
     await insert_account({account_data,metadata})
     location.reload()
+}
+async function get_payment_details(id){
+
 }

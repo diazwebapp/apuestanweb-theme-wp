@@ -1,23 +1,31 @@
 <?php
 
-$image_att = carbon_get_post_meta(get_the_ID(), 'mini_img');
+$image_att = carbon_get_post_meta($args["post"]->ID, 'logo');
 if($image_att):
     $image_png = wp_get_attachment_url($image_att);
 else:
     $image_png = get_template_directory_uri() . '/assets/img/logo.svg';
 endif;
-$bg_att = carbon_get_post_meta(get_the_ID(), 'wbg');
-if($bg_att):
-    $bg_png = wp_get_attachment_url($bg_att);
-else:
-    $bg_png = get_template_directory_uri() . '/assets/img/banner2.png';
+$bg_att = carbon_get_post_meta($args["post"]->ID, 'background-color');
+
+$rating_ceil = floor(carbon_get_post_meta($args["post"]->ID, 'rating'));
+
+$permalink = get_the_permalink($args["post"]->ID);
+
+$bonuses = carbon_get_post_meta($args["post"]->ID, 'country_bonus');
+$bonus["country_bonus_slogan"]="";
+$bonus["country_bonus_amount"]="";
+$bonus["country_bonus_ref_link"]="";
+$bonus["country_code"]= "";
+
+if(isset($bonuses) and count($bonuses) > 0):
+    foreach($bonuses as $bonus_data):
+        if(strtoupper($bonus_data["country_code"]) == strtoupper($args["country"]->country_code)):
+            $bonus = $bonus_data;
+        endif;
+    endforeach;
 endif;
-$rating_ceil = ceil(carbon_get_post_meta(get_the_ID(), 'rating'));
-$ref = carbon_get_post_meta(get_the_ID(), 'ref');
-$permalink = get_the_permalink();
-$bonus = carbon_get_post_meta(get_the_ID(), 'bonus') ? carbon_get_post_meta(get_the_ID(), 'bonus') : 'n/a';
-$bonus_sum = carbon_get_post_meta(get_the_ID(), 'bonus_sum') ? carbon_get_post_meta(get_the_ID(), 'bonus_sum') : 'n/a';
-$feactures = carbon_get_post_meta(get_the_ID(), 'feactures');
+$feactures = carbon_get_post_meta($args["post"]->ID, 'feactures');
 $html_feactures = "";
 if(!empty($feactures) and count($feactures) > 0):
     foreach($feactures as $feacture):
@@ -25,96 +33,19 @@ if(!empty($feactures) and count($feactures) > 0):
     endforeach; 
 endif;
 
-$title = get_the_title(get_the_ID());             
-$bk_countries = carbon_get_post_meta(get_the_ID(),'countries');
-$location = json_decode(GEOLOCATION);
-if($location->success == true and $bk_countries and count($bk_countries) > 0):
-    foreach($bk_countries as $country):
-        if($country['country_code'] == $location->country_code):
-            echo "<div class='bookmaker_box_wrapper mt_30'>
-                <div class='bookmaker_left_content'>
-                    <div class='d-md-none d-block'>
-                        <div class='bookamker_rating_box'>
-                            <p> $rating_ceil </p>
-                            <div class='bookmaker_rating_list rating '>";
-                            echo draw_rating($rating_ceil); 
-                echo "      </div>
-                        </div>
-                    </div>
-                    <div class='bookmaker_logo_box' style='background-image:url( $bg_png );background-size:cover;' >
-                        <img src=' $image_png ' class='img-fluid' alt=' $title '>
-                    </div>
-                    <div class='bookmaker_left_text'>
-                        <div class='bookmaker_left_heading'>
-                            <h4> $title </h4>
-                            <div class='bookmaker_left_check'>
-                                <img src='img/s21.svg' class='img-fluid' alt=''>
-                                <p>{$country['bonus']}</p>
-                            </div>
-                        </div>
-                        <div class='bookmaker_left_last_text'>
-                            $html_feactures
-                        </div>
-                    </div>
-                </div>
-                <div class='bookmaker_right_content'>
-                    <div class='d-md-block d-none'>
-                        <div class='bookamker_rating_box'>
-                            <p> $rating_ceil </p>
-                            <div class='bookmaker_rating_list rating '>";
-                            echo draw_rating($rating_ceil); 
-            echo                "</div>
-                        </div>
-                    </div>
-                    <div class='bookmaker_right_btn'>
-                        <a href='{$country['ref']}' class='btn_2'>Quiero Apostar</a>
-                    </div>
-                </div>
-            </div>";
-        else:
-            echo "";
-        endif;
-    endforeach;
-endif;
-if(!$location->success):
-    echo "<div class='bookmaker_box_wrapper mt_30'>
-    <div class='bookmaker_left_content'>
-        <div class='d-md-none d-block'>
-            <div class='bookamker_rating_box'>
-                <p> $rating_ceil </p>
-                <div class='bookmaker_rating_list rating '>";
-                echo draw_rating($rating_ceil); 
-    echo "      </div>
-            </div>
-        </div>
-        <div class='bookmaker_logo_box' style='background-image:url( $bg_png );background-size:cover;' >
-            <img src=' $image_png ' class='img-fluid' alt=' $title '>
-        </div>
-        <div class='bookmaker_left_text'>
-            <div class='bookmaker_left_heading'>
-                <h4> $title </h4>
-                <div class='bookmaker_left_check'>
-                    <img src='img/s21.svg' class='img-fluid' alt=''>
-                    <p>$bonus</p>
-                </div>
-            </div>
-            <div class='bookmaker_left_last_text'>
-                $html_feactures
-            </div>
-        </div>
-    </div>
-    <div class='bookmaker_right_content'>
-        <div class='d-md-block d-none'>
-            <div class='bookamker_rating_box'>
-                <p> $rating_ceil </p>
-                <div class='bookmaker_rating_list rating '>";
-                echo draw_rating($rating_ceil); 
-echo                "</div>
-            </div>
-        </div>
-        <div class='bookmaker_right_btn'>
-            <a href=' $ref ' class='btn_2'>Quiero Apostar</a>
-        </div>
-    </div>
+$stars = draw_rating($rating_ceil);
+$title = get_the_title($args["post"]->ID);             
+
+echo "<div class='col-lg-3 col-6 mt_30'> ";
+echo "<div class='tbox'>
+<div>
+    <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='timg img-fluid' alt='$title'  title='$title'>
+</div>
+    <div class='rating mt_15'> ";
+        echo $stars; 
+echo "</div>
+    <p class='mt_30'>{$bonus["country_bonus_slogan"]}</p>
+    <a href='{$bonus["country_bonus_ref_link"]}' class='button mt_25 w-100' rel='nofollow'>apostar</a>
+    <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
 </div>";
-endif;
+echo "</div>";

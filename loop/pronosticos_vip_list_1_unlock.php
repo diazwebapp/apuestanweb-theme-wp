@@ -1,25 +1,33 @@
 <?php
+$geolocation = json_decode($_SESSION["geolocation"]);
 $params = get_query_var('params');
-$image_att = carbon_get_post_meta(get_the_ID(), 'img');
+$image_att = carbon_get_post_meta($args["forecast"]->ID, 'img');
 $image_png = wp_get_attachment_url($image_att);
-$predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
-$status = carbon_get_post_meta(get_the_ID(), 'status');
-$link = carbon_get_post_meta(get_the_ID(), 'link');
-$vip = carbon_get_post_meta(get_the_ID(), 'vip');
-$permalink = get_the_permalink(get_the_ID());
+$predictions = carbon_get_post_meta($args["forecast"]->ID, 'predictions');
+$status = carbon_get_post_meta($args["forecast"]->ID, 'status');
+$link = carbon_get_post_meta($args["forecast"]->ID, 'link');
+$sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
+$teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
+$vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
+$permalink = get_the_permalink($args["forecast"]->ID);
 
-//configurando zona horaria
-$time = carbon_get_post_meta(get_the_ID(), 'data');
-$geolocation = json_decode(GEOLOCATION);
-$date = new DateTime($time);
-if($geolocation->success !== false):
-    $date = $date->setTimezone(new DateTimeZone($geolocation->timezone));
+$aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
+
+$bookmaker = [];
+
+if(isset($aw_system_location)):
+    $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
+    if($bookmaker["name"] == "no bookmaker"){
+        $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
+    }
 endif;
 
-$sport_term = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
-$teams = get_forecast_teams(get_the_ID(),["w"=>50,"h"=>50]);
-$bookmaker = get_bookmaker_by_post(get_the_ID(),["w"=>79,"h"=>18]);
-$id_collapse = get_the_ID();
+//configurando zona horaria
+$time = carbon_get_post_meta($args["forecast"]->ID, 'data');
+$date = new DateTime($time);
+$date = $date->setTimezone(new DateTimeZone($args["timezone"]));
+
+$id_collapse = $args["forecast"]->ID;
 
 //Liga y deporte
 $sport['class'] = '' ;
@@ -39,38 +47,41 @@ if ($sport_term) {
     }
 }
 
-if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
-    $author_id = get_the_author_meta( 'ID' );
+if ($teams['team1'] and $teams['team2'] ):
+    $author_id = $args["forecast"]->post_author;
+    //$author_id = get_post_field( 'post_author', get_the_ID() );
     $acerted = get_the_author_meta("forecast_acerted", $author_id );
     $failed = get_the_author_meta("forecast_failed", $author_id );
     $nulled = get_the_author_meta("forecast_nulled", $author_id );
     $display_name = get_the_author_meta("display_name", $author_id );
     $rank = get_the_author_meta("rank", $author_id );
-    $content = get_the_content(get_the_ID());
+    $content = get_the_content(false,false,$args["forecast"]->ID);
     $avatar_url = get_avatar_url($author_id);
     $flechita_up = get_template_directory_uri(  ) . '/assets/img/love2.png';
     $flechita_down = get_template_directory_uri(  ) . '/assets/img/love1.png';
     $coronita = get_template_directory_uri(  ) . '/assets/img/icon8.svg';
+    $fecha_publicacion = get_the_date('U', $args["forecast"]->ID);
+    $ahora = time();
+    $diferencia = $ahora - $fecha_publicacion;
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
     $link_profile = PERMALINK_PROFILE.'?profile='.$author_id;
     $flechita_indicadora = "";
-
     $rating_ceil = 0;
     $prediction = '';
     $cuote = 0;
     if($predictions and count($predictions)> 0):
         $oOddsConverter = new Converter($predictions[0]['cuote'], 'eu');
         $odds_result = $oOddsConverter->doConverting();
-        $cuote = $odds_result[$_SESSION['odds_format']];
+        $cuote = $odds_result[get_option('odds_type')];
         $rating_ceil = $predictions[0]['tvalue'];
         $prediction = $predictions[0]['title'];
     endif;
 
     $html_status = "";
     if($status == 'ok')
-        $html_status = "<b class='winl'>WIN</b>";
+        $html_status = "<b class='winl'><i class='far fa-check-circle' style= color:#3cc03c;></i></b>";
     if($status == 'fail')
-        $html_status = "<b class='winl loss'>loss</b>";
+        $html_status = "<b class='winl loss'><i class='far fa-times-circle' style= color:red;'></i></b>";
 
     if(floatval($acerted) > floatval($failed)):
         $flechita_indicadora = $flechita_up;
@@ -92,25 +103,31 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                             <h5>'.$display_name.'</h5>
                             <div class="pick_box">
                                 <img src="'.$flechita_indicadora.'" class="img-fluid" alt="">
-                                <p>'.$acerted.'-'.$failed.', '.$rank.', Ult 10 picks</p>
+                                <p>'.$acerted.'-'.$failed.', $'.$rank.', Ult 10 picks</p>
                             </div>
                         </div>
+                        <div class="pplay_icon d-sm-none">
+                            <span class="badge badge-info">' . ($diferencia < 86400 ? 'Nuevo' : '') . '</span>
+                        </div>
                     </div>
-                    <img src="'.$coronita.'" class="pplay_icon d-sm-none" alt="">
                     <p class="game_time d-sm-none d-flex align-items-center justify-content-between">
                         <span>'.$league['name'].'</span>
-                        <span>'.$date->format('Y-m-d h:i:s').'</span>
+                        <span>'.$date->format('d-m-Y h:i:s A').'</span>
                     </p>
                     <div class="rating d-sm-none">
                         '.$stars.'
                     </div>
+                    
                     <div class="vip_right_content">
+                    <div class="bagde-neww d-sm-block d-none mb_10">
+                        <h3><span class="badge badge-info ">' . ($diferencia < 86400 ? 'Nuevo' : '') . '</span></h3>
+                    </div>
                         <div class="match_time_box">
                             <div class="team_flag_box_wrapper">
                                 <div class="team_flag_box">
                                     <div class="team_item">
                                         <div class="team_flag team_flag1">
-                                            <img src="'.$teams['team1']['logo'].'" class="img-fluid" alt="'.$teams['team1']['name'].'">
+                                            <img src="'.$teams['team1']['logo'].'" width="40px" height="40px" alt="'.$teams['team1']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team1']['name'].'</p>
                                     </div>
@@ -122,7 +139,7 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     </div>
                                     <div class="team_item"> 
                                         <div class="team_flag team_flag2">
-                                            <img src="'.$teams['team2']['logo'].'" class="img-fluid" alt="'.$teams['team2']['name'].'">
+                                            <img src="'.$teams['team2']['logo'].'" width="40px" height="40px" alt="'.$teams['team2']['name'].'">
                                         </div>
                                         <p class="d-sm-none">'.$teams['team2']['name'].'</p>
                                     </div>
@@ -132,43 +149,49 @@ if ($teams['team1']['logo'] and $teams['team2']['logo'] ):
                                     <p>'.$league['name'].'</p>
                                 </div>
                             </div>
+                            
                             <div class="win_wrap d-sm-none">
                                 '.$html_status.'
                             </div>
                             <div class="d-lg-block d-none"> 
+                                
                                 <div class="league_box_wrapper align-items-center">
                                     <p class="d-lg-block d-none mr_30">
-                                    <time>'.$date->format('Y-m-d h:i:s').'</time>
+                                    <time>'.$date->format('d-m-Y h:i:s A').'</time>
                                     </p>
-                                    <div class="league_box1">
-                                        <img src="'.$coronita.'" class="img-fluid img_30" alt="">
-                                        <i class="'.$sport['class'].'"></i>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <p class="team_name">'.$teams['team1']['name'].' vs '.$teams['team2']['name'].'</p>
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-between mt_10">
                                 <div class="btn_text">
-                                    PRONÓSTICO: '.$prediction.' 
-                                    <div class="rate_text d-sm-none">'.$cuote.'</div>
+                                    <span>Pick: '.$prediction.' </span>
+
                                 </div>
-                                <div class="d-none d-sm-flex align-items-center">
-                                    <div class="rating">
-                                        '.$stars.'
-                                    </div>
-                                    <div class="rate_text">'.$cuote.'</div>
+                                <div class="d-flex align-items-center justify-content-center rate_text d-sm-none">
+                                <span>'.$cuote.'</span>
+                                <img width="35" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk">
+                            </div>
+                            <div class="d-none d-sm-flex align-items-center">
+                                <div class="rate_text d-flex align-items-center justify-content-center">
+                                        <a href="'.$bookmaker['ref_link'].'" class="ml-2  d-flex align-items-center justify-content-center">
+                                            <span>'.$cuote.'</span>
+                                            <img width="50" height="35" src="'.$bookmaker['logo_2x1'].'" alt="bk"></div>
+                                        </a>
+                                        <div class="rating">
+                                            '.$stars.'
+                                        </div>
                                 </div>
                             </div>
-                            
+
                             <div class="text-center accor_btn mt_15">
-                                <button type="button" data-toggle="collapse" data-target="#col1'.$id_collapse.'" aria-expanded="false">
+                                <button type="button" data-toggle="collapse" role="button" data-target="#col1'.$id_collapse.'" aria-expanded="false">
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                             </div>
-                            <div class="collapse" id="col1'.$id_collapse.'">
-                                <p class="more_text pt_30">'.$content.'</p>
+                            <div class="more_text pt_30 text-break collapse" id="col1'.$id_collapse.'">
+                                '.$content.'
                             </div>
                         </div>
                     </div>

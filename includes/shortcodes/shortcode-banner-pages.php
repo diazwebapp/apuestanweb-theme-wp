@@ -4,14 +4,15 @@ function shortcode_banner($atts)
     
     global $term;
     extract(shortcode_atts(array(
-        'model' => false,
+        'model' => 1,
         'text' => '',
         'title' => '',
         'src_logo' => false,
         'src_bg' => false,
         'link' => false,
         'text_link' => false,
-        'text_vip_link' => false
+        'text_vip_link' => false,
+        'num' => 4
     ), $atts));
     $ret = '';
     //definiendo el background
@@ -65,14 +66,13 @@ function shortcode_banner($atts)
         'text_link' => $text_link,
         "vip_link" => PERMALINK_VIP,
         'text_vip_link' => $text_vip_link,
-        'memberships_page' => PERMALINK_MEMBERSHIPS
+        'memberships_page' => PERMALINK_MEMBERSHIPS,
+        'num' => $num
     ]);
 
-    if($model):
-        $ret = load_template_part("/loop/banner_{$model}");
-    else:
-        $ret = load_template_part("/loop/banner_1");
-    endif;
+    
+    $ret = load_template_part("/loop/banner_{$model}");
+    
     return $ret;
 }
 

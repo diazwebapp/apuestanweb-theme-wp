@@ -1,11 +1,26 @@
 <?php get_header(); ?>
-<div class="wrap flex">
-    <div class="page-left-col single">
-        <h1><?php echo __('Page not found', 'jbetting') ?></h1>
-        <div class="text-page"><?php echo __('The page you went to was not found', 'jbetting') ?></div>
-    </div>
-    <div class="page-right-col">
-        <?php dynamic_sidebar('cat-right'); ?>
-    </div>
+<div id="notfound">
+		<div class="notfound">
+			<h1><?php echo __('Oops!', 'jbetting') ?></h1>
+			<h2><?php echo __('Error 404 : Pagina no encontrada', 'jbetting') ?></h2>
+			<a href="/"><?php echo __('Inicio', 'jbetting') ?></a>
+            <?php            
+                 echo'<div class="apn-social">
+                    <span>SIGUENOS</span>
+                    <a href="'.tl.'" rel="nofollow noreferrer noopener">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>                                                     
+                    <a href="'.fb.'" rel="nofollow noreferrer noopener">
+                        <i class="fab fa-facebook"></i>
+                    </a>                        
+                    <a href="'.tw.'" rel="nofollow noreferrer noopener">
+                        <i class="fab fa-twitter"></i>
+                    </a>                        
+                    <a href="'.ig.'" rel="nofollow noreferrer noopener">
+                        <i class="fab fa-instagram"></i>
+                    </a></div>'
+            ?>
+		</div>
 </div>
+
 <?php get_footer(); ?>

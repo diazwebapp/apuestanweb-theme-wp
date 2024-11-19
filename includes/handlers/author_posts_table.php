@@ -47,9 +47,11 @@ function aw_print_table($items,$post_type){
         endif;
         //Si es un post
         if($post_type === 'post'):
+            $fecha = get_the_date("d M",get_the_ID());
+            $permalink = get_the_permalink( get_the_ID() );
                 $result .= '<tr>
                     <td>'.$fecha.'</td>
-                    <td>'.get_the_title(get_the_ID()).'</td>
+                    <td><a href="'.$permalink.'" >'.get_the_title(get_the_ID()).'</a></td>
                     <td>'.$sport.'</td>
                 </tr>';
         endif;
@@ -94,9 +96,10 @@ function aw_print_pagination($wp_query,$paged){
     return $html;
 }
 
-function print_table($post_type,$meta_key,$author,$paginate_view){
+function print_table($post_type,$meta_key,$author,$paginate_view=null,$page=1){
     wp_reset_postdata();
-    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : $page;
+    
     $args['post_type'] = $post_type;
     $args['author'] = $author;
     $args['paged'] = $paged;
@@ -121,7 +124,8 @@ function print_table($post_type,$meta_key,$author,$paginate_view){
     $query = new Wp_Query($args);
     
     $html = aw_print_table($query,$post_type);
-    if($paginate_view)
+    if(isset($paginate_view)):
         $html .= aw_print_pagination($query,$paged);
+    endif;
     return $html;
 }

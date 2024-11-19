@@ -14,7 +14,7 @@
                                         <div class="sub-inn">
                                             <div class="sub-bx-lf">
                                                 <div class="subscribe__img">
-                                                    <img src="img/new/s23.png" alt="">
+                                                    <img src="img/new/s23.png" alt="author-image">
                                                 </div>
                                                 <div class="subscribe__icon">
                                                     <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -368,7 +368,7 @@
             <div class="row align-items-center form-row">
                 <div class="col-lg-2 col-6 mt_20">
                     <!--logo start-->
-                    <a href="index.html">
+                    <a href="/">
                         <img src="img/logo.svg" class="img-fluid" alt="">
                     </a>
                     <!--logo end-->
