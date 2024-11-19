@@ -11,7 +11,7 @@ function create_bk() {
 		'attributes'            => __( 'Attributes', 'jbetting' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'jbetting' ),
 		'all_items'             => __( 'All bookmakers', 'jbetting' ),
-		'add_new_item'          => __( 'All bookmakers', 'jbetting' ),
+		'add_new_item'          => __( 'add bookmakers', 'jbetting' ),
 		'add_new'               => __( 'Add', 'jbetting' ),
 		'new_item'              => __( 'Add', 'jbetting' ),
 		'edit_item'             => __( 'Edit', 'jbetting' ),
@@ -49,7 +49,7 @@ function create_bk() {
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'bk',
+		'capability_type'     => 'post',
 		'rewrite' => array('slug' => 'casas-apuestas', 'with_front'=> true)
 	);
 	register_post_type( 'bk', $args );
@@ -70,7 +70,7 @@ function create_forecast() {
 		'attributes'            => __( 'Attributes', 'jbetting' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'jbetting' ),
 		'all_items'             => __( 'Todos', 'jbetting' ),
-		'add_new_item'          => __( 'Todos', 'jbetting' ),
+		'add_new_item'          => __( 'añadir', 'jbetting' ),
 		'add_new'               => __( 'Añadir nuevo', 'jbetting' ),
 		'new_item'              => __( 'Add', 'jbetting' ),
 		'edit_item'             => __( 'Edit', 'jbetting' ),
@@ -108,7 +108,7 @@ function create_forecast() {
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'forecast',
+		'capability_type'     => 'post',
 		'register_meta_box_cb' => 'aw_forecast_img_destacada_personalizada',
 		'rewrite' => array('slug' => 'prediccion')
 
@@ -131,8 +131,8 @@ function create_team() {
 		'attributes'            => __( 'Attributes', 'jbetting' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'jbetting' ),
 		'all_items'             => __( 'All', 'jbetting' ),
-		'add_new_item'          => __( 'All', 'jbetting' ),
-		'add_new'               => __( 'Add', 'jbetting' ),
+		'add_new_item'          => __( 'add', 'jbetting' ),
+		'add_new'               => __( 'Add new', 'jbetting' ),
 		'new_item'              => __( 'Add', 'jbetting' ),
 		'edit_item'             => __( 'Edit', 'jbetting' ),
 		'update_item'           => __( 'Update', 'jbetting' ),
@@ -162,7 +162,7 @@ function create_team() {
 		'menu_icon'           => 'dashicons-networking',
 		'show_in_admin_bar'   => true,
 		'can_export'          => true,
-		'capability_type'     => 'team',
+		'capability_type'     => 'post',
 		'public'              => false,
 		'publicly_queryable'  => true,
 		'show_ui'             => true,
@@ -189,8 +189,8 @@ function create_parley() {
 		'attributes'            => __( 'Attributes', 'jbetting' ),
 		'parent_item_colon'     => __( 'Parent Item:', 'jbetting' ),
 		'all_items'             => __( 'All', 'jbetting' ),
-		'add_new_item'          => __( 'All', 'jbetting' ),
-		'add_new'               => __( 'Add', 'jbetting' ),
+		'add_new_item'          => __( 'add', 'jbetting' ),
+		'add_new'               => __( 'Add new', 'jbetting' ),
 		'new_item'              => __( 'Add', 'jbetting' ),
 		'edit_item'             => __( 'Edit', 'jbetting' ),
 		'update_item'           => __( 'Update casino', 'jbetting' ),
@@ -226,7 +226,7 @@ function create_parley() {
 		'has_archive'         => false,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
-		'capability_type'     => 'parley',
+		'capability_type'     => 'post',
 	);
 	register_post_type( 'parley', $args );
 

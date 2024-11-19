@@ -1,5 +1,4 @@
 <?php
-
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
@@ -29,7 +28,7 @@ function crb_attach_theme_options()
                         "ipwhois" => "ipwhois",
                     ]),
                 Field::make('text', 'geolocation_api_key', __("geolocation api key", "jbetting")),
-                Field::make('text', 'copy', __("Copyright", "jbetting"))
+                Field::make('text', 'copy', __("Copyright", "jbetting")),
 
             ))
             ->add_tab(__("country regulations","jbetting"),array(
@@ -402,6 +401,9 @@ function crb_attach_theme_options()
 add_action('after_setup_theme', 'crb_load');
 function crb_load()
 {
-    require_once(get_template_directory() . '/includes/libs/carbon-fields/vendor/autoload.php');
+    require_once get_template_directory() . '/includes/libs/carbon-fields/vendor/autoload.php';
+    //Carbon_Fields::boot();
+
     \Carbon_Fields\Carbon_Fields::boot();
 }
+

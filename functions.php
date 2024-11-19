@@ -182,24 +182,24 @@ function jbetting_src()
     wp_dequeue_script( 'ihc-front_end_js' );
     */
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
-    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
-    wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
+    //wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
+    //wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
     wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
-    wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
+    //wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
-    wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
+    //wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
 
 
     wp_deregister_script('jquery');
-    //wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
+    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
 
-    wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
+    //wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
-    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
+    //wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
-    wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
+    //wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
 
     // wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
@@ -242,44 +242,6 @@ add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
         });
     } */
 
-// convert images to .wepb
-function convert_to_webp($image_path) {
-
-        if (pathinfo($image_path['file'], PATHINFO_EXTENSION) === 'svg') {
-            // Return the original file path if it is a .svg file
-            return $image_path;
-        }
-        if(imagetypes() & IMG_WEBP) {
-          $extension = pathinfo($image_path['file'], PATHINFO_EXTENSION);
-          $webp_image = preg_replace("/\.{$extension}/", '.webp', $image_path['file']);
-          $image = null;
-          switch ($extension) {
-            case 'jpeg':
-            case 'jpg':
-              $image = imagecreatefromjpeg($image_path['file']);
-              break;
-            case 'png':
-              $image = imagecreatefrompng($image_path['file']);
-              break;
-            default:
-              $image = null;
-              break;
-          }
-          if (!$image) {
-            return $image_path;
-          }
-          imagewebp($image, $webp_image, 95);
-          return array(
-            'file' => $webp_image,
-            'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),
-            'type' => 'image/webp'
-          );
-        }
-        return $image_path;
-      }
-      
-add_filter('wp_handle_upload', 'convert_to_webp');
-
       
       
 function draw_rating($rating)
@@ -320,35 +282,21 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
   
-    add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
-        $filetype = wp_check_filetype( $filename, $mimes );
-        return [
-            'ext'             => $filetype['ext'],
-            'type'            => $filetype['type'],
-            'proper_filename' => $data['proper_filename']
-        ];
+   
       
-      }, 10, 4 );
-      
-      function cc_mime_types( $mimes ){
+      /* function cc_mime_types( $mimes ){
         $mimes['svg'] = 'image/svg+xml';
         $mimes['webp'] = 'image/webp';
         $mimes['avif'] = 'image/avif';
         $mimes['avis'] = 'image/avif-sequence';
+        $mimes['jpg'] = 'image/jpg';
+        $mimes['jpeg'] = 'image/jpeg';
+        $mimes['png'] = 'image/png';
 
         return $mimes;
       }
-      add_filter( 'upload_mimes', 'cc_mime_types' );
+      add_filter( 'upload_mimes', 'cc_mime_types' ) */;
       
-      function fix_svg() {
-        echo '<style type="text/css">
-              .attachment-266x266, .thumbnail img {
-                   width: 100% !important;
-                   height: auto !important;
-              }
-              </style>';
-      }
-      add_action( 'admin_head', 'fix_svg' );
 
 
 
@@ -547,40 +495,7 @@ function custom_query_vars($query_vars) {
     return $query_vars;
 }
 add_filter('query_vars', 'custom_query_vars');
-////////////////////////
 
-////////////////////////// Filtrar el enlace para eliminar la base del CPT
-
-// function eliminar_forecast_slug( $post_link, $post, $leavename ) {
-//     if ( 'forecast' === $post->post_type && 'publish' === $post->post_status ) {
-//         $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
-//     }
-//     return $post_link;
-// }
-// add_filter( 'post_type_link', 'eliminar_forecast_slug', 10, 3 );
-
-
-// function gp_add_cpt_post_names_to_main_query( $query ) {
-
-// 	// Bail if this is not the main query.
-// 	if ( ! $query->is_main_query() ) {
-// 		return;
-// 	}
-
-// 	// Bail if this query doesn't match our very specific rewrite rule.
-// 	if ( ! isset( $query->query['page'] ) || 2 !== count( $query->query ) ) {
-// 		return;
-// 	}
-
-// 	// Bail if we're not querying based on the post name.
-// 	if ( empty( $query->query['name'] ) ) {
-// 		return;
-// 	}
-
-// 	// Add CPT to the list of post types WP will include when it queries based on the post name.
-// 	$query->set( 'post_type', array( 'post', 'page', 'forecast' ) );
-// }
-// add_action( 'pre_get_posts', 'gp_add_cpt_post_names_to_main_query' );
 
 
 //* Integra migas de pan a WordPress sin plugin
@@ -784,7 +699,6 @@ function enlaces_internos_forecast($atts) {
 }
 
 
+
 // Registrar el shortcode
 add_shortcode('enlaces_internos_forecast', 'enlaces_internos_forecast');
-
-

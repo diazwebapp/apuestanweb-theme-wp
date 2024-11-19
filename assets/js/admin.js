@@ -18,7 +18,9 @@ window.addEventListener("load",()=>{
    if(add_date_2_btn){
         add_date_2_btn.addEventListener('click',()=>add_date_input())
    }
+   
 })
+
 let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
 <input type="date" name="date_2" class="form-control"/>`;
 function add_date_input(){
