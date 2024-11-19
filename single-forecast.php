@@ -14,10 +14,7 @@
                             $post_id = get_the_ID();
                             //forecast geolocation
                             $geolocation = json_decode($_SESSION["geolocation"]);
-                            //forecast date
-                            /* if(has_post_thumbnail( )):
-                                the_post_thumbnail();
-                            endif; */
+                            
                             $date      = carbon_get_post_meta( get_the_ID(), 'data' );
                             $datetime = new DateTime($date);
                             $datetime = $datetime->setTimezone(new DateTimeZone($geolocation->timezone));
@@ -26,25 +23,6 @@
                             $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 
                             
-                            $current_user_2 = aw_get_user_type(wp_get_current_user(  ));
-                            
-                            $meta_arr = ihc_post_metas($post_id);
-
-                            if (isset($meta_arr['ihc_mb_who'])){
-                                if ($meta_arr['ihc_mb_who']!=-1 && $meta_arr['ihc_mb_who']!=''){
-                                    $target_users = explode(',', $meta_arr['ihc_mb_who']);
-                                } else {
-                                    $target_users = FALSE;
-                                }
-                            }
-                            
-                            $block = ihc_test_if_must_block($meta_arr['ihc_mb_type'], $current_user_2, $target_users, (isset($post_id)) ? $post_id : -1);
-                            
-                            if(count($current_user->roles) > 0){
-                                if($current_user->roles[0] == "administrator" or $current_user->roles[0] == "author"){
-                                    $block = 0;
-                                }
-                            }
                             
                             //forecast backround
                             $background_header    = get_template_directory_uri() . '/assets/img/s49.png';
@@ -153,7 +131,7 @@
 
                                     <div class="single_event_content text-break">
                                         
-                                        <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
+                                        <?php echo do_shortcode("[predictions]"); ?>
                                         <?php remove_filter( 'the_content', 'wpautop' );?>	
                                         <?php if ( !$disable_table ): ?>
                                                 <!-- Add the button to toggle the table of contents -->
@@ -174,7 +152,7 @@
                                                 </div>
                                         <?php endif; ?>
                                         <?php the_content() ?>                                                                        	
-                                        <?php if(!$block): echo do_shortcode("[predictions]"); endif; ?>
+                                        <?php echo do_shortcode("[predictions]"); ?>
                                         <?php echo do_shortcode("[social_contact]");?> 
                                         <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximacion, verifica antes de hacer tu apuesta')?></p>
 
