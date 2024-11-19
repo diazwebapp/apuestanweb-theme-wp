@@ -1,41 +1,39 @@
 [
     {
         "name": "composer/installers",
-        "version": "v1.10.0",
-        "version_normalized": "1.10.0.0",
+        "version": "v2.3.0",
+        "version_normalized": "2.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d"
+            "reference": "12fb2dfe5e16183de69e784a7b84046c43d97e8e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d",
-            "reference": "1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d",
+            "url": "https://api.github.com/repos/composer/installers/zipball/12fb2dfe5e16183de69e784a7b84046c43d97e8e",
+            "reference": "12fb2dfe5e16183de69e784a7b84046c43d97e8e",
             "shasum": ""
         },
         "require": {
-            "composer-plugin-api": "^1.0 || ^2.0"
-        },
-        "replace": {
-            "roundcube/plugin-installer": "*",
-            "shama/baton": "*"
+            "composer-plugin-api": "^1.0 || ^2.0",
+            "php": "^7.2 || ^8.0"
         },
         "require-dev": {
-            "composer/composer": "1.6.* || ^2.0",
-            "composer/semver": "^1 || ^3",
-            "phpstan/phpstan": "^0.12.55",
-            "phpstan/phpstan-phpunit": "^0.12.16",
-            "symfony/phpunit-bridge": "^4.2 || ^5",
-            "symfony/process": "^2.3"
+            "composer/composer": "^1.10.27 || ^2.7",
+            "composer/semver": "^1.7.2 || ^3.4.0",
+            "phpstan/phpstan": "^1.11",
+            "phpstan/phpstan-phpunit": "^1",
+            "symfony/phpunit-bridge": "^7.1.1",
+            "symfony/process": "^5 || ^6 || ^7"
         },
-        "time": "2021-01-14 11:07:16",
+        "time": "2024-06-24T20:46:46+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
             "branch-alias": {
-                "dev-main": "1.x-dev"
-            }
+                "dev-main": "2.x-dev"
+            },
+            "plugin-modifies-install-path": true
         },
         "installation-source": "dist",
         "autoload": {
@@ -57,7 +55,6 @@
         "description": "A multi-framework Composer library installer",
         "homepage": "https://composer.github.io/installers/",
         "keywords": [
-            "Craft",
             "Dolibarr",
             "Eliasis",
             "Hurad",
@@ -78,7 +75,6 @@
             "Whmcs",
             "WolfCMS",
             "agl",
-            "aimeos",
             "annotatecms",
             "attogram",
             "bitrix",
@@ -87,6 +83,7 @@
             "cockpit",
             "codeigniter",
             "concrete5",
+            "concreteCMS",
             "croogo",
             "dokuwiki",
             "drupal",
@@ -97,7 +94,6 @@
             "grav",
             "installer",
             "itop",
-            "joomla",
             "known",
             "kohana",
             "laravel",
@@ -106,11 +102,14 @@
             "magento",
             "majima",
             "mako",
+            "matomo",
             "mediawiki",
+            "miaoxing",
             "modulework",
             "modx",
             "moodle",
             "osclass",
+            "pantheon",
             "phpbb",
             "piwik",
             "ppi",
@@ -123,37 +122,51 @@
             "silverstripe",
             "sydes",
             "sylius",
-            "symfony",
-            "typo3",
+            "tastyigniter",
             "wordpress",
             "yawik",
             "zend",
             "zikula"
+        ],
+        "funding": [
+            {
+                "url": "https://packagist.com",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/composer",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                "type": "tidelift"
+            }
         ]
     },
     {
         "name": "htmlburger/carbon-fields",
-        "version": "v3.3.0",
-        "version_normalized": "3.3.0.0",
+        "version": "v3.6.5",
+        "version_normalized": "3.6.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/htmlburger/carbon-fields.git",
-            "reference": "1a3fa2c50f3e25775ff3846c22fab2384312d96a"
+            "reference": "b18f8e2a2cc4cc976306eb867ad1d740a8e7c1d9"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/1a3fa2c50f3e25775ff3846c22fab2384312d96a",
-            "reference": "1a3fa2c50f3e25775ff3846c22fab2384312d96a",
+            "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/b18f8e2a2cc4cc976306eb867ad1d740a8e7c1d9",
+            "reference": "b18f8e2a2cc4cc976306eb867ad1d740a8e7c1d9",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3"
+            "php": ">=5.6.20"
         },
         "require-dev": {
-            "mockery/mockery": "^0.9.7",
-            "phpunit/phpunit": "~4.8"
+            "mockery/mockery": "1.3.6",
+            "phpunit/phpunit": "7.5.20|9.6.3",
+            "yoast/phpunit-polyfills": "^1.0"
         },
-        "time": "2021-03-26 12:13:14",
+        "time": "2024-07-31T08:17:38+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
