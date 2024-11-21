@@ -1,128 +1,115 @@
 <?php
 
-function aw_login_form($attr=array()){
-	/*
-	 * Attributes:  template , remember , register , lost_pass , social , captcha .
-	 * @param array
-	 * @return string
-	 */
-	///////////// LOGIN FORM
-	$str = '';
-	if (!IHCACTIVATEDMODE){
-		$str .= ihc_public_notify_trial_version();
-	}
-	$msg = '';
-	$user_type = ihc_get_user_type();
-	if ($user_type!='unreg'){
-		////////////REGISTERED USER
-		if ($user_type=='pending'){
-			//pending user
-			$msg = ihc_correct_text(get_option('ihc_register_pending_user_msg', true));
-			if ($msg){
-				$str .= '<div class="ihc-login-pending">' . $msg . '</div>';
-			}
-		} else {
-			//already logged in
-			if ($user_type=='admin'){
-				$str .= '<div class="ihc-warning-message">' . esc_html__('Administrator Info: Login Form is not showing up once you\'re logged. You may check how it it looks for testing purpose by openeing the page into a separate incognito browser window. ', 'ihc') . '<i>' . esc_html__('This message will not be visible for other users', 'ihc') . '</i></div>';
-			}
-		}
-	} else {
-		/////////////UNREGISTERED
-		$meta_arr = ihc_return_meta_arr('login');
-		
-		if (isset($attr['remember'])){
-			$meta_arr['ihc_login_remember_me'] = $attr['remember'];
-		}
-		if (isset($attr['register'])){
-			$meta_arr['ihc_login_register'] = $attr['register'];
-		}
-		if (isset($attr['lost_pass'])){
-			$meta_arr['ihc_login_pass_lost'] = $attr['lost_pass'];
-		}
-		if (isset($attr['social'])){
-			$meta_arr['ihc_login_show_sm'] = $attr['social'];
-		}
-		if (isset($attr['captcha'])){
-			$meta_arr['ihc_login_show_recaptcha'] = $attr['captcha'];
-		}
+function aw_login_form($attr = array()) {
+    // Si el usuario ya está logueado, no mostramos el formulario
+    if (is_user_logged_in()) {
+        return ''; // Devuelve vacío para usuarios logueados
+    }
 
-		if (ihc_is_magic_feat_active('login_security')){
-			require_once IHC_PATH . 'classes/Ihc_Security_Login.class.php';
-			$security_object = new Ihc_Security_Login();
-			if ($security_object->is_ip_on_black_list()){
-				$show_form = FALSE;
-				$hide_form_message = esc_html__('You are not allowed to see this Page.', 'ihc');
-			} else {
-				$show_form = $security_object->show_login_form();
-				if (!$show_form){
-					$hide_form_message = $security_object->get_locked_message();
-				}
-			}
-		} else {
-			$show_form = TRUE;
-		}
-		if ($show_form){
-			$str .= '<div class="card bg-light">'.ihc_print_form_login($meta_arr).'</div>';
-		}  else if (!empty($hide_form_message)){
-			$str .= '<div class="ihc-wrapp-the-errors">' . $hide_form_message . '</div>';
-		}
-	}
+    // Inicializar mensaje de error
+    $error_message = '';
 
-	//print the message
-	if (isset($_GET['ihc_success_login']) && $_GET['ihc_success_login']){
-		/************************** SUCCESS ***********************/
-		$msg .= get_option('ihc_login_succes');
-		if (!empty($msg)){
-			$str .= '<div class="ihc-login-success">' . ihc_correct_text($msg) . '</div>';
-		}
-	}
-    
-    $str .= '<style>
-		.aw-form-none{display:none;} 
-		#ihc_login_form > div{margin:2rem auto !important;text-align:center;}
-		.impu-form-links-reg a{
-			padding: 10px;
-		}
-		.form-group input, .input-group-text{font-size:2.5rem !important;}
-		.card-title{font-size:3.3rem !important;}
-		.divider-text {
-			position: relative;
-			text-align: center;
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
-		.divider-text span {
-			padding: 7px;
-			font-size: 12px;
-			position: relative;   
-			z-index: 2;
-		}
-		.divider-text:after {
-			content: "";
-			position: absolute;
-			width: 100%;
-			border-bottom: 1px solid #ddd;
-			top: 55%;
-			left: 0;
-			z-index: 1;
-		}
-		#social-links{
-			display:flex;
-			flex-flow:column;
-			place-items:center;
-		}
-		#social-links a{
-			height: 30px !important;
-			width: 100% !important;
-			display: block;
-		}
-		.ihc-sm-item{
-			width:100%;
-		}
-		</style>'; 
-    $str = str_replace('ihc-login-form-wrap','ihc-login-form-wrap aw-form-none ',$str);
-    wp_enqueue_script('js_forms', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
-	return $str;
+    // Verificar si se envió el formulario
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aw_login_nonce']) && wp_verify_nonce($_POST['aw_login_nonce'], 'aw_login_action')) {
+        $username = sanitize_text_field($_POST['log']);
+        $password = sanitize_text_field($_POST['pwd']);
+        $remember = isset($_POST['rememberme']);
+
+        // Intentar iniciar sesión
+        $credentials = [
+            'user_login'    => $username,
+            'user_password' => $password,
+            'remember'      => $remember,
+        ];
+
+        $user = wp_signon($credentials, is_ssl());
+
+        if (is_wp_error($user)) {
+            // Manejo de errores
+            $error_message = $user->get_error_message();
+        } else {
+            // Redirección después del login exitoso
+            wp_safe_redirect(home_url());
+            exit;
+        }
+    }
+
+    // Estilos del formulario
+    $str = '<style>
+    .aw_login_form {
+        border: 1px solid #707070;
+        border-radius: 17px;
+        padding: 25px;
+        height: max-content;
+    }
+    .aw-form-header {
+        border-bottom: 2px solid #c6cace;
+    }
+    .aw_login_form input {
+        border-radius: 5px;
+        padding: 18px;
+        font-size: 1.8rem;
+    }
+    .aw_login_form input[type=submit] {
+        padding: 5px;
+    }
+    .aw_login_form input {
+        border: 1px solid var(--blue);
+    }
+    .aw_login_form .notification {
+        color: var(--danger);
+        margin-bottom: 15px;
+    }
+    </style>';
+
+    // Mostrar el formulario de login
+    $str .= '
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12 mb-5 shortcode-step d-flex justify-content-between">
+                <span class="font-weight-bolder text-uppercase text-body" style="border-bottom:2px solid #0558cb;">' . esc_html(get_the_title()) . '</span>
+                <i class="fa fa-angle-right font-weight-bolder text-body" aria-hidden="true"></i>
+                <span class="font-weight-bolder text-uppercase text-body">Iniciar sesión</span>
+            </div>
+            <form method="POST" class="aw_login_form col-md-7 col-lg-8" aria-labelledby="login-form-title">
+                ' . (!empty($error_message) ? '<div class="notification">' . $error_message . '</div>' : '') . '
+                <div class="form-row">
+                    <div class="form-group col-12 aw-form-header">
+                        <p id="login-form-title" class="font-weight-bolder text-uppercase text-body py-3">Acceso a tu cuenta</p>
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="login-username" class="text-capitalize text-body">Nombre de usuario o correo electrónico</label>
+                        <input type="text" id="login-username" name="log" class="form-control mt-2" autocomplete="off" required aria-required="true">
+                    </div>
+                    <div class="form-group col-12">
+                        <label for="login-password" class="text-capitalize text-body">Contraseña</label>
+                        <input type="password" id="login-password" name="pwd" class="form-control mt-2" autocomplete="off" required aria-required="true">
+                    </div>
+                    <div class="form-group col-12 my-3">
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" id="remember-me" name="rememberme" value="forever">
+                            <label class="form-check-label ml-5" role="button" for="remember-me">Recordarme</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-12">
+                        ' . wp_nonce_field('aw_login_action', 'aw_login_nonce', true, false) . '
+                        <input type="submit" class="btn btn-primary px-5" value="Iniciar sesión" aria-label="Enviar el formulario de inicio de sesión">
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-5 col-lg-4">
+                <p class="font-weight-bolder text-uppercase text-body py-3">¿Eres nuevo en Apuestan?</p>
+                <p class="text-body">
+                    Si no tienes una cuenta, <a href="/register">regístrate aquí</a> para comenzar.
+                </p>
+            </div>
+        </div>
+    </div>';
+
+    return $str;
 }
-add_shortcode( 'aw-login-form', 'aw_login_form' );
+
+// Registrar el shortcode para el formulario de login
+add_shortcode('aw-login-form', 'aw_login_form');
+
+?>

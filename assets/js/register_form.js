@@ -1,8 +1,7 @@
 // Vars injected by php : register_form_vars
 window.addEventListener("load",()=>{
     const form = document.querySelector('.aw_register_form')
-    let icon_danger = `<i id="notification_email" class="fa fa-bell notification"></i>`
-    
+
     if(form){
         ////Seleccionamos los inputs del form
         const inputs = form.querySelectorAll('input')
@@ -16,9 +15,23 @@ window.addEventListener("load",()=>{
                 if(input.name == 'username' || input.name == 'email'){
                     ///aplicamos un evento para detectar si el usuario existe
                     input.addEventListener('keyup',async ()=> {
-                        const {status,msg} = await detect_user_exists(input)
+                        const { success, data } = await detect_user_exists(input);
+                        const { status, msg } = data;  // Extraemos status y msg desde data
                         if(status == 'fail'){
-                            input.insertAdjacentHTML('beforebegin',icon_danger)
+                            let icon_danger = `<span class="icon-danger notification">⚠️</span>`
+                            // Inserta el icono de peligro antes del input
+                            input.insertAdjacentHTML('beforebegin', icon_danger);
+
+                            // Selecciona el icono insertado
+                            const dangerIcon = document.querySelector('.icon-danger');
+
+                            // Elimina el icono después de 2 segundos
+                            setTimeout(() => {
+                                if (dangerIcon) {
+                                    dangerIcon.remove();
+                                }
+                            }, 2000);
+
                             
                             if(input.name == 'username'){
                                 user_exists = true

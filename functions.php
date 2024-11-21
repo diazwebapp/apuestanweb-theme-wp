@@ -36,9 +36,9 @@ include "includes/shortcodes/shortcode-banner-bookmaker.php";
 include "includes/shortcodes/shortcode-leagues-menu.php";
 include "includes/shortcodes/shortcode-predictions.php";
 include "includes/shortcodes/shortcode-user-stats.php";
-//include "includes/shortcodes/shortcode-register-form.php";
+include "includes/shortcodes/shortcode-register-form.php";
 //include "includes/shortcodes/shortcode-checkout-form.php";
-//include "includes/shortcodes/shortcode-login-form.php";
+include "includes/shortcodes/shortcode-login-form.php";
 include "includes/shortcodes/predictions-list.php";
 include "includes/shortcodes/shortcode-content-hub.php";
 include "includes/shortcodes/apis/futbol/shorcode-h2h-futbol.php";
@@ -93,14 +93,14 @@ include "includes/core/bookmaker-location-panel/bk-location-panel.php";
 /*                         REST API                             */
 /*--------------------------------------------------------------*/
 
-//include "rest-api/register-routes.php";
+include "rest-api/register-routes.php";
 //include "rest-api/telegram-post-publisher.php";
 
 //include "rest-api/translator-ia.php";
 //include "rest-api/payment-accounts-controller.php";
 //include "rest-api/payment-methods-controller.php";
 //include "rest-api/payment-history-controller.php";
-//include "rest-api/user-register-controller.php";
+include "rest-api/user-register-controller.php";
 //include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
 include "rest-api/parley-controller.php";
@@ -175,31 +175,24 @@ add_action('wp_enqueue_scripts', 'disable_all_styles', 100);
 add_action('wp_enqueue_scripts', 'jbetting_src');
 function jbetting_src()
 {
-    /* 
-    wp_dequeue_style( 'ihc_front_end_style');
-	wp_dequeue_style( 'ihc_templates_style');
-	wp_dequeue_script( 'ihc-jquery-ui'); 
-    wp_dequeue_script( 'ihc-front_end_js' );
-    */
+    
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
-    wp_enqueue_style('fontawesome', get_template_directory_uri() . '/assets//fonts/font-awesome-5/css/fontawesome.min.css', array(), null);
-    wp_enqueue_style('nice_select', get_template_directory_uri() . '/assets/css/nice-select2.css', array(), null);
     wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
-    wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
+    //wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     wp_enqueue_style('main-css', get_stylesheet_uri());
     wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
-    wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
+    //wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
 
 
     wp_deregister_script('jquery');
-    //wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
+    wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
 
-    wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
+    //wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
     wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
-    wp_enqueue_script('nice-select', get_template_directory_uri() . '/assets/js/nice-select2.js', array(), null, true);
+    
     wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
-    wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
+    //wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
     wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), '1.0.0', true);
 
     // wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
@@ -229,58 +222,7 @@ function enqueuing_admin_scripts(){
 }
  
 add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
-
-
-
-
-    /* if ('disable_gutenberg') {
-        add_filter('use_block_editor_for_post_type', '__return_false', 100);
-        remove_action('wp_enqueue_scripts', 'wp_common_block_scripts_and_styles');
-        add_action('admin_init', function () {
-            remove_action('admin_notices', ['WP_Privacy_Policy_Content', 'notice']);
-            add_action('edit_form_after_title', ['WP_Privacy_Policy_Content', 'notice']);
-        });
-    } */
-
-// convert images to .wepb
-function convert_to_webp($image_path) {
-
-        if (pathinfo($image_path['file'], PATHINFO_EXTENSION) === 'svg') {
-            // Return the original file path if it is a .svg file
-            return $image_path;
-        }
-        if(imagetypes() & IMG_WEBP) {
-          $extension = pathinfo($image_path['file'], PATHINFO_EXTENSION);
-          $webp_image = preg_replace("/\.{$extension}/", '.webp', $image_path['file']);
-          $image = null;
-          switch ($extension) {
-            case 'jpeg':
-            case 'jpg':
-              $image = imagecreatefromjpeg($image_path['file']);
-              break;
-            case 'png':
-              $image = imagecreatefrompng($image_path['file']);
-              break;
-            default:
-              $image = null;
-              break;
-          }
-          if (!$image) {
-            return $image_path;
-          }
-          imagewebp($image, $webp_image, 95);
-          return array(
-            'file' => $webp_image,
-            'url' => str_replace($image_path['file'], $webp_image, $image_path['url']),
-            'type' => 'image/webp'
-          );
-        }
-        return $image_path;
-      }
-      
-add_filter('wp_handle_upload', 'convert_to_webp');
-
-      
+   
       
 function draw_rating($rating)
 {
@@ -340,15 +282,7 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
       }
       add_filter( 'upload_mimes', 'cc_mime_types' );
       
-      function fix_svg() {
-        echo '<style type="text/css">
-              .attachment-266x266, .thumbnail img {
-                   width: 100% !important;
-                   height: auto !important;
-              }
-              </style>';
-      }
-      add_action( 'admin_head', 'fix_svg' );
+    
 
 
 
@@ -389,54 +323,6 @@ function aw_actions_after_register_user( $user_id ) {
 }
 
 
-function aw_notificacion_membership($payment_history_id=null,$status=null){
-    global $wpdb;
-    
-    if(isset($payment_history_id)){
-        $table = $wpdb->prefix . "aw_payment_history";
-        $data_notifi = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE id='$payment_history_id'"));
-        
-        $memberInfo = get_user_by( 'login', $data_notifi->username );
-        $blogname = get_bloginfo( "name" );
-        $blogurl = get_bloginfo( "url" );
-        $admin_email = get_option( "admin_email" );
-
-        function fix_html() {
-            return 'text/html';
-        }
-        $headers[]= "From: Apuestan <$admin_email>";
-        
-        if(isset($status)){
-            if($status=="completed"){
-                $message = get_option( "email-pago-completed" );
-                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
-            }
-            if($status=="pending"){
-                $message = get_option( "email-pago-pending" );
-                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
-
-            }
-            if($status=="failed"){
-                $message = get_option( "email-pago-failed" );
-                $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
-
-            }
-        }else{
-            $message = get_option( "email-registred" );
-            $body= aw_email_templates_2(["blogurl"=>$blogurl,"blogname"=>$blogname,"username"=>$memberInfo->user_login,"message"=>$message]);
-        }
-        if(is_wp_error( $body )){
-
-            $body= "Saludos $memberInfo->user_login el estado de su membresia es $data_notifi->status";
-        }
-    
-    
-       add_filter( "wp_mail_content_type", "fix_html" );
-       wp_mail($memberInfo->user_email,"Apuestan actualizacion" ,$body,$headers); 
-    }
-}
-
-
 function user_rss( $contact_methods ) {
     // Añade el campo de Twitter
     $contact_methods['twitter'] = 'Twitter Username';
@@ -473,33 +359,6 @@ add_filter( 'carbon_fields_association_field_options_forecasts_post_post', 'crb_
 }
 add_filter( 'carbon_fields_association_field_title', 'crb_modify_association_field_title', 10, 5 );
 
-function aw_get_user_type($wp_user){
-	/*
-	 * @param none
-	 * @return string
-	 */
-	$type = 'unreg';
-    
-	if (!empty($wp_user) and $wp_user->ID > 0){
-			if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='pending_user'){
-				$type = 'pending';
-                return $type;
-			}
-            if (isset($wp_user->roles[0]) && $wp_user->roles[0]=='administrator'){
-				$type = 'admin';
-                return $type;
-			}
-            $levels = \Indeed\Ihc\UserSubscriptions::getAllForUserAsList( $wp_user->ID, true );
-            $levels = apply_filters( 'ihc_public_get_user_levels', $levels, $wp_user->ID );
-
-            if ($levels!==FALSE && $levels!=''){
-                    $type = $levels;
-            }
-			
-	}
-    
-	return $type;
-}
 function initCors( $value ) {
     $origin = get_http_origin();
     $allowed_origins = ["apuestan.com","apuestan.net"];
@@ -542,46 +401,11 @@ function custom_rewrite_rules() {
 }
 add_action('init', 'custom_rewrite_rules');
 
-function custom_query_vars($query_vars) {
+/* function custom_query_vars($query_vars) {
     $query_vars[] = 'custom_post_date';
     return $query_vars;
 }
-add_filter('query_vars', 'custom_query_vars');
-////////////////////////
-
-////////////////////////// Filtrar el enlace para eliminar la base del CPT
-
-// function eliminar_forecast_slug( $post_link, $post, $leavename ) {
-//     if ( 'forecast' === $post->post_type && 'publish' === $post->post_status ) {
-//         $post_link = str_replace( '/' . $post->post_type . '/', '/', $post_link );
-//     }
-//     return $post_link;
-// }
-// add_filter( 'post_type_link', 'eliminar_forecast_slug', 10, 3 );
-
-
-// function gp_add_cpt_post_names_to_main_query( $query ) {
-
-// 	// Bail if this is not the main query.
-// 	if ( ! $query->is_main_query() ) {
-// 		return;
-// 	}
-
-// 	// Bail if this query doesn't match our very specific rewrite rule.
-// 	if ( ! isset( $query->query['page'] ) || 2 !== count( $query->query ) ) {
-// 		return;
-// 	}
-
-// 	// Bail if we're not querying based on the post name.
-// 	if ( empty( $query->query['name'] ) ) {
-// 		return;
-// 	}
-
-// 	// Add CPT to the list of post types WP will include when it queries based on the post name.
-// 	$query->set( 'post_type', array( 'post', 'page', 'forecast' ) );
-// }
-// add_action( 'pre_get_posts', 'gp_add_cpt_post_names_to_main_query' );
-
+add_filter('query_vars', 'custom_query_vars'); */
 
 //* Integra migas de pan a WordPress sin plugin
 function migas_de_pan() {
@@ -616,6 +440,8 @@ function migas_de_pan() {
   </div>';
   return $html;
 }
+
+/* 
 function custom_yoast_breadcrumb_links( $links ) {
     if ( is_single() ) {
         global $post;
@@ -642,9 +468,11 @@ function custom_yoast_breadcrumb_links( $links ) {
 
     return $links;
 }
+
+ */
 add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
 
-function category_summary_shortcode($atts) {
+/* function category_summary_shortcode($atts) {
     $atts = shortcode_atts(array(
         'category' => ''
     ), $atts);
@@ -691,10 +519,11 @@ function category_summary_shortcode($atts) {
 
     return ob_get_clean();
 }
-
+ 
 add_shortcode('category_summary', 'category_summary_shortcode');
+*/
 
-
+/* 
 // Función AJAX para buscar publicaciones del CPT "forecast"
 function custom_search_function() {
     $search_query = sanitize_text_field($_POST['search_query']);
@@ -735,6 +564,9 @@ function custom_search_function() {
 add_action('wp_ajax_custom_search', 'custom_search_function');
 add_action('wp_ajax_nopriv_custom_search', 'custom_search_function');
 
+ */
+
+/*  
 function enlaces_internos_forecast($atts) {
     // Obtener el atributo de categoría del shortcode (si está presente)
     $atts = shortcode_atts(array(
@@ -783,93 +615,11 @@ function enlaces_internos_forecast($atts) {
     }
 }
 
-
+ 
 // Registrar el shortcode
 add_shortcode('enlaces_internos_forecast', 'enlaces_internos_forecast');
 
+*/
 
-////////////////shortcode sorteos//////////////
 
-function sorteo_shortcode($atts) {
-    global $wpdb;
 
-    // Crear la tabla si no existe
-    $tabla_sorteos = $wpdb->prefix . 'sorteos';
-    $charset_collate = $wpdb->get_charset_collate();
-
-    $sql = "CREATE TABLE IF NOT EXISTS $tabla_sorteos (
-        id mediumint(9) NOT NULL AUTO_INCREMENT,
-        nombre varchar(255) NOT NULL,
-        telefono varchar(15) NOT NULL,
-        numero_sorteado int(11) NOT NULL,
-        PRIMARY KEY  (id)
-    ) $charset_collate;";
-
-    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
-
-    // Procesar atributos del shortcode
-    $atts = shortcode_atts(array(
-        'reservados' => ''
-    ), $atts);
-
-    // Convertir la cadena de números de teléfono en un array
-    $reservas_array = explode(',', $atts['reservados']);
-    $reservas = array();
-    if (count($reservas_array) > 0) {
-        foreach ($reservas_array as $index => $telefono) {
-            $reservas[trim($telefono)] = $index + 1;
-        }
-    }
-
-    // Encolar los scripts y estilos
-    wp_enqueue_style('sorteo-css', get_template_directory_uri() . '/sorteo.css');
-    wp_enqueue_script('sorteo-js', get_template_directory_uri() . '/sorteo.js', array('jquery'), null, true);
-    wp_localize_script('sorteo-js', 'sorteoReservas', $reservas);
-    wp_localize_script('sorteo-js', 'ajaxurl', admin_url('admin-ajax.php'));
-
-    // Crear el HTML del shortcode
-    ob_start();
-    ?>
-
-    <div class="sorteo-container">
-        <h1>Sorteo de Números</h1>
-        <div id="numeros-disponibles" class="numeros-disponibles"></div>
-        <form id="sorteo-form">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-            <label for="telefono">Número de Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" required>
-            <button type="submit" id="participar-btn">Participar</button>
-        </form>
-        <div id="loading" class="hidden">Cargando...</div>
-        <div id="resultado" class="hidden">
-            <p>El número asignado es: <span id="numero-aleatorio"></span></p>
-        </div>
-    </div>
-
-    <?php
-    return ob_get_clean();
-}
-add_shortcode('sorteo_numeros', 'sorteo_shortcode');
-
-function procesar_sorteo() {
-    global $wpdb;
-    $tabla_sorteos = $wpdb->prefix . 'sorteos';
-    $nombre = sanitize_text_field($_POST['nombre']);
-    $telefono = sanitize_text_field($_POST['telefono']);
-    $reservas = json_decode(stripslashes($_POST['reservas']), true);
-
-    $numeroAsignado = isset($reservas[$telefono]) ? $reservas[$telefono] : mt_rand(1, 20);
-
-    $wpdb->insert($tabla_sorteos, array(
-        'nombre' => $nombre,
-        'telefono' => $telefono,
-        'numero_sorteado' => $numeroAsignado
-    ));
-
-    wp_send_json_success(array('numero_asignado' => $numeroAsignado));
-}
-
-add_action('wp_ajax_procesar_sorteo', 'procesar_sorteo');
-add_action('wp_ajax_nopriv_procesar_sorteo', 'procesar_sorteo');
