@@ -91,3 +91,21 @@ function shortcode_slide($atts)
 
 
 add_shortcode('slide_forecasts', 'shortcode_slide');
+
+// Cargar owl.carousel condicionalmente
+function load_owl_carousel_if_shortcode_exists() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'shortcode_slide'))) {
+        wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'load_owl_carousel_if_shortcode_exists');
+
+// Asegurarse de que el CSS solo se cargue si es necesario
+function load_shortcode_slide_styles() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'shortcode_slide') || is_single())) {
+        wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
+    }
+}
+add_action('wp_enqueue_scripts', 'load_shortcode_slide_styles');

@@ -1,4 +1,5 @@
 <?php
+// Definir el shortcode
 
 function shortcode_forecast($atts)
 {
@@ -24,14 +25,6 @@ function shortcode_forecast($atts)
     $time_format = $atts['time_format'];
     $title = $atts['title'];
 
-    global $post;
-
-    // Asegurarse de que el CSS solo se cargue si es necesario
-    if (isset($post) && is_a($post, 'WP_Post') && has_shortcode($post->post_content, 'forecasts')) {
-        wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css');
-    } else if (is_single()) {
-        wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css');
-    }
 
     $ret = "";
 
@@ -169,3 +162,25 @@ function shortcode_forecast($atts)
 }
 
 add_shortcode('forecasts', 'shortcode_forecast');
+
+
+
+
+// Cargar common.js condicionalmente
+function load_common_js_if_shortcode_exists() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'shortcode_slide') || is_single())) {
+        wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'load_common_js_if_shortcode_exists');
+
+// Asegurarse de que el CSS solo se cargue si es necesario
+function load_forecast_styles() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts') || is_single())) {
+        wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css');
+    }
+}
+add_action('wp_enqueue_scripts', 'load_forecast_styles');
+

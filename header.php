@@ -64,24 +64,29 @@
                         }
                     return $timeCalc;
                     }
-                    if(is_user_logged_in( )):
-                       $noti = select_notification_not_view();
-                       $html = '<ul class="navbar-nav mx-3">
-                            <li class="nav-item dropdown">
-                                    <a class="nav-link btn btn-primary text-light font-weight-bold py-3" text-uppercase href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-bell" style="color:'. (count($noti) > 0? "#ffffff" : "" ) .' !important;font-size:13px !important;"></i>
-                                        <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.count($noti).'</span>
-                                    </a>
-                                    <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
-                                        <ul style="max-height:200px;">
-                                        <p role="button" class="dropdown-item text-dark my-3" style="cursor:pointer !important;" id="btn_quitar_notificaciones" ><i class="fas fa-trash-alt"></i>'.__(' Clear All','jbetting').'</p>
-                                            {list}
-                                        </ul>
-                                        <hr class="mt-2 mb-3">
-
-                                    </div>
-                                </li>
-                       </ul>';
+                    if(is_user_logged_in()):
+                        $noti = select_notification_not_view();
+                        $noti_count = count($noti);
+                        $icon_color = $noti_count > 0 ? "#ffffff" : "";
+                    
+                        $html = '<ul class="navbar-nav mx-3">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link btn btn-primary text-light font-weight-bold py-3 text-uppercase" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-bell" style="color:'. $icon_color .' !important;font-size:13px !important;"></i>
+                                            <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.$noti_count.'</span>
+                                        </a>
+                                        <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
+                                            <ul style="max-height:200px;">
+                                                <p role="button" class="dropdown-item text-dark my-3" style="cursor:pointer !important;" id="btn_quitar_notificaciones">
+                                                    <i class="fas fa-trash-alt"></i>'.__(' Clear All', 'jbetting').'</p>
+                                                {list}
+                                            </ul>
+                                            <hr class="mt-2 mb-3">
+                                        </div>
+                                    </li>
+                                </ul>';
+                    
+                    
                        $li = '';
                        if(count($noti) > 0){
                             $newTime = date_i18n("Y-m-d H:i:s");

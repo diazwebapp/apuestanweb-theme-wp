@@ -4,7 +4,7 @@ global $wpdb, $charset_collate;
 $charset_collate = $wpdb->get_charset_collate();
 define("NOTIFICATIONS_MYSQL_TABLE",$wpdb->prefix . "aw_notification_table");
 function create_table_aw_notification(){
-    global $charset_collate;
+
     $table_1 = NOTIFICATIONS_MYSQL_TABLE;
 
     $sql = "CREATE TABLE $table_1 (
@@ -24,7 +24,7 @@ if(!function_exists('aw_insert_notification_view')):
         global $wpdb;
         $table = NOTIFICATIONS_MYSQL_TABLE;
         
-        $insert = $wpdb->insert($table,$array_data);
+        $wpdb->insert($table,$array_data);
     }
 endif;
 
@@ -34,30 +34,34 @@ if(!function_exists('select_notification_not_view')):
         global $wpdb;
         $table_notification = NOTIFICATIONS_MYSQL_TABLE;
         $table_posts = $wpdb->prefix."posts";
-        $current_user = ($setup['id_user'] ? $setup['id_user'] : get_current_user_id( ));
+        $current_user = ($setup['id_user'] ? $setup['id_user'] : get_current_user_id());
         $result = [];
         $new_result = [];
+        
         if(isset($current_user)):
-            $sql = "SELECT * FROM $table_posts Where Not exists (select * from $table_notification Where $table_notification.id_pronostico = $table_posts.ID AND $table_notification.id_user = $current_user) ". ($setup['post_type'] ? " AND $table_posts.post_type = '{$setup['post_type']}' " :'' )." AND $table_posts.post_status='publish'";
+            $sql = $wpdb->prepare(
+                "SELECT * FROM $table_posts 
+                 WHERE NOT EXISTS (
+                     SELECT 1 
+                     FROM $table_notification 
+                     WHERE $table_notification.id_pronostico = $table_posts.ID 
+                     AND $table_notification.id_user = %d
+                 ) AND $table_posts.post_type = %s 
+                 AND $table_posts.post_status = 'publish'",
+                 $current_user, $setup['post_type']
+            );
             
             $result = $wpdb->get_results($sql);
             
             if(count($result) > 0):
-               
-              foreach($result as $notify_post){
-                    $vip = carbon_get_post_meta($notify_post->ID,'vip');
-                    if($vip){
-                        
-                       $new_result[] = $notify_post;
-                        
-                    }
+                foreach($result as $notify_post){
+                    $new_result[] = $notify_post;
                 }
-               
             endif;
-            
         endif; 
         return $new_result;
     }
+    
 endif;
 
 if(!function_exists('insert_multi_notificacions_views')):
