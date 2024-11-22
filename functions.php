@@ -211,7 +211,7 @@ function cargar_estilos_y_bootstrap() {
     wp_enqueue_style('main-css', get_stylesheet_uri(), array(), null, 'all');
     
     // Cargar Bootstrap
-    //wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     
     // Añadir filtros para carga crítica
     add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
