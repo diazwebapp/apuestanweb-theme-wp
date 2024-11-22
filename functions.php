@@ -175,10 +175,8 @@ add_action('wp_enqueue_scripts', 'disable_all_styles', 100);
 add_action('wp_enqueue_scripts', 'jbetting_src');
 function jbetting_src()
 {
-    
-    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     //wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
-    wp_enqueue_style('main-css', get_stylesheet_uri());
+    
     //wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array(), null);
     //wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
 
@@ -207,6 +205,35 @@ function jbetting_src()
 
 }
 
+//////////////////////
+function cargar_estilos_y_bootstrap() {
+    // Cargar estilos principales
+    wp_enqueue_style('main-css', get_stylesheet_uri(), array(), null, 'all');
+    
+    // Cargar Bootstrap
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
+    
+    // Añadir filtros para carga crítica
+    add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
+    add_filter('style_loader_tag', 'añadir_atributos_criticos_bootstrap', 10, 2);
+}
+add_action('wp_enqueue_scripts', 'cargar_estilos_y_bootstrap');
+
+function añadir_atributos_criticos($html, $handle) {
+    if ('main-css' === $handle) {
+        return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
+    }
+    return $html;
+}
+
+function añadir_atributos_criticos_bootstrap($html, $handle) {
+    if ('bootstrap' === $handle) {
+        return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
+    }
+    return $html;
+}
+
+/////////////////////
 
 function enqueuing_admin_scripts(){
     wp_register_script('admin-js', get_template_directory_uri() . '/assets/js/admin.js', array(), '1.0.0', true);
