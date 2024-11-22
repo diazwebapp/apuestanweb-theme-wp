@@ -1,0 +1,180 @@
+}
+/*Hamburger-menu START CSS*/
+.hamburger-menu {cursor: pointer;
+	margin-right: 1.8rem;
+	display: none;}
+
+.hamburger-menu span:first-child {margin-top: 0;}
+
+.hamburger-menu span:last-child {margin-bottom: 0;}
+
+.hamburger-menu span {background: #ffffff;
+	width: 3.0rem;
+	height: 0.3rem;
+	display: block;
+	margin: 0.5rem 0;
+	-webkit-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+	transition: all 0.3s ease;}
+
+.hamburger-menu:hover .line-top {-webkit-transform: translateY(-100%);
+	-ms-transform: translateY(-100%);
+	transform: translateY(-100%);}
+
+.hamburger-menu:hover .line-bottom {-webkit-transform: translateY(100%);
+	-ms-transform: translateY(100%);
+	transform: translateY(100%);}
+
+.hamburger-menu .line-top.current {-webkit-transform: translateY(200%) rotate(135deg);
+	-ms-transform: translateY(200%) rotate(135deg);
+	transform: translateY(200%) rotate(135deg);}
+
+.hamburger-menu .line-center.current {opacity: 0;}
+
+.hamburger-menu .line-bottom.current {-webkit-transform: translateY(-325%) rotate(-135deg);
+	-ms-transform: translateY(-325%) rotate(-135deg);
+	transform: translateY(-325%) rotate(-135deg);}
+
+.logo_box {line-height: 0;}
+
+.menu {text-align: center;}
+
+.menu li {display: inline-block;}
+
+.menu li::before {color:#fff;
+	font-size: 1.9rem;
+	font-weight: 500;}
+
+.menu i {display: inline-block;
+	margin-right: 3px;}
+
+.menu li a {font-size: 1.6rem;
+	color: #ffffffed;
+	margin: 0 .5rem;
+	display: inline-flex;
+	align-items: center;
+	font-weight: 500;
+	line-height: 8.5rem;
+	position: relative;
+	padding: 0;}
+
+.menu li a::before {position: absolute;
+	content: '';
+	left: 0;
+	bottom: 0;
+	width: 0px;
+	height: 0.6rem;
+	background-color: #ffff;
+	transition: 0.3s;}
+
+.menu li a:hover::before,
+.menu li a.active::before {width: 100%;}
+
+.menu li a img {height: 1.4rem;
+	margin-right: 0.6rem;}
+
+.menu li.current-menu-item a {color: #fcfbfb!important;}
+
+.menu li.current-menu-item a::before {position: absolute;
+	content: '';
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 0.5rem;
+	background-color: #fff;
+	max-width: 8.5rem;
+	transition: 0.3s;
+	width: 0;}
+
+.menu li.current-menu-item a.hover::before,
+.menu li.current-menu-item a.active::before {width: 100%;}
+
+.menu li.current-page-ancestor a {color: #fcfbfb!important;}
+
+.menu li.current-page-ancestor a::before {position: absolute;
+	content: '';
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 0.5rem;
+	background-color: #fff;
+	max-width: 8.5rem;
+	transition: 0.3s;
+	width: 0;}
+
+.menu li.current-page-ancestor a.hover::before,
+.menu li.current-page-ancestor a.active::before {width: 100%;}
+
+.header_bottom ul li a:hover::before,
+.header_bottom ul li a.active::before {width: 100%;}
+
+footer .menu li a {font-size: 1.7rem;
+	line-height: 1;}
+
+footer .menu li a::before {display: none;}
+
+.fa-user:before {content: "\f007";
+	font-size: 1.8rem;}
+
+.pagination_list a:hover,
+.pagination_list a.active,.pagination_list span:hover,
+.pagination_list .current {background-color: #0558CB;
+	color: #FFFFFF;}
+
+.slider .owl-dots button.active {background-color: #0558CB;}
+
+.estad-link.active::before {width: 100%;}
+
+.free-link.active::before {width: 100%;}
+
+.logo_col {display: flex;
+		align-items: center;}
+
+.menu {position: fixed;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: -100%;
+		background-color: #051421;
+		z-index: -1;
+		padding-top: 10rem;
+		text-align: left;
+		transition: 0.4s;}
+
+.menu li {display: flex;
+		max-width: 72.0rem;
+		align-items: center;
+		align-content: center;
+		margin-right: auto;
+		margin-left: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-bottom: 2.5rem;}
+
+.menu li:last-child {margin-bottom: 0;}
+
+.menu li a {margin: 0 5px;
+		line-height: 1.2;
+		position: relative;
+		display: flex;
+		font-size: 2.3rem;}
+
+.menu li a::before {display: none;}
+
+.menu li a::after {position: absolute;
+		content: '\f054';
+		font-family: "Font Awesome 5 Pro";
+		right: 0;
+		top: 0;
+		color: rgba(255, 255, 255, 0.1);}
+
+.menu.current {left: 0;}
+
+.hamburger-menu {display: block;}
+
+.slider .owl-dots .owl-dot.active {background-color: #0558CB;}
+
+.price_wrapper .nav li a.active {background-color: #fffbf8;
+		color: #0558CB;}
+
+.bonus_wrap .row {min-width: 120rem;}
