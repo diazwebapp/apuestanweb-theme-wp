@@ -176,7 +176,7 @@ add_action('wp_enqueue_scripts', 'jbetting_src');
 function jbetting_src()
 {
     
-    //wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     //wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     //wp_enqueue_style('main-css', get_stylesheet_uri());
     
