@@ -184,13 +184,12 @@ function jbetting_src()
 
 
     wp_deregister_script('jquery');
-    //wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
 
     //wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
-    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
+    //wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
     
     
-    wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true);
+    wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/optimized_main.js', array(), '1.0.0', true);
     //wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
     
 
@@ -620,5 +619,66 @@ add_shortcode('enlaces_internos_forecast', 'enlaces_internos_forecast');
 
 */
 
+// Inicia el buffer de salida
+add_action('template_redirect', 'start_output_buffer');
+function start_output_buffer() {
+    ob_start();
+}
 
+add_action('shutdown', 'analyze_output_buffer');
+function analyze_output_buffer() {
+    $html = ob_get_clean();
+    if ($html) {
+        analyze_html($html);
+    }
+}
 
+function analyze_html($html) {
+    $dom = new DOMDocument();
+    @$dom->loadHTML($html);  // El @ suprime errores por HTML mal formado
+    
+    $xpath = new DOMXPath($dom);
+    $classes = [];
+    
+    // Encuentra todos los elementos con un atributo class
+    foreach ($xpath->query('//*[@class]') as $node) {
+        $class_attribute = $node->getAttribute('class');
+        $class_list = explode(' ', $class_attribute);
+        
+        // Añadir clases únicas al array
+        foreach ($class_list as $class) {
+            $classes[$class] = true;
+        }
+    }
+    
+    $unique_classes = array_keys($classes);
+    
+    // Aquí puedes trabajar con las clases únicas encontradas
+    // Añadir el CSS extraído al HTML
+    inject_dynamic_css($html, $unique_classes);
+}
+
+function extract_css_classes($css_content, $classes_to_extract) {
+    $pattern = '/\.' . implode('|', $classes_to_extract) . '(\s|\{)/';
+    preg_match_all($pattern, $css_content, $matches);
+    return implode("\n", array_unique($matches[0]));
+}
+
+function inject_dynamic_css($html, $used_classes) {
+    $main_css_path = get_stylesheet_directory() . '/style.css';
+    $responsive_css_path = get_stylesheet_directory() . '/responsive.css';
+    
+    $main_css_content = file_get_contents($main_css_path);
+    $responsive_css_content = file_get_contents($responsive_css_path);
+    
+    $extracted_css = extract_css_classes($responsive_css_content, $used_classes);
+    $combined_css_content = $main_css_content . "\n" . $extracted_css;
+    
+    $style_tag = "<style>" . $combined_css_content . "</style>";
+
+    // Inyectar el CSS en el <head> del HTML
+    $html = str_replace('</head>', $style_tag . '</head>', $html);
+    
+    // Echo el HTML modificado
+    echo $html;
+}

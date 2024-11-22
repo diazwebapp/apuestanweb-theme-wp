@@ -97,6 +97,7 @@ function load_owl_carousel_if_shortcode_exists() {
     global $post;
     if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'shortcode_slide'))) {
         wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
+        wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
     }
 }
 add_action('wp_enqueue_scripts', 'load_owl_carousel_if_shortcode_exists');
