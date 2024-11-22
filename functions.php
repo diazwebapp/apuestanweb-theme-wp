@@ -187,7 +187,8 @@ function jbetting_src()
     //wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
     
     
-    wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/optimized_main.js', array(), '1.0.0', true);
+    wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/optimized_main.js', array(), null, true);
+    add_filter('script_loader_tag', 'añadir_atributos_criticos_js', 10, 2);
     //wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
     
 
@@ -204,7 +205,7 @@ function jbetting_src()
    //wp_localize_script('custom-search', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
 
 }
-
+function añadir_atributos_criticos_js($tag, $handle) { if ('main-js' === $handle) { return str_replace('src', 'async="async" src', $tag); } return $tag; }
 //////////////////////
 function cargar_estilos_y_bootstrap() {
     // Cargar estilos principales
