@@ -114,13 +114,13 @@
                                     </div>
 
                                     <div class="single_event_content text-break">
-                                        <?php echo do_shortcode("[predictions]"); ?>
+                                        
                                         <?php remove_filter('the_content', 'wpautop'); ?>
                                         <?php if (!$disable_table): ?>
                                             <!-- Toggle Table of Contents -->
                                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
                                                 <?php echo __('Contenidos', 'jbetting'); ?>
-                                                <i class="fas fa-angle-down"></i>
+                                                <i>❓</i>
                                             </button>
 
                                             <!-- Table of Contents -->
@@ -134,7 +134,7 @@
                                             </div>
                                         <?php endif; ?>
                                         <?php the_content(); ?>
-                                        <?php echo do_shortcode("[predictions]"); ?>
+                                        
                                         <?php echo do_shortcode("[social_contact]"); ?>
                                         <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximación, verifica antes de hacer tu apuesta'); ?></p>
                                     </div>

@@ -72,13 +72,13 @@
                         $html = '<ul class="navbar-nav mx-3">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link btn btn-primary text-light font-weight-bold py-3 text-uppercase" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-bell" style="color:'. $icon_color .' !important;font-size:13px !important;"></i>
+                                            <i>❓</i>
                                             <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.$noti_count.'</span>
                                         </a>
                                         <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
                                             <ul style="max-height:200px;">
                                                 <p role="button" class="dropdown-item text-dark my-3" style="cursor:pointer !important;" id="btn_quitar_notificaciones">
-                                                    <i class="fas fa-trash-alt"></i>'.__(' Clear All', 'jbetting').'</p>
+                                                    <i>❓</i>'.__(' Clear All', 'jbetting').'</p>
                                                 {list}
                                             </ul>
                                             <hr class="mt-2 mb-3">
@@ -117,11 +117,11 @@
                                     </a>
 
                                     <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i class="fas fa-user"></i>'.__(' Cuenta','jbetting').'</a>
-                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="/plus/picks"><i class="fas fa-badge-check"></i>'.__(' Picks Plus','jbetting').'</a>
+                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url( !empty(get_option( 'ihc_general_user_page' )) ? get_the_permalink(get_option( 'ihc_general_user_page' )) :'/') .'"><i>❓</i>'.__(' Cuenta','jbetting').'</a>
+                                        <a class="dropdown-item text-dark font-weight-bold my-3" href="/plus/picks"><i>❓</i>'.__(' Picks Plus','jbetting').'</a>
 
                                         <hr class="mt-2 mb-3">
-                                        <a class="dropdown-item text-dark my-3" href="'. add_query_arg( 'ihcdologout', 'true', wp_logout_url() ).'"><i class="fas fa-sign-out"></i>'.__(' Cerrar sesion','jbetting').'</a>
+                                        <a class="dropdown-item text-dark my-3" href="'. add_query_arg( 'ihcdologout', 'true', wp_logout_url() ).'"><i>❓</i>'.__(' Cerrar sesion','jbetting').'</a>
 
                                     </div>
                                 </li>
@@ -129,8 +129,8 @@
                         </div>
                     </div>';
                     else:
-                        echo '<div id="open-search-modal" class="search-icon headerbtnsearch"><i class="fal fa-search fa-lg"></i></div>';
-                        echo '<a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_the_permalink(get_option( 'ihc_general_login_default_page' )) : wp_login_url()) .'" class="btn_2 headerlgn mr-2" aria-label="Acceder"><i class="far fa-user"></i></a>';
+                        echo '<div id="open-search-modal" class="search-icon headerbtnsearch">🔍</div>';
+                        echo '<a href="'. esc_url( !empty(get_option( 'ihc_general_login_default_page' )) ? get_the_permalink(get_option( 'ihc_general_login_default_page' )) : wp_login_url()) .'" class="btn_2 headerlgn mr-2" aria-label="Acceder">👤</a>';
                         // echo '<a href="'. PERMALINK_MEMBERSHIPS .'" class="headerbtn">'.__('SÉ MIEMBRO','jbetting').'</a>';
                    endif;
                 ?>

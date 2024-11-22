@@ -154,13 +154,7 @@ textarea:focus{
 	align-items: center;
 	justify-content: center;
 }
-.loader3 {
-	width: 50px;
-	height: 50px;
-	display: inline-block;
-	padding: 0px;
-	text-align: left;
-}
+p{color:#00203A}
 /*Hamburger-menu START CSS*/
 .hamburger-menu {
 	cursor: pointer;
@@ -587,17 +581,6 @@ footer .menu li a::before{
 	.header_bottom ul li a{
 		white-space: nowrap;
 	}
-	.blog_hero_content {
-	    padding-left: 0;
-	    text-align: center;
-	}
-	.blog_top_content {
-	    justify-content: center;
-	}
-	.blog_hero_content h2{
-		margin-left: auto;
-		margin-right: auto;
-	}
 	.serach_box input {
 	    max-width: 20rem;
 	}
@@ -710,3 +693,388 @@ footer .menu li a::before{
 .back-to-top.visible {
     opacity: 1;
 }
+
+/* Extracted Styles for Specific Classes */
+/* Styles for .title_lg */
+.title_lg{
+	font-size: 3.157rem;
+	color: #00203A;
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+/* Styles for .single_envent_heading */
+.single_envent_heading h2{
+	text-transform: uppercase;
+}
+
+/* Styles for .single_event_breadcrumb */
+.single_event_breadcrumb ul{
+	display: flex;
+	align-items: center;
+	margin-top: 2rem;
+}
+
+/* Styles for .single_event_breadcrumb */
+.single_event_breadcrumb ul li a,
+.single_event_breadcrumb ul li span{
+	display: flex;
+	align-items: center;
+	font-size: 1.4rem;
+	color: #ABAEB1;
+	font-weight: 500;
+}
+
+/* Styles for .single_event_breadcrumb */
+.single_event_breadcrumb ul li a:hover{
+	color: #0558CB;
+}
+
+/* Styles for .single_event_breadcrumb */
+.single_event_breadcrumb ul li a img,
+.single_event_breadcrumb ul li span img{
+	margin-right: 0.5rem;
+}
+
+/* Styles for .single_event_breadcrumb */
+.single_event_breadcrumb ul li + li{
+	position: relative;
+	margin-left: 1.5rem;
+	padding-left: 1.8rem;
+}
+
+/* Styles for .single_event_breadcrumb */
+.single_event_breadcrumb ul li + li::before{
+	position: absolute;
+	content: '\f054';
+	font-family: "Font Awesome 5 Pro";
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0;
+	color: #ABAEB1;
+	font-size: 1rem;
+}
+
+/* Styles for .single_event_banner */
+.single_event_banner{
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-radius: 1rem;
+	height: 26.3rem;
+	margin-top: 2.5rem;
+	padding: 3.2rem 5rem;
+}
+
+/* Styles for .single_event_banner */
+.single_event_banner_top{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/* Styles for .single_banner_top_left */
+.single_banner_top_left{
+	display: flex;
+	align-items: center;
+}
+
+/* Styles for .single_banner_top_left */
+.single_banner_top_left img{
+	margin-right: 1rem;
+}
+
+/* Styles for .single_banner_top_left */
+.single_banner_top_left p{
+	color: #FFFFFF;
+}
+
+/* Styles for .single_banner_top_left */
+.single_banner_top_left img,
+.single_banner_top_right img{
+	height: 2.8rem;
+	width: 2.8rem;
+}
+
+/* Styles for .single_event_banner */
+.single_event_banner_middle{
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+/* Styles for .single_team1 */
+.single_team1{
+	text-align: center;
+	padding-top: 2.3rem;
+	width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Styles for .single_team1 */
+.single_team1 img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+/* Styles for .single_team1 */
+.single_team1 p{
+	font-size: 1.8rem;
+	line-height: 1.2;
+	color: #FFFFFF;
+	padding-top: .2rem;
+}
+
+/* Styles for .event_start */
+.event_start {
+    padding-left: 10.5rem;
+    padding-right: 10.5rem;
+    text-align: center;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    color: #FFFFFF;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    grid-gap: .5rem;
+    gap: .5rem;
+}
+
+/* Styles for .event_start */
+.event_start time{
+	font-size: 2.5rem;
+	line-height: 1.2;
+	color: #FFFFFF;
+	font-weight: 700;
+	padding-top: 0.5rem;
+	width: 100%;
+}
+
+/* Styles for .single_event_content */
+.single_event_content{
+	position: relative;
+	min-height: auto;
+	
+}
+
+/* Styles for .single_event_content */
+.single_event_content  p{
+	font-size: 1.96rem;
+	color: #00203A;
+	max-width: 100%;
+	text-align: justify;
+	line-height: 1.9;
+	margin-bottom: 1em;
+	margin-block-start: 1em;
+}
+
+/* Styles for .single_event_content */
+.single_event_content  h1, 
+.single_event_content  h2, 
+.single_event_content  h3, 
+.single_event_content  h4, 
+.single_event_content  h5 {
+    line-height: 1.2;
+    color: #00203A;
+    font-weight: 700;
+}
+
+/* Styles for .single_event_content */
+.single_event_content  h1{
+	font-size: 4.209rem;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content  h2 {
+    font-size: 3.157rem;
+}
+
+/* Styles for .single_event_content */
+.single_event_content  h3{
+	font-size: 2.369rem;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content  h4{
+	font-size: 1.777rem;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content  h5{
+	font-size: 12px;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content ul, ol{
+	font-size: 1.96rem;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content ul{
+	list-style-type: square;
+	color: #00203A;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content ul li{
+	
+	list-style: disc;
+}
+
+/* Styles for .single_event_content */
+.single_event_content ol li{
+	
+	list-style: inherit;
+}
+
+/* Styles for .single_event_content */
+.single_event_content > ul > li::marker{
+	
+	color: #d42e11;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content li {
+    margin: 0 0 10px;
+}
+
+/* Styles for .single_event_content */
+.single_event_content ol{
+	list-style-type: decimal;
+	color: #00203A;
+
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content  a {
+    color: #0558CB;
+	text-decoration: underline;
+
+}
+
+/* Styles for .single_event_content */
+.single_event_content > a:visited {
+    color: #ee76de;
+}
+
+/* Styles for .single_event_content */
+.single_event_content p a:hover {
+    color: #03b0f4;
+	text-decoration: underline;
+}
+
+/* Styles for .single_event_content */
+.single_event_content a:active {
+    color: blue;
+}
+
+/* Styles for .single_event_content */
+.single_event_content > p:empty  {
+    display: none;
+}
+
+/* Styles for .single_envent_heading */
+.single_envent_heading h2 {
+	    text-transform: uppercase;
+	    font-size: 4.2rem;
+	}
+
+/* Styles for .single_envent_heading */
+.single_envent_heading h2 {
+	    font-size: 4.2rem;
+	}
+
+/* Styles for .single_envent_heading */
+.single_envent_heading h2 {
+	    font-size: 3.6rem;
+	}
+
+/* Styles for .event_start */
+.event_start {
+	    padding-left: 1.5rem;
+	    padding-right: 1.5rem;
+	}
+
+/* Styles for .single_team1 */
+.single_team1{
+		padding-top: 0;
+	}
+
+/* Styles for .single_team1 */
+.single_team1 img {
+		width: 60px;
+		height: 60px;
+		object-fit: contain;
+	}
+
+/* Styles for .single_team1 */
+.single_team1 p {
+		font-size: 12px;
+		position: relative;
+	}
+
+/* Styles for .single_event_content */
+.single_event_content p{
+		font-size: 15px;
+	}
+
+/* Styles for .single_event_banner */
+.single_event_banner_middle {
+	    padding-top: 3rem;
+	}
+
+/* Styles for .single_envent_heading */
+.single_envent_heading_text,
+	.match_title_left_text{
+		display: none;
+	}
+
+	/* Extracted Styles for #table-of-contents */
+/* Extracted styles for #table-of-contents */
+#table-of-contents {
+    list-style: none;
+    padding: 0;
+  }
+
+/* Extracted styles for #table-of-contents */
+#table-of-contents li {
+    margin-bottom: 10px;
+  }
+
+/* Extracted styles for #table-of-contents */
+#table-of-contents a {
+    text-decoration: unset;
+    color: #00203a;
+    font-size: 16px;
+    display: block;
+    text-transform: capitalize;
+}
+
+/* Extracted styles for #table-of-contents */
+#table-of-contents a:hover {
+	text-decoration: underline;
+}
+
+/* Extracted styles for #table-of-contents */
+#table-of-contents ul {
+	padding-inline-start: 0!important;
+}
+
+/* Extracted Styles for ##table-of-contents */
