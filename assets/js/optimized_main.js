@@ -46,9 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 100);
 
             window.addEventListener('scroll', handleScroll);
-            function isScrollBehaviorSupported() { 
-                return 'scrollBehavior' in document.documentElement.style; 
-            } 
+            
             backToTopButton.addEventListener('click', (event) => {
                 event.preventDefault();
                 window.scrollTo({
