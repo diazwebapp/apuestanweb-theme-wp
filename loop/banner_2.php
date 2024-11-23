@@ -13,7 +13,7 @@ echo "<div class='blog_banner_wrapper'>
                         </div>
                         <div class='col-lg-10'>
                             <div class='row small_gutter justify-content-center'>
-                                <div class='col mt_30'>
+                                <div class='col mt-5'>
                                     <a href='/pronosticos-futbol/' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
                                             <svg xmlns='http://www.w3.org/2000/svg' width='45' height='45' viewBox='0 0 45 45'>
@@ -23,7 +23,7 @@ echo "<div class='blog_banner_wrapper'>
                                         <p>Fútbol</p>  
                                     </a>
                                 </div>
-                                <div class='col mt_30'>
+                                <div class='col mt-5'>
                                     <a href='/pronosticos-nba/' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
                                             <img src='".get_template_directory_uri() . '/assets/img/s13.svg'."' class='img-fluid' alt='basketball'>
@@ -31,7 +31,7 @@ echo "<div class='blog_banner_wrapper'>
                                         <p>NBA</p>  
                                     </a>
                                 </div>
-                                <div class='col mt_30'>
+                                <div class='col mt-5'>
                                     <a href='/mlb/pronosticos-mlb/' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
                                             <img src='".get_template_directory_uri() . '/assets/img/s14.svg'."' class='img-fluid' alt='baseball'>
@@ -39,7 +39,7 @@ echo "<div class='blog_banner_wrapper'>
                                         <p>MLB</p>  
                                     </a>
                                 </div>
-                                <div class='col mt_30'>
+                                <div class='col mt-5'>
                                     <a href='/pronosticos-nfl/' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
                                             <img src='".get_template_directory_uri() . '/assets/img/s15.svg'."' class='img-fluid' alt='americanfootaball'>
@@ -47,7 +47,7 @@ echo "<div class='blog_banner_wrapper'>
                                         <p>NFL</p>  
                                     </a>
                                 </div>
-                                <div class='col mt_30'>
+                                <div class='col mt-5'>
                                     <a href='/e-sports/' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>
                                             <img src='".get_template_directory_uri() . '/assets/img/s16.svg'."' class='img-fluid' alt='football'>

@@ -13,7 +13,7 @@ if(count($leagues) > 0):
         endif;
     endforeach;
 endif;
-echo "<div class='col-6 col-lg-4 mt_30'>
+echo "<div class='col-6 col-lg-4 mt-5'>
     <div class='notis_box'>
     <img class='img-fluid' alt='$title' loading='lazy' src='$thumbnail_url' alt='teamvs'>
         <a href='$permalink'>

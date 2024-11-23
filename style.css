@@ -1078,3 +1078,72 @@ footer .menu li a::before{
 }
 
 /* Extracted Styles for ##table-of-contents */
+.con-t {
+    border: 1px solid #e3e3e3;
+    border-radius: 1rem;
+    border-top: 0;
+}
+/* Estilo base para el contenedor del select */
+.custom-select {
+	position: relative;
+	display: inline-block;
+	width: 130px; /* Ajusta el ancho según tu necesidad */
+	font-family: Arial, sans-serif;
+  }
+  
+  /* Estilo del select */
+  .custom-select select {
+	position: absolute;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 10px 0 0;
+    width:140px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    color: #333;
+    line-height: 1.9;
+    position: absolute;
+    left: -5px;
+    top: -10px;
+}
+  
+  /* Ocultar la flecha nativa en Internet Explorer y Edge */
+  .custom-select select::-ms-expand {
+	display: none;
+  }
+  
+  /* Para el ícono de dropdown personalizado */
+  .custom-select::after {
+	content: '▼'; /* Carácter para el triángulo */
+	font-size: 12px;
+	color: #333;
+	position: absolute;
+	right: 10px; /* Ajusta la posición */
+	top: 5px;
+	transform: translateY(-50%);
+	pointer-events: none; /* Permite hacer clic en el select */
+  }
+  
+  /* Cambiar estilos al pasar el mouse */
+  .custom-select select:hover {
+	border-color: #007bff;
+  }
+  
+  /* Cambiar estilos al hacer clic */
+  .custom-select select:focus {
+	outline: none;
+	border-color: #007bff;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Opciones */
+  .custom-select select option {
+	font-size: 16px;
+	padding: 10px;
+  }
+  

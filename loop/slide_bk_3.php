@@ -39,7 +39,7 @@ if(isset($bonuses) and count($bonuses) > 0):
     endforeach;
 endif;
 
-echo "<div class='col-lg-3 col-6 mt_30'> ";
+echo "<div class='col-lg-3 col-6 mt-5'> ";
 echo "<div class='tbox'>
 <div>
     <img style='height:30px;width:16rem;object-fit:contain;background:$color;padding: 6px;border-radius: 6px;' src='$image_png' class='timg img-fluid' alt='$title'  title='$title'>
@@ -47,7 +47,7 @@ echo "<div class='tbox'>
     <div class='rating mt_15'> ";
         echo $stars; 
 echo "</div>
-    <p class='h-static mt_30 '>{$bonus["country_bonus_slogan"]}</p>
+    <p class='h-static mt-5 '>{$bonus["country_bonus_slogan"]}</p>
     <a href='{$bonus["country_bonus_ref_link"]}' class='button mt_25 w-100' rel='nofollow noreferrer noopener' target='_blank'>apostar</a>
     <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
 </div>";

@@ -77,7 +77,7 @@
                             // Equipos de pronóstico
                             $teams = get_forecast_teams($post_id, ["w" => 50, "h" => 50]);
                 ?>
-                            <section class="col-lg-8 mt_30 con-t">
+                            <section class="col-lg-8 mt-5 con-t">
                                 <article>
                                     <div class="single_envent_heading">
                                         <h1 class="title_lg"><?php the_title(); ?></h1>
@@ -117,6 +117,7 @@
                                         
                                         <?php remove_filter('the_content', 'wpautop'); ?>
                                         <?php if (!$disable_table): ?>
+                                            <hr></hr>
                                             <!-- Toggle Table of Contents -->
                                             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
                                                 <?php echo __('Contenidos', 'jbetting'); ?>
@@ -132,6 +133,7 @@
                                                     <ul class="list-group list-group-flush"></ul>
                                                 </div>
                                             </div>
+                                            
                                         <?php endif; ?>
                                         <?php the_content(); ?>
                                         
@@ -143,8 +145,8 @@
 
                                     <section>    
                                         <div class="title_wrap single_event_title_wrap">
-                                            <h2 class="title-b mt_30 order-lg-1">Otros pronósticos de <?php echo esc_html($sport->name ?? ''); ?></h2>
-                                            <a href="<?php echo esc_url($sport->permalink ?? '/'); ?>" class="mt_30 dropd order-lg-3">Ver Todo</a>
+                                            <h2 class="title-b mt-5 order-lg-1">Otros pronósticos de <?php echo esc_html($sport->name ?? ''); ?></h2>
+                                            <a href="<?php echo esc_url($sport->permalink ?? '/'); ?>" class="mt-5 dropd order-lg-3">Ver Todo</a>
                                         </div>
                                         <?php echo do_shortcode("[related-forecasts model='2' num='6' league='{$sport->name}']"); ?>        
                                     </section>

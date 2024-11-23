@@ -36,7 +36,7 @@ if(!$custom_h1)
 				<div class="row">
 					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-9 mt_25'; endif;?>" >
 					<div class="title_wrap">
-						<h1 class="title mt_30 order-lg-1"><?php echo $custom_h1 ?></h1>
+						<h1 class="title mt-5 order-lg-1"><?php echo $custom_h1 ?></h1>
 
 					</div>
 					<div class="mt_50 d-flex flex-row">

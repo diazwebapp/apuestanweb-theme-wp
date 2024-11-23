@@ -88,7 +88,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
         }
     endif;
     
-    $html_vip_loked = "<div class='col-md-6 mt_30'>
+    $html_vip_loked = "<div class='col-md-6 mt-5'>
                 
                         <div class='event2_box event2_box3'>
                         
@@ -131,7 +131,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
     
                     </div> "
     ;
-    $html_vip_unloked =  "<div class='col-md-6 mt_30'>
+    $html_vip_unloked =  "<div class='col-md-6 mt-5'>
                 
                     <div class='event2_box'>
                     
@@ -195,7 +195,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                 </div>
                     
                 </div> ";
-    $html_free =  "<div class='col-md-6 mt_30'>
+    $html_free =  "<div class='col-md-6 mt-5'>
                 
                 <div class='event2_box'>
                    

@@ -37,7 +37,7 @@ endif;
 
 $title = get_the_title($args["post"]->ID);             
 
-            echo "<div class='bookmaker_box_wrapper mt_30'>
+            echo "<div class='bookmaker_box_wrapper mt-5'>
                 <div class='bookmaker_left_content'>
                     <div class='d-md-none d-block'>
                         <div class='bookamker_rating_box'>
