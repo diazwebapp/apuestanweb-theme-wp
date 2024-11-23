@@ -1020,7 +1020,7 @@ footer .menu li a::before{
     border-radius: 1rem;
     border-top: 0;
 }
-select {
+.myselect {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
@@ -1042,16 +1042,16 @@ select {
 	outline: none;
   }
   /* For IE10 */
-  select::-ms-expand {
+  .myselect::-ms-expand {
 	display: none;
   }
-  optgroup {
+  .myselect optgroup {
 	font-weight: 400;
 	font-style: italic;
 	color: steelblue;
 	background-color: aliceblue;
   }
-  option {
+  .myselect option {
 	color: slategray;
 	background-color: #fff;
 	text-indent: 0;
