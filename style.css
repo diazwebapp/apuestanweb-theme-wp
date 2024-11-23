@@ -806,6 +806,11 @@ footer .menu li a::before{
     color: #00203a;
     font-weight: 700;
 }
+.page_content h1, .page_content h2, .page_content h3, .page_content h4, .page_content h5 {
+    line-height: 1.2;
+    color: #00203a;
+    font-weight: 700;
+}
 /* Styles for .single_event_content */
 .single_event_content  p{
 	font-size: 1.96rem;
