@@ -138,7 +138,7 @@ input:focus,
 textarea:focus{
 	outline: none;
 }
-
+html { scroll-behavior: smooth; }
 /* page loader  */
 #preloader {
 	position: fixed;
@@ -392,6 +392,31 @@ footer .menu li a::before{
 	margin-top: 3rem;
 	font-size: 1.8rem;
 }
+/*return-to-top START CSS*/
+.back-to-top {
+	font-size: 24px;
+	width: 45px;
+	height: 45px;
+	line-height: 42px;
+	text-align: center;
+	display: none;
+	position: fixed;
+	bottom: 30px;
+	right: 20px;
+	border-radius: 50%;
+	background: transparent linear-gradient(107deg, #0558CB 0%, #023986 100%);
+	z-index: 1000;
+}
+.back-to-top i {
+	color: #fff;
+}
+.back-to-top {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+.back-to-top.visible {
+    opacity: 1;
+}
 /* Ocultar el aside en dispositivos móviles */
 @media (max-width: 768px) {
     #secondary {
@@ -526,6 +551,12 @@ footer .menu li a::before{
 	.footer_menu_col,
 	.event>p:last-child{
 		display: none;
+	}
+	.title{
+		font-size: 3.157rem;
+		font-weight: 700;
+		color: #00203A;
+		line-height: 1.2;
 	}
 	.title_wrap {
 		flex-wrap: wrap;
@@ -677,13 +708,7 @@ footer .menu li a::before{
 	}  
 
 }
-.back-to-top {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-.back-to-top.visible {
-    opacity: 1;
-}
+
 
 /* Extracted Styles for Specific Classes */
 /* Styles for .title_lg */
