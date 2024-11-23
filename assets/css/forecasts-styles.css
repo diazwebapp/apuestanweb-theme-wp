@@ -152,12 +152,14 @@
 	align-items: center;
 	justify-content: center;
 }
-/* .event_top_left img{
-	width: 4.3rem;
+.game_time{
+	max-width: 100%;
+	flex: 0 0 100%;
+	width: 100%;
+	font-size: 1.8rem;
+	margin-top: 1rem;
+	color: #000000;
 }
-.event_top_right img {
-    width: 5.4rem;
-} */
 .event_top_middle .p1{
 	font-size: 1.7rem;
 	font-weight: 500;
@@ -192,8 +194,10 @@
     /* margin-left: 6rem; */
 }
 .event2_top_box_wrapper a{
-color: #ffffff;
-/* text-align: center; */
+
+color: #ffffff;
+
+/* text-align: center; */
 }
 .event2_top_box_wrapper a:hover{ 
 	color: #c3c3c4;

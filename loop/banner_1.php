@@ -2,12 +2,12 @@
 
 $params = get_query_var("params");
 $alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
-$html_logo = "<img src='$alt_logo' class='logo2' alt='{$params['title']}'>";
+$html_logo = "";
 if($params['src_logo']):
     $html_logo = "<span class='{$params['src_logo']}' ></span>";
 endif;
 
-echo "<div class='container mt_55 home_container'>
+echo "<div class='container mt-5 home_container'>
     <div class='inner_bg' style='background:{$params['src_bg']};background-size:cover;'>
 
         <p class='d-flex'>

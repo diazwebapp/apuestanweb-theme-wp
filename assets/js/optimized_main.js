@@ -26,29 +26,38 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Back to top button functionality
-    if (backToTopButton) {
-        const handleScroll = throttle(() => {
-            const scrollPosition = window.scrollY;
-            if (scrollPosition > 600) {
-                backToTopButton.style.display = 'block';
-                backToTopButton.style.opacity = '1';
-            } else {
-                backToTopButton.style.opacity = '0';
-                setTimeout(() => {
-                    if (window.scrollY <= 600) {
-                        backToTopButton.style.display = 'none';
-                    }
-                }, 200);
-            }
-        }, 100);
+ 
 
-        window.addEventListener('scroll', handleScroll);
+// Back to top button functionality
+        if (backToTopButton) {
+            const handleScroll = throttle(() => {
+                const scrollPosition = window.scrollY;
+                if (scrollPosition > 200) {
+                    backToTopButton.style.display = 'block';
+                    backToTopButton.style.opacity = '1';
+                } else {
+                    backToTopButton.style.opacity = '0';
+                    setTimeout(() => {
+                        if (window.scrollY <= 200) {
+                            backToTopButton.style.display = 'none';
+                        }
+                    }, 200);
+                }
+            }, 100);
 
-        backToTopButton.addEventListener('click', (event) => {
-            event.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
+            window.addEventListener('scroll', handleScroll);
+            function isScrollBehaviorSupported() { 
+                return 'scrollBehavior' in document.documentElement.style; 
+            } 
+            backToTopButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
 
     // Hamburger menu functionality
     if (hamburgerMenu) {

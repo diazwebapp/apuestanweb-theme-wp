@@ -35,7 +35,7 @@ function shortcode_slide($atts)
     $query = new WP_Query($args);
     if ($query->have_posts()) { 
         if($model==1):
-            $ret = "<div class='container mt_55 home_container'>
+            $ret = "<div class='container mt-5 home_container'>
                 <div class='owl-carousel slider owl-loaded owl-drag' >
                     <div class='owl-stage-outer' >
                         <div class='owl-stage' >";

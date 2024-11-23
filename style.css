@@ -138,6 +138,25 @@ input:focus,
 textarea:focus{
 	outline: none;
 }
+/*return-to-top START CSS*/
+.back-to-top {
+	font-size: 24px;
+	width: 45px;
+	height: 45px;
+	line-height: 42px;
+	text-align: center;
+	display: none;
+	position: fixed;
+	bottom: 30px;
+	right: 20px;
+	border-radius: 50%;
+	background: transparent linear-gradient(107deg, #0558CB 0%, #023986 100%);
+	z-index: 1000;
+}
+.back-to-top i {
+	color: #fff;
+}
+
 html { scroll-behavior: smooth; }
 /* page loader  */
 #preloader {
@@ -202,6 +221,12 @@ p{color:#00203A}
 }
 .logo_box{
 	line-height: 0;
+}
+.title{
+	font-size: 3.157rem;
+	font-weight: 700;
+	color: #00203A;
+	line-height: 1.2;
 }
 .logo{
 	display: block;
@@ -392,31 +417,42 @@ footer .menu li a::before{
 	margin-top: 3rem;
 	font-size: 1.8rem;
 }
-/*return-to-top START CSS*/
-.back-to-top {
-	font-size: 24px;
-	width: 45px;
-	height: 45px;
-	line-height: 42px;
-	text-align: center;
-	display: none;
-	position: fixed;
-	bottom: 30px;
-	right: 20px;
-	border-radius: 50%;
-	background: transparent linear-gradient(107deg, #0558CB 0%, #023986 100%);
-	z-index: 1000;
+.inner_bg{
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	border-radius: 0.8rem;
+	min-height: 20.8rem;
+	display: flex;
+	align-items: center;
+	padding: 3rem 6.5rem;
+	position: relative;
 }
-.back-to-top i {
+.inner_bg > .logo2{
+	position: absolute;
+	width: 6.5rem;
+	right: 2rem;
+	bottom: 1.8rem;
+}
+.inner_bg h1{
+	font-size: 4.8rem;
+	font-weight: 500;
+	line-height: 1;
+	display: flex;
+	align-items: center;
 	color: #fff;
+	text-transform: uppercase;
 }
-.back-to-top {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+.inner_bg h1 img{
+	width: 4.7rem;
+	margin-right: 2rem;
 }
-.back-to-top.visible {
-    opacity: 1;
+.inner_bg .icon-news{
+    font-size: 4.8rem;
+    font-weight: 500;
+    color: #fff;
 }
+
 /* Ocultar el aside en dispositivos móviles */
 @media (max-width: 768px) {
     #secondary {
@@ -434,14 +470,6 @@ footer .menu li a::before{
 	} 
 }
 
-@media (min-width: 1200px) and (max-width: 1409.98px){
-	
-	.event2_header_wrapper ul li a{
-		font-size: 1.7rem
-	}
-  
-	   
-}
 @media (min-width: 1200px) and (max-width: 1399.98px) { 
 	.container{
 		max-width: 1200px;
@@ -545,19 +573,8 @@ footer .menu li a::before{
 	.ofcavas-menu {
 		display: block;
 	}
-	.event>p>h2:first-child, 
-	.event>p>h2:last-child,
-	.event>p:first-child,
-	.footer_menu_col,
-	.event>p:last-child{
-		display: none;
-	}
-	.title{
-		font-size: 3.157rem;
-		font-weight: 700;
-		color: #00203A;
-		line-height: 1.2;
-	}
+	
+	
 	.title_wrap {
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -565,30 +582,14 @@ footer .menu li a::before{
 	.header_bottom ul li {
 	    padding: 0 1rem;
 	}
-	.blog_box_wrapper .mt_100{
-		margin-top: 3.5rem;
-	}
-	.blog_banner_wrapper .col{
-		flex-basis: 33.33%;
-		max-width: 33.33%;
-	}
-	.blog_banner_content_wrapper {
-	    padding: 6rem 03rem 8rem;
-	}
+	
 
 	/*single event area*/
 	.single_envent_heading h2 {
 	    font-size: 3.6rem;
 	}
 
-    .event_banner {
-		display: flex;
-		justify-content: center;
-		margin-top: 1rem;
-		border-top: 1px solid #3e3e3e;
-		padding: 1rem;
-	}
-	  
+
 }
 /*Medium devices (tablets, 767px and down)*/
 @media (max-width: 767.98px) {
@@ -612,15 +613,8 @@ footer .menu li a::before{
 	.header_bottom ul li a{
 		white-space: nowrap;
 	}
-	.serach_box input {
-	    max-width: 20rem;
-	}
-	.serach_box {
-	    margin-left: 1rem;
-	}
-	.blog_banner_box {
-	    height: 18.4rem;
-	}
+	
+	
 }
 
 /*Small devices (landscape phones, 575px and down)*/
@@ -647,7 +641,14 @@ footer .menu li a::before{
 		margin-right: 10px;
 		position: unset;
 	}
-
+	.inner_bg {
+	    min-height: 32rem;
+	    border-radius: 0;
+	    justify-content: center;
+	}
+	.inner_bg h1{
+		text-transform: capitalize;
+	}
 	.headerbtn {
 	    width: 15rem;
 		font-size: 1.8rem;
@@ -663,42 +664,6 @@ footer .menu li a::before{
 	}
 	
 	
-	.blog_heading_right_content {
-	    display: none;
-	}
-	.blog_box_wrapper .blog_box {
-	    margin-left: 28px;
-	    margin-right: 28px;
-	}
-	.blog_banner_wrapper {
-	    padding-top: 12rem;
-	}
-	.blog_banner_wrapper .col{
-		flex-basis: 50%;
-		max-width: 50%;
-	}
-	.blog_banner_box {
-	    height: 23.4rem;
-	}
-	
-	.blog_banner_content_wrapper {
-	    padding: 6rem 15px 8rem;
-	    margin-left: -15px;
-	    margin-right: -15px;
-	    border-radius: 1.2rem;
-	    margin-bottom: 0;
-	}
-	.blog_title br{
-		display: none;
-	}
-	.game_time{
-		max-width: 100%;
-		flex: 0 0 100%;
-		width: 100%;
-		font-size: 1.8rem;
-		margin-top: 1rem;
-		color: #000000;
-	}
 
 }
 @media screen and (min-width: 1200px) and (max-width: 1400px) {
@@ -843,31 +808,6 @@ footer .menu li a::before{
 	padding-top: .2rem;
 }
 
-/* Styles for .event_start */
-.event_start {
-    padding-left: 10.5rem;
-    padding-right: 10.5rem;
-    text-align: center;
-    font-size: 1.9rem;
-    line-height: 1.2;
-    color: #FFFFFF;
-    font-weight: 500;
-    width: 100%;
-    display: flex;
-    flex-direction: column-reverse;
-    grid-gap: .5rem;
-    gap: .5rem;
-}
-
-/* Styles for .event_start */
-.event_start time{
-	font-size: 2.5rem;
-	line-height: 1.2;
-	color: #FFFFFF;
-	font-weight: 700;
-	padding-top: 0.5rem;
-	width: 100%;
-}
 
 /* Styles for .single_event_content */
 .single_event_content{
@@ -1020,12 +960,6 @@ footer .menu li a::before{
 /* Styles for .single_envent_heading */
 .single_envent_heading h2 {
 	    font-size: 3.6rem;
-	}
-
-/* Styles for .event_start */
-.event_start {
-	    padding-left: 1.5rem;
-	    padding-right: 1.5rem;
 	}
 
 /* Styles for .single_team1 */
