@@ -67,7 +67,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                 <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
                                 <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
                             </optgroup>
-                        
+                        </select>
                         
                     </div>                    
                 </div>
