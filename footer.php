@@ -60,12 +60,14 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 ?>
                 <div class="d-inline-flex mt-5 p-2 bd-highlight mx-auto align-items-center">   
                     <span class="mr-4 font-weight-bold s-f f-f">FORMATO DE CUOTAS</span>   
-                    <div class="custom-select">
+                    
 
                         <select id="select_odds_format" class="text-dark text-capitalize">
-                            <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
-                            <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
-                        </select>
+                            <optgroup label="Mi optgroup">
+                                <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
+                                <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
+                            </optgroup>
+                        
                         
                     </div>                    
                 </div>
