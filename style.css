@@ -141,10 +141,8 @@ textarea:focus{
 	background-repeat: no-repeat;
 	background-position: calc(100% - 12px) center;
 	cursor: pointer;
-	font-family: sans-serif;
 	font-size: 16px;
 	font-weight: normal;
-	color: slategray;
 	outline: none;
   }
   /* For IE10 */
@@ -153,12 +151,9 @@ textarea:focus{
   }
   .myselect optgroup {
 	font-weight: 400;
-	font-style: italic;
-	color: steelblue;
 	background-color: aliceblue;
   }
   .myselect option {
-	color: slategray;
 	background-color: #fff;
 	text-indent: 0;
   }
