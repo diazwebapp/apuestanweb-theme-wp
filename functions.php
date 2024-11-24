@@ -28,7 +28,7 @@ include "includes/shortcodes/shortcode-forecasts.php";
 include "includes/shortcodes/shortcode-related-forecasts.php";
 include "includes/shortcodes/shortcode-forecasts-vip.php";
 include "includes/shortcodes/shortcode-related-posts.php";
-include "includes/shortcodes/shortcode-slide.php";
+include "includes/shortcodes/shortcode-slide-theme.php";
 include "includes/shortcodes/shortcode-slide-bk.php";
 include "includes/shortcodes/shortcode-bookmakers.php";
 include "includes/shortcodes/shortcode-banner-pages.php";
