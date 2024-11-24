@@ -11,7 +11,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 				?>
                     <!--logo start-->
                     <a href="/">
-                        <img src="<?php echo $logo; ?>" class="img-fluid" alt="Apuestanweb">
+                        <img src="<?php echo $logo; ?>" class="img-fluid" width="183" height="19" alt="Apuestanweb">
                     </a>
                     <!--logo end-->
                 </div>
