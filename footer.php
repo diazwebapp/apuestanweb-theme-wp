@@ -60,7 +60,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 ?>
                 <div class="col-12 text-center my-5">   
                     
-                        <strong class="mr-4 font-weight-bold">FORMATO DE CUOTAS</strong>   
+                        <label for="select_odds_format" class="mr-4 font-weight-bold">FORMATO DE CUOTAS</label>   
                         
 
                         <select id="select_odds_format" class="myselect">
