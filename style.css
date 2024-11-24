@@ -157,6 +157,37 @@ textarea:focus{
 	background-color: #fff;
 	text-indent: 0;
   }
+  .side_box .box_header{
+	background: #051421;
+	border-radius: 1rem 1rem 0 0;
+	padding: 1.6rem 2rem;
+	display: flex;
+	align-items: center;
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: #FFFFFF;
+}
+.side_box .box_header img{
+	width: 2rem;
+	margin-right: 1rem;
+}
+.side_box .box_body{
+	background: #e9e9e9;
+	border-radius: 0 0 1rem 1rem;
+	padding: 1rem 2rem 3rem;
+}
+
+.top_box{
+	background: #FFFFFF;
+	border-radius: 1rem;
+	backdrop-filter: blur(50px);
+	padding: 2.3rem 3.5rem;
+	margin-top: 2rem;
+}
+.top_box:hover{
+	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
+
+}
 /*return-to-top START CSS*/
 .back-to-top {
 	padding: 10px;
