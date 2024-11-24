@@ -15,7 +15,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </a>
                     <!--logo end-->
                 </div>
-                <div class="col-lg-8 .d-none .d-lg-block mt-3">
+                <div class="col-lg-7 .d-none .d-lg-block mt-3">
                     <!--menu start-->
                     <ul class="menu text-uppercase" >
                         <?php
@@ -41,7 +41,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 <!--RRSS-->
                 <?php
                 echo get_option('tl');
-                echo '<div class="col-lg-2 col-6 mt-3 text-right"> 
+                echo '<div class="col-lg-3 col-6 mt-3 text-right"> 
                     <div class="social_icons">
                             <a href="'.tl.'" aria-label="follow us on telegram" rel="nofollow noreferrer noopener" target="_blank">
                                  <i><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
