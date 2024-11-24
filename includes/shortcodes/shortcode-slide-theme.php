@@ -28,16 +28,24 @@ function custom_slider_shortcode($atts) {
 
     // Generar el HTML del slider
     ob_start();
-
+    $slide_bg = get_template_directory_uri() . '/assets/img/banner2.png';
     if ($query->have_posts()) {
+
         ?>
-        <div class="slider-container translate-animation">
+        <div class="slider-container translate-animation" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%),url( <?php echo $slide_bg ?>); background-repeat:no-repeat;background-size:cover;">
 
             <div class="slider">
     <?php
         $is_first = true; // Para añadir la clase "active" solo en la primera diapositiva
         while ($query->have_posts()): $query->the_post();
         if( $atts['post_type'] = 'forecast'){
+            
+            $event_bg_att = carbon_get_post_meta(get_the_ID(), 'wbg');
+            $stadium = carbon_get_post_meta(get_the_ID(), 'stadium');
+            $event_bg = wp_get_attachment_url($event_bg_att);
+            if($event_bg):
+                $slide_bg = $event_bg;
+            endif;
             //Equipos
             $teams = get_forecast_teams(get_the_ID());
         
