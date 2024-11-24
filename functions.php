@@ -206,14 +206,17 @@ function jbetting_src()
 
 }
 
+add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
+
 function añadir_atributos_criticos($html, $handle) {
-     if ('main-css' === $handle) {
-         return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
-        } return $html; 
-        if ('bootstrap' === $handle) {
-            return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
-           } return $html; 
+    if ('main-css' === $handle) {
+        return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
+    } elseif ('bootstrap' === $handle) {
+        return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
     }
+    return $html;
+}
+
 
 function enqueuing_admin_scripts(){
     wp_register_script('admin-js', get_template_directory_uri() . '/assets/js/admin.js', array(), '1.0.0', true);
