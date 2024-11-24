@@ -1794,6 +1794,13 @@ footer .menu li a::before{
 .top_box3_left_content:hover{
 	text-decoration: underline;
 }
+.top_box3_left_content{
+	flex-basis: 70%;
+	max-width: 70%;
+}
+.top_box3_left_content:hover{
+	text-decoration: underline;
+}
 .top_box3_right_content{
 	flex-basis: 30%;
 	max-width: 30%;
