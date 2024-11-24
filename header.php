@@ -31,7 +31,7 @@
                     $logo =  get_template_directory_uri().'/assets/img/logo.svg';
                 endif;
             ?>
-            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" alt="apuestan logo" src="<?php echo $logo; ?>"></a>
+            <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" width="183" height="19" alt="apuestan logo" src="<?php echo $logo; ?>"></a>
             <!--logo end-->
             
         </div>
