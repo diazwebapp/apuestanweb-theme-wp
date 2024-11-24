@@ -83,7 +83,7 @@ function shortcode_forecast($atts)
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
     $args["current_user_id"] = get_current_user_id();
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-page='{$args['paged']}' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'>
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-page='{$args['paged']}' data-type='forecast' id='load_more_forecast' class='loadbtn btn font-weight-bold p-3'>
         " . __('Cargar más', 'jbetting') . "
     </button><br/>";
 
@@ -146,7 +146,7 @@ function shortcode_forecast($atts)
     // Reemplazar el contenido dinámico en el HTML
     $ret = str_replace("{replace_loop}", $loop_html, $ret);
 
-    $ret .= "<div class='container container_pagination_forecast text-md-center'>";
+    $ret .= "<div class='container text-center my-5'>";
     if ($data_json->page < $data_json->max_pages) {
         $ret .= $args['btn_load_more'];
     }
@@ -169,7 +169,7 @@ add_shortcode('forecasts', 'shortcode_forecast');
 // Cargar common.js condicionalmente
 function load_common_js_if_shortcode_exists() {
     global $post;
-    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'shortcode_slide') || is_single())) {
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts') || is_single())) {
         wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), null, true);
     }
 }

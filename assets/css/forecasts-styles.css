@@ -13,6 +13,19 @@
 	margin-bottom: -0.3rem;
 	transition: 0.3s;
 }
+.loadbtn {
+    width: 16rem;
+    background: transparent linear-gradient(107deg,#0558cb 0%,#023986 100%);
+    box-shadow: 0px .3rem 1.5rem rgba(11,105,236,.4);
+    font-size: 1.8rem !important;
+    color: #fff !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+.loadbtn:hover{
+	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
+}
+
 .event_top_left img {
 	width: 5.3rem !important;
 	height: auto !important;

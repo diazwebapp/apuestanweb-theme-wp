@@ -37,6 +37,6 @@ endif;
         echo "        </div>
             <p class='mt-5'>{$bonus["country_bonus_slogan"]}</p>
             <a href='{$bonus["country_bonus_ref_link"]}' class='button mt_25 w-100' rel='nofollow'>apostar</a>
-            <p class='sub_title mt_20'><a href=' $permalink ' >Revision </a></p>
+            <p class='sub_title mt-3'><a href=' $permalink ' >Revision </a></p>
         </div>";
     echo "</div>";

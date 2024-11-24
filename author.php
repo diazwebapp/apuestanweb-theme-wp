@@ -366,14 +366,14 @@
     <footer>
         <div class="container">
             <div class="row align-items-center form-row">
-                <div class="col-lg-2 col-6 mt_20">
+                <div class="col-lg-2 col-6 mt-3">
                     <!--logo start-->
                     <a href="/">
                         <img src="img/logo.svg" class="img-fluid" alt="">
                     </a>
                     <!--logo end-->
                 </div>
-                <div class="col-lg-8 footer_menu_col mt_20">
+                <div class="col-lg-8 footer_menu_col mt-3">
                     <!--menu start-->
                     <ul class="menu">
                         <li class="nav-item">
@@ -421,7 +421,7 @@
                     </ul>
                     <!--menu end-->
                 </div>
-                <div class="col-lg-2 col-6 mt_20 text-right">
+                <div class="col-lg-2 col-6 mt-3 text-right">
                     <div class="social_icons">
                         <a href="#">
                             <i class="fab fa-facebook"></i>

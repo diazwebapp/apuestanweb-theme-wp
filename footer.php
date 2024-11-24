@@ -5,7 +5,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 <footer class="footer mt-5">
 <div class="container">
             <div class="row align-items-center form-row">
-                <div class="col-lg-2 col-6 mt_20">
+                <div class="col-lg-2 col-6 mt-3">
                 <?php if ( carbon_get_theme_option( 'logo' ) )
 					$logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
 				?>
@@ -15,7 +15,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </a>
                     <!--logo end-->
                 </div>
-                <div class="col-lg-8 footer_menu_col mt_20">
+                <div class="col-lg-8 .d-none .d-lg-block mt-3">
                     <!--menu start-->
                     <ul class="menu text-uppercase" >
                         <?php
@@ -41,7 +41,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 <!--RRSS-->
                 <?php
                 echo get_option('tl');
-                echo '<div class="col-lg-2 col-6 mt_20 text-right"> 
+                echo '<div class="col-lg-2 col-6 mt-3 text-right"> 
                     <div class="social_icons">
                             <a href="'.tl.'" aria-label="follow us on telegram" rel="nofollow noreferrer noopener" target="_blank">
                                  <i>❓</i>
@@ -58,18 +58,18 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </div>
                 </div>'
                 ?>
-                <div class="d-inline-flex mt-5 p-2 bd-highlight mx-auto align-items-center">   
-                    <span class="mr-4 font-weight-bold s-f f-f">FORMATO DE CUOTAS</span>   
+                <div class="col-12 text-center my-5">   
                     
+                        <strong class="mr-4 font-weight-bold">FORMATO DE CUOTAS</strong>   
+                        
 
                         <select id="select_odds_format" class="myselect">
-                            <optgroup label="Mi optgroup">
-                                <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
-                                <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
-                            </optgroup>
+                            <option value="2" <?php if(get_option( "odds_type")=='2'): echo "selected"; endif; ?> >decimal</option>
+                            <option value="3" <?php if(get_option( "odds_type")=='3'): echo "selected"; endif; ?>  >american</option>
                         </select>
+                    
                         
-                    </div>                    
+                                       
                 </div>
 
                 <div class="col-12 text-center">
