@@ -159,10 +159,7 @@ textarea:focus{
   }
 /*return-to-top START CSS*/
 .back-to-top {
-	font-size: 24px;
-	width: 45px;
-	height: 45px;
-	line-height: 42px;
+	padding: 10px;
 	text-align: center;
 	display: none;
 	position: fixed;
