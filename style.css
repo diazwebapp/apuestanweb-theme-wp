@@ -157,6 +157,7 @@ textarea:focus{
 	background-color: #fff;
 	text-indent: 0;
   }
+  /*///////////////*/
   .side_box .box_header{
 	background: #051421;
 	border-radius: 1rem 1rem 0 0;
@@ -188,6 +189,28 @@ textarea:focus{
 	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
 
 }
+.btn_groups{
+	display: flex;
+	align-items: center;
+	margin-top: 2.4rem;
+}
+.btn_groups .button{
+	font-size: 1.4rem;
+	width: 100%;
+	min-width: auto;
+	box-shadow: none;
+	padding: 0.8rem 1.2rem 0.9rem;
+}
+.btn_groups .button:first-child{
+	background-color: #DDEAFD;
+	color: #0558CB;
+	margin-right: 2rem;
+}
+.btn_groups .button:first-child:hover{
+	color: #fff;
+	background-color: #0558CB;
+}
+/*//////////////
 /*return-to-top START CSS*/
 .back-to-top {
 	padding: 10px;
