@@ -10,6 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropdowns = document.querySelectorAll('.dropdown-toggle');
     const btnQuitarNotificaciones = document.querySelector('p#btn_quitar_notificaciones');
     const modalAgeTerms = document.getElementById('modal_age_terms');
+    let select_odds = document.querySelector('select#select_odds_format');
+
+    // Changue odds format
+    select_odds.addEventListener('change', function(e) {
+        handler_odds_format(e);
+    });
 
     // Función de throttling
     const throttle = (callback, delay) => {
@@ -201,3 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+function handler_odds_format(e){
+    let format = e.target.value
+    document.location = '?odds_format='+format
+}

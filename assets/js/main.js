@@ -201,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 ////////////////////metodos//////////////////
 function handler_odds_format(e){
+    alert('')
     let format = e.target.value
     document.location = '?odds_format='+format
 }

@@ -132,7 +132,7 @@ add_shortcode('custom_slider', 'custom_slider_shortcode');
 
 // Registrar y cargar CSS y JS solo donde se usa el shortcode
 function custom_slider_enqueue_scripts() {
-    if (!is_singular() && !has_shortcode(get_post()->post_content, 'custom_slider')) {
+    if (!has_shortcode(get_post()->post_content, 'custom_slider')) {
         return; // Salir si el shortcode no está en la página actual
     }
 
