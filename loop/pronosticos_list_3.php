@@ -240,22 +240,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                         </div>
                    </div>
             </div>";
-            //         <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='false'>
-            //             <div class='panel panel-default'>
-            //             <div class='panel-heading accor_btn' role='tab' id='headingOne'>
-            //                 <button class='d-flex align-items-center justify-content-between'type='button' data-toggle='collapse' data-target='#$idevent' aria-expanded='false'>
-            //                     <i class='fal fa-angle-down'></i>
-            //                 </button>
-            //             </div>
-
-            //             <div id='$idevent' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
-            //                 <div class='panel-body text-break'>
-            //                 <p>$content_without_headers</p> 
-            //                 </div>
-            //             </div>
-            //         </div>
-            //       </div>          
-            // 
+            
                 
 
     if($vip and  $estado_usuario == "permitido"){
