@@ -77,7 +77,7 @@ class w_bookmakers extends WP_Widget{
                             </div>
                             <div class="ratings">
                                 <span>'.$rating_float.'</span>
-                                <i>⭐</i>
+                                <span>⭐</span>
                             </div>
                         </div>
                         
