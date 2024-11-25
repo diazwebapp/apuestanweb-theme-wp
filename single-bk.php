@@ -65,7 +65,7 @@ $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/as
                             <?php 
                                 if(isset($bookmaker["rating"])):
                                     for($i=1; $i<=5;$i++):
-                                        echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >⭐</span>';
+                                        echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
                                     endfor;
                                 endif;
                             ?>
@@ -91,7 +91,7 @@ $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/as
                                         <?php 
                                             if(isset($bookmaker["rating"])):
                                                 for($i=1; $i<=5;$i++):
-                                                    echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >⭐</span>';
+                                                    echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
                                                 endfor;
                                             endif;
                                         ?>
@@ -196,7 +196,7 @@ $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/as
                             <?php
                                 if(isset($bookmaker["general_feactures"]) and count($bookmaker["general_feactures"]) > 0):
                                     foreach($bookmaker["general_feactures"] as $feacture):
-                                        echo '<p class="d-flex justify-content-between my-2 text-uppercase" style="color:black;">'.$feacture['feacture'].' <span style="color:black;" >'.$feacture['points'].' ⭐</span></p>';
+                                        echo '<p class="d-flex justify-content-between my-2 text-uppercase" style="color:black;">'.$feacture['feacture'].' <span style="color:black;" >'.$feacture['points'].' ★</span></p>';
                                     endforeach;
                                 endif;
                             ?>
