@@ -3,9 +3,12 @@ get_header();
 
 
 $location = json_decode($_SESSION["geolocation"]);
+if (empty($location) || !isset($location->country_code)) { die("<p>Error: Geolocation data is missing or invalid.</p>"); }
 #Detectamos si está configurado el pais
 $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
+if (empty($aw_system_country) || !isset($aw_system_country->id)) { die("<p>Error: Country system data is missing or invalid.</p>"); }
 $bookmaker_detected = aw_detect_bookmaker_on_country($aw_system_country->id,get_the_ID());
+if (empty($bookmaker_detected)) { die("<p>Error: Bookmaker detection failed for the selected country.</p>"); }
 if(isset($bookmaker_detected)): #si esta configurado en el pais
     $bookmaker['name'] = get_the_title( get_the_ID() );
 
@@ -35,6 +38,7 @@ if(isset($bookmaker_detected)): #si esta configurado en el pais
     endif;     
 else: #si esta configurado el pais, pero no existen bookmakers buscamos un WW
     $aw_system_country = aw_select_country(["country_code"=>"WW"]);
+if (empty($aw_system_country) || !isset($aw_system_country->id)) { die("<p>Error: Country system data is missing or invalid.</p>"); }
     $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
 endif;
 
@@ -44,9 +48,9 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
 $author_name = get_the_author_meta("display_name" );
 $author_id =  get_the_author_meta('ID') ;
 $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
-$avatar_url = get_avatar_url($author_id);
+$avatar_url = get_the_author_meta( 'profile_image',$author_id );
 $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
-   
+   var_dump($author_id);
 ?>
 <main>
 <div class="container">
@@ -102,7 +106,7 @@ $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/as
                                     </div>
                                     <div class="col-12 my-4 special-single-bk-button"> 
                                                                        
-                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="visit-site-button" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <i class="fa fa-external-link ml-2" aria-hidden="true"></i></a>                                    
+                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="btn btn-success btn-lg" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <span class="ml-2" aria-hidden="true">🡵</span></a>                                    
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +151,7 @@ $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/as
             <div class="row">
                                     <div class="col-sm-12">
                                         <div class="author-info d-flex align-items-center m-3 mt-4">
-                                        <img src="<?php echo $avatar ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
+                                        <img src="<?php echo esc_attr($avatar) ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
                                         <div class="author-details d-flex flex-column">
                                             <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
                                             <time datetime="<?php echo $post_date ?>" class="post-date mb-1"><?php echo __("Actualizado $post_date"); ?></time>

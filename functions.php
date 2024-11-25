@@ -697,3 +697,73 @@ function inject_dynamic_css($html, $used_classes) {
     // Echo el HTML modificado
     echo $html;
 }
+
+/////////////////////Imagen de perfil de usuarios////////////////
+// Añadir un campo de imagen de perfil al perfil de usuario
+function agregar_campo_imagen_perfil( $user ) {
+?>
+    <h3><?php _e("Imagen de perfil personalizada", "blank"); ?></h3>
+    <table class="form-table">
+        <tr>
+            <th><label for="profile_image"><?php _e("Subir imagen de perfil", "blank"); ?></label></th>
+            <td>
+                <input type="hidden" name="profile_image" id="profile_image" value="<?php echo esc_attr( get_the_author_meta( 'profile_image', $user->ID ) ); ?>" />
+                <input type="button" class="button" value="<?php _e('Subir imagen', 'blank'); ?>" id="upload-profile-image" />
+                <div id="profile_image_preview" style="margin-top: 10px;">
+                    <?php if ( get_the_author_meta( 'profile_image', $user->ID ) ) : ?>
+                        <img src="<?php echo esc_attr( get_the_author_meta( 'profile_image', $user->ID ) ); ?>" style="max-width: 150px; height: auto;">
+                    <?php endif; ?>
+                </div>
+            </td>
+        </tr>
+    </table>
+<?php
+}
+add_action( 'show_user_profile', 'agregar_campo_imagen_perfil' );
+add_action( 'edit_user_profile', 'agregar_campo_imagen_perfil' );
+
+// Guardar la imagen de perfil personalizada
+function guardar_imagen_perfil( $user_id ) {
+    if ( !current_user_can( 'edit_user', $user_id ) ) {
+        return false;
+    }
+    update_user_meta( $user_id, 'profile_image', $_POST['profile_image'] );
+}
+add_action( 'personal_options_update', 'guardar_imagen_perfil' );
+add_action( 'edit_user_profile_update', 'guardar_imagen_perfil' );
+
+// Incluir el script de la biblioteca de medios sin jQuery
+function incluir_script_media_uploader() {
+    if ( isset( $_GET['user_id'] ) || strstr( $_SERVER['REQUEST_URI'], 'profile.php' ) ) {
+        wp_enqueue_media();
+        ?>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                var uploadButton = document.getElementById('upload-profile-image');
+                var profileImageInput = document.getElementById('profile_image');
+                var profileImagePreview = document.getElementById('profile_image_preview');
+
+                uploadButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var imageFrame = wp.media({
+                        title: 'Subir imagen de perfil',
+                        button: {
+                            text: 'Usar esta imagen'
+                        },
+                        multiple: false
+                    });
+
+                    imageFrame.on('select', function() {
+                        var attachment = imageFrame.state().get('selection').first().toJSON();
+                        profileImageInput.value = attachment.url;
+                        profileImagePreview.innerHTML = '<img src="' + attachment.url + '" style="max-width: 150px; height: auto;">';
+                    });
+
+                    imageFrame.open();
+                });
+            });
+        </script>
+        <?php
+    }
+}
+add_action( 'admin_enqueue_scripts', 'incluir_script_media_uploader' );

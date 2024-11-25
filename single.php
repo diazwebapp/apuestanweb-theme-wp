@@ -31,7 +31,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                 $author_name = get_the_author_meta("display_name" );
                                 $author_id =  get_the_author_meta('ID') ;
                                 $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
-                                $avatar_url = get_avatar_url($author_id);
+                                $avatar_url = get_the_author_meta( 'profile_image',$author_id );
                                 $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
                             ?>
                                     <h1 class="blog_title"><?php echo $title ?></h1>

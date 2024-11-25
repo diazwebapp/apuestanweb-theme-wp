@@ -11,7 +11,7 @@ function shortcode_user_stats($atts)
         $nulled = get_the_author_meta("forecast_nulled", $id );
         $rank = get_the_author_meta("rank", $id );
         $display_name = get_the_author_meta("display_name", $id );
-        $avatar_url = get_avatar_url($id);
+        $avatar_url = get_the_author_meta( 'profile_image',$id );
         $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
         $stats = get_user_stats($id,true);
         

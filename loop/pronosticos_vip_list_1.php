@@ -40,7 +40,7 @@ if ($sport_term) {
     $failed = get_the_author_meta("forecast_failed", $author_id );
     $nulled = get_the_author_meta("forecast_nulled", $author_id );
     $display_name = get_the_author_meta("display_name", $author_id );
-    $avatar_url = get_avatar_url($author_id);
+    $avatar_url = get_the_author_meta( 'profile_image',$author_id );
     $flechita_up = get_template_directory_uri(  ) . '/assets/img/love2.png';
     $flechita_down = get_template_directory_uri(  ) . '/assets/img/love1.png';
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';

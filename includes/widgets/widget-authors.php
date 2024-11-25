@@ -35,7 +35,7 @@ class w_authors extends WP_Widget {
                 $rank = $stats["tvalue"];
                 $latest = floatval($acerted) + floatval($failed) + floatval($nulled);
                 $display_name = get_the_author_meta("display_name", $user->ID );
-                $avatar= get_avatar_url($user->ID);
+                $avatar= get_the_author_meta( 'profile_image',$user->ID );
                 $key++;
                 $link = PERMALINK_PROFILE.'?profile='.$user->ID;
                 $flechita_indicadora = "";

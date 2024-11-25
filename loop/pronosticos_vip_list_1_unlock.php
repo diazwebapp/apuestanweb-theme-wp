@@ -56,7 +56,7 @@ if ($teams['team1'] and $teams['team2'] ):
     $display_name = get_the_author_meta("display_name", $author_id );
     $rank = get_the_author_meta("rank", $author_id );
     $content = get_the_content(false,false,$args["forecast"]->ID);
-    $avatar_url = get_avatar_url($author_id);
+    $avatar_url = get_the_author_meta( 'profile_image',$author_id );
     $flechita_up = get_template_directory_uri(  ) . '/assets/img/love2.png';
     $flechita_down = get_template_directory_uri(  ) . '/assets/img/love1.png';
     $coronita = get_template_directory_uri(  ) . '/assets/img/icon8.svg';

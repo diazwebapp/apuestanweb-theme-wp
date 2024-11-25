@@ -35,7 +35,7 @@ function create_bk() {
 		'label'               => __( 'Bookmaker', 'jbetting' ),
 		'description'         => __( 'Bookmaker', 'jbetting' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'comments' ),
+		'supports'            => array( 'title', 'editor', 'author', 'comments' ),
 		'hierarchical'        => false,
 		'public'              => true,
 		'show_ui'             => true,
