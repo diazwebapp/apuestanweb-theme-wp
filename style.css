@@ -162,8 +162,6 @@ textarea:focus{
     background: #051421;
     border-radius: 1rem 1rem 0 0;
     padding: 1.6rem 2rem;
-    display: flex;
-    align-items: center;
     font-size: 1.8rem;
     font-weight: 700;
     color: #FFFFFF;
@@ -205,7 +203,42 @@ textarea:focus{
     margin-top: 1.5rem;
     box-shadow: none;
 }
+.top_box3{
+	padding: 1.8rem 2rem;
+	display: flex;
+	align-items: center;
+}
+.top_box3_left_content{
+	flex-basis: 70%;
+	max-width: 70%;
+}
+.top_box3_left_content:hover{
+	text-decoration: underline;
+}
 
+.top_box3_right_content{
+	flex-basis: 30%;
+	max-width: 30%;
+	padding-left: 1rem;
+}
+.top_box3_img{
+	display: flex;
+	align-self: center;
+}
+.top_box3_img p{
+	font-size: 12px;
+	line-height: 1.2;
+	color: #00203A;
+	padding-left: 1.5rem;
+	margin: auto;
+}
+.top_box3_img2{
+	margin-top: 1.5rem;
+}
+.top_box3_right_content p{
+	font-size: 1.2rem;
+	padding-top: 1rem;
+}
 /*///////////////*/
 /*//////////////
 /*return-to-top START CSS*/

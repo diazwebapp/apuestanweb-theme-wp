@@ -20,7 +20,50 @@ endif;
 ?>
 
 <main>
+<div class="side_box mt_30">
+  <div class="box_header">Casas de apuestas</div>
+  <div class="box_body">
+    <div class="top_box">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="top_serial"> <span class="serial">1</span> 
+          <img src="https://www.apuestan.com/wp-content/uploads/2023/12/logo-1.webp" width="80" height="20" class="img-fluid" alt="" style="background:#000000;padding: 6px;border-radius: 6px;width: 10rem;height: 3.3rem;">
+        </div>
+        <div class="ratings"> 
+          <span>5</span> 
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+      <div class="btn_groups"> 
+        <a href="https://www.apuestan.com/casas-apuestas/bc-game-analisis-y-bonos-2023/" class="button">Revision</a> 
+        <a rel="nofollow noopener noreferrer" target="_blank" href="https://www.apuestan.com/link/bcgame" class="button">Apostar</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="side_box mt-5">
+                            <div class="box_header">
+                                PRONOSTICOS
+                            </div>
+                            <div class="box_body">   <a href="http://localhost/jeff-local/prediccion/pronostico-cleveland-cavaliers-vs-memphis-grizzlies-01-02-2024-nba-4/" class="top_box top_box3">
 
+                            <div class="top_box3_right_content league_box1">
+                                NBA                             
+                            </div>
+                    
+                            <div class="top_box3_left_content">
+                                <div class="top_box3_img">
+                                    <img width="25px" height="25px" src="http://localhost/jeff-local/wp-content/uploads/2024/11/cleveland-cavaliers-logo.svg" alt="Cleveland Cavaliers">
+                                    <p>Cleveland Cavaliers</p>
+                                </div>
+                                <div class="top_box3_img top_box3_img2">
+                                    <img width="25px" height="25px" src="http://localhost/jeff-local/wp-content/uploads/2024/11/memphis-grizzlies-logo.svg" alt="Memphis Grizzlies">
+                                    <p>Memphis Grizzlies</p>
+                                </div>
+                            </div>
+                            
+
+                            <i class="fas fa-chevron-right"></i>
+                       </a> </div> </div>
     <div class="blog_hero_area">
         <div class="container">
             <div class="blog_bg" style="background-image: url(<?php echo $thumb ?>);">
