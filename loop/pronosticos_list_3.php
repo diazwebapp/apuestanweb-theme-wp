@@ -95,7 +95,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                 <div class='event2_top_box_wrapper event2_top_box_wrapper3'>
                                     <div class='event2_top_box'>
                                         <div class='event_top_left'>
-                                            <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
+                                            <img src='{$teams['team1']['logo']}' width='36' height='36' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
                                         </div>
                                         <div class='event_top_middle'>
                                         <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
@@ -104,7 +104,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                         </div>
                                         <div class='event_top_right'>
 
-                                            <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
+                                            <img src='{$teams['team2']['logo']}' width='36' height='36' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                         </div>
                                     </div>
                                     <span><a href='$permalink'>                               
@@ -138,7 +138,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                             <div class='event2_top_box_wrapper event2_top_box_wrapper3'>
                                 <div class='event2_top_box'>
                                     <div class='event_top_left'>
-                                        <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
+                                        <img src='{$teams['team1']['logo']}' width='36' height='36' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
                                     </div>
                                     <div class='event_top_middle'>
                                         <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
@@ -146,7 +146,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                         <p class='p2'><time datetime='".$date->format('Y-m-d H:i:s')."'>".date_i18n('D, d M Y', strtotime($date->format('Y-m-d')))."</time></p>                                    
                                     </div>
                                     <div class='event_top_right'>
-                                        <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
+                                        <img src='{$teams['team2']['logo']}' width='36' height='36' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                     </div>
                                 </div>
                                 
@@ -202,7 +202,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                         <div class='event2_top_box_wrapper'>
                             <div class='event2_top_box'>
                                 <div class='event_top_left'>
-                                    <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
+                                    <img src='{$teams['team1']['logo']}' width='36' height='36' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
                                 </div>
                                 <div class='event_top_middle'>
                                     <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
@@ -210,7 +210,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                     <p class='p2'><time datetime='".$date->format('Y-m-d H:i:s')."'>".date_i18n('D, d M Y', strtotime($date->format('Y-m-d')))."</time></p>                                    
                                 </div>
                                 <div class='event_top_right'>
-                                    <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
+                                    <img src='{$teams['team2']['logo']}' width='36' height='36' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                 </div>
                             </div>
                             <div class='text-center'>
