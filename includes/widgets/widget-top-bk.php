@@ -77,13 +77,13 @@ class w_bookmakers extends WP_Widget{
                             </div>
                             <div class="ratings">
                                 <span>'.$rating_float.'</span>
-                                <span style="color:red;" class="text-warning" >★</span>
+                                <span class="text-warning" >★</span>
                             </div>
                         </div>
                         
                         <div class="btn_groups">
-                            <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary p-3">Revision</a>
-                            <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary p-3">Apostar</a>
+                            <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary p-3 font-weight-bold">Revision</a>
+                            <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary p-3 font-weight-bold">Apostar</a>
                         </div>
                     </div>';
             endforeach;

@@ -171,7 +171,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                         </a>
                                     </div>
                                     <div >
-                                        <a href='{$bookmaker['ref_link']}' class='p-3 btn btn-primary' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
+                                        <a href='{$bookmaker['ref_link']}' class='p-3 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                     </a>
                                 </div>
                                 <div >
-                                    <a href='{$bookmaker['ref_link']}' class='p-3 btn btn-primary' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' class='p-3 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
