@@ -23,7 +23,7 @@ function html_form_new_payment_method(){
                         
                         <div class="form-group mb-2 col-md-2">
                             <label>icon class</label>
-                            <input type="text" name="icon_class" class="form-control" placeholder="fa fa-star" />
+                            <input type="text" name="icon_class" class="form-control" placeholder="★" />
                         </div>
                         <div class="form-group mb-2 col-md-2 pt-3">
                             <div class="custom-control custom-control custom-switch mt-4">
