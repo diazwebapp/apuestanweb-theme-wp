@@ -76,7 +76,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
     $estrellas = "";
     if(isset($tvalue)):
         for($i=1; $i<=5;$i++):
-            $estrellas .=  '<i style="font-size:15px;" class="fa fa-star '.($i <= intval($tvalue) ? "text-warning" : "").' px-1 py-1 align-text-bottom" ></i>';
+            $estrellas .=  '<span style="font-size:15px;" class="'.($i <= intval($tvalue) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >⭐</span>';
         endfor;
     endif;
 
