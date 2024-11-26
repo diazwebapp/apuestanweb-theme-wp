@@ -46,149 +46,151 @@ endif;
 $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
 $author_name = get_the_author_meta("display_name" );
-$author_id =  get_the_author_meta('ID') ;
-$author_url = PERMALINK_PROFILE.'?profile='.$author_id;
-$avatar_url = get_the_author_meta( 'profile_image',$author_id );
-$avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
-   var_dump($author_id);
 ?>
 <main>
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
-            <h1 class="title mt-5 pt-4"><?php echo $bookmaker['name'] ?></h1>
-            
-            <div class="container my-4"> 
-                <!-- Heading -->
-                <div class="row">
-
-                    <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
-                        <!-- rating movil-->
-                        <div class="d-md-none text-center bk-box-mb-left">
-                            <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
-                            <?php 
-                                if(isset($bookmaker["rating"])):
-                                    for($i=1; $i<=5;$i++):
-                                        echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
-                                    endfor;
-                                endif;
-                            ?>
-                        </div>
-                        <img width="130" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
-                    </div>
-                    <div class="col-md-12 col-lg-9 bk-box">
+        <?php 
+            if(have_posts(  )){
+                    
+                while (have_posts()):
+                    the_post(  ); 
+                    $author_id =  get_the_author_meta('ID') ;
+                    $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
+                    $avatar_url = get_the_author_meta( 'profile_image',$author_id );
+                    $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
+            ?>
+                <div class="col-lg-9">
+                    <h1 class="title mt-5 pt-4"><?php echo $bookmaker['name'] ?></h1>
+                    
+                    <div class="container my-4"> 
+                        <!-- Heading -->
                         <div class="row">
 
-                            <div class="col-md-12 col-lg-7" >
-                                <div class="row text-center">                        
-                                    <div class="col-md-12 d-md-block d-lg-none my-5" >
-                                        <small style="font-size:2rem;" class="align-middle" >acepts player from </small>
-                                        <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 my-5">
-                                        <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
-                                        <span class="text-uppercase text-success align-middle ml-3" style="font-size:1.7rem;"> Calificación</span>                            
-                                    </div>
-                                    <!-- rating -->
-                                    <div class="col-md-12 col-lg-6 d-none d-lg-block my-5" >
-                                        <span class="text-uppercase text-body " style="font-size:2.2rem;margin-top:2rem;" ><?php echo $bookmaker["rating"]?></span>
-                                        <?php 
-                                            if(isset($bookmaker["rating"])):
-                                                for($i=1; $i<=5;$i++):
-                                                    echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
-                                                endfor;
-                                            endif;
-                                        ?>
-                                    </div>
-            
-                                    <div class="col-12 my-4 special-single-bk-button" >
-                                        <b style="font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
-                                    </div>
-                                    <div class="col-12 my-4 special-single-bk-button"> 
-                                                                       
-                                        <a href="<?php echo $bookmaker["ref_link"] ?>" class="btn btn-success btn-lg" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <span class="ml-2" aria-hidden="true">🡵</span></a>                                    
-                                    </div>
+                            <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
+                                <!-- rating movil-->
+                                <div class="d-md-none text-center bk-box-mb-left">
+                                    <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
+                                    <?php 
+                                        if(isset($bookmaker["rating"])):
+                                            for($i=1; $i<=5;$i++):
+                                                echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
+                                            endfor;
+                                        endif;
+                                    ?>
                                 </div>
+                                <img width="130" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                             </div>
-                            <div class="col-md-12 col-lg-5">
+                            <div class="col-md-12 col-lg-9 bk-box">
                                 <div class="row">
-        
-                                    <div class="col-12 text-right d-none d-sm-block my-5">
-                                        <small style="font-size:1.6rem;" class="align-middle">acepts player from </small>
-                                        <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
-                                    </div>
-                                    <div class="col-12 d-none d-sm-block my-2">
-                                        <?php
-                                            if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
-                                                foreach($bookmaker["feactures"] as $feacture):
-                                                    echo '<p style="color:#00203A;" ><i class="fal fa-check-square"></i> '.$feacture['feacture'].' </p>';
-                                                endforeach;
-                                            endif;
-                                        ?>
-                                    </div>
-                                    <div class="col-12 my-3 text-center">
-                                        <?php 
-                                            if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
-                                                foreach ($bookmaker["payment_methods"] as $key => $payment) {
-                                                    if($key < 3):
-                                                        echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
+
+                                    <div class="col-md-12 col-lg-7" >
+                                        <div class="row text-center">                        
+                                            <div class="col-md-12 d-md-block d-lg-none my-5" >
+                                                <small style="font-size:2rem;" class="align-middle" >acepts player from </small>
+                                                <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
+                                            </div>
+                                            <div class="col-md-12 col-lg-6 my-5">
+                                                <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
+                                                <span class="text-uppercase text-success align-middle ml-3" style="font-size:1.7rem;"> Calificación</span>                            
+                                            </div>
+                                            <!-- rating -->
+                                            <div class="col-md-12 col-lg-6 d-none d-lg-block my-5" >
+                                                <span class="text-uppercase text-body " style="font-size:2.2rem;margin-top:2rem;" ><?php echo $bookmaker["rating"]?></span>
+                                                <?php 
+                                                    if(isset($bookmaker["rating"])):
+                                                        for($i=1; $i<=5;$i++):
+                                                            echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
+                                                        endfor;
                                                     endif;
-                                                }
-                                                
-                                            }
-                                        ?>
-                                        <i class="fal fa-plus"></i>
+                                                ?>
+                                            </div>
+                    
+                                            <div class="col-12 my-4 special-single-bk-button" >
+                                                <b style="font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
+                                            </div>
+                                            <div class="col-12 my-4 special-single-bk-button"> 
+                                                                            
+                                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="btn btn-success btn-lg" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <span class="ml-2" aria-hidden="true">🡵</span></a>                                    
+                                            </div>
+                                        </div>
                                     </div>
-        
+                                    <div class="col-md-12 col-lg-5">
+                                        <div class="row">
+                
+                                            <div class="col-12 text-right d-none d-sm-block my-5">
+                                                <small style="font-size:1.6rem;" class="align-middle">acepts player from </small>
+                                                <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
+                                            </div>
+                                            <div class="col-12 d-none d-sm-block my-2">
+                                                <?php
+                                                    if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
+                                                        foreach($bookmaker["feactures"] as $feacture):
+                                                            echo '<p style="color:#00203A;" ><i class="fal fa-check-square"></i> '.$feacture['feacture'].' </p>';
+                                                        endforeach;
+                                                    endif;
+                                                ?>
+                                            </div>
+                                            <div class="col-12 my-3 text-center">
+                                                <?php 
+                                                    if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
+                                                        foreach ($bookmaker["payment_methods"] as $key => $payment) {
+                                                            if($key < 3):
+                                                                echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
+                                                            endif;
+                                                        }
+                                                        
+                                                    }
+                                                ?>
+                                                <i class="fal fa-plus"></i>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
-                        </div>
+                        </div>               
                     </div>
-
-                </div>               
-            </div>
-            <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="author-info d-flex align-items-center m-3 mt-4">
-                                        <img src="<?php echo esc_attr($avatar) ?>" class="author-img img-fluid rounded-circle mr-3" alt="">
-                                        <div class="author-details d-flex flex-column">
-                                            <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
-                                            <time datetime="<?php echo $post_date ?>" class="post-date mb-1"><?php echo __("Actualizado $post_date"); ?></time>
-                                        </div>
-                                        </div>
-                                    </div>
-             </div>
-            <!-- Content -->
-            <?php if ( !$disable_table ): ?>
-                                                <!-- Add the button to toggle the table of contents -->
-                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
-                                                    <?php echo __('Contenido de la reseña', 'jbetting' );?>
-                                                    <i class="fas fa-angle-down"></i>
-                                                </button>
-
-                                                <!-- Add the table of contents -->
-                                                <div class="collapse" id="table-of-contents">
-                                                    <div class="card mt-3">
-                                                        <div class="card-header">
-                                                        <?php echo __('Tabla de Contenido', 'jbetting' );?>
-                                                        </div>
-                                                        <ul class="list-group list-group-flush">
-                                                        </ul>
-                                                    </div>
+                    
+                        
+                    <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="author-info d-flex align-items-center m-3 mt-4">
+                                                <img src="<?php echo esc_attr($avatar) ?>" class="rounded-circle mr-3" width="40" height="40" alt="Foto <?php echo $author_name ?>">
+                                                <div class="author-details d-flex flex-column">
+                                                    <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
+                                                    <time datetime="<?php echo $post_date ?>" class="post-date mb-1"><?php echo __("Actualizado $post_date"); ?></time>
                                                 </div>
-            <?php endif; ?>
-            <div class="single_event_content text-break">
-                <?php 
-                    if(have_posts(  )){
-                        while (have_posts()):
-                            the_post(  );
-                            the_content() ;
-                        endwhile;
-                    }
-                ?>
-            </div>
-        </div>
+                                                </div>
+                                            </div>
+                    </div>
+                    <!-- Content -->
+                    <?php if ( !$disable_table ): ?>
+                                                        <!-- Add the button to toggle the table of contents -->
+                                                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
+                                                            <?php echo __('Contenido de la reseña', 'jbetting' );?>
+                                                            <i class="fas fa-angle-down"></i>
+                                                        </button>
+
+                                                        <!-- Add the table of contents -->
+                                                        <div class="collapse" id="table-of-contents">
+                                                            <div class="card mt-3">
+                                                                <div class="card-header">
+                                                                <?php echo __('Tabla de Contenido', 'jbetting' );?>
+                                                                </div>
+                                                                <ul class="list-group list-group-flush">
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                    <?php endif; ?>
+                    <div class="single_event_content text-break">
+                        
+                    <?php  the_content() ; ?>
+                </div>
+        <?php endwhile; } ?>
+    </div>
 
         <div class="col-lg-3 mt-3">
             <div class="row mt-5">
