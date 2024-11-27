@@ -103,7 +103,7 @@ echo "<div class='owl-item' >
                         </div>
                         <img width='60px' height='60px' src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
                     </div>                            
-                            <div class='team_box mt_25'>
+                            <div class='team_box mt-3'>
                                 <p> $p1 </p>
                                 <div class='w-100'>
                                     <p> $x </p>

@@ -34,7 +34,7 @@ if(!$custom_h1)
 		<div class="event_area pb_90">
 			<div class="container">
 				<div class="row">
-					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-9 mt_25'; endif;?>" >
+					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-9 mt-3'; endif;?>" >
 					<div class="title_wrap">
 						<h1 class="title mt-5 order-lg-1"><?php echo $custom_h1 ?></h1>
 

@@ -39,13 +39,17 @@ $title = get_the_title($args["post"]->ID);
 echo "<div class='col-lg-3 col-6 mt-5'> ";
 echo "<div class='tbox'>
 <div>
-    <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='timg img-fluid' alt='$title'  title='$title'>
-</div>
+    <img width='100' height='30' style='
+    object-fit: contain;
+    background: #000000;
+    padding: 6px;
+    border-radius: 6px;' src='$image_png' alt='$title'  title='$title'>
+</div> 
     <div class='rating mt_15'> ";
         echo $stars; 
 echo "</div>
     <p class='mt-5'>{$bonus["country_bonus_slogan"]}</p>
-    <a href='{$bonus["country_bonus_ref_link"]}' class='button mt_25 w-100' rel='nofollow'>apostar</a>
+    <a href='{$bonus["country_bonus_ref_link"]}' class='btn btn-primary btn-lg mt-3 btn-block font-weight-bold' style='font-size:1.8rem;' rel='nofollow'>apostar</a>
     <p class='sub_title mt-3'><a href=' $permalink ' >Revision </a></p>
 </div>";
 echo "</div>";

@@ -8,7 +8,7 @@ $text_vip_link = !empty($params['text_vip_link']) ? $params['text_vip_link'] : '
 echo "<div class='event_area'>
         <div class='container'>
             <div class='row align-items-center'>
-            <div class='col-lg-8 mt_25'>   
+            <div class='col-lg-8 mt-3'>   
                 <h1 class='title'>{$params['title']}</h1> ";            
                 echo do_shortcode("[related-forecasts num='{$params['num']}' league='all']");	
         echo "</div>
@@ -54,7 +54,7 @@ echo "<div class='event_area'>
             </div>
 </div>";
 
-/* <div class='col-lg-4 mt_25'>
+/* <div class='col-lg-4 mt-3'>
 <div class='vip_box' style='background-image:url(".get_template_directory_uri() . '/assets/img/vip.png'.");'>
     <img src='".get_template_directory_uri() . '/assets/img/apnpls.svg'."' alt='vip'>
     <h3>$text</h3>

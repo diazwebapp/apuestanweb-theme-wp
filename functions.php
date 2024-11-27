@@ -236,21 +236,18 @@ function enqueuing_admin_scripts(){
  
 add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
    
-      
-function draw_rating($rating)
-{
+function draw_rating($rating) {
     $ret = '';
-    $count = 1;
-    while ($count <= 5) {
-        
-        $ret .= '<i class="fas fa-star" '.($count <= $rating ? 'style="color:#F4D31F;"' : "").' ></i>';
-       
-        $count++;
+    for ($count = 1; $count <= 5; $count++) {
+        $style = 'font-size:22px;';
+        if ($count <= $rating) {
+            $style .= ' color:#F4D31F;';
+        }
+        $ret .= '<span style="'.$style.'">★</span>';
     }
-    
-
     return $ret;
 }
+
 
 
 

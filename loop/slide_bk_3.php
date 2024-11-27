@@ -48,7 +48,7 @@ echo "<div class='tbox'>
         echo $stars; 
 echo "</div>
     <p class='h-static mt-5 '>{$bonus["country_bonus_slogan"]}</p>
-    <a href='{$bonus["country_bonus_ref_link"]}' class='button mt_25 w-100' rel='nofollow noreferrer noopener' target='_blank'>apostar</a>
+    <a href='{$bonus["country_bonus_ref_link"]}' class='button mt-3 w-100' rel='nofollow noreferrer noopener' target='_blank'>apostar</a>
     <p class='sub_title mt-3'><a href=' $permalink ' >Revision </a></p>
 </div>";
 echo "</div>";

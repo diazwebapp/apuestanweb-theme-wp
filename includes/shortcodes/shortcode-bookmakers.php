@@ -87,3 +87,12 @@ function shortcode_bookmaker($atts)
 
 
 add_shortcode('bookmakers', 'shortcode_bookmaker');
+
+// Asegurarse de que el CSS solo se cargue si es necesario
+function load_bookmakers_styles() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'bookmakers') || is_single())) {
+        wp_enqueue_style('s-bookmakers-css', get_template_directory_uri() . '/assets/css/bookmakers-styles.css');
+    }
+}
+add_action('wp_enqueue_scripts', 'load_bookmakers_styles');

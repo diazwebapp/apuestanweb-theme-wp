@@ -1,0 +1,158 @@
+/*bookmaker area*/
+.bookmaker_wrapper{
+	padding-top: 5rem;
+}
+.bookmaker_heading h2{
+	font-size: 4.8rem;
+	line-height: 1.33;
+	color: #00203A;
+	font-weight: 700;
+}
+.bookmaker_box_wrapper{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 5rem;
+	box-shadow: 0px 5px 30px #A2A6B126;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.bookmaker_left_content{
+	display: flex;
+	align-items: center;
+	width: 520px;
+}
+.bookmaker_logo_box{
+	background: linear-gradient(135deg, #0558CB 0%, #023986 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 18.3rem;
+	width: 19.3rem;
+	padding: 1.5rem;
+}
+.bookmaker_left_text{
+	padding-left: 5rem;
+}
+.bookmaker_left_heading{
+	display: flex;
+	align-items: center;
+}
+.bookmaker_left_heading h2{
+	font-size: 2.2rem;
+	line-height: 1.2;
+	font-weight: 500;
+	color: #00203A;
+	text-transform: uppercase;
+	padding-right: 4.5rem;
+}
+.bookmaker_left_heading h2:hover{
+	text-decoration: underline;
+
+}
+.bookmaker_left_check {
+    display: flex;
+    align-items: center;
+    width: 32rem;
+    text-align: center;
+}
+.bookmaker_left_check p{
+	font-size: 1.8rem;
+	line-height: 1.2;
+	font-weight: 500;
+	color: #3E9A19;
+	padding-left: 1rem;
+}
+.bookmaker_left_last_text{
+	padding-top: 2.5rem;
+}
+.bookmaker_left_last_text p{
+	font-size: 1.6rem;
+	line-height: 1.31;
+	font-weight: 400;
+	color: #00203A;
+}
+.bookamker_rating_box {
+	display: flex;
+}
+.bookamker_rating_box p{
+	font-size: 2rem;
+	line-height: 1.2;
+	color: #00203A;
+	font-weight: 500;
+}
+.bookmaker_rating_list{
+	display: flex;
+	align-items: center;
+	margin-left: 1.5rem;
+}
+.bookmaker_rating_list li{
+	margin-right: 0.7rem;
+}
+.bookmaker_rating_list li i{
+	color: #F4D31F;
+}
+.bookmaker_rating_list li:last-child{
+	margin-right: 0;
+}
+.bookmaker_right_btn a{
+	margin-top: 2rem;
+	box-shadow: 0px 3px 15px #0B69EC40;
+	background-color: #0558CB;
+	border-color: #0558CB;
+}
+.bookmaker_logo_box2{
+	background: linear-gradient(135deg, #FFD826 0%, #A79324 100%);
+}
+.bookmaker_logo_box3{
+	background: #03B0F4 !important;
+}
+.bookmaker_rating_list2 li:last-child i{
+	color: #E4E6E8;
+}
+.bookmaker_logo_box4{
+	background: #DC213E;
+}
+.tbox{
+	background: #FFFFFF;
+   box-shadow: 0 1.5rem 3.0rem #efefef;
+   padding: 5px 10px;
+   text-align: center;
+}
+.tbox > p{
+
+	color: #000409db;
+	font-weight: 600;
+}
+@media (max-width: 1199.98px) { 
+	.tbox {
+	    padding: 6.8rem 4rem 5.5rem;
+	}
+}
+/*Medium devices (tablets, 767px and down)*/
+@media (max-width: 767.98px) {
+    .bookmaker_box_wrapper {
+	    padding-right: 1.5rem;
+	}
+    .bookmaker_box_wrapper {
+	    flex-direction: column;
+	    padding: 1.2rem 3rem 4rem;
+		box-shadow: inset 0px 3px 6px #40404029, 0px 3px 6px #00000029;
+	}
+    .bookmaker_left_content {
+	    flex-direction: column;
+		width: 20rem;
+	}
+}
+/*Medium devices (tablets, 575px and down)*/
+@media (max-width: 575.98px) {
+	.tbox .rating{
+		margin-top: 1rem;
+	}
+	.tbox .button{
+		margin-top: 2rem;
+	}
+	.tbox {
+	    padding: 3.8rem 2rem 3.5rem;
+	}
+}
