@@ -434,7 +434,70 @@ a.panel-button {
 	border-radius: 20px;       /* roundness of the scroll thumb */
 	border: 3px solid #001F39;  /* creates padding around scroll thumb */
   }
-
+  .event{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.8rem 2.5rem;
+	border-radius: 1.1rem;
+	margin-top: 1rem;
+}
+.event:nth-child(odd){
+	background-color: #F8FAFC;
+	color: #00203A;
+	border: 1px solid #00203a24;
+}
+.event>p,
+.event>div{
+	padding: 0 1rem;
+}
+.event>p{
+	display: flex;
+	align-items: center;
+}
+.event h2:hover{
+	text-decoration: underline;
+}
+.event>p:first-child{
+	font-size: 2rem;
+	font-weight: 500;
+	width: 14%;
+}
+.event>p:last-child{
+	font-weight: 500;
+	width: 12%;
+	font-size: 1.4rem;
+}
+.img_logo{
+	width: 12%;
+	text-align: center;
+}
+.event>p:nth-child(3){
+	width: 0%;
+	justify-content: center;
+}
+.event>p>img{
+	width: 1.4rem;
+	margin-right: 0.6rem;
+}
+.event>div>h2:nth-child(2){
+	padding: 0 3rem;
+	display: inline-block;
+}
+.event>div>h2:first-child,
+.event>div>h2:last-child{
+	width: 40%;
+}
+.event>div>h2:first-child {
+    text-align: center;
+    width: 40rem;
+}
+.img_logo img{
+	max-height: 4.3rem;
+	max-width: 4.4rem;
+	object-fit: contain;
+	object-position: center center;
+}
 @media (max-width: 575.98px) {
 	.game_box {
 	    max-width: 50rem;
