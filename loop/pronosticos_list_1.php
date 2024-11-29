@@ -32,7 +32,7 @@ if ($teams['team1'] && $teams['team2']){
                 <b>{$sport['name']}</b>
             </p>
             <div class='img_logo'>
-                <img src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
+                <img width='36' height='36' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
             </div>
             <div class='d-none d-lg-flex'>
                 <h2>{$teams['team1']['name']} vs {$teams['team2']['name']}</h2>
@@ -43,7 +43,7 @@ if ($teams['team1'] && $teams['team2']){
 
             </div> 
             <div class='img_logo'>
-                <img src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
+                <img width='36' height='36' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
             </div>
             <div class='d-lg-none d-block'>
             
