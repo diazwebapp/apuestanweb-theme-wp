@@ -468,10 +468,7 @@ a.panel-button {
 	width: 12%;
 	font-size: 1.4rem;
 }
-.img_logo{
-	width: 12%;
-	text-align: center;
-}
+
 .event>p:nth-child(3){
 	width: 0%;
 	justify-content: center;
@@ -492,12 +489,7 @@ a.panel-button {
     text-align: center;
     width: 40rem;
 }
-.img_logo img{
-	max-height: 4.3rem;
-	max-width: 4.4rem;
-	object-fit: contain;
-	object-position: center center;
-}
+
 @media (max-width: 575.98px) {
 	.game_box {
 	    max-width: 50rem;
