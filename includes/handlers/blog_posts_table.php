@@ -59,7 +59,7 @@ function aw_blog_posts_pagination($wp_query,$paged){
         'next_text' => '>'
     ));
 
-    return str_replace("{pagination}",$pagination,$template);
+    return str_replace("{pagination}", $pagination, $template ?? '');
 }
 
 function blog_posts_table($post_type,$paginate,$per_page,$leagues=false){
