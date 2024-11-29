@@ -171,7 +171,7 @@ $html_box_2 = "<div class='parley_box2'>
                             <img width='90' height='30' style='object-fit:contain;background:{$bookmaker['background_color']};border-radius: 6px;padding: 6px;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
                         </a>
                     </div>
-                    <div class='parley_btn_2 parley_right_content2_mb'> 
+                    <div class='parley_btn btn-primary btn-lg parley_right_content2_mb'> 
                         <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
                     </div>      
                 </div>

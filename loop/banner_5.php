@@ -15,7 +15,7 @@ echo "<div class='blog_hero_area'>
                         </div>
                         <h2>".get_bloginfo( 'description' )."</h2>
                         <div class='blog_hero_btn'>
-                            <!--<a href='#' class='btn_2'>Leer Articulo</a>-->
+                            <!--<a href='#' class='btn btn-primary btn-lg'>Leer Articulo</a>-->
                         </div>
                     </div>
                 </div>

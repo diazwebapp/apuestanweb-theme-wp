@@ -74,7 +74,7 @@ $title = get_the_title($args["post"]->ID);
                         </div>
                     </div>
                     <div class='bookmaker_right_btn'>
-                        <a href='{$bonus["country_bonus_ref_link"]}' class='btn_2'>Reclamar bono</a>
+                        <a href='{$bonus["country_bonus_ref_link"]}' class='btn btn-primary btn-lg'>Reclamar bono</a>
                     </div>
                 </div>
             </div>";

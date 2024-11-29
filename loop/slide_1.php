@@ -92,7 +92,7 @@ echo "<div class='owl-item' >
                         </div>
                     </div>
                     <div class='hero_btn'>
-                        <a href='$permalink' class='btn_2'>".__('Ver pronóstico','jbetting')."</a>
+                        <a href='$permalink' class='btn btn-primary btn-lg'>".__('Ver pronóstico','jbetting')."</a>
                     </div>
                 </div>
                 <div class='col-lg-5 hero_team_col'>
