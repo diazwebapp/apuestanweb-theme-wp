@@ -81,7 +81,7 @@ function blog_posts_table($post_type,$paginate,$per_page,$leagues=false){
     endif;
     $query = new Wp_Query($args);
     
-    $html = aw_blog_posts_table($query);
+    $html = '<div class="container">'. aw_blog_posts_table($query) .'</div> ';
     if($paginate):
         $html .= aw_blog_posts_pagination($query,$paged);
     endif;
