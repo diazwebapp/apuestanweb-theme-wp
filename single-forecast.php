@@ -99,15 +99,15 @@
                                         </div>
                                         <div class="single_event_banner_middle">
                                             <div class="single_team1">
-                                                <img loading="lazy" src="<?php echo esc_url($teams["team1"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>">
-                                                <p><?php echo esc_html($teams["team1"]["name"] ?? ''); ?></p>
+                                                <img width="110" height="110" class="img-fluid" loading="lazy" src="<?php echo esc_url($teams["team1"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>">
+                                                <p ><?php echo esc_html($teams["team1"]["name"] ?? ''); ?></p>
                                             </div>
                                             <div class="event_start">
                                                 <time datetime="<?php echo esc_attr($datetime->format("Y-m-d H:i:s")); ?>"><?php echo esc_html($datetime->format("h:i a")); ?></time>
                                                 <?php echo esc_html(date_i18n("d M Y", strtotime($datetime->format("d M Y")))); ?>   
                                             </div>
                                             <div class="single_team1">
-                                                <img loading="lazy" src="<?php echo esc_url($teams["team2"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>">
+                                                <img width="110" height="110" class="img-fluid" loading="lazy" src="<?php echo esc_url($teams["team2"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>">
                                                 <p><?php echo esc_html($teams["team2"]["name"] ?? ''); ?></p>
                                             </div>
                                         </div>

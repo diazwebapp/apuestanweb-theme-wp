@@ -273,4 +273,4 @@ function crear_content_hub_cpt() {
 
     register_post_type('content_hub', $args);
 }
-//add_action('init', 'crear_content_hub_cpt');
+add_action('init', 'crear_content_hub_cpt');

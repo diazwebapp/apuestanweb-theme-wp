@@ -635,6 +635,28 @@ footer .menu li a::before{
 .single_envent_heading h2{
 	text-transform: uppercase;
 }
+.event_start {
+    padding-left: 10.5rem;
+    padding-right: 10.5rem;
+    text-align: center;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    color: #FFFFFF;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    grid-gap: .5rem;
+    gap: .5rem;
+}
+.event_start time{
+	font-size: 2.5rem;
+	line-height: 1.2;
+	color: #FFFFFF;
+	font-weight: 700;
+	padding-top: 0.5rem;
+	width: 100%;
+}
 /* Styles for .single_event_content */
 .single_event_content{
 	position: relative;
@@ -873,10 +895,6 @@ footer .menu li a::before{
 	font-size: 15px;
 }
 
-/* Styles for .single_event_banner */
-.single_event_banner_middle {
-	padding-top: 3rem;
-}
 
 /* Styles for .single_envent_heading */
 .single_envent_heading_text,
@@ -908,8 +926,7 @@ footer .menu li a::before{
 
 /* Styles for .single_team1 */
 .single_team1 img {
-    width: 80px;
-    height: 80px;
+
     object-fit: contain;
 }
 
@@ -925,19 +942,6 @@ footer .menu li a::before{
 /* Styles for .single_team1 */
 .single_team1{
 		padding-top: 0;
-	}
-
-/* Styles for .single_team1 */
-.single_team1 img {
-		width: 60px;
-		height: 60px;
-		object-fit: contain;
-	}
-
-/* Styles for .single_team1 */
-.single_team1 p {
-		font-size: 12px;
-		position: relative;
 	}
 
 
@@ -1134,7 +1138,30 @@ footer .menu li a::before{
 	.header_bottom ul li a{
 		white-space: nowrap;
 	}
+	.event_start {
+	    padding-left: 1.5rem;
+	    padding-right: 1.5rem;
+	}
+	.single_team1{
+		padding-top: 0;
+	}
+	.single_team1 img {
+		width: 60px;
+		height: 60px;
+		object-fit: contain;
+	}
+	.single_team1 p {
+		font-size: 12px;
+		position: relative;
+	}
+	.single_event_content p{
+		font-size: 15px;
+	}
 	
+	.single_event_banner_middle {
+	    padding-top: 3rem;
+	}
+
 	/* Ocultar el aside en dispositivos móviles */
 
     #secondary {
