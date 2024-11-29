@@ -1,4 +1,5 @@
-<?php function aw_blog_posts_table($items){
+<?php 
+function aw_blog_posts_table($items){
 	$result = '';
     
 	// field names
