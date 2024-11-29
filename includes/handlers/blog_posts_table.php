@@ -20,7 +20,7 @@ function aw_blog_posts_table($items){
                         <div class="blog_box">
                             <div class="img_box">
                                 <a href="'.get_the_permalink(get_the_ID()).'" class="blog_img">
-                                    <img src="'.$thumb.'" class="w-100" alt="">
+                                    <img src="'.$thumb.'" width="180" height="110" class="w-100" alt="">
                                 </a>
                             </div>
                         </div>
