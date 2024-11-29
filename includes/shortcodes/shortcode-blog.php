@@ -48,7 +48,7 @@ function shortcode_blog($atts)
         $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
     endif;
     
-    $ret .= blog_posts_table('post',true,$num,$league_arr);
+    $ret .= '<div class="container">' . blog_posts_table('post',true,$num,$league_arr) . '</div>';
     
     return $ret;
 }
