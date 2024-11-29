@@ -25,7 +25,7 @@ function aw_blog_posts_table($items){
                             </div>
                         </div>
                                 
-                        <div class="blog_content mt-4">
+                        <div class="blog_content mt-2">
                             <a href="'.get_the_permalink(get_the_ID()).'">
                                 '.get_the_title().'
                             </a>
