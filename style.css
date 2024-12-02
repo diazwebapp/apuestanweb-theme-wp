@@ -528,9 +528,37 @@ footer .menu li a::before{
     font-weight: 500;
     color: #fff;
 }
+.blog_bg{
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	border-radius: 1rem;
+	padding: 5.2rem ;
+	margin-top: 5rem;
+	min-height: 200px;
+}
 
-
-
+.blog_hero_content h2{
+	font-size: 4.8rem;
+	line-height: 1.33;
+	font-weight: 700;
+	color: #F8F8F8;
+	padding-top: 4.6rem;
+	max-width: 40rem;
+}
+.blog_top_content{
+	display: flex;
+	align-items: center;
+}
+.blog_top_content img{
+	margin-right: 1.6rem;
+}
+.blog_top_content p{
+	font-size: 2.8rem;
+	line-height: 1.2;
+	color: #FFFFFF;
+	font-weight: 500;
+}
 /* Extracted Styles for Specific Classes */
 /* Styles for .title_lg */
 .title_lg{
@@ -1161,7 +1189,17 @@ footer .menu li a::before{
 	.single_event_banner_middle {
 	    padding-top: 3rem;
 	}
-
+	.blog_hero_content {
+	    padding-left: 0;
+	    text-align: center;
+	}
+	.blog_top_content {
+	    justify-content: center;
+	}
+	.blog_hero_content h2{
+		margin-left: auto;
+		margin-right: auto;
+	}
 	/* Ocultar el aside en dispositivos móviles */
 
     #secondary {
@@ -1215,6 +1253,13 @@ footer .menu li a::before{
 		padding: 0;
 	}
 	
-	
+	.blog_bg {
+	    margin-left:-5%;
+		margin-right:-5%;
+	    border-radius: 0;
+	    padding-right: 15px;
+	    padding-left: 15px;
+		margin-top: 0;
+	}
 
 }

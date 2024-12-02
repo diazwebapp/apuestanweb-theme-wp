@@ -28,7 +28,7 @@ endif;
                     <div class="col-lg-12">
                         <div class="blog_hero_content">
                             <div class="blog_top_content">
-                                <img src="<?php echo $alt_logo ?>" class="img-fluid" alt="icon-apuestan">
+                                <img width="65" height="27" src="<?php echo $alt_logo ?>" class="img-fluid" alt="icon-apuestan">
                                 <p>Blog &amp; Noticias</p>
                             </div>
                             <h2><?php echo $h1 ?></h2>
