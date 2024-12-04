@@ -1,6 +1,6 @@
 <?php
 
-function aw_forecast_img_destacada_personalizada() {
+function aw_custom_thumb() {
 	add_meta_box('forecast_img_destacada_personalizada', 'Imagen destacada personalizada', 'aw_forecast_imagen_destacada_personalizada', 'forecast', 'normal', 'default');
 }
 function aw_forecast_imagen_destacada_personalizada() {

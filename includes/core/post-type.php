@@ -1,5 +1,5 @@
 <?php
-//include 'custom-field-forecast.php';
+include 'custom-field-forecast.php';
 function create_bk() {
 
 	$labels = array(
@@ -109,7 +109,7 @@ function create_forecast() {
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'post',
-		//'register_meta_box_cb' => 'aw_forecast_img_destacada_personalizada',
+		'register_meta_box_cb' => 'aw_custom_thumb',
 		'rewrite' => array('slug' => 'prediccion')
 
 	);
