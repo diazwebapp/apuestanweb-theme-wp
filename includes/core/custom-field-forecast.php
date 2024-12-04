@@ -37,11 +37,27 @@ function aw_forecast_imagen_destacada_personalizada() {
                         <img src="{replacebg}" width="854" height="480" id="plantilla" style="opacity:1;height:480px;" />
                         <button class="btn btn-outline-light" type="button" style="position:absolute;top:5px;left:5px;background:rgba(0,0,0, .3);" target-html-id="plantilla" onclick="aw_set_imgs(this)">reemplazar plantilla <i class="dashicons dashicons-edit" ></i></button>
 
-                        <div role="button" class="d-flex justify-content-center align-items-center text-light" style="position: absolute;top: 37.3%;left: 19.7%;background: rgba(0,0,0, .3);width: 13.5%;height: 25.8%;" target-html-id="equipo-1" onclick="aw_set_imgs(this)">
+                        <div role="button" class="d-flex justify-content-center align-items-center text-light" style="
+                                        position: absolute;
+                                        top: 36.8%;
+                                        left: 16.4%;
+                                        background: rgba(0,0,0, .3);
+                                        width: 130px;
+                                        height: 130px;
+                                    " 
+                        target-html-id="equipo-1" onclick="aw_set_imgs(this)">
                             <i class="dashicons dashicons-edit" ></i>
                         </div>
 
-                        <div type="button" class="d-flex justify-content-center align-items-center text-light" style="position: absolute;top: 37.3%;left: 67%;background:rgba(0,0,0, .3);width: 13.5%;height: 25.8%;" target-html-id="equipo-2" onclick="aw_set_imgs(this)">
+                        <div type="button" class="d-flex justify-content-center align-items-center text-light" "
+                                        position: absolute;
+                                        top: 36.8%;
+                                        left: 68.5%;
+                                        background: rgba(0,0,0, .3);
+                                        width: 130px;
+                                        height: 130px;
+                                    " 
+                        target-html-id="equipo-2" onclick="aw_set_imgs(this)">
                             <i class="dashicons dashicons-edit" ></i>
                         </div>
                     
