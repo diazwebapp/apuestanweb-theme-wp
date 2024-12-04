@@ -49,7 +49,7 @@ function aw_forecast_imagen_destacada_personalizada() {
                             <i class="dashicons dashicons-edit" ></i>
                         </div>
 
-                        <div type="button" class="d-flex justify-content-center align-items-center text-light" "
+                        <div type="button" class="d-flex justify-content-center align-items-center text-light" style="
                                         position: absolute;
                                         top: 36.8%;
                                         left: 68.5%;
