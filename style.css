@@ -182,7 +182,7 @@ textarea:focus{
 .top_box:hover {
     box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
 }
-.top_box > div{
+.top_box > div:nth-child(1){
 	margin-bottom: 3rem;
 }
 .top_serial {
