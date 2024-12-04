@@ -8,7 +8,7 @@ function aw_blog_posts_table($items){
 	// field names
 	while ($items->have_posts()) :
         $items->the_post();
-        $thumb = get_the_post_thumbnail_url(get_the_ID(),'medium');
+        $thumb = get_the_post_thumbnail_url(get_the_ID(),'120x70');
         $leagues = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
         $sport = '';
         
