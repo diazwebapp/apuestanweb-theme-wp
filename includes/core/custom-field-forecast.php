@@ -18,7 +18,6 @@ function aw_forecast_imagen_destacada_personalizada() {
                             position: absolute;
                             top: 37.8%;
                             left: 19.3%;
-                            background: rgba(0,0,0, .3);
                             width: 14.06%;
                             height: 25%;
                             object-fit:contain;
@@ -28,7 +27,6 @@ function aw_forecast_imagen_destacada_personalizada() {
                             position: absolute;
                             top: 37.8%;
                             left: 66.6%;
-                            background: rgba(0,0,0, .3);
                             width: 14.06%;
                             height: 25%;
                             object-fit:contain;"
