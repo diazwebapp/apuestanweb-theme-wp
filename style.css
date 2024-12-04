@@ -448,18 +448,12 @@ header {
 .headerbtnsearch:hover{
 	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
 }
-.headerlgn{
-	text-align: center;
+.headerlgn {
 	padding: 1rem!important;
-	align-items: center;
-	justify-content: center;
-	line-height: 1.31;
-	margin-top: 0!important;
 	margin-left: 1rem;
-	font-size: 1.4rem!important;
-	width: 5rem;
-
+	border: 1px solid white;
 }
+
 /*footer area*/
 footer{
 	background: linear-gradient(82deg, #0C1429 0%, #00203A 100%);
