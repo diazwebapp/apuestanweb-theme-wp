@@ -117,19 +117,18 @@ register_nav_menus(array(
 
 add_action('after_setup_theme', 'my_theme_setup');
 
-
 function my_theme_setup()
 {
     add_theme_support('post-thumbnails');
     
 }
-
+add_image_size('120x70',120,70,true);
 function get_key()
 {
      return true;
 }
 //insertar img destacada en feeds
-function insert_featured_image_in_feed( $content ) {
+/* function insert_featured_image_in_feed( $content ) {
     global $post;
     if ( has_post_thumbnail( $post->ID ) ) {
        $content = '' . get_the_post_thumbnail( $post->ID, 'medium' ) . '' . $content;
@@ -137,7 +136,7 @@ function insert_featured_image_in_feed( $content ) {
     return $content;
  }
  add_filter( 'the_excerpt_rss', 'insert_featured_image_in_feed', 1000 );
- add_filter( 'the_content_feed', 'insert_featured_image_in_feed', 1000 );
+ add_filter( 'the_content_feed', 'insert_featured_image_in_feed', 1000 ); */
  
 function load_template_part($template_name, $part_name = null, $args=false)
 {
@@ -180,10 +179,10 @@ function jbetting_src()
     
     wp_enqueue_style('main-css', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
     // DESCOMENTAR DESPUES DEL DESARROLLO
-    /*
+    /* 
         wp_enqueue_style('main-css', get_stylesheet_uri());
         add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
-    */
+     */
     //wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     //wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
 
@@ -272,7 +271,7 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
   
-    add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+ /*    add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
         $filetype = wp_check_filetype( $filename, $mimes );
         return [
             'ext'             => $filetype['ext'],
@@ -290,7 +289,7 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
 
         return $mimes;
       }
-      add_filter( 'upload_mimes', 'cc_mime_types' );
+      add_filter( 'upload_mimes', 'cc_mime_types' ); */
       
     
 
@@ -306,10 +305,6 @@ function get_rrss() {
 }
 
 add_action( 'wp_loaded', 'get_rrss' );
-
-
-
-/////configurando smtp///////
 
 
 ///// Detectando registro de usuarios
@@ -392,7 +387,7 @@ function initCors( $value ) {
 
 //////////////////////// Estructura de enlaces
 
-function custom_permalink_structure($permalink, $post_id, $leavename) {
+/* function custom_permalink_structure($permalink, $post_id, $leavename) {
     $post = get_post($post_id);
     $post_date = strtotime($post->post_date);
     $change_date = strtotime('2023-04-24'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
@@ -409,7 +404,7 @@ function custom_rewrite_rules() {
     add_rewrite_tag('%custom_post_date%', '([0-9]{4}/[0-9]{2}/[0-9]{2})');
     add_rewrite_rule('^([0-9]{4}/[0-9]{2}/[0-9]{2})/([^/]+)/?$', 'index.php?custom_post_date=$matches[1]&name=$matches[2]', 'top');
 }
-add_action('init', 'custom_rewrite_rules');
+add_action('init', 'custom_rewrite_rules'); */
 
 /* function custom_query_vars($query_vars) {
     $query_vars[] = 'custom_post_date';
@@ -478,9 +473,8 @@ function custom_yoast_breadcrumb_links( $links ) {
 
     return $links;
 }
-
- */
 add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
+*/
 
 /* function category_summary_shortcode($atts) {
     $atts = shortcode_atts(array(
@@ -529,7 +523,6 @@ add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
 
     return ob_get_clean();
 }
- 
 add_shortcode('category_summary', 'category_summary_shortcode');
 */
 
@@ -632,6 +625,7 @@ add_shortcode('enlaces_internos_forecast', 'enlaces_internos_forecast');
 */
 
 // Inicia el buffer de salida
+/* 
 add_action('template_redirect', 'start_output_buffer');
 function start_output_buffer() {
     ob_start();
@@ -669,19 +663,15 @@ function analyze_html($html) {
     // Añadir el CSS extraído al HTML
     inject_dynamic_css($html, $unique_classes);
 }
-
 function extract_css_classes($css_content, $classes_to_extract) {
     $pattern = '/\.' . implode('|', $classes_to_extract) . '(\s|\{)/';
     preg_match_all($pattern, $css_content, $matches);
     return implode("\n", array_unique($matches[0]));
 }
-
 function inject_dynamic_css($html, $used_classes) {
     $main_css_path = get_stylesheet_directory() . '/style.css';
-    $responsive_css_path = get_stylesheet_directory() . '/responsive.css';
     
     $main_css_content = file_get_contents($main_css_path);
-    $responsive_css_content = file_get_contents($responsive_css_path);
     
     $extracted_css = extract_css_classes($responsive_css_content, $used_classes);
     $combined_css_content = $main_css_content . "\n" . $extracted_css;
@@ -694,6 +684,9 @@ function inject_dynamic_css($html, $used_classes) {
     // Echo el HTML modificado
     echo $html;
 }
+*/
+
+
 
 /////////////////////Imagen de perfil de usuarios////////////////
 // Añadir un campo de imagen de perfil al perfil de usuario

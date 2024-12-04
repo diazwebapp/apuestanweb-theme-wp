@@ -104,9 +104,9 @@ body {
 	line-height: 1.31;
 	font-family: 'Neurial Grotesk';
 	background-color: #fff;
-	color: #ABAEB1;
 	font-size: 1.6rem;
 	font-weight: 400;
+	color: #00203A;
 }
 ol,
 ul {
@@ -464,6 +464,7 @@ header {
 footer{
 	background: linear-gradient(82deg, #0C1429 0%, #00203A 100%);
 	padding: 5.5rem 0 5rem;
+	color: #abaeb1;
 }
 
 .footer-reg {
@@ -558,6 +559,55 @@ footer .menu li a::before{
 	line-height: 1.2;
 	color: #FFFFFF;
 	font-weight: 500;
+}
+.post-featured-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 1rem;
+  }
+  .blog_box .img_box{
+	border-radius: 10px 10px 0px 0px;
+	overflow: hidden;
+	height: 19.6rem;
+}
+.blog_box .img_box img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center;
+	transition: 0.4s;
+}
+.blog_box:hover .img_box img{
+	transform: scale(1.2);
+}
+.blog_heading{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.blog_heading_right_content{
+	display: flex;
+	align-items: center;
+}
+.serach_box{
+	position: relative;
+	margin-left: 1.5rem;
+}
+.serach_box input{
+	max-width: 26.0rem;
+	width: 100%;
+	height: 3.3rem;
+	border-radius: 1.7rem;
+	background-color: #F7F7F8;
+	border: none;
+	padding-left: 5.8rem;
+}
+.serach_box img{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 2rem;
 }
 /* Extracted Styles for Specific Classes */
 /* Styles for .title_lg */
@@ -1200,6 +1250,12 @@ footer .menu li a::before{
 		margin-left: auto;
 		margin-right: auto;
 	}
+	.serach_box input {
+	    max-width: 20rem;
+	}
+	.serach_box {
+	    margin-left: 1rem;
+	}
 	/* Ocultar el aside en dispositivos móviles */
 
     #secondary {
@@ -1220,16 +1276,6 @@ footer .menu li a::before{
 	}
 	.post-content {
 		padding: 0; /* para dejar espacio para los botones */
-	}
-	.share-buttons-container {
-		display: flex;
-		flex-wrap: nowrap;
-		align-items: center;
-		justify-content: center;
-		width: auto;
-		height: auto;
-		margin-right: 10px;
-		position: unset;
 	}
 	.inner_bg {
 	    min-height: 32rem;
@@ -1261,5 +1307,7 @@ footer .menu li a::before{
 	    padding-left: 15px;
 		margin-top: 0;
 	}
-
+	.blog_heading_right_content {
+	    display: none;
+	}
 }

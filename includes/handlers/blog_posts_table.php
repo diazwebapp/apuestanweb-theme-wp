@@ -6,7 +6,7 @@ function aw_blog_posts_table($items){
 	// field names
 	while ($items->have_posts()) :
         $items->the_post();
-        $thumb = get_the_post_thumbnail_url(get_the_ID());
+        $thumb = get_the_post_thumbnail_url(get_the_ID(),'120x70');
         $leagues = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
         $sport = '';
         if(count($leagues) > 0):
@@ -20,7 +20,7 @@ function aw_blog_posts_table($items){
                         <div class="blog_box">
                             <div class="img_box">
                                 <a href="'.get_the_permalink(get_the_ID()).'" class="blog_img">
-                                    <img src="'.$thumb.'" width="142" height="90" alt="logo" class="img-fluid" >
+                                    <img src="'.$thumb.'" width="120" height="70" alt="logo" class="img-fluid w-100" >
                                 </a>
                             </div>
                         </div>
