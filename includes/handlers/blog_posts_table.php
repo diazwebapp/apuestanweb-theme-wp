@@ -20,7 +20,7 @@ function aw_blog_posts_table($items){
             endforeach;
         endif;
        
-        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
+        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4 p-0">
                         <a href="'.get_the_permalink(get_the_ID()).'" >
                             <img src="'.$thumb.'" width="160"; height="90"; alt="logo" >
                         </a>
