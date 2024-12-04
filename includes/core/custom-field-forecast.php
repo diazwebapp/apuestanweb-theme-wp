@@ -40,7 +40,7 @@ function aw_forecast_imagen_destacada_personalizada() {
     <div class="container>
         <div class="row" style="min-height:580px;height:580px;">
            
-            <div class="col-12" style="min-height:480px;height:480px;">
+            <div class="col-12" style="min-height:480px;height:480px;">'.$template.'
                 <div style="
                     position: absolute !important;
                     max-width: 854px;
