@@ -7,7 +7,7 @@ include "includes/core/session.php";
 include "includes/core/post-type.php";
 include "includes/core/taxonomy.php";
 include "includes/core/meta-fields.php";
-include "includes/libs/aqua-resize/aqua-resize.php";
+require_once('includes/libs/Aqua-Resizer/aq_resizer.php');
 include "includes/libs/odds-converter/converter.class.php"; 
 include "includes/templates-emails/settings.php"; 
 include "includes/templates-emails/template-email-1.php"; 
@@ -291,9 +291,6 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
       }
       add_filter( 'upload_mimes', 'cc_mime_types' ); */
       
-    
-
-
 
 /////Obtiene los enlaces de RRSS///////
 function get_rrss() {

@@ -1,5 +1,49 @@
 <?php 
 
+
+
+function aw_blog_posts_table($items){
+	$result = '';
+    
+	// field names
+	while ($items->have_posts()) :
+        $items->the_post();
+        $thumb = get_the_post_thumbnail_url(get_the_ID(),'120x70');
+        $leagues = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
+        $sport = '';
+        
+        if(count($leagues) > 0):
+            foreach($leagues as $league):
+                if($league->parent == 0):
+                    $sport = $league->name;
+                endif;
+            endforeach;
+        endif;
+        $thumb = aq_resize($thumb,"120");
+        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
+                        <a href="'.get_the_permalink(get_the_ID()).'" class="thumb" style="width:100%;height:70%;background:red;">
+                            <img src="'.$thumb.'" width="100%";height="70%"; alt="logo" >
+                        </a>
+                                
+                        <div class="blog_content mt-2">
+                            <a href="'.get_the_permalink(get_the_ID()).'">
+                                '.get_the_title().'
+                            </a>
+                            <span>#'.$sport.'</span>
+                        </div>
+                    </div>';
+    endwhile;
+    wp_reset_postdata();
+	$template = '<div class="row">
+                    {data}
+            </div>';
+
+	return str_replace('{data}', $result, $template);
+}
+
+
+/* 
+
 function aw_blog_posts_table($items){
 	$result = '';
     
@@ -17,30 +61,40 @@ function aw_blog_posts_table($items){
             endforeach;
         endif;
         $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
-                        <div class="blog_box">
-                            <div class="img_box">
-                                <a href="'.get_the_permalink(get_the_ID()).'" class="blog_img">
-                                    <img src="'.$thumb.'" width="120" height="70" alt="logo" class="img-fluid w-100" >
-                                </a>
-                            </div>
-                        </div>
-                                
-                        <div class="blog_content mt-2">
-                            <a href="'.get_the_permalink(get_the_ID()).'">
-                                '.get_the_title().'
-                            </a>
-                            <span>#'.$sport.'</span>
-                        </div>
+                        <a href="#" class="thumb" style="width:100%;height:70%;background:red;">
+                            <img width="100%";height="70%"; src="http://localhost/jeff-local/wp-content/uploads/2024/12/5d075d3296a16.r_1560763705050.0-12-1338-701.jpg" alt="">
+                        </a>
+                        <div class="texto">titulo</div>
                     </div>';
     endwhile;
     wp_reset_postdata();
-	$template = '<div class="row small_gutter">
-                    {data}
-            </div>';
+	$template = '<div class="row">{data}</div>';
 
 	return str_replace('{data}', $result, $template);
 }
 
+ */
+
+/* 
+function aw_blog_posts_table($items){
+	$result = '';
+    
+	// field names
+	while ($items->have_posts()) :
+       
+        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
+                        <div class="thumb" style="width:100%;height:100px;background:red;">
+                        </div>
+                        <div class="title">titulo</div>
+                    </div>';
+    endwhile;
+    wp_reset_postdata();
+	$template = '<div class="container"><div class="row">{data}</div></div>';
+
+	return str_replace('{data}', $result, $template);
+}
+
+ */
 function aw_blog_posts_pagination($wp_query,$paged){
     $template = '<div class="col-lg-12">
                 <div class="blog_pagination">
