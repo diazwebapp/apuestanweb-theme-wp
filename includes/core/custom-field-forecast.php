@@ -14,8 +14,8 @@ function aw_forecast_imagen_destacada_personalizada() {
     }  */
     $template = '<div style="position:relative !important;width:854px;max-width:854px;height:480px;top:0;left:0;background:red;" id="thumb-template">
     <img src="{replacebg}" width="854" height="480" id="plantilla" style="height:480px;"/>
-    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 37%;left: 19%;width: 13%;max-height:25%;object-fit:contain;" id="equipo-1" />
-    <img src="{replace-team-1}" width="105" height="105" class="d-none img-fluid" style="position: absolute;top: 37%;left: 67%;width: 13%;max-height:25%;object-fit:contain;" id="equipo-2" />
+    <img src="{replace-team-1}" width="130px" height="130px" class="d-none img-fluid" style="position: absolute;top: 36.8%;left: 16.4%;width: 130px;max-height:130px;height:130px;object-fit:contain;" id="equipo-1" />
+    <img src="{replace-team-1}" width="130px" height="130px" class="d-none img-fluid" style="position: absolute;top: 36.8%;left: 68.5%;width: 130px;max-height:130px;height:130px;object-fit:contain;" id="equipo-2" />
 
     
 </div>';
