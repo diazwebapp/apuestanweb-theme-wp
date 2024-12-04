@@ -8,10 +8,10 @@ function aw_forecast_imagen_destacada_personalizada() {
     $default_bg =  get_template_directory_uri() . '/assets/img/plantilla-1.png';
     $no_team_img =  get_template_directory_uri() . '/assets/img/cross.png';
      
-    /* if ( has_post_thumbnail() ) {
+    if ( has_post_thumbnail() ) {
         $attachment_image = wp_get_attachment_url( get_post_thumbnail_id() );
         $default_bg = esc_attr( $attachment_image ) ;	
-    }  */
+    }
     $template = '<div style="position:relative !important;width:854px;max-width:854px;height:480px;top:0;left:0;background:red;" id="thumb-template">
     <img src="{replacebg}" width="854" height="480" id="plantilla" style="height:480px;"/>
     <img src="{replace-team-1}" width="130px" height="130px" class="d-none img-fluid" style="
@@ -35,7 +35,7 @@ function aw_forecast_imagen_destacada_personalizada() {
     
 </div>';
 	$html = '
-    <div class="container>
+    <div class="container">
         <div class="row" style="min-height:580px;height:580px;">
            
             <div class="col-12" style="min-height:480px;height:480px;">'.$template.'
