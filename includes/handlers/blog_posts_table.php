@@ -21,9 +21,9 @@ function aw_blog_posts_table($items){
         endif;
        
         $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
-                        <a href="'.get_the_permalink(get_the_ID()).'" class="thumb" style="width:100%;height:70%;background:red;">'
-                         . the_post_thumbnail(get_the_ID()) .
-                        '</a>
+                        <a href="'.get_the_permalink(get_the_ID()).'" class="thumb" style="width:160px;height:90px;background:red;">
+                            <img src="'.$thumb.'" width="160"; height="90"; alt="logo" >
+                        </a>
                                 
                         <div class="blog_content mt-2">
                             <a href="'.get_the_permalink(get_the_ID()).'">
