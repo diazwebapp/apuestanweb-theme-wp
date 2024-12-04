@@ -19,7 +19,7 @@ function aw_blog_posts_table($items){
                 endif;
             endforeach;
         endif;
-        $thumb = aq_resize($thumb,"120");
+       
         $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
                         <a href="'.get_the_permalink(get_the_ID()).'" class="thumb" style="width:100%;height:70%;background:red;">
                             <img src="'.$thumb.'" width="100%";height="70%"; alt="logo" >
