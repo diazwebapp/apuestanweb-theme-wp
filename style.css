@@ -546,7 +546,7 @@ footer .menu li a::before{
 	font-weight: 700;
 	color: #F8F8F8;
 	padding-top: 4.6rem;
-	max-width: 40rem;
+	max-width: 120rem;
 }
 .blog_top_content{
 	display: flex;

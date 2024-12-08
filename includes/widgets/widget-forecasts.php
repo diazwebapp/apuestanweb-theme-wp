@@ -33,13 +33,11 @@ class W_Forecasts extends WP_Widget {
                 while ($query->have_posts()) : $query->the_post();
                     $id = get_The_ID();
                     $permalink = get_the_permalink($id);
-                    $time = carbon_get_post_meta($id, 'data');
-                    $link = carbon_get_post_meta($id, 'link');
-                    $prediction = carbon_get_post_meta($id, 'prediction');
 
                     
 					//Equipos
                     $teams = get_forecast_teams($id,["w"=>24,"h"=>24]);
+                    
                     //terms
                     $sport_term = wp_get_post_terms( $id, 'league', array( 'fields' => 'all' ) );
                     $sport['class'] = '' ;
