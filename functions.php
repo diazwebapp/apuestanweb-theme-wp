@@ -758,7 +758,13 @@ function incluir_script_media_uploader() {
 }
 add_action( 'admin_enqueue_scripts', 'incluir_script_media_uploader' );
 
-add_action('login_enqueue_scripts', 'custom_login_redirect'); 
+add_action('login_enqueue_scripts', 'custom_login_redirect');
 function custom_login_redirect() {
-     wp_redirect(home_url('/login')); exit(); 
+    $login_page = get_page_by_path('login');
+    if ($login_page) {
+        wp_redirect(home_url('/login'));
+        exit();
+    } else {
+        return; // Esto permite que se muestre la página de inicio de sesión predeterminada
     }
+}
