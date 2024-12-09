@@ -100,7 +100,7 @@ function aw_login_form($attr = array()) {
             <div class="col-md-5 col-lg-4">
                 <p class="font-weight-bolder text-uppercase text-body py-3">¿Eres nuevo en Apuestan?</p>
                 <p class="text-body">
-                    Si no tienes una cuenta, <a href="/register">regístrate aquí</a> para comenzar.
+                    Si no tienes una cuenta, <a href="/registro">regístrate aquí</a> para comenzar.
                 </p>
             </div>
         </div>
