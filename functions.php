@@ -773,5 +773,10 @@ function custom_login_page() {
 // Función para verificar si una URL existe
 function url_exists($url) {
     $headers = @get_headers($url);
-    return strpos($headers[0], '200') !== false;
+    // Verificar si get_headers devolvió un array válido
+    if ($headers && strpos($headers[0], '200') !== false) {
+        return true;
+    } else {
+        return false;
+    }
 }
