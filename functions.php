@@ -758,26 +758,3 @@ function incluir_script_media_uploader() {
 }
 add_action( 'admin_enqueue_scripts', 'incluir_script_media_uploader' );
 
-add_action('init', 'custom_login_page');
-function custom_login_page() {
-    $custom_login_url = home_url('/login');
-    // Verificar si la página existe
-    if (url_exists($custom_login_url)) {
-        if (strpos($_SERVER['REQUEST_URI'], 'wp-login.php') !== false || strpos($_SERVER['REQUEST_URI'], 'wp-admin') !== false && !is_user_logged_in()) {
-            wp_redirect($custom_login_url);
-            exit;
-        }
-    }
-}
-
-// Función para verificar si una URL existe
-function url_exists($url) {
-    $headers = @get_headers($url);
-    // Verificar si get_headers devolvió un array válido
-    if ($headers && strpos($headers[0], '200') !== false) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
