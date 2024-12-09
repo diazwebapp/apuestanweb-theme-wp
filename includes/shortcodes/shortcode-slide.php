@@ -105,7 +105,7 @@ add_action('wp_enqueue_scripts', 'load_owl_carousel_if_shortcode_exists');
 // Asegurarse de que el CSS solo se cargue si es necesario
 function load_slide_forecasts_styles() {
     global $post;
-    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts'))) {
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'slide_forecasts'))) {
         wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
     }
 }
