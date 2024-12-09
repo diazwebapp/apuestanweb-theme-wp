@@ -763,7 +763,7 @@ function custom_login_page() {
     $custom_login_url = home_url('/login');
     // Verificar si la página existe
     if (url_exists($custom_login_url)) {
-        if ($_SERVER['REQUEST_URI'] == '/wp-login.php' || $_SERVER['REQUEST_URI'] == '/wp-admin/') {
+        if (strpos($_SERVER['REQUEST_URI'], 'wp-login.php') !== false || strpos($_SERVER['REQUEST_URI'], 'wp-admin') !== false && !is_user_logged_in()) {
             wp_redirect($custom_login_url);
             exit;
         }
@@ -780,3 +780,4 @@ function url_exists($url) {
         return false;
     }
 }
+
