@@ -758,3 +758,7 @@ function incluir_script_media_uploader() {
 }
 add_action( 'admin_enqueue_scripts', 'incluir_script_media_uploader' );
 
+add_action('login_enqueue_scripts', 'custom_login_redirect'); 
+function custom_login_redirect() {
+     wp_redirect(home_url('/login')); exit(); 
+    }
