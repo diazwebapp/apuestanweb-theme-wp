@@ -76,7 +76,7 @@ function shortcode_parley_vip($atts)
 
     $params = "?paged=".$args['paged'];
     $params .= "&posts_per_page={$args['posts_per_page']}";
-    $params .= isset($args['leagues']) ? "&leagues=${args['leagues']}":"";
+    $params .= isset($args['leagues']) ? "&leagues={$args['leagues']}":"";
     $params .= isset($args['date']) ? "&date={$args['date']}":"";
     $params .= "&model=$model";
     $params .= isset($args['unlock']) ? "&unlock={$args['unlock']}":"";
