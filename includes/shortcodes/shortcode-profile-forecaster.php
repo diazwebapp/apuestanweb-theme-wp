@@ -89,3 +89,12 @@ function shortcode_profile_forecaster($atts)
 
 
 add_shortcode('profile-forecaster', 'shortcode_profile_forecaster');
+
+// Asegurarse de que el CSS solo se cargue si es necesario
+function load_forecaster_styles() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'profile-forecaster') || is_single())) {
+        wp_enqueue_style('s-forecaster-css', get_template_directory_uri() . '/assets/css/forecaster-styles.css');
+    }
+}
+add_action('wp_enqueue_scripts', 'load_forecaster_styles');

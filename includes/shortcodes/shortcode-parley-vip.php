@@ -92,7 +92,6 @@ function shortcode_parley_vip($atts)
     
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
-        "memberships_page" => PERMALINK_MEMBERSHIPS,
         "text_vip_link" => $text_vip_link
     ] );
 

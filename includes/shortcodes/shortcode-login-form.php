@@ -4,38 +4,13 @@ function aw_login_form($attr = array()) {
     // Si el usuario ya está logueado, no mostramos el formulario
     if (is_user_logged_in()) {
         // Redirección después del login exitoso
-        wp_safe_redirect(home_url());
-        exit;
+        return;
     }
-
-    // Inicializar mensaje de error
-    $error_message = '';
-
-    // Verificar si se envió el formulario
-    /* if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['aw_login_nonce']) && wp_verify_nonce($_POST['aw_login_nonce'], 'aw_login_action')) {
-        $username = sanitize_text_field($_POST['log']);
-        $password = sanitize_text_field($_POST['pwd']);
-        $remember = isset($_POST['rememberme']);
-
-        // Intentar iniciar sesión
-        $credentials = [
-            'user_login'    => $username,
-            'user_password' => $password,
-            'remember'      => $remember,
-        ];
-
-        $user = wp_signon($credentials, is_ssl());
-
-        if (is_wp_error($user)) {
-            // Manejo de errores
-            $error_message = $user->get_error_message();
-        } else {
-            // Redirección después del login exitoso
-            wp_safe_redirect(home_url());
-            exit;
-        }
-    } */
-
+    // Preparamos pagina de registro
+    $register_page = isset(carbon_get_theme_option('register_page')[0]) ? carbon_get_theme_option('register_page')[0]['id']: null;
+    if (!is_user_logged_in() && $register_page) {
+        $register_page = parse_url(get_permalink($register_page), PHP_URL_PATH);
+    }
     // Estilos del formulario
     $str = '<style>
     .aw_login_form {
@@ -104,7 +79,7 @@ function aw_login_form($attr = array()) {
             <div class="col-md-5 col-lg-4">
                 <p class="font-weight-bolder text-uppercase text-body py-3">¿Eres nuevo en Apuestan?</p>
                 <p class="text-body">
-                    Si no tienes una cuenta, <a href="/registro">regístrate aquí</a> para comenzar.
+                    Si no tienes una cuenta, <a href="'.$register_page.'">regístrate aquí</a> para comenzar.
                 </p>
             </div>
         </div>
@@ -144,4 +119,15 @@ function aw_login_action() {
 }
 add_action('wp_ajax_nopriv_aw_login_action', 'aw_login_action');
 
+// Remplaza el login page de manera automatica
+add_action('login_enqueue_scripts', 'custom_login_redirect');
+function custom_login_redirect() {
+    $login_page = isset(carbon_get_theme_option('login_page')[0]) ? carbon_get_theme_option('login_page')[0]['id']: null;
+    if (!is_user_logged_in() && $login_page) {
+        wp_redirect(get_permalink($login_page));
+        exit();
+    } else {
+        return; // Esto permite que se muestre la página de inicio de sesión predeterminada
+    }
+}
 ?>

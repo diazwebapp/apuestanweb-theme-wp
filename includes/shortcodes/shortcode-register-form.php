@@ -6,7 +6,8 @@ function aw_register_form($attr = array()) {
 
     // Solo permitir que los usuarios no registrados vean el formulario
     if (is_user_logged_in()) {
-        return ''; // Si el usuario ya está logueado, no se muestra el formulario
+        wp_safe_redirect(home_url());
+        exit;
     }
 
     // Generación del formulario de registro
@@ -122,4 +123,16 @@ function aw_register_form($attr = array()) {
 // Registrar el shortcode
 add_shortcode('aw-register-form', 'aw_register_form');
 
+// Cargar common.js condicionalmente
+function register_js() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'aw-register-form'))) {
+        wp_enqueue_script('register-js', get_template_directory_uri() . '/assets/js/register_form.js', array(), null, true);
+        wp_localize_script('register-js', 'register_form_vars', array( 
+            'rest_uri' => rest_url(),
+            'nonce' => wp_create_nonce('wp_rest') 
+        ));
+    }
+}
+add_action('wp_enqueue_scripts', 'register_js');
 ?>

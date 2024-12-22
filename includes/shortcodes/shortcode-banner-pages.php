@@ -66,7 +66,6 @@ function shortcode_banner($atts)
         'text_link' => $text_link,
         "vip_link" => PERMALINK_VIP,
         'text_vip_link' => $text_vip_link,
-        'memberships_page' => PERMALINK_MEMBERSHIPS,
         'num' => $num
     ]);
 

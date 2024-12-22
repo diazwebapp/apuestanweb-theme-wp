@@ -16,7 +16,31 @@ function crb_attach_theme_options()
                     ->set_default_value( true ),
                 Field::make('image', 'logo', __("Site logo(183*19)", "jbetting")),
                 //selecion de pagina vip por defecto
-                Field::make('association', 'page_vip', __("Select default vip", "jbetting"))
+                Field::make('association', 'page_vip', __("Select vip page", "jbetting"))
+                    ->set_types(array(
+                        array(
+                            'type' => 'post',
+                            'post_type' => 'page',
+                        )
+                    ))->set_min(1)->set_max(1),
+                //selecion de pagina login por defecto
+                Field::make('association', 'login_page', __("Select login page", "jbetting"))
+                    ->set_types(array(
+                        array(
+                            'type' => 'post',
+                            'post_type' => 'page',
+                        )
+                    ))->set_min(1)->set_max(1),
+                //selecion de pagina register por defecto
+                Field::make('association', 'register_page', __("Select register page", "jbetting"))
+                    ->set_types(array(
+                        array(
+                            'type' => 'post',
+                            'post_type' => 'page',
+                        )
+                    ))->set_min(1)->set_max(1),
+                //selecion de pagina profile por defecto
+                Field::make('association', 'profile_page', __("Select profile page", "jbetting"))
                     ->set_types(array(
                         array(
                             'type' => 'post',

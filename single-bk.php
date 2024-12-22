@@ -45,7 +45,7 @@ endif;
 
 $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
-$author_name = get_the_author_meta("display_name" );
+
 ?>
 <main>
 <div class="container">
@@ -56,6 +56,7 @@ $author_name = get_the_author_meta("display_name" );
                 while (have_posts()):
                     the_post(  ); 
                     $author_id =  get_the_author_meta('ID') ;
+                    $author_name = get_the_author_meta("display_name");
                     $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
                     $avatar_url = get_the_author_meta( 'profile_image',$author_id );
                     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';

@@ -28,14 +28,8 @@ add_action('wp_loaded', function(){
     if($page_id_vip):
         define('PERMALINK_VIP',get_the_permalink($page_id_vip));
     endif;
-    //buy page
-    
-    $page_id_buy = empty(get_option( 'ihc_subscription_plan_page')) ? "#":get_option( 'ihc_subscription_plan_page',0);
-    if($page_id_buy):
-        define('PERMALINK_MEMBERSHIPS',get_the_permalink($page_id_buy));
-    endif;
 
-    $page_forecaster = empty(get_option( 'ihc_general_register_view_user')) ? "#":get_option( 'ihc_general_register_view_user');
+    $page_forecaster = isset(carbon_get_theme_option('profile_page')[0]) ? carbon_get_theme_option('profile_page')[0]['id']: "#";
     if($page_forecaster):
         define('PERMALINK_PROFILE',get_the_permalink($page_forecaster));
     endif;

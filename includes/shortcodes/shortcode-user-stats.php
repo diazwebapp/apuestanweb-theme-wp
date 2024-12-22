@@ -22,7 +22,7 @@ function shortcode_user_stats($atts)
     $null_gradient = $fail_gradient + $stats['porcentaje_nulos'];
 
     $args = array(
-        'post_type' => 'forecast',
+        'post_type' => 'forecast', 
         'author' => $id,
         'posts_per_page' => 5,
       );

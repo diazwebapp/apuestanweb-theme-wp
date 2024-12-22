@@ -52,7 +52,6 @@ function aw_get_forecasts(WP_REST_Request $request){
 
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
-        "memberships_page" => PERMALINK_MEMBERSHIPS,
         "text_vip_link" => $params['text_vip_link'],
         "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
         "model" => $params['model']
@@ -146,7 +145,6 @@ function aw_get_forecasts_vip(WP_REST_Request $request){
     $pagination_data = new WP_Query($args);
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
-        "memberships_page" => PERMALINK_MEMBERSHIPS,
         "text_vip_link" => $params['text_vip_link'],
         "time_format" => isset($params['time_format']) ? $params['time_format'] : false,
         "model" => $params['model']

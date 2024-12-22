@@ -1,0 +1,221 @@
+.subscribe__box {
+    width: 100%;
+    background: #F2F4F5;
+    padding: 65px 50px;
+    box-shadow: 0px 15px 30px #00000029;
+    border-radius: 20px;
+    display: flex;
+    align-items: start;
+    position: relative;
+    margin-bottom: 30px;
+  }
+.sub-inn {
+display: flex;
+align-items: start;
+}
+.sub-bx-lf {    
+    width: 120px;
+    text-align: center;
+}
+.subscribe__img {
+  width: 120px;
+  height: 120px;
+}
+.subscribe__img img {
+    width: 100%;
+    height: 100%;
+  }
+.subscribe__icon a {
+    font-size: 24px;
+    color: #001F39;
+    margin: 0 4px;
+}
+.subscribe__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+.subscribe__icon.ic-mbl {
+	display: none;
+	justify-content: start;
+}
+.sub__box--ri {
+    width: 666px;
+    margin-left: 50px;
+  }
+  .sub__box--ri h2 {
+    font-size: 24px;
+    color: #00203A;
+    font-weight: 700;
+  }
+  .sub__box--ri p {
+    margin: 0;
+    font-size: 14px;
+    color: #707070;
+    line-height: 27px;
+  }
+  .subscribe__btn {
+    position: absolute;
+    width: 160px;
+    height: 45px;
+    top: 30px;
+    right: 30px;
+  }
+  .subscribe__btn a {
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    background: #009fe3;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border-radius: 5px;
+  }
+  .estad__wrap h4 {
+    font-size: 34px;
+    color: #00203A;
+    line-height: 46px;
+    margin: 0;
+    font-weight: 700;
+  }
+  .estad__wrap.est-sec {
+	margin-top: 40px;
+}
+.estad__box {
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 15px 30px #00000029;
+    border-radius: 10px;
+  }
+  .estad-tabs {
+    width: 100%;
+    padding: 11px 15rem;
+    border-bottom: 6px solid #8594A0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .estad-link {
+    width: auto;
+    font-size: 2.5rem;
+    color: #00203A;
+    line-height: 37px;
+    font-weight: 700;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .estad-link:before {
+    position: absolute;
+    width: 0;
+    height: 5px;
+    background: #001F39;
+    content: "";
+    left: 0;
+    bottom: -16px;
+    transition: .3s;
+  }
+  .estad-link.active::before {
+    width: 100%;
+  }
+  @media (max-width: 991.98px) {
+    .sub__box--ri {
+        width: 400px;
+        margin-left: 50px;
+    }
+    .sub__box--ri h3 {
+        font-size: 33px;
+        line-height: 44px;
+        margin-bottom: 12px;
+    }
+    .estad-link {
+        width: 120px !important;
+        color: #00203A;
+        line-height: 37px;
+        font-weight: 700;
+        position: relative;
+    }
+    .estad-link::before {
+        position: absolute;
+        width: 0;
+        height: 5px;
+        background: #001F39;
+        content: "";
+        left: 0;
+        bottom: -16px;
+        transition: .3s;
+    }   
+     
+  }
+  @media (max-width: 767.98px) {
+    .subscribe__box {
+        padding: 20px;
+        display: block;
+    }   
+    .subscribe__box p {
+        margin: 0;
+        font-size: 14px;
+        color: #707070;
+        line-height: 27px;
+    }
+    .subscribe__img {
+        width: 70px;
+        height: 70px;
+    }  
+    .subscribe__icon.ic-mbl {
+        display: flex;
+        justify-content: start;
+    }   
+    .sub__box--ri h3 {
+        font-size: 24px;
+        line-height: 41px;
+        margin-bottom: 0;
+    }
+    .sub__box--ri {
+        width: 100%;
+        margin-left: 19px;
+    }
+    .subscribe__btn {
+        display: none;
+    } 
+    .estad__wrap h4 {
+        font-size: 28px;
+        color: #00203A;
+        line-height: 46px;
+        margin: 0;
+        font-weight: 700;
+    } 
+    .estad-tabs {
+        width: 100%;
+        padding: 10px 8rem;
+        border-bottom: 6px solid #8594A0;
+        display: flex;
+        justify-content: space-between;
+    }  
+    .estad-link {
+        width: 120px !important;
+        color: #00203A;
+        line-height: 37px;
+        font-weight: 700;
+        position: relative;
+    }
+    .estad-link::before {
+        position: absolute;
+        width: 0;
+        height: 5px;
+        background: #001F39;
+        content: "";
+        left: 0;
+        bottom: -16px;
+        transition: .3s;
+    }
+  }
+  @media (max-width: 575.98px) {
+    .estad-tabs {
+      padding: 10px 1rem;
+    }
+  }
