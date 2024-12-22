@@ -187,7 +187,7 @@ function jbetting_src()
     //wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
 
 
-    wp_deregister_script('jquery');
+    //wp_deregister_script('jquery');
 
     //wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
     //wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);

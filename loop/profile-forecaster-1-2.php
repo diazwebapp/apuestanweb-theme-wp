@@ -78,7 +78,7 @@ if(isset($_GET['profile'])):
     
      
     $stats = '<div class="estad__box">
-        <ul class="estad-tabs" id="myTab" role="tablist">
+        <ul class="nav estad-tabs" id="myTab" role="tablist">
             <li class="estad-item" role="presentation">
                 <a class="estad-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">ApuestanPlus</a>
             </li>
@@ -113,7 +113,7 @@ if(isset($_GET['profile'])):
                         <p>FECHA</p>
                         <p>PICKS</p>
                         <p>BENEFICIO</p>
-                        <p>% ACIERTO</p>
+                        <p>% Acierto</p>
                     </div>
                     {months_stats_vip}
                 </div>
