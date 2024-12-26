@@ -9,6 +9,28 @@
   position: relative;
   margin-bottom: 30px;
 }
+.free-link {
+  width: auto;
+  color: #00203a;
+  line-height: 37px;
+  font-weight: 700;
+  position: relative;
+  text-align: center;
+  font-size: 2.5rem;
+}
+.free-link:before {
+  position: absolute;
+  width: 0;
+  height: 5px;
+  background: #001F39;
+  content: "";
+  left: 0;
+  bottom: -16px;
+  transition: .3s;
+}
+.free-link.active::before {
+  width: 100%;
+}
 
 .sub-inn {
   display: flex;
@@ -124,6 +146,7 @@
 
 .estad-tabs {
   width: 100%;
+  padding-left: 15rem !important;
   padding: 11px 15rem;
   border-bottom: 6px solid #8594a0;
   display: flex;
@@ -157,6 +180,7 @@
 }
 .free-tabs {
   width: 100%;
+  padding-left: 180px !important;
   padding: 11px 180px;
   border-bottom: 6px solid #8594a0;
   display: flex;
@@ -321,8 +345,13 @@
   }  
   .free-tabs {
     width: 100%;
+    padding-left: 30px !important;
     padding: 11px 30px;
 }
+.free-link {
+  width: 120px;
+}
+
 }
 
 @media (max-width: 767.98px) {
@@ -372,6 +401,7 @@
   }
 
   .estad-tabs {
+    padding-left: 8rem !important;
     padding: 10px 8rem;
   }
 
@@ -454,10 +484,14 @@
     padding-top: 15px;
     padding-bottom: 15px;
   }  
+  .free-link {
+    width: revert;
+  }
 }
 
 @media (max-width: 575.98px) {
   .estad-tabs {
+    padding-left: 1rem !important;
     padding: 10px 1rem;
   }
 }

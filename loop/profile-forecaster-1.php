@@ -78,7 +78,7 @@ if(isset($_GET['profile'])):
     
      
     $stats = '<div class="estad__box">
-        <ul class="estad-tabs" id="myTab" role="tablist">
+        <ul class="nav estad-tabs" id="myTab" role="tablist">
             <li class="estad-item" role="presentation">
                 <a class="estad-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">ApuestanPlus</a>
             </li>
@@ -156,8 +156,8 @@ if(isset($_GET['profile'])):
     $stats_full = '<div class="estad__box">
     <div class="free__tab">
         <nav>
-            <div class="nav free-tabs" id="nav-tab" role="tablist">
-                <a class="free-link '.(isset($_GET['page_vip']) ? "active": "").'" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ApuestanPlus</a>
+            <div class="free-tabs nav " id="nav-tab" role="tablist">
+                <a class="free-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ApuestanPlus</a>
                 <a class="free-link '.(isset($_GET['page_free']) ? "active": "").'" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Free</a>
                 <a class="free-link '.(isset($_GET['page_posts']) ? "active": "").'" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Articulos</a>
             </div>
