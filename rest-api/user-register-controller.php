@@ -71,36 +71,3 @@ else:
     echo 'la funcion aw_register_user ya existe';
     die;
 endif;
-
-if(!function_exists('aw_check_user_level')):
-    function aw_check_user_level(WP_REST_Request $request){
-        $params = $request->get_json_params(); //Obtenemos parametros get 
-        
-        $prepare_membership_data['lid'] = $params['lid']; //ID de membresía
-        $resp['msg'] = "deprecated";
-        $resp['status'] = 'fail';
-
-        return $resp;
-    }
-else:
-    echo "aw_check_user_level yá existe";
-    die;
-endif;
-
-if(!function_exists('aw_user_level_operations')):
-    function aw_user_level_operations(WP_REST_Request $request){
-        /**
-         * los datos obligatorios son:
-         * current_user (objects)
-         * lid (string)
-         * payment_history_metas
-         */
-        
-        $resp['msg'] = 'deprecated';
-        $resp['status'] = 'fail';
-        
-        return $resp;
-    }
-else:
-    echo 'aw_user_level_operations ya existe';
-endif;
