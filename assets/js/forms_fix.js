@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(response => response.json())
       .then(data => {
           if (data.success) {
-              window.location.href = data.redirect_url;
+              //window.location.href = data.redirect_url;
           } else {
               const notification = document.getElementById('notification');
               notification.innerHTML = data.data;
