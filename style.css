@@ -481,6 +481,33 @@ footer .menu li a{
 footer .menu li a::before{
 	display: none;
 }
+.pagination_list{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.pagination_list a, .pagination_list span{
+	height: 3.8rem;
+	width: 3.8rem;
+	border-radius: 1rem;
+	box-shadow: 0px 0.3rem 1.0rem #0F4B9F26;
+	border: 0.1rem solid #E4E6E8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.pagination_list a:hover,
+.pagination_list a.active,.pagination_list span:hover,
+.pagination_list .current{
+	background-color: #0558CB;
+	color: #FFFFFF;
+}
+.pagination_list .prev{
+	margin-right: 4.5rem;
+}
+.pagination_list .next{
+	margin-left: 4.5rem;
+}
 .social_icons a{
 	color: #fff;
 	font-size: 2.2rem;
