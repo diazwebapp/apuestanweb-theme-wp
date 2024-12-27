@@ -169,48 +169,34 @@ function disable_all_styles() {
     //wp_dequeue_style('plugin-style-handle'); 
     // Reemplazar con el handle específico del plugin 
 } 
-add_action('wp_enqueue_scripts', 'disable_all_styles', 100);
+add_action('wp_enqueue_scripts', 'disable_all_styles', 10);
 
-add_action('wp_enqueue_scripts', 'jbetting_src');
+add_action('wp_enqueue_scripts', 'jbetting_src',1);
 function jbetting_src()
 {
     
+    wp_deregister_script('jquery');
+    wp_enqueue_style('main-css', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
+    wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/optimized_main.js', array(), '1.0.0', true);
+    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     
-    wp_enqueue_style('main-css', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
     // DESCOMENTAR DESPUES DEL DESARROLLO
-    
     //wp_enqueue_style('main-css', get_stylesheet_uri());
     add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
-    
     //wp_enqueue_style('helper', get_template_directory_uri() . '/assets/css/helper.css', array(), null);
     //wp_enqueue_style('load-c', get_template_directory_uri() . '/assets/css/load-css.css', array(), null);
-
-
-    wp_deregister_script('jquery');
-
     //wp_enqueue_script('popper-js', get_template_directory_uri() . '/assets/js/popper.min.js', array('jquery'), null, true);
-    wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', array('jquery'), '4.2.1', true);
-    
-    
-    wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/optimized_main.js', array(), '1.0.0', true);
     //wp_enqueue_script('load', get_template_directory_uri() . '/assets/js/load.min.js', array(), '1.2.4', true);
-    
-
     // wp_register_script('stick-js', get_template_directory_uri() . '/assets/js/jquery.sticky-kit.min.js', array('jquery'), null, true);
     // wp_enqueue_script( 'stick-js' );
-
     //wp_enqueue_script( 'noti-js' );
     //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
-
    //wp_enqueue_script('custom-search', get_template_directory_uri() . '/assets/js/custom-search.js', array('jquery'), null, true);
-
    // Variables que se pasan a script.js con wp_localize_script
    //wp_localize_script('custom-search', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
 
 }
-
-add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
 
 function añadir_atributos_criticos($html, $handle) {
     if ('main-css' === $handle) {

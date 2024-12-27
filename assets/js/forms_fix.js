@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('aw_login_form');
-  console.log('AJAX URL:', aw_login_params['ajaxurl']);
-  console.log('AJAX URL:', aw_login_params['redirect_url']);
 
   form.addEventListener('submit', function(event) {
       event.preventDefault();
