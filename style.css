@@ -243,6 +243,15 @@ textarea:focus{
 	font-size: 1.2rem;
 	padding-top: 1rem;
 }
+.league_box1{
+	display: grid;
+	place-items: center;
+	grid-template-columns: 24px 1fr;
+	gap:2px;
+	place-content: center;
+	margin-right: 1rem;
+	color: #2f2f2f;
+}
 /*///////////////*/
 /*//////////////
 /*return-to-top START CSS*/
@@ -1219,7 +1228,11 @@ footer .menu li a::before{
 	.single_envent_heading h2 {
 	    font-size: 3.6rem;
 	}
-
+	.league_box1{
+		display: flex;
+		justify-content: center;
+		padding: 1rem;
+	}
 
 }
 /*Medium devices (tablets, 767px and down)*/
