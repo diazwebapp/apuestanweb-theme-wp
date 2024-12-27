@@ -113,7 +113,16 @@ function aw_login_action() {
         'user_password' => sanitize_text_field($_POST['pwd']),
         'remember'      => isset($_POST['rememberme']),
     ];
-    wp_signon($credentials, is_ssl());
+    $user = wp_signon($credentials, is_ssl());
+    if (is_wp_error($user)) {
+        wp_send_json_error($user->get_error_message());
+    } else {
+        wp_safe_redirect(home_url());
+        wp_localize_script('login-js', 'aw_login_params',[
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            
+        ]);
+    }
 }
 add_action('wp_ajax_nopriv_aw_login_action', 'aw_login_action');
 
