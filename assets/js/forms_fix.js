@@ -1,19 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('aw_login_form');
+  console.log('AJAX URL:', aw_login_params['ajaxurl']);
+    
   form.addEventListener('submit', function(event) {
       event.preventDefault();
       
       const formData = new FormData(form);
       formData.append('action', 'aw_login_action');
       
-      fetch(aw_login_params.ajaxurl, {
+      fetch(aw_login_params['ajaxurl'], {
           method: 'POST',
           body: formData
       })
       .then(response => response.json())
       .then(data => {
           if (data.success) {
-              //window.location.href = data.redirect_url;
+            window.location.href = aw_login_params['redirect_url'];
           } else {
               const notification = document.getElementById('notification');
               notification.innerHTML = data.data;

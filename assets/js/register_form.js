@@ -86,7 +86,7 @@ window.addEventListener("load",()=>{
                 const {status,redirect_url} = await register_user(register_data)  
                 
                 if(status == 'ok'){
-                    //document.location = redirect_url
+                    document.location = redirect_url
                 } 
                 if(status == 'fail'){
                     show_toats("toastsRegisterForm","A ocurrido un error de red")

@@ -61,7 +61,7 @@ if(!function_exists('aw_register_user')):
             $user['user_password'] = $password;
             $user['renember'] = true;
             $user = wp_signon( $user, false );
-            
+            $resp["redirect_url"] = home_url();
             $resp["status"] = "ok";
         }
     

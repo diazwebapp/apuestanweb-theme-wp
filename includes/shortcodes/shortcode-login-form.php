@@ -96,7 +96,10 @@ function load_js_login() {
     global $post;
     if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'aw-login-form'))) {
         wp_enqueue_script('login-js', get_template_directory_uri() . '/assets/js/forms_fix.js', array(), null, true);
-        wp_localize_script('login-js', 'aw_login_params', array( 'ajaxurl' => admin_url('admin-ajax.php') ));
+        wp_localize_script('login-js', 'aw_login_params', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'redirect_url' => home_url(),
+        ]);
     }
 }
 add_action('wp_enqueue_scripts', 'load_js_login');
@@ -110,12 +113,7 @@ function aw_login_action() {
         'user_password' => sanitize_text_field($_POST['pwd']),
         'remember'      => isset($_POST['rememberme']),
     ];
-    $user = wp_signon($credentials, is_ssl());
-    if (is_wp_error($user)) {
-        wp_send_json_error($user->get_error_message());
-    } else {
-        wp_send_json_success(['redirect_url' => home_url()]);
-    }
+    wp_signon($credentials, is_ssl());
 }
 add_action('wp_ajax_nopriv_aw_login_action', 'aw_login_action');
 
