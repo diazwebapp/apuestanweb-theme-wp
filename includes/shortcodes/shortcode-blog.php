@@ -2,11 +2,11 @@
 function shortcode_blog($atts)
 {
     extract(shortcode_atts(array(
-        'model' => false,
+        'model' => 1,
         'filter' => false,
         'title' => false,
         'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
-        'paginate' => false,
+        'paginate' => 'yes',
         'num' => 6
     ), $atts));
     //Set default title
@@ -49,7 +49,7 @@ function shortcode_blog($atts)
         $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
     endif;
     
-    $ret .= '<div class="container">' . blog_posts_table('post',$paginate,$num,$league_arr) . '</div>';
+    $ret .= '<div class="container">' . blog_posts_table('post',$paginate,$num,$league_arr,$model) . '</div>';
     
     return $ret;
 }

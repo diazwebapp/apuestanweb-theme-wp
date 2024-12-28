@@ -1,123 +1,7 @@
 <?php 
 
-
-
-function aw_blog_posts_table($items){
-	$result = '';
-    
-	// field names
-	while ($items->have_posts()) :
-        $items->the_post();
-        $thumb = get_the_post_thumbnail_url(get_the_ID(),'thumbnail');
-        $leagues = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
-        $sport = '';
-        
-        if(count($leagues) > 0):
-            foreach($leagues as $league):
-                if($league->parent == 0):
-                    $sport = $league->name;
-                endif;
-            endforeach;
-        endif;
-       
-        $result .= '<div class="col-lg-3 col-md-4 col-6 p-0">
-                        <a href="'.get_the_permalink(get_the_ID()).'" >
-                            <img src="'.$thumb.'" width="160"; height="90"; alt="logo" >
-                        </a>
-                                
-                        <div class="blog_content mt-2">
-                            <a href="'.get_the_permalink(get_the_ID()).'">
-                                '.get_the_title().'
-                            </a>
-                            <span>#'.$sport.'</span>
-                        </div>
-                    </div>';
-    endwhile;
-    wp_reset_postdata();
-	$template = '<div class="row">
-                    {data}
-            </div>';
-
-	return str_replace('{data}', $result, $template);
-}
-
-
-/* 
-
-function aw_blog_posts_table($items){
-	$result = '';
-    
-	// field names
-	while ($items->have_posts()) :
-        $items->the_post();
-        $thumb = get_the_post_thumbnail_url(get_the_ID(),'120x70');
-        $leagues = wp_get_post_terms(get_the_ID(), 'league', array('fields' => 'all'));
-        $sport = '';
-        if(count($leagues) > 0):
-            foreach($leagues as $league):
-                if($league->parent == 0):
-                    $sport = $league->name;
-                endif;
-            endforeach;
-        endif;
-        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
-                        <a href="#" class="thumb" style="width:100%;height:70%;background:red;">
-                            <img width="100%";height="70%"; src="http://localhost/jeff-local/wp-content/uploads/2024/12/5d075d3296a16.r_1560763705050.0-12-1338-701.jpg" alt="">
-                        </a>
-                        <div class="texto">titulo</div>
-                    </div>';
-    endwhile;
-    wp_reset_postdata();
-	$template = '<div class="row">{data}</div>';
-
-	return str_replace('{data}', $result, $template);
-}
-
- */
-
-/* 
-function aw_blog_posts_table($items){
-	$result = '';
-    
-	// field names
-	while ($items->have_posts()) :
-       
-        $result .= '<div class="col-lg-3 col-md-4 col-6 mt-4">
-                        <div class="thumb" style="width:100%;height:100px;background:red;">
-                        </div>
-                        <div class="title">titulo</div>
-                    </div>';
-    endwhile;
-    wp_reset_postdata();
-	$template = '<div class="container"><div class="row">{data}</div></div>';
-
-	return str_replace('{data}', $result, $template);
-}
-
- */
-function aw_blog_posts_pagination($wp_query,$paged){
-    $template = '<div class="col-lg-12">
-                <div class="blog_pagination">
-                    <ul class="pagination_list">
-                        {pagination}
-                    </ul>
-                </div>
-            </div>';
-
-	$pagination = paginate_links( array(
-        'base' => str_replace(999999999,'%#%',esc_url(get_pagenum_link(999999999))),
-        'current' => $paged,
-        'total' => $wp_query->max_num_pages,
-        'type' => 'row',
-        'prev_text' => '<',
-        'next_text' => '>'
-    ));
-
-    return str_replace("{pagination}", $pagination ?? '', $template ?? '');
-}
-
-function blog_posts_table($post_type,$paginate,$per_page,$leagues=false){
-    wp_reset_postdata();
+function blog_posts_table($post_type,$paginate,$per_page,$leagues=false,$model){
+   
     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
     $args['post_type'] = $post_type;
     $args['posts_per_page'] = $per_page;
@@ -136,9 +20,40 @@ function blog_posts_table($post_type,$paginate,$per_page,$leagues=false){
     endif;
     $query = new Wp_Query($args);
     
-    $html = aw_blog_posts_table($query);
+    $html = '';
+    
+	// field names
+	while ($query->have_posts()) :
+        $query->the_post();
+        $html .= load_template_part("loop/posts-grid_{$model}",null,[]);
+    endwhile;
+    
+	$template = '<div class="row">
+                    {data}
+            </div>';
+
+	$html = str_replace('{data}', $html, $template);
+
     if($paginate):
-        $html .= aw_blog_posts_pagination($query,$paged);
+        //$html .= aw_blog_posts_pagination($query,$paged);
+        $template = '<div class="col-lg-12">
+                <div class="blog_pagination">
+                    <ul class="pagination_list">
+                        {pagination}
+                    </ul>
+                </div>
+            </div>';
+
+        $pagination = paginate_links( array(
+            'base' => str_replace(999999999,'%#%',esc_url(get_pagenum_link(999999999))),
+            'current' => $paged,
+            'total' => $query->max_num_pages,
+            'type' => 'plain',
+            'prev_text' => '<',
+            'next_text' => '>'
+        ));
+        var_dump($pagination);
+        $html .= str_replace("{pagination}",$pagination,$template);
     endif;
     return $html;
 }
