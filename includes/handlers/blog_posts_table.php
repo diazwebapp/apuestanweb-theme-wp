@@ -1,59 +1,52 @@
 <?php 
+function blog_posts_pagination_ajax() {
+    //check_ajax_referer('pagination_nonce', 'nonce');
 
-function blog_posts_table($post_type,$paginate,$per_page,$leagues=false,$model){
-   
-    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-    $args['post_type'] = $post_type;
-    $args['posts_per_page'] = $per_page;
-    $args['paged'] = $paged;
+    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
+    $model = isset($_POST['model']) ? intval($_POST['model']) : 1;
+    $post_type = sanitize_text_field($_POST['post_type']);
+    $per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 6;
 
-    if(isset($leagues) and $leagues !== '[all]'):
-        $p = str_replace("[","",$leagues);
-        $p = str_replace("]","",$leagues);
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'league',
-                'field' => 'slug',
-                'terms' => [$p]
-            ]
-        ];
-    endif;
-    $query = new Wp_Query($args);
-    
-    $html = '';
-    
-	// field names
-	while ($query->have_posts()) :
-        $query->the_post();
-        $html .= load_template_part("loop/posts-grid_{$model}",null,[]);
-    endwhile;
-    
-	$template = '<div class="row">
-                    {data}
-            </div>';
+    $args = [
+        'post_type' => $post_type,
+        'posts_per_page' => $per_page,
+        'paged' => $paged,
+    ];
 
-	$html = str_replace('{data}', $html, $template);
+    $query = new WP_Query($args);
 
-    if($paginate):
-        //$html .= aw_blog_posts_pagination($query,$paged);
-        $template = '<div class="col-lg-12">
-                <div class="blog_pagination">
-                    <ul class="pagination_list">
-                        {pagination}
-                    </ul>
-                </div>
-            </div>';
+    if ($query->have_posts()) {
+        ob_start();
+        while ($query->have_posts()) {
+            $query->the_post();
+            // Renderiza el contenido del post
+            echo load_template_part("loop/posts-grid_{$model}", null, []);
+        }
+        $posts_html = ob_get_clean();
 
-        $pagination = paginate_links( array(
-            'base' => str_replace(999999999,'%#%',esc_url(get_pagenum_link(999999999))),
-            'current' => $paged,
-            'total' => $query->max_num_pages,
-            'type' => 'plain',
+        // Generar paginación
+        $pagination_links = paginate_links([
+            'base'      => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+            'format'    => '?paged=%#%',
+            'current'   => $paged,
+            'total'     => $query->max_num_pages,
             'prev_text' => '<',
-            'next_text' => '>'
-        ));
-        var_dump($pagination);
-        $html .= str_replace("{pagination}",$pagination,$template);
-    endif;
-    return $html;
+            'next_text' => '>',
+            'type'      => 'plain',
+        ]);
+
+        wp_send_json_success([
+            'html' => $posts_html,
+            'pagination' => $pagination_links,
+            'max_pages' => $query->max_num_pages,
+        ]);
+    } else {
+        wp_send_json_error(['message' => 'No posts found']);
+    }
+
+    wp_die();
 }
+
+add_action('wp_ajax_blog_posts_pagination', 'blog_posts_pagination_ajax');
+add_action('wp_ajax_nopriv_blog_posts_pagination', 'blog_posts_pagination_ajax');
+

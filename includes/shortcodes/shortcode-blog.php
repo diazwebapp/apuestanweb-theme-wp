@@ -1,57 +1,87 @@
 <?php
-function shortcode_blog($atts)
-{
+function shortcode_blog($atts) {
     extract(shortcode_atts(array(
         'model' => 1,
-        'filter' => false,
-        'title' => false,
-        'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
-        'paginate' => 'yes',
-        'num' => 6
+        'paginate' => true,
+        'num' => 2,
+        'leagues' => '[all]'
     ), $atts));
-    //Set default title
-    if(!$title):
-        $custom_h1 = carbon_get_post_meta(get_the_ID(), 'custom_h1');
-        $title = empty($custom_h1) ? get_the_title( get_the_ID() ) : $custom_h1;
-    endif;
-    //Set search bar
-    $ret = '';
-    if($filter):
-            $url = site_url();
-            $search_icon = get_template_directory_uri() . '/assets/img/s4.png';
-            $ret = '<div style="margin:20px auto;" class="col-lg-12">
-                        <div class="blog_heading">
-                            <h2 class="title">'.$title.'</h2>
-                            <div class="blog_heading_right_content">
-                                
-                                <form role="search" method="get" action="'.$url.'" class="serach_box">
-                                    <input type="search" id="wp-block-search__input-1" class="wp-block-search__input " name="s" placeholder="Buscar">
-                                    <img src="'.$search_icon.'" alt="">
-                                </form>
-                            </div>
-                        </div>
-                    </div>';
-    endif;
-    $league_arr = null;
+
+    if (isset($leagues) && $leagues !== '[all]') {
+        $p = str_replace(["[", "]"], "", $leagues);
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'league',
+                'field' => 'slug',
+                'terms' => [$p]
+            ]
+        ];
+    }
     
-    if(is_array($league) and count($league) > 0):
-        
-        $league_arr = "[{replace-leagues}]";
-        $temp_leages = '';
-        foreach ($league as $key => $value) {
-            $temp_leages .= $value->slug.',' ;
-        }
-        $league_arr = str_replace("{replace-leagues}",$temp_leages,$league_arr);
-    endif;
-    if(!is_array($league) and is_string($league)):
-        
-        $league_arr = "[{replace-leagues}]";
-        $league_arr = str_replace("{replace-leagues}",$league,$league_arr);
-    endif;
-    
-    $ret .= '<div class="container">' . blog_posts_table('post',$paginate,$num,$league_arr,$model) . '</div>';
-    
-    return $ret;
+    $html = '<div class="container">
+                <div class="row" id="blog_posts_container">
+                    {posts}
+                </div>
+                <div class="blog_pagination">
+                    <ul class="pagination_list" id="blog_pagination_list">
+                       {paginate}
+                    </ul>
+                </div>
+            </div>';
+    $query = blog_posts_table('post', $num, '[all]');
+    $template = "";
+    while ($query->have_posts()) :
+        $query->the_post();
+        $template .= load_template_part("loop/posts-grid_{$model}", null, []);
+    endwhile; 
+    $html = str_replace('{posts}',$template,$html);
+
+    if($paginate){
+        $nav_pages = aw_pagination_posts($query);
+        $html = str_replace('{paginate}',$nav_pages, $html);
+    }else{
+        $html = str_replace('{paginate}', "", $html);
+    }
+    wp_localize_script('blog_js', 'pagination_data', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'model' => $model,
+        'perPage' => $num,
+        'leagues' => $leagues
+    ]);
+    return $html;
+}
+add_shortcode('blog', 'shortcode_blog');
+
+
+function blog_posts_table($post_type, $per_page, $leagues) {
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    $args['post_type'] = $post_type;
+    $args['posts_per_page'] = $per_page;
+    $args['paged'] = $paged;
+
+    $query = new WP_Query($args);
+
+    return $query;
 }
 
-add_shortcode('blog', 'shortcode_blog');
+function aw_pagination_posts($query){
+    $pagination_links = paginate_links([
+        'base'      => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+        'format'    => '?paged=%#%',
+        'current'   => (get_query_var('paged')) ? get_query_var('paged') : 1,
+        'total'     => $query->max_num_pages,
+        'prev_text' => '<',
+        'next_text' => '>',
+        'type'      => 'plain',
+    ]);
+    return $pagination_links;
+}
+
+function aw_load_blog_js() {
+    global $post;
+    
+    wp_enqueue_script('blog_js', get_template_directory_uri() . '/assets/js/blog-pagination.js', array(), null, true);
+    
+    
+}
+add_action('wp_enqueue_scripts', 'aw_load_blog_js');
