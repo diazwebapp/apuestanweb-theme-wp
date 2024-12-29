@@ -36,7 +36,9 @@ function shortcode_blog($atts) {
         'ajax_url' => admin_url('admin-ajax.php'),
         'model' => $model,
         'perPage' => $num,
-        'leagues' => $leagues
+        'leagues' => $leagues,
+        'paged' => (get_query_var('paged')) ? get_query_var('paged') : 1,
+        'maxPages' => $query->max_num_pages
     ]);
     return $html;
 }
@@ -44,11 +46,11 @@ add_shortcode('blog', 'shortcode_blog');
 
 
 function blog_posts_table($post_type, $per_page, $leagues) {
-    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+    $paged = (get_query_var('page')) ? get_query_var('page') : 1;
     $args['post_type'] = $post_type;
     $args['posts_per_page'] = $per_page;
     $args['paged'] = $paged;
-    
+
     if (isset($leagues) && $leagues !== '[all]') {
         $p = str_replace(["[", "]"], "", $leagues);
         $args['tax_query'] = [
@@ -67,13 +69,16 @@ function blog_posts_table($post_type, $per_page, $leagues) {
 function aw_pagination_posts($query){
     $pagination_links = paginate_links([
         'base'      => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
-        'format'    => '?paged=%#%',
-        'current'   => (get_query_var('paged')) ? get_query_var('paged') : 1,
+        'format'    => '?page=%#%',
+        'current'   => (get_query_var('page')) ? get_query_var('page') : 1,
         'total'     => $query->max_num_pages,
         'prev_text' => '<',
         'next_text' => '>',
         'type'      => 'plain',
     ]);
+    $url = home_url() . 'page/1/';
+    $pagination_links = str_replace('<span','<a href="'.$url.'"',$pagination_links);
+    $pagination_links = str_replace('</span','</a',$pagination_links);
     return $pagination_links;
 }
 

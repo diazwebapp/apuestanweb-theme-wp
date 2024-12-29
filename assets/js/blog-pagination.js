@@ -1,20 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     const paginationNumbers = document.querySelectorAll('#blog_pagination_list a.page-numbers');
-    const paginationNumberActive = document.querySelector('#blog_pagination_list span');
+   // const paginationNumberActive = document.querySelector('#blog_pagination_list span');
     const postsContainer = document.querySelector('#blog_posts_container'); // Contenedor de los posts
 
     if (paginationNumbers) {
+        let paged = parseInt(pagination_data.paged)
         for(let number of paginationNumbers){
             
             number.addEventListener("click", e =>{
                 e.preventDefault()
-                paginationNumberActive.classList.remove('current')
+                //paginationNumberActive.classList.remove('current')
                 for(let number2 of paginationNumbers){
                     number2.classList.remove('current')
                 }
                 number.classList.add('current')
                 const target = e.target.closest('a');
-                const paged = target.textContent
+                if(target.textContent == '>'){
+                    paged++
+                }else if(target.textContent == '<'){
+                    paged--
+                }else{
+                    paged = parseInt(target.textContent)
+                }
+                console.log(paged)
+                
                 
                 fetch(pagination_data.ajax_url, {
                     method: 'POST',
@@ -30,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                     .then((response) => response.json())
                     .then((data) => {
-                        
                         if (data.success) {
                             postsContainer.innerHTML = data.data.html;
                         } else {
