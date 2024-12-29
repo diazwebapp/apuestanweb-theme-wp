@@ -7,16 +7,6 @@ function shortcode_blog($atts) {
         'leagues' => '[all]'
     ), $atts));
 
-    if (isset($leagues) && $leagues !== '[all]') {
-        $p = str_replace(["[", "]"], "", $leagues);
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'league',
-                'field' => 'slug',
-                'terms' => [$p]
-            ]
-        ];
-    }
     
     $html = '<div class="container">
                 <div class="row" id="blog_posts_container">
@@ -28,7 +18,7 @@ function shortcode_blog($atts) {
                     </ul>
                 </div>
             </div>';
-    $query = blog_posts_table('post', $num, '[all]');
+    $query = blog_posts_table('post', $num, $leagues);
     $template = "";
     while ($query->have_posts()) :
         $query->the_post();
@@ -58,7 +48,17 @@ function blog_posts_table($post_type, $per_page, $leagues) {
     $args['post_type'] = $post_type;
     $args['posts_per_page'] = $per_page;
     $args['paged'] = $paged;
-
+    
+    if (isset($leagues) && $leagues !== '[all]') {
+        $p = str_replace(["[", "]"], "", $leagues);
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'league',
+                'field' => 'slug',
+                'terms' => [$p]
+            ]
+        ];
+    }
     $query = new WP_Query($args);
 
     return $query;

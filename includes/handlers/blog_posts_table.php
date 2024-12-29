@@ -6,13 +6,23 @@ function blog_posts_pagination_ajax() {
     $model = isset($_POST['model']) ? intval($_POST['model']) : 1;
     $post_type = sanitize_text_field($_POST['post_type']);
     $per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 6;
+    $leagues = isset($_POST['leagues']) ? sanitize_text_field($_POST['leagues']) : '[all]';
 
     $args = [
         'post_type' => $post_type,
         'posts_per_page' => $per_page,
         'paged' => $paged,
     ];
-
+    if (isset($leagues) && $leagues !== '[all]') {
+        $p = str_replace(["[", "]"], "", $leagues);
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'league',
+                'field' => 'slug',
+                'terms' => [$p]
+            ]
+        ];
+    }
     $query = new WP_Query($args);
 
     if ($query->have_posts()) {
