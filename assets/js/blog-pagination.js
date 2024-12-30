@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const paginationNumbers = document.querySelectorAll('#blog_pagination_list a.page-numbers');
-   // const paginationNumberActive = document.querySelector('#blog_pagination_list span');
+    const paginationNumberActive = document.querySelector('#blog_pagination_list span');
     const postsContainer = document.querySelector('#blog_posts_container'); // Contenedor de los posts
 
     if (paginationNumbers) {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             number.addEventListener("click", e =>{
                 e.preventDefault()
-                //paginationNumberActive.classList.remove('current')
+                paginationNumberActive.classList.remove('current')
                 for(let number2 of paginationNumbers){
                     number2.classList.remove('current')
                 }
@@ -22,9 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }else{
                     paged = parseInt(target.textContent)
                 }
-                console.log(paged)
-                
-                
+
                 fetch(pagination_data.ajax_url, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
