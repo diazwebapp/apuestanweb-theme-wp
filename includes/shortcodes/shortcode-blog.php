@@ -77,8 +77,7 @@ function aw_pagination_posts($query){
         'next_text' => __('>', 'textdomain'),
     ) );
     
-    //$pagination_links = str_replace('<span','<a',$pagination_links);
-    //$pagination_links = str_replace('</span','</a',$pagination_links);
+
     return $pagination_links;
 }
 
@@ -89,4 +88,4 @@ function aw_load_blog_js() {
     
     
 }
-add_action('wp_enqueue_scripts', 'aw_load_blog_js');
+//add_action('wp_enqueue_scripts', 'aw_load_blog_js');

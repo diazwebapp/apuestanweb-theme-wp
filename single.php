@@ -34,6 +34,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                         <div class="author-info d-flex align-items-center m-3 mt-4">
                                         <img width="40" height="40" src="<?php echo $avatar ?>" class="rounded-circle mr-3 mt-3" alt="">
                                         <div class="author-details d-flex flex-column">
+                                            <?php the_author_posts_link(); ?>
                                             <span class="text-capitalize mb-1" style="font-size:1.9rem;"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
                                             <time datetime="<?php echo $post_date ?>" class="mb-0"><?php echo __("Publicado: $fecha $hora"); ?></time>
                                         </div>

@@ -1,7 +1,26 @@
+<?php 
 
+function load_forecaster_script() {
+    wp_enqueue_style('s-forecaster-css', get_template_directory_uri() . '/assets/css/forecaster-styles.css'); 
+     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', [], '3.6.0', true);
+}
+
+add_action('wp_enqueue_scripts', 'load_forecaster_script',2);
+
+
+get_header();
+
+$curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
+$avatar_url = get_the_author_meta( 'profile_image',$curauth->ID );
+$avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
+
+///////ESTADISTICAS DEL AUTOR////////
+$stats_vip = get_user_stats($curauth->ID,'=',-1);  
+$stats_free = get_user_stats($curauth->ID,'!=',-1);
+
+?>
 
     <main>
-
         <!--subscribe--area--start-->
         <div class="subscribe__area">
             <div class="container">
@@ -14,32 +33,31 @@
                                         <div class="sub-inn">
                                             <div class="sub-bx-lf">
                                                 <div class="subscribe__img">
-                                                    <img src="img/new/s23.png" alt="author-image">
+                                                    <img src="<?php echo $avatar; ?>" alt="author-image">
                                                 </div>
                                                 <div class="subscribe__icon">
-                                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                                    <!-- <a href="#">facebook</i></a>
+                                                    <a href="#">twitter</a>
+                                                    <a href="#">instagran</a> -->
                                                 </div>
                                             </div>
                                             <div class="sub__box--ri">
                                                 <div class="subscribe__icon ic-mbl">
-                                                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                                    <!-- <a href="#">facebook</i></a>
+                                                    <a href="#">twitter</a>
+                                                    <a href="#">instagran</a>> -->
                                                 </div>
-                                                <h3>Luis Rogriguez</h3>
-                                                <p>El Manchester United es líder del grupo F pero no puede relajarse porque está a tan solo 2 puntos de la tercera posición.</p>
+                                                <h3><?php echo $curauth->nickname; ?></h3>
+                                                <p></p>
                                             </div>
                                             <div class="subscribe__btn">
                                                 <a href="#">SUSCRIBIRSE</a>
                                             </div>
 
                                         </div>
-                                        <div class="mb-tx">
-                                            <p>El Manchester United es líder del grupo F pero no puede relajarse porque está a tan solo 2 puntos de la tercera posición.</p>
-                                        </div>
+                                        
                                     </div>
+                                    
                                     <div class="estad__wrap">
                                         <h4>Estadisticas</h4>
                                         <div class="estad__box">
@@ -56,19 +74,19 @@
                                                     <div class="estad__wp">
                                                         <div class="estad__single">
                                                             <div class="estd__bt">
-                                                                <h5>152</h5>
+                                                                <h5><?php echo $stats_vip['total'] ?></h5>
                                                             </div>
                                                             <p>PRONÓSTICOS</p>
                                                         </div>
                                                         <div class="estad__single">
                                                             <div class="estd__bt">
-                                                                <h5>+25</h5>
+                                                                <h5><?php echo $stats_vip['tvalue'] ?></h5>
                                                             </div>
                                                             <p>BENEFICIO</p>
                                                         </div>
                                                         <div class="estad__single">
                                                             <div class="estd__bt">
-                                                                <h5>52%</h5>
+                                                                <h5><?php echo round($stats_vip['porcentaje'],2) ?></h5>
                                                             </div>
                                                             <p>%</p>
                                                         </div>
@@ -359,123 +377,7 @@
         </div>
         <!--info--area--end-->
 
-
+    
     </main>
 
-    <!-- footer area -->
-    <footer>
-        <div class="container">
-            <div class="row align-items-center form-row">
-                <div class="col-lg-2 col-6 mt-3">
-                    <!--logo start-->
-                    <a href="/">
-                        <img src="img/logo.svg" class="img-fluid" alt="">
-                    </a>
-                    <!--logo end-->
-                </div>
-                <div class="col-lg-8 footer_menu_col mt-3">
-                    <!--menu start-->
-                    <ul class="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <img src="img/icon1.svg" alt="">
-                                Fútbol
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <img src="img/icon2.svg" alt="">
-                                NBA
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <img src="img/icon3.svg" alt="">
-                                MLB
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <img src="img/icon4.svg" alt="">
-                                NFL
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <img src="img/icon5.svg" alt="">
-                                E-Sport
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <img src="img/icon6.svg" alt="">
-                                Parley
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <img src="img/icon7.svg" alt="">
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-                    <!--menu end-->
-                </div>
-                <div class="col-lg-2 col-6 mt-3 text-right">
-                    <div class="social_icons">
-                        <a href="#">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 text-center">
-                    <p class="copyright">Apuestan 2021. Todos los derechos reservados ©</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!--====== BACK TO TOP START ======-->
-    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-    <!--====== BACK TO TOP ENDS ======-->
-
-    <!-- all js here -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script>
-        $('.slider__active').owlCarousel({
-            loop: true,
-            navText: [
-                '<i class="fa fa-angle-right"></i>',
-                '<i class="fa fa-angle-left"></i>'
-            ],
-            dots: false,
-            smartSpeed: 1000,
-            margin: 10,
-            stagePadding: 15,
-            responsive: {
-                0: {
-                    items: 1,
-                    margin: 15,
-                    nav: true,
-                },
-                768: {
-                    items: 3,
-                },
-                922: {
-                    items: 5,
-                    margin: 10,
-                    stagePadding: 15,
-                    nav: true
-                }
-            }
-        });
-
-    </script>
+<?php get_footer(); ?>

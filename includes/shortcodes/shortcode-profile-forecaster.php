@@ -96,16 +96,7 @@ function load_forecaster_styles() {
     if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'profile-forecaster'))) {
         wp_enqueue_style('s-forecaster-css', get_template_directory_uri() . '/assets/css/forecaster-styles.css');
         // Registrar jQuery manualmente después de desregistrar el predeterminado
-        wp_register_script(
-            'jquery', 
-            get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', 
-            [], 
-            '3.6.0', 
-            true
-        );
-
-        // Encolar jQuery
-        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', [], '3.6.0', true);
     }
 }
 add_action('wp_enqueue_scripts', 'load_forecaster_styles',2);
