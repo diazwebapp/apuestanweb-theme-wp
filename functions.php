@@ -743,3 +743,12 @@ function incluir_script_media_uploader() {
     }
 }
 add_action( 'admin_enqueue_scripts', 'incluir_script_media_uploader' );
+
+function aw_custom_query_vars($vars) {
+    $vars[] = 'page_post';
+    $vars[] = 'page_forecast';
+    $vars[] = 'page_forecast_free';
+    $vars[] = 'page_forecast_vip';
+    return $vars;
+}
+add_filter('query_vars', 'aw_custom_query_vars');

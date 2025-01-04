@@ -52,61 +52,61 @@ function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,
     $user_stats['porcentaje_nulos'] = 0;
     $user_stats['tvalue'] = 0;
     
-        $forecast_args['author'] = $user_id;
-        $forecast_args['post_type'] = 'forecast';
-        $forecast_args['posts_per_page'] = $limit;
+    $forecast_args['author'] = $user_id;
+    $forecast_args['post_type'] = 'forecast';
+    $forecast_args['posts_per_page'] = $limit;
         
-        $forecast_args['meta_query']     = [
-            ($vip) ? [
-                'key' => 'vip',
-                'value'=>'yes',
-                'compare' => $vip
-                ] : '',
-                [
-                    'key'     => 'data',
-                    'value'   => (isset($interval_date["start_date"]) and isset($interval_date["last_date"])) ? [$interval_date["start_date"],$interval_date["last_date"]] : [],
-                    'compare' => 'BETWEEN',
-                    'type'    => 'DATE'
-                ],
-        ];
+    $forecast_args['meta_query']     = [
+        ($vip) ? [
+            'key' => 'vip',
+            'value'=>'yes',
+            'compare' => $vip
+            ] : '',
+            [
+                'key'     => 'data',
+                'value'   => (isset($interval_date["start_date"]) and isset($interval_date["last_date"])) ? [$interval_date["start_date"],$interval_date["last_date"]] : [],
+                'compare' => 'BETWEEN',
+                'type'    => 'DATE'
+            ],
+    ];
 
-        $user_posts_query = new WP_Query($forecast_args);
-        
+    $user_posts_query = new WP_Query($forecast_args);
+  
 
-        if($user_posts_query->have_posts()):
-            //Loop de los forecasts del autor
-            while($user_posts_query->have_posts()): $user_posts_query->the_post();
-                
-                $status = carbon_get_post_meta(get_the_ID(), 'status');
-                
-                $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
-                if($predictions and count($predictions) > 0):
-                    if($status and $status == 'ok'):
-                        $user_stats['acertados'] += 1;
-                        $cuote = floatval($predictions[0]['cuote']);
-                        $tvalue = floatval($predictions[0]['tvalue']);
-                        $inversion = $tvalue * 20;
-                        $user_stats['tvalue'] += $inversion * $cuote - $inversion;
-                    endif;
-                    if($status and $status == 'fail'):
-                        $user_stats['fallidos'] += 1;
-                        $tvalue = floatval($predictions[0]['tvalue']);
-                        $inversion = $tvalue * 20;
-                        $user_stats['tvalue'] -= $inversion;
-                    endif;
-                    if($status and $status == 'null'):
-                        $user_stats['nulos'] += 1;
-                    endif;
+    if($user_posts_query->have_posts()):
+        //Loop de los forecasts del autor
+        while($user_posts_query->have_posts()): $user_posts_query->the_post();
+            
+            $status = carbon_get_post_meta(get_the_ID(), 'status');
+            
+            $predictions = carbon_get_post_meta(get_the_ID(), 'predictions');
+            if($predictions and count($predictions) > 0):
+                if($status and $status == 'ok'):
+                    $user_stats['acertados'] += 1;
+                    $cuote = floatval($predictions[0]['cuote']);
+                    $tvalue = floatval($predictions[0]['tvalue']);
+                    $inversion = $tvalue * 20;
+                    $user_stats['tvalue'] += $inversion * $cuote - $inversion;
                 endif;
-            endwhile;
-            //Completando estadisticas total y porcentaje
-            $user_stats['total'] = $user_stats['acertados'] + $user_stats['fallidos'] + $user_stats['nulos'] ;
-            $user_stats['porcentaje'] = ($user_stats['acertados'] != 0 and $user_stats['total'] != 0) ?$user_stats['acertados'] * 100 / $user_stats['total'] : 0;
-            $user_stats['porcentaje_fallidos'] = ( $user_stats['fallidos'] != 0 and $user_stats['total'] != 0) ? $user_stats['fallidos'] * 100 / $user_stats['total'] : 0;
-            $user_stats['porcentaje_nulos'] = ($user_stats['nulos'] != 0 and  $user_stats['total'] != 0) ? $user_stats['nulos'] * 100 / $user_stats['total'] : 0;
-        
-        endif;
-        wp_reset_query();
-        
-        return $user_stats;
+                if($status and $status == 'fail'):
+                    $user_stats['fallidos'] += 1;
+                    $tvalue = floatval($predictions[0]['tvalue']);
+                    $inversion = $tvalue * 20;
+                    $user_stats['tvalue'] -= $inversion;
+                endif;
+                if($status and $status == 'null'):
+                    $user_stats['nulos'] += 1;
+                endif;
+            endif;
+        endwhile;
+        //Completando estadisticas total y porcentaje
+        $user_stats['total'] = $user_stats['acertados'] + $user_stats['fallidos'] + $user_stats['nulos'] ;
+        $user_stats['porcentaje'] = ($user_stats['acertados'] != 0 and $user_stats['total'] != 0) ?$user_stats['acertados'] * 100 / $user_stats['total'] : 0;
+        $user_stats['porcentaje_fallidos'] = ( $user_stats['fallidos'] != 0 and $user_stats['total'] != 0) ? $user_stats['fallidos'] * 100 / $user_stats['total'] : 0;
+        $user_stats['porcentaje_nulos'] = ($user_stats['nulos'] != 0 and  $user_stats['total'] != 0) ? $user_stats['nulos'] * 100 / $user_stats['total'] : 0;
+    
+    endif;
+    wp_reset_query();
+    
+    return $user_stats;
 }
