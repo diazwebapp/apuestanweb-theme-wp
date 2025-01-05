@@ -15,7 +15,7 @@ if(count($leagues) > 0):
 endif;
 echo "<div class='col-6 col-lg-4 mt-5'>
     <div class='notis_box'>
-    <img class='img-fluid' alt='$title' width='230' height='153' loading='lazy' src='$thumbnail_url' alt='teamvs'>
+    <img alt='$title' width='230' height='153' loading='lazy' src='$thumbnail_url' alt='teamvs'>
         <a href='$permalink'>
             <p class='text-white'>$title</p>
         </a>
