@@ -1,5 +1,5 @@
 <?php
-$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 if(!$thumbnail_url)
 $thumbnail_url = get_template_directory_uri() . '/assets/img/cross.png';
 
@@ -17,7 +17,7 @@ endif;
 echo "<div class='col-lg-3 col-md-4 col-6 mt-5'>
     <div class='blog_box'>
         <div class='img_box'>
-        <a href='$permalink'><img width='180' height='110' class='w-100' alt='$title' loading='lazy' src='$thumbnail_url' alt='teamvs'></a>
+        <a href='$permalink'><img width='230' height='189' class='w-100' alt='$title' loading='lazy' src='$thumbnail_url' alt='teamvs'></a>
         </div>
         <div class='desc_box' >
             <a href='$permalink'><h3>$title</h3></a>

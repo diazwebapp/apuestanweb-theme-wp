@@ -1,5 +1,5 @@
 <?php
-$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ;
+$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail') ;
 if(!$thumbnail_url)
     $thumbnail_url = get_template_directory_uri() . '/assets/img/cross.png';
 $permalink = get_the_permalink( get_the_ID() );
@@ -15,7 +15,7 @@ if(count($leagues) > 0):
 endif;
 echo "<div class='col-6 col-lg-4 mt-5'>
     <div class='notis_box'>
-    <img class='img-fluid' alt='$title' loading='lazy' src='$thumbnail_url' alt='teamvs'>
+    <img class='img-fluid' alt='$title' width='230' height='153' loading='lazy' src='$thumbnail_url' alt='teamvs'>
         <a href='$permalink'>
             <p class='text-white'>$title</p>
         </a>

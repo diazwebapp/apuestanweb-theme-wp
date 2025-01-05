@@ -1,5 +1,5 @@
 <?php
-$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full') ;
+$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail') ;
 if(!$thumbnail_url)
     $thumbnail_url = get_template_directory_uri() . '/assets/img/cross.png';
 
