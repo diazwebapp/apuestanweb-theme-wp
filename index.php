@@ -32,9 +32,9 @@ endif;
                                 <p>Blog &amp; Noticias</p>
                             </div>
                             <h2><?php echo $h1 ?></h2>
-                            <div class="blog_hero_btn">
+                            
                                 <a href="<?php echo $permalink ?>" class="btn_2">Leer Articulo</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div> 
@@ -44,7 +44,7 @@ endif;
     <div class="blog_box_wrapper">
         <div class="container">
             <?php 
-                echo do_shortcode("[blog filter='yes' title='Lo más reciente']"); 
+                echo do_shortcode("[blog filter='yes' title='Lo más reciente' model='1']"); 
             ?>
         </div>
     </div>

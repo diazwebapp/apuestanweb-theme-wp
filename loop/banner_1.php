@@ -7,7 +7,7 @@ if($params['src_logo']):
     $html_logo = "<span class='{$params['src_logo']}' ></span>";
 endif;
 
-echo "<div class='container mt-5 home_container'>
+echo "<div class='container mt-5'>
     <div class='inner_bg' style='background:{$params['src_bg']};background-size:cover;'>
 
         <p class='d-flex'>

@@ -253,7 +253,27 @@ textarea:focus{
 	color: #2f2f2f;
 }
 /*///////////////*/
-/*//////////////
+a.btn_2{
+	display: inline-block;
+	border: .1rem solid #FFFFFF;
+	border-radius: .6rem;
+	padding: 1rem 2.5rem 1.1rem;
+	margin-top: 4rem;
+	color: #fff;
+	font-size: 1.8rem;
+	font-weight: 500;
+ }
+ a.btn_2:hover{
+	 background-color: #fff;
+	color: #00203A;
+ }
+ .media h3 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #00203a;
+    margin-bottom: 0;
+}
 /*return-to-top START CSS*/
 .back-to-top {
 	padding: 10px;
@@ -602,6 +622,9 @@ footer .menu li a::before{
 	height: 100%;
 	object-fit: cover;
 	border-radius: 1rem;
+  }
+  .blog_box h3{
+	padding: 5px;
   }
   .blog_box .img_box{
 	border-radius: 10px 10px 0px 0px;
@@ -1097,143 +1120,65 @@ footer .menu li a::before{
     border-radius: 1rem;
     border-top: 0;
 }
-
-
+.blog_hero_area{
+	overflow: hidden;
+}
 /* ==================================
    Responsive Styles
    - Media Queries for various devices
 =================================== */
-/*Extra large devices (large desktops, 1200px and up)*/
-@media (min-width: 1400px) { 
-	.container{
-		max-width: 1470px;
-	} 
-}
 
-@media (min-width: 1200px) and (max-width: 1399.98px) { 
-	.container{
-		max-width: 1200px;
-	}
+/*Small devices (landscape phones, 575px and down)*/
+@media (max-width: 575.98px) {
 	html{
-		font-size: 56%;
+		font-size: 1.76vw;
 	}
-
-
-	/*single event area*/
-	.single_envent_heading h2 {
-	    text-transform: uppercase;
-	    font-size: 4.2rem;
-	}
-
- 
-    
-}
-@media (min-width: 992px) and (max-width: 1199.98px) { 
-	.container{
-		max-width: 992px;
-	}
-	html{
-		font-size: 44%;
-	}
-	.headerbtn {
-	    width: 14rem;
-	}
-	.headerbtnsearch {
-	    width: 14rem;
-	}
-	/*single event area*/
-	.single_envent_heading h2 {
-	    font-size: 4.2rem;
-	}
-}
-@media (max-width: 991.98px) {
-	
-	html{
-		font-size: 55%;
+	body{
+		zoom: 0%;
 	}
 	header {
-	    height: 6rem;
-	    display: flex;
-	    align-items: center;
+	    height: 7.5rem;
 	}
-	.logo_col{
-		display: flex;
-		align-items: center;
+	.post-content {
+		padding: 0; /* para dejar espacio para los botones */
 	}
-	.menu{
-		position: fixed;
-		height: 100%;
-		width: 100%;
-		top: 0;
-		left: -100%;
-		background-color: #051421;
-		z-index: -1;
-		padding-top: 10rem;
-		text-align: left;
-		transition: 0.4s;
+	.inner_bg {
+	    min-height: 32rem;
+	    border-radius: 0;
+	    justify-content: center;
 	}
-	.menu li{
-		display: flex;
-		max-width: 72.0rem;
-		align-items: center;
-		align-content: center;
-		margin-right: auto;
-		margin-left: auto;
-		padding-left: 15px;
-		padding-right: 15px;
-		margin-bottom: 2.5rem;
+	.inner_bg h1{
+		text-transform: capitalize;
 	}
-	.menu li:last-child{
-		margin-bottom: 0;
+	.headerbtn {
+	    width: 15rem;
+		font-size: 1.8rem;
 	}
-	.menu li a{
-		margin: 0 5px;
-		line-height: 1.2;
-		position: relative;
-		display: flex;
-		font-size: 2.3rem;
-	}
-	.menu li a::before{
-		display: none;
-	}
-	.menu li a::after{
-		position: absolute;
-		content: '\f054';
-		font-family: "Font Awesome 5 Pro";
-		right: 0;
-		top: 0;
-		color: rgba(255, 255, 255, 0.1);
-	}
-	.menu.current{
-		left: 0;
-	}
-	.hamburger-menu {
-		display: block;
-	}
-	.ofcavas-menu {
-		display: block;
+	.headerbtnsearch {
+	    width: 5.5rem;
+	    font-size: 1.8rem;
 	}
 	
 	
-	.title_wrap {
-		flex-wrap: wrap;
-		justify-content: space-between;
+	.blog_bg {
+	    margin-left:-5%;
+		margin-right:-5%;
+	    border-radius: 0;
+	    padding-right: 15px;
+	    padding-left: 15px;
+		margin-top: 0;
 	}
-	.header_bottom ul li {
-	    padding: 0 1rem;
+	.blog_heading_right_content {
+	    display: none;
 	}
-	
-
-	/*single event area*/
-	.single_envent_heading h2 {
-	    font-size: 3.6rem;
+	.small_gutter{
+		margin-left: -7.5px !important;
+		margin-right: -7.5px !important;
 	}
-	.league_box1{
-		display: flex;
-		justify-content: center;
-		padding: 1rem;
+	.small_gutter>div{
+		padding-left: 7.5px !important;
+		padding-right: 7.5px !important;
 	}
-
 }
 /*Medium devices (tablets, 767px and down)*/
 @media (max-width: 767.98px) {
@@ -1303,52 +1248,116 @@ footer .menu li a::before{
         display: none;
     }
 }
-
-/*Small devices (landscape phones, 575px and down)*/
-@media (max-width: 575.98px) {
-	html{
-		font-size: 1.76vw;
+@media (max-width: 992px) {
+	.container{
+		max-width: 960px !important;
 	}
-	body{
-		zoom: 0%;
+	html{
+		font-size: 55%;
 	}
 	header {
-	    height: 7.5rem;
+		height: 6rem;
+		display: flex;
+		align-items: center;
 	}
-	.post-content {
-		padding: 0; /* para dejar espacio para los botones */
+	.logo_col{
+		display: flex;
+		align-items: center;
 	}
-	.inner_bg {
-	    min-height: 32rem;
-	    border-radius: 0;
-	    justify-content: center;
+	.menu{
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: -100%;
+		background-color: #051421;
+		z-index: -1;
+		padding-top: 10rem;
+		text-align: left;
+		transition: 0.4s;
 	}
-	.inner_bg h1{
-		text-transform: capitalize;
+	.menu li{
+		display: flex;
+		max-width: 72.0rem;
+		align-items: center;
+		align-content: center;
+		margin-right: auto;
+		margin-left: auto;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-bottom: 2.5rem;
 	}
-	.headerbtn {
-	    width: 15rem;
-		font-size: 1.8rem;
+	.menu li:last-child{
+		margin-bottom: 0;
 	}
-	.headerbtnsearch {
-	    width: 5.5rem;
-	    font-size: 1.8rem;
+	.menu li a{
+		margin: 0 5px;
+		line-height: 1.2;
+		position: relative;
+		display: flex;
+		font-size: 2.3rem;
+	}
+	.menu li a::before{
+		display: none;
+	}
+	.menu li a::after{
+		position: absolute;
+		content: '\f054';
+		font-family: "Font Awesome 5 Pro";
+		right: 0;
+		top: 0;
+		color: rgba(255, 255, 255, 0.1);
+	}
+	.menu.current{
+		left: 0;
+	}
+	.hamburger-menu {
+		display: block;
+	}
+	.ofcavas-menu {
+		display: block;
 	}
 	
-	.home_container{
-		margin-top: 0;
-		padding: 0;
+	
+	.title_wrap {
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+	.header_bottom ul li {
+		padding: 0 1rem;
 	}
 	
-	.blog_bg {
-	    margin-left:-5%;
-		margin-right:-5%;
-	    border-radius: 0;
-	    padding-right: 15px;
-	    padding-left: 15px;
-		margin-top: 0;
+
+	/*single event area*/
+	.single_envent_heading h2 {
+		font-size: 3.6rem;
 	}
-	.blog_heading_right_content {
-	    display: none;
+	.league_box1{
+		display: flex;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+}
+
+@media (min-width: 1280px) { 
+	.container{
+		max-width: 1180px !important;
+	}
+	html{
+		font-size: 56%;
+	}
+
+
+	/*single event area*/
+	.single_envent_heading h2 {
+	    text-transform: uppercase;
+	    font-size: 4.2rem;
+	}
+    
+}
+@media (min-width: 1440px) { 
+	.container{
+		max-width: 1366px !important;
 	}
 }
