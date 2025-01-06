@@ -18,7 +18,7 @@ endif;
 echo '<div class="col-12 col-md-6 col-lg-3 mt-2">
         <div class="row">
             <a href="'.$permalink.'" class="col col-md-6 col-lg-3" >
-                <img width="320" height="180" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
+                <img width="320" height="180" class="w-100" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
             </a>
             
             <a href="'.$permalink.'" class="col col-md-6 col-lg-3">
