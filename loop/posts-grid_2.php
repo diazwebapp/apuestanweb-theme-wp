@@ -16,7 +16,7 @@ if(count($leagues) > 0):
 endif;
 //
 echo '<div class="col-lg-3 col-md-6 mt-5">
-        <div class="media align-items-center">
+        <div class="media">
         <a href="'.$permalink.'"><img loading="lazy" style="width:115px;height:115px;object-fit:cover;border-radius:5px;margin-bottom: 5rem;margin-bottom: 4rem;" src="'.$thumbnail_url.'"  alt="'.$title.'"></a>
             <div style="padding-left:10px;" class="media-body">
                 <a href="'.$permalink.'">
