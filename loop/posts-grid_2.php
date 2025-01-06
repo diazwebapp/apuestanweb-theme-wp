@@ -15,9 +15,9 @@ if(count($leagues) > 0):
     endforeach;
 endif;
 //
-echo '<div class="col-lg-3 col-md-6 mt-5">
+echo '<div class="col-lg-3 col-md-6 mt-2">
         <div class="media">
-        <a href="'.$permalink.'"><img loading="lazy" style="width:115px;height:115px;object-fit:cover;border-radius:5px;margin-bottom: 5rem;margin-bottom: 4rem;" src="'.$thumbnail_url.'"  alt="'.$title.'"></a>
+        <a href="'.$permalink.'"><img loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'"></a>
             <div style="padding-left:10px;" class="media-body">
                 <a href="'.$permalink.'">
                     <h3>'.$title.'</h3>
