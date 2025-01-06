@@ -17,8 +17,8 @@ endif;
 //
 echo '<div class="col-lg-3 col-md-6 mt-2">
         <div class="row">
-            <a href="'.$permalink.'" class="col-sm col-md-6 col-lg-3" ><img width="320" height="180" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'"></a>
-            <div class="col-sm col-md-6 col-lg-3">
+            <a href="'.$permalink.'" class="col-12 col-md-6 col-lg-3" ><img width="320" height="180" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'"></a>
+            <div class="col-12 col-md-6 col-lg-3">
                 <a href="'.$permalink.'">
                     <h3>'.$title.'</h3>
                 </a>
