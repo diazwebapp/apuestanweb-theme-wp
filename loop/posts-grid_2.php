@@ -15,7 +15,7 @@ if(count($leagues) > 0):
     endforeach;
 endif;
 //<div class="category-grid"><span class="mt-3">#'.$sport.'</span></div>
-echo '<div class="col-12 col-md-6 col-lg-3 mt-2">
+echo '<div class="col-6 col-md-4 col-lg-3 mt-2">
         <div class="row">
             <a href="'.$permalink.'" class="col-12" >
                 <img width="320" height="180" class="w-100" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
