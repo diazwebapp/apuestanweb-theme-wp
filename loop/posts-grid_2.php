@@ -23,7 +23,7 @@ echo '<div class="col-lg-3 col-md-6 mt-2" style="max-width:320px;">
                 
             </div>
             <div class="media-body pl-2">
-                <h3>'.$title.'</h3>
+                <h3 class="text-truncate">'.$title.'</h3>
             </div>
         </a>
     </div>'; 

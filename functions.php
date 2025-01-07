@@ -22,7 +22,7 @@ include "includes/shortcodes/shortcode-social-contact.php";
 //include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
 include "includes/shortcodes/shortcode-parley-vip.php";
-include "includes/shortcodes/shortcode-profile-forecaster.php";
+//include "includes/shortcodes/shortcode-profile-forecaster.php";
 include "includes/shortcodes/shortcode-blog.php";
 include "includes/shortcodes/shortcode-forecasts.php";
 include "includes/shortcodes/shortcode-related-forecasts.php";

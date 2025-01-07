@@ -1,18 +1,15 @@
 <?php 
-function blog_posts_pagination_ajax() {
-    //check_ajax_referer('pagination_nonce', 'nonce');
 
-    $paged = isset($_POST['paged']) ? intval($_POST['paged']) : 1;
-    $model = isset($_POST['model']) ? intval($_POST['model']) : 1;
-    $post_type = sanitize_text_field($_POST['post_type']);
-    $per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 6;
-    $leagues = isset($_POST['leagues']) ? sanitize_text_field($_POST['leagues']) : '[all]';
+
+function aw_custom_posts_query($post_type, $per_page, $leagues, $page_param) {
+    // Usa el parámetro de paginación específico
+    $paged = (get_query_var($page_param)) ? get_query_var($page_param) : 1;
 
     $args = [
         'post_type' => $post_type,
-        'posts_per_page' => $per_page,
         'paged' => $paged,
     ];
+
     if (isset($leagues) && $leagues !== '[all]') {
         $p = str_replace(["[", "]"], "", $leagues);
         $args['tax_query'] = [
@@ -23,40 +20,59 @@ function blog_posts_pagination_ajax() {
             ]
         ];
     }
+    if(isset($per_page)){
+        $args['posts_per_page'] = $per_page;
+    }
     $query = new WP_Query($args);
+    return $query;
+}
+function aw_custom_forecasts_query($vip, $per_page, $leagues, $page_param) {
+    // Usa el parámetro de paginación específico
+    $paged = (get_query_var($page_param)) ? get_query_var($page_param) : 1;
 
-    if ($query->have_posts()) {
-        ob_start();
-        while ($query->have_posts()) {
-            $query->the_post();
-            // Renderiza el contenido del post
-            echo load_template_part("loop/posts-grid_{$model}", null, []);
-        }
-        $posts_html = ob_get_clean();
+    $args = [
+        'post_type' => 'forecast',
+        'paged' => $paged,
+    ];
 
-        // Generar paginación
-        $pagination_links = paginate_links([
-            'base'      => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
-            'format'    => '?paged=%#%',
-            'current'   => $paged,
-            'total'     => $query->max_num_pages,
-            'prev_text' => '<',
-            'next_text' => '>',
-            'type'      => 'plain',
-        ]);
-
-        wp_send_json_success([
-            'html' => $posts_html,
-            'pagination' => $pagination_links,
-            'max_pages' => $query->max_num_pages,
-        ]);
-    } else {
-        wp_send_json_error(['message' => 'No posts found']);
+    if (isset($leagues) && $leagues !== '[all]') {
+        $p = str_replace(["[", "]"], "", $leagues);
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'league',
+                'field' => 'slug',
+                'terms' => [$p]
+            ]
+        ];
+    }
+    if(isset($per_page)){
+        $args['posts_per_page'] = $per_page;
+    }
+    if (isset($vip) && ($vip === 'free' || $vip === 'vip')) {
+        $meta_compare = ($vip === 'free') ? '!=' : '='; // Si es "free", usar '!=', de lo contrario usar '='
+        $args['meta_query'] = [
+            [
+                'key' => 'vip', 
+                'value' => 'yes',
+                'compare' => $meta_compare, // Operador de comparación
+            ],
+        ];
     }
 
-    wp_die();
+    $query = new WP_Query($args);
+    return $query;
 }
+function aw_custom_pagination($query, $page_param) {
+    // Usa el parámetro de paginación específico
+    $pagination_links = paginate_links(array(
+        'base'    => add_query_arg($page_param, '%#%'),
+        'format'  => '?'.$page_param.'=%#%',
+        'current' => max(1, get_query_var($page_param)),
+        'total'   => $query->max_num_pages,
+        'prev_text' => __('<', 'textdomain'),
+        'next_text' => __('>', 'textdomain'),
+    ));
 
-add_action('wp_ajax_blog_posts_pagination', 'blog_posts_pagination_ajax');
-add_action('wp_ajax_nopriv_blog_posts_pagination', 'blog_posts_pagination_ajax');
+    return $pagination_links;
+}
 

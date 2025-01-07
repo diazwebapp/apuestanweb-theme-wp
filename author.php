@@ -46,9 +46,9 @@ for($i=1;$i<$num;$i++){
                     </div>';
 }
 
-$query_vip = forecast_posts_table('vip',4,null,'page_forecast_vip');
-$query_free = forecast_posts_table('free',4,null,'page_forecast_free');
-$query_post = blog_posts_table('post',4,null,'page_post');
+$query_vip = aw_custom_forecasts_query('vip',4,null,'page_forecast_vip');
+$query_free = aw_custom_forecasts_query('free',4,null,'page_forecast_free');
+$query_post = aw_custom_posts_query('post',4,null,'page_post');
 
 $tr_pronosticos_vip = generate_table_tr($query_vip);
 $tr_pronosticos_free = generate_table_tr($query_free);
@@ -221,7 +221,7 @@ if (!isset($_GET['page_forecast_free']) &&
                                                                 </table>
                                                             </div>
                                                             <ul class="pagination_list" id="pagination_vip">
-                                                                <?php echo aw_pagination_posts($query_vip,'page_forecast_vip'); ?>
+                                                                <?php echo aw_custom_pagination($query_vip,'page_forecast_vip'); ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -244,7 +244,7 @@ if (!isset($_GET['page_forecast_free']) &&
                                                                 </table>
                                                             </div>
                                                             <ul class="pagination_list" id="pagination_free">
-                                                                <?php echo aw_pagination_posts($query_free,'page_forecast_free'); ?>
+                                                                <?php echo aw_custom_pagination($query_free,'page_forecast_free'); ?>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -265,7 +265,7 @@ if (!isset($_GET['page_forecast_free']) &&
                                                                 </table>
                                                             </div>
                                                             <ul class="pagination_list" id="pagination_post">
-                                                                <?php echo aw_pagination_posts($query_post,'page_post'); ?>
+                                                                <?php echo aw_custom_pagination($query_post,'page_post'); ?>
                                                             </ul>
                                                         </div>
                                                     </div>
