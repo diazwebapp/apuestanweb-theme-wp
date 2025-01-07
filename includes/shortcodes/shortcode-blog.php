@@ -12,7 +12,7 @@ function shortcode_blog($atts) {
                 <div class="row" id="blog_posts_container">
                     {posts}
                 </div>
-                <div class="blog_pagination my-3">
+                <div class="blog_pagination my-5">
                     <ul class="pagination_list" id="blog_pagination_list">
                        {paginate}
                     </ul>
