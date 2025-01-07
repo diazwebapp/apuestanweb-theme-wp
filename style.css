@@ -118,7 +118,13 @@ a, button{
 a:hover {
 	text-decoration: none;
 }
-
+.dropdown-toggle::after{
+	zoom: 1.8;
+}
+.dropup-toggle::after{
+	transform: rotate(0deg);
+	zoom: 1.8;
+}
 button:focus,
 a:focus,
 input:focus,

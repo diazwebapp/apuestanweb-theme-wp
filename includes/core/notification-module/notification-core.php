@@ -3,6 +3,7 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 global $wpdb, $charset_collate;
 $charset_collate = $wpdb->get_charset_collate();
 define("NOTIFICATIONS_MYSQL_TABLE",$wpdb->prefix . "aw_notification_table");
+
 function create_table_aw_notification(){
 
     $table_1 = NOTIFICATIONS_MYSQL_TABLE;
@@ -18,15 +19,6 @@ function create_table_aw_notification(){
 }
 
 add_action('init','create_table_aw_notification');
-
-if(!function_exists('aw_insert_notification_view')):
-    function aw_insert_notification_view($array_data){
-        global $wpdb;
-        $table = NOTIFICATIONS_MYSQL_TABLE;
-        
-        $wpdb->insert($table,$array_data);
-    }
-endif;
 
 if(!function_exists('select_notification_not_view')):
     function select_notification_not_view($setup=["post_type"=>'forecast',"post_meta"=>false,"id_user"=>false]){
@@ -55,7 +47,10 @@ if(!function_exists('select_notification_not_view')):
             
             if(count($result) > 0):
                 foreach($result as $notify_post){
-                    $new_result[] = $notify_post;
+                    $vip = carbon_get_post_meta($notify_post->ID,'vip');
+                    if($vip): //SOLO MOSTRAMOS SI SON VIP
+                        $new_result[] = $notify_post;
+                    endif;
                 }
             endif;
         endif; 
@@ -66,9 +61,6 @@ endif;
 
 if(!function_exists('insert_multi_notificacions_views')):
     function insert_multi_notificacions_views($setup=['id_user'=>false]){
-        global $wpdb;
-        $table_notification = NOTIFICATIONS_MYSQL_TABLE;
-        $table_posts = $wpdb->prefix."posts";
         $current_user = ($setup['id_user'] ? $setup['id_user'] : get_current_user_id( ));
         $result = false;
         if(isset($current_user)):

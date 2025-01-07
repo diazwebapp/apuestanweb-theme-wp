@@ -31,16 +31,15 @@ class w_authors extends WP_Widget {
                 $stats = get_user_stats($user->ID,'=',[],$forecasts_limit);
                 $acerted = $stats["acertados"];
                 $failed = $stats["fallidos"];
-                $nulled = $stats["nulos"];
                 $rank = $stats["tvalue"];
-                $latest = floatval($acerted) + floatval($failed) + floatval($nulled);
                 $display_name = get_the_author_meta("display_name", $user->ID );
                 $avatar= get_the_author_meta( 'profile_image',$user->ID );
                 $key++;
-                $link = PERMALINK_PROFILE.'?profile='.$user->ID;
+                $link = get_author_posts_url( $user->ID);
                 $flechita_indicadora = "";
-                $flechita_up = '<i class="fas fa-angle-up"></i>';
-                $flechita_down = '<i class="fas fa-angle-down"></i>';
+                $flechita_up = '<span class="dropdown"></span>';
+                $flechita_up = '<span class="dropdown-toggle" ></span>';
+                $flechita_down = '<span class="dropdown-toggle dropup-toggle"></span>';
                 if(floatval($acerted) > floatval($failed)):
                     $flechita_indicadora = $flechita_up;
                 endif;
@@ -50,26 +49,26 @@ class w_authors extends WP_Widget {
                 if(floatval($acerted) < floatval($failed)):
                     $flechita_indicadora = $flechita_down;
                 endif;
-                echo "<div class='top_box v2'>
-                        <a href='$link' class='d-flex align-items-center justify-content-between'>
-                            <div class='top_serial'>
+                echo "<div class='top_box'>
+                        <a href='$link' class='row'>
+                            <div class='top_serial col-12'>
                                 <span class='serial'>{$key}</span>
-                                <img src='$avatar' class='img-fluid'>
+                                <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain'>
+                                <h4 class='pl-4 text-truncate text-uppercase'>$display_name</h4>
                             </div>
-                            <div class='text_box'>
-                                <h4>$display_name</h4>
+                            <div class='text_box col-12 pt-2'>
                                 <div class='statswg text-center'>  
                                     <table class='table'>
                                         <thead>
                                             <tr>                                   
-                                            <th scope='col'>W-L</th>
-                                            <th scope='col'>Profit</th>
+                                            <th scope='col'><h5> W-L </h5></th>
+                                            <th scope='col'><h5> PROFIT </h5></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr> 
-                                                <td>$flechita_indicadora $acerted - $failed</td>
-                                                <td>$$rank</td>
+                                                <td>$flechita_indicadora <b>$acerted - $failed</b></td>
+                                                <td><b>$$rank</h4></b>
                                             </tr>
                                             <tr>
                                         </tbody>

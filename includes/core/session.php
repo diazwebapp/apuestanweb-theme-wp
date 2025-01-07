@@ -52,3 +52,31 @@ add_action('wp_loaded', function(){
     }
     
 });
+
+function aw_timeAgo ($oldTime, $newTime) {
+    $timeCalc = strtotime($newTime) - strtotime($oldTime);
+    if ($timeCalc >= (60*60*24*30*12*2)){
+        $timeCalc = "hace " . intval($timeCalc/60/60/24/30/12) . " años";
+        }else if ($timeCalc >= (60*60*24*30*12)){
+            $timeCalc = "hace " . intval($timeCalc/60/60/24/30/12) . " año";
+        }else if ($timeCalc >= (60*60*24*30*2)){
+            $timeCalc = "hace " . intval($timeCalc/60/60/24/30) . " meses";
+        }else if ($timeCalc >= (60*60*24*30)){
+            $timeCalc = "hace " . intval($timeCalc/60/60/24/30) . " mes";
+        }else if ($timeCalc >= (60*60*24*2)){
+            $timeCalc = "hace " . intval($timeCalc/60/60/24) . " dias";
+        }else if ($timeCalc >= (60*60*24)){
+            $timeCalc = " ayer";
+        }else if ($timeCalc >= (60*60*2)){
+            $timeCalc = "hace " . intval($timeCalc/60/60) . " horas";
+        }else if ($timeCalc >= (60*60)){
+            $timeCalc = "hace " . intval($timeCalc/60/60) . " hora";
+        }else if ($timeCalc >= 60*2){
+            $timeCalc = "hace " . intval($timeCalc/60) . " minutos";
+        }else if ($timeCalc >= 60){
+            $timeCalc = "hace " . intval($timeCalc/60) . " minuto";
+        }else if ($timeCalc > 0 or $timeCalc < 0){
+            $timeCalc = "hace " .$timeCalc. " segundos";
+        }
+    return $timeCalc;
+}

@@ -64,7 +64,6 @@ if ($teams['team1'] and $teams['team2'] ):
     $ahora = time();
     $diferencia = $ahora - $fecha_publicacion;
     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
-    $link_profile = PERMALINK_PROFILE.'?profile='.$author_id;
     $flechita_indicadora = "";
     $rating_ceil = 0;
     $prediction = '';

@@ -57,7 +57,6 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                     the_post(  ); 
                     $author_id =  get_the_author_meta('ID') ;
                     $author_name = get_the_author_meta("display_name");
-                    $author_url = PERMALINK_PROFILE.'?profile='.$author_id;
                     $avatar_url = get_the_author_meta( 'profile_image',$author_id );
                     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
             ?>
@@ -161,7 +160,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                                 <div class="author-info d-flex align-items-center m-3 mt-4">
                                                 <img src="<?php echo esc_attr($avatar) ?>" class="rounded-circle mr-3" width="40" height="40" alt="Foto <?php echo $author_name ?>">
                                                 <div class="author-details d-flex flex-column">
-                                                    <span class="author-name mb-1"><a href="<?php echo $author_url ?>"><?php echo $author_name ?></a></span>
+                                                    <span class="author-name mb-1"><?php the_author_posts_link(); ?></span>
                                                     <time datetime="<?php echo $post_date ?>" class="post-date mb-1"><?php echo __("Actualizado $post_date"); ?></time>
                                                 </div>
                                                 </div>

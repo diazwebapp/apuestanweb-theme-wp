@@ -20,7 +20,6 @@
 
                             // Meta información
                             $link = carbon_get_post_meta($post_id, 'link');
-                            $vip = carbon_get_post_meta($post_id, 'vip');
                             $disable_table = carbon_get_post_meta($post_id, 'disable_table');
                             
                             // Fondo de la cabecera
