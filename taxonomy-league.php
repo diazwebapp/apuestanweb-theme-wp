@@ -13,7 +13,7 @@ wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css
  ?>
 	<main>
     
-            <div class="event_area pb_90">
+            <div class="event_area">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9 mt-3">

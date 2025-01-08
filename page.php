@@ -24,7 +24,7 @@ endif;
         endif;
     endif;
     ?>
-    <div class="event_area pb-5">
+    <div class="event_area">
         <div class="container">
         <?php if ($disable_sidebar == 'yes'): echo ''; else: ?>       
             <div class="row">

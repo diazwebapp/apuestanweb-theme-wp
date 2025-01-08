@@ -14,16 +14,17 @@ if(count($leagues) > 0):
         endif;
     endforeach;
 endif;
-//<div class="category-grid"><span class="mt-3">#'.$sport.'</span></div>
-echo '<div class="col-lg-3 col-md-6 mt-2" style="max-width:320px;">
+
+echo '<div class="col-lg-3 col-md-6 mt-2" >
 
         <a class="media align-items-center" href="'.$permalink.'">
             <div>
                 <img width="120" height="120" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
                 
             </div>
-            <div class="media-body pl-2">
-                <h3 class="text-truncate">'.$title.'</h3>
+            <div class="media-body text-truncate pl-2">
+                <h3>'.$title.'</h3>
             </div>
         </a>
+
     </div>'; 

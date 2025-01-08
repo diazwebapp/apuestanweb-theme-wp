@@ -19,10 +19,8 @@ include "includes/core/notification-module/notification-core.php";
 /*--------------------------------------------------------------*/
 
 include "includes/shortcodes/shortcode-social-contact.php";
-//include "includes/shortcodes/shortcode-prices.php";
 include "includes/shortcodes/shortcode-parley.php";
 include "includes/shortcodes/shortcode-parley-vip.php";
-//include "includes/shortcodes/shortcode-profile-forecaster.php";
 include "includes/shortcodes/shortcode-blog.php";
 include "includes/shortcodes/shortcode-forecasts.php";
 include "includes/shortcodes/shortcode-related-forecasts.php";
@@ -37,7 +35,6 @@ include "includes/shortcodes/shortcode-leagues-menu.php";
 include "includes/shortcodes/shortcode-predictions.php";
 include "includes/shortcodes/shortcode-user-stats.php";
 include "includes/shortcodes/shortcode-register-form.php";
-//include "includes/shortcodes/shortcode-checkout-form.php";
 include "includes/shortcodes/shortcode-login-form.php";
 include "includes/shortcodes/predictions-list.php";
 include "includes/shortcodes/shortcode-content-hub.php";
@@ -77,16 +74,13 @@ include "includes/handlers/get_forecast_teams.php";
 include "includes/handlers/get_bookmaker_by_post.php";
 include "includes/handlers/author_posts_table.php";
 include "includes/handlers/blog_posts_table.php";
-//include "includes/handlers/aw-memberships-controllers.php";
 include "includes/handlers/get_countries.php";
-//include "includes/handlers/paypal-tools.php";
 
 /*--------------------------------------------------------------*/
 /*                        TOOLS PANEL ADMIN                     */
 /*--------------------------------------------------------------*/
 
 include "includes/core/bookmaker-location-panel/bk-location-panel.php";
-//include "includes/core/payment-dashboard/payment-dashboard.php";
 
 
 /*--------------------------------------------------------------*/
@@ -97,16 +91,12 @@ include "rest-api/register-routes.php";
 //include "rest-api/telegram-post-publisher.php";
 
 //include "rest-api/translator-ia.php";
-//include "rest-api/payment-accounts-controller.php";
-//include "rest-api/payment-methods-controller.php";
-//include "rest-api/payment-history-controller.php";
 include "rest-api/user-register-controller.php";
-//include "rest-api/paypal-api-controller.php";
 include "rest-api/forecasts-controller.php";
 include "rest-api/parley-controller.php";
 include "rest-api/notification-controller.php";
 include "rest-api/imagen-detacada-controller.php";
-include "rest-api/forecaster-controller.php";
+//include "rest-api/forecaster-controller.php";
 
 register_nav_menus(array(
     'top' => __('Top menu', 'jbetting'),

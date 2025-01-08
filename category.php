@@ -15,7 +15,7 @@ $textafter = carbon_get_term_meta( $term_id, 'after_list' );
         <?php if ( $textbefore ): echo $textbefore ; endif; ?>
         <?php echo do_shortcode('[banner]') ?>
 
-            <div class="event_area pb_90">
+            <div class="event_area">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9 mt-3">

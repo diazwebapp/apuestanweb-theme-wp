@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <main>
-    <div class="event_area single_event_area pb_90">
+    <div class="event_area single_event_area">
         <div class="container">
             <div class="row">
                 <?php 

@@ -70,7 +70,7 @@ Text Domain: Apuestan
    02. Basic css
 ========================*/
 html{
-	font-size: 62.5%;
+	font-size:50%;
 }
 html,
 body,
@@ -100,11 +100,9 @@ section {
 	padding: 0;
 }
 body {
-	zoom: 0.9;
 	line-height: 1.31;
 	font-family: 'Neurial Grotesk';
 	background-color: #fff;
-	font-size: 1.6rem;
 	font-weight: 400;
 	color: #00203A;
 }
@@ -122,7 +120,7 @@ a:hover {
 	zoom: 1.8;
 }
 .dropup-toggle::after{
-	transform: rotate(0deg);
+	transform: rotate(-0deg);
 	zoom: 1.8;
 }
 button:focus,
@@ -1350,10 +1348,6 @@ footer .menu li a::before{
 	.container{
 		max-width: 1180px !important;
 	}
-	html{
-		font-size: 56%;
-	}
-
 
 	/*single event area*/
 	.single_envent_heading h2 {
