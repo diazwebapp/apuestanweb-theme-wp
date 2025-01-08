@@ -22,7 +22,7 @@ echo '<div class="col-lg-3 col-md-6 mt-2" >
                 <img width="120" height="120" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
                 
             </div>
-            <div class="media-body text-truncate pl-2">
+            <div class="media-body pl-2">
                 <h3>'.$title.'</h3>
             </div>
         </a>
