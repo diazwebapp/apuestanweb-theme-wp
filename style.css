@@ -100,7 +100,6 @@ section {
 	padding: 0;
 }
 body {
-	line-height: 1.31;
 	font-family: 'Neurial Grotesk';
 	background-color: #fff;
 	font-weight: 400;
@@ -1135,15 +1134,7 @@ footer .menu li a::before{
 
 /*Small devices (landscape phones, 575px and down)*/
 @media (max-width: 575.98px) {
-	html{
-		font-size: 1.76vw;
-	}
-	body{
-		zoom: 0%;
-	}
-	header {
-	    height: 7.5rem;
-	}
+	
 	.post-content {
 		padding: 0; /* para dejar espacio para los botones */
 	}
@@ -1187,9 +1178,7 @@ footer .menu li a::before{
 }
 /*Medium devices (tablets, 767px and down)*/
 @media (max-width: 767.98px) {
-	html{
-		font-size: 52%;
-	}
+	
 	.header_bottom{
 		overflow: auto;
 		-ms-overflow-style: none;
@@ -1257,11 +1246,8 @@ footer .menu li a::before{
 	.container{
 		max-width: 960px !important;
 	}
-	html{
-		font-size: 55%;
-	}
+	
 	header {
-		height: 6rem;
 		display: flex;
 		align-items: center;
 	}
