@@ -3,7 +3,7 @@ function shortcode_blog($atts) {
     extract(shortcode_atts(array(
         'model' => 1,
         'paginate' => true,
-        'num' => 2,
+        'num' => 6,
         'leagues' => '[all]'
     ), $atts));
 
