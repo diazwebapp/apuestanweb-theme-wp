@@ -277,6 +277,7 @@ a.btn_2{
     font-weight: 500;
     color: #00203a;
     margin-bottom: 0;
+	white-space: break-spaces;
 }
 /*return-to-top START CSS*/
 .back-to-top {
