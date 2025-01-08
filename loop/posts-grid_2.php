@@ -15,7 +15,7 @@ if(count($leagues) > 0):
     endforeach;
 endif;
 
-echo '<div class="col-lg-3 col-md-6 mt-2" >
+echo '<div class="col-lg-3 col-sm-6 my-2" >
 
         <a class="media align-items-center" href="'.$permalink.'">
             <div>
