@@ -70,7 +70,7 @@ Text Domain: Apuestan
    02. Basic css
 ========================*/
 html{
-	font-size:50%;
+	font-size: 50%;
 }
 html,
 body,
@@ -1126,6 +1126,131 @@ footer .menu li a::before{
 }
 .blog_hero_area{
 	overflow: hidden;
+}
+
+/* Estilos generales de la tabla */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    overflow-x: auto;
+    margin-top: 2rem;
+    white-space: nowrap;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px 15px !important;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    font-weight: bold;
+	font-size: 1.5rem;
+}
+
+.custom-table th {
+    background-color: #00203a;
+    color: #fff;
+}
+.custom-table th:nth-child(1){
+	border-radius: 1rem 0rem 0 0;
+}
+.custom-table th:nth-child(5){
+	border-radius: 0rem 1rem 0 0;
+}
+
+/* Estilos para las filas impares */
+.custom-table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para las filas pares */
+.custom-table tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+/* Estilos para el nombre del equipo */
+.custom-table .team-name {
+    font-weight: 400;
+    color: #333;
+    /* padding: 39px; */
+}
+
+/* Estilos para la puntuación */
+.custom-table .score {
+    font-weight: bold;
+    color: #00203a;
+}
+
+/* Estilos para el marcador en verde (ganador) */
+.custom-table .score.green {
+    color: #43A047;
+}
+
+/* Estilos para el marcador en rojo (perdedor) */
+.custom-table .score.red {
+    color: #E53935;
+}
+
+/* Estilos para la competición */
+.custom-table .competition {
+    color: #000000;
+    font-weight: 400;
+}
+
+/* Estilos para la fecha del partido */
+.custom-table .match-date {
+    color: #838383;
+    font-weight: 400;
+}
+.custom-table td.team-name {
+    display: flex; /* Utiliza display flex para alinear vertical y horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Centra horizontalmente */
+    text-align: right;
+}
+
+
+/* Estilo para la etiqueta "Win" */
+.win-label {
+	background-color: #43A047; /* Fondo verde para la etiqueta "Win" */
+	color: #fff; /* Texto blanco para la etiqueta "Win" */
+	padding: 3px 6px; /* Espaciado interno para la etiqueta "Win" */
+	border-radius: 3px; /* Borde redondeado para la etiqueta "Win" */
+	/* margin-left: 5px; */
+	}
+
+.loss-label {
+	background-color: #ff2743; /* Fondo verde para la etiqueta "Win" */
+	color: #fff; /* Texto blanco para la etiqueta "Win" */
+	padding: 3px 6px; /* Espaciado interno para la etiqueta "Win" */
+	border-radius: 3px; /* Borde redondeado para la etiqueta "Win" */
+	/* margin: 2px; */
+}
+.draw-label {
+	background-color: #efab2d; /* Fondo verde para la etiqueta "Win" */
+	color: #fff; /* Texto blanco para la etiqueta "Win" */
+	padding: 3px 6px; /* Espaciado interno para la etiqueta "Win" */
+	border-radius: 3px; /* Borde redondeado para la etiqueta "Win" */
+	/* margin: 2px; */
+}
+.text-muted.statstext32 {
+    font-size: 1.76rem; /* Elige el tamaño de fuente que desees */
+}
+.statsvalue {
+    font-size: 1.96rem!important; /* Elige el tamaño de fuente que desees */
+}
+.bg-form {
+    background-color: #00203a;
+    /* color: white; */
+    padding: 8px;
+    border-radius: 3px;
+}
+.bg-form h2 {
+	color: #fff;
+}
+.team-name.win {
+	font-weight: bold;
 }
 /* ==================================
    Responsive Styles
