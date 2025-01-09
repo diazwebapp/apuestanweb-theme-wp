@@ -9,9 +9,7 @@ function shortcode_related_forecast($atts)
         'date' => null,
         'model' => 1,
         'text_vip_link' => 'VIP',
-        'filter' => null,
         'time_format' => null,
-        'paginate' => null,
         'title' => null
     ), $atts);
     global $post;
@@ -50,20 +48,6 @@ function shortcode_related_forecast($atts)
         $title = empty($custom_h1) ? $title : $custom_h1;
     }
 
-    // Si se necesita filtro, mostrar el formulario para seleccionar fecha
-    if ($atts['filter']) {
-        $ret .= "<div class='row'>
-                    <h2 class='title col-8'>" . esc_html($title) . "</h2>
-                    <div class='col-4 justify-content-end d-flex event_select'>
-                        <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)'>
-                            <option value='' " . (!$atts['date'] ? 'selected' : '') . ">" . __('Todo', 'jbetting') . "</option>
-                            <option value='ayer' " . ($atts['date'] == 'ayer' ? 'selected' : '') . ">" . __('Ayer', 'jbetting') . "</option>
-                            <option value='hoy' " . ($atts['date'] == 'hoy' ? 'selected' : '') . ">" . __('Hoy', 'jbetting') . "</option>
-                            <option value='mañana' " . ($atts['date'] == 'mañana' ? 'selected' : '') . ">" . __('Mañana', 'jbetting') . "</option>
-                        </select>
-                    </div>
-                </div>";
-    }
 
     // Procesar la variable 'league' correctamente
     if (is_array($atts['league']) && count($atts['league']) > 0) {
