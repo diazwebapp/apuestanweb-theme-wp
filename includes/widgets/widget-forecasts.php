@@ -67,9 +67,7 @@ class W_Forecasts extends WP_Widget {
                                     <p>{$teams['team2']['name']}</p>
                                 </div>
                             </div>
-                            
-
-                            <i class='fas fa-chevron-right'></i>
+            
                        </a> ";
                 endwhile;
                 echo "</div> </div> </div>";

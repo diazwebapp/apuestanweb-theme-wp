@@ -93,6 +93,8 @@ function aw_get_forecasts(WP_REST_Request $request){
     endif;
     return json_decode(json_encode($loop_html));
 }
+
+
 function aw_get_forecasts_vip(WP_REST_Request $request){
     $params = $request->get_params();
     $wp_user = get_user_by("id",isset($params["current_user_id"]) ? $params["current_user_id"] : 0);

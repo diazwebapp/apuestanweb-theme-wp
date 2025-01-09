@@ -80,7 +80,7 @@ class w_authors extends WP_Widget {
                     </div>";
             }
             
-			echo '<h3>Ultimos '.$forecasts_limit.' picks</h3></div> </div></div>';
+			echo '<h3 class="mt-2" >Ultimos '.$forecasts_limit.' picks</h3></div> </div></div>';
 		} else {
 			echo 'Nothing found!';
 		}

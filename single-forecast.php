@@ -33,46 +33,31 @@
                             $tax_leagues = wp_get_post_terms($post_id, 'league');
                             $icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';
                             
-                            // Preprocesamiento de deporte y liga
-                            $sport = $league = false;
-
-                            if (!empty($tax_leagues)) {
-                                foreach ($tax_leagues as $tax_league) {
-                                    if ($tax_league->parent == 0) {
-                                        $sport = $tax_league;
-                                        $icon_class = carbon_get_term_meta($sport->term_id, 'fa_icon_class');
-                                        $sport->icon_html = !empty($icon_class) ? '<i class="' . esc_attr($icon_class) . '" ></i>' : '<img loading="lazy" src="' . esc_url($icon_img) . '" alt="icon" />';
-                                    }
-                                }
-
-                                // Redirección y enlace de deporte
-                                if ($sport) {
-                                    $sport_page = get_page_by_title($sport->name);
-                                    $taxonomy_page = carbon_get_term_meta($sport->term_id, 'taxonomy_page');
-                                    $sport->redirect = $taxonomy_page[0] ?? null;
-                                    $sport->permalink = isset($sport->redirect) ? get_permalink($sport->redirect["id"]) : get_term_link($sport, 'league');
-                                }
-                            }
-
-                            // Preprocesamiento de la liga
-                            if ($sport) {
-                                foreach ($tax_leagues as $leaguefor) {
-                                    if ($leaguefor->parent == $sport->term_id) {
-                                        $league = $leaguefor;
-                                        $icon_class = carbon_get_term_meta($league->term_id, 'fa_icon_class');
-                                        $league->icon_html = !empty($icon_class) ? '<i class="' . esc_attr($icon_class) . '" ></i>' : '<img loading="lazy" src="' . esc_url($icon_img) . '" alt="icon" />';
-                                    }
-                                }
-
-                                // Redirección y enlace de liga
-                                if ($league) {
-                                    $league_page = get_page_by_title($league->name);
-                                    $taxonomy_page = carbon_get_term_meta($league->term_id, 'taxonomy_page');
-                                    $league->redirect = $taxonomy_page[0] ?? null;
-                                    $league->permalink = isset($league->redirect) ? get_permalink($league->redirect["id"]) : get_term_link($league, 'league');
-                                }
-                            }
-
+                            // Obtener los términos de la taxonomía personalizada 'leagues'
+                            $terms = get_the_terms(get_the_ID(), 'league');
+                            $parent_taxonomy = [];
+                            
+                            if ($terms && !is_wp_error($terms)) {
+                                // Filtrar solo los términos principales (parent = 0)
+                                $parent_terms = array_filter($terms, function ($term) {
+                                   
+                                    return  $term->parent === 0;
+                                     
+                                });
+                                
+                                
+                                //Obtener los atos de los términos principales
+                                $parent_taxonomy['name'] = implode(', ', wp_list_pluck($parent_terms, 'name'));
+                                $parent_taxonomy['term_id'] = intval(implode(', ', wp_list_pluck($parent_terms, 'term_id')));
+                                $parent_taxonomy['slug'] = implode(', ', wp_list_pluck($parent_terms, 'slug'));
+                                $taxonomy_page = carbon_get_term_meta($parent_taxonomy['term_id'],'taxonomy_page');
+                                $parent_taxonomy["redirect"] = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                $parent_taxonomy['permalink'] = isset($parent_taxonomy["redirect"]) ? get_permalink($parent_taxonomy["redirect"]["id"]) : get_term_link($parent_taxonomy['term_id'], 'league');
+                                
+                            } else {
+                                $parent_taxonomy = 'No main league assigned'; // Texto predeterminado si no hay términos principales
+                            }     
+                            
                             // Equipos de pronóstico
                             $teams = get_forecast_teams($post_id, ["w" => 50, "h" => 50]);
                 ?>
@@ -140,14 +125,14 @@
                                         <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximación, verifica antes de hacer tu apuesta'); ?></p>
                                     </div>
 
-                                    <div class="stats-w"><?php echo do_shortcode("[user_stats]"); ?></div>
+                                    <?php echo do_shortcode("[user_stats]"); ?>
 
                                     <section>    
                                         <div class="title_wrap single_event_title_wrap">
-                                            <h2 class="title-b mt-5 order-lg-1">Otros pronósticos de <?php echo esc_html($sport->name ?? ''); ?></h2>
-                                            <a href="<?php echo esc_url($sport->permalink ?? '/'); ?>" class="mt-5 dropd order-lg-3">Ver Todo</a>
+                                            <h2 class="title-b mt-5 order-lg-1">Otros pronósticos de <?php echo esc_html($parent_taxonomy['name']); ?></h2>
+                                            <a href="<?php echo esc_url($parent_taxonomy['permalink']); ?>" class="mt-5 dropd order-lg-3">Ver Todo</a>
                                         </div>
-                                        <?php echo do_shortcode("[related-forecasts model='2' num='6' league='{$sport->name}']"); ?>        
+                                        <?php echo do_shortcode("[related-forecasts num='6' model='2']"); ?>        
                                     </section>
                                 </article>
                             </section>

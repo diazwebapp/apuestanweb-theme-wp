@@ -14,9 +14,8 @@ function shortcode_related_forecast($atts)
         'paginate' => null,
         'title' => null
     ), $atts);
-
     global $post;
-
+    
     // Asegurarse de que solo se carga el CSS si es necesario
     if (is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts') || is_single())) {
         wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css', [], null, 'all');
@@ -76,7 +75,7 @@ function shortcode_related_forecast($atts)
     } else {
         $league_arr = '';
     }
-
+    
     // Preparar parámetros para la consulta
     $args = [
         'paged' => (get_query_var('paged') ? get_query_var('paged') : 1),

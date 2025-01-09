@@ -13,14 +13,8 @@ function shortcode_user_stats($atts)
         $display_name = get_the_author_meta("display_name", $id );
         $avatar_url = get_the_author_meta( 'profile_image',$id );
         $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
-        $stats = get_user_stats($id,true);
         
     endif;
-    
-    $img_perc = get_template_directory_uri(  ) .'/assets/img/s56.png';
-    $fail_gradient = $stats['porcentaje_fallidos'] + $stats['porcentaje_fallidos'];
-    $null_gradient = $fail_gradient + $stats['porcentaje_nulos'];
-
     $args = array(
         'post_type' => 'forecast', 
         'author' => $id,
@@ -36,9 +30,7 @@ function shortcode_user_stats($atts)
             <li class='nav-item'>
             <a class='nav-link active' data-toggle='tab' href='#profile'>Perfil</a>
             </li>
-            <!--  <li class='nav-item'>
-            <a class='nav-link' data-toggle='tab' href='#stats'>Stats</a>
-            </li>-->
+            
             <li class='nav-item'>
             <a class='nav-link' data-toggle='tab' href='#posts'>Picks</a>
             </li>
@@ -61,27 +53,7 @@ function shortcode_user_stats($atts)
             </div>
             </div>
             </div>
-           <!--<div id='stats' class='container tab-pane'>
-            <h3 class='text-center mb-4'>Estadísticas</h3>
-             <div class='d-flex justify-content-center user-stats flex-wrap'>
-                <div class='d-flex flex-column m-3 stat-box'>
-                    <p class='stat-value'>$rank</p>
-                    <p class='stat-label'>Profit</p>
-                </div>
-                <div class='d-flex flex-column m-3 stat-box'>
-                    <p class='stat-value'>$acerted</p>
-                    <p class='stat-label'>Aciertos</p>
-                </div>
-                <div class='d-flex flex-column m-3 stat-box'>
-                    <p class='stat-value'>$failed</p>
-                    <p class='stat-label'>Fallos</p>
-                </div>
-                <div class='d-flex flex-column m-3 stat-box'>
-                    <p class='stat-value'>$nulled</p>
-                    <p class='stat-label'>Nulos</p>
-                </div>
-            </div>
-            </div>-->
+           
             <div id='posts' class='container tab-pane w-100'>
             <span class='section-title'>Últimos pronósticos</span>
             <div class='list-group'>";
@@ -102,3 +74,12 @@ function shortcode_user_stats($atts)
 }
 
 add_shortcode('user_stats', 'shortcode_user_stats');
+
+// Cargar common.js condicionalmente
+function load_js_user_stats() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'aw-login-form')) || is_single()) {
+        wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', [], '3.6.0', true);
+    }
+}
+add_action('wp_enqueue_scripts', 'load_js_user_stats');

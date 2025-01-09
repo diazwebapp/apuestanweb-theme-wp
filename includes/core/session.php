@@ -80,3 +80,42 @@ function aw_timeAgo ($oldTime, $newTime) {
         }
     return $timeCalc;
 }
+
+function aw_get_page_by_title($title){
+    $query = new WP_Query(
+        array(
+            'post_type'              => 'page',
+            'title'                  => $title,
+            'posts_per_page'         => 1,
+            
+        )
+    );
+     
+    if ( ! empty( $query->post ) ) {
+        return  $query->post;
+    } else {
+       return  null;
+    }
+}
+
+//* Integra migas de pan a WordPress sin plugin
+function migas_de_pan() {
+    $html = '<div class="single_event_breadcrumb text-capitalize">                              
+    <ul>';
+  if (!is_front_page()) {
+     $html .= '<li><a href="'.get_home_url().'">Inicio</a></li>';
+     if (is_single() || is_page()) {
+            $terms = get_the_terms( get_the_ID(),'league' );
+            
+            foreach($terms as $term){
+                $taxonomy_page = carbon_get_term_meta($term->term_id,'taxonomy_page');
+                $term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
+                $html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
+            }
+     }
+  }
+  $html .= '</ul>
+  </div>';
+  return $html;
+}

@@ -32,14 +32,7 @@ function shortcode_blog($atts) {
     }else{
         $html = str_replace('{paginate}', "", $html);
     }
-    wp_localize_script('blog_js', 'pagination_data', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'model' => $model,
-        'perPage' => $num,
-        'leagues' => $leagues,
-        'page' => (get_query_var('page_post')) ? get_query_var('page_post') : 1,
-        'maxPages' => $query->max_num_pages
-    ]);
+    
     return $html;
 }
 add_shortcode('blog', 'shortcode_blog');
