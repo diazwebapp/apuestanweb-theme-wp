@@ -36,14 +36,14 @@
                         $noti_count = count($noti);
                         $icon_color = $noti_count > 0 ? "#ffffff" : "";
                     
-                        $html = '<ul class="navbar-nav mx-3">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link text-light font-weight-bold py-3 text-uppercase dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        $html = '<ul class="navbar-nav mx-3 dropdown">
+                                    <li class="nav-item ">
+                                        <a class="nav-link text-light font-weight-bold py-3 text-uppercase dropdown-toggle" href="#" id="header_toggl_noti" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
-                                            <span id="notification-counter" class="badge badge-light mx-1" style="font-size:11px !important;">'.$noti_count.'</span>
+                                            <span id="notification-counter" class="badge badge-light mx-1" style="">'.$noti_count.'</span>
                                         </a>
-                                        <div class="dropdown-menu position-absolute overflow-auto text-center" style="font-size: 1.5rem; width: 150px; height: 200px;" aria-labelledby="navbarDropdownMenuLink">
-                                            <ul style="height:auto;max-height:200px;">
+                                        <div class="dropdown-menu position-absolute overflow-auto text-center" style=" width: 150px; height: 200px;" aria-labelledby="header_toggl_noti">
+                                            <ul style="height:auto;max-height:200px;" class="dropdown-item">
                                                 <p role="button" class="dropdown-item text-dark my-3" style="cursor:pointer !important;" id="btn_quitar_notificaciones">
                                                     '.__(' Clear All', 'jbetting').'</p>
                                                 <hr class="mt-2">
@@ -80,10 +80,10 @@
                                 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link text-light font-weight-bold py-3 text-uppercase dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span id="notification-counter" class="badge mx-1" style="font-size:11px !important;">'.get_userdata(get_current_user_id( ))->user_login.'</span>
+                                        <span id="notification-counter" class="badge mx-1" style="">'.get_userdata(get_current_user_id( ))->user_login.'</span>
                                     </a>
 
-                                    <div class="dropdown-menu position-absolute text-center" style="font-size: 1.5rem;" aria-labelledby="navbarDropdownMenuLink">
+                                    <div class="dropdown-menu position-absolute text-center" style="" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item text-dark font-weight-bold my-3" href="'. esc_url(home_url()) .'"><i>❓</i>'.__(' Cuenta','jbetting').'</a>
                                         <a class="dropdown-item text-dark font-weight-bold my-3" href="/plus/picks"><i>❓</i>'.__(' Picks Plus','jbetting').'</a>
 

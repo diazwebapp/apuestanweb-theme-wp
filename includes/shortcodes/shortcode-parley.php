@@ -68,7 +68,7 @@ function shortcode_parley($atts)
     $args['odds'] = $odds;
     $args["current_user_id"] =  get_current_user_id();
     $args['exclude_parley'] = null;
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley' data-page='{$args['paged']}' id='load_more_parley' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley' data-page='{$args['paged']}' id='load_more_parley' class='loadbtn btn d-flex justify-content-center py-2 px-3'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
 
     if(is_single() or is_singular()):
         $args['post__not_in']   = [get_the_ID()];
@@ -99,7 +99,7 @@ function shortcode_parley($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
 
-        $ret .="<div class='container container_pagination_parley text-md-center'>";
+        $ret .="<div class='container container_pagination_parley text-md-center mt-3'>";
         if($data_json->page < $data_json->max_pages):
             
             $ret .= $args['btn_load_more'];

@@ -83,7 +83,7 @@ function shortcode_forecast($atts)
     $args['odds'] = $odds;
     $args['exclude_post'] = null;
     $args["current_user_id"] = get_current_user_id();
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-page='{$args['paged']}' data-type='forecast' id='load_more_forecast' class='loadbtn btn font-weight-bold p-3'>
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-page='{$args['paged']}' data-type='forecast' id='load_more_forecast' class='loadbtn btn font-weight-bold py-2 px-3'>
         " . __('Cargar más', 'jbetting') . "
     </button><br/>";
 

@@ -2,7 +2,7 @@
 
 function load_forecaster_script() {
     wp_enqueue_style('s-forecaster-css', get_template_directory_uri() . '/assets/css/forecaster-styles.css'); 
-     wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', [], '3.6.0', true);
+    //wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', [], '3.6.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'load_forecaster_script',2);
@@ -58,15 +58,15 @@ $activeClassVip = $activeClassFree = $activeClassBlog = "";
 
 if (!isset($_GET['page_forecast_free']) && 
     !isset($_GET['page_post'])) {
-    $activeClassVip = "active";
+    $activeClassVip = "show active";
 } elseif (isset($_GET['page_forecast_free']) && 
           !isset($_GET['page_forecast_vip']) && 
           !isset($_GET['page_post'])) {
-    $activeClassFree = "active";
+    $activeClassFree = "show active";
 } elseif (isset($_GET['page_post']) && 
           !isset($_GET['page_forecast_vip']) && 
           !isset($_GET['page_forecast_free'])) {
-    $activeClassBlog = "active";
+    $activeClassBlog = "show active";
 }
 
 ?>
@@ -194,14 +194,14 @@ if (!isset($_GET['page_forecast_free']) &&
                                         <div class="estad__box">
                                             <div class="free__tab">
                                                 <nav>
-                                                    <div class="nav free-tabs" id="nav-tab" role="tablist">
-                                                        <a class="free-link <?= $activeClassVip ?>" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">ApuestanPlus</a>
-                                                        <a class="free-link <?= $activeClassFree ?>" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">FREE</a>
-                                                        <a class="free-link <?= $activeClassBlog ?>" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">ARTICULOS</a>
+                                                    <div class="nav free-tabs nav-tabs" id="nav-tab" role="tablist">
+                                                        <a class="free-link nav-link <?= $activeClassVip ?>" id="apuestanplus" data-toggle="tab" href="#publicaciones" role="tab" aria-controls="apuestanplus" aria-selected="true">ApuestanPlus</a>
+                                                        <a class="free-link nav-link <?= $activeClassFree ?>" id="free-tabs" data-toggle="tab" href="#publicaciones" role="tab" aria-controls="free-tabs" aria-selected="false">FREE</a>
+                                                        <a class="free-link nav-link <?= $activeClassBlog ?>" id="posts-tabs" data-toggle="tab" href="#publicaciones" role="tab" aria-controls="posts-tabs" aria-selected="false">ARTICULOS</a>
                                                     </div>
                                                 </nav>
                                                 <div class="tab-content" id="nav-tabContent">
-                                                    <div class="tab-pane fade show <?= $activeClassVip ?>" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                    <div class="tab-pane fade <?= $activeClassVip ?>" id="apuestanplus" role="tabpanel" aria-labelledby="apuestanplus">
                                                         <div class="free__table-wd">
                                                             <div class="free__table">
                                                                 <!-- TABLA PRONOSTICOS VIP -->
@@ -225,7 +225,7 @@ if (!isset($_GET['page_forecast_free']) &&
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane fade show <?= $activeClassFree ?>" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                    <div class="tab-pane fade <?= $activeClassFree ?>" id="free-tabs" role="tabpanel" aria-labelledby="free-tabs">
                                                         <div class="free__table-wd">
                                                             <div class="free__table">
                                                                 <table class="table">
@@ -248,7 +248,7 @@ if (!isset($_GET['page_forecast_free']) &&
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane fade show <?= $activeClassBlog ?>" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                                    <div class="tab-pane fade <?= $activeClassBlog ?>" id="posts-tabs" role="tabpanel" aria-labelledby="posts-tabs">
                                                         <div class="free__table-wd">
                                                             <div class="free__table">
                                                                 <table class="table">

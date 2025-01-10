@@ -47,7 +47,7 @@ endif;
                                 </section>";
                             endif; 
                          if ($disable_table):
-                            echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' style='font-size: 1.8rem; margin-block-start: 1rem; margin-block-end: 1rem;'>
+                            echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' >
                                     Tabla de Contenido
                                     <i class='fas fa-angle-down'></i>
                                 </button>
@@ -56,7 +56,7 @@ endif;
                                 <div class='collapse' id='table-of-contents'>
                                     <div class='card mt-3'>
                                         <div class='card-header'>
-                                            Tabla de Contenido
+                                            <b>Tabla de Contenido</b>
                                         </div>
                                         <ul class='list-group list-group-flush'>
                                         </ul>

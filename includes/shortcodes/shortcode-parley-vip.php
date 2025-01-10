@@ -71,7 +71,7 @@ function shortcode_parley_vip($atts)
     $args['odds'] = $odds;
     $args['timezone'] = $geolocation->timezone;
     $args["current_user_id"] =  get_current_user_id();
-    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley_vip' data-page='{$args['paged']}' id='load_more_parley_vip' class='loadbtn btn d-flex justify-content-center mt-5'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
+    $args['btn_load_more'] = "<button onclick='load_more_items(this)' data-type='parley_vip' data-page='{$args['paged']}' id='load_more_parley_vip' class='loadbtn btn d-flex justify-content-center py-2 px-3'> ".__( 'Cargar más', 'jbetting' ) ."</button><br/>";
 
 
     $params = "?paged=".$args['paged'];
@@ -106,7 +106,7 @@ function shortcode_parley_vip($atts)
         
         wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
 
-        $ret .="<div class='container container_pagination_parley_vip text-md-center'>";
+        $ret .="<div class='container container_pagination_parley_vip text-md-center mt-3'>";
         if($data_json->page < $data_json->max_pages):
 
             $ret .=$args['btn_load_more'];
@@ -120,7 +120,7 @@ function shortcode_parley_vip($atts)
                 <span id="max-page-number" >'.$data_json->max_pages.'</span>
                 </div>';
     else:
-        return '<h1>Nó hay datos</h1>';
+        return '<h2>Nó hay datos</h2>';
     endif;
 
     return $ret;

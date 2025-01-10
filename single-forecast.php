@@ -64,7 +64,7 @@
                             <section class="col-lg-8 mt-5 con-t">
                                 <article>
                                     <div class="single_envent_heading">
-                                        <h1 class="title_lg"><?php the_title(); ?></h1>
+                                        <h1 class="title"><?php the_title(); ?></h1>
                                     </div>
                                     <!-- breadcrumb -->
                                     <?php echo migas_de_pan(); ?>
@@ -103,16 +103,15 @@
                                         <?php if (!$disable_table): ?>
                                             <hr></hr>
                                             <!-- Toggle Table of Contents -->
-                                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
+                                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" >
                                                 <?php echo __('Contenidos', 'jbetting'); ?>
-                                                <i>❓</i>
                                             </button>
 
                                             <!-- Table of Contents -->
                                             <div class="collapse" id="table-of-contents">
                                                 <div class="card mt-3">
                                                     <div class="card-header">
-                                                        <?php echo __('Tabla de Contenido', 'jbetting'); ?>
+                                                        <b><?php echo __('Tabla de Contenido', 'jbetting'); ?></b> 
                                                     </div>
                                                     <ul class="list-group list-group-flush"></ul>
                                                 </div>

@@ -11,7 +11,7 @@
 	border-radius: 1rem 1rem 0 0;
 }
 .parley_top_content h2{
-	font-size: 2rem;
+	/*font-size:*/ 2rem;
 	line-height: 1.2;
 	font-weight: 700;
 	color: #FFFFFF;
@@ -46,7 +46,7 @@
 
 }
 .parley_game_name h5{
-	font-size: 2rem;
+	/*font-size:*/ 2rem;
 	line-height: 1.2;
 	color: #00203A;
 	font-weight: 500;
@@ -66,7 +66,7 @@
 
 .parley_team p{
 	margin-left: 6px;
-	font-size: 1.4rem;
+	/*font-size:*/ 1.4rem;
 	line-height: 1.2;
 	color: #00203A;
 	text-transform: uppercase;
@@ -94,7 +94,7 @@
 	width: 20rem;
 }
 .parley_match p{
-	font-size: 1.4rem;
+	/*font-size:*/ 1.4rem;
 	line-height: 1.2;
 	color: #00203A;
 	text-transform: uppercase;
@@ -108,7 +108,7 @@
 	padding-left: 2.4rem;
 }
 .date-par time{
-    font-size: 1.2rem;
+    /*font-size:*/ 1.2rem;
     line-height: 1.2;
     color: #0060bf;
     margin-bottom: 10px;
@@ -118,7 +118,7 @@
     display: flex;
     align-items: center;
     margin-right: 10%;
-    font-size: 14px;
+    /*font-size:*/ 14px;
 }
 .parley_right_first {
     display: flex;
@@ -130,14 +130,14 @@
 .parley_right_first .p1{
 	font-weight: 500;
 	padding: 0.6rem 2rem;
-    font-size: 1.6rem;
+    /*font-size:*/ 1.6rem;
     line-height: 1;
     color: #e8ecef;
     background-color: #0558cb;
     border-radius: 1.7rem;
 }
 .parley_right_first .p2 {
-	font-size: 1.3rem;
+	/*font-size:*/ 1.3rem;
     line-height: 1;
     padding: .5rem 1.3rem;
     background-color: #DDEAFD;
@@ -148,7 +148,7 @@
 }
 
 .event-link{
-	font-size: 14px;
+	/*font-size:*/ 14px;
 	margin-right: 2.7rem;
 }
 .event-link button {
@@ -219,7 +219,7 @@
 .parley-select .nice-select {
     background-color: white;
     border: 0.1rem solid #0558CB;
-    font-size: 1.6rem;
+    /*font-size:*/ 1.6rem;
     height: 4.2rem;
     line-height: 2.5;
     color: #0558CB;
@@ -258,7 +258,7 @@
     display: flex;
     align-items: center;
     margin-right: 10%;
-    font-size: 14px;
+    /*font-size:*/ 14px;
 }
 .parley_right_first{
 	margin-left: 4em;
@@ -320,7 +320,7 @@
 	}
 	.parley_right_first .p1 {
 		padding: 0.6rem 2rem;
-		font-size: 1.6rem;
+		/*font-size:*/ 1.6rem;
 		line-height: 1;
 		color: #e8ecef;
 		background-color: #0558cb;
@@ -333,7 +333,7 @@
 	}
 	
 	.mobile_parley_time p{
-		font-size: 1.4rem;
+		/*font-size:*/ 1.4rem;
 		line-height: 1.2;
 		color: #00203A;
 	}
@@ -399,7 +399,7 @@
 	}
 	.parley_right_first .p1 {
 		padding: 0.6rem 2rem;
-		font-size: 1.6rem;
+		/*font-size:*/ 1.6rem;
 		line-height: 1;
 		color: #e8ecef;
 		background-color: #0558cb;
@@ -412,7 +412,7 @@
 	}
 	
 	.mobile_parley_time p{
-		font-size: 12px;
+		/*font-size:*/ 12px;
 		line-height: 1.2;
 		color: #00203A;
 	}

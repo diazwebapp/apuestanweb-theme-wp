@@ -79,7 +79,7 @@ function shortcode_related_forecast($atts)
     
     // Usamos sprintf para incluir la variable 'paged' en el botón
     $args['btn_load_more'] = sprintf(
-        "<button onclick='load_more_items(this)' data-page='%d' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center mt-5'>%s</button><br/>",
+        "<button onclick='load_more_items(this)' data-page='%d' data-type='forecast' id='load_more_forecast' class='loadbtn btn d-flex justify-content-center py-2 px-3'>%s</button><br/>",
         $args['paged'],
         __('Cargar más', 'jbetting')
     );

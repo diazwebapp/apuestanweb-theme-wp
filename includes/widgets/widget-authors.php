@@ -54,21 +54,21 @@ class w_authors extends WP_Widget {
                             <div class='top_serial col-12'>
                                 <span class='serial'>{$key}</span>
                                 <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain'>
-                                <h4 class='pl-4 text-truncate text-uppercase'>$display_name</h4>
+                                <span class='pl-4 text-truncate text-uppercase'>$display_name</span>
                             </div>
                             <div class='text_box col-12 pt-2'>
                                 <div class='statswg text-center'>  
                                     <table class='table'>
                                         <thead>
                                             <tr>                                   
-                                            <th scope='col'><h5> W-L </h5></th>
-                                            <th scope='col'><h5> PROFIT </h5></th>
+                                            <th scope='col'><span> W-L </span></th>
+                                            <th scope='col'><span> PROFIT </span></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr> 
                                                 <td>$flechita_indicadora <b>$acerted - $failed</b></td>
-                                                <td><b>$$rank</h4></b>
+                                                <td><b>$$rank</b>
                                             </tr>
                                             <tr>
                                         </tbody>
@@ -80,7 +80,7 @@ class w_authors extends WP_Widget {
                     </div>";
             }
             
-			echo '<h3 class="mt-2" >Ultimos '.$forecasts_limit.' picks</h3></div> </div></div>';
+			echo '<b class="mt-3" >Ultimos '.$forecasts_limit.' picks</b></div> </div></div>';
 		} else {
 			echo 'Nothing found!';
 		}

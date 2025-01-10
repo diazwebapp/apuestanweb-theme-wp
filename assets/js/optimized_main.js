@@ -8,10 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const contentDiv = document.querySelector(".single_event_content");
     const tocList = document.querySelector("#table-of-contents .list-group");
     const dropdowns = document.querySelectorAll('.dropdown-toggle');
+    const nav_tabs = document.querySelectorAll('.nav-tabs');
     const btnQuitarNotificaciones = document.querySelector('p#btn_quitar_notificaciones');
     const modalAgeTerms = document.getElementById('modal_age_terms');
     let select_odds = document.querySelector('select#select_odds_format');
-
+    
     // Changue odds format
     select_odds.addEventListener('change', function(e) {
         handler_odds_format(e);
@@ -151,10 +152,52 @@ document.addEventListener("DOMContentLoaded", () => {
     // Dropdown toggles
     dropdowns.forEach(dropdown => {
         dropdown.addEventListener('click', () => {
-            dropdown.classList.toggle('dropdown-active');
+            if(dropdown.attributes["aria-expanded"].value == 'false'){
+                dropdown.attributes["aria-expanded"].value = true
+            }else{
+                dropdown.attributes["aria-expanded"].value = false
+            }
+            let menus = document.querySelectorAll('.dropdown-menu')
+            menus.forEach(element => {
+                if(element.attributes["aria-labelledby"].value == dropdown.id){
+                    element.classList.toggle('show')
+                }
+            });
         });
     });
-
+    // nav_tabs
+    nav_tabs.forEach(tab => {
+        let nav_links = tab.querySelectorAll('.nav-link')
+        nav_links.forEach(link => {
+            let tab_contents = document.querySelectorAll('.tab-pane')
+            
+            link.addEventListener('click', e =>{
+                e.preventDefault()
+                if(link.attributes["aria-selected"].value == 'false'){
+                    tab_contents.forEach(element => {
+                        if(element.attributes["aria-labelledby"].value == link.id){
+                            element.classList.toggle('active')
+                            element.classList.toggle('show')
+                            
+                        }else{
+                            element.classList.remove('active')
+                            element.classList.remove('show')
+                        }
+                    }); 
+                    nav_links.forEach(link2 => {
+                        link2.attributes["aria-selected"].value = false
+                        link2.classList.remove('active')
+                    })
+                    link.attributes["aria-selected"].value = true
+                    link.classList.toggle('active')
+                }else{
+                    return
+                }
+                
+            })
+             
+        });
+    });
     // LocalStorage and modal display
     const ageResponse = localStorage.getItem('age_user');
     if (ageResponse === 'no') {
