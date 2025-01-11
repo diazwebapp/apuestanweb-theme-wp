@@ -168,11 +168,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // nav_tabs
     nav_tabs.forEach(tab => {
         let nav_links = tab.querySelectorAll('.nav-link')
+        
+        
         nav_links.forEach(link => {
-            let tab_contents = document.querySelectorAll('.tab-pane')
+            let parent = tab.parentElement
+            let tab_contents = parent.querySelectorAll('.tab-pane')
             
             link.addEventListener('click', e =>{
                 e.preventDefault()
+                console.log(parent)
                 if(link.attributes["aria-selected"].value == 'false'){
                     tab_contents.forEach(element => {
                         if(element.attributes["aria-labelledby"].value == link.id){

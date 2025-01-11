@@ -110,18 +110,18 @@ if (!isset($_GET['page_forecast_free']) &&
                                     </div>
                                     
                                     <div class="estad__wrap">
-                                        <h4>Estadisticas</h4>
+                                        <h4 id="estadisticas" >Estadisticas</h4>
                                         <div class="estad__box">
-                                            <ul class="nav estad-tabs" id="myTab" role="tablist">
+                                            <ul class="nav estad-tabs nav-tabs" role="tablist">
                                                 <li class="estad-item" role="presentation">
-                                                    <a class="estad-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">VIP</a>
+                                                    <a class="estad-link nav-link active" id="vip-stats-tab" data-toggle="tab" href="#estadisticas" role="tab" aria-controls="home" aria-selected="true">VIP</a>
                                                 </li>
                                                 <li class="estad-item" role="presentation">
-                                                    <a class="estad-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Free</a>
+                                                    <a class="estad-link nav-link" id="free-stats-tab" data-toggle="tab" href="#estadisticas" role="tab" aria-controls="profile" aria-selected="false">Free</a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="vip-stats-tab">
                                                     <div class="estad__wp">
                                                         <div class="estad__single">
                                                             <div class="estd__bt">
@@ -153,7 +153,7 @@ if (!isset($_GET['page_forecast_free']) &&
                                                         <?php echo $stats_months_vip_html ?>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                <div class="tab-pane fade" role="tabpanel" aria-labelledby="free-stats-tab">
                                                     <div class="estad__wp">
                                                         <div class="estad__single">
                                                             <div class="estd__bt">
@@ -193,13 +193,13 @@ if (!isset($_GET['page_forecast_free']) &&
                                         <h4 id="publicaciones">Publicaciones</h4>
                                         <div class="estad__box">
                                             <div class="free__tab">
-                                                <nav>
-                                                    <div class="nav free-tabs nav-tabs" id="nav-tab" role="tablist">
+                                                <ul class="nav free-tabs nav-tabs" id="nav-tab" role="tablist">
+                                                    
                                                         <a class="free-link nav-link <?= $activeClassVip ?>" id="apuestanplus" data-toggle="tab" href="#publicaciones" role="tab" aria-controls="apuestanplus" aria-selected="true">ApuestanPlus</a>
                                                         <a class="free-link nav-link <?= $activeClassFree ?>" id="free-tabs" data-toggle="tab" href="#publicaciones" role="tab" aria-controls="free-tabs" aria-selected="false">FREE</a>
                                                         <a class="free-link nav-link <?= $activeClassBlog ?>" id="posts-tabs" data-toggle="tab" href="#publicaciones" role="tab" aria-controls="posts-tabs" aria-selected="false">ARTICULOS</a>
-                                                    </div>
-                                                </nav>
+                                                    
+                                                </ul>
                                                 <div class="tab-content" id="nav-tabContent">
                                                     <div class="tab-pane fade <?= $activeClassVip ?>" id="apuestanplus" role="tabpanel" aria-labelledby="apuestanplus">
                                                         <div class="free__table-wd">
