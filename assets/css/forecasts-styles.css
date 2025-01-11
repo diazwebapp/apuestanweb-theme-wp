@@ -35,10 +35,10 @@
 	transform: rotate(-180deg);
 }
 .accor_btn button::before{
-	content: 'Ver análisis';
+	content: 'Ver anÃ¡lisis';
 }
 .accor_btn button[aria-expanded="true"]::before{
-	content: 'Ocultar análisis';
+	content: 'Ocultar anÃ¡lisis';
 }
 /*model 2*/
 .game_box{
@@ -138,7 +138,7 @@
 	padding-bottom: 3rem;
 }
 .event2_top_box_wrapper{
-	padding: 1.5rem 3.8rem;
+	padding: 1rem 2rem;
 	background-color: #001F39;
 	box-shadow: 0px 15px 30px #A2A6B126;
 	border-radius: 0.4rem;
@@ -153,8 +153,8 @@
 }
 .event_top_left,
 .event_top_right{
-	height: 7.5rem;
-	width: 7.5rem;
+	height: 4rem;
+	width: 4rem;
 	border-radius: 50%;
 	background-color: #E4E6E8;
 	border: 0.4rem solid #FFFFFF;
@@ -170,30 +170,18 @@
 	margin-top: 1rem;
 	color: #000000;
 }
-.event_top_middle .p1{
-	/*font-size:*/ 1.7rem;
-	font-weight: 500;
-	color: #E7ECF1;
-}
+
 .event_top_middle p{
-	font-weight: 400;
 	color: #FFFFFF;
-	/*font-size:*/ 1.65rem;
+	font-size: 0.9rem;
+	margin-bottom: 0;
 }
 .event_top_middle .p2 span{
 	font-weight: 400;
 	color: #E7ECF1;
 }
-.event2_top_box_wrapper .p3{ 
-	/*font-size:*/ 1.6rem;
-	line-height: 1.2;
-	color: #E8EAEB;
-	font-weight: 400;
-	text-transform: uppercase;
-	text-align: center;
-}
+
 .event2_top_box_wrapper span {
-    /*font-size:*/ 1.6rem;
     line-height: 1.2;
     color: #E8EAEB;
     font-weight: 400;
@@ -214,94 +202,16 @@ color: #ffffff;
 	text-decoration: underline;
 }
 .event2_box_middle_content{
-	padding: 5.7rem 8.8rem 1.5rem 8.8rem;
-}
-.event2_box_middle_content .p1{
-	/*font-size:*/ 1.8rem;
-	line-height: 1.2;
-	color: #818181;
-	font-weight: 400;
-}
-.event2_box_middle_heading{
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-	padding-top: 0.8rem;
-}
-.event2_box_middle_heading span{
-	/*font-size:*/ 2.0rem;
-	line-height: 1.2;
-	color: #111111;
-	font-weight: 700;
-	margin-bottom: 0;
-}
-.event2_box_middle_heading p{
-	/*font-size:*/ 1.4rem;
-	line-height: 1.2;
-	color: #0558CB;
-	font-weight: 700;
-	padding: 0.8rem 1.3rem;
-	border-radius: 0.4rem;
-	background-color: #DDEAFD;
-	position: relative;
-	top: 0rem;
+	width: 80%;
+	margin: 2rem auto;
 }
 
-.event2_box_bonus{
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	padding-top: 3.5rem;
-}
-.event2_box_bonus .p2{
-	/*font-size:*/ 1.8rem;
-	line-height: 1.2;
-	color: #818181;
-	font-weight: 400;
-}
-.event2_box_bonus .p3{
-	/*font-size:*/ 1.7rem;
-	line-height: 1.2;
-	color: #00203A;
-	font-weight: 500;
-	width: 15rem;
-	height: 5rem;
-	text-align: center;
-}
-.event_btn_box{
-	display: flex;
-	align-items: center;
-	width: 100%;
-	margin-top: 2.2rem;
-	margin-bottom: 2.2rem;
-}
-.event_btn_box .event_btn_img{
+.event_btn_img{
 	max-width: 60%;
-	width: 100%;
-	height: 3.6rem;
-	display: flex;
-	align-items: center;
+	width: 80%;
+	max-height: 50px;
+	overflow: hidden;
 }
-.event_btn_box .event_btn_img img {
-    width: 12rem;
-    height: 4.5rem;
-    object-fit: contain;
-    padding: 10px;
-    border-radius: 6px;
-}
-.event_btn_box .event_btn{
-	max-width: 40%;
-	width: 100%;
-}
-.event_btn_box .btn a {
-    
-    /*font-size:*/ 1.2rem;
-    line-height: 1.2;
-    color: #FFFFFF;
-    font-weight: 500;
-    padding: 1rem 2rem 0.7rem;
-}
-
 
 .event2_box3_middle{
 	background-color: #F8FAFC;
@@ -315,18 +225,7 @@ color: #ffffff;
 	justify-content: space-between;
 	align-items: center;
 }
-.event2_box3_middle_content .p1{
-	/*font-size:*/ 1.4rem;
-	font-weight: 700;
-	color: #001F39;
-	text-transform: uppercase;
-	padding-top: 2.5rem;
-}
-.event2_box3_middle_content .p2{
-	/*font-size:*/ 2rem;
-	color: #707070;
-	padding-top: 2.6rem;
-}
+
 
 .event2_box3_middle_content .button{
 	background:#009fe3;
@@ -492,17 +391,10 @@ a.panel-button {
 	    max-width: 50rem;
 	    margin-left: auto;
 	    margin-right: auto;
-	    /* border: 1px solid; */
-	}
-	.game_top,
-	.club_box,
-	.team_text {
-	    /*font-size:*/ 1.8rem!important;
 	}
 	.game_btn,
 	.game_btn.v2 {
-	    /*font-size:*/ 2rem;
-	    margin-top: 4rem;
+	    margin-top: 2rem;
 	}
 	.game_btn img {
 	    width: 14rem;

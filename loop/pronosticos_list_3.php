@@ -52,9 +52,9 @@ if(!empty($predictions)):
         $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
     endif;
 
-    $html_predictions = "<div class='event2_box_middle_heading'>
-                            <span>{$prediction['title']}</span>
-                            <p>{$prediction['cuote']}</p>
+    $html_predictions = "<div class='row'>
+                            <b class='col-6 p-1'>{$prediction['title']}</b>
+                            <span class='col-6 text-right'><b class='p-1' style='border-radius: .3rem;color:#0558cb;background-color:#ddeafd;font-size: .8rem;font-weight: 700;'>{$prediction['cuote']}</b></span>
                             </div>";
 endif;
 $time_format_html = "<p>".$date->format('g:i a')."</p>";
@@ -160,18 +160,18 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                 <div class='text-center'>$estrellas</div>
                                 <p class='p1'>Pronóstico:</p>
                                 {$html_predictions}
-                                <div class='event2_box_bonus'>
-                                    <p class='p2'>Bonus:</p>
-                                    <p class='p3'>{$bookmaker['bonus_slogan']}</p>
+                                <div class='row'>
+                                    <p class='col-4'>Bonus:</p>
+                                    <strong class='col-8'>{$bookmaker['bonus_slogan']}</strong>
                                 </div>
-                                <div class='event_btn_box'>
-                                    <div class='event_btn_img'>
-                                        <a href='{$bookmaker['ref_link']}'>
-                                        <img src='{$bookmaker['logo']}' class='img-fluid' width='80' height='20' alt='logo casa de apuesta' style='background:{$bookmaker['background_color']}'>
+                                <div class='row align-items-center'>
+                                    <div class='col-6'>
+                                        <a href='{$bookmaker['ref_link']}' class='p-2 btn bg-dark'>
+                                            <img src='{$bookmaker['logo']}' width='80' height='30' width='80' height='30' style='object-fit:contain;' alt='logo casa de apuesta' >
                                         </a>
                                     </div>
-                                    <div >
-                                        <a href='{$bookmaker['ref_link']}' class='p-3 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
+                                    <div class='col-6'>
+                                        <a href='{$bookmaker['ref_link']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                     </div>
                                 </div>
                             </div>
@@ -221,20 +221,20 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                         </div>
                     
                         <div class='event2_box_middle_content'>
-                            <p class='p1'>Pronóstico:</p>
+                            <p >Pronóstico:</p>
                             {$html_predictions}
-                            <div class='event2_box_bonus'>
-                                <p class='p2'>Bonus:</p>
-                                <p class='p3'>{$bookmaker['bonus_slogan']}</p>
+                            <div class='row'>
+                                <p class='col-4'>Bonus:</p>
+                                <strong class='col-8'>{$bookmaker['bonus_slogan']}</strong>
                             </div>
-                            <div class='event_btn_box'>
-                                <div class='event_btn_img'>
-                                    <a href='{$bookmaker['ref_link']}'>
-                                    <img src='{$bookmaker['logo']}' width='80' height='20' alt='logo casa de apuesta' style='background:{$bookmaker['background_color']}'>
+                            <div class='row align-items-center'>
+                                <div class='col-6'>
+                                    <a href='{$bookmaker['ref_link']}' class='p-2 btn bg-dark'>
+                                        <img src='{$bookmaker['logo']}' width='80' height='30' style='object-fit:contain;' alt='logo casa de apuesta' >
                                     </a>
                                 </div>
-                                <div >
-                                    <a href='{$bookmaker['ref_link']}' class='p-3 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
+                                <div class='col-6'>
+                                    <a href='{$bookmaker['ref_link']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
