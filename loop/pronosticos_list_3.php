@@ -167,7 +167,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                 <div class='row align-items-center'>
                                     <div class='col-6'>
                                         <a href='{$bookmaker['ref_link']}' class='p-2 btn' style='background:black;'>
-                                            <img src='{$bookmaker['logo']}' width='80' height='30' width='80' height='30' style='object-fit:contain;' alt='logo casa de apuesta' >
+                                            <img src='{$bookmaker['logo']}' width='80' height='20' style='object-fit:contain;' alt='logo casa de apuesta' >
                                         </a>
                                     </div>
                                     <div class='col-6'>
@@ -230,7 +230,7 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                             <div class='row align-items-center'>
                                 <div class='col-6'>
                                     <a href='{$bookmaker['ref_link']}' class='p-2 btn' style='background:black;'>
-                                        <img src='{$bookmaker['logo']}' width='80' height='30' style='object-fit:contain;' alt='logo casa de apuesta' >
+                                        <img src='{$bookmaker['logo']}' width='80' height='20' style='object-fit:contain;' alt='logo casa de apuesta' >
                                     </a>
                                 </div>
                                 <div class='col-6'>
