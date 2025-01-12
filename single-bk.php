@@ -60,14 +60,14 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                     $avatar_url = get_the_author_meta( 'profile_image',$author_id );
                     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
             ?>
-                <div class="col-lg-9">
+                <div class="col-lg-8 col-xl-9">
                     <h1 class="title mt-5 pt-4"><?php echo $bookmaker['name'] ?></h1>
                     
                     <div class="container my-4"> 
                         <!-- Heading -->
                         <div class="row">
 
-                            <div class="col-md-12 col-lg-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
+                            <div class="col-md-12 col-lg-4 col-xl-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
                                 <!-- rating movil-->
                                 <div class="d-md-none text-center bk-box-mb-left">
                                     <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
@@ -81,7 +81,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                 </div>
                                 <img width="130" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                             </div>
-                            <div class="col-md-12 col-lg-9 bk-box">
+                            <div class="col-md-12 col-lg-8 col-xl-9 bk-box">
                                 <div class="row">
 
                                     <div class="col-md-12 col-lg-7" >
@@ -192,7 +192,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
         <?php endwhile; } ?>
     </div>
 
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-4 col-xl-3 mt-3">
             <div class="row mt-5">
                 <div class="col-lg-12 col-md-6 ">                    
 

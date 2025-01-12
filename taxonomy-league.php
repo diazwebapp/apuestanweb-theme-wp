@@ -16,13 +16,13 @@ wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css
             <div class="event_area">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-9 mt-3">
+                        <div class="col-lg-8 col-xl-9 mt-3">
                         <?php echo $migas_de_pan_html ?>
                         
                         <?php echo do_shortcode("[forecasts model='2' num='6' filter='yes' league='$term->slug']") ?>
 
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4 col-xl-3">
                             <div class="row">
                                 <?php dynamic_sidebar( 'forecast-right' ); ?>
                             </div>

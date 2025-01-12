@@ -97,7 +97,9 @@ section {
 	margin: 0;
 	padding: 0;
 }
-
+.container{
+	max-width: 1080px !important;
+}
 body {
 	font-family: 'Neurial Grotesk';
 	background-color: #fff;
@@ -1223,108 +1225,13 @@ footer .menu li a::before{
 =================================== */
 
 /*Small devices (landscape phones, 575px and down)*/
-@media (max-width: 575.98px) {
-	
-	.post-content {
-		padding: 0; /* para dejar espacio para los botones */
-	}
-	.inner_bg {
-	    min-height: 32rem;
-	    border-radius: 0;
-	    justify-content: center;
-	}
-	.inner_bg h1{
-		text-transform: capitalize;
-	}
-	.headerbtn {
-	    width: 15rem;
-		//: 1.8rem;
-	}
-	.headerbtnsearch {
-	    width: 5.5rem;
-	    //: 1.8rem;
-	}
+@media (min-width: 575.98px) {
 	
 	
-	.blog_bg {
-	    margin-left:-5%;
-		margin-right:-5%;
-	    border-radius: 0;
-	    padding-right: 15px;
-	    padding-left: 15px;
-		margin-top: 0;
-	}
-	.blog_heading_right_content {
-	    display: none;
-	}
-	.small_gutter{
-		margin-left: -7.5px !important;
-		margin-right: -7.5px !important;
-	}
-	.small_gutter>div{
-		padding-left: 7.5px !important;
-		padding-right: 7.5px !important;
-	}
 }
 /*Medium devices (tablets, 767px and down)*/
 @media (max-width: 767.98px) {
 	
-	.header_bottom{
-		overflow: auto;
-		-ms-overflow-style: none;
-    	scrollbar-width: none;
-	}
-	.header_bottom::-webkit-scrollbar { 
-	    display: none;
-	}
-	.header_bottom ul{
-		display: flex;
-	}
-	.header_bottom ul li {
-	    padding: 0 1.5rem;
-	}
-	.header_bottom ul li a{
-		white-space: nowrap;
-	}
-	.event_start {
-	    padding-left: 1.5rem;
-	    padding-right: 1.5rem;
-	}
-	.single_team1{
-		padding-top: 0;
-	}
-	.single_team1 img {
-		width: 60px;
-		height: 60px;
-	}
-	.single_team1 p {
-		//: 12px;
-		position: relative;
-	}
-	.single_event_content p{
-		//: 15px;
-	}
-	
-	.single_event_banner_middle {
-	    padding-top: 3rem;
-	}
-	.blog_hero_content {
-	    padding-left: 0;
-	    text-align: center;
-	}
-	.blog_top_content {
-	    justify-content: center;
-	}
-	.blog_hero_content h2{
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.serach_box input {
-	    max-width: 20rem;
-	}
-	.serach_box {
-	    margin-left: 1rem;
-	}
 	/* Ocultar el aside en dispositivos móviles */
 
     #secondary {
@@ -1332,9 +1239,6 @@ footer .menu li a::before{
     }
 }
 @media (max-width: 992px) {
-	.container{
-		
-	}
 	
 	header {
 		display: flex;
@@ -1420,8 +1324,6 @@ footer .menu li a::before{
 	.container{
 		max-width: 1180px !important;
 	}
-
-    
 }
 @media (min-width: 1440px) { 
 	.container{

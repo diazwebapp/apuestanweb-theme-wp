@@ -34,7 +34,7 @@ if(!$custom_h1)
 		<div class="event_area">
 			<div class="container">
 				<div class="row">
-					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-9 mt-3'; endif;?>" >
+					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-8 col-xl-9 mt-3'; endif;?>" >
 					<div class="title_wrap">
 						<h1 class="title mt-5 order-lg-1"><?php echo $custom_h1 ?></h1>
 
@@ -56,7 +56,7 @@ if(!$custom_h1)
                         ?>
 					</div>
 					<?php if($sidebar == 'yes' || !$sidebar): ?>
-						<div class="col-lg-3">
+						<div class="col-lg-4 col-xl-3">
 							<div class="row">
 								<?php dynamic_sidebar( 'forecast-right' ); ?>
 							</div>

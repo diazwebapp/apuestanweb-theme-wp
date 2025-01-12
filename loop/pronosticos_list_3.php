@@ -54,7 +54,7 @@ if(!empty($predictions)):
 
     $html_predictions = "<div class='row'>
                             <b class='col-6 p-1'>{$prediction['title']}</b>
-                            <span class='col-6 text-right'><b class='p-1' style='border-radius: .3rem;color:#0558cb;background-color:#ddeafd;font-size: .8rem;font-weight: 700;'>{$prediction['cuote']}</b></span>
+                            <span class='col-6 text-start'><b class='p-1' style='border-radius: .3rem;color:#0558cb;background-color:#ddeafd;font-size: .8rem;font-weight: 700;'>{$prediction['cuote']}</b></span>
                             </div>";
 endif;
 $time_format_html = "<p>".$date->format('g:i a')."</p>";
@@ -149,10 +149,11 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                         <img src='{$teams['team2']['logo']}' width='36' height='36' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
                                     </div>
                                 </div>
-                                
-                                    <span><a href='$permalink'>                               
-                                    {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                    </a> </span>
+                                 <div class='text-center'>
+                                <span><a href='$permalink'>                               
+                                {$teams['team1']['name']} vs {$teams['team2']['name']}                              
+                                </a></span>
+                            </div>
                                 
                             </div>
                         
@@ -164,13 +165,13 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                     <p class='col-4'>Bonus:</p>
                                     <strong class='col-8'>{$bookmaker['bonus_slogan']}</strong>
                                 </div>
-                                <div class='row align-items-center'>
-                                    <div class='col-6'>
+                                <div class='row'>
+                                    <div class='col-6 text-right'>
                                         <a href='{$bookmaker['ref_link']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
                                             <img src='{$bookmaker['logo']}' width='80' height='30' style='object-fit:contain;' alt='logo casa de apuesta' >
                                         </a>
                                     </div>
-                                    <div class='col-6'>
+                                    <div class='col-6 text-start'>
                                         <a href='{$bookmaker['ref_link']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                     </div>
                                 </div>
@@ -227,13 +228,13 @@ $content_without_headers = preg_replace('/<h[1-6].*?>(.*?)<\/h[1-6]>/i', '', $co
                                 <p class='col-4'>Bonus:</p>
                                 <strong class='col-8'>{$bookmaker['bonus_slogan']}</strong>
                             </div>
-                            <div class='row align-items-center'>
-                                <div class='col-6'>
+                            <div class='row'>
+                                <div class='col-6 text-right'>
                                     <a href='{$bookmaker['ref_link']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
                                         <img src='{$bookmaker['logo']}' width='80' height='30' style='object-fit:contain;' alt='logo casa de apuesta' >
                                     </a>
                                 </div>
-                                <div class='col-6'>
+                                <div class='col-6 text-start'>
                                     <a href='{$bookmaker['ref_link']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                 </div>
                             </div>

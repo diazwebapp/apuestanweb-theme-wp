@@ -12,7 +12,7 @@ $sidebar = carbon_get_post_meta(get_the_ID(), 'sidebar');
 		<div class="bookmaker_wrapper">
 			<div class="container">
 				<div class="row">
-					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-9'; endif;?>" >
+					<div class="<?php if($sidebar == 'no'):echo 'blog_box_wrapper';else: echo 'col-lg-8 col-xl-9'; endif;?>" >
 					<div class="bookmaker_heading">
 						<h2><?php if(!$custom_h1): echo get_bloginfo('title') . ' Bookmakers ' ; else: echo $custom_h1; endif;  ?></h2>
 					</div>
@@ -26,7 +26,7 @@ $sidebar = carbon_get_post_meta(get_the_ID(), 'sidebar');
                         ?>
 					</div>
 					<?php if($sidebar == 'yes' || !$sidebar): ?>
-						<div class="col-lg-3">
+						<div class="col-lg-4 col-xl-3">
 							<div class="row">
 								<?php dynamic_sidebar( 'forecast-right' ); ?>
 							</div>

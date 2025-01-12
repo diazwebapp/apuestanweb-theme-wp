@@ -48,7 +48,7 @@ function shortcode_banner_bookmaker($atts)
     $ret = '
     <div class="banner-bookmaker container my-4">
         <div class="row px-5 py-3">
-            <div class="col-lg-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:'.($bookmaker["background_color"] ? $bookmaker["background_color"] : "black").';min-height:100px;">
+            <div class="col-lg-4 col-xl-3 d-flex flex-column justify-content-center text-center my-4" style="border-radius:10px;background:'.($bookmaker["background_color"] ? $bookmaker["background_color"] : "black").';min-height:100px;">
             <a href="{ref_link}"><img width="{w-logo}"  height="{h-logo}" src="{logo}" alt="{alt_logo}" style="margin:auto;" /></a>
             </div>
             <div class="list-feactures col-lg-4 my-4 d-flex flex-column justify-content-left">
