@@ -54,10 +54,10 @@ class w_bookmakers extends WP_Widget{
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_float = carbon_get_post_meta($bookmaker->ID, 'rating');
                 $rating_ceil = floor($rating_float);
-                
+                $site_logo_url = get_template_directory_uri() . '/assets/img/event-logo.png';
                 $ref = "";
                 $ref = "";
-                $color = carbon_get_post_meta($bookmaker->ID, 'background-color');
+                $color = (carbon_get_post_meta($bookmaker->ID, 'background-color') ?carbon_get_post_meta($bookmaker->ID, 'background-color') : "black");
 
                 $bonuses = carbon_get_post_meta($bookmaker->ID, 'country_bonus');
                 if(isset($bonuses) and count($bonuses) > 0):
@@ -68,22 +68,23 @@ class w_bookmakers extends WP_Widget{
                     endforeach;
                 endif;
                 
-
+                
                 echo '<div class="top_box">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="top_serial">
+                        <div class="row">
+                            <div class="top_serial col-3">
                                 <span class="serial">'.$key.'</span>
-                                <img src="'.$image_png.'" width="80" height="20" class="img-fluid" alt="" style="background:'.$color.';padding: 6px;border-radius: 6px;width: 10rem;height: 3.3rem;">
                             </div>
-                            <div class="ratings">
+                            <div class="col-6" style="background:'.$color.';border-radius:.3rem;">
+                                <img src="'.$site_logo_url.'" width="80" height="30" class="px-1" style="object-fit:contain;">
+                            </div>
+                            <div class="col-3 d-flex">
                                 <span>'.$rating_float.'</span>
-                                <span class="text-warning" >★</span>
+                                <b class="text-warning" >★</b>
                             </div>
-                        </div>
-                        
-                        <div class="btn_groups">
-                            <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary p-3 font-weight-bold">Revision</a>
-                            <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary p-3 font-weight-bold">Apostar</a>
+                            <div class="my-2 col-12">
+                                <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary">Revision</a>
+                                <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary">Apostar</a>
+                            </div>
                         </div>
                     </div>';
             endforeach;

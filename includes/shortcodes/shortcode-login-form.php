@@ -24,8 +24,6 @@ function aw_login_form($attr = array()) {
     }
     .aw_login_form input {
         border-radius: 5px;
-        padding: 18px;
-        font-size: 1.8rem;
     }
     .aw_login_form input[type=submit] {
         padding: 5px;

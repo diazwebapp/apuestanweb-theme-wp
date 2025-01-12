@@ -51,24 +51,29 @@ class W_Forecasts extends WP_Widget {
                         }
                     }
 
-                    echo "<a href='$permalink' class='top_box top_box3'>
-
-                            <div class='top_box3_right_content league_box1'>
-                                {$sport['name']}                             
-                            </div>
-                    
-                            <div class='top_box3_left_content'>
-                                <div class='top_box3_img'>
-                                    <img width='25px' height='25px' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
-                                    <p>{$teams['team1']['name']}</p>
-                                </div>
-                                <div class='top_box3_img top_box3_img2'>
-                                    <img width='25px' height='25px' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' >
-                                    <p>{$teams['team2']['name']}</p>
-                                </div>
-                            </div>
-            
-                       </a> ";
+                    echo "<div class='top_box mb-2 container'>
+                            
+                                <a href='$permalink' class='row text-dark my-2'>
+                                    <div class='col-3 pt-3'>
+                                        <small class='text-truncate mx-auto'>{$sport['name']}</small>                           
+                                    </div>
+                            
+                                    <div class='col-7 p-0'>
+                                        <div class='media pb-2'>
+                                            <img width='30px' height='30px' class='align-self-center' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
+                                            <small class='text-truncate mx-auto'>{$teams['team1']['name']}</small>
+                                        </div>
+                                        <div class='media'>
+                                            <img width='30px' height='30px' class='align-self-center' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' >
+                                            <small class='text-truncate mx-auto'>{$teams['team2']['name']}</small>
+                                        </div>
+                                    </div>
+                                    <div class='col-2 pt-3 text-primary'>
+                                        <span>></span>
+                                    </div>
+                                </a>
+                            
+                       </div> ";
                 endwhile;
                 echo "</div> </div> </div>";
             endif;

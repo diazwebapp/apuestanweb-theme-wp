@@ -53,22 +53,22 @@ class w_authors extends WP_Widget {
                         <a href='$link' class='row'>
                             <div class='top_serial col-12'>
                                 <span class='serial'>{$key}</span>
-                                <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain'>
-                                <span class='pl-4 text-truncate text-uppercase'>$display_name</span>
+                                <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain mx-2'>
+                                <b class='text-truncate text-uppercase'>$display_name</b>
                             </div>
                             <div class='text_box col-12 pt-2'>
                                 <div class='statswg text-center'>  
                                     <table class='table'>
                                         <thead>
                                             <tr>                                   
-                                            <th scope='col'><span> W-L </span></th>
-                                            <th scope='col'><span> PROFIT </span></th>
+                                            <th scope='col'><small> W - L </small></th>
+                                            <th scope='col'><small> PROFIT </small></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr> 
-                                                <td>$flechita_indicadora <b>$acerted - $failed</b></td>
-                                                <td><b>$$rank</b>
+                                                <td>$flechita_indicadora <small>$acerted - $failed</small></td>
+                                                <td><small>$$rank</small>
                                             </tr>
                                             <tr>
                                         </tbody>
