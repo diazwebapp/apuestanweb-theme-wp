@@ -53,12 +53,12 @@ class W_Forecasts extends WP_Widget {
 
                     echo "<div class='top_box mb-2 container'>
                             
-                                <a href='$permalink' class='row text-dark my-2'>
+                                <a href='$permalink' class='row my-2'>
                                     <div class='col-3 pt-3'>
-                                        <small class='text-truncate mx-auto'>{$sport['name']}</small>                           
+                                        <small class='text-truncate mx-auto text-uppercase text-dark'>{$sport['name']}</small>                           
                                     </div>
                             
-                                    <div class='col-7 p-0'>
+                                    <div class='col-8 p-0'>
                                         <div class='media pb-2'>
                                             <img width='30px' height='30px' class='align-self-center' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                                             <small class='text-truncate mx-auto'>{$teams['team1']['name']}</small>
@@ -68,8 +68,8 @@ class W_Forecasts extends WP_Widget {
                                             <small class='text-truncate mx-auto'>{$teams['team2']['name']}</small>
                                         </div>
                                     </div>
-                                    <div class='col-2 pt-3 text-primary'>
-                                        <span>></span>
+                                    <div class='col-1 p-0 pt-3'>
+                                        <span class='text-primary font-weight-bold'>></span>
                                     </div>
                                 </a>
                             

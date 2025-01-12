@@ -10,6 +10,9 @@ Text Domain: Apuestan
 *//*======================
    01. fonts
 ========================*/
+:root{
+	--text-color:#00203A;
+}
 @font-face {
     font-family: 'Neurial Grotesk';
     src: url(assets/fonts/apuestan/NeurialGrotesk-Light.eot);
@@ -70,32 +73,14 @@ Text Domain: Apuestan
    02. Basic css
 ========================*/
 
-html,
-body,
-div,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-strong,
-i,
-ol,
-ul,
-li,
-form,
-label,
-footer,
-header,
-menu,
-nav,
-section {
+html *{
 	margin: 0;
 	padding: 0;
+	text-decoration: none;
+	color: var(--text-color);
+}
+header *, footer *:not(.myselect){
+	color: #ffffffed !important;
 }
 .container{
 	max-width: 1080px !important;
@@ -104,7 +89,6 @@ body {
 	font-family: 'Neurial Grotesk';
 	background-color: #fff;
 	font-weight: 400;
-	color: #00203A;
 }
 ol,
 ul {
@@ -139,7 +123,6 @@ textarea:focus{
 	line-height: 24px;
 	border: solid 1px #999;
 	border-radius: 6px;
-  /*   background-image: url(https://www.svgrepo.com/show/362528/caret-down-bold.svg); */
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='180 -360 600 1200'%3E%3Cpath d='M1015 10q-10-10-23-10t-23 10L512 492 55 10Q45 0 32 0T9 10Q0 20 0 34t9 24l480 506q10 10 23 10t23-10l480-506q9-10 9-24t-9-24z'%20fill%3D%27slategray%27/%3E%3C/svg%3E");
 	background-size: 18px;
 	background-repeat: no-repeat;
@@ -226,12 +209,12 @@ a.btn_2{
  }
  a.btn_2:hover{
 	 background-color: #fff;
-	color: #00203A;
+	
  }
  .media h3 {
     line-height: 1.2;
     font-weight: 500;
-    color: #00203a;
+    
     margin-bottom: 0;
 	white-space: break-spaces;
 	font-size: 1rem !important;
@@ -254,7 +237,7 @@ a.btn_2{
 
 html { scroll-behavior: smooth; }
 
-p{color:#00203A}
+p{color:var(--text-color)}
 /*Hamburger-menu START CSS*/
 .hamburger-menu {
 	cursor: pointer;
@@ -305,7 +288,7 @@ p{color:#00203A}
 }
 .title{
 	font-weight: 700;
-	color: #00203A;
+	
 	line-height: 1.2;
 }
 .logo{
@@ -334,7 +317,7 @@ header {
 }
 
 .menu li a {
-	color: #ffffffed;
+	
 	margin: 0 .5rem;
 	display: inline-flex;
 	align-items: center;
@@ -362,7 +345,7 @@ header {
 	margin-right: 0.6rem;
 }
 .menu li.current-menu-item a{
-    color: #fcfbfb!important;
+    color: #aaaaaa !important;
 }
 .menu li.current-menu-item a::before{
 	position: absolute;
@@ -450,7 +433,7 @@ header {
 }
 /*footer area*/
 footer{
-	background: linear-gradient(82deg, #0C1429 0%, #00203A 100%);
+	background: linear-gradient(82deg, #0C1429 0%, var(--text-color) 100%);
 	padding: 5.5rem 0 5rem;
 	color: #abaeb1;
 }
@@ -626,7 +609,7 @@ footer .menu li a::before{
 
 /*Page content*/
 .page_content > p{
-	color: #00203A;
+	
 	max-width: 100%;
 	text-align: justify;
 	line-height: 1.9;
@@ -641,7 +624,7 @@ footer .menu li a::before{
 .page_content > h4, 
 .page_content > h5 {
     line-height: 1.2;
-    color: #00203A;
+    
     font-weight: 700;
 	margin-block-start: 1rem;
 }
@@ -681,7 +664,7 @@ footer .menu li a::before{
 
 .page_content > ul{
 	list-style-type: square;
-	color: #00203A;
+	
 
 }
 .page_content > ul > li{
@@ -709,7 +692,7 @@ footer .menu li a::before{
 
 .page_content > ol{
 	list-style-type: decimal;
-	color: #00203A;
+	
 
 
 }
@@ -745,7 +728,7 @@ footer .menu li a::before{
 
 /* Styles for .single_event_content */
 .single_event_content  p{
-	color: #00203A;
+	
 	max-width: 100%;
 	text-align: justify;
 	line-height: 1.9;
@@ -760,7 +743,7 @@ footer .menu li a::before{
 .single_event_content  h4, 
 .single_event_content  h5 {
     line-height: 1.2;
-    color: #00203A;
+    
     font-weight: 700;
 }
 
@@ -778,7 +761,7 @@ footer .menu li a::before{
 /* Styles for .single_event_content */
 .single_event_content ul{
 	list-style-type: square;
-	color: #00203A;
+	
 
 }
 
@@ -809,7 +792,7 @@ footer .menu li a::before{
 /* Styles for .single_event_content */
 .single_event_content ol{
 	list-style-type: decimal;
-	color: #00203A;
+	
 
 
 }
@@ -981,7 +964,7 @@ footer .menu li a::before{
 /* Extracted styles for #table-of-contents */
 #table-of-contents a {
     text-decoration: unset;
-    color: #00203a;
+    
     display: block;
     text-transform: capitalize;
 }
@@ -1026,7 +1009,7 @@ footer .menu li a::before{
 }
 
 .custom-table th {
-    background-color: #00203a;
+    background-
     color: #fff;
 }
 .custom-table th:nth-child(1){
@@ -1056,7 +1039,7 @@ footer .menu li a::before{
 /* Estilos para la puntuación */
 .custom-table .score {
     font-weight: bold;
-    color: #00203a;
+    
 }
 
 /* Estilos para el marcador en verde (ganador) */
@@ -1110,7 +1093,7 @@ footer .menu li a::before{
 }
 
 .bg-form {
-    background-color: #00203a;
+    background-
     /* color: white; */
     padding: 8px;
     border-radius: 3px;
@@ -1139,14 +1122,14 @@ footer .menu li a::before{
   .user-name {
     font-weight: 600;
     margin-bottom: 8px;
-    color: #00203a;
+    
 }
 .user-bio {
 	margin-bottom: 1rem;
 	color: #5c5c5c;
   }
   .user-social > a {
-	color: #00203abd;
+	color: var(--text-color)bd;
 	margin: 3px;
 }
 
