@@ -23,12 +23,12 @@ endif;
 
     <div class="blog_hero_area">
         <div class="container">
-            <div class="blog_bg" style="background-image: url(<?php echo $thumb ?>);">
+            <div class="inner_bg mt-5" style="background-image: url(<?php echo $thumb ?>)">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="blog_hero_content">
                             <div class="blog_top_content">
-                                <img width="65" height="27" src="<?php echo $alt_logo ?>" class="img-fluid" alt="icon-apuestan">
+                                <img width="65" height="27" src="<?php echo $alt_logo ?>" alt="icon-apuestan">
                                 <p>Blog &amp; Noticias</p>
                             </div>
                             <h2><?php echo $h1 ?></h2>

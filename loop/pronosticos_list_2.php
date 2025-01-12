@@ -40,7 +40,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
 if(!$vip or $estado_usuario == 'permitido')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
-                        <p>Haz una apuesta</p>
+                        <p class='text-secondary'>Haz una apuesta</p>
                     </a>";
 //Liga y deporte
 //taxonomy league
@@ -72,9 +72,7 @@ if(isset($sport)):
     if(isset($leagues) and count($leagues) > 0):
         $league = $leagues[0]; //define forecast sport
         $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
-        /* echo "<pre>";
-            var_dump($leagues);
-        echo "</pre>"; */
+        
         $league->icon_html =  '<img loading="lazy" src="'.$icon_img.'" />';
     endif;
 endif;

@@ -13,11 +13,16 @@ function aw_login_form($attr = array()) {
     }
     // Estilos del formulario
     $str = '<style>
+        
     .aw_login_form {
-        border: 1px solid #707070;
+        border: 1px solid rgb(221, 220, 220);
         border-radius: 17px;
         padding: 25px;
         height: max-content;
+        background:#e9e9e9;
+    }
+    .aw_login_form row{
+        background:#fff;
     }
     .aw-form-header {
         border-bottom: 2px solid #c6cace;

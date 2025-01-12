@@ -48,9 +48,10 @@ if(!empty($predictions)):
         $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
     endif;
 
-    $html_predictions = "<div class='row'>
+    $html_predictions = "<div class='row mt-2'>
+                            <div class='col-12 p-1'><p class='text-secondary'>Pronóstico:</p></div>
                             <b class='col-6 p-1'>{$prediction['title']}</b>
-                            <span class='col-6 text-start'><b class='p-1' style='border-radius: .3rem;color:#0558cb;background-color:#ddeafd;font-size: .8rem;font-weight: 700;'>{$prediction['cuote']}</b></span>
+                            <span class='col-6 text-right'><b class='p-1' style='border-radius: .3rem;color:#0558cb;background-color:#ddeafd;font-size: .8rem;font-weight: 700;'>{$prediction['cuote']}</b></span>
                             </div>";
 endif;
 $time_format_html = "<p>".$date->format('g:i a')."</p>";
@@ -99,14 +100,14 @@ endif;
                         </div>
                     
                         <div class='event2_box_middle_content'>
-                            <div class='w-100'>$estrellas</div>
-                            <p >Pronóstico:</p>
+                            <div class='w-100 text-center'>$estrellas</div>
+                            
                             {$html_predictions}
-                            <div class='row'>
-                                <p class='col-4'>Bonus:</p>
-                                <strong class='col-8'>{$bookmaker['bonus_slogan']}</strong>
+                            <div class='row p-1'>
+                                <p class='col-2 p-0 text-secondary'>Bonus:</p>
+                                <strong class='col-10 text-right'>{$bookmaker['bonus_slogan']}</strong>
                             </div>
-                            <div class='row'>
+                            <div class='row mt-3'>
                                 <div class='col-6 text-right'>
                                     <a href='{$bookmaker['ref_link']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
                                         <img src='{$bookmaker['logo']}' width='80' height='30' style='object-fit:contain;' alt='logo casa de apuesta' >

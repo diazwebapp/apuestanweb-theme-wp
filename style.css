@@ -79,7 +79,7 @@ html *{
 	text-decoration: none;
 	color: var(--text-color);
 }
-header *, footer *:not(.myselect){
+header *, footer *:not(.myselect,.myselect option){
 	color: #ffffffed !important;
 }
 .container{
@@ -98,7 +98,10 @@ a, button{
 	transition: 0.3s;
 }
 a:hover {
-	text-decoration: none;
+	text-decoration: none !important;
+}
+p{
+	margin-bottom: 0 !important;
 }
 .dropdown-toggle::after{
 	zoom: 1.8;
@@ -198,18 +201,20 @@ h1,h2,h3,h4,h5,h6{
 	color: #2f2f2f;
 }
 /*///////////////*/
-a.btn_2{
-	display: inline-block;
-	border: .1rem solid #FFFFFF;
-	border-radius: .6rem;
-	padding: .7rem 2rem;
-	margin-top: 1rem;
-	color: #fff;
-	font-weight: 500;
- }
+a.btn_2 {
+    display: inline-block;
+    border: .1rem solid #FFFFFF;
+    border-radius: .6rem;
+    padding: .7rem 2rem;
+    margin-top: 2.5rem;
+    color: #fff;
+	font-weight: 400;
+}
  a.btn_2:hover{
-	 background-color: #fff;
-	
+	background-color: #fff;
+	color: var(--text-color);
+	border: .1rem solid var(--text-color);
+	font-weight: 600;
  }
  .media h3 {
     line-height: 1.2;
@@ -489,20 +494,19 @@ footer .menu li a::before{
 .p-reg{
 	margin-top: 3rem;
 }
-.inner_bg{
+.inner_bg {
+    border-radius: 0.8rem;
+    min-height: 17rem;
+    display: flex;
+    align-items: center;
+    padding: 1.5rem ;
+    position: relative;
 	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-	border-radius: 0.8rem;
-	min-height: 20.8rem;
-	display: flex;
-	align-items: center;
-	padding: 3rem 6.5rem;
-	position: relative;
+	background-position: center;
 }
 .inner_bg > .logo2{
 	position: absolute;
-	width: 6.5rem;
+	width: 3.5rem;
 	right: 2rem;
 	bottom: 1.8rem;
 }
@@ -521,15 +525,6 @@ footer .menu li a::before{
 .inner_bg .icon-news{
     font-weight: 500;
     color: #fff;
-}
-.blog_bg{
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center center;
-	border-radius: 1rem;
-	padding: 5.2rem ;
-	margin-top: 5rem;
-	min-height: 200px;
 }
 
 .blog_hero_content h2{
@@ -1009,8 +1004,7 @@ footer .menu li a::before{
 }
 
 .custom-table th {
-    background-
-    color: #fff;
+    background-color: #fff;
 }
 .custom-table th:nth-child(1){
 	border-radius: 1rem 0rem 0 0;

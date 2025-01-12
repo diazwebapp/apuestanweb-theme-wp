@@ -13,18 +13,20 @@ function aw_register_form($attr = array()) {
     // Generación del formulario de registro
     $str .= '<style>
     .aw_register_form {
-        border: 1px solid #707070;
+        border: 1px solid rgb(221, 220, 220);
         border-radius: 17px;
         padding: 25px;
         height: max-content;
+        background:#e9e9e9;
     }
+        .aw_register_form row{
+            background:#fff;
+        }
     .aw-form-header {
         border-bottom: 2px solid #c6cace;
     }
     .aw_register_form input, .aw_register_form select {
         border-radius: 5px;
-        padding: 18px;
-        font-size: 1.8rem;
     }
     .aw_register_form input[type=submit] {
         padding: 5px;

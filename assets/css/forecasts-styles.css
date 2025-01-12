@@ -56,61 +56,53 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	/*font-size:*/ 1.2rem;
+}
+.game_box{
+	font-size:.8rem;
 }
 .game_box .team_text{
-	/*font-size:*/ 1.5rem;
-	color: #051421;
-	margin-top: 1rem;
+	font-size:.92rem;
 }
-
 .club_box{
 	text-align: center;
-	/*font-size:*/ 1.2rem;
 	justify-content: space-between;
 	margin-top: 2.5rem;
-	color: #051421;
+	
 }
 .club_box img{
-/* 	width: 6rem;
-	height: 6rem; */
 	object-fit: contain;
 	object-position: center center;
 }
 .game_btn{
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	padding: 0.4rem 1.7rem;
-	/*font-size:*/ 1.4rem;
-	color: #ABAEB1;
+	justify-content: center;
+	color: #abaeb1;
 	border: 0.1rem solid #E4E6E8;
-	border-radius: 1.8rem;
+	border-radius: 1rem;
 	margin-top: 1.8rem;
 	font-weight: 500;
 }
-.game_top span b{
-	padding:0 .2rem;
-}
-.game_top img{
-	width: 2rem;
-}
 .game_btn img{
-	width: 8.9rem;
-	padding: 0.4rem;
 	border-radius: 4px;
-	
+	margin-right: 1rem;
+	padding: .2rem;
+	background-color: #000000;
+	object-fit: contain;
 }
 .game_btn:hover{
 	color: #0558CB;
 	border-color: transparent;
 	box-shadow: 0 .5rem 3.0rem rgba(103, 108, 121, 0.33);
 }
+
+.game_top img{
+	width: 2rem;
+}
 .game_btn.v2{
 	background: #009fe3;
 	justify-content: center;
 	color: #F2E6E6;
-	/*font-size:*/ 1.3rem;
 	min-height: 3rem;
 }
 .game_btn.v2 i{
@@ -119,7 +111,6 @@
 .event_select .nice-select {
     background-color: white;
     border: 0.1rem solid #0558CB;
-    /*font-size:*/ 1.6rem;
     height: 4.2rem;
     line-height: 2.5;
     color: #0558CB;
@@ -166,7 +157,6 @@
 	max-width: 100%;
 	flex: 0 0 100%;
 	width: 100%;
-	/*font-size:*/ 1.8rem;
 	margin-top: 1rem;
 	color: #000000;
 }
