@@ -37,9 +37,9 @@ class w_authors extends WP_Widget {
                 $key++;
                 $link = get_author_posts_url( $user->ID);
                 $flechita_indicadora = "";
-                $flechita_up = '<span class="dropdown"></span>';
-                $flechita_up = '<span class="dropdown-toggle" ></span>';
-                $flechita_down = '<span class="dropdown-toggle dropup-toggle"></span>';
+                $flechita_up = '<span class="dropdown-toggle dropup-toggle dropdown-toggle-win" ></span>';
+                $flechita_down = '<span class="dropdown-toggle dropdown-toggle-loss"></span>';
+                
                 if(floatval($acerted) > floatval($failed)):
                     $flechita_indicadora = $flechita_up;
                 endif;

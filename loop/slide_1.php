@@ -101,17 +101,17 @@ echo "<div class='owl-item' >
                 
                 <div class='col-lg-4 d-none d-lg-flex justify-content-end'>
                     <div class='d-block'>
-                        <div class='team_box px-3'>
+                        <div class='team_box px-4 py-2'>
                             <img width='60px' height='60px' src='{$teams['team1']['logo']}' class='img-fluid'  alt='{$teams['team1']['name']}'>
                             
-                                <b class='mx-3' >vs</b>
+                                <b class='mx-4' >vs</b>
                             
                             <img width='60px' height='60px' src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
                         </div>                            
                         <div class='team_box py-1 mt-3 text-center'>
                             <b> $p1 </b>
                             
-                            <b class='mx-3'> $x </b>
+                            <b class='mx-4'> $x </b>
                             
                             <b> $p2 </b>
                         </div>
