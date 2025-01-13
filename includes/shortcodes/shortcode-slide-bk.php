@@ -59,7 +59,9 @@ function shortcode_slide_bk($atts)
                     <div class='owl-nav'>
                     </div>
                     <div class='owl-dots disabled'></div>
-            </div>";
+            </div>
+            
+            ";
             $ret = str_replace("{replace}",$html,$ret);
         endif;
         if($model == 2): 
@@ -93,3 +95,23 @@ function shortcode_slide_bk($atts)
 }
 
 add_shortcode('slide_bk', 'shortcode_slide_bk');
+
+// Cargar owl carousel condicionalmente
+function load_owl_carousel_slide_bk() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'slide_bk'))) {
+        wp_enqueue_script('jquery', get_template_directory_uri() . '/assets/js/jquery-3.6.0.min.js', array(), '3.6.0', false);
+        wp_enqueue_script('owl.carousel', get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array(), null, true);
+    }
+}
+add_action('wp_enqueue_scripts', 'load_owl_carousel_slide_bk');
+
+// Asegurarse de que el CSS solo se cargue si es necesario
+function load_slide_bk_styles() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'slide_bk'))) {
+       wp_enqueue_style('owl.carousel', get_template_directory_uri() . '/assets/css/owl.carousel.min.css', array(), null);
+        wp_enqueue_style('bk-slide', get_template_directory_uri() . '/assets/css/bookmakers-styles.css', array(), null);
+    }
+}
+add_action('wp_enqueue_scripts', 'load_slide_bk_styles');

@@ -27,16 +27,16 @@ if(isset($bonuses) and count($bonuses) > 0):
     endforeach;
 endif;
 
-    echo "<div class='owl-item' style='width: 142.5px; margin-right: 15px;'> ";
-        echo "<div class='tbox'>
-        <div>
-            <img style='height:30px;width:auto;object-fit:contain;' src='$image_png' class='timg img-fluid' alt='$title'  title='$title'>
-        </div>
-            <div class='rating mt_15'> ";
+    echo "<div class='owl-item slide_bk_model_1'> ";
+        echo "<div class='text-center'>
+        
+            <img src='$image_png' width='90' height='90' class='img-thumbnail mx-auto d-block' alt='$title'  title='$title'>
+        
+            <div class='rating text-center'> ";
                 echo $stars; 
-        echo "        </div>
-            <p class='mt-5'>{$bonus["country_bonus_slogan"]}</p>
-            <a href='{$bonus["country_bonus_ref_link"]}' class='button mt-3 w-100' rel='nofollow'>apostar</a>
-            <p class='sub_title mt-3'><a href=' $permalink ' >Revision </a></p>
+        echo "</div>
+            <b class='my-1 text-center d-block'>{$bonus["country_bonus_slogan"]}</b>
+            <a href='{$bonus["country_bonus_ref_link"]}' class='my-2 d-block btn btn-primary' rel='nofollow'>apostar</a>
+            <a class='font-weight-bold text-center d-block' href=' $permalink ' >Revision</a>
         </div>";
     echo "</div>";

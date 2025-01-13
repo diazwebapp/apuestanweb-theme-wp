@@ -27,9 +27,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 18.3rem;
-	width: 19.3rem;
-	padding: 1.5rem;
+	padding: 1rem;
 }
 .bookmaker_left_text{
 	padding-left: 5rem;
@@ -113,46 +111,17 @@
 .bookmaker_logo_box4{
 	background: #DC213E;
 }
-.tbox{
-	background: #FFFFFF;
-   box-shadow: 0 1.5rem 3.0rem #efefef;
-   padding: 5px 10px;
-   text-align: center;
-}
-.tbox > p{
-
-	color: #000409db;
-	font-weight: 600;
-}
-@media (max-width: 1199.98px) { 
-	.tbox {
-	    padding: 6.8rem 4rem 5.5rem;
-	}
+.slide_bk_model_1{
+	
 }
 /*Medium devices (tablets, 767px and down)*/
 @media (max-width: 767.98px) {
-    .bookmaker_box_wrapper {
-	    padding-right: 1.5rem;
-	}
+    
     .bookmaker_box_wrapper {
 	    flex-direction: column;
-	    padding: 1.2rem 3rem 4rem;
 		box-shadow: inset 0px 3px 6px #40404029, 0px 3px 6px #00000029;
 	}
     .bookmaker_left_content {
 	    flex-direction: column;
-		width: 20rem;
-	}
-}
-/*Medium devices (tablets, 575px and down)*/
-@media (max-width: 575.98px) {
-	.tbox .rating{
-		margin-top: 1rem;
-	}
-	.tbox .button{
-		margin-top: 2rem;
-	}
-	.tbox {
-	    padding: 3.8rem 2rem 3.5rem;
 	}
 }
