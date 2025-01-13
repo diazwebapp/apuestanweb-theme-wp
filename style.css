@@ -117,6 +117,13 @@ textarea:focus{
 	outline: none;
 }
 
+.angle-left svg{
+	transform: rotate(-90deg);
+}
+.angle-right svg{
+	transform: rotate(90deg);
+}
+
 .myselect {
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -1111,18 +1118,25 @@ footer .menu li a::before{
 
 .team_logo {
     box-shadow: 0 0 .8rem rgba(0,0,0,.2);
+	width: 6rem;
+    height: 6rem;
 }
 .team-name{
-    font-size: 1.7rem;
     font-weight: 400;
-    line-height: .9;
+	text-align: center;
+}
+.ml-slide{
+	text-align: center;
+}
+
+.team-name span{
+    font-size: 1.7rem;
 }
 .team_box {
     border-radius: 3rem;
 	background-color: rgba(255, 255, 255, .25)	;
 	backdrop-filter: blur(2rem);
 	-webkit-backdrop-filter: blur(2rem);
-	width: 10rem;
 }
 .team_box b {
     line-height: 1;
@@ -1130,7 +1144,37 @@ footer .menu li a::before{
     background-color: #ddeafd;
     border-radius: .2rem;
     color: #0558cb;
-    //font-weight: 700;
+}
+.slider .owl-dots{
+	text-align: center;
+}
+.slider .owl-dots button {
+    width: 11.3rem;
+    height: .4rem;
+    background-color: #e4e6e8;
+    margin: 0 2.5px;
+}
+.slider .owl-dots button.active {
+    background-color: #0558cb;
+}
+.slider .owl-nav{
+	display: none;
+}
+.slider .owl-nav button {
+    background-color: transparent;
+    border-radius: none;
+    padding: 0;
+    font-size: 5rem;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.slider .owl-nav button.owl-prev {
+    left: 2rem;
+}
+.slider .owl-nav button.owl-next {
+    right: 2rem !important;
 }
 /* ==================================
    Responsive Styles
@@ -1142,11 +1186,41 @@ footer .menu li a::before{
 	
 	
 }
+@media (min-width: 992px) {
+	.team_logo{
+		margin-left: -1rem;
+	}
+	.ml-slide{
+		text-align: left;
+		margin: 2rem 0;
+	}
+	
+	.ml-slide p{
+		padding-left: 1.5rem;
+	}
+	.ml-slide a{
+		margin-left: 1.5rem;
+	}
+	.team-name{
+		text-align: left;
+	}
+	.slider{
+		max-width: 1080px;
+		width: 100%;
+		padding-right: 15px;
+		padding-left: 15px;
+		margin: 3rem auto 0 auto;
+	}
+	.slider .item{
+		border-radius: 1rem;
+	}
+	.slider .owl-nav{
+		display: block;
+		padding: 1.5rem 5rem;
+	}
+}
 /*Medium devices (tablets, 767px and down)*/
 @media (max-width: 767.98px) {
-	
-	/* Ocultar el aside en dispositivos móviles */
-
     #secondary {
         display: none;
     }
@@ -1214,7 +1288,6 @@ footer .menu li a::before{
 		display: block;
 	}
 	
-	
 	.title_wrap {
 		flex-wrap: wrap;
 		justify-content: space-between;
@@ -1229,16 +1302,16 @@ footer .menu li a::before{
 		justify-content: center;
 		padding: 1rem;
 	}
-
+	
 }
 
 @media (min-width: 1280px) { 
-	.container{
+	.container, .slider{
 		max-width: 1180px !important;
 	}
 }
 @media (min-width: 1440px) { 
-	.container{
+	.container, .slider{
 		max-width: 1320px !important;
 	}
 }
