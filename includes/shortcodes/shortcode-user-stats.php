@@ -24,7 +24,7 @@ function shortcode_user_stats($atts)
     $posts = get_posts($args);
 
     
-    $ret = "<div class='user-profile tab-menu-container'>
+    $ret = "<div class='user-profile' style='overflow-x: hidden;''>
         
             <ul class='nav nav-tabs flex-column' id='myTab' role='tablist'>
                 <li class='nav-item'>
@@ -67,8 +67,8 @@ function shortcode_user_stats($atts)
             foreach ($posts as $post) {
                 $ret .= "
                 <a href='" . get_permalink($post->ID) . "' class='row p-1 border'>
-                    <div class='font-weight-bold text-muted text-truncate col-8'>" . get_the_title($post->ID) . "</div>
-                    <div class='text-secondary col-4'>" . get_the_date( '', $post->ID ) . "</div>
+                    <div class='font-weight-bold text-muted text-truncate col-12 col-lg-8'>" . get_the_title($post->ID) . "</div>
+                    <div class='text-secondary col-12 col-lg-4'>" . get_the_date( '', $post->ID ) . "</div>
                 </a>";
             }
             $ret .= "</div></div></div>
