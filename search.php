@@ -25,7 +25,7 @@ endif;
             <div class="blog_bg" style="background-image: url(<?php echo $thumb ?>);">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="blog_hero_content">
+                        <div class="blog_hero_content mb-4">
                             <div class="blog_top_content">
                                 <img src="<?php echo $alt_logo ?>" class="img-fluid" alt="icon-apuestan">
                                 <p></p>

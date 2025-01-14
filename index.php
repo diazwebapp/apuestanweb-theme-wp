@@ -26,8 +26,8 @@ endif;
             <div class="inner_bg mt-5" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo $thumb ?>)">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="blog_hero_content">
-                            <div class="blog_top_content">
+                        <div class="">
+                            <div class="blog_top_content mb-4">
                                 <img width="65" height="27" src="<?php echo $alt_logo ?>" alt="icon-apuestan">
                                 <p>Blog &amp; Noticias</p>
                             </div>

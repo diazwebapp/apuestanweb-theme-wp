@@ -108,7 +108,7 @@ echo "<div class='owl-item' >
                             
                             <img width='60px' height='60px' src='{$teams['team2']['logo']}' class='img-fluid'  alt='{$teams['team2']['name']}'>
                         </div>                            
-                        <div class='team_box py-1 mt-3 text-center'>
+                        <div class='team_box py-2 mt-2 text-center'>
                             <b> $p1 </b>
                             
                             <b class='mx-4'> $x </b>

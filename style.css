@@ -1035,8 +1035,8 @@ footer .menu li a::before{
 .team_box {
     border-radius: 3rem;
 	background-color: rgba(255, 255, 255, .25)	;
-	backdrop-filter: blur(2rem);
-	-webkit-backdrop-filter: blur(2rem);
+	backdrop-filter: blur(.5rem);
+	-webkit-backdrop-filter: blur(.5rem);
 }
 .team_box b {
     line-height: 1;
