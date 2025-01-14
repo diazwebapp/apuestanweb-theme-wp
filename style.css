@@ -40,10 +40,12 @@ ul {
 }
 a, button{
 	transition: 0.3s;
+}
+a{
 	color: var(--text-color);
 }
 a:hover {
-	text-decoration: none !important;
+	text-decoration: unset !important;
 }
 p{
 	margin-bottom: 0 !important;
@@ -645,21 +647,11 @@ footer .menu li a::before{
 
 /* Styles for .single_event_content */
 .single_event_content ul, ol{
-    display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
 
 }
 
-/* Styles for .single_event_content */
-.single_event_content ul{
-	list-style-type: square;
-	
-
-}
 
 /* Styles for .single_event_content */
 .single_event_content ul li{
@@ -859,9 +851,6 @@ footer .menu li a::before{
 
 /* Extracted styles for #table-of-contents */
 #table-of-contents a {
-    text-decoration: unset;
-    
-    display: block;
     text-transform: capitalize;
 }
 
@@ -887,10 +876,6 @@ footer .menu li a::before{
 
 /* Estilos generales de la tabla */
 .custom-table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-    background-color: #fff;
     overflow-x: auto;
     margin-top: 2rem;
     white-space: nowrap;
@@ -898,14 +883,16 @@ footer .menu li a::before{
 
 .custom-table th,
 .custom-table td {
-    padding: 12px 15px !important;
+    padding: 6px 8px !important;
     text-align: center;
     border: 1px solid #e5e5e5;
-    font-weight: bold;
+	font-size: .7rem;
 }
 
 .custom-table th {
-    background-color: #fff;
+    background-color: var(--text-color);
+	color:#fff;
+	font-size: .9rem;
 }
 .custom-table th:nth-child(1){
 	border-radius: 1rem 0rem 0 0;
@@ -1026,10 +1013,6 @@ footer .menu li a::before{
 	margin: 3px;
 }
 
-  .section-title{
-	text-align: center;
-	margin-bottom: 25px;
- }
  /*////////////slider////////////////*/
  .slider .item {
     border-radius: 0;
@@ -1049,9 +1032,6 @@ footer .menu li a::before{
 	text-align: center;
 }
 
-.team-name span{
-    font-size: 1.7rem;
-}
 .team_box {
     border-radius: 3rem;
 	background-color: rgba(255, 255, 255, .25)	;

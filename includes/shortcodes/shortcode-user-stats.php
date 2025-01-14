@@ -24,8 +24,8 @@ function shortcode_user_stats($atts)
     $posts = get_posts($args);
 
     
-    $ret = "<div class='user-profile'>
-        <div class='tab-menu-container'>
+    $ret = "<div class='user-profile tab-menu-container'>
+        
             <ul class='nav nav-tabs flex-column' id='myTab' role='tablist'>
                 <li class='nav-item'>
                     <a class='nav-link active' id='profile-tab' data-toggle='tab' href='#profile' aria-controls='home' aria-selected='true'>Perfil</a>
@@ -35,7 +35,7 @@ function shortcode_user_stats($atts)
                     <a class='nav-link' id='posts-tab' data-toggle='tab' href='#posts' aria-controls='home' aria-selected='false'>Picks</a>
                 </li>
             </ul>
-        </div>
+        
         <div class='tab-content w-100' id='myTabContent'>
 
             <div id='profile' class='container tab-pane fade show active' role='tabpanel' aria-labelledby='profile-tab'>
@@ -66,9 +66,9 @@ function shortcode_user_stats($atts)
                 <div class='list-group'>";
             foreach ($posts as $post) {
                 $ret .= "
-                <a href='" . get_permalink($post->ID) . "' class='list-group-item list-group-item-action d-flex align-items-center'>
-                    <div class='post-title'>" . get_the_title($post->ID) . "</div>
-                    <div class='ml-auto'>" . get_the_date( '', $post->ID ) . "</div>
+                <a href='" . get_permalink($post->ID) . "' class='row p-1 border'>
+                    <div class='font-weight-bold text-muted text-truncate col-8'>" . get_the_title($post->ID) . "</div>
+                    <div class='text-secondary col-4'>" . get_the_date( '', $post->ID ) . "</div>
                 </a>";
             }
             $ret .= "</div></div></div>
