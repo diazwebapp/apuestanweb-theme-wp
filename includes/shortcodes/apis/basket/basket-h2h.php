@@ -96,7 +96,7 @@ if ($team1_name && $team2_name) {
     $recent_finished_matches = array_slice($recent_finished_matches, 0, 5);
 
             // Inicializa una variable de salida HTML.
-            $output = '<div class="recent-matches">';
+            $output = '<div class="recent-matches mt-3">';
             $output .= '<h2>Últimos 5 enfrentamientos '.$team1_name.' vs '.$team2_name.':</h2>';
             $output .= '<div class="table-responsive">';
             $output .= '<table class="table custom-table">';

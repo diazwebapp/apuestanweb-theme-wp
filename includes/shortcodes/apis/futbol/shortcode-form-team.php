@@ -92,7 +92,7 @@ function equipo_form_shortcode($atts) {
                 $fixtures_team2 = $data_team2['response'];
 
                 // Inicializa variables de salida HTML con las tablas separadas para cada equipo.
-                $output_team1 = '<div class="recent-matches">';
+                $output_team1 = '<div class="recent-matches mt-3">';
                 $output_team1 .= '<h2>Últimos enfrentamientos de ' . $team1_name . ':</h2>';
                 $output_team1 .= '<div class="table-responsive">';
                 $output_team1 .= '<table class="table custom-table">';
@@ -107,7 +107,7 @@ function equipo_form_shortcode($atts) {
                 $output_team1 .= '</thead>';
                 $output_team1 .= '<tbody>';
 
-                $output_team2 = '<div class="recent-matches">';
+                $output_team2 = '<div class="recent-matches mt-3">';
                 $output_team2 .= '<h2>Últimos enfrentamientos de ' . $team2_name . ':</h2>';
                 $output_team2 .= '<div class="table-responsive">';
                 $output_team2 .= '<table class="table custom-table">';

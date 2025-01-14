@@ -176,7 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
             
             link.addEventListener('click', e =>{
                 e.preventDefault()
-                console.log(parent)
                 if(link.attributes["aria-selected"].value == 'false'){
                     tab_contents.forEach(element => {
                         if(element.attributes["aria-labelledby"].value == link.id){

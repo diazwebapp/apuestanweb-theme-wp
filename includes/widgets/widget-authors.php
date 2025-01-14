@@ -51,14 +51,14 @@ class w_authors extends WP_Widget {
                 endif;
                 echo "<div class='top_box'>
                         <a href='$link' class='row'>
-                            <div class='top_serial col-12'>
+                            <div class='top_serial col-12 mt-3'>
                                 <span class='serial'>{$key}</span>
                                 <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain mx-2'>
                                 <b class='text-truncate text-uppercase'>$display_name</b>
                             </div>
-                            <div class='text_box col-12 pt-2'>
-                                <div class='statswg text-center'>  
-                                    <table class='table'>
+                            <div class='text_box col-12'>
+                                <div class='text-center'>  
+                                    <table class='table m-0'>
                                         <thead>
                                             <tr>                                   
                                             <th scope='col'><small> W - L </small></th>

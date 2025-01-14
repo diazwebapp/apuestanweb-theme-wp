@@ -67,8 +67,8 @@ function shortcode_user_stats($atts)
             foreach ($posts as $post) {
                 $ret .= "
                 <a href='" . get_permalink($post->ID) . "' class='row p-1 border'>
-                    <div class='font-weight-bold text-muted text-truncate col-12 col-lg-8'>" . get_the_title($post->ID) . "</div>
-                    <div class='text-secondary col-12 col-lg-4'>" . get_the_date( '', $post->ID ) . "</div>
+                    <div style='font-size:.75rem !important;' class='font-weight-bold text-muted text-truncate col-12 col-lg-8'>" . get_the_title($post->ID) . "</div>
+                    <div style='font-size:.75rem !important;' class='text-secondary col-12 col-lg-4'>" . get_the_date( '', $post->ID ) . "</div>
                 </a>";
             }
             $ret .= "</div></div></div>
