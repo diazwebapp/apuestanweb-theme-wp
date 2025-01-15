@@ -39,10 +39,10 @@ function shortcode_forecast($atts)
 
     // Si hay filtro, crear el HTML de la selección
     if ($filter) {
-        $ret .= "<div class='row'>
+        $ret .= "<div class='row my-2'>
                     <h2 class='title-h2 col-8'>" . (isset($title) ? esc_html($title) : '') . "</h2>
                     <div class='col-4 justify-content-end d-flex event_select'>
-                        <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)'>
+                        <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)' class='myselect'>
                             <option value='' " . (!$date ? 'selected' : '') . ">" . __('Todo', 'jbetting') . "</option>
                             <option value='ayer' " . ($date == 'ayer' ? 'selected' : '') . ">" . __('Ayer', 'jbetting') . "</option>
                             <option value='hoy' " . ($date == 'hoy' ? 'selected' : '') . ">" . __('Hoy', 'jbetting') . "</option>
@@ -146,7 +146,8 @@ function shortcode_forecast($atts)
     // Reemplazar el contenido dinámico en el HTML
     $ret = str_replace("{replace_loop}", $loop_html, $ret);
 
-    $ret .= "<div class='container text-center my-5'>";
+    $ret .= "<div class='container container_pagination_forecast text-center my-5'>";
+    
     if ($data_json->page < $data_json->max_pages) {
         $ret .= $args['btn_load_more'];
     }
