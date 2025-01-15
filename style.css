@@ -44,9 +44,7 @@ a, button{
 a{
 	color: var(--text-color);
 }
-a:hover {
-	text-decoration: unset !important;
-}
+
 p{
 	margin-bottom: 0 !important;
 }

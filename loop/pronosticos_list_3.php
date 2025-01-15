@@ -54,7 +54,7 @@ if(!empty($predictions)):
                             <span class='col-6 text-right'><b class='p-1' style='border-radius: .3rem;color:#0558cb;background-color:#ddeafd;font-size: .8rem;font-weight: 700;'>{$prediction['cuote']}</b></span>
                             </div>";
 endif;
-$time_format_html = "<p>".$date->format('g:i a')."</p>";
+$time_format_html = "<p class='text-light' >".$date->format('g:i a')."</p>";
 if($params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
@@ -74,28 +74,28 @@ endif;
 
     
     
-    $html_free =  "<div class='col-md-6 mt-5'>
+    $html_free =  "<div class='col-12 col-md-6 mb-1'>
                 
-                <div class='event2_box'>
+                <div class='border rounded'>
                    
-                        <div class='event2_top_box_wrapper'>
-                            <div class='event2_top_box'>
-                                <div class='event_top_left'>
-                                    <img src='{$teams['team1']['logo']}' width='36' height='36' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='img-fluid'>
+                        <div class='event2_top_box_wrapper text-center p-2 rounded'>
+                            <div class='row mx-auto align-items-center justify-content-center'>
+                                <div class='col-3 p-0'>
+                                    <img src='{$teams['team1']['logo']}' width='60' height='60' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='bg-light rounded-circle p-1'>
                                 </div>
-                                <div class='event_top_middle'>
-                                    <p class='p1 {$sport['class']}'><b>". strtoupper($sport['name']) ."</b></p>
+                                <div class='col-6 p-0' style='line-height:1;'>
+                                    <b class='text-light d-block text-center'>". strtoupper($sport['name']) ."</b>
                                         $time_format_html                                   
-                                    <p class='p2'><time datetime='".$date->format('Y-m-d H:i:s')."'>".date_i18n('D, d M Y', strtotime($date->format('Y-m-d')))."</time></p>                                    
+                                   <time class='text-light text-center d-block' datetime='".$date->format('Y-m-d H:i:s')."'>".date_i18n('D, d M Y', strtotime($date->format('Y-m-d')))."</time>                                
                                 </div>
-                                <div class='event_top_right'>
-                                    <img src='{$teams['team2']['logo']}' width='36' height='36' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='img-fluid' >
+                                <div class='col-3 p-0'>
+                                    <img src='{$teams['team2']['logo']}' width='60' height='60' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='bg-light rounded-circle p-1' >
                                 </div>
-                            </div>
-                            <div class='text-center'>
-                                <span><a href='$permalink'>                               
-                                {$teams['team1']['name']} vs {$teams['team2']['name']}                              
-                                </a></span>
+                                <div class='col-12'>
+                                    <a href='$permalink' class='text-light'>                               
+                                    {$teams['team1']['name']} vs {$teams['team2']['name']}                              
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     
