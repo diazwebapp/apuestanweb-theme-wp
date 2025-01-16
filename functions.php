@@ -184,7 +184,7 @@ function jbetting_src()
     //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
    //wp_enqueue_script('custom-search', get_template_directory_uri() . '/assets/js/custom-search.js', array('jquery'), null, true);
    // Variables que se pasan a script.js con wp_localize_script
-   //wp_localize_script('custom-search', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
+   wp_localize_script('main-js', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
 
 }
 
@@ -470,10 +470,12 @@ add_shortcode('category_summary', 'category_summary_shortcode');
 */
 
 /* 
-// Función AJAX para buscar publicaciones del CPT "forecast"
 function custom_search_function() {
-    $search_query = sanitize_text_field($_POST['search_query']);
-
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    $search_query = sanitize_text_field($data['search_query']);
+    echo json_encode(array('success' => true, 'results' => "test"));
+    die();
     $args = array(
         'post_type' => 'forecast',
         's' => $search_query,
@@ -483,8 +485,6 @@ function custom_search_function() {
         'order' => 'DESC', // En orden descendente (más recientes primero)
         'sentence' => true, // Utilizar el operador lógico AND
         'search_columns' => array('post_title'), // Limitar la búsqueda a los títulos
-
-
     );
 
     $query = new WP_Query($args);
@@ -506,11 +506,29 @@ function custom_search_function() {
 
     die();
 }
+ */
+function custom_search_function() {
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
 
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        echo json_encode(array('success' => false, 'message' => 'Error al decodificar JSON: ' . json_last_error_msg()));
+        die();
+    }
+
+    $search_query = sanitize_text_field($data['search_query']);
+
+    if (empty($search_query)) {
+        echo json_encode(array('success' => false, 'message' => 'search_query está vacío.'));
+        die();
+    }
+
+    echo json_encode(array('success' => true, 'results' => $search_query));
+    die();
+}
 add_action('wp_ajax_custom_search', 'custom_search_function');
 add_action('wp_ajax_nopriv_custom_search', 'custom_search_function');
 
- */
 
 /*  
 function enlaces_internos_forecast($atts) {

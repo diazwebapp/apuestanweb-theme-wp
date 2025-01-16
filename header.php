@@ -31,12 +31,12 @@
         </div>
         <div class="col-6 order-lg-3 col-lg-2 d-flex justify-content-end py-2">
                 
-                        <div id="open-search-modal" class="headerbtnsearch rounded py-1 px-2">
+                        <button id="open-search-modal" class="headerbtnsearch rounded py-1 px-2">
                             <svg width="30px" height="30px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 10.7655C5.50003 8.01511 7.44296 5.64777 10.1405 5.1113C12.8381 4.57483 15.539 6.01866 16.5913 8.55977C17.6437 11.1009 16.7544 14.0315 14.4674 15.5593C12.1804 17.0871 9.13257 16.7866 7.188 14.8415C6.10716 13.7604 5.49998 12.2942 5.5 10.7655Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M17.029 16.5295L19.5 19.0005" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        </div>
+                        </button>
                         <!-- <a href="<?php // echo wp_login_url() ?> " class="border ml-1 rounded border-secondary py-2 px-3" aria-label="Acceder">
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M12 12C14.7614 12 17 9.53756 17 6.5C17 3.46243 14.7614 1 12 1C9.23858 1 7 3.46243 7 6.5C7 9.53756 9.23858 12 12 12ZM12 9.8C10.3431 9.8 9 8.32254 9 6.5C9 4.67746 10.3431 3.2 12 3.2C13.6569 3.2 15 4.67746 15 6.5C15 8.32254 13.6569 9.8 12 9.8Z" fill="#ffffff"/>
@@ -62,23 +62,21 @@
                 
             ?>
             </ul> <!--menu end-->
-        </div>
-
-
-
-    <!-- Ventana modal de búsqueda -->
-    <div id="search-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="close-search-modal">&times;</span>
-            <span>Búsqueda de pronósticos</span>
-            <form id="custom-search-form" class="mt-3 mb-3">
-                <input type="text" id="search" name="search" placeholder="Introduce el nombre del equipo">
+        </div>   
+    </div>
+</div>
+</header>
+<!-- Ventana modal de búsqueda -->
+<div id="search-modal" class="modal">
+        <div class="modal-content p-3">
+            <span class="close mb-3" id="close-search-modal">&times;</span>
+            
+            <form id="custom-search-form" class="form mt-3 mb-3">
+                <div class="form-group">
+                    <label for="search" >Búsqueda de pronósticos</label>
+                    <input class="form-control" type="text" id="search" name="search" placeholder="Introduce el nombre del equipo">
+                </div>
             </form>
             <div id="search-results"></div>
         </div>
     </div>
-
-        
-    </div>
-</div>
-</header>

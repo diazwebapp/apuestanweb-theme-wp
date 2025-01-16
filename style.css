@@ -355,6 +355,8 @@ header {
 .headerbtnsearch {
 	background: transparent linear-gradient(107deg,#0558cb 0%,#023986 100%);
 	box-shadow: 0px .3rem 1.5rem rgba(11,105,236,.4);
+	outline: none;
+	border: none;
 }
 .headerbtnsearch:hover{
 	background: transparent linear-gradient(-107deg, #0558CB 0%, #023986 100%);
@@ -973,6 +975,38 @@ footer .menu li a::before{
 .slider .owl-nav button.owl-next {
     right: 2rem !important;
 }
+/* Estilos para la ventana modal */
+.modal {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    margin: 15% auto;
+    width: 80% !important;
+}
+
+/* Estilos para el icono de búsqueda */
+#open-search-modal {
+    cursor: pointer;
+}
+/* Estilos para los resultados de búsqueda */
+#search-results p {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Línea divisoria entre resultados */
+}
+
+#search-results a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#search-results a:hover {
+    color: #007bff; /* Cambia el color al pasar el ratón sobre el enlace */
+}
+
 /* ==================================
    Responsive Styles
    - Media Queries for various devices

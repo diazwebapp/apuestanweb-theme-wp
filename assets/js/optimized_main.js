@@ -251,6 +251,67 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
         }
     });
+
+    ///////////Search//////////////
+    // Obtén elementos DOM
+    var openModalBtn = document.getElementById('open-search-modal');
+    var closeModalBtn = document.getElementById('close-search-modal');
+    var modal = document.getElementById('search-modal');
+
+    // Abrir la ventana modal al hacer clic en el icono de búsqueda
+    openModalBtn.addEventListener('click', function () {
+        modal.style.display = 'block';
+    });
+
+    // Cerrar la ventana modal al hacer clic en el botón de cierre
+    closeModalBtn.addEventListener('click', function () {
+        modal.style.display = 'none';
+    });
+
+    // Cerrar la ventana modal al hacer clic fuera de ella
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Captura el evento keyup en el campo de búsqueda
+    document.getElementById('search').addEventListener('keyup', async function () {
+        const searchQuery = this.value;
+    
+        if (frontendajax.url && searchQuery.length >= 3) {
+            try {
+                const response = await fetch(frontendajax.url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'custom_search',
+                        search_query: searchQuery,
+                    }),
+                });
+    
+                // Asegúrate de imprimir la respuesta antes de intentar decodificarla
+                const responseText = await response.text();
+                console.log('Respuesta completa:', responseText);
+    
+                const data = JSON.parse(responseText);
+                console.log(data);
+    
+                if (data.success) {
+                    document.getElementById('search-results').innerHTML = data.results;
+                } else {
+                    document.getElementById('search-results').innerHTML = data.message;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        } else {
+            document.getElementById('search-results').innerHTML = '';
+        }
+    });
+    
 });
 
 function handler_odds_format(e){
