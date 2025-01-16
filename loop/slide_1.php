@@ -85,9 +85,9 @@ echo "<div class='owl-item' >
                             </div>
                         </div>
                         <div class='col-12 col-lg-8 my-4 team-name'>
-                            <span class='d-none d-sm-none d-md-block text-light' > {$teams['team1']['name']} <strong class='text-light'>VS</strong>  {$teams['team2']['name']} </span>
+                            <span class='h2 d-none d-sm-none d-md-block text-light' > {$teams['team1']['name']} <strong class='text-light'>VS</strong>  {$teams['team2']['name']} </span>
                             
-                            <span class='d-block d-sm-block d-md-none text-light text-uppercase'> {$teams['team1']['acronimo']}rt <strong class='text-light'>VS</strong> y {$teams['team2']['acronimo']} </span>
+                            <span class='h4 d-block d-sm-block d-md-none text-light text-uppercase'> {$teams['team1']['acronimo']}rt <strong class='text-light'>VS</strong> y {$teams['team2']['acronimo']} </span>
                             
                             <p class='text-light'>$fecha $hora</p>
                         </div>
