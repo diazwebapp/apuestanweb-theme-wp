@@ -72,29 +72,29 @@
                                     <!-- header forecast-->
                                     
                                     
-                                        <div class="row rounded p-2" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo esc_url($background_header); ?>);">
-                                            <div class="col-12">
-                                                <div class=''>
-                                                    <?php echo isset($sport->icon_html) ? $sport->icon_html : '<img width="20" height="20" src="'.$icon_img.'" alt="">'; ?>
-                                                    <small><?php echo esc_html($parent_taxonomy['name'] ?? ''); ?></small>
-                                                </div>
+                                    <div class="single-forecast-banner row py-3 px-2 px-md-4 mx-md-0" style="background-image:linear-gradient(145deg,#03b0f4 0,#051421c4 50%,#dc213e 100%), url(<?php echo esc_url($background_header); ?>);">
+                                        <div class="col-12">
+                                            <div class=''>
+                                                <?php echo isset($sport->icon_html) ? $sport->icon_html : '<img width="20" height="20" src="'.$icon_img.'" alt="">'; ?>
+                                                <p class="text-light d-inline"><?php echo esc_html($parent_taxonomy['name'] ?? ''); ?></p>
                                             </div>
-                                            <!-- <div class="single_event_banner_middle"> -->
-                                            <div class="col-4 d-flex flex-column text-center text-light">
-                                                <img width="60" height="60" class="mx-auto" loading="lazy" src="<?php echo esc_url($teams["team1"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>">
-                                                <small><?php echo esc_html($teams["team1"]["name"] ?? ''); ?></small>
-                                            </div>
-                                            <div class="col-4 d-flex flex-column text-center text-light">
-                                                <?php echo esc_html(date_i18n("d M Y", strtotime($datetime->format("d M Y")))); ?>   
-                                                <time class="font-weight-bold text-light" datetime="<?php echo esc_attr($datetime->format("Y-m-d H:i:s")); ?>"><?php echo esc_html($datetime->format("h:i a")); ?></time>
-                                            </div>
-                                            <div class="col-4 d-flex flex-column text-center text-light">
-                                                <img width="60" height="60" class="mx-auto" loading="lazy" src="<?php echo esc_url($teams["team2"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>">
-                                                <small><?php echo esc_html($teams["team2"]["name"] ?? ''); ?></small>
-                                            </div>
-                                            <!-- </div> -->
                                         </div>
-                                   
+                                        
+                                        <div class="col-4 p-0 my-4 d-flex flex-column text-center single-forecast-teams">
+                                            <img width="60" height="60" class="mx-auto" loading="lazy" src="<?php echo esc_url($teams["team1"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team1"]["name"] ?? ''); ?>">
+                                            <p class="text-light"><?php echo esc_html($teams["team1"]["name"] ?? ''); ?></p>
+                                        </div>
+                                        <div class="col-4 p-0 my-4 d-flex flex-column text-center text-light single-forecast-date">
+                                            <?php echo esc_html(date_i18n("d M Y", strtotime($datetime->format("d M Y")))); ?>   
+                                            <time class="font-weight-bold text-light" datetime="<?php echo esc_attr($datetime->format("Y-m-d H:i:s")); ?>"><?php echo esc_html($datetime->format("h:i a")); ?></time>
+                                        </div>
+                                        <div class="col-4 p-0 my-4 d-flex flex-column text-center single-forecast-teams">
+                                            <img width="60" height="60" class="mx-auto" loading="lazy" src="<?php echo esc_url($teams["team2"]["logo"] ?? $icon_img); ?>" alt="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>" title="<?php echo esc_attr($teams["team2"]["name"] ?? ''); ?>">
+                                            <p class="text-light"><?php echo esc_html($teams["team2"]["name"] ?? ''); ?></p>
+                                        </div>
+                                        
+                                    </div>
+                                    
                                     <div class="single_event_content text-break">
                                         
                                         <?php remove_filter('the_content', 'wpautop'); ?>
@@ -114,7 +114,7 @@
                                                     <ul class="list-group list-group-flush"></ul>
                                                 </div>
                                             </div>
-                                            
+                                            <hr></hr>  
                                         <?php endif; ?>
                                         <?php the_content(); ?>
                                         

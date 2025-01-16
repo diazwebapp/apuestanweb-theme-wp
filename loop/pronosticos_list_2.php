@@ -38,7 +38,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                     <p>{$params['text_vip_link']}</p>
                 </a>";
 if(!$vip or $estado_usuario == 'permitido')
-    $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn'>
+    $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1'>
                         <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
                         <p class='text-secondary'>Haz una apuesta</p>
                     </a>";
@@ -87,7 +87,7 @@ endif;
 
     echo "<div class='col-lg-4 col-md-6 mt_40'>
         
-             <div class='game_box'>
+             <div class='game_box py-3 px-1'>
                 <div class='game_top'>
                     <div class='d-flex align-items-center league_box1'>
                         ".(isset($league->icon_html) ? $league->icon_html:'')." 
@@ -98,7 +98,7 @@ endif;
                     </div>
                 </div>
                 <a href='$permalink'  >
-                <div class='d-flex align-items-center club_box'>
+                <div class='d-flex align-items-center justify-content-between text-center my-3'>
                     <img width='40px' height='40px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                     <div>
                         $time_format_html

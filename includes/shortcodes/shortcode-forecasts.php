@@ -5,7 +5,7 @@ function shortcode_forecast($atts)
 {
     // Extraer los valores del shortcode de forma segura sin usar extract()
     $atts = shortcode_atts(array(
-        'num' => 2,
+        'num' => 6,
         'league' => wp_get_post_terms(get_the_ID(), 'league', array('field' => 'slug')),
         'date' => null,
         'model' => 1,

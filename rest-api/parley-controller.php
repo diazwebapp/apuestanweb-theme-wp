@@ -69,7 +69,7 @@ function aw_get_parleys(WP_REST_Request $request){
         $loop_html["html"] ='<div class="container">
         <div class="row mt-5">
           <div class="col-md-6 offset-md-3">
-            <div class="jumbotron">
+            <div class="jumbotron p-2">
               <h2 class="display-5 col-aw">'.__("Sin pronósticos disponibles.","jbetting").'</h2>
               <p class="small col-aw"><strong>'.__("Regresa más tarde para ver los pronósticos.","jbetting").'</strong></p>
               <hr class="my-4">
@@ -161,7 +161,7 @@ function aw_get_parleys_vip(WP_REST_Request $request){
         $loop_html["html"] = '<div class="container">
         <div class="row mt-5">
           <div class="col-md-6 offset-md-3">
-            <div class="jumbotron">
+            <div class="jumbotron p-2">
                 <h2 class="display-5 col-aw">'.__("Sin pronósticos disponibles.","jbetting").'</h2>
                 <p class="small col-aw"><strong>'.__("Regresa más tarde para ver los pronósticos.","jbetting").'</strong></p>
               <hr class="my-4">

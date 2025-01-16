@@ -29,17 +29,17 @@
 	transform: rotate(-180deg);
 }
 .accor_btn button::before{
-	content: 'Ver anÃ¡lisis';
+	content: 'Ver anÃƒÂ¡lisis';
 }
 .accor_btn button[aria-expanded="true"]::before{
-	content: 'Ocultar anÃ¡lisis';
+	content: 'Ocultar anÃƒÂ¡lisis';
 }
 /*model 2*/
 .game_box{
 	background: #FFFFFF;
 	box-shadow: 0px 1.5rem 3.0rem rgba(162, 166, 177, 0.26);
 	border-radius: 1.0rem;
-	padding: 2.3rem 2.8rem;
+	padding: .2rem;
 	text-align: center;
 	transition: 0.3s;
 }
@@ -54,27 +54,13 @@
 .game_box{
 	font-size:.8rem;
 }
-.game_box .team_text{
-	font-size:.92rem;
-}
-.club_box{
-	text-align: center;
-	justify-content: space-between;
-	margin-top: 2.5rem;
-	
-}
-.club_box img{
-	object-fit: contain;
-	object-position: center center;
-}
+
 .game_btn{
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	color: #abaeb1;
-	border: 0.1rem solid #E4E6E8;
 	border-radius: 1rem;
-	margin-top: 1.8rem;
 	font-weight: 500;
 }
 .game_btn img{
