@@ -275,43 +275,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Captura el evento keyup en el campo de búsqueda
-    document.getElementById('search').addEventListener('keyup', async function () {
-        const searchQuery = this.value;
-    
-        if (frontendajax.url && searchQuery.length >= 3) {
-            try {
-                const response = await fetch(frontendajax.url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'custom_search',
-                        search_query: searchQuery,
-                    }),
-                });
-    
-                // Asegúrate de imprimir la respuesta antes de intentar decodificarla
-                const responseText = await response.text();
-                console.log('Respuesta completa:', responseText);
-    
-                const data = JSON.parse(responseText);
-                console.log(data);
-    
-                if (data.success) {
-                    document.getElementById('search-results').innerHTML = data.results;
-                } else {
-                    document.getElementById('search-results').innerHTML = data.message;
-                }
-            } catch (error) {
-                console.error('Error:', error);
+// Captura el evento keyup en el campo de búsqueda
+document.getElementById('search').addEventListener('keyup', async function () {
+    const searchQuery = this.value;
+
+    // Realiza la solicitud AJAX solo si hay al menos 3 caracteres
+    if (frontendajax.url && searchQuery.length >= 3) {
+        try {
+            const formData = new URLSearchParams();
+            formData.append('action', 'custom_search');
+            formData.append('search_query', searchQuery);
+
+            const response = await fetch(frontendajax.url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString(),
+            });
+
+            const data = await response.json();
+            
+            if (data.success) {
+                // Muestra los resultados en la ventana modal
+                document.getElementById('search-results').innerHTML = data.results;
+            } else {
+                // Muestra un mensaje de error si no hay resultados
+                document.getElementById('search-results').innerHTML = data.message;
             }
-        } else {
-            document.getElementById('search-results').innerHTML = '';
+        } catch (error) {
+            console.error('Error:', error);
         }
-    });
-    
+    } else {
+        // Si el campo de búsqueda tiene menos de 3 caracteres, vacía los resultados
+        document.getElementById('search-results').innerHTML = '';
+    }
+});
+
 });
 
 function handler_odds_format(e){

@@ -168,6 +168,7 @@ function jbetting_src()
     wp_deregister_script('jquery');
     wp_enqueue_style('main-css', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/optimized_main.js', array(), '1.0.0', true);
+    wp_localize_script('main-js', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
     //wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', ['jquery'], '4.2.1', true);
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     
@@ -184,7 +185,7 @@ function jbetting_src()
     //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
    //wp_enqueue_script('custom-search', get_template_directory_uri() . '/assets/js/custom-search.js', array('jquery'), null, true);
    // Variables que se pasan a script.js con wp_localize_script
-   wp_localize_script('main-js', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
+   
 
 }
 
@@ -469,13 +470,10 @@ add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
 add_shortcode('category_summary', 'category_summary_shortcode');
 */
 
-/* 
+
 function custom_search_function() {
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
-    $search_query = sanitize_text_field($data['search_query']);
-    echo json_encode(array('success' => true, 'results' => "test"));
-    die();
+    $search_query = sanitize_text_field($_POST['search_query']);
+    
     $args = array(
         'post_type' => 'forecast',
         's' => $search_query,
@@ -506,26 +504,8 @@ function custom_search_function() {
 
     die();
 }
- */
-function custom_search_function() {
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
+ 
 
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        echo json_encode(array('success' => false, 'message' => 'Error al decodificar JSON: ' . json_last_error_msg()));
-        die();
-    }
-
-    $search_query = sanitize_text_field($data['search_query']);
-
-    if (empty($search_query)) {
-        echo json_encode(array('success' => false, 'message' => 'search_query está vacío.'));
-        die();
-    }
-
-    echo json_encode(array('success' => true, 'results' => $search_query));
-    die();
-}
 add_action('wp_ajax_custom_search', 'custom_search_function');
 add_action('wp_ajax_nopriv_custom_search', 'custom_search_function');
 
