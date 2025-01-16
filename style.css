@@ -372,7 +372,6 @@ header {
 /*footer area*/
 footer{
 	background: linear-gradient(82deg, #0C1429 0%, var(--text-color) 100%);
-	padding: 5.5rem 0 5rem;
 	color: #abaeb1;
 }
 
@@ -761,79 +760,6 @@ footer .menu li a::before{
 	color: #ABAEB1;
 }
 
-/* Styles for .single_event_banner */
-.single_event_banner{
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-	border-radius: 1rem;
-	margin-top: 2.5rem;
-	padding: 3.2rem 5rem;
-}
-
-/* Styles for .single_event_banner */
-.single_event_banner_top{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-/* Styles for .single_banner_top_left */
-.single_banner_top_left{
-	display: flex;
-	align-items: center;
-}
-
-/* Styles for .single_banner_top_left */
-.single_banner_top_left img{
-	margin-right: 1rem;
-}
-
-/* Styles for .single_banner_top_left */
-.single_banner_top_left p{
-	color: #FFFFFF;
-}
-
-/* Styles for .single_envent_heading */
-.single_envent_heading_text,
-.match_title_left_text{
-	display: none;
-}
-/* Styles for .single_banner_top_left */
-.single_banner_top_left img,
-.single_banner_top_right img{
-	height: 2.8rem;
-	width: 2.8rem;
-}
-
-/* Styles for .single_event_banner */
-.single_event_banner_middle{
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-}
-
-/* Styles for .single_team1 */
-.single_team1{
-	text-align: center;
-	padding-top: 1.1rem;
-	width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.single_team1 img {
-
-    object-fit: contain;
-}
-
-.single_team1 p{
-	line-height: 1.2;
-	color: #FFFFFF;
-	padding-top: .2rem;
-}
-
-
 	/* Extracted Styles for #table-of-contents */
 /* Extracted styles for #table-of-contents */
 #table-of-contents {
@@ -912,7 +838,6 @@ footer .menu li a::before{
 .custom-table .team-name {
     font-weight: 400;
     color: #333;
-    /* padding: 39px; */
 }
 
 /* Estilos para la puntuación */
