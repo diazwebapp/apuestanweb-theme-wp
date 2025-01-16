@@ -69,7 +69,7 @@ class w_bookmakers extends WP_Widget{
                 endif;
                 
                 
-                echo '<div class="top_box">
+                echo '<div class="top_box mb-2">
                         <div class="row">
                             <div class="top_serial col-3">
                                 <span class="serial">'.$key.'</span>
