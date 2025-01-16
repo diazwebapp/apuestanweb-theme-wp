@@ -12,7 +12,8 @@ function shortcode_forecast($atts)
         'text_vip_link' => 'VIP',
         'filter' => null,
         'time_format' => null,
-        'title' => null
+        'title' => null,
+        'paginate' => 'yes'
     ), $atts);
 
     // Asignar las variables
@@ -146,18 +147,20 @@ function shortcode_forecast($atts)
     // Reemplazar el contenido dinámico en el HTML
     $ret = str_replace("{replace_loop}", $loop_html, $ret);
 
-    $ret .= "<div class='container container_pagination_forecast text-center my-5'>";
-    
-    if ($data_json->page < $data_json->max_pages) {
-        $ret .= $args['btn_load_more'];
-    }
-    $ret .= "</div>";
+    if(isset($paginate) and $paginate  === 'yes'){
+        $ret .= "<div class='container container_pagination_forecast text-center my-5'>";
 
-    $ret .= '<div class="container my-2 text-center text-muted page-status-indicator">
-                ' . __("pagina ", "jbetting") . '
-                <span id="current-page-number">' . ($data_json->max_pages == 0 ? 0 : $data_json->page) . '</span> de 
-                <span id="max-page-number">' . $data_json->max_pages . '</span>
-              </div>';
+        if ($data_json->page < $data_json->max_pages) {
+            $ret .= $args['btn_load_more'];
+        }
+        $ret .= "</div>";
+    
+        $ret .= '<div class="container my-2 text-center text-muted page-status-indicator">
+                    ' . __("pagina ", "jbetting") . '
+                    <span id="current-page-number">' . ($data_json->max_pages == 0 ? 0 : $data_json->page) . '</span> de 
+                    <span id="max-page-number">' . $data_json->max_pages . '</span>
+                  </div>';
+    }
 
     return $ret;
 }

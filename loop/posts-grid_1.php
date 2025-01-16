@@ -14,13 +14,13 @@ if(count($leagues) > 0):
         endif;
     endforeach;
 endif;
-echo "<div class='col-12 col-sm-6 col-md-4 col-lg-3 mt-5' >
-    <div class='blog_box'>
+echo "<div class='col-12 col-sm-6 col-md-4 my-2 blog_box' >
+    
         <div class='img_box'>
         <a href='$permalink'><img width='320' height='180' alt='$title' loading='lazy' src='$thumbnail_url' alt='teamvs'></a>
         </div>
-        <div class='desc_box' >
-            <a href='$permalink'><h3>$title</h3></a>
+        <div class='desc_box border' >
+            <a href='$permalink'><h3 class='text-dark'>$title</h3></a>
         </div>
-    </div>
+   
 </div> ";

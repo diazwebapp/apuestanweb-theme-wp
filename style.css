@@ -484,6 +484,10 @@ footer .menu li a::before{
 	object-fit: cover;
 	border-radius: 1rem;
   }
+  .desc_box{
+	border-radius: 0px 0px 10px 10px;
+  }
+ 
   .blog_box h3{
 	padding: 5px;
 	font-size: 1rem !important;

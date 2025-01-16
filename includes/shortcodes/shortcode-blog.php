@@ -8,7 +8,7 @@ function shortcode_blog($atts) {
     ), $atts));
 
 
-    $html = '<div style="" class="w-100 mx-auto">
+    $html = '<div class="w-100 mx-auto">
                 <div class="row" id="blog_posts_container">
                     {posts}
                 </div>
