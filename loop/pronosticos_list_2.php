@@ -25,20 +25,9 @@ if(isset($aw_system_location)):
 endif;
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
-$estado_usuario = "permitido";
-    if(function_exists("aw_get_user_type")):
-        $user_type = aw_get_user_type($args["current_user"]);
-        if($user_type == "unreg"){
-            $estado_usuario = "no permitido";
-        }
-    endif;
-//Componente si es vip
-$vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
-                    <i class='far fa-lock'>?</i>
-                    <p>{$params['text_vip_link']}</p>
-                </a>";
-if(!$vip or $estado_usuario == 'permitido')
-    $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1'>
+
+
+$vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1'>
                         <img src='{$bookmaker['logo']}' width='80' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
                         <p class='text-secondary'>Haz una apuesta</p>
                     </a>";
@@ -85,28 +74,28 @@ if($params['time_format']  == 'count'):
                         </div>";
 endif; 
 
-    echo "<div class='col-lg-4 col-md-6 mb-2'>
+    echo "<div class='col-sm-6 col-md-4 mb-2 p-sm-1'>
         
-             <div class='game_box py-3 px-3'>
+             <div class='game_box py-3 px-sm-1'>
                 <div class='game_top'>
-                    <div class='d-flex align-items-center league_box1'>
+                    <div class='d-flex align-items-center text-dark'>
                         ".(isset($league->icon_html) ? $league->icon_html:'')." 
                         ".(isset($league->name) ? $league->name:'')."
                     </div>
-                    <div class='d-flex align-items-center'>
+                    <div class='d-flex align-items-center text-dark'>
                         ".(isset($sport->icon_html) ? $sport->icon_html : '')." 
                     </div>
                 </div>
                 <a href='$permalink'  >
                 <div class='d-flex align-items-center justify-content-between text-center my-3'>
                     <img width='40px' height='40px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
-                    <div>
+                    <div class='full-date text-dark'>
                         $time_format_html
-                        <time datetime='".$date->format('Y-m-d H:i:s')."'>".$formatted_date."</time>
+                        <time class='text-dark' datetime='".$date->format('Y-m-d H:i:s')."'>".$formatted_date."</time>
                     </div>
                     <img width='40px' height='40px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
-                <p class='team_text'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
+                <p class='team_text text-dark'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
             </a>
                 {$vipcomponent}
             </div>

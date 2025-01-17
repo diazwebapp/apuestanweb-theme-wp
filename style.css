@@ -39,8 +39,10 @@ ul {
 a, button{
 	transition: 0.3s;
 }
-a{
-	color: var(--text-color);
+
+a:hover{
+	color: var(--text-color) !important;
+	text-decoration: none !important;
 }
 html { scroll-behavior: smooth; }
 p{color:var(--text-color)}
@@ -145,15 +147,6 @@ p{
     background: transparent linear-gradient(143deg, #0558CB 0%, #DC213E 100%);
 }
 
-.league_box1{
-	display: grid;
-	place-items: center;
-	grid-template-columns: 24px 1fr;
-	gap:2px;
-	place-content: center;
-	margin-right: 1rem;
-	color: #2f2f2f;
-}
 /*///////////////*/
 a.btn_2 {
     display: inline-block;

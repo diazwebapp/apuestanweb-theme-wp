@@ -54,7 +54,7 @@ class w_authors extends WP_Widget {
                             <div class='col-12 py-1'>
                                 <span class='serial'>{$key}</span>
                                 <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain mx-2'>
-                                <b class='text-truncate text-uppercase'>$display_name</b>
+                                <b class='text-truncate text-uppercase text-dark'>$display_name</b>
                             </div>
                             <div class='col-12'>
                                 <div class='text-center'>  
@@ -67,8 +67,8 @@ class w_authors extends WP_Widget {
                                         </thead>
                                         <tbody>
                                             <tr> 
-                                                <td>$flechita_indicadora <small>$acerted - $failed</small></td>
-                                                <td><small>$$rank</small>
+                                                <td>$flechita_indicadora <small class='text-dark'>$acerted - $failed</small></td>
+                                                <td><small class='text-dark'>$$rank</small>
                                             </tr>
                                             <tr>
                                         </tbody>

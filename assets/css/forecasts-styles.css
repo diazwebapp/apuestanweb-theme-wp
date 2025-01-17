@@ -42,9 +42,9 @@
 	padding: .2rem;
 	text-align: center;
 	transition: 0.3s;
-	font-size:.8rem;
 	max-width: 330px;
 }
+
 .game_box:hover{
 	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
 }
@@ -69,8 +69,8 @@
 	background-color: #000000;
 	object-fit: contain;
 }
-.game_btn:hover{
-	color: #0558CB;
+.game_btn:hover, .text-secondary:hover{
+	color: #0558CB !important;
 	border-color: transparent;
 	box-shadow: 0 .5rem 3.0rem rgba(103, 108, 121, 0.33);
 }
@@ -84,16 +84,7 @@
 	color: #F2E6E6;
 	min-height: 3rem;
 }
-.game_btn.v2 i{
-	margin-right: 1rem;
-}
 
-.nice-select:after {
-    border-bottom: 2px solid #0558CB;
-    border-right: 2px solid #0558CB;
-    height: 5px;
-    width: 5px;
-}
 /* model 3*/
 .fmodel-3 {
 	max-width: 400px;
@@ -293,9 +284,6 @@ a.panel-button {
 }
 
 @media (max-width: 575.98px) {
-	.game_box {
-	    max-width: 50rem;
-	}
 	.game_btn,
 	.game_btn.v2 {
 	    margin-top: 2rem;
@@ -304,6 +292,11 @@ a.panel-button {
 	    min-height: 4.2rem;
 	}
 	
+}
+@media (min-width: 575.98px){
+	.game_box *{
+		font-size: .8rem;
+	}
 }
 @media (min-width: 715px) and (max-width: 767px){
 	.fmodel-3 {
