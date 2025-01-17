@@ -192,7 +192,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
         <?php endwhile; } ?>
     </div>
 
-        <div class="col-lg-3 mt-3">
+        <div class="d-none d-lg-block col-lg-3 mt-3">
             <div class="row mt-5">
                 <div class="col-lg-12 col-md-6 ">                    
 

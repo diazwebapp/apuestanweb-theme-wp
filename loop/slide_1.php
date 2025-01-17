@@ -71,7 +71,7 @@ echo "<div class='owl-item' >
             <div class='row align-items-center'>
                 <div class='col-lg-8'>
                     <div class='row'>
-                        <div class='col-12 ml-slide'><p class='text-muted' >Enfrentamiento</p></div>
+                        <div class='col-12 ml-slide'><p>Enfrentamiento</p></div>
 
                         <div class='col-12 col-lg-4 d-flex align-items-center justify-content-center'>
                             <div class='team_logo rounded-circle d-flex justify-content-center bg-light'>
