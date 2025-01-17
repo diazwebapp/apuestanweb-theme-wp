@@ -70,8 +70,8 @@ class w_bookmakers extends WP_Widget{
                 
                 
                 echo '<div class="top_box mb-2">
-                        <div class="row">
-                            <div class="top_serial col-3">
+                        <div class="row m-0 pt-2">
+                            <div class="col-3">
                                 <span class="serial">'.$key.'</span>
                             </div>
                             <div class="col-6" style="background:'.$color.';border-radius:.3rem;">
@@ -82,8 +82,8 @@ class w_bookmakers extends WP_Widget{
                                 <b class="text-warning" >★</b>
                             </div>
                             <div class="my-2 col-12">
-                                <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary">Revision</a>
-                                <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary">Apostar</a>
+                                <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary btn-sm">Revision</a>
+                                <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary btn-sm">Apostar</a>
                             </div>
                         </div>
                     </div>';

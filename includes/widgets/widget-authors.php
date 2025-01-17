@@ -50,15 +50,15 @@ class w_authors extends WP_Widget {
                     $flechita_indicadora = $flechita_down;
                 endif;
                 echo "<div class='top_box mb-2'>
-                        <a href='$link' class='row'>
-                            <div class='top_serial col-12 mt-3'>
+                        <a href='$link' class='row m-0'>
+                            <div class='col-12 py-1'>
                                 <span class='serial'>{$key}</span>
                                 <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain mx-2'>
                                 <b class='text-truncate text-uppercase'>$display_name</b>
                             </div>
-                            <div class='text_box col-12'>
+                            <div class='col-12'>
                                 <div class='text-center'>  
-                                    <table class='table m-0'>
+                                    <table class='table table-sm m-0'>
                                         <thead>
                                             <tr>                                   
                                             <th scope='col'><small> W - L </small></th>

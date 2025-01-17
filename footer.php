@@ -2,10 +2,10 @@
 $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
 ?>
-<footer class="footer mt-5">
+<footer class="footer">
 <div class="container">
-            <div class="row align-items-center form-row">
-                <div class="col-lg-2 col-6 mt-3">
+            <div class="row align-items-center form-row py-5">
+                <div class="col-lg-2 col-6 ">
                 <?php if ( carbon_get_theme_option( 'logo' ) )
 					$logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
 				?>
@@ -15,7 +15,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </a>
                     <!--logo end-->
                 </div>
-                <div class="col-lg-7 d-none d-lg-block mt-3">
+                <div class="col-lg-7 d-none d-lg-block ">
                     <!--menu start-->
                     <ul class="menu text-uppercase" >
                         <?php
@@ -41,7 +41,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 <!--RRSS-->
                 <?php
                 echo get_option('tl');
-                echo '<div class="col-lg-3 col-6 mt-3 text-right"> 
+                echo '<div class="col-lg-3 col-6  text-right"> 
                     <div class="social_icons">
                             <a href="'.tl.'" aria-label="follow us on telegram" rel="nofollow noreferrer noopener" target="_blank">
                                  <i><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
@@ -71,7 +71,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </div>
                 </div>'
                 ?>
-                <div class="col-12 text-center my-5">   
+                <div class="col-12 text-center my-3">   
                     
                         <label for="select_odds_format" class="mr-4 font-weight-bold">FORMATO DE CUOTAS</label>   
                         
@@ -133,14 +133,14 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
                        
                     ?>
-                    <p class="copy mt-5 py-2 s-f" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
+                    <p class="copy mt-1 py-1 s-f" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
                     <?php echo carbon_get_theme_option( 'footer_code' ) ?>
 
                 </div>
             </div>
         </div>
         <!--====== BACK TO TOP START ======-->
-        <a href="#" aria-label="back to top" class="back-to-top"><i><?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <a href="#" aria-label="back to top" class="back-to-top"><i>
 <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#ffffff"/>
 </svg></i></a>

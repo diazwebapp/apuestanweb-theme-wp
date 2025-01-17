@@ -51,25 +51,25 @@ class W_Forecasts extends WP_Widget {
                         }
                     }
 
-                    echo "<div class='top_box mb-2 container'>
+                    echo "<div class='top_box mb-2 f-widget py-1 px-2'>
                             
-                                <a href='$permalink' class='row my-2'>
-                                    <div class='col-3 d-flex align-items-center p-0'>
-                                        <small style='font-size:;' class='text-truncate m-auto text-uppercase text-dark'>{$sport['name']}</small>                           
+                                <a href='$permalink' class='row mx-0 my-2'>
+                                    <div class='col-3 d-flex align-items-center px-0'>
+                                        <small class='text-truncate m-auto text-uppercase text-dark'>{$sport['name']}</small>                           
                                     </div>
                             
-                                    <div class='col-7 px-1'>
+                                    <div class='col-8 px-0'>
                                         <div class='pb-2 d-flex flex-nowrap align-items-center'>
-                                            <img width='30px' height='30px' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
-                                            <small style='font-size:70% !important;' class='mx-auto text-center'>{$teams['team1']['name']}</small>
+                                            <img width='30px' class='mx-2 mx-xl-3' height='30px' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
+                                            <small class='text-dark'>{$teams['team1']['name']}</small>
                                         </div>
                                         <div class='d-flex flex-nowrap align-items-center'>
-                                            <img width='30px' height='30px' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' >
-                                            <small style='font-size:70% !important;' class='mx-auto text-center'>{$teams['team2']['name']}</small>
+                                            <img width='30px' class='mx-2 mx-xl-3' height='30px' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' >
+                                            <small class='text-dark'>{$teams['team2']['name']}</small>
                                         </div>
                                     </div>
-                                    <div class='col-1 d-flex align-items-center'>
-                                        <span class='text-primary font-weight-bold'>></span>
+                                    <div class='col-1 d-flex align-items-center px-0'>
+                                        <span class='text-primary m-auto font-weight-bold'>></span>
                                     </div>
                                 </a>
                             

@@ -96,7 +96,7 @@
 }
 /* model 3*/
 .fmodel-3 {
-	max-width: 380px !important;
+	max-width: 400px;
 	margin: auto;
 }
 .event2_top_box_wrapper{
@@ -305,8 +305,21 @@ a.panel-button {
 	}
 	
 }
+@media (min-width: 715px) and (max-width: 767px){
+	.fmodel-3 {
+		max-width: 343px;
+		padding: 0;
+	}
+}
 @media (min-width: 768px) {
 	.fmodel-3 {
 		margin: unset;
+		max-width: unset;
+	}
+}
+@media (min-width: 1080px) {
+	.fmodel-3 {
+		margin: unset;
+		max-width: unset;
 	}
 }

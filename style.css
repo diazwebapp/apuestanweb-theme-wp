@@ -110,6 +110,10 @@ textarea:focus{
     font-weight: 700;
     color: #FFFFFF;
 }
+.f-widget small{
+	font-size: .7rem;
+}
+/*end*/
 h1,h2,h3,h4,h5,h6{
 	font-size: 166% !important;
 	margin-bottom: 0;
@@ -119,23 +123,17 @@ p{
 }
 .side_box .box_body {
     background: #e9e9e9;
-    border-radius: 0 0 1rem 1rem;
-    padding: 1rem 1.3rem;
+    border-radius: 0 0 .5rem .5rem;
+    padding: .5rem .5rem;
 }
 .top_box {
     background: #FFFFFF;
-    border-radius: 1rem;
-    backdrop-filter: blur(50px);
-    padding: 5px;
+    border-radius: .5rem;
 }
 .top_box:hover {
     box-shadow: 0 1rem 2.0rem rgba(58, 59, 62, 0.33);
 }
 
-.top_serial {
-    display: flex;
-    align-items: center;
-}
 .serial {
     display: inline-flex;
     align-items: center;
@@ -421,7 +419,7 @@ footer .menu li a::before{
 	color: #0558CB;
 }
 .social_icons a:not(:last-child){
-	margin-right: 2.5rem;
+	margin-right: 1rem;
 }
 .p-reg{
 	margin-top: 3rem;
@@ -1135,6 +1133,11 @@ footer .menu li a::before{
 	.single-forecast-teams p{
 		font-size: 16px;
 	}
+	/* Widgets*/
+	.f-widget small:first-child{
+		font-size: .83rem;
+	}
+	/*end*/
 }
 @media (min-width: 1440px) { 
 	.container, .slider{
