@@ -26,9 +26,7 @@ html *{
 header *, footer *:not(.myselect,.myselect option){
 	color: #ffffffed !important;
 }
-.container{
-	max-width: 1080px !important;
-}
+
 body {
 	font-family: 'Neurial Grotesk';
 	background-color: #fff;
@@ -1017,7 +1015,6 @@ footer .menu li a::before{
 		width: 80px;
 		height: 80px;
 	}
-	
 }
 @media (min-width: 992px) {
 	.team_logo{
@@ -1054,12 +1051,15 @@ footer .menu li a::before{
 }
 /*Medium devices (tablets, 767px and down)*/
 @media (max-width: 767.98px) {
+	
     #secondary {
         display: none;
     }
 }
 @media (max-width: 992px) {
-	
+	.container{
+		max-width: 840px !important;
+	}
 	header {
 		display: flex;
 		align-items: center;
@@ -1139,9 +1139,6 @@ footer .menu li a::before{
 }
 
 @media (min-width: 1280px) { 
-	.container, .slider{
-		max-width: 1180px !important;
-	}
 	.single-forecast-teams p{
 		font-size: 16px;
 	}

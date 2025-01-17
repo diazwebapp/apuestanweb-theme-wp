@@ -135,7 +135,7 @@
                             </section>
 
                             <!-- Sidebar -->
-                            <section class="col-lg-4 col-xl-3">
+                            <section class="col-lg-3">
                                 <div class="row justify-content-end"><?php dynamic_sidebar("forecast-right"); ?></div>
                             </section>
 

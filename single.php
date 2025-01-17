@@ -10,7 +10,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
 		<div class="bookmaker_wrapper pb_100">
 			<div class="container">
                 <div class="row" >
-                    <div class="col-lg-8 col-xl-9">
+                    <div class="col-lg-9">
                         <?php if(have_posts()){
                             while (have_posts()):the_post();
                                 $post_date = get_the_date( "Y-m-d H:i:s", get_the_ID());
@@ -85,7 +85,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                         <?php echo do_shortcode( "[related_posts model='1' num='4' title='Lee también']" )?>
                     </div>
 						
-                    <div class="col-lg-4 col-xl-3">
+                    <div class="col-lg-3">
                         <div class="row">
                             <?php dynamic_sidebar( 'forecast-right' ); ?>
                         </div>				

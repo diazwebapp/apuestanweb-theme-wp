@@ -74,7 +74,7 @@ endif;
 
     
     
-    $html_free =  "<div class='col-12 col-md-6 mb-1'>
+    $html_free =  "<div class='col-12 col-md-6 mb-1 fmodel-3'>
                 
                 <div class='border rounded'>
                    

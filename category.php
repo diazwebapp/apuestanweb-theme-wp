@@ -18,7 +18,7 @@ $textafter = carbon_get_term_meta( $term_id, 'after_list' );
             <div class="event_area">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 col-xl-9 mt-3">
+                        <div class="col-lg-9 mt-3">
                         <div class="title_wrap flex-nowrap">
                             <h3 class="title mt-5 w-100"><?php echo $h1 ?></h3>
                             <a href="#" class="mt-5 dropd">Hoy <i class="fa fa-angle-down"></i></a>
@@ -28,7 +28,7 @@ $textafter = carbon_get_term_meta( $term_id, 'after_list' );
                        
                         <?php if ( $textafter ): echo $textafter ; endif; ?>
                         </div>
-                        <div class="col-lg-4 col-xl-3">
+                        <div class="col-lg-3">
                             <div class="row">
                                 <?php dynamic_sidebar( 'forecast-right' ); ?>
                             </div>

@@ -26,7 +26,7 @@ $sidebar = carbon_get_post_meta(get_the_ID(), 'sidebar');
                         ?>
 					</div>
 					<?php if($sidebar == 'yes' || !$sidebar): ?>
-						<div class="col-lg-4 col-xl-3">
+						<div class="col-lg-3">
 							<div class="row">
 								<?php dynamic_sidebar( 'forecast-right' ); ?>
 							</div>

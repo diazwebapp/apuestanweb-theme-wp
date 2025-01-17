@@ -30,7 +30,7 @@ endif;
             <div class="row">
         <?php endif; ?>
                             
-                <?php if (!$disable_sidebar || $disable_sidebar == 'no') echo '<section class="col-lg-8 col-xl-9 mt-3">'; ?>
+                <?php if (!$disable_sidebar || $disable_sidebar == 'no') echo '<section class="col-lg-9 mt-3">'; ?>
                     
                     <?php 
                         if (have_posts()): the_post();
@@ -77,7 +77,7 @@ endif;
                 <?php if (!$disable_sidebar || $disable_sidebar == 'no') echo '</section>'; ?>
             
                 <?php if ($disable_sidebar == 'yes'): echo ''; else: ?> 
-                    <section class="col-lg-4 col-xl-3">
+                    <section class="col-lg-3">
                         <div class="row">
                             <?php dynamic_sidebar('forecast-right'); ?>
                         </div>

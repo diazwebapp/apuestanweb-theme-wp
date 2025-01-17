@@ -56,7 +56,7 @@ if(!$custom_h1)
                         ?>
 					</div>
 					<?php if($sidebar == 'yes' || !$sidebar): ?>
-						<div class="col-lg-4 col-xl-3">
+						<div class="col-lg-3">
 							<div class="row">
 								<?php dynamic_sidebar( 'forecast-right' ); ?>
 							</div>

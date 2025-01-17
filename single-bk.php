@@ -60,7 +60,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                     $avatar_url = get_the_author_meta( 'profile_image',$author_id );
                     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
             ?>
-                <div class="col-lg-8 col-xl-9">
+                <div class="col-lg-9">
                     <h1 class="title mt-5 pt-4"><?php echo $bookmaker['name'] ?></h1>
                     
                     <div class="container my-4"> 
@@ -192,7 +192,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
         <?php endwhile; } ?>
     </div>
 
-        <div class="col-lg-4 col-xl-3 mt-3">
+        <div class="col-lg-3 mt-3">
             <div class="row mt-5">
                 <div class="col-lg-12 col-md-6 ">                    
 
