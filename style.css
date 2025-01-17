@@ -1129,13 +1129,6 @@ footer .menu li a::before{
 		padding: 0 1rem;
 	}
 	
-
-	.league_box1{
-		display: flex;
-		justify-content: center;
-		padding: 1rem;
-	}
-	
 }
 
 @media (min-width: 1280px) { 

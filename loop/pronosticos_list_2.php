@@ -39,7 +39,7 @@ $vipcomponent ="<a href='{$params['vip_link']}' class='game_btn v2'>
                 </a>";
 if(!$vip or $estado_usuario == 'permitido')
     $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1'>
-                        <img src='{$bookmaker['logo']}' width='70' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
+                        <img src='{$bookmaker['logo']}' width='80' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
                         <p class='text-secondary'>Haz una apuesta</p>
                     </a>";
 //Liga y deporte
@@ -85,9 +85,9 @@ if($params['time_format']  == 'count'):
                         </div>";
 endif; 
 
-    echo "<div class='col-lg-4 col-md-6 mt_40'>
+    echo "<div class='col-lg-4 col-md-6 mb-2'>
         
-             <div class='game_box py-3 px-1'>
+             <div class='game_box py-3 px-3'>
                 <div class='game_top'>
                     <div class='d-flex align-items-center league_box1'>
                         ".(isset($league->icon_html) ? $league->icon_html:'')." 

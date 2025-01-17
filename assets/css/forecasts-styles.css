@@ -37,11 +37,13 @@
 /*model 2*/
 .game_box{
 	background: #FFFFFF;
-	box-shadow: 0px 1.5rem 3.0rem rgba(162, 166, 177, 0.26);
+	box-shadow: 0px .3rem 1.0rem rgba(162, 166, 177, 0.3);
 	border-radius: 1.0rem;
 	padding: .2rem;
 	text-align: center;
 	transition: 0.3s;
+	font-size:.8rem;
+	max-width: 330px;
 }
 .game_box:hover{
 	box-shadow: 0 1.5rem 3.0rem rgba(58, 59, 62, 0.33);
@@ -51,14 +53,11 @@
 	align-items: center;
 	justify-content: space-between;
 }
-.game_box{
-	font-size:.8rem;
-}
 
 .game_btn{
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	color: #abaeb1;
 	border-radius: 1rem;
 	font-weight: 500;
@@ -88,13 +87,7 @@
 .game_btn.v2 i{
 	margin-right: 1rem;
 }
-.event_select .nice-select {
-    background-color: white;
-    border: 0.1rem solid #0558CB;
-    height: 4.2rem;
-    line-height: 2.5;
-    color: #0558CB;
-}
+
 .nice-select:after {
     border-bottom: 2px solid #0558CB;
     border-right: 2px solid #0558CB;
@@ -103,7 +96,7 @@
 }
 /* model 3*/
 .fmodel-3 {
-	max-width: 460px !important;
+	max-width: 380px !important;
 	margin: auto;
 }
 .event2_top_box_wrapper{
@@ -302,15 +295,10 @@ a.panel-button {
 @media (max-width: 575.98px) {
 	.game_box {
 	    max-width: 50rem;
-	    margin-left: auto;
-	    margin-right: auto;
 	}
 	.game_btn,
 	.game_btn.v2 {
 	    margin-top: 2rem;
-	}
-	.game_btn img {
-	    width: 14rem;
 	}
 	.game_btn.v2 {
 	    min-height: 4.2rem;
