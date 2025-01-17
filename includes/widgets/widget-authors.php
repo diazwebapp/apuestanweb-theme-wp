@@ -49,7 +49,7 @@ class w_authors extends WP_Widget {
                 if(floatval($acerted) < floatval($failed)):
                     $flechita_indicadora = $flechita_down;
                 endif;
-                echo "<div class='top_box mb-2'>
+                echo "<div class='top_box mb-2 py-2'>
                         <a href='$link' class='row m-0'>
                             <div class='col-12 py-1'>
                                 <span class='serial'>{$key}</span>
@@ -70,7 +70,6 @@ class w_authors extends WP_Widget {
                                                 <td>$flechita_indicadora <small class='text-dark'>$acerted - $failed</small></td>
                                                 <td><small class='text-dark'>$$rank</small>
                                             </tr>
-                                            <tr>
                                         </tbody>
                                     </table>
                                 </div>
