@@ -17,21 +17,24 @@ Text Domain: Apuestan
    02. Basic css
 ========================*/
 
-html *{
+*{
 	margin: 0;
 	padding: 0;
 	text-decoration: none;
 	color: var(--text-color);
 }
-header *, footer *:not(.myselect,.myselect option){
-	color: #ffffffed !important;
-}
-
 body {
 	font-family: 'Neurial Grotesk';
 	background-color: #fff;
 	font-weight: 400;
 }
+html { scroll-behavior: smooth; }
+
+header *, footer *:not(.myselect,.myselect option){
+	color: #ffffffed !important;
+}
+p{color:var(--text-color)}
+
 ol,
 ul {
 	list-style: none;
@@ -43,8 +46,7 @@ a, button{
 a:hover{
 	text-decoration: none !important;
 }
-html { scroll-behavior: smooth; }
-p{color:var(--text-color)}
+
 
 .dropdown-toggle::after{
 	zoom: 1.8;

@@ -13,6 +13,47 @@ include "includes/templates-emails/settings.php";
 include "includes/templates-emails/template-email-1.php"; 
 include "includes/templates-emails/template-email-2.php";
 include "includes/core/notification-module/notification-core.php"; 
+include "includes/core/cache/cache.php";
+
+
+
+// Llamada de ejemplo para invalidar la cache 
+/*  
+add_action('template_redirect', function() {
+    global $wp;
+    $requested_url = add_query_arg($_GET, home_url($wp->request));
+    $post_url = get_permalink(10);
+    $post_id = url_to_postid(home_url($requested_url));
+    $requested_url_2 = add_query_arg($_GET, get_permalink($post_id));
+    $url1 = rtrim(add_query_arg(array(), home_url($wp->request)), '/'); 
+    $url2 = rtrim(add_query_arg(array(), get_permalink($post_id)), '/');
+    echo 'metodo add_query_arg($_GET, home_url($wp->request))--> '.$requested_url;
+    echo '<br>';
+    echo 'add_query_arg($_GET, get_permalink($post_id))--> '. add_query_arg($_GET, get_permalink($post_id)) ;
+    echo '<br>';
+    echo 'get_permalink($post_id)--> '. get_permalink($post_id);
+    echo '<br>';
+    echo $url1 . '-------'. $url2;
+    die();
+}); */
+
+function validate_cache_for_url($url) {
+    
+    $cache_key = 'page_cache_' . md5($url);
+    $cached_content = get_transient( $cache_key );
+    
+    $cache_key2 = 'page_cache_' . md5($requested_url);
+    
+    if(false !== $cached_content){
+        echo "Se guardó caché para -> " . $requested_url . '---- '.$post_url;
+    } else {
+        echo 'Cache not found for URL: ' . $url;
+    }
+    die();
+}
+
+// Llamada de ejemplo para invalidar la cache 
+//validate_cache_for_url(home_url('/futbol'));
 
 /*--------------------------------------------------------------*/
 /*                         SHORTCODES                           */
@@ -707,3 +748,5 @@ function aw_custom_query_vars($vars) {
     return $vars;
 }
 add_filter('query_vars', 'aw_custom_query_vars');
+
+
