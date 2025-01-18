@@ -202,7 +202,7 @@ function disable_all_styles() {
 } 
 add_action('wp_enqueue_scripts', 'disable_all_styles', 10);
 
-add_action('wp_enqueue_scripts', 'jbetting_src',8);
+add_action('wp_enqueue_scripts', 'jbetting_src',1);
 function jbetting_src()
 {
     

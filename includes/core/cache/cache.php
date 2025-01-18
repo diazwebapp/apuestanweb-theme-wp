@@ -28,7 +28,6 @@ add_action('template_redirect', function() {
 
     if (false !== $cached_content) {
         // Si está en cache, muestra el contenido y detén la ejecución
-        echo "vengo de caché :";
         echo $cached_content;
         exit;
     }
@@ -38,7 +37,15 @@ add_action('template_redirect', function() {
 }, 1);
 
 // Hook para guardar la salida en cache después de que WordPress haya procesado la solicitud
-add_action('wp_footer', function() {
+// Hook personalizado para ejecutarse después de wp_footer
+add_action('wp_footer', 'aw_cache_hook', 999);
+
+function aw_cache_hook() {
+    do_action('after_wp_footer');
+}
+
+// Función que se ejecutará después de wp_footer
+add_action('after_wp_footer', function() {
     global $wp;
 
     // URLs que no deben cachearse
@@ -62,16 +69,18 @@ add_action('wp_footer', function() {
         $cache_key = 'page_cache_' . md5($requested_url);
 
         // Obtén el contenido generado por WordPress
-        $output = ob_get_clean();
+        $output = ob_get_contents(); // Cambiado a ob_get_contents para mantener el buffer abierto
 
         // Guarda el contenido en la cache
         $time = 7 * 24 * 60 * 60;
-        set_transient($cache_key, $output, HOUR_IN_SECONDS);
+        set_transient($cache_key, $output, $time); // Asegúrate de que el tiempo de expiración es adecuado
 
-        // Muestra el contenido
+        // No cerrar el buffer aquí para permitir la inclusión de scripts y otros elementos al pie de página
+        // Echo el contenido en lugar de cerrarlo aquí
         echo $output;
     }
-}, 1);
+}, 10); // Asegúrate de que el contenido se guarda después de que todos los scripts se hayan cargado
+
 /* Invalidar la Cache Automáticamente al Actualizar/Añadir un Post
 Para invalidar automáticamente la cache cuando se actualiza o añade un nuevo post, puedes usar los hooks save_post y delete_post */
 
