@@ -72,11 +72,6 @@ add_action('wp_footer', function() {
         echo $output;
     }
 }, 1);
-
-
-
-
-
 /* Invalidar la Cache Automáticamente al Actualizar/Añadir un Post
 Para invalidar automáticamente la cache cuando se actualiza o añade un nuevo post, puedes usar los hooks save_post y delete_post */
 
