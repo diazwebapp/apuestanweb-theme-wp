@@ -147,7 +147,7 @@ function shortcode_forecast($atts)
     // Reemplazar el contenido dinámico en el HTML
     $ret = str_replace("{replace_loop}", $loop_html, $ret);
 
-    if(isset($paginate) and $paginate  === 'yes'){
+    if($atts['paginate'] and $atts['paginate']  === 'yes'){
         $ret .= "<div class='container container_pagination_forecast text-center my-5'>";
 
         if ($data_json->page < $data_json->max_pages) {

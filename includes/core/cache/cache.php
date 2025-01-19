@@ -67,9 +67,8 @@ add_action('after_wp_footer', function() {
     // Solo cachea si no se está realizando una solicitud de administrador (admin)
     if (!is_admin()) {
         $cache_key = 'page_cache_' . md5($requested_url);
-
         // Obtén el contenido generado por WordPress
-        $output = ob_get_contents(); // Cambiado a ob_get_contents para mantener el buffer abierto
+        $output = ob_get_clean(); 
 
         // Guarda el contenido en la cache
         $time = 7 * 24 * 60 * 60;
@@ -83,11 +82,13 @@ add_action('after_wp_footer', function() {
 
 /* Invalidar la Cache Automáticamente al Actualizar/Añadir un Post
 Para invalidar automáticamente la cache cuando se actualiza o añade un nuevo post, puedes usar los hooks save_post y delete_post */
-
-add_action('save_post', 'invalidate_cache_for_post');
-add_action('delete_post', 'invalidate_cache_for_post');
+// Hook para vaciar la cache al cerrar sesión 
+add_action('wp_logout', 'vaciar_toda_la_cache');
+add_action('save_post', 'vaciar_toda_la_cache');
+add_action('delete_post', 'vaciar_toda_la_cache');
 
 function invalidate_cache_for_post($post_id) {
+    
     // Mensaje de depuración
     error_log("Invalidate cache for post: $post_id");
 
@@ -101,6 +102,15 @@ function invalidate_cache_for_post($post_id) {
         invalidate_cache_for_url($post_url);
     }
 }
+//////invalidar toda la cache
+function vaciar_toda_la_cache() {
+    global $wpdb;
+    // Eliminar todas las transientes
+    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_%'");
+    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_%'");
+}
+add_action('wp_ajax_vaciar_cache', 'vaciar_toda_la_cache'); // Hook para AJAX en admin
+add_action('wp_ajax_nopriv_vaciar_cache', 'vaciar_toda_la_cache'); // Hook para AJAX en frontend
 
 function invalidate_cache_for_url($url) {
     $cache_key = 'page_cache_' . md5($url);
