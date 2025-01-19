@@ -18,7 +18,34 @@ window.addEventListener("load",()=>{
    if(add_date_2_btn){
         add_date_2_btn.addEventListener('click',()=>add_date_input())
    }
+
+    
+    // Puedes llamar a esta función desde un botón o en otro evento
+    var vaciarCacheBtn = document.getElementById('vaciar-cache-btn');
+    if (vaciarCacheBtn) {
+        vaciarCacheBtn.addEventListener('click', vaciarCache);
+    }
+
+
 })
+// Función para vaciar toda la cache
+function vaciarCache() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', frontendajax.url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                alert('Toda la cache ha sido vaciada exitosamente.');
+            } else {
+                console.log('Error al vaciar la cache:', xhr.statusText);
+            }
+        }
+    };
+
+    xhr.send('action=vaciar_cache'); // Parámetros de la solicitud
+}
 let elemtn = `<label>Date end <span class="dashicons dashicons-no-alt" onclick="remove_date_input(this)"></span></label>                        
 <input type="date" name="date_2" class="form-control"/>`;
 function add_date_input(){
