@@ -75,17 +75,33 @@ add_action('after_wp_footer', function() {
         set_transient($cache_key, $output, $time); // Asegúrate de que el tiempo de expiración es adecuado
 
         // No cerrar el buffer aquí para permitir la inclusión de scripts y otros elementos al pie de página
-        // Echo el contenido en lugar de cerrarlo aquí
         echo $output;
     }
 }, 10); // Asegúrate de que el contenido se guarda después de que todos los scripts se hayan cargado
 
-/* Invalidar la Cache Automáticamente al Actualizar/Añadir un Post
-Para invalidar automáticamente la cache cuando se actualiza o añade un nuevo post, puedes usar los hooks save_post y delete_post */
-// Hook para vaciar la cache al cerrar sesión 
+/* Invalidar la Cache Automáticamente al Actualizar/Añadir un Post /// Hook para vaciar la cache al cerrar sesión */
 add_action('wp_logout', 'vaciar_toda_la_cache');
 add_action('save_post', 'vaciar_toda_la_cache');
 add_action('delete_post', 'vaciar_toda_la_cache');
+
+
+//////invalidar toda la cache
+function vaciar_toda_la_cache() {
+    global $wpdb;
+    // Eliminar todas las transientes
+    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_%'");
+    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_%'");
+}
+add_action('wp_ajax_vaciar_cache', 'vaciar_toda_la_cache'); // Hook para AJAX en admin
+add_action('wp_ajax_nopriv_vaciar_cache', 'vaciar_toda_la_cache'); // Hook para AJAX en frontend
+
+
+/* 
+
+function invalidate_cache_for_url($url) {
+    $cache_key = 'page_cache_' . md5($url);
+    delete_transient($cache_key);
+}
 
 function invalidate_cache_for_post($post_id) {
     
@@ -101,18 +117,4 @@ function invalidate_cache_for_post($post_id) {
         $post_url = rtrim(add_query_arg(array(), get_permalink($post_id)), '/');
         invalidate_cache_for_url($post_url);
     }
-}
-//////invalidar toda la cache
-function vaciar_toda_la_cache() {
-    global $wpdb;
-    // Eliminar todas las transientes
-    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_%'");
-    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_timeout_%'");
-}
-add_action('wp_ajax_vaciar_cache', 'vaciar_toda_la_cache'); // Hook para AJAX en admin
-add_action('wp_ajax_nopriv_vaciar_cache', 'vaciar_toda_la_cache'); // Hook para AJAX en frontend
-
-function invalidate_cache_for_url($url) {
-    $cache_key = 'page_cache_' . md5($url);
-    delete_transient($cache_key);
-}
+} */
