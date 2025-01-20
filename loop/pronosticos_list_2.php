@@ -43,7 +43,7 @@ if(isset($tax_leagues) and count($tax_leagues) > 0):
         if($tax_league->parent == 0):
             $sport = $tax_league; //define forecast sport
             $icon_class = carbon_get_term_meta($sport->term_id,'fa_icon_class');
-            $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img loading="lazy" src="'.$icon_img.'" />';
+            $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img  width="20" hight="20" class="img-fluid" loading="lazy" src="'.$icon_img.'" alt="'.$sport->name.'"/>';
         endif;
     endforeach;
 endif;
@@ -62,7 +62,7 @@ if(isset($sport)):
         $league = $leagues[0]; //define forecast sport
         $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
         
-        $league->icon_html =  '<img loading="lazy" src="'.$icon_img.'" />';
+        $league->icon_html =  '<img width="20" hight="20" class="img-fluid" loading="lazy" src="'.$icon_img.'" alt="'.$league->name.'" />';
     endif;
 endif;
 
