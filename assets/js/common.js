@@ -76,7 +76,7 @@ async function load_more_items(e){
     let cano = document.querySelector('[rel="canonical"]')
     const inditator_page = document.querySelector('#current-page-number')
     const previus_text = e.textContent
-    e.innerHTML = '<span class="spinner-border spinner-border " role="status" aria-hidden="true"></span>'
+    e.innerHTML = '°°°'
     
     let old_page = forecasts_fetch_vars.paged
     

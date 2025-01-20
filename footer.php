@@ -2,7 +2,7 @@
 $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
 ?>
-<footer class="footer">
+<footer class="footer mt-3">
 <div class="container">
             <div class="row align-items-center form-row py-5">
                 <div class="col-lg-2 col-6 ">

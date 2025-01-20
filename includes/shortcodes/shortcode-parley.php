@@ -86,10 +86,13 @@ function shortcode_parley($atts)
     $params .= "&current_user_id={$args['current_user_id']}";
     $params .= "&odds=$odds";
     
-    $response = wp_remote_get($args['rest_uri'].$params,array('timeout'=>10));
-    $query =  wp_remote_retrieve_body( $response );
-    
-    if ($query) {
+    $response = wp_remote_get($args['rest_uri'] . $params, array('timeout' => 10));
+    if (is_wp_error($response)) {
+        $error_message = $response->get_error_message();
+        echo "Error: $error_message";
+    } else {
+        $query = wp_remote_retrieve_body($response);
+        $data_json = json_decode($query);
         $loop_html = '';
         $ret .="<div id='games_list' >{replace_loop}</div>";
         $data_json = json_decode($query);
@@ -112,9 +115,6 @@ function shortcode_parley($atts)
                 <span id="current-page-number">'.($data_json->max_pages == 0 ? 0 :$data_json->page).' </span> de 
                 <span id="max-page-number" >'.$data_json->max_pages.'</span>
                 </div>';
-        
-    } else {
-        return '<h2>Aún no hay contenido.</h2>';
     }
 
     return $ret;

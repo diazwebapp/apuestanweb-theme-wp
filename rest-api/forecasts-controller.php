@@ -48,7 +48,7 @@ function aw_get_forecasts(WP_REST_Request $request){
             ];
     }
     $query = new WP_Query($args);
-
+    
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
         "text_vip_link" => $params['text_vip_link'],

@@ -1,5 +1,4 @@
 <?php
-
 $params = get_query_var('params');
 $vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $permalink = get_the_permalink(get_the_ID());
@@ -9,7 +8,7 @@ $parley_title = get_the_title(get_the_ID());
 $time = carbon_get_post_meta(get_the_ID(), 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
-
+$alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
 $fecha = date_i18n('d M', strtotime($date->format("y-m-d h:i:s")));
 $hora = date('g:i a', strtotime($date->format('y-m-d h:i:s')));
 
@@ -23,37 +22,21 @@ if(isset($aw_system_location)):
     }
 endif;
 
+
 $parley_id = get_the_ID();
 
-$estado_usuario = "permitido";
-if(function_exists("aw_get_user_type")):
-    $user_type = aw_get_user_type($args["current_user"]);
-    if($user_type == "unreg"){
-        $estado_usuario = "no permitido";
-    }
-endif;
 $html_pronosticos = '
-    <div class="d-flex flex-column align-items-center justify-content-center h-parlay">
-    <img class="img-fluid mt-5" src="'. get_template_directory_uri() . '/assets/img/apnpls.svg'.'" width="170" height="40" alt="ApuestanPlus">
+    <div class="">
+    <img class="img-fluid mt-5" src="'. get_template_directory_uri() . '/assets/img/apnpls.svg'.'" alt="ApuestanPlus">
     <p class="p1 m-0">CONVIERTE EN MIEMBRO PREMIUM</p>
-    <div class="d-flex flex-column align-items-center justify-content-center">
+    <div class="">
       <a href="'. $params['vip_link'].'" class="button mt-3">'.$params['text_vip_link'].'</a>
     </div>
   </div>'
     ;
-     
-$html = "<div class='parley_wrapper'>
-        <div class='parley_top_content' style='background-color:#009fe3 !important;'>
-            <h2>$parley_title - $fecha</h2>
-        </div>
-        {replace-html-pronosticos}
-        {replace-html-box-2}
-    </div>";
-if(!$vip ){
-    $html = str_replace("background-color:#009fe3 !important;","",$html);
-}
-if(!$vip or $estado_usuario == 'permitido'){
-    $html_pronosticos = '';
+
+if(!$vip){
+    $parley_event = '';
     if($forecasts and count($forecasts) > 0){
         $parley_cuotes = 1;
         
@@ -89,95 +72,81 @@ if(!$vip or $estado_usuario == 'permitido'){
                 }
             }
 
-            $html_pronosticos .= "<div class='parley_box'>
-                <div class='parley_left_content'>
-                    <div class='parley_game_name_wrapper'>
-                        <div class='parley_game_name'>
-                            <div class='category-grid'>
-                                <span>{$sport['name']}</span>
-                            </div>
-                        
-                            <div class='d-lg-block d-none'>
-                                <time>$fecha, $hora</time>
-                            </div>
-                        </div>
-                        <div class='d-lg-none d-block'>
-                            <div class='mobile_parley_time'>
-                                <p>$fecha, $hora</p>
-                            </div>
-                        </div>
-                    </div>                  
-                    <div class='parley_match_time'>
-                        <div class='parley_flag'>
-                            <div class='parley_team'>
-                                <img src='{$teams['team1']['logo']}' class='img-fluid' alt=''>
-                                <p>{$teams['team1']['name']}</p>
-                            </div>
-                            <div class='parley_team parley_team2'>
-                                <img src='{$teams['team2']['logo']}' class='img-fluid' alt=''>
-                                <p class='p2'>{$teams['team2']['name']}</p>
-                             </div>
-                        </div>
-                        
-                        <div class='d-lg-none d-block'>
-                            <div class='parley_right_first'>
-                                <p class='p1'>{$prediction['title']}</p>
-                                <p class='p2'>{$prediction['cuote']}</p>
+            $parley_event .= '
+                <div class="col-12 event">
+                    <div class="row align-items-center py-2">
+                        <div class="col-12 col-md-2 "><p class="mb-0 text-center"><small>'.$fecha.','.$hora.'</small></p><p class="mb-0 text-center">'.$sport['name'].'</p></div>
+                        <div class="col-12 col-md-8 ">
+                            <div class="row align-items-center">
+                                <div class="col-6 col-md-7 text-center text-md-left text-truncate">
+                                    <div>
+                                        <span>
+                                            <img width="32" height="32" src="'.$teams['team1']['logo'].'" class="img-fluid" alt="">
+                                        </span>
+                                        <span>'.$teams['team1']['name'].'</span>
+                                    </div> 
+                                    <div>
+                                        <span>
+                                            <img width="32" height="32" src="'.$teams['team2']['logo'].'" class="img-fluid" alt="">
+                                        </span>
+                                        <span>'.$teams['team2']['name'].'</span>
+                                    </div> 
+                                </div>
+                                <div class="col-6 col-md-5 text-center">
+                                    <small class="d-block d-xl-inline">'.$prediction['title'].'</small>
+                                    <span class="cuote">'.$prediction['cuote'].'</span>
+                                </div>
                             </div>
                         </div>
-                        
-                    </div>
-                </div>
-                <div class='parley_right_content'>
-                    <div class='d-lg-block d-none'>
-                        <div class='parley_right_first'>
-                            <p class='p1'>{$prediction['title']}</p>
-                            <p class='p2'>{$prediction['cuote']}</p>
+                        <div class="col-12 col-md-2  text-center">
+                            <a href="'.$permalink_event.'" class="btn outline btn-sm">Ver analisis</a>
                         </div>
                     </div>
                 </div>
-                <div class='event-link'>
-                    <a href='$permalink_event'>
-                        Ver análisis
-                    </a>
-                </div>  
-            </div>";
+            ';
         }
     }
 }
-$html_box_2 = "<div class='parley_box2'>
-                <div class='parley_left_content2 d-md-block d-none'>
-                    <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >
-                        <img width='90' height='30' style='object-fit:contain;background:{$bookmaker['background_color']};border-radius: 6px;padding: 6px;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
-                    </a>
-                </div>
-                <div class='parley_right_content2'>
 
-                    <div class='blog_select_box parley_right_content2_mb'>
-                        <select class='form-select' onchange='parley_calc_cuotes(this)' name='apu' id='apu' data='$parley_id' >
-                            <option value='10'>Apuesta $10</option>
-                            <option value='15'>Apuesta $15</option>
-                            <option value='20'>Apuesta $20</option>
-                            <option value='50'>Apuesta $50</option>
-                        </select>
-                        
-                    </div>
-                    <div class='gana_box parley_right_content2_mb'>
-                    <input type='hidden' id='jscuote_$parley_id' value='$parley_cuotes'/>
-                       <p>Gana: $ <span id='jsresult_$parley_id' >". round($parley_cuotes * 10,2) ."</span></p>
-                    </div>
-                    <div class='parley_left_content2 parley_right_content2_mb d-md-none d-block'>
-                        <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >
-                            <img width='90' height='30' style='object-fit:contain;background:{$bookmaker['background_color']};border-radius: 6px;padding: 6px;' src='{$bookmaker["logo_2x1"]}' class='img-fluid' alt=''>
+$new_html = '<div class="parley-box">
+            <div class="px-3 py-2 parley_top_content"><strong class="text-light text-capitalize">'.$parley_title .'-'. $fecha.'</strong></div>
+
+            <div class="row event-list mx-0 parley_wrapper" style="border-bottom: .3rem ridge rgb(3 176 244);">
+                {replace-events}
+            </div>
+            
+            <div class="parley-data px-2">
+                {replace-data}
+            </div>
+            
+        </div>';
+
+
+$parley_data = '
+                <div class="row align-items-center py-2 mx-0 text-center">
+                    <div class="col-12 col-sm-3 col-md-3 col-xl-2">
+                        <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" class="">
+                        <img width="80" height="25" style="object-fit:contain;background:'.$bookmaker["background_color"].';border-radius: 6px;padding: 6px;" src="'.$bookmaker["logo_2x1"].'" class="img-fluid" alt="bk-logo">
                         </a>
                     </div>
-                    <div class='parley_btn btn-primary btn-lg parley_right_content2_mb'> 
-                        <a href='{$bookmaker['ref_link']}' class='button' rel='nofollow noopener noreferrer' target='_blank' >Apostar ahora</a>
-                    </div>      
+                    <div class="col-5 col-sm-4 col-xl-4 px-0 ">
+                        <select class="myselect mt-1 mt-sm-0" onchange="parley_calc_cuotes(this)" name="apu" id="apu" data="'.$parley_id.'" >
+                            <option value="10">Apuesta $10</option>
+                            <option value="15">Apuesta $15</option>
+                            <option value="20">Apuesta $20</option>
+                            <option value="50">Apuesta $50</option>
+                        </select>
+                    </div>
+                    <div class="col-2 col-sm-1 col-md-2 col-xl-3">
+                        <input type="hidden" id="jscuote_$parley_id" value="'.$parley_cuotes.'/>
+                       <p>Gana: $ <span id="jsresult_$parley_id" >Gana $'. round($parley_cuotes * 10,2) .'</span></p>
+                    </div>
+                    <div class="col-5 col-sm-4 col-md-3 col-xl-3 text-center">
+                        <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" class="btn btn-primary outline ">apostar ahora</a>
+                    </div>
                 </div>
-            </div>"
-;
+            ';
 
-$html = str_replace("{replace-html-pronosticos}",$html_pronosticos,$html);
-$html = str_replace("{replace-html-box-2}",$html_box_2,$html);
-echo $html;
+$new_html = str_replace("{replace-events}",$parley_event,$new_html);
+$new_html = str_replace("{replace-data}",$parley_data,$new_html);
+echo $new_html;

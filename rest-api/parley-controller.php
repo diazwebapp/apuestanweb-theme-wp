@@ -7,11 +7,11 @@ function aw_get_parleys(WP_REST_Request $request){
     $args['post_type']      = 'parley';
     $args['paged']          = isset($params['paged']) ? $params['paged'] : 1;
     $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
-    $args['meta_key']       = '_data';
+    /* $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
-    $args['order']          = 'DESC';
+    $args['order']          = 'DESC'; */
 
-    if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
+    /* if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
         $p = str_replace("]","",$params['leagues']);
         $args['tax_query'] = [
@@ -39,10 +39,11 @@ function aw_get_parleys(WP_REST_Request $request){
                     'type' => 'DATE'
                 ]
             ];
-    }
-    //var_dump($args);
+    } */
+    
     $query = new WP_Query($args);
     $loop_html = ["args"=>$args,"status" => 'ok',"html"=>'',"max_pages"=>$query->max_num_pages,"page"=>$args['paged']];
+   
     
     set_query_var( 'params', [
         "vip_link" => PERMALINK_VIP,
@@ -50,7 +51,7 @@ function aw_get_parleys(WP_REST_Request $request){
         "time_format" => isset($params['time_format']) ? $params['time_format'] : null,
         "model" => $params['model']
     ] );
-
+    
     if ($query->have_posts()) :
         $view_params = [
             "country_code"=>isset($params['country_code']) ? $params['country_code'] : null,
@@ -58,11 +59,12 @@ function aw_get_parleys(WP_REST_Request $request){
             "odds" => isset($params['odds']) ? $params['odds'] : null,
             "current_user" => isset($wp_user) ? $wp_user : null
         ];
+        
         while ($query->have_posts()):
             $query->the_post();
             $loop_html["html"] .= load_template_part("loop/parley_list_{$params['model']}",null,$view_params); 
         endwhile;
-
+        
     else:
         $home_url = get_home_url( null, '/', null );
         $loop_html["status"] = 'fail';
@@ -79,7 +81,7 @@ function aw_get_parleys(WP_REST_Request $request){
         </div>
       </div>';
     endif;
-
+   
     return json_decode(json_encode($loop_html));
 }
 
