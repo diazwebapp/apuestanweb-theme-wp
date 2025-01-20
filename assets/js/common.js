@@ -6,8 +6,9 @@ let date_items = document.querySelectorAll('.date_item_pronostico_top');
 function parley_calc_cuotes(param){
     let current_parley = param.attributes.data.textContent
     let amount = param.value
-    let cuote = document.querySelector(`#jscuote_${current_parley }`)
-    let result = document.querySelector(`#jsresult_${current_parley }`)
+    let cuote = document.querySelector(`#jscuote_${current_parley}`)
+    let result = document.querySelector(`#jsresult_${current_parley}`)
+    
     if(cuote && result){
         let final_cuote = parseFloat(cuote.value) * parseFloat(amount)
         result.innerHTML = final_cuote.toFixed(2)

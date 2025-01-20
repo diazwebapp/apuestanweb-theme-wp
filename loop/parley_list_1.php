@@ -122,24 +122,24 @@ $new_html = '<div class="parley-box">
 
 $parley_data = '
                 <div class="row align-items-center py-2 mx-0 text-center">
-                    <div class="col-12 col-sm-3 col-md-3 col-xl-2">
+                    <div class="col-6 col-sm-2 col-md-3 col-xl-2 order-3 order-sm-1">
                         <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" class="">
                         <img width="80" height="25" style="object-fit:contain;background:'.$bookmaker["background_color"].';border-radius: 6px;padding: 6px;" src="'.$bookmaker["logo_2x1"].'" class="img-fluid" alt="bk-logo">
                         </a>
                     </div>
-                    <div class="col-5 col-sm-4 col-xl-4 px-0 ">
-                        <select class="myselect mt-1 mt-sm-0" onchange="parley_calc_cuotes(this)" name="apu" id="apu" data="'.$parley_id.'" >
+                    <div class="col-6 col-sm-4 col-xl-4 px-0 order-1 order-sm-2">
+                        <select class="myselect" onchange="parley_calc_cuotes(this)" name="apu" id="apu" data="'.$parley_id.'" >
                             <option value="10">Apuesta $10</option>
                             <option value="15">Apuesta $15</option>
                             <option value="20">Apuesta $20</option>
                             <option value="50">Apuesta $50</option>
                         </select>
                     </div>
-                    <div class="col-2 col-sm-1 col-md-2 col-xl-3">
-                        <input type="hidden" id="jscuote_$parley_id" value="'.$parley_cuotes.'/>
-                       <p>Gana: $ <span id="jsresult_$parley_id" >Gana $'. round($parley_cuotes * 10,2) .'</span></p>
+                    <div class="col-6 col-sm-2 col-md-2 col-xl-3 order-2 order-sm-3">
+                        <input type="hidden" id="jscuote_'.$parley_id.'" value="'.$parley_cuotes.'"/>
+                        Gana: $<span id="jsresult_'.$parley_id.'" >'. round($parley_cuotes * 10,2) .'</span>
                     </div>
-                    <div class="col-5 col-sm-4 col-md-3 col-xl-3 text-center">
+                    <div class="col-6 col-sm-4 col-md-3 col-xl-3 text-center order-4">
                         <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" class="btn btn-primary outline ">apostar ahora</a>
                     </div>
                 </div>

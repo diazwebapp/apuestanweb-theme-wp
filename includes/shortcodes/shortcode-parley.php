@@ -11,12 +11,6 @@ function shortcode_parley($atts)
         'text_vip_link' => 'VIP',
         'filter' => null,
     ), $atts));
-    global $post;
-    if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'parley' ) ) {
-        wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
-    }else if(is_single(  )){
-        wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
-    }
 
     $ret = "";
 
@@ -122,3 +116,12 @@ function shortcode_parley($atts)
 
 
 add_shortcode('parley', 'shortcode_parley');
+// Cargar common.js condicionalmente
+function load_common_js_if_parley() {
+    global $post;
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'parley') || is_single())) {
+        wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), null, true);
+        wp_enqueue_style( 's-parley-css', get_template_directory_uri( ) .'/assets/css/parley-styles.css', null, false, 'all' );
+    }
+}
+add_action('wp_enqueue_scripts', 'load_common_js_if_parley');
