@@ -73,7 +73,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                 ?>
                 <div class="col-12 text-center my-3">   
                     
-                        <label for="select_odds_format" class="mr-4 font-weight-bold">FORMATO DE CUOTAS</label>   
+                        <label for="select_odds_format" class="mr-4 font-weight-bold text-muted">FORMATO DE CUOTAS</label>   
                         
 
                         <select id="select_odds_format" class="myselect">
