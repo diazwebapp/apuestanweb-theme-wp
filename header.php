@@ -68,15 +68,15 @@
 </header>
 <!-- Ventana modal de búsqueda -->
 <div id="search-modal" class="modal">
-        <div class="modal-content p-3">
-            <span class="close mb-3" id="close-search-modal">&times;</span>
-            
-            <form id="custom-search-form" class="form mt-3 mb-3">
-                <div class="form-group">
-                    <label for="search" >Búsqueda de pronósticos</label>
-                    <input class="form-control" type="text" id="search" name="search" placeholder="Introduce el nombre del equipo">
-                </div>
-            </form>
-            <div id="search-results"></div>
-        </div>
+    <div class="modal-content p-3">
+        <span class="close mb-3" id="close-search-modal">&times;</span>
+        
+        <form id="custom-search-form" class="form mt-3 mb-3">
+            <div class="form-group">
+                <label for="search" >Búsqueda de pronósticos</label>
+                <input class="form-control" type="text" id="search" name="search" placeholder="Introduce el nombre del equipo">
+            </div>
+        </form>
+        <div id="search-results"></div>
     </div>
+</div>

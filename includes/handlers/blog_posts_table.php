@@ -24,6 +24,7 @@ function aw_custom_posts_query($post_type, $per_page, $leagues, $page_param) {
         $args['posts_per_page'] = $per_page;
     }
     $query = new WP_Query($args);
+    
     return $query;
 }
 function aw_custom_forecasts_query($vip, $per_page, $leagues, $page_param) {

@@ -9,7 +9,7 @@ function taxonomy_menu($attr){
 	if(count($children) > 0):
 		
 		if($model == 1): 
-					$html = "<div class='header_bottom'>
+					$html = "<div class='header_bottom bg-primary text-center'>
 						<div class='container'>
 							<ul>";
 								foreach($children as $child):
@@ -20,7 +20,7 @@ function taxonomy_menu($attr){
 									$parent_id = wp_get_post_parent_id( $child->ID );
 									if($permalink == $current_permalink){ $active = 'active'; }
 									if($status == 'publish')
-										$html .= "<li><a class='$active' href='$permalink'>$title</a></li>";
+										$html .= "<li><a class='$active text-light' href='$permalink'>$title</a></li>";
 								endforeach;
 					$html .=	"</ul>
 						</div>
