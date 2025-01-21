@@ -48,7 +48,7 @@ function shortcode_banner($atts)
     endif;
    
     if(is_page() && !$title)
-        $title = get_the_title( );
+        $title = get_the_title();
     if(is_post_type_archive() && !$title)
         $title = post_type_archive_title( '', false );
     if(is_category() or is_tax())

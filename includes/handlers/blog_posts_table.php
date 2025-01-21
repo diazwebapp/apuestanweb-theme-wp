@@ -3,8 +3,11 @@
 
 function aw_custom_posts_query($post_type, $per_page, $leagues, $page_param) {
     // Usa el parámetro de paginación específico
+    global $wp_query;
     $paged = (get_query_var($page_param)) ? get_query_var($page_param) : 1;
-
+    if(is_home() and $wp_query->is_main_query() and (!isset($leagues) or $leagues !== '[all]')){
+        return $wp_query;
+    }
     $args = [
         'post_type' => $post_type,
         'paged' => $paged,

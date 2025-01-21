@@ -13,7 +13,7 @@ include "includes/templates-emails/settings.php";
 include "includes/templates-emails/template-email-1.php"; 
 include "includes/templates-emails/template-email-2.php";
 include "includes/core/notification-module/notification-core.php"; 
-//include "includes/core/cache/cache.php";
+include "includes/core/cache/cache.php";
 
 
 
@@ -748,5 +748,4 @@ function aw_custom_query_vars($vars) {
     return $vars;
 }
 add_filter('query_vars', 'aw_custom_query_vars');
-
 

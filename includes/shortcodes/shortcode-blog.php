@@ -3,13 +3,13 @@ function shortcode_blog($atts) {
     // Establecer valores predeterminados de los atributos del shortcode
     $atts = shortcode_atts([
         'model' => 1,
-        'paginate' => true,
+        'paginate' => 'yes',
         'num' => 6,
         'leagues' => '[all]'
     ], $atts);
 
     // Generar el HTML base
-    $html = '<div class="w-100 mx-auto">
+    $html = '<div class="w-100 mx-auto mt-3">
                 <div class="row" id="blog_posts_container">
                     {posts}
                 </div>
@@ -26,6 +26,7 @@ function shortcode_blog($atts) {
     $template = "";
     
     if ($query) {
+        ob_start();
         while ($query->have_posts()) {
             $query->the_post();
             $template .= load_template_part("loop/posts-grid_{$atts['model']}", null, []); 
@@ -37,7 +38,7 @@ function shortcode_blog($atts) {
     $html = str_replace('{posts}', $template, $html);
 
     // Reemplazar {paginate} en el HTML con la paginación generada
-    if ($atts['paginate']) {
+    if ($atts['paginate'] and $atts['paginate'] === 'yes') {
         $nav_pages = aw_custom_pagination($query, 'page_post');
         $html = str_replace('{paginate}', $nav_pages, $html);
     } else {

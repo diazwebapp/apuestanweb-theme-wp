@@ -16,11 +16,12 @@ endif;
 
 <main>
     <?php 
+    
     if ($banner_top != 'yes'):
         if ($custom_banner_top):
             echo do_shortcode($custom_banner_top);
         else:
-            echo do_shortcode("[banner title=".(isset($custom_h1) ? $custom_h1:get_the_title( get_the_ID() ))."]");
+            echo do_shortcode('[banner title="'.(!empty($custom_h1) ? $custom_h1 : get_the_title()).'"]');
         endif;
     endif;
     ?>
@@ -37,9 +38,9 @@ endif;
                         $content = get_the_content(get_the_ID()); 
                         $content = str_replace(']]>', ']]>', $content);
                         $formatted_content = do_shortcode($content);
-
-                            if (!$disable_title):
-                                echo "<h1 class='title mt-4 mb-4 order-lg-1'>".get_the_title(get_the_ID())."</h1>";
+                            
+                            if ( (!$banner_top || $banner_top == 'yes') || !$disable_title ):
+                                echo "<h1 class='title mt-4 mb-4 order-lg-1'>".(!empty($custom_h1) ? $custom_h1 : get_the_title(get_the_ID()))."</h1>";
                             endif;
 
                             echo "<section class='page_content text-break'>
