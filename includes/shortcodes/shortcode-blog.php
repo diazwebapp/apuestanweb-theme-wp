@@ -26,7 +26,7 @@ function shortcode_blog($atts) {
     $template = "";
     
     if ($query) {
-        ob_start();
+        
         while ($query->have_posts()) {
             $query->the_post();
             $template .= load_template_part("loop/posts-grid_{$atts['model']}", null, []); 

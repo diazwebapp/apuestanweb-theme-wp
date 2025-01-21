@@ -29,7 +29,7 @@ add_action('template_redirect', function() {
 
     if (false !== $cached_content) {
         // Si está en cache, muestra el contenido y detén la ejecución
-        echo 'vengo de caché '. $cached_content;
+        echo 'vengo de caché ' . $cached_content;
         exit;
     }
 
