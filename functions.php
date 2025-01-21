@@ -259,7 +259,7 @@ add_action( 'admin_enqueue_scripts', 'enqueuing_admin_scripts' );
 function draw_rating($rating) {
     $ret = '';
     for ($count = 1; $count <= 5; $count++) {
-        $style = 'font-size:22px;';
+        $style = 'font-size:24px;';
         if ($count <= $rating) {
             $style .= ' color:#F4D31F;';
         }
@@ -267,9 +267,6 @@ function draw_rating($rating) {
     }
     return $ret;
 }
-
-
-
 
 function tg_remove_empty_paragraph_tags_from_shortcodes_wordpress( $content ) {
     $toFix = array( 
@@ -292,7 +289,7 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
     }
     add_filter( 'nav_menu_link_attributes', 'active_menu', 10, 2 ); 
   
- /*    add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
+add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
         $filetype = wp_check_filetype( $filename, $mimes );
         return [
             'ext'             => $filetype['ext'],
@@ -310,7 +307,7 @@ add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordp
 
         return $mimes;
       }
-      add_filter( 'upload_mimes', 'cc_mime_types' ); */
+add_filter( 'upload_mimes', 'cc_mime_types' );
       
 
 /////Obtiene los enlaces de RRSS///////

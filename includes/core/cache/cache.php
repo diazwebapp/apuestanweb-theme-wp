@@ -3,11 +3,12 @@
  
 add_action('template_redirect', function() {
     global $wp;
-
+    $login_page = isset(carbon_get_theme_option('login_page')[0]) ? carbon_get_theme_option('login_page')[0]['id']: null;
+    $login_page = rtrim(get_permalink($login_page), '/');
     // URLs que no deben cachearse
     $excluded_urls = array(
         home_url('/wp-admin'),
-        home_url('/login'),
+        $login_page,
         home_url('/mi-pagina-excluida'),
     );
 
@@ -28,7 +29,7 @@ add_action('template_redirect', function() {
 
     if (false !== $cached_content) {
         // Si está en cache, muestra el contenido y detén la ejecución
-        echo "vengo de caché".$cached_content;
+        echo $cached_content;
         exit;
     }
 
@@ -48,10 +49,12 @@ function aw_cache_hook() {
 add_action('after_wp_footer', function() {
     global $wp;
 
+    $login_page = isset(carbon_get_theme_option('login_page')[0]) ? carbon_get_theme_option('login_page')[0]['id']: null;
+    $login_page = rtrim(get_permalink($login_page), '/');
     // URLs que no deben cachearse
     $excluded_urls = array(
         home_url('/wp-admin'),
-        home_url('/login'),
+        $login_page,
         home_url('/mi-pagina-excluida'),
     );
 
