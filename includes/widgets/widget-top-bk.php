@@ -54,8 +54,7 @@ class w_bookmakers extends WP_Widget{
                 $image_png = wp_get_attachment_url($image_att);
                 $rating_float = carbon_get_post_meta($bookmaker->ID, 'rating');
                 $rating_ceil = floor($rating_float);
-                $site_logo_url = get_template_directory_uri() . '/assets/img/event-logo.png';
-                $ref = "";
+                $site_logo_url = get_template_directory_uri() . '/assets/img/logo2.svg';
                 $ref = "";
                 $color = (carbon_get_post_meta($bookmaker->ID, 'background-color') ?carbon_get_post_meta($bookmaker->ID, 'background-color') : "black");
 
@@ -75,7 +74,7 @@ class w_bookmakers extends WP_Widget{
                                 <span class="serial">'.$key.'</span>
                             </div>
                             <div class="col-6" style="background:'.$color.';border-radius:.3rem;">
-                                <img src="'.$site_logo_url.'" width="80" height="30" class="px-1" style="object-fit:contain;">
+                                <img src="'.$image_png.'" width="80" height="30" class="px-1" style="object-fit:contain;" alt="'.$bookmaker->post_title.'">
                             </div>
                             <div class="col-3 d-flex">
                                 <span>'.$rating_float.'</span>

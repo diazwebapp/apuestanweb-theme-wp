@@ -61,9 +61,9 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                     $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
             ?>
                 <div class="col-lg-9">
-                    <h1 class="title mt-5 pt-4"><?php echo $bookmaker['name'] ?></h1>
+                    <h1 class="my-3"><?php echo $bookmaker['name'] ?></h1>
                     
-                    <div class="container my-4"> 
+                    <div class="container "> 
                         <!-- Heading -->
                         <div class="row">
 
@@ -79,24 +79,24 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                         endif;
                                     ?>
                                 </div>
-                                <img width="130" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
+                                <img width="60" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
                             </div>
                             <div class="col-md-12 col-lg-8 col-xl-9 bk-box">
                                 <div class="row">
 
                                     <div class="col-md-12 col-lg-7" >
                                         <div class="row text-center">                        
-                                            <div class="col-md-12 d-md-block d-lg-none my-5" >
-                                                <small style="font-size:2rem;" class="align-middle" >acepts player from </small>
+                                            <div class="col-md-12 d-md-block d-lg-none " >
+                                                <small class="align-middle" >acepts player from </small>
                                                 <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                             </div>
-                                            <div class="col-md-12 col-lg-6 my-5">
+                                            <div class="col-md-12 col-lg-6 ">
                                                 <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
-                                                <span class="text-uppercase text-success align-middle ml-3" style="font-size:1.7rem;"> Calificación</span>                            
+                                                <span class="text-uppercase text-success align-middle"> Calificación</span>                            
                                             </div>
                                             <!-- rating -->
-                                            <div class="col-md-12 col-lg-6 d-none d-lg-block my-5" >
-                                                <span class="text-uppercase text-body " style="font-size:2.2rem;margin-top:2rem;" ><?php echo $bookmaker["rating"]?></span>
+                                            <div class="col-md-12 col-lg-6 d-none d-lg-block " >
+                                                <span class="text-uppercase text-body "><?php echo $bookmaker["rating"]?></span>
                                                 <?php 
                                                     if(isset($bookmaker["rating"])):
                                                         for($i=1; $i<=5;$i++):
@@ -106,23 +106,23 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                                 ?>
                                             </div>
                     
-                                            <div class="col-12 my-4 special-single-bk-button" >
-                                                <b style="font-size:18px;border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
+                                            <div class="col-12  special-single-bk-button" >
+                                                <b style="border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                                             </div>
-                                            <div class="col-12 my-4 special-single-bk-button"> 
+                                            <div class="col-12  special-single-bk-button"> 
                                                                             
-                                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="btn btn-success btn-lg" rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <span class="ml-2" aria-hidden="true">🡵</span></a>                                    
+                                                <a href="<?php echo $bookmaker["ref_link"] ?>" class="btn btn-success " rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <span class="ml-2" aria-hidden="true">🡵</span></a>                                    
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-lg-5">
                                         <div class="row">
                 
-                                            <div class="col-12 text-right d-none d-sm-block my-5">
-                                                <small style="font-size:1.6rem;" class="align-middle">acepts player from </small>
-                                                <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
+                                            <div class="col-12 text-right d-none d-sm-block ">
+                                                <small class="align-middle">acepts player from </small>
+                                                <img width="40px" height="17px" style="border-radius:.5rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                             </div>
-                                            <div class="col-12 d-none d-sm-block my-2">
+                                            <div class="col-12 d-none d-sm-block ">
                                                 <?php
                                                     if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                                         foreach($bookmaker["feactures"] as $feacture):
@@ -169,9 +169,8 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                     <!-- Content -->
                     <?php if ( !$disable_table ): ?>
                                                         <!-- Add the button to toggle the table of contents -->
-                                                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="font-size: 1.8rem; margin-block-end: 1rem;">
+                                                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#table-of-contents" aria-expanded="false" aria-controls="table-of-contents" style="margin-block-end: 1rem;">
                                                             <?php echo __('Contenido de la reseña', 'jbetting' );?>
-                                                            <i class="fas fa-angle-down"></i>
                                                         </button>
 
                                                         <!-- Add the table of contents -->
@@ -202,7 +201,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                             <?php
                                 if(isset($bookmaker["general_feactures"]) and count($bookmaker["general_feactures"]) > 0):
                                     foreach($bookmaker["general_feactures"] as $feacture):
-                                        echo '<p class="d-flex justify-content-between my-2 text-uppercase" style="color:black;">'.$feacture['feacture'].' <span style="color:black;" >'.$feacture['points'].' ★</span></p>';
+                                        echo '<p class="d-flex justify-content-between  text-uppercase" style="color:black;">'.$feacture['feacture'].' <span style="color:black;" >'.$feacture['points'].' ★</span></p>';
                                     endforeach;
                                 endif;
                             ?>
