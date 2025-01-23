@@ -10,7 +10,7 @@ function aw_get_forecasts(WP_REST_Request $request){
     $args['posts_per_page'] = isset($params['posts_per_page']) ? $params['posts_per_page'] : 1;
     $args['meta_key']       = '_data';
     $args['orderby']        = 'meta_value';
-    $args['order']          = 'DESC';
+    $args['order']          = 'ASC';
 
     if(isset($params['leagues']) and $params['leagues'] !== '[all]'):
         $p = str_replace("[","",$params['leagues']);
