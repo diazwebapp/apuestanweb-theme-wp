@@ -69,7 +69,7 @@ function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,
                 'type'    => 'DATE'
             ],
     ];
-
+    $cahe_key = md5($user_id);
     $user_posts_query = new WP_Query($forecast_args);
   
 
