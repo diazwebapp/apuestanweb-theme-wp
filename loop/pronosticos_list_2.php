@@ -11,7 +11,7 @@ $sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' 
 $teams = get_forecast_teams($args["forecast"]->ID,["w"=>50,"h"=>50]);
 $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $formatted_date = __(wp_date('j M', strtotime($time)), 'jbetting');
-
+$small_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
 
 $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]]);
 
@@ -23,7 +23,7 @@ if(isset($aw_system_location)):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
     $bookmaker["logo_2x1"] = aq_resize($bookmaker["logo_2x1"],80,25,true,true,true);
-    if (!$bookmaker["logo_2x1"]) { $bookmaker["logo_2x1"] = get_template_directory_uri() . '/assets/img/logo2.svg'; }
+    if (!$bookmaker["logo_2x1"]) { $bookmaker["logo_2x1"] = $small_logo; }
 endif;
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
@@ -35,8 +35,7 @@ $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p
                     </a>";
 //Liga y deporte
 //taxonomy league
-$tax_leagues = wp_get_post_terms($args["forecast"]->ID,'league');                            
-$icon_img = get_template_directory_uri() . '/assets/img/logo2.svg';
+$tax_leagues = wp_get_post_terms($args["forecast"]->ID,'league');  
 
 //forecast sport
 $sport = false;
@@ -45,7 +44,7 @@ if(isset($tax_leagues) and count($tax_leagues) > 0):
         if($tax_league->parent == 0):
             $sport = $tax_league; //define forecast sport
             $icon_class = carbon_get_term_meta($sport->term_id,'fa_icon_class');
-            $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img  width="20" height="20" class="img-fluid" loading="lazy" src="'.$icon_img.'" alt="'.$sport->name.'"/>';
+            $sport->icon_html = !empty($icon_class) ? '<i class="'.$icon_class.'" ></i>' : '<img  width="20" height="20" class="img-fluid" loading="lazy" src="'.$small_logo.'" alt="'.$sport->name.'"/>';
         endif;
     endforeach;
 endif;
@@ -64,7 +63,7 @@ if(isset($sport)):
         $league = $leagues[0]; //define forecast sport
         $icon_class = carbon_get_term_meta($league->term_id,'fa_icon_class');
         
-        $league->icon_html =  '<img width="20" height="20" class="img-fluid" loading="lazy" src="'.$icon_img.'" alt="'.$league->name.'" />';
+        $league->icon_html =  '<img width="20" height="20" class="img-fluid" loading="lazy" src="'.$small_logo.'" alt="'.$league->name.'" />';
     endif;
 endif;
 
