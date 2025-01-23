@@ -1,5 +1,4 @@
-<?php get_header();
-
+<?php 
 $h1 = '';
 $permalink = '';
 $thumb = '';
@@ -7,11 +6,13 @@ $alt_logo = get_template_directory_uri() . '/assets/img/logo2.svg';
 
 if(have_posts()){
     the_post();
-    echo "<br>";
     $h1 = get_the_title();
     $permalink = get_permalink();
     $thumb = get_the_post_thumbnail_url() ?: $alt_logo;
 }
+
+get_header();
+
 
 ?>
 

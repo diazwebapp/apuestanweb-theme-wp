@@ -105,7 +105,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                 
                             endforeach;
                             if(isset($regulation)):
-                                echo '<p class="p-reg s-f text-break">'.$regulation["text_reg"].'</p> ';
+                                echo '<p class="p-reg text-break text-muted">'.$regulation["text_reg"].'</p> ';
                                 echo '<div class="row justify-content-center footer-reg">';
                                 echo '<div class="flex justify-center  flex-wrap">';
                                 foreach ($regulation["images"] as $image) {
@@ -121,8 +121,8 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                                             <img class=mx-auto width="240" height="125" src='.$agesvg.'>
                                             <div class="col-12 text-center">
                                                     <b class="title d-block">'.$regulation["text_reg2"].'</b>
-                                                    <button type="button" class="btn btn-primary px-4 m-5 text-uppercase" onclick="setAge(this)"><p class="h2" >si</p></button>
-                                                    <button type="button" class="btn btn-secondary px-4 m-5 text-uppercase" onclick="setAge(this)"><p class="h2" >no</p></button>
+                                                    <button type="button" class="btn btn-primary px-3 m-1 text-uppercase" onclick="setAge(this)"><p class="h2" >si</p></button>
+                                                    <button type="button" class="btn btn-secondary m-1 text-uppercase" onclick="setAge(this)"><p class="h2" >no</p></button>
                                                 </div>
                                             </div>
                                         </div> ';
@@ -133,7 +133,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 
                        
                     ?>
-                    <p class="copy mt-1 py-1 s-f" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
+                    <p class="copy mt-1 py-1 text-muted" ><?php echo carbon_get_theme_option( 'copy' ) ?></p>
                     <?php echo carbon_get_theme_option( 'footer_code' ) ?>
 
                 </div>

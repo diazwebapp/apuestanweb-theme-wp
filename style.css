@@ -24,14 +24,14 @@ Text Domain: Apuestan
 	color: var(--text-color);
 }
 body {
-	font-family: 'Neurial Grotesk';
+	font-family: 'Segoe UI', Tahoma, sans-serif;
 	background-color: #fff;
 	font-weight: 400;
 }
 html { scroll-behavior: smooth; }
 
 header *, footer *:not(.myselect,.myselect option){
-	color: #ffffffed !important;
+	color: #ffffffed ;
 }
 p{color:var(--text-color)}
 
@@ -290,6 +290,9 @@ header {
 	line-height: 2.2;
 	position: relative;
 	padding: 0;
+}
+.menu li a:hover{
+	color: white;
 }
 .menu li a::before{
 	position: absolute;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<?php echo substr(get_locale(), 0, 2); ?>">
 <head>
-    <title><?php wp_title('');?></title>
+    <title><?php wp_title();?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<?php wp_head(); ?>

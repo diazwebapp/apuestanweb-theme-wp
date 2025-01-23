@@ -209,31 +209,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modalAgeTerms.style.display = 'grid';
     }
 
-    // Remove notifications functionality
-    if (btnQuitarNotificaciones) {
-        btnQuitarNotificaciones.addEventListener('click', async () => {
-            const usernameElement = document.querySelector("#header-username");
-            const counterElement = document.querySelector("#notification-counter");
-            const username = usernameElement?.textContent;
-
-            try {
-                const response = await fetch('/wp-json/aw-notificaciones/clear-all', {
-                    method: 'POST',
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ username })
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    if (counterElement && result.status === "ok") {
-                        counterElement.textContent = 0;
-                    }
-                }
-            } catch (error) {
-                console.error("Error clearing notifications:", error);
-            }
-        });
-    }
 
     // Parley button functionality
     document.querySelectorAll(".parley_collapse_btn").forEach(button => {
@@ -317,4 +292,20 @@ document.getElementById('search').addEventListener('keyup', async function () {
 function handler_odds_format(e){
     let format = e.target.value
     document.location = '?odds_format='+format
+}
+
+function setAge(resp){
+    
+    let text = resp.textContent
+    let modal = document.getElementById('modal_age_terms')
+    
+    if(text == 'no'){
+        localStorage.setItem('age_user', 'no')
+        document.write('')
+    }
+    if(text == 'si'){
+        localStorage.setItem('age_user', 'si')
+    }
+    
+    modal.remove()
 }
