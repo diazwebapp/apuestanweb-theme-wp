@@ -51,7 +51,7 @@ class w_bookmakers extends WP_Widget{
             foreach ($bookmakers as $key => $bookmaker):
                 $key++;
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
-                $image_png = aq_resize(wp_get_attachment_url($image_att), 80,25);
+                $image_png = aq_resize(wp_get_attachment_url($image_att), 80,25, true, true,true);
                 if (!$image_png) { $image_png = get_template_directory_uri() . '/assets/img/logo2.svg'; }
                 $rating_float = carbon_get_post_meta($bookmaker->ID, 'rating');
                 $ref = "";
