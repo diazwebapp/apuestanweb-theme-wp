@@ -28,7 +28,7 @@ $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
 
 $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1'>
-                        <img src='{$bookmaker['logo']}' width='80' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
+                        <img src='{$bookmaker['logo_2x1']}' width='80' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
                         <p class='text-secondary'>Haz una apuesta</p>
                     </a>";
 //Liga y deporte

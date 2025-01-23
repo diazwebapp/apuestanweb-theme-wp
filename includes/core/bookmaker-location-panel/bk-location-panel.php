@@ -178,7 +178,7 @@ if(!function_exists('aw_select_relate_bookmakers')):
         endif; 
         if (carbon_get_post_meta($list->ID, 'logo_2x1')):
           $logo = carbon_get_post_meta($list->ID, 'logo_2x1');
-          $bookmaker["logo_2x1"] = aq_resize(wp_get_attachment_url($logo),80,25);
+          $bookmaker["logo_2x1"] = wp_get_attachment_url($logo);
         endif;        
       endif;
         $list = $bookmaker;
@@ -312,19 +312,12 @@ function aw_delete_related_bookmakers() {
     }
     
 }
-/* add_action( 'admin_menu', function(){
-  add_submenu_page( 'bookmaker-location', 'bookmaker history', 'bookmaker history', 'manage_options', 'bookmaker-history', 'aw_bookmaker_history', 2 );
-  add_submenu_page( 'bookmaker-location', 'bookmaker methods', 'bookmaker settings', 'manage_options', 'bookmaker-mehods', 'panel_bookmaker_methods', 2 );
-}); */
-
 
 add_action( 'admin_enqueue_scripts', function(){
   wp_enqueue_script('admin-js',get_template_directory_uri() . '/assets/js/admin.js');
   wp_enqueue_style('admin-css');
-  //$countries = get_countries_json();
   $data = json_encode([
       "rest_url"=>rest_url(),
-      //"countries"=>$countries
     ]);
   wp_add_inline_script( 'admin-js', 'const bookmaker_scripts='.$data, 'before' );
 } );
