@@ -33,7 +33,7 @@ class w_authors extends WP_Widget {
                 $failed = $stats["fallidos"];
                 $rank = $stats["tvalue"];
                 $display_name = get_the_author_meta("display_name", $user->ID );
-                $avatar= get_the_author_meta( 'profile_image',$user->ID );
+                $avatar = aq_resize(get_the_author_meta( 'profile_image',$user->ID ), 45, 45 );
                 $key++;
                 $link = get_author_posts_url( $user->ID);
                 $flechita_indicadora = "";
