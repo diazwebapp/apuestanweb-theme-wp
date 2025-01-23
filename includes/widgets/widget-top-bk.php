@@ -22,8 +22,8 @@ class w_bookmakers extends WP_Widget{
         $query = new WP_Query($args);
         
         $bookmakers = [];
-        if(!isset($aw_system_location) and $query->posts):
-            //$bookmakers = aw_select_relate_bookmakers(1,["random"=>true,"limit"=>$limit]);
+        if(!isset($aw_system_location)):
+            
             foreach ($query->posts as $key => $bookmaker):
                 $exists = aw_detect_bookmaker_on_country(1,$bookmaker->ID);
                 if($exists):
@@ -31,7 +31,7 @@ class w_bookmakers extends WP_Widget{
                 endif;
             endforeach;
         else:
-            //$bookmakers = aw_select_relate_bookmakers($aw_system_location->id,["random"=>true,"limit"=>$limit]);
+            
             if($query->posts):
                 foreach ($query->posts as $key => $bookmaker):
                     $exists = aw_detect_bookmaker_on_country($aw_system_location->id,$bookmaker->ID);
@@ -51,7 +51,8 @@ class w_bookmakers extends WP_Widget{
             foreach ($bookmakers as $key => $bookmaker):
                 $key++;
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
-                $image_png = aq_resize(wp_get_attachment_url($image_att), 80,25, true, true,true);
+                $image_png = wp_get_attachment_url($image_att);
+                $image_png = aq_resize($image_png, 80,25, true, true,true);
                 if (!$image_png) { $image_png = get_template_directory_uri() . '/assets/img/logo2.svg'; }
                 $rating_float = carbon_get_post_meta($bookmaker->ID, 'rating');
                 $ref = "";
