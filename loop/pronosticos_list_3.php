@@ -110,7 +110,7 @@ endif;
                             <div class='row mt-3'>
                                 <div class='col-6 text-right'>
                                     <a href='{$bookmaker['ref_link']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
-                                        <img src='{$bookmaker['logo']}' width='80' height='25' style='object-fit:contain;' alt='logo casa de apuesta' >
+                                        <img src='{$bookmaker["logo_2x1"]}' width='80' height='25' style='object-fit:contain;' alt='logo casa de apuesta' >
                                     </a>
                                 </div>
                                 <div class='col-6 text-start'>

@@ -178,7 +178,7 @@ if(!function_exists('aw_select_relate_bookmakers')):
         endif; 
         if (carbon_get_post_meta($list->ID, 'logo_2x1')):
           $logo = carbon_get_post_meta($list->ID, 'logo_2x1');
-          $bookmaker["logo_2x1"] = wp_get_attachment_url($logo);
+          $bookmaker["logo_2x1"] = aq_resize(wp_get_attachment_url($logo),80,25);
         endif;        
       endif;
         $list = $bookmaker;
