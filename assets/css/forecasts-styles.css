@@ -42,7 +42,6 @@
 	padding: .2rem;
 	text-align: center;
 	transition: 0.3s;
-	max-width: 330px;
 }
 
 .game_box:hover{

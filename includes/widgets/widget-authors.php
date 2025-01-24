@@ -34,6 +34,7 @@ class w_authors extends WP_Widget {
                 $rank = $stats["tvalue"];
                 $display_name = get_the_author_meta("display_name", $user->ID );
                 $avatar = aq_resize(get_the_author_meta( 'profile_image',$user->ID ), 45, 45 );
+                if (!$avatar) { $avatar = get_template_directory_uri() . '/assets/img/user-svgrepo-com.svg'; }
                 $key++;
                 $link = get_author_posts_url( $user->ID);
                 $flechita_indicadora = "";
@@ -53,7 +54,7 @@ class w_authors extends WP_Widget {
                         <a href='$link' class='row m-0'>
                             <div class='col-12 py-1'>
                                 <span class='serial'>{$key}</span>
-                                <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain mx-2'>
+                                <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain mx-2 bg-dark'>
                                 <b class='text-truncate text-uppercase text-dark'>$display_name</b>
                             </div>
                             <div class='col-12'>

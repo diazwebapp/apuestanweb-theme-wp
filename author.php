@@ -16,8 +16,8 @@ $geolocation = isset($_SESSION["geolocation"]) ? json_decode($_SESSION["geolocat
 
 $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
 $avatar_url = get_the_author_meta( 'profile_image',$curauth->ID );
-$avatar_url = aq_resize($avatar_url,100,100);
-$avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2.svg';
+$avatar = aq_resize($avatar_url,100,100);
+if (!$avatar) { $avatar = get_template_directory_uri() . '/assets/img/user-svgrepo-com.svg'; }
 
 ///////ESTADISTICAS DEL AUTOR////////
 $stats_vip = get_user_stats($curauth->ID,'=',-1);  
@@ -85,7 +85,7 @@ if (!isset($_GET['page_forecast_free']) &&
                                         <div class="sub-inn">
                                             <div class="sub-bx-lf">
                                                 <div class="subscribe__img">
-                                                    <img src="<?php echo $avatar; ?>" alt="author-image">
+                                                    <img src="<?php echo $avatar; ?>" alt="foto <?php echo $curauth->nickname; ?>" class="bg-dark" width="100" height="100">
                                                 </div>
                                                 <div class="subscribe__icon">
                                                     <!-- <a href="#">facebook</i></a>
