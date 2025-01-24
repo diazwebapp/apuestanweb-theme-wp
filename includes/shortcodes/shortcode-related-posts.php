@@ -37,33 +37,11 @@ function shortcode_news($atts)
     $args['post_status']    = 'publish';
     $args['post_type']      = 'post';
     $args['posts_per_page'] = $num;
-    
-    $league_arr=[];
-    
-    if(is_array($league))
-        foreach ($league as $key => $value) {
-            $league_arr[]= $value->slug ;
-        }
-    if(!is_array($league))
-        $league_arr = explode(',',$league);
-    if($league !== 'all')
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'league',
-                'field' => 'slug',
-                'terms' => $league_arr,
-            ]
-        ];    
-
-        $post_type = get_post_type( );
-        $id_principal = null;
-        if($post_type == "post" and $post_type == "post" and is_single()):
-            $id_principal = get_the_ID();
-        endif;
+     
         
     $query = new WP_Query($args);
     if ($query->have_posts()) {    
-        $ret = "<hr class='mt-4 mb-4'/><section class='row small_gutter'>";
+        $ret = "<hr class='my-4'/><section class='row'>";
         $ret .= $heading;
                     while ($query->have_posts()):
                         $query->the_post();
@@ -75,7 +53,7 @@ function shortcode_news($atts)
                             $ret .= load_template_part("/loop/posts-grid_{$model}");
                         endif;
                     endwhile;
-        $ret .= "</section><hr class='mt-4 mb-4'/>";
+        $ret .= "</section><hr class='my-4'/>";
     
      } else {
         $ret = '<h2>Aún no hay contenido.</h2>';

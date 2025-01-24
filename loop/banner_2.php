@@ -12,7 +12,7 @@ echo "<div class='blog_banner_wrapper'>
                             </div>
                         </div>
                         <div class='col-lg-10'>
-                            <div class='row small_gutter justify-content-center'>
+                            <div class='row justify-content-center'>
                                 <div class='col mt-5'>
                                     <a href='/pronosticos-futbol/' class='blog_banner_box'>    
                                         <div class='blog_banner_img'>

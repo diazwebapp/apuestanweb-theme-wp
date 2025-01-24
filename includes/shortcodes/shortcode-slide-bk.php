@@ -35,7 +35,7 @@ function shortcode_slide_bk($atts)
         $view_params = [];
         $ret =  "<div class='testimonial_area'>
                 <div class='container'>
-                    <div class='row small_gutter'>
+                    <div class='row'>
                         <div class='col-12 text-center pb_30'>
                             <p class='sub_title'> $slogan </p>
                             <h2 class='title_lg mt_5'> $title </h2>
@@ -78,7 +78,7 @@ function shortcode_slide_bk($atts)
             $ret = str_replace("{replace}",$html,$ret);
         endif;
         if($model == 3): 
-            $html =  "<div style='margin:15px auto;' class='container small_gutter'>
+            $html =  "<div style='margin:15px auto;' class='container r'>
                         <div class='row'>";
                         foreach ($new_bks as $keybk => $bookmaker):
                             $view_params['country'] = $aw_system_country;
