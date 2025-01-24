@@ -23,10 +23,13 @@ if (!$avatar) { $avatar = get_template_directory_uri() . '/assets/img/user-svgre
 $stats_vip = get_user_stats($curauth->ID,'=',-1);  
 $stats_free = get_user_stats($curauth->ID,'!=',-1);
 
+
 ///////ESTADISTICAS ULTIMOS 2 MESES/////////
 $num = 3;
 $stats_months_vip_html = '';
 $stats_months_free_html = '';
+
+//var_dump($stats_free);
 for($i=1;$i<$num;$i++){
     $month_first_day = date("Y-m-1", strtotime("-$i month"));
     $month_last_day = date("Y-m-t", strtotime("-$i month"));
