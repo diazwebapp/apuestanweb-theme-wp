@@ -212,11 +212,9 @@ a.btn_2 {
     color: #0558cb;
 }
   .apn-social>a {
-	display: inline-block;
 	height: 40px;
-	line-height: 40px;
+	line-height: 2;
 	width: 40px;
-	font-size: 14px;
 	color: #fff;
 	background-color: #051421;
 	margin: 3px;
