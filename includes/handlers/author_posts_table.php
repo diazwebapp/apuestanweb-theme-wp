@@ -58,19 +58,28 @@ if(!function_exists('generate_table_tr')){
                                 <td>{$status_text}</td>
                             </tr>";
             endif;
-            if($type=='post'):
+            if ($type == 'post') :
                 $title = get_the_title();
-                $date = get_the_date();
+                $date = get_the_date('Y-m-d H:i:s'); // Asegúrate de obtener la fecha en el formato adecuado
                 $datetime = new DateTime($date);
-                $datetime->setTimezone(new DateTimeZone($geolocation->timezone ?? 'UTC'));
+                
+                // Verifica si $geolocation->timezone está configurado correctamente
+                $timezone = $geolocation->timezone ?? 'UTC';
+                try {
+                    $datetime->setTimezone(new DateTimeZone($timezone));
+                } catch (Exception $e) {
+                    $datetime->setTimezone(new DateTimeZone('UTC')); // Usa UTC como fallback
+                }
+            
                 $fulldate = esc_attr($datetime->format("Y-m-d H:i:s"));
-                $fecha =date('d M', strtotime($fulldate));
+                $fecha = date("d M", strtotime($fulldate));
                 $tr_pronosticos_vip .= "<tr>
-                                <td><time datetime='{$fulldate}'>{$fecha}</time></td>
-                                <td>{$title}</td>
-                                <td></td>
-                            </tr>";
+                    <td><time datetime='{$fulldate}'>{$fecha}</time></td>
+                    <td>{$title}</td>
+                    <td></td>
+                </tr>";
             endif;
+            
         endwhile;
         return $tr_pronosticos_vip;
     }
