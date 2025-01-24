@@ -8,7 +8,7 @@ function shortcode_user_stats($atts)
     if($id):
         $display_name = get_the_author_meta("display_name", $id );
         $avatar_url = get_the_author_meta( 'profile_image',$id );
-        $avatar = aq_resize($avatar_url,70,70);
+        $avatar = aq_resize($avatar_url,70,70,true,true,true);
         if (!$avatar) { $avatar = get_template_directory_uri() . '/assets/img/user-svgrepo-com.svg'; }
         
     endif;
@@ -38,7 +38,7 @@ function shortcode_user_stats($atts)
             <div id='profile' class='container tab-pane fade show active' role='tabpanel' aria-labelledby='profile-tab'>
                 <div class='row'>
                     <div class='col-3 image-container'>
-                        <img class='rounded-circle bg-dark' loading='lazy' src='$avatar' width='70px' height='70px' alt='$display_name'>
+                        <img class='rounded-circle bg-dark' loading='lazy' src='$avatar' width='70px' height='70px' alt='foto $display_name'>
                     </div>
                     <div class='col-8'>
                         <span class='user-name'>$display_name</span>
