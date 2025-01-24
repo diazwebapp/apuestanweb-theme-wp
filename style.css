@@ -200,6 +200,37 @@ a.btn_2 {
 	color: #fff;
 }
 
+.apn-social {
+	margin-top: 20px;
+	border: 1px solid #0558cb;
+	border-radius: .5rem;
+	}
+  .apn-social span {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-right: 1rem;
+    color: #0558cb;
+}
+  .apn-social>a {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
+	font-size: 14px;
+	color: #fff;
+	background-color: #051421;
+	margin: 3px;
+	padding: 0px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+	text-align: center;
+	border-radius: 5px;
+
+  }
+  .apn-social>a:hover {
+	background-color: #0558CB;
+	border-radius: 5px;
+  }
 /*Hamburger-menu START CSS*/
 .hamburger-menu {
 	cursor: pointer;
