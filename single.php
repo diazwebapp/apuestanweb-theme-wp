@@ -25,7 +25,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                 $author_name = get_the_author_meta("display_name" );
                                 $author_id =  get_the_author_meta('ID') ;
                                 
-                                $avatar_url = get_the_author_meta( 'profile_image',$curauth->ID );
+                                $avatar_url = get_the_author_meta( 'profile_image',$author_id );
                                 $avatar = aq_resize($avatar_url,40,40,true,true,true);
                                 if (!$avatar) { $avatar = get_template_directory_uri() . '/assets/img/user-svgrepo-com.svg'; }
                             ?>
@@ -57,7 +57,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                                         }
 
                                                     ?>
-                                                <hr class="mt-2 mb-3">
+                                                <hr class="my-3">
                                             </div>
                                         </div>
                                 </section>
@@ -81,7 +81,7 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                     </div>
 
 
-                        <?php echo do_shortcode( "[related_posts model='1' num='4' title='Lee también']" )?>
+                        <?php echo do_shortcode( "[related_posts num='4' title='Lee también']" )?>
                     </div>
 						
                     <div class="col-lg-3">
