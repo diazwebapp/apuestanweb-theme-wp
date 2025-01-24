@@ -25,22 +25,21 @@ $geolocation = json_decode($_SESSION["geolocation"]);
                                 $author_name = get_the_author_meta("display_name" );
                                 $author_id =  get_the_author_meta('ID') ;
                                 
-                                $avatar_url = get_the_author_meta( 'profile_image',$author_id );
-                                $avatar = isset($avatar_url) ? $avatar_url : get_template_directory_uri() . '/assets/img/logo2. svg';
+                                $avatar_url = get_the_author_meta( 'profile_image',$curauth->ID );
+                                $avatar = aq_resize($avatar_url,40,40,true,true,true);
+                                if (!$avatar) { $avatar = get_template_directory_uri() . '/assets/img/user-svgrepo-com.svg'; }
                             ?>
                                     <h1 class="title"><?php echo $title ?></h1>
                                     <section class="post-author-section">
-                                    <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="author-info d-flex align-items-center m-3 mt-4">
-                                        <img width="40" height="40" src="<?php echo $avatar ?>" class="rounded-circle mr-3 mt-3" alt="">
-                                        <div class="author-details d-flex flex-column">
-                                            <span class="text-capitalize mb-1" ><?php the_author_posts_link(); ?></span>
-                                            <time datetime="<?php echo $post_date ?>" class="mb-0"><?php echo __("Publicado: $fecha $hora"); ?></time>
+                                    
+                                        <div class="d-flex align-items-center my-3">
+                                            <img width="40" height="40" src="<?php echo $avatar ?>" class="rounded-circle bg-dark" alt="foto <?php echo $author_name ?>">
+                                            <div class="ml-3">
+                                                <div class="text-capitalize d-block" ><?php the_author_posts_link(); ?></div>
+                                                <time datetime="<?php echo $post_date ?>" ><?php echo __("Publicado: $fecha $hora"); ?></time>
+                                            </div>
                                         </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                                    
 
                                         <div class="row">
                                             <div class="col-sm-12">
