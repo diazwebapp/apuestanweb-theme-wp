@@ -1152,6 +1152,7 @@ footer .menu li a::before{
 	}
 	.menu.current{
 		left: 0;
+		margin-top: 1.7rem;
 	}
 	.hamburger-menu {
 		display: block;
