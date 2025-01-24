@@ -125,9 +125,9 @@
                                     <?php echo do_shortcode("[user_stats]"); ?>
 
                                     <section>    
-                                        <div class="title_wrap single_event_title_wrap">
-                                            <h2 class="title-b mt-5 order-lg-1">Otros pronósticos de <?php echo esc_html($parent_taxonomy['name']); ?></h2>
-                                            <a href="<?php echo esc_url($parent_taxonomy['permalink']); ?>" class="mt-5 dropd order-lg-3">Ver Todo</a>
+                                        <div class="d-flex justify-content-between alig-items-center my-3">
+                                            <h2>Otros pronósticos de <?php echo esc_html($parent_taxonomy['name']); ?></h2>
+                                            <a href="<?php echo esc_url($parent_taxonomy['permalink']); ?>" class="btn">Ver Todo</a>
                                         </div>
                                         <?php echo do_shortcode("[related-forecasts num='6' model='2']"); ?>        
                                     </section>
