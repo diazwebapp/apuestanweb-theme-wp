@@ -55,24 +55,26 @@ function get_user_stats($user_id,$vip=false,$interval_date=["start_date"=>false,
     $forecast_args['author'] = $user_id;
     $forecast_args['post_type'] = 'forecast';
     $forecast_args['posts_per_page'] = $limit;
-        
-    $forecast_args['meta_query']     = [
-        ($vip) ? [
-            'key' => 'vip',
-            'value'=>'yes',
-            'compare' => $vip
-            ] : '',
+      
+    if (isset($vip) && ($vip === 'free' || $vip === 'vip')) {
+        $meta_compare = ($vip === 'free') ? '!=' : '='; // Si es "free", usar '!=', de lo contrario usar '='
+        $forecast_args['meta_query'] = [
+            [
+                'key' => 'vip', 
+                'value' => 'yes',
+                'compare' => $meta_compare, // Operador de comparación
+            ],
             [
                 'key'     => 'data',
                 'value'   => (isset($interval_date["start_date"]) and isset($interval_date["last_date"])) ? [$interval_date["start_date"],$interval_date["last_date"]] : [],
                 'compare' => 'BETWEEN',
                 'type'    => 'DATE'
-            ],
-    ];
-    $cahe_key = md5($user_id);
+            ]
+        ];
+    }
+    
     $user_posts_query = new WP_Query($forecast_args);
-  
-
+    
     if($user_posts_query->have_posts()):
         //Loop de los forecasts del autor
         while($user_posts_query->have_posts()): $user_posts_query->the_post();

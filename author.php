@@ -20,8 +20,8 @@ $avatar = aq_resize($avatar_url,100,100,true,true,true);
 if (!$avatar) { $avatar = get_template_directory_uri() . '/assets/img/user-svgrepo-com.svg'; }
 
 ///////ESTADISTICAS DEL AUTOR////////
-$stats_vip = get_user_stats($curauth->ID,'=',-1);  
-$stats_free = get_user_stats($curauth->ID,'!=',-1);
+$stats_vip = get_user_stats($curauth->ID,'vip',-1);  
+$stats_free = get_user_stats($curauth->ID,'free',-1);
 
 
 ///////ESTADISTICAS ULTIMOS 2 MESES/////////
@@ -29,13 +29,13 @@ $num = 3;
 $stats_months_vip_html = '';
 $stats_months_free_html = '';
 
-//var_dump($stats_free);
+
 for($i=1;$i<$num;$i++){
     $month_first_day = date("Y-m-1", strtotime("-$i month"));
     $month_last_day = date("Y-m-t", strtotime("-$i month"));
 
-    $stats_months_vip = get_user_stats($curauth->ID,'=',["start_date"=>$month_first_day,"last_date"=>$month_last_day]);
-    $stats_months_free = get_user_stats($curauth->ID,'!=',["start_date"=>$month_first_day,"last_date"=>$month_last_day]);
+    $stats_months_vip = get_user_stats($curauth->ID,'vip',["start_date"=>$month_first_day,"last_date"=>$month_last_day]);
+    $stats_months_free = get_user_stats($curauth->ID,'free',["start_date"=>$month_first_day,"last_date"=>$month_last_day]);
     $stats_months_vip_html .= '<div class="restad__tabl--mid">
                         <p>'.date("M", strtotime("-$i month")).'</p>
                         <p>'.$stats_months_vip["total"].'</p>
