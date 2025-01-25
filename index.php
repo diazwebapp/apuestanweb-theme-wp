@@ -37,7 +37,7 @@ get_header();
     </div>
     <div class="blog_box_wrapper">
         <div class="container">
-            <?php echo do_shortcode("[blog model='1' paginate='yes']"); ?>
+            <?php echo do_shortcode("[blog paginate='yes']"); ?>
         </div>
     </div>
 </main>

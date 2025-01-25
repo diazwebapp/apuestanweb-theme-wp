@@ -23,7 +23,7 @@ echo '<div class="col-lg-3 col-sm-6 my-2" >
                 
             </div>
             <div class="media-body pl-2">
-                <b>'.$title.'</b>
+                <b class="text-dark" >'.$title.'</b>
             </div>
         </a>
 
