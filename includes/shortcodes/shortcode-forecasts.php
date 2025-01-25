@@ -134,7 +134,7 @@ function shortcode_forecast($atts)
     }
 
     $loop_html = '';
-    $ret .= "<div class='$home_class' id='games_list'>{replace_loop}</div>";
+    $ret .= "<section class='$home_class' id='games_list'>{replace_loop}</section>";
     $data_json = json_decode($query);
 
     // Verificar si los datos fueron decodificados correctamente

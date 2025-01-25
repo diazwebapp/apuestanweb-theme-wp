@@ -29,7 +29,7 @@ if ($teams['team1'] && $teams['team2']){
     
     $new_html='
     <article>
-        <a href="'.$permalink.'" class="row border rounded align-items-center py-2 mx-1 mb-2 text-center">
+        <a href="'.$permalink.'" class="row border rounded align-items-center py-2 mx-1 mb-2 text-center" title="Leer mas sobre '.$teams['team1']['name'].' vs '.$teams['team2']['name'].'">
             
             <div class="d-none d-sm-block col-sm-2 col-md-1">
                 <b class="text-dark">'.$sport['name'].'</b>

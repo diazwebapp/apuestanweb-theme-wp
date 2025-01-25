@@ -21,7 +21,7 @@ echo "
             <img width='320' height='180' alt='$title' loading='lazy' src='$thumbnail_url'>
         </header>
         <div class='desc_box border px-1' >
-            <a href='$permalink' class='text-dark font-weight-bold'>$title</a>
+            <a href='$permalink' title='Leer mas sobre $title' class='text-dark font-weight-bold'>$title</a>
         </div>
     
     </article>

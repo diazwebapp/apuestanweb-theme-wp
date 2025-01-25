@@ -88,7 +88,7 @@ function shortcode_parley($atts)
         $query = wp_remote_retrieve_body($response);
         $data_json = json_decode($query);
         $loop_html = '';
-        $ret .="<div id='games_list' >{replace_loop}</div>";
+        $ret .="<section id='games_list' >{replace_loop}</section>";
         $data_json = json_decode($query);
         
         $loop_html = $data_json->html;

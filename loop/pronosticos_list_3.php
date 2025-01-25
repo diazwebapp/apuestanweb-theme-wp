@@ -76,11 +76,11 @@ endif;
 
     
     
-    $html_free =  "<div class='col-12 col-md-6 mb-1 fmodel-3'>
+    $html_free =  "<article class='col-12 col-md-6 mb-1 fmodel-3'>
                 
                 <div class='border rounded'>
                    
-                        <div class='event2_top_box_wrapper text-center py-3 px-2 rounded'>
+                        <header class='event2_top_box_wrapper text-center py-3 px-2 rounded'>
                             <div class='row mx-auto align-items-center justify-content-center'>
                                 <div class='col-3 p-0'>
                                     <img src='{$teams['team1']['logo']}' width='60' height='60' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='bg-light rounded-circle p-1'>
@@ -94,12 +94,12 @@ endif;
                                     <img src='{$teams['team2']['logo']}' width='60' height='60' alt='{$teams['team2']['name']}' title='{$teams['team2']['name']}' class='bg-light rounded-circle p-1' >
                                 </div>
                                 <div class='col-12'>
-                                    <a href='$permalink' class='text-light'>                               
+                                    <a href='$permalink' class='text-light' title='Leer mas sobre {$teams['team1']['name']} vs {$teams['team2']['name']}'>                               
                                     {$teams['team1']['name']} vs {$teams['team2']['name']}                              
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </header>
                     
                         <div class='event2_box_middle_content'>
                             <div class='w-100 text-center'>$estrellas</div>
@@ -110,18 +110,18 @@ endif;
                                 <strong class='col-10 text-right'>{$bookmaker['bonus_slogan']}</strong>
                             </div>
                             <div class='row mt-3'>
-                                <div class='col-6 text-right'>
-                                    <a href='{$bookmaker['ref_link']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
+                                <div class='col-6 text-right' >
+                                    <a href='{$bookmaker['ref_link']}' title='Apuesta con {$bookmaker['name']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
                                         <img src='{$bookmaker["logo_2x1"]}' width='80' height='25' style='object-fit:contain;' alt='logo casa de apuesta' >
                                     </a>
                                 </div>
                                 <div class='col-6 text-start'>
-                                    <a href='{$bookmaker['ref_link']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
+                                    <a href='{$bookmaker['ref_link']}' title='Apuesta con {$bookmaker['name']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
                                 </div>
                             </div>
                         </div>
                    </div>
-            </div>";
+            </article>";
             
                 
 

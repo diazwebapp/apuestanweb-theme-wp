@@ -9,7 +9,7 @@ function shortcode_blog($atts) {
     ], $atts);
 
     // Generar el HTML base
-    $html = '<div class="w-100 mx-auto mt-3">
+    $html = '<section class="w-100 mx-auto mt-3">
                 <div class="row" id="blog_posts_container">
                     {posts}
                 </div>
@@ -18,7 +18,7 @@ function shortcode_blog($atts) {
                        {paginate}
                     </ul>
                 </div>
-            </div>';
+            </section>';
 
     // Realizar la consulta personalizada de posts
     $query = aw_custom_posts_query('post', $atts['num'], $atts['leagues'], 'page_post');

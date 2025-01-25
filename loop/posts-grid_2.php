@@ -20,7 +20,7 @@ echo '<article class="col-lg-3 col-sm-6 my-2" >
             <img width="120" height="120" loading="lazy" style="object-fit:cover;border-radius:5px;" class="align-self-center mr-1" src="'.$thumbnail_url.'"  alt="'.$title.'"> 
         
             <div>
-                <a href="'.$permalink.'">
+                <a href="'.$permalink.'" title="Leer mas sobre '.$title.'">
                     <h5 style="font-size:1rem;" class="text-dark pl-2" >'.$title.'</h5>
                 </a> 
             </div> 

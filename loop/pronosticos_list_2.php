@@ -29,7 +29,7 @@ $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
 
-$vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1'>
+$vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1' title='Apuesta con {$bookmaker['name']}'>
                         <img src='{$bookmaker['logo_2x1']}' width='80' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
                         <p class='text-secondary'>Haz una apuesta</p>
                     </a>";
@@ -87,7 +87,7 @@ endif;
                         ".(isset($sport->icon_html) ? $sport->icon_html : '')." 
                     </div>
                 </header>
-                <a href='$permalink'  >
+                <a href='$permalink' title='Leer mas sobre {$teams['team1']['name']} vs {$teams['team2']['name']}' >
                     <div class='d-flex align-items-center justify-content-between text-center my-3'>
                         <img width='40px' height='40px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                         <div class='full-date text-dark'>
