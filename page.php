@@ -39,7 +39,7 @@ endif;
                         $content = str_replace(']]>', ']]>', $content);
                         $formatted_content = do_shortcode($content);
                         if(!$disable_title):
-                            if ( (!$banner_top || $banner_top == 'yes') ):
+                            if ( !$banner_top || $banner_top == 'yes' ):
                                 echo "<h1 class='title mt-4 mb-4 order-lg-1'>".(!empty($custom_h1) ? $custom_h1 : get_the_title(get_the_ID()))."</h1>";
                             endif;
                         endif;
