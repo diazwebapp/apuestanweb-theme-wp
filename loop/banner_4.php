@@ -5,7 +5,7 @@ $params = get_query_var('params');
 $text = !empty($params['text']) ? $params['text'] : 'Disfruta del contenido Premium';
 $text_vip_link = !empty($params['text_vip_link']) ? $params['text_vip_link'] : 'VIP';
 
-echo "<div class='event_area'>
+echo "<div >
         <div class='container'>
             <div class='row align-items-center'>
             <div class='col-lg-8 mt-3'>   
