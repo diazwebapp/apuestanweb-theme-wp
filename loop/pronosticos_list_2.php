@@ -75,7 +75,7 @@ if($params['time_format']  == 'count'):
                         </div>";
 endif; 
 
-    echo "<div class='col-sm-6 col-md-4 mb-2 p-sm-1'>
+    echo "<article class='col-sm-6 col-md-4 mb-2 p-sm-1'>
         
              <div class='game_box py-3 px-sm-1'>
                 <div class='game_top'>
@@ -100,5 +100,5 @@ endif;
             </a>
                 {$vipcomponent}
             </div>
-    </div>"; 
+    </article>"; 
 

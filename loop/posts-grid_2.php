@@ -15,16 +15,16 @@ if(count($leagues) > 0):
     endforeach;
 endif;
 
-echo '<div class="col-lg-3 col-sm-6 my-2" >
+echo '<article class="col-lg-3 col-sm-6 my-2" >
 
         <a class="media align-items-center" href="'.$permalink.'">
-            <div>
+            <header>
                 <img width="120" height="120" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
                 
-            </div>
+            </header>
             <div class="media-body pl-2">
                 <b class="text-dark" >'.$title.'</b>
             </div>
         </a>
 
-    </div>'; 
+    </article>'; 

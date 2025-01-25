@@ -30,7 +30,7 @@ body {
 }
 html { scroll-behavior: smooth; }
 
-header *, footer *:not(.myselect,.myselect option){
+body > header *, body > footer *:not(.myselect,.myselect option){
 	color: #ffffffed ;
 }
 p{color:var(--text-color)}
@@ -290,7 +290,7 @@ a.btn_2 {
 	display: block;
 	max-width: 18.3rem;
 }
-header {
+body > header {
 	width: 100%;
 	background-color: #051421;
 }
@@ -407,7 +407,7 @@ header {
 	background-color: rgba(255, 255, 255, 0.856);
 }
 /*footer area*/
-footer{
+body > footer{
 	background: linear-gradient(82deg, #0C1429 0%, var(--text-color) 100%);
 	color: #abaeb1;
 }
@@ -418,10 +418,10 @@ footer{
     padding: 1rem;
 
 }
-footer .menu li a{
+body > footer .menu li a{
 	line-height: 1;
 }
-footer .menu li a::before{
+body > footer .menu li a::before{
 	display: none;
 }
 .pagination_list{
@@ -1092,7 +1092,7 @@ footer .menu li a::before{
 	.container{
 		max-width: 880px !important;
 	}
-	header {
+	body > header {
 		display: flex;
 		align-items: center;
 	}
