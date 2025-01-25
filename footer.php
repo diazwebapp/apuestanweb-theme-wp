@@ -5,7 +5,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 <footer class="footer mt-3">
 <div class="container">
             <div class="row align-items-center form-row py-5">
-                <div class="col-lg-2 col-6 ">
+                <span class="col-lg-2 col-6 ">
                 <?php if ( carbon_get_theme_option( 'logo' ) )
 					$logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
 				?>
@@ -14,10 +14,10 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                         <img src="<?php echo $logo; ?>" class="img-fluid" width="183" height="19" alt="Apuestanweb">
                     </a>
                     <!--logo end-->
-                </div>
-                <div class="col-lg-7 d-none d-lg-block ">
+                </span>
+                <span class="col-lg-7 d-none d-lg-block ">
                     <!--menu start-->
-                    <ul class="menu text-uppercase" >
+                    <ul style="list-style-type: none; display:inline" class="menu text-uppercase" >
                         <?php
                             $ret = strip_tags( wp_nav_menu( array(
                                 'theme_location' => 'footer',
@@ -32,11 +32,11 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                          ?>
                     </ul>
                     <!--menu end-->
-                </div>
+                </span>
                 <!--RRSS-->
                 <?php
                 echo get_option('tl');
-                echo '<div class="col-lg-3 col-6  text-right"> 
+                echo '<span class="col-lg-3 col-6  text-right"> 
                     <div class="social_icons">
                             <a href="'.tl.'" aria-label="follow us on telegram" rel="nofollow noreferrer noopener" target="_blank">
                                  <i><?xml version="1.0" encoding="utf-8"?>
@@ -64,7 +64,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
 </svg></i>
                             </a>
                     </div>
-                </div>'
+                </span>'
                 ?>
                 <div class="col-12 text-center my-3">   
                     

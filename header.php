@@ -11,13 +11,13 @@
 <header class="sticky-top py-1">
 <div class="container">
     <div class="row align-items-center form-row">
-        <div class="col-6 logo_col col-lg-2">
+        <span class="col-6 logo_col col-lg-2">
             <!-- menu toggler -->
-            <div class="hamburger-menu">
+            <span class="hamburger-menu">
                 <span class="line-top"></span>
                 <span class="line-center"></span>
                 <span class="line-bottom"></span>
-            </div>
+            </span>
             <!--logo start-->
             <?php if ( carbon_get_theme_option( 'logo' ) ):
                     $logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
@@ -28,11 +28,11 @@
             <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" width="183" height="19" alt="apuestan logo" src="<?php echo $logo; ?>"></a>
             <!--logo end-->
             
-        </div>
+        </span>
         
-        <div class="col-3 col-lg-8">
+        <span class="col-3 col-lg-8">
             <!--menu start-->
-            <ul class="menu text-uppercase">                    
+            <ul style="list-style-type: none; display:inline" class="menu text-uppercase">                    
             <?php
                 
                 $ret = strip_tags( wp_nav_menu( array(
@@ -46,10 +46,11 @@
                 endif;
                 
             ?>
-            </ul> <!--menu end-->
-        </div> 
+            </ul> 
+            <!--menu end-->
+        </span> 
 
-        <div class="col-3 col-lg-2 d-flex justify-content-end py-2">
+        <span class="col-3 col-lg-2 d-flex justify-content-end py-2">
                 
             <button id="open-search-modal" class="headerbtnsearch rounded py-1 px-2" aria-label="Buscar pronosticos">
                 <svg width="30px" height="30px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +59,7 @@
                 </svg>
             </button>
                 
-        </div>  
+        </span>  
     </div>
 </div>
 </header>
