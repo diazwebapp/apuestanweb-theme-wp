@@ -81,8 +81,8 @@ class w_bookmakers extends WP_Widget{
                                 <b class="text-warning" >★</b>
                             </div>
                             <div class="my-2 col-12">
-                                <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary btn-sm">Revision</a>
-                                <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary btn-sm">Apostar</a>
+                                <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary btn-sm" title="Conoce mas de '.$bookmaker->post_title.'">Revision</a>
+                                <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary btn-sm" title="Apostar con '.$bookmaker->post_title.'">Apostar</a>
                             </div>
                         </div>
                     </div>';

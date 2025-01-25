@@ -52,7 +52,7 @@ class w_authors extends WP_Widget {
                     $flechita_indicadora = $flechita_down;
                 endif;
                 echo "<div class='top_box mb-2 py-2'>
-                        <a href='$link' class='row m-0'>
+                        <a href='$link' class='row m-0' title='Conoce a $display_name'>
                             <div class='col-12 py-1'>
                                 <span class='serial'>{$key}</span>
                                 <img width='40' height='40' src='$avatar' class='rounded-circle object-fit-contain mx-2 bg-dark'>
