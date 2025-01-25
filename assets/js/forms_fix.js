@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
           method: 'POST',
           body: formData
       })
-      .then(response => response.json())
+      .then(response => response.text())
       .then(data => {
         
           if (data===0) {
