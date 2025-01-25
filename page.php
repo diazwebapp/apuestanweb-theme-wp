@@ -34,37 +34,23 @@ endif;
                 <?php if (!$disable_sidebar || $disable_sidebar == 'no') echo '<section class="col-lg-9 mt-3">'; ?>
                     
                     <?php 
-                        if (have_posts()): the_post();
-                        $content = get_the_content(get_the_ID()); 
-                        $content = str_replace(']]>', ']]>', $content);
-                        $formatted_content = do_shortcode($content);
-                        if(!$disable_title):
-                            if ( !$banner_top || $banner_top == 'yes' ):
-                                echo "<h1 class='title mt-4 mb-4 order-lg-1'>".(!empty($custom_h1) ? $custom_h1 : get_the_title(get_the_ID()))."</h1>";
-                            endif;
+                        if (have_posts()):
+                            while(have_posts()):the_post();
+                                $content = get_the_content(get_the_ID()); 
+                                //$content = str_replace(']]>', ']]>', $content);
+                                $formatted_content = do_shortcode($content);
+                                if(!$disable_title):
+                                    if ( !$banner_top || $banner_top == 'yes' ):
+                                        echo "<h1 class='title mt-4 mb-4 order-lg-1'>".(!empty($custom_h1) ? $custom_h1 : get_the_title(get_the_ID()))."</h1>";
+                                    endif;
+                                endif;
+                                ?>
+                                <section class='page_content text-break'><?php the_content(); ?></section>
+                                
+                        <?php
+                            endwhile;
                         endif;
-
-                            echo "<section class='page_content text-break'>
-                                    $formatted_content
-                                </section>";
-                            endif; 
-                         if (!$disable_table):
-                            echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' >
-                                    Tabla de Contenido
-                                    <i class='fas fa-angle-down'></i>
-                                </button>
-
-                                <!-- Add the table of contents -->
-                                <div class='collapse' id='table-of-contents'>
-                                    <div class='card mt-3'>
-                                        <div class='card-header'>
-                                            <b>Tabla de Contenido</b>
-                                        </div>
-                                        <ul class='list-group list-group-flush'>
-                                        </ul>
-                                    </div>
-                                </div>";
-                            endif;
+                        
                         if ($faq_area):
                             echo "<section class='single_event_content mb-5 text-break'>
                                 <div class='row'>
@@ -73,7 +59,7 @@ endif;
                                     </div>
                                 </div>
                             </section>";
-                        endif;
+                    endif;
                     ?>
 
                 <?php if (!$disable_sidebar || $disable_sidebar == 'no') echo '</section>'; ?>
