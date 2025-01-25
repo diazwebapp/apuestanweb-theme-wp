@@ -15,7 +15,7 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     </a>
                     <!--logo end-->
                 </span>
-                <span class="col-lg-7 d-none d-lg-block ">
+                <span class="col-lg-7 d-none d-lg-block text-center">
                     <!--menu start-->
                     <ul style="list-style-type: none; display:inline" class="menu text-uppercase" >
                         <?php

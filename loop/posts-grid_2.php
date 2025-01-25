@@ -16,15 +16,13 @@ if(count($leagues) > 0):
 endif;
 
 echo '<article class="col-lg-3 col-sm-6 my-2" >
-
-        <a class="media align-items-center" href="'.$permalink.'">
-            <header>
-                <img width="120" height="120" loading="lazy" style="object-fit:cover;border-radius:5px;" src="'.$thumbnail_url.'"  alt="'.$title.'">
-                
-            </header>
-            <div class="media-body pl-2">
-                <b class="text-dark" >'.$title.'</b>
-            </div>
-        </a>
-
+        <header class="d-flex align-items-center">
+            <img width="120" height="120" loading="lazy" style="object-fit:cover;border-radius:5px;" class="align-self-center mr-1" src="'.$thumbnail_url.'"  alt="'.$title.'"> 
+        
+            <div>
+                <a href="'.$permalink.'">
+                    <h5 style="font-size:1rem;" class="text-dark pl-2" >'.$title.'</h5>
+                </a> 
+            </div> 
+        </header>
     </article>'; 
