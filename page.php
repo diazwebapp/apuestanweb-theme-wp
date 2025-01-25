@@ -48,7 +48,7 @@ endif;
                                     $formatted_content
                                 </section>";
                             endif; 
-                         if ($disable_table):
+                         if (!$disable_table):
                             echo "<button class='btn btn-primary' type='button' data-toggle='collapse' data-target='#table-of-contents' aria-expanded='false' aria-controls='table-of-contents' >
                                     Tabla de Contenido
                                     <i class='fas fa-angle-down'></i>
