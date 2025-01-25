@@ -35,18 +35,18 @@ $estado_usuario = "permitido";
     endif;
 //Componente si es vip
 $vipcomponent ="<div class='plogo'>
-                    <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
+                    <img loading='lazy' src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                 </div>
-                    <a href='{$params['vip_link']}'><p>{$params['text_vip_link']}</p></a>
+                    <a href='{$params['vip_link']}' title='Sé ApuestanPlus'><p>{$params['text_vip_link']}</p></a>
                 <div class='rate'>?</div>";
 if(!$vip or $estado_usuario=='permitido'):
     $oOddsConverter = new Converter($prediction['cuote'], 'eu');
     $odds_result = $oOddsConverter->doConverting();
     $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
     $vipcomponent ="<div class='plogo'>
-                        <img src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
+                        <img loading='lazy' src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                     </div>
-                        <a href='$permalink'><p>{$prediction['title']}</p></a>
+                        <a href='$permalink' title='Apuesta con {$bookmaker['name']}' >{$prediction['title']}</a>
                     <div class='rate'>{$prediction['cuote']}</div>";
 endif;
 //leagues
@@ -78,13 +78,13 @@ echo "<div class='prediction_box'>
 
             <div class='d-flex align-items-center justify-content-between mt_15'>
                 <div class='media align-items-center'>
-                    <img width='70' height='70' src='{$teams['team1']['logo']}' class='mr_45' alt='{$teams['team1']['name']}'>
+                    <img loading='lazy' width='70' height='70' src='{$teams['team1']['logo']}' class='mr_45' alt='{$teams['team1']['name']}'>
                 </div> 
                 <div>
                     <p style='margin:0 5px;'>{$teams['team1']['acronimo']} vs {$teams['team2']['name']}</p> 
                 </div>                               
                 <div class='media align-items-center'>
-                    <img width='70' height='70' src='{$teams['team2']['logo']}' class='ml_45' alt='{$teams['team2']['name']}'>
+                    <img loading='lazy' width='70' height='70' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
             </div>
             <div class='rate_box'>
