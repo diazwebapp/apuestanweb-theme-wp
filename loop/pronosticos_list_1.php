@@ -27,8 +27,10 @@ $teams = get_forecast_teams($args["forecast"]->ID);
 
 if ($teams['team1'] && $teams['team2']){  
     
-    $new_html='<a href="'.$permalink.'" >
-    <div class="row border rounded align-items-center py-2 mx-1 mb-2 text-center">
+    $new_html='
+    <article>
+        <a href="'.$permalink.'" class="row border rounded align-items-center py-2 mx-1 mb-2 text-center">
+            
             <div class="d-none d-sm-block col-sm-2 col-md-1">
                 <b class="text-dark">'.$sport['name'].'</b>
             </div>
@@ -36,15 +38,15 @@ if ($teams['team1'] && $teams['team2']){
                 <img width="36" height="36" src="'.$teams['team1']['logo'].'" alt="'.$teams['team1']['name'].'">
             </div>
             <div class="col-6 col-sm-4 col-md-6 text-truncate">
-                <h3 style="font-size:1.1rem !important;" class="d-none d-md-block mb-0">'.$teams['team1']['name'].' vs '.$teams['team2']['name'].'</h3>
+                <h5 style="font-size:1.1rem !important;" class="d-none d-md-block mb-0">'.$teams['team1']['name'].' vs '.$teams['team2']['name'].'</h5>
 
-            <h3 style="font-size:1.1rem !important;" class="d-md-none mb-0">'.$teams['team1']['acronimo'] .' vs '. $teams['team2']['acronimo'].'</h3></div>
-             
+                <h5 style="font-size:1.1rem !important;" class="d-md-none mb-0">'.$teams['team1']['acronimo'] .' vs '. $teams['team2']['acronimo'].'</h5>
+            </div>
             <div class="col-3 col-sm-1">
                 <img width="36" height="36" src="'.$teams['team2']['logo'].'" alt="'.$teams['team2']['name'].'">
             </div>
             
- 
+
             <div class="col-12 col-sm-4 col-md-3 date_item_pronostico_top">  
                 
                 <input type="hidden" id="date" value="'.$date->format('Y-m-d G:i:s').'" />
@@ -54,7 +56,9 @@ if ($teams['team1'] && $teams['team2']){
                 <b id="date_segundos"></b>
             
             </div>
-    </div>
-    </a>';
+           
+        </a>
+    </article>
+    ';
     echo $new_html;
 } 

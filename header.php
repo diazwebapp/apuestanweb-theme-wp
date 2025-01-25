@@ -30,7 +30,7 @@
             
         </span>
         
-        <span class="col-3 col-lg-8">
+        <span class="col-3 col-lg-8 text-center">
             <!--menu start-->
             <ul style="list-style-type: none; display:inline" class="menu text-uppercase">                    
             <?php

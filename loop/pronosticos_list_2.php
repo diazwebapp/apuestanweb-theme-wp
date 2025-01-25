@@ -78,7 +78,7 @@ endif;
     echo "<article class='col-sm-6 col-md-4 mb-2 p-sm-1'>
         
              <div class='game_box py-3 px-sm-1'>
-                <div class='game_top'>
+                <header class='game_top'>
                     <div class='d-flex align-items-center text-dark'>
                         ".(isset($league->icon_html) ? $league->icon_html:'')." 
                         ".(isset($league->name) ? $league->name:'')."
@@ -86,18 +86,18 @@ endif;
                     <div class='d-flex align-items-center text-dark'>
                         ".(isset($sport->icon_html) ? $sport->icon_html : '')." 
                     </div>
-                </div>
+                </header>
                 <a href='$permalink'  >
-                <div class='d-flex align-items-center justify-content-between text-center my-3'>
-                    <img width='40px' height='40px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
-                    <div class='full-date text-dark'>
-                        $time_format_html
-                        <time class='text-dark' datetime='".$date->format('Y-m-d H:i:s')."'>".$formatted_date."</time>
+                    <div class='d-flex align-items-center justify-content-between text-center my-3'>
+                        <img width='40px' height='40px' loading='lazy' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
+                        <div class='full-date text-dark'>
+                            $time_format_html
+                            <time class='text-dark' datetime='".$date->format('Y-m-d H:i:s')."'>".$formatted_date."</time>
+                        </div>
+                        <img width='40px' height='40px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                     </div>
-                    <img width='40px' height='40px' loading='lazy' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
-                </div>
-                <p class='team_text text-dark'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
-            </a>
+                    <p class='team_text text-dark'>{$teams['team1']['name'] } - {$teams['team2']['name']}</p>
+                </a>
                 {$vipcomponent}
             </div>
     </article>"; 
