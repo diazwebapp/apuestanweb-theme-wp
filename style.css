@@ -612,14 +612,6 @@ footer .menu li a::before{
 	margin: 0 0 10px;
 	list-style: inherit;
 }
-.page_content > ul > li::marker{
-	
-    content: "\f058"; /* Código de icono de lupa en Font Awesome */
-	font-family: "Font Awesome 5 Pro";
-    color: #09b448; /* Color del icono */
-
-}
-
 
 .page_content > ol{
 	list-style-type: decimal;

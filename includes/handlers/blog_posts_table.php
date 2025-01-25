@@ -85,11 +85,10 @@ function aw_custom_pagination($query, $page_param) {
     ));
     $pagination_html = '';
     if (is_array($pagination_links)) { 
-        $pagination_html = '<ul class="pagination_list" id="blog_pagination_list">'; 
+        
         foreach ($pagination_links as $page_link) { 
             $pagination_html .= '<li>' . $page_link . '</li>'; 
-        } 
-        $pagination_html .= '</ul>';  
+        }  
     }
     return $pagination_html; 
 }

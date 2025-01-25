@@ -19,21 +19,16 @@ $logo = get_template_directory_uri() . '/assets/img/logo.svg';
                     <!--menu start-->
                     <ul class="menu text-uppercase" >
                         <?php
-                        
-                            if ( get_key() ):
-                                $ret = strip_tags( wp_nav_menu( array(
-                                    'theme_location' => 'footer',
-                                    'echo'           => false
-                                ) ), '<li><a>' );
-                                if ( $ret ):
-                                    echo $ret;
-                                else:
-                                    echo "";
-                                endif;
+                            $ret = strip_tags( wp_nav_menu( array(
+                                'theme_location' => 'footer',
+                                'echo'           => false
+                            ) ), '<li><a>' );
+                            if ( $ret ):
+                                echo $ret;
                             else:
-                                echo notice();
+                                echo "";
                             endif;
-                         // echo apply_filters( 'the_content', carbon_get_theme_option( 'pod_logo' ) ); 
+                           
                          ?>
                     </ul>
                     <!--menu end-->

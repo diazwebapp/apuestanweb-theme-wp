@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tocList = document.querySelector("#table-of-contents .list-group");
     const dropdowns = document.querySelectorAll('.dropdown-toggle');
     const nav_tabs = document.querySelectorAll('.nav-tabs');
-    const btnQuitarNotificaciones = document.querySelector('p#btn_quitar_notificaciones');
     const modalAgeTerms = document.getElementById('modal_age_terms');
     let select_odds = document.querySelector('select#select_odds_format');
     
@@ -65,12 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Hamburger menu functionality
+  
     if (hamburgerMenu) {
         hamburgerMenu.addEventListener('click', () => {
-            ['line-top', 'line-center', 'line-bottom'].forEach(className => {
-                const line = document.querySelector(`.hamburger-menu .${className}`);
-                if (line) line.classList.toggle('current');
-            });
+            const lines = hamburgerMenu.querySelectorAll(`span`);
+            if (lines.length > 0){
+                lines.forEach(line =>{line.classList.toggle('current')})
+            }        
             if (menu) menu.classList.toggle('current');
         });
     }

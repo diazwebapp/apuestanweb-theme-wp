@@ -110,10 +110,7 @@ function my_theme_setup()
     
 }
 add_image_size('120x70',120,70,true);
-function get_key()
-{
-     return true;
-}
+
 //insertar img destacada en feeds
 /* function insert_featured_image_in_feed( $content ) {
     global $post;
@@ -133,11 +130,6 @@ function load_template_part($template_name, $part_name = null, $args=false)
     ob_end_clean();
 
     return $var;
-}
-add_filter('wp_get_attachment_image_attributes', 'add_lazy_loading_to_images'); 
-
-function add_lazy_loading_to_images($attr) { 
-    $attr['loading'] = 'lazy'; return $attr; 
 }
 
 function disable_all_styles() { 
@@ -166,9 +158,11 @@ function jbetting_src()
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/css/bootstrap.min.css', array(), '4.2.1');
     wp_enqueue_style('main-css', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory() . '/style.css'));
     wp_enqueue_script('main-js', get_template_directory_uri() . '/assets/js/optimized_main.js', array(), '1.0.0', true);
-    wp_localize_script('main-js', 'frontendajax', array('url' => admin_url('admin-ajax.php')));
-    //wp_enqueue_style('main-css', get_stylesheet_uri());
-    add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
+    wp_localize_script('main-js', 'frontendajax', array('url' => admin_url('admin-ajax.php')));   
+
+}
+//wp_enqueue_style('main-css', get_stylesheet_uri());
+    //add_filter('style_loader_tag', 'añadir_atributos_criticos', 10, 2);
     
     //wp_enqueue_script('bootstrap-js', get_template_directory_uri() . '/assets/bootstrap-4.2.1-dist/js/bootstrap.min.js', ['jquery'], '4.2.1', true);
     // DESCOMENTAR DESPUES DEL DESARROLLO
@@ -182,10 +176,6 @@ function jbetting_src()
     //wp_localize_script('noti-js','dcms_vars',['ajaxurl'=>admin_url('admin-ajax.php')]);
    //wp_enqueue_script('custom-search', get_template_directory_uri() . '/assets/js/custom-search.js', array('jquery'), null, true);
    // Variables que se pasan a script.js con wp_localize_script
-   
-
-}
-
 function añadir_atributos_criticos($html, $handle) {
     if ('bootstrap' === $handle) {
         return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
@@ -223,17 +213,6 @@ function draw_rating($rating) {
     }
     return $ret;
 }
-
-function tg_remove_empty_paragraph_tags_from_shortcodes_wordpress( $content ) {
-    $toFix = array( 
-        '<p>['    => '[', 
-        ']</p>'   => ']', 
-        ']<br />' => ']'
-    ); 
-    return strtr( $content, $toFix );
-}
-add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordpress' );
-
 
 // active code menu
     function active_menu( $classes, $item ) {
@@ -297,26 +276,14 @@ function aw_actions_after_register_user( $user_id ) {
     add_filter( "wp_mail_content_type", "tipo_de_contenido_html" );
     wp_mail($memberInfo->user_email,"Apuestan registration user: $memberInfo->user_login" ,$body,$headers);
 }
+  
 
-
-function user_rss( $contact_methods ) {
-    // Añade el campo de Twitter
-    $contact_methods['twitter'] = 'Twitter Username';
-    // Añade el campo de Facebook
-    $contact_methods['facebook'] = 'Facebook URL';
-    // Añade el campo de Instagram
-    $contact_methods['instagram'] = 'Instagram URL';
-    // Devuelve los campos de contacto modificados
-    return $contact_methods;
-  }
-  add_filter( 'user_contactmethods', 'user_rss' );  
-
-  function crb_modify_association_field_query_args( $args, $name ) {
+/* function crb_modify_association_field_query_args( $args, $name ) {
     $args['orderby'] = 'date';
     $args['order'] = 'DESC';
     return $args;
 }
-add_filter( 'carbon_fields_association_field_options_forecasts_post_post', 'crb_modify_association_field_query_args', 10, 2 );
+add_filter( 'carbon_fields_association_field_options_forecasts_post_post', 'crb_modify_association_field_query_args', 10, 2 ); */
 
 
   function crb_modify_association_field_title( $title, $name, $id, $type, $subtype ) {
@@ -355,36 +322,6 @@ function initCors( $value ) {
 	add_filter( 'rest_pre_serve_request', "initCors");
 }, 15 );
 
-
-//////////////////////// Estructura de enlaces
-
-/* function custom_permalink_structure($permalink, $post_id, $leavename) {
-    $post = get_post($post_id);
-    $post_date = strtotime($post->post_date);
-    $change_date = strtotime('2023-04-24'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
-
-    if ($post_date < $change_date) {
-        // Estructura de enlace permanente antigua.
-        $permalink = home_url(date('/Y/m/d/', $post_date) . $post->post_name . '/');
-    }
-    return $permalink;
-}
-add_filter('post_link', 'custom_permalink_structure', 10, 3);
-
-function custom_rewrite_rules() {
-    add_rewrite_tag('%custom_post_date%', '([0-9]{4}/[0-9]{2}/[0-9]{2})');
-    add_rewrite_rule('^([0-9]{4}/[0-9]{2}/[0-9]{2})/([^/]+)/?$', 'index.php?custom_post_date=$matches[1]&name=$matches[2]', 'top');
-}
-add_action('init', 'custom_rewrite_rules'); */
-
-/* function custom_query_vars($query_vars) {
-    $query_vars[] = 'custom_post_date';
-    return $query_vars;
-}
-add_filter('query_vars', 'custom_query_vars'); */
-
-
-/* 
 function custom_yoast_breadcrumb_links( $links ) {
     if ( is_single() ) {
         global $post;
@@ -412,9 +349,169 @@ function custom_yoast_breadcrumb_links( $links ) {
     return $links;
 }
 add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
-*/
 
-/* function category_summary_shortcode($atts) {
+function custom_search_function() {
+    $search_query = sanitize_text_field($_POST['search_query']);
+    
+    $args = array(
+        'post_type' => 'forecast',
+        's' => $search_query,
+        'post_status' => 'publish',
+        'posts_per_page' => 5, // Limita a los últimos 5 resultados
+        'orderby' => 'date', // Ordena por fecha
+        'order' => 'DESC', // En orden descendente (más recientes primero)
+        'sentence' => true, // Utilizar el operador lógico AND
+        'search_columns' => array('post_title'), // Limitar la búsqueda a los títulos
+    );
+
+    $query = new WP_Query($args);
+
+    if ($query->have_posts()) {
+        ob_start(); // Inicia el buffer de salida
+        while ($query->have_posts()) : $query->the_post();
+            // Obtén la URL amigable usando get_permalink()
+            $permalink = get_permalink();
+            // Puedes personalizar la salida de cada resultado aquí
+            echo '<p><a href="' . esc_url($permalink) . '">' . get_the_title() . '</a></p>';
+        endwhile;
+        $output = ob_get_clean(); // Obtiene el contenido del buffer y lo limpia
+
+        echo json_encode(array('success' => true, 'results' => $output));
+    } else {
+        echo json_encode(array('success' => false, 'message' => 'No se encontraron resultados'));
+    }
+
+    die();
+}
+ 
+
+add_action('wp_ajax_custom_search', 'custom_search_function');
+add_action('wp_ajax_nopriv_custom_search', 'custom_search_function');
+
+
+/////////////////////Imagen de perfil de usuarios////////////////
+// Añadir un campo de imagen de perfil al perfil de usuario
+function agregar_campo_imagen_perfil( $user ) {
+    ?>
+        <h3><?php _e("Imagen de perfil personalizada", "blank"); ?></h3>
+        <table class="form-table">
+            <tr>
+                <th><label for="profile_image"><?php _e("Subir imagen de perfil", "blank"); ?></label></th>
+                <td>
+                    <input type="hidden" name="profile_image" id="profile_image" value="<?php echo esc_attr( get_the_author_meta( 'profile_image', $user->ID ) ); ?>" />
+                    <input type="button" class="button" value="<?php _e('Subir imagen', 'blank'); ?>" id="upload-profile-image" />
+                    <div id="profile_image_preview" style="margin-top: 10px;">
+                        <?php if ( get_the_author_meta( 'profile_image', $user->ID ) ) : ?>
+                            <img src="<?php echo esc_attr( get_the_author_meta( 'profile_image', $user->ID ) ); ?>" style="max-width: 150px; height: auto;">
+                        <?php endif; ?>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    <?php
+    }
+    add_action( 'show_user_profile', 'agregar_campo_imagen_perfil' );
+    add_action( 'edit_user_profile', 'agregar_campo_imagen_perfil' );
+    
+    // Guardar la imagen de perfil personalizada
+    function guardar_imagen_perfil( $user_id ) {
+        if ( !current_user_can( 'edit_user', $user_id ) ) {
+            return false;
+        }
+        update_user_meta( $user_id, 'profile_image', $_POST['profile_image'] );
+    }
+    add_action( 'personal_options_update', 'guardar_imagen_perfil' );
+    add_action( 'edit_user_profile_update', 'guardar_imagen_perfil' );
+    
+    // Incluir el script de la biblioteca de medios sin jQuery
+    function incluir_script_media_uploader() {
+        if ( isset( $_GET['user_id'] ) || strstr( $_SERVER['REQUEST_URI'], 'profile.php' ) ) {
+            wp_enqueue_media();
+            ?>
+            <script type="text/javascript">
+                document.addEventListener('DOMContentLoaded', function() {
+                    var uploadButton = document.getElementById('upload-profile-image');
+                    var profileImageInput = document.getElementById('profile_image');
+                    var profileImagePreview = document.getElementById('profile_image_preview');
+    
+                    uploadButton.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var imageFrame = wp.media({
+                            title: 'Subir imagen de perfil',
+                            button: {
+                                text: 'Usar esta imagen'
+                            },
+                            multiple: false
+                        });
+    
+                        imageFrame.on('select', function() {
+                            var attachment = imageFrame.state().get('selection').first().toJSON();
+                            profileImageInput.value = attachment.url;
+                            profileImagePreview.innerHTML = '<img src="' + attachment.url + '" style="max-width: 150px; height: auto;">';
+                        });
+    
+                        imageFrame.open();
+                    });
+                });
+            </script>
+            <?php
+        }
+    }
+    add_action( 'admin_enqueue_scripts', 'incluir_script_media_uploader' );
+    
+    function aw_custom_query_vars($vars) {
+        $vars[] = 'page_post';
+        $vars[] = 'page_forecast';
+        $vars[] = 'page_forecast_free';
+        $vars[] = 'page_forecast_vip';
+        return $vars;
+    }
+    add_filter('query_vars', 'aw_custom_query_vars');
+    
+
+    
+
+
+/*  
+
+function tg_remove_empty_paragraph_tags_from_shortcodes_wordpress( $content ) {
+    $toFix = array( 
+        '<p>['    => '[', 
+        ']</p>'   => ']', 
+        ']<br />' => ']'
+    ); 
+    return strtr( $content, $toFix );
+}
+add_filter( 'the_content', 'tg_remove_empty_paragraph_tags_from_shortcodes_wordpress' );
+
+//////////////////////// Estructura de enlaces
+
+function custom_permalink_structure($permalink, $post_id, $leavename) {
+    $post = get_post($post_id);
+    $post_date = strtotime($post->post_date);
+    $change_date = strtotime('2023-04-24'); // Reemplaza esta fecha con la fecha en la que deseas que comience la nueva estructura de URL.
+
+    if ($post_date < $change_date) {
+        // Estructura de enlace permanente antigua.
+        $permalink = home_url(date('/Y/m/d/', $post_date) . $post->post_name . '/');
+    }
+    return $permalink;
+}
+add_filter('post_link', 'custom_permalink_structure', 10, 3);
+
+function custom_rewrite_rules() {
+    add_rewrite_tag('%custom_post_date%', '([0-9]{4}/[0-9]{2}/[0-9]{2})');
+    add_rewrite_rule('^([0-9]{4}/[0-9]{2}/[0-9]{2})/([^/]+)/?$', 'index.php?custom_post_date=$matches[1]&name=$matches[2]', 'top');
+}
+add_action('init', 'custom_rewrite_rules'); 
+
+function custom_query_vars($query_vars) {
+    $query_vars[] = 'custom_post_date';
+    return $query_vars;
+}
+add_filter('query_vars', 'custom_query_vars');
+
+function category_summary_shortcode($atts) {
     $atts = shortcode_atts(array(
         'category' => ''
     ), $atts);
@@ -462,49 +559,7 @@ add_filter( 'wpseo_breadcrumb_links', 'custom_yoast_breadcrumb_links', 10, 1 );
     return ob_get_clean();
 }
 add_shortcode('category_summary', 'category_summary_shortcode');
-*/
 
-
-function custom_search_function() {
-    $search_query = sanitize_text_field($_POST['search_query']);
-    
-    $args = array(
-        'post_type' => 'forecast',
-        's' => $search_query,
-        'post_status' => 'publish',
-        'posts_per_page' => 5, // Limita a los últimos 5 resultados
-        'orderby' => 'date', // Ordena por fecha
-        'order' => 'DESC', // En orden descendente (más recientes primero)
-        'sentence' => true, // Utilizar el operador lógico AND
-        'search_columns' => array('post_title'), // Limitar la búsqueda a los títulos
-    );
-
-    $query = new WP_Query($args);
-
-    if ($query->have_posts()) {
-        ob_start(); // Inicia el buffer de salida
-        while ($query->have_posts()) : $query->the_post();
-            // Obtén la URL amigable usando get_permalink()
-            $permalink = get_permalink();
-            // Puedes personalizar la salida de cada resultado aquí
-            echo '<p><a href="' . esc_url($permalink) . '">' . get_the_title() . '</a></p>';
-        endwhile;
-        $output = ob_get_clean(); // Obtiene el contenido del buffer y lo limpia
-
-        echo json_encode(array('success' => true, 'results' => $output));
-    } else {
-        echo json_encode(array('success' => false, 'message' => 'No se encontraron resultados'));
-    }
-
-    die();
-}
- 
-
-add_action('wp_ajax_custom_search', 'custom_search_function');
-add_action('wp_ajax_nopriv_custom_search', 'custom_search_function');
-
-
-/*  
 function enlaces_internos_forecast($atts) {
     // Obtener el atributo de categoría del shortcode (si está presente)
     $atts = shortcode_atts(array(
@@ -622,83 +677,4 @@ function inject_dynamic_css($html, $used_classes) {
 */
 
 
-
-/////////////////////Imagen de perfil de usuarios////////////////
-// Añadir un campo de imagen de perfil al perfil de usuario
-function agregar_campo_imagen_perfil( $user ) {
-?>
-    <h3><?php _e("Imagen de perfil personalizada", "blank"); ?></h3>
-    <table class="form-table">
-        <tr>
-            <th><label for="profile_image"><?php _e("Subir imagen de perfil", "blank"); ?></label></th>
-            <td>
-                <input type="hidden" name="profile_image" id="profile_image" value="<?php echo esc_attr( get_the_author_meta( 'profile_image', $user->ID ) ); ?>" />
-                <input type="button" class="button" value="<?php _e('Subir imagen', 'blank'); ?>" id="upload-profile-image" />
-                <div id="profile_image_preview" style="margin-top: 10px;">
-                    <?php if ( get_the_author_meta( 'profile_image', $user->ID ) ) : ?>
-                        <img src="<?php echo esc_attr( get_the_author_meta( 'profile_image', $user->ID ) ); ?>" style="max-width: 150px; height: auto;">
-                    <?php endif; ?>
-                </div>
-            </td>
-        </tr>
-    </table>
-<?php
-}
-add_action( 'show_user_profile', 'agregar_campo_imagen_perfil' );
-add_action( 'edit_user_profile', 'agregar_campo_imagen_perfil' );
-
-// Guardar la imagen de perfil personalizada
-function guardar_imagen_perfil( $user_id ) {
-    if ( !current_user_can( 'edit_user', $user_id ) ) {
-        return false;
-    }
-    update_user_meta( $user_id, 'profile_image', $_POST['profile_image'] );
-}
-add_action( 'personal_options_update', 'guardar_imagen_perfil' );
-add_action( 'edit_user_profile_update', 'guardar_imagen_perfil' );
-
-// Incluir el script de la biblioteca de medios sin jQuery
-function incluir_script_media_uploader() {
-    if ( isset( $_GET['user_id'] ) || strstr( $_SERVER['REQUEST_URI'], 'profile.php' ) ) {
-        wp_enqueue_media();
-        ?>
-        <script type="text/javascript">
-            document.addEventListener('DOMContentLoaded', function() {
-                var uploadButton = document.getElementById('upload-profile-image');
-                var profileImageInput = document.getElementById('profile_image');
-                var profileImagePreview = document.getElementById('profile_image_preview');
-
-                uploadButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    var imageFrame = wp.media({
-                        title: 'Subir imagen de perfil',
-                        button: {
-                            text: 'Usar esta imagen'
-                        },
-                        multiple: false
-                    });
-
-                    imageFrame.on('select', function() {
-                        var attachment = imageFrame.state().get('selection').first().toJSON();
-                        profileImageInput.value = attachment.url;
-                        profileImagePreview.innerHTML = '<img src="' + attachment.url + '" style="max-width: 150px; height: auto;">';
-                    });
-
-                    imageFrame.open();
-                });
-            });
-        </script>
-        <?php
-    }
-}
-add_action( 'admin_enqueue_scripts', 'incluir_script_media_uploader' );
-
-function aw_custom_query_vars($vars) {
-    $vars[] = 'page_post';
-    $vars[] = 'page_forecast';
-    $vars[] = 'page_forecast_free';
-    $vars[] = 'page_forecast_vip';
-    return $vars;
-}
-add_filter('query_vars', 'aw_custom_query_vars');
 
