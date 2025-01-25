@@ -16,7 +16,6 @@ if(isset($aw_system_location)):
     if (!$bookmaker["logo_2x1"]) { $bookmaker["logo_2x1"] = get_template_directory_uri() . '/assets/img/logo2.svg'; }
 endif;
 
-$vip = carbon_get_post_meta($args["forecast"]->ID, 'vip');
 $permalink = get_the_permalink($args["forecast"]->ID);
 $predictions = carbon_get_post_meta($args["forecast"]->ID, 'predictions');
 $sport_term = wp_get_post_terms($args["forecast"]->ID, 'league', array('fields' => 'all'));
@@ -26,29 +25,16 @@ $time = carbon_get_post_meta($args["forecast"]->ID, 'data');
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 
-$estado_usuario = "permitido";
-    if(function_exists("aw_get_user_type")):
-        $user_type = aw_get_user_type($args["current_user"]);
-        if($user_type == "unreg"){
-            $estado_usuario = "no permitido";
-        }
-    endif;
-//Componente si es vip
+
+$oOddsConverter = new Converter($prediction['cuote'], 'eu');
+$odds_result = $oOddsConverter->doConverting();
+$prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
 $vipcomponent ="<div class='plogo'>
                     <img loading='lazy' src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
                 </div>
-                    <a href='{$params['vip_link']}' title='Sé ApuestanPlus'><p>{$params['text_vip_link']}</p></a>
-                <div class='rate'>?</div>";
-if(!$vip or $estado_usuario=='permitido'):
-    $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-    $odds_result = $oOddsConverter->doConverting();
-    $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
-    $vipcomponent ="<div class='plogo'>
-                        <img loading='lazy' src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
-                    </div>
-                        <a href='$permalink' title='Apuesta con {$bookmaker['name']}' >{$prediction['title']}</a>
-                    <div class='rate'>{$prediction['cuote']}</div>";
-endif;
+                    <a href='$permalink' title='Apuesta con {$bookmaker['name']}' >{$prediction['title']}</a>
+                <div class='rate'>{$prediction['cuote']}</div>";
+
 //leagues
 $sport['class'] = '' ;
 $sport['name'] = '';
@@ -67,18 +53,18 @@ if($params['time_format']  == 'count'):
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
 endif;
-echo "<div class='prediction_box'>
-            <div class='d-flex align-items-center justify-content-between'>
+echo "<article class='prediction_box'>
+            <header class='d-flex align-items-center justify-content-between'>
                 <p class='game_name {$sport['class']}'>{$sport['name']}</p>
                 <p>
                     <time datetime='".$date->format('Y-m-d h:i')."' >".$date->format('d M')."/".$date->format('g:i a')."</time>
                     
                 </p>
-            </div> 
+            </header> 
 
             <div class='d-flex align-items-center justify-content-between mt_15'>
                 <div class='media align-items-center'>
-                    <img loading='lazy' width='70' height='70' src='{$teams['team1']['logo']}' class='mr_45' alt='{$teams['team1']['name']}'>
+                    <img loading='lazy' width='70' height='70' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                 </div> 
                 <div>
                     <p style='margin:0 5px;'>{$teams['team1']['acronimo']} vs {$teams['team2']['name']}</p> 
@@ -90,4 +76,4 @@ echo "<div class='prediction_box'>
             <div class='rate_box'>
                 {$vipcomponent}
             </div>
-</div>";
+</article>";

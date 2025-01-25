@@ -38,7 +38,7 @@ function shortcode_blog($atts) {
     $html = str_replace('{posts}', $template, $html);
 
     // Reemplazar {paginate} en el HTML con la paginación generada
-    if ($atts['paginate'] and $atts['paginate'] === 'yes') {
+    if ($atts['paginate'] and $atts['paginate'] == 'yes') {
         $nav_pages = aw_custom_pagination($query, 'page_post');
         $html = str_replace('{paginate}', $nav_pages, $html);
     } else {
