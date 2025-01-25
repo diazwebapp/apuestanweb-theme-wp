@@ -177,8 +177,8 @@ function jbetting_src()
    //wp_enqueue_script('custom-search', get_template_directory_uri() . '/assets/js/custom-search.js', array('jquery'), null, true);
    // Variables que se pasan a script.js con wp_localize_script
 function añadir_atributos_criticos($html, $handle) {
-    $estilos_criticos = ['bootstrap'];
-    
+    //$estilos_criticos = ['bootstrap']; //78% speed
+    $estilos_criticos = ['main-css'];
     if (in_array($handle, $estilos_criticos)) {
         return str_replace('rel=\'stylesheet\'', 'rel=\'preload\' as=\'style\' onload=\'this.onload=null;this.rel="stylesheet"\'', $html);
     }
