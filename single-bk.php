@@ -3,44 +3,61 @@ get_header();
 
 
 $location = json_decode($_SESSION["geolocation"]);
-if (empty($location) || !isset($location->country_code)) { die("<p>Error: Geolocation data is missing or invalid.</p>"); }
-#Detectamos si está configurado el pais
-$aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
-if (empty($aw_system_country) || !isset($aw_system_country->id)) { die("<p>Error: Country system data is missing or invalid.</p>"); }
-$bookmaker_detected = aw_detect_bookmaker_on_country($aw_system_country->id,get_the_ID());
-if (empty($bookmaker_detected)) { die("<p>Error: Bookmaker detection failed for the selected country.</p>"); }
-if(isset($bookmaker_detected)): #si esta configurado en el pais
-    $bookmaker['name'] = get_the_title( get_the_ID() );
+if (empty($location) || !isset($location->country_code)) {
+    die("<p>Error: Geolocation data is missing or invalid.</p>");
+}
+
+$aw_system_country = aw_select_country(["country_code" => $location->country_code]);
+if (empty($aw_system_country) || !isset($aw_system_country->id)) {
+    die("<p>Error: Country system data is missing or invalid.</p>");
+}
+
+$bookmaker_detected = aw_detect_bookmaker_on_country($aw_system_country->id, get_the_ID());
+if (empty($bookmaker_detected)) {
+    die("<p>Error: Bookmaker detection failed for the selected country.</p>");
+}
+
+if (isset($bookmaker_detected)) { 
+    // Si está configurado en el país
+    $bookmaker = [
+        'name' => get_the_title(get_the_ID()),
+        "bonus_slogan" => "",
+        "bonus_amount" => "",
+        "ref_link" => "#",
+        "background_color" => carbon_get_post_meta(get_the_ID(), 'background-color'),
+        "feactures" => carbon_get_post_meta(get_the_ID(), 'feactures'),
+        "rating" => carbon_get_post_meta(get_the_ID(), 'rating'),
+        "general_feactures" => carbon_get_post_meta(get_the_ID(), 'general_feactures'),
+        "payment_methods" => get_bookmaker_payments(get_the_ID())
+    ];
 
     $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
-    if(isset($bonuses) and count($bonuses) > 0):
-      foreach($bonuses as $bonus_data):
-          if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
-            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'] ?? "";
-            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'] ?? 0;
-            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'] ?? "#";
-          endif;
-      endforeach;
-    endif;
-    
-    $bookmaker["background_color"] = carbon_get_post_meta(get_the_ID(), 'background-color');
-    $bookmaker["feactures"] = carbon_get_post_meta(get_the_ID(), 'feactures');
-    $bookmaker["rating"] = carbon_get_post_meta(get_the_ID(), 'rating');
-    $bookmaker["general_feactures"] = carbon_get_post_meta(get_the_ID(), 'general_feactures');
-    $bookmaker["payment_methods"] = get_bookmaker_payments(get_the_ID());
-    if (carbon_get_post_meta(get_the_ID(), 'logo')):
-        $logo = carbon_get_post_meta(get_the_ID(), 'logo');
+    if (!empty($bonuses)) {
+        foreach ($bonuses as $bonus_data) {
+            if (strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)) {
+                $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'] ?? "";
+                $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'] ?? 0;
+                $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'] ?? "#";
+            }
+        }
+    }
+
+    if ($logo = carbon_get_post_meta(get_the_ID(), 'logo')) {
         $bookmaker["logo"] = wp_get_attachment_url($logo);
-    endif; 
-    if (carbon_get_post_meta(get_the_ID(), 'logo_2x1')):
-        $logo = carbon_get_post_meta(get_the_ID(), 'logo_2x1');
-        $bookmaker["logo_2x1"] = wp_get_attachment_url($logo);
-    endif;     
-else: #si esta configurado el pais, pero no existen bookmakers buscamos un WW
-    $aw_system_country = aw_select_country(["country_code"=>"WW"]);
-if (empty($aw_system_country) || !isset($aw_system_country->id)) { die("<p>Error: Country system data is missing or invalid.</p>"); }
-    $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique"=>true,"random"=>false]);
-endif;
+    }
+    if ($logo_2x1 = carbon_get_post_meta(get_the_ID(), 'logo_2x1')) {
+        $bookmaker["logo_2x1"] = wp_get_attachment_url($logo_2x1);
+    }
+} else {
+    // Si está configurado el país, pero no existen bookmakers, buscamos un WW
+    $aw_system_country = aw_select_country(["country_code" => "WW"]);
+    if (empty($aw_system_country) || !isset($aw_system_country->id)) {
+        die("<p>Error: Country system data is missing or invalid.</p>");
+    }
+
+    $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique" => true, "random" => false]);
+}
+
 
 
 $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
