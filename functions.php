@@ -110,7 +110,7 @@ function my_theme_setup()
     add_theme_support('post-thumbnails');
     
 }
-add_image_size('120x70',120,70,true);
+add_image_size('120x120',120,70,true);
 
 //insertar img destacada en feeds
 /* function insert_featured_image_in_feed( $content ) {
