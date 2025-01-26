@@ -28,7 +28,7 @@ if (isset($bookmaker_detected)) {
         "feactures" => carbon_get_post_meta(get_the_ID(), 'feactures'),
         "rating" => carbon_get_post_meta(get_the_ID(), 'rating'),
         "general_feactures" => carbon_get_post_meta(get_the_ID(), 'general_feactures'),
-        "payment_methods" => get_bookmaker_payments(get_the_ID())
+        "payment_methods" => get_bookmaker_payments(get_the_ID()),
     ];
 
     $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
@@ -55,7 +55,7 @@ if (isset($bookmaker_detected)) {
         die("<p>Error: Country system data is missing or invalid.</p>");
     }
 
-    $bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique" => true, "random" => false]);
+    //$bookmaker = aw_select_relate_bookmakers($aw_system_country->id, ["unique" => true, "random" => false]);
 }
 
 
