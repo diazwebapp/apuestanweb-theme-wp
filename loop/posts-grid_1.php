@@ -1,7 +1,8 @@
 <?php
-$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+$thumbnail_url = aq_resize($thumbnail_url,320,180,true,true,true);
 if(!$thumbnail_url)
-$thumbnail_url = get_template_directory_uri() . '/assets/img/cross.png';
+    $thumbnail_url = get_template_directory_uri() . '/assets/img/cross.png';
 
 $permalink = get_the_permalink( get_the_ID() );
 $title = get_the_title(get_the_ID());

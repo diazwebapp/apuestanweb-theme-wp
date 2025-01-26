@@ -111,6 +111,7 @@ function my_theme_setup()
     
 }
 add_image_size('120x120',120,120,true);
+add_image_size('80x25',80,25,true);
 
 //insertar img destacada en feeds
 /* function insert_featured_image_in_feed( $content ) {
