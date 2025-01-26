@@ -29,6 +29,7 @@ if (isset($bookmaker_detected)) {
         "rating" => carbon_get_post_meta(get_the_ID(), 'rating'),
         "general_feactures" => carbon_get_post_meta(get_the_ID(), 'general_feactures'),
         "payment_methods" => get_bookmaker_payments(get_the_ID()),
+        "logo" => get_template_directory_uri() . '/assets/img/logo2.svg',
     ];
 
     $bonuses = carbon_get_post_meta(get_the_ID(), 'country_bonus');
