@@ -15,7 +15,7 @@ if(count($leagues) > 0):
     endforeach;
 endif;
 echo "
-    <article class='col-12 col-sm-6 col-md-4 my-2 blog_box' >
+    <article class='col-12 col-sm-6 col-md-4 col-xl-3 my-2 blog_box' >
         
         <header class='img_box'>
             <img width='320' height='180' alt='$title' loading='lazy' src='$thumbnail_url'>
