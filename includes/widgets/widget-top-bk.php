@@ -53,7 +53,7 @@ class w_bookmakers extends WP_Widget{
                 $image_att = carbon_get_post_meta($bookmaker->ID, 'logo_2x1');
                 $mime_type = get_post_mime_type($image_att);
                 $image_png = wp_get_attachment_url($image_att);
-                if($mime_type == 'image/svg+xml'){
+                if($mime_type !== 'image/svg+xml'){
                     $image_png = aq_resize($image_png, 80, 25, true, true, true);
                 }
 
