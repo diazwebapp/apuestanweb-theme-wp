@@ -104,7 +104,7 @@ function shortcode_parley_vip($atts)
         
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
-        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
+        wp_add_inline_script( 'common-js', "forecasts_fetch_vars = ". json_encode($args) );
 
         $ret .="<div class='container container_pagination_parley_vip text-md-center mt-3'>";
         if($data_json->page < $data_json->max_pages):

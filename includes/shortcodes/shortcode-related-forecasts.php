@@ -106,7 +106,7 @@ function shortcode_related_forecast($atts)
         'odds' => $args['odds']
     ]);
 
-    wp_add_inline_script('common-js', "let forecasts_fetch_vars = " . json_encode($args));
+    wp_add_inline_script('common-js', "forecasts_fetch_vars = " . json_encode($args));
 
     // Realizar la solicitud HTTP
     $response = wp_remote_get($args['rest_uri'] . '?' . $params, ['timeout' => 15]);

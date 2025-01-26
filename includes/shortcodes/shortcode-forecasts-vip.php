@@ -98,7 +98,7 @@ function shortcode_forecast_vip($atts)
 
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
-        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
+        wp_add_inline_script( 'common-js', "forecasts_fetch_vars = ". json_encode($args) );
 
         $ret .="<div class='container container_pagination_forecast_vip text-md-center mt-2'>";
         if($data_json->page < $data_json->max_pages):

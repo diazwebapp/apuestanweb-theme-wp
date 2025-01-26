@@ -110,7 +110,7 @@ function shortcode_forecast($atts)
     $params .= "&current_user_id={$args['current_user_id']}";
     $params .= "&odds=$odds";
 
-    wp_add_inline_script('common-js', "let forecasts_fetch_vars = " . json_encode($args));
+    
 
     // Realizar la solicitud a la API
     $response = wp_remote_get($args['rest_uri'] . $params, array('timeout' => 30)); // Timeout aumentado a 30 segundos
@@ -161,7 +161,7 @@ function shortcode_forecast($atts)
                     <span id="max-page-number">' . $data_json->max_pages . '</span>
                   </div>';
     }
-
+    wp_add_inline_script('common-js', "forecasts_fetch_vars = " . json_encode($args));
     return $ret;
 }
 
@@ -173,18 +173,11 @@ add_shortcode('forecasts', 'shortcode_forecast');
 // Cargar common.js condicionalmente
 function load_common_js_if_shortcode_exists() {
     global $post;
-    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts') || is_single())) {
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts'))) {
         wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), null, true);
+        wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css');
     }
 }
 add_action('wp_enqueue_scripts', 'load_common_js_if_shortcode_exists');
 
-// Asegurarse de que el CSS solo se cargue si es necesario
-function load_forecast_styles() {
-    global $post;
-    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts') || is_single())) {
-        wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css');
-    }
-}
-add_action('wp_enqueue_scripts', 'load_forecast_styles');
 

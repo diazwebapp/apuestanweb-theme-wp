@@ -290,6 +290,7 @@ document.getElementById('search').addEventListener('keyup', async function () {
 ////cargar mas test/////////////
 const loadMoreButton = document.getElementById('load_more_forecast');
 
+/* 
 loadMoreButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
@@ -331,6 +332,8 @@ loadMoreButton.addEventListener('click', async (e) => {
         loadMoreButton.textContent = 'Cargar más';
     }
 });
+
+ */
 
 });
 

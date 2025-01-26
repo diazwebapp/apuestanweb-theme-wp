@@ -47,11 +47,7 @@ function shortcode_forecast_test($atts)
         }
         wp_reset_postdata();
 
-        
-        
     }
- 
-    
         // Pasa los datos necesarios al script de JavaScript
         wp_localize_script('common-js', 'forecastData', array(
             'ajax_url' => admin_url('admin-ajax.php'),
@@ -59,8 +55,6 @@ function shortcode_forecast_test($atts)
             'max_num_pages' => $query->max_num_pages,
         ));
     
-
-
     $home_class = $atts['model'] && $atts['model'] != 1 ? 'row' : 'event_wrap';
     $ret = "
         {replace_filter}
@@ -114,7 +108,7 @@ add_shortcode('forecasts-test', 'shortcode_forecast_test');
 // Cargar common.js condicionalmente
 function load_test() {
     global $post;
-    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts-test') || is_single())) {
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts-test') )) {
         wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), null, true);
         wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css');
     }

@@ -94,7 +94,7 @@ function shortcode_parley($atts)
         $loop_html = $data_json->html;
         $ret = str_replace("{replace_loop}",$loop_html,$ret);
         
-        wp_add_inline_script( 'common-js', "let forecasts_fetch_vars = ". json_encode($args) );
+        wp_add_inline_script( 'common-js', "forecasts_fetch_vars = ". json_encode($args) );
 
         $ret .="<div class='container container_pagination_parley text-md-center mt-3'>";
         if($data_json->page < $data_json->max_pages):
