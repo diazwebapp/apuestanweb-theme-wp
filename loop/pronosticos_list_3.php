@@ -57,7 +57,7 @@ if(!empty($predictions)):
                             </div>";
 endif;
 $time_format_html = "<p class='text-light' >".$date->format('g:i a')."</p>";
-if($params['time_format']  == 'count'):
+  if(isset($params['time_format']) && $params['time_format']  == 'count'):
     $time_format_html = "<div class='date_item_pronostico_top'>
                             <input type='hidden' id='date' value='".$date->format('Y-m-d G:i:s')."' />
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>

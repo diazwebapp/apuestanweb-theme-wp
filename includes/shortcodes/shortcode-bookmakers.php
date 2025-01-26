@@ -12,14 +12,12 @@ function shortcode_bookmaker($atts)
     $payment = wp_get_post_terms(get_the_ID(), 'bookmaker-payment-methods', array('field' => 'slug'));
     $casino = wp_get_post_terms(get_the_ID(), 'casinos', array('field' => 'slug'));
     $ret = '<div class="container" >
-        <div class="row d-flex justify-content-center">{replace_loop}</div>
+        <section class="row d-flex justify-content-center">{replace_loop}</section>
     </div>';
     
     wp_reset_query();
    
     $args['post_type'] = 'bk';
-    //$args['paged'] = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1);
-    //$args['posts_per_page'] = $num;
     $args['posts_per_page'] = -1;
     $args['orderby'] = 'meta_value';
     $args['meta_key'] = '_rating';
@@ -54,7 +52,6 @@ function shortcode_bookmaker($atts)
     $query = new WP_Query($args);
     
     if ($query) {
-        $new_bks = [];
         $location = json_decode($_SESSION["geolocation"]);
         $aw_system_country = aw_select_country(["country_code"=>$location->country_code]);
         

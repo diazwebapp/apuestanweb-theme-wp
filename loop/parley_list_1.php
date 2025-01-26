@@ -1,6 +1,5 @@
 <?php
 $params = get_query_var('params');
-$vip = carbon_get_post_meta(get_the_ID(), 'vip');
 $forecasts = carbon_get_post_meta(get_the_ID(), 'forecasts');
 $parley_title = get_the_title(get_the_ID());
 $time = carbon_get_post_meta(get_the_ID(), 'data');
@@ -19,7 +18,7 @@ if(isset($aw_system_location)):
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
     $bookmaker["logo_2x1"] = aq_resize($bookmaker["logo_2x1"],80,25,true,true,true);
-    if (!$bookmaker["logo_2x1"]) { $bookmaker["logo_2x1"] = get_template_directory_uri() . '/assets/img/logo2.svg'; }
+    if (!$bookmaker["logo_2x1"]) { $bookmaker["logo_2x1"] = $alt_logo; }
 endif;
 
 
@@ -35,78 +34,78 @@ $html_pronosticos = '
   </div>'
     ;
 
-if(!$vip){
-    $parley_event = '';
-    if($forecasts and count($forecasts) > 0){
-        $parley_cuotes = 1;
+
+$parley_event = '';
+if($forecasts and count($forecasts) > 0){
+    $parley_cuotes = 1;
+    
+    foreach ($forecasts as $event) {
+        $predictions = carbon_get_post_meta($event['id'], 'predictions');
+        $prediction = [];
+        $permalink_event = get_the_permalink($event['id']);
+        $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
+        $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
+        $parley_cuotes = $parley_cuotes * $prediction['cuote'];
+        $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+        $odds_result = $oOddsConverter->doConverting();
+        $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
         
-        foreach ($forecasts as $event) {
-            $predictions = carbon_get_post_meta($event['id'], 'predictions');
-            $prediction = [];
-            $permalink_event = get_the_permalink($event['id']);
-            $prediction['title'] = isset($predictions[0]) ? $predictions[0]['title']: '';
-            $prediction['cuote'] = isset($predictions[0]) ? $predictions[0]['cuote']: 1;
-            $parley_cuotes = $parley_cuotes * $prediction['cuote'];
-            $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-            $odds_result = $oOddsConverter->doConverting();
-            $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
-            
-            $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
-            $time = carbon_get_post_meta($event['id'], 'data');
-            $fecha =  date('d M', strtotime($time));
-            $hora =  date('g:i a', strtotime($time));
+        $teams = get_forecast_teams($event['id'],["w"=>24,"h"=>24]);
+        $time2 = carbon_get_post_meta($event['id'], 'data');
+        $fecha2 =  date('d M', strtotime($time2));
+        $hora2 =  date('g:i a', strtotime($time2));
 
-            $sport_term = wp_get_post_terms($event['id'], 'league', array('fields' => 'all'));
+        $sport_term = wp_get_post_terms($event['id'], 'league', array('fields' => 'all'));
 
-            $sport['name'] = '';
-            $sport['logo'] = get_template_directory_uri() . '/assets/img/logo2.svg';
+        $sport['name'] = '';
+        //$sport['logo'] = $alt_logo;
 
-            if ($sport_term) {
-                foreach ( $sport_term as $item ) {
-                    if($item->parent == 0){
-                        $sport_logo = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'logo'));
-                        if($sport_logo)
-                            $sport['logo'] = $sport_logo;
-                        $sport['name'] = $item->name;
-                    }
+        if ($sport_term) {
+            foreach ( $sport_term as $item ) {
+                if($item->parent == 0){
+                   /* $sport_logo = wp_get_attachment_url(carbon_get_term_meta($item->term_id, 'logo'));
+                     if($sport_logo)
+                        $sport['logo'] = $sport_logo; */
+                    $sport['name'] = $item->name;
                 }
             }
+        }
 
-            $parley_event .= '
-                <div class="col-12 event">
-                    <div class="row align-items-center py-2">
-                        <div class="col-12 col-md-2 "><p class="mb-0 text-center"><small>'.$fecha.','.$hora.'</small></p><p class="mb-0 text-center">'.$sport['name'].'</p></div>
-                        <div class="col-12 col-md-8 ">
-                            <div class="row align-items-center">
-                                <div class="col-6 col-md-7 text-center text-md-left text-truncate">
-                                    <div>
-                                        <span>
-                                            <img width="32" height="32" src="'.$teams['team1']['logo'].'" class="img-fluid" alt="">
-                                        </span>
-                                        <span>'.$teams['team1']['name'].'</span>
-                                    </div> 
-                                    <div>
-                                        <span>
-                                            <img width="32" height="32" src="'.$teams['team2']['logo'].'" class="img-fluid" alt="">
-                                        </span>
-                                        <span>'.$teams['team2']['name'].'</span>
-                                    </div> 
-                                </div>
-                                <div class="col-6 col-md-5 text-center">
-                                    <small class="d-block d-xl-inline">'.$prediction['title'].'</small>
-                                    <span class="cuote">'.$prediction['cuote'].'</span>
-                                </div>
+        $parley_event .= '
+            <div class="col-12 event">
+                <div class="row align-items-center py-2">
+                    <div class="col-12 col-md-2 "><p class="mb-0 text-center"><small>'.$fecha2.','.$hora2.'</small></p><p class="mb-0 text-center">'.$sport['name'].'</p></div>
+                    <div class="col-12 col-md-8 ">
+                        <div class="row align-items-center">
+                            <div class="col-6 col-md-7 text-center text-md-left text-truncate">
+                                <div>
+                                    <span>
+                                        <img loading="lazy" width="32" height="32" src="'.$teams['team1']['logo'].'" class="img-fluid" alt="'.$teams['team1']['name'].'">
+                                    </span>
+                                    <span>'.$teams['team1']['name'].'</span>
+                                </div> 
+                                <div>
+                                    <span>
+                                        <img loading="lazy" width="32" height="32" src="'.$teams['team2']['logo'].'" class="img-fluid" alt="'.$teams['team2']['name'].'">
+                                    </span>
+                                    <span>'.$teams['team2']['name'].'</span>
+                                </div> 
+                            </div>
+                            <div class="col-6 col-md-5 text-center">
+                                <small class="d-block d-xl-inline">'.$prediction['title'].'</small>
+                                <span class="cuote">'.$prediction['cuote'].'</span>
                             </div>
                         </div>
-                        <div class="col-12 col-md-2  text-center">
-                            <a href="'.$permalink_event.'" class="btn outline btn-sm">Ver analisis</a>
-                        </div>
+                    </div>
+                    <div class="col-12 col-md-2  text-center">
+                        <a href="'.$permalink_event.'" class="btn outline btn-sm" title="Ver analisis '.$teams['team1']['name'] ." vs ". $teams['team2']['name'].'">Ver analisis</a>
                     </div>
                 </div>
-            ';
-        }
+            </div>
+        ';
     }
 }
+
 
 $new_html = '<div class="parley-box">
             <div class="px-3 py-2 parley_top_content"><strong class="text-light text-capitalize">'.$parley_title .'-'. $fecha.'</strong></div>
@@ -125,8 +124,8 @@ $new_html = '<div class="parley-box">
 $parley_data = '
                 <div class="row align-items-center py-2 mx-0 text-center">
                     <div class="col-6 col-sm-2 col-md-3 col-xl-2 order-3 order-sm-1">
-                        <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" class="">
-                        <img width="80" height="25" style="object-fit:contain;background:'.$bookmaker["background_color"].';border-radius: 6px;padding: 6px;" src="'.$bookmaker["logo_2x1"].'" class="img-fluid" alt="bk-logo">
+                        <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" title="Apostar ahora con '.$bookmaker["name"].'">
+                        <img loading="lazy" width="80" height="25" style="object-fit:contain;background:'.$bookmaker["background_color"].';border-radius: 6px;padding: 6px;" src="'.$bookmaker["logo_2x1"].'" class="img-fluid" alt="bk-logo">
                         </a>
                     </div>
                     <div class="col-6 col-sm-4 col-xl-4 px-0 order-1 order-sm-2">
@@ -142,7 +141,7 @@ $parley_data = '
                         Gana: $<span id="jsresult_'.$parley_id.'" >'. round($parley_cuotes * 10,2) .'</span>
                     </div>
                     <div class="col-6 col-sm-4 col-md-3 col-xl-3 text-center order-4">
-                        <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" class="btn btn-primary outline ">apostar ahora</a>
+                        <a  href="'.$bookmaker["ref_link"].'" rel="nofollow noopener noreferrer" target="_blank" class="btn btn-primary outline" title="Apostar ahora con '.$bookmaker["name"].'">apostar ahora</a>
                     </div>
                 </div>
             ';

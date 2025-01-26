@@ -10,7 +10,7 @@ $disable_title = carbon_get_post_meta(get_the_ID(), 'disable_title');
 $disable_table = carbon_get_post_meta( get_the_ID(), 'disable_table' );
 
 if ($textbefore):
-    echo do_shortcode("{$textbefore}");
+    echo do_shortcode($textbefore);
 endif;
 ?>
 

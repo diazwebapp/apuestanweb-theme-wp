@@ -287,6 +287,51 @@ document.getElementById('search').addEventListener('keyup', async function () {
     }
 });
 
+////cargar mas test/////////////
+const loadMoreButton = document.getElementById('load_more_forecast');
+
+loadMoreButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const page = parseInt(loadMoreButton.getAttribute('data-page'), 10);
+    const viewParams = forecastData.view_params;
+
+    const data = new FormData();
+    data.append('action', 'cargar_mas_test');
+    data.append('page', page);
+    data.append('view_params', JSON.stringify(viewParams));
+
+    try {
+        loadMoreButton.textContent = 'Cargando...';
+
+        const response = await fetch(forecastData.ajax_url, {
+            method: 'POST',
+            body: data
+        });
+
+        if (response.ok) {
+            const result = await response.text();
+            if (result) {
+                document.getElementById('games_list').insertAdjacentHTML('beforeend', result);
+                loadMoreButton.textContent = 'Cargar más';
+                loadMoreButton.setAttribute('data-page', page + 1);
+
+                if (page + 1 > forecastData.max_num_pages) {
+                    loadMoreButton.remove();
+                }
+            } else {
+                loadMoreButton.remove();
+            }
+        } else {
+            console.error('Error en la respuesta del servidor:', response.statusText);
+            loadMoreButton.textContent = 'Cargar más';
+        }
+    } catch (error) {
+        console.error('Error en la solicitud AJAX:', error);
+        loadMoreButton.textContent = 'Cargar más';
+    }
+});
+
 });
 
 function handler_odds_format(e){

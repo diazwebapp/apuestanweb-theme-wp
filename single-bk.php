@@ -16,9 +16,9 @@ if(isset($bookmaker_detected)): #si esta configurado en el pais
     if(isset($bonuses) and count($bonuses) > 0):
       foreach($bonuses as $bonus_data):
           if(strtoupper($bonus_data["country_code"]) == strtoupper($aw_system_country->country_code)):
-            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'];
-            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'];
-            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'];
+            $bookmaker["bonus_slogan"] = $bonus_data['country_bonus_slogan'] ?? "";
+            $bookmaker["bonus_amount"] = $bonus_data['country_bonus_amount'] ?? 0;
+            $bookmaker["ref_link"] = $bonus_data['country_bonus_ref_link'] ?? "#";
           endif;
       endforeach;
     endif;

@@ -40,12 +40,10 @@ class W_Forecasts extends WP_Widget {
                     
                     //terms
                     $sport_term = wp_get_post_terms( $id, 'league', array( 'fields' => 'all' ) );
-                    $sport['class'] = '' ;
                     $sport['name'] = '';
                     if ($sport_term) {
                         foreach ( $sport_term as $item ) {
                             if($item->parent == 0){
-                                $sport['class'] = carbon_get_term_meta($item->term_id, 'fa_icon_class');
                                 $sport['name'] = $item->name;
                             }
                         }
@@ -60,11 +58,11 @@ class W_Forecasts extends WP_Widget {
                             
                                     <div class='col-8 px-0'>
                                         <div class='pb-2 d-flex flex-nowrap align-items-center'>
-                                            <img width='30px' class='mx-2 mx-xl-3' height='30px' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
+                                            <img loading='lazy' width='30px' class='mx-2 mx-xl-3' height='30px' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                                             <small class='text-dark'>{$teams['team1']['name']}</small>
                                         </div>
                                         <div class='d-flex flex-nowrap align-items-center'>
-                                            <img width='30px' class='mx-2 mx-xl-3' height='30px' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' >
+                                            <img loading='lazy' width='30px' class='mx-2 mx-xl-3' height='30px' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}' >
                                             <small class='text-dark'>{$teams['team2']['name']}</small>
                                         </div>
                                     </div>
