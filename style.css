@@ -943,10 +943,8 @@ body > footer .menu li a::before{
 
 .team_logo {
 	box-shadow: 0 0 .8rem rgba(0,0,0,.2);
-	width: 6rem;
-	height: 6rem;
-	max-height: 6rem;
-	max-width: 6rem;
+	width: 75px;
+	height: 75px;
 	overflow: hidden;
 }
 .team-name{
