@@ -942,9 +942,12 @@ body > footer .menu li a::before{
 }
 
 .team_logo {
-    box-shadow: 0 0 .8rem rgba(0,0,0,.2);
+	box-shadow: 0 0 .8rem rgba(0,0,0,.2);
 	width: 6rem;
-    height: 6rem;
+	height: 6rem;
+	max-height: 6rem;
+	max-width: 6rem;
+	overflow: hidden;
 }
 .team-name{
     font-weight: 400;
