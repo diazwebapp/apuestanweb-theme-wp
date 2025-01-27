@@ -943,10 +943,10 @@ body > footer .menu li a::before{
 
 .team_logo {
 	box-shadow: 0 0 .8rem rgba(0,0,0,.2);
-	width: 85px;
-	height: 85px;
-	min-width: 85px;
-	min-height: 85px;
+	width: 90px;
+	height: 90px;
+	min-width: 90px;
+	min-height: 90px;
 	overflow: hidden;
 }
 .team-name{
@@ -1052,7 +1052,7 @@ body > footer .menu li a::before{
 }
 @media (min-width: 992px) {
 	.team_logo{
-		margin-left: -1rem;
+		margin-left: -8rem;
 	}
 	.ml-slide{
 		text-align: left;
