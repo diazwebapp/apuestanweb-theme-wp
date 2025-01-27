@@ -1052,7 +1052,7 @@ body > footer .menu li a::before{
 }
 @media (min-width: 992px) {
 	.team_logo{
-		margin-left: -8rem;
+		margin-left: -.8rem;
 	}
 	.ml-slide{
 		text-align: left;

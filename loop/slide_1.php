@@ -75,13 +75,13 @@ echo "<div class='owl-item' >
 
                         <div class='col-12 col-lg-4 d-flex align-items-center justify-content-center'>
                             <div class='team_logo rounded-circle d-flex justify-content-center align-items-center bg-light'>
-                                <img width='65px;' height='65px' src='{$teams['team1']['logo']}' alt=' {$teams['team1']['name']} '>
+                                <img width='60px;' height='60px' src='{$teams['team1']['logo']}' alt=' {$teams['team1']['name']} '>
                             </div>
                             <div class='mx-3 d-lg-none d-block'>
                                 <img src='$cross_img' width='40px;' height='40px' alt='teamvs'>
                             </div>                                
                             <div class='team_logo rounded-circle d-flex justify-content-center align-items-center bg-light'>
-                                <img width='65px;' height='65px' src='{$teams['team2']['logo']}' alt=' {$teams['team2']['name']} '>
+                                <img width='60px;' height='60px' src='{$teams['team2']['logo']}' alt=' {$teams['team2']['name']} '>
                             </div>
                         </div>
                         <div class='col-12 col-lg-8 my-4 team-name'>
