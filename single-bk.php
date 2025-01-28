@@ -85,49 +85,49 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                         <!-- Heading -->
                         <div class="row">
 
-                            <div class="col-md-12 col-lg-4 col-xl-3 text-center d-flex align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
+                            <div class="col-md-12 col-lg-4 col-xl-3 text-center d-flex flex-column align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
                                 <!-- rating movil-->
-                                <div class="d-md-none text-center bk-box-mb-left">
-                                    <span class="text-uppercase font-weight-500 mr-3" ><?php echo $bookmaker["rating"]?></span>
+                                <div class="d-md-none text-center py-3">
+                                    <span style="font-size:1.5rem;" class="text-uppercase font-weight-500 mr-2 text-light" ><?php echo $bookmaker["rating"]?></span>
                                     <?php 
                                         if(isset($bookmaker["rating"])):
                                             for($i=1; $i<=5;$i++):
-                                                echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
+                                                echo '<span style="font-size:1.5rem;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1" >★</span>';
                                             endfor;
                                         endif;
                                     ?>
                                 </div>
-                                <img width="60" height="60" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="">
+                                <img loading="lazy" width="100" height="100" class="mx-auto" src="<?php echo $bookmaker['logo'] ?>" alt="<?php echo $bookmaker['name'] ?>">
                             </div>
                             <div class="col-md-12 col-lg-8 col-xl-9 bk-box">
                                 <div class="row">
 
                                     <div class="col-md-12 col-lg-7" >
                                         <div class="row text-center">                        
-                                            <div class="col-md-12 d-md-block d-lg-none " >
+                                            <div class="col-md-12 d-md-block d-lg-none py-3" >
                                                 <small class="align-middle" >acepts player from </small>
                                                 <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                             </div>
-                                            <div class="col-md-12 col-lg-6 ">
+                                            <div class="col-md-12 col-lg-6 py-3">
                                                 <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
                                                 <span class="text-uppercase text-success align-middle"> Calificación</span>                            
                                             </div>
                                             <!-- rating -->
-                                            <div class="col-md-12 col-lg-6 d-none d-lg-block " >
+                                            <div class="col-md-12 col-lg-6 d-none d-lg-block py-3" >
                                                 <span class="text-uppercase text-body "><?php echo $bookmaker["rating"]?></span>
                                                 <?php 
                                                     if(isset($bookmaker["rating"])):
                                                         for($i=1; $i<=5;$i++):
-                                                            echo '<span style="font-size:15px;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
+                                                            echo '<span style="font-size:1.2rem;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
                                                         endfor;
                                                     endif;
                                                 ?>
                                             </div>
                     
-                                            <div class="col-12  special-single-bk-button" >
+                                            <div class="col-12 py-3 special-single-bk-button" >
                                                 <b style="border-radius:.5rem;" class="px-2 text-body text-uppercase" ><?php echo $bookmaker["bonus_slogan"] ?></b>
                                             </div>
-                                            <div class="col-12  special-single-bk-button"> 
+                                            <div class="col-12 py-3 special-single-bk-button"> 
                                                                             
                                                 <a href="<?php echo $bookmaker["ref_link"] ?>" class="btn btn-success " rel="nofollow noreferrer noopener" target="_blank"><?php echo _e("Visitar") ?> <span class="ml-2" aria-hidden="true">🡵</span></a>                                    
                                             </div>
@@ -136,7 +136,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                     <div class="col-md-12 col-lg-5">
                                         <div class="row">
                 
-                                            <div class="col-12 text-right d-none d-sm-block ">
+                                            <div class="col-12 text-right d-none d-sm-block py-3">
                                                 <small class="align-middle">acepts player from </small>
                                                 <img width="40px" height="17px" style="border-radius:.5rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                             </div>
@@ -154,7 +154,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                                     if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
                                                         foreach ($bookmaker["payment_methods"] as $key => $payment) {
                                                             if($key < 3):
-                                                                echo '<img width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
+                                                                echo '<img loading="lazy" width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
                                                             endif;
                                                         }
                                                         

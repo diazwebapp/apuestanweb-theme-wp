@@ -179,10 +179,21 @@ a.btn_2 {
  .media h3 {
     line-height: 1.2;
     font-weight: 500;
-    
     margin-bottom: 0;
 	white-space: break-spaces;
 	font-size: 1rem !important;
+}
+/*////////////////////Single-bk///////////////////////*/
+.container_logo_review {
+    border-radius: 8px 8px 0 0;
+	min-height: 210px;
+}
+.container_logo_review img{
+    object-fit: contain;
+}
+.bk-box {
+    border-radius: 0 0 8px 8px;
+    border: 1px solid #dbdbdbb0;
 }
 /*return-to-top START CSS*/
 .back-to-top {
@@ -1170,6 +1181,17 @@ body > footer .menu li a::before{
     .container {
        max-width: 1080px !important;
     }
+/*////////////////////Single-bk///////////////////////*/
+	.container_logo_review {
+		border-radius: 1rem 0 0 1rem;
+		justify-content: center;
+	}
+	.container_logo_review img{
+		object-fit: contain;
+	}
+	.bk-box {
+		border-radius: 0 8px 8px 0;
+	}
 }
 @media (min-width: 1220px){ 
 	
