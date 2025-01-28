@@ -87,7 +87,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
 
                             <div class="col-md-12 col-lg-4 col-xl-3 text-center d-flex flex-column align-items-center container_logo_review" style="background-color:<?php echo ($bookmaker["background_color"] ? $bookmaker["background_color"] : "black") ?>;">
                                 <!-- rating movil-->
-                                <div class="d-md-none text-center py-3">
+                                <div class="d-lg-none text-center py-3">
                                     <span style="font-size:1.5rem;" class="text-uppercase font-weight-500 mr-2 text-light" ><?php echo $bookmaker["rating"]?></span>
                                     <?php 
                                         if(isset($bookmaker["rating"])):
@@ -105,20 +105,20 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                     <div class="col-md-12 col-lg-7" >
                                         <div class="row text-center">                        
                                             <div class="col-md-12 d-md-block d-lg-none py-3" >
-                                                <small class="align-middle" >acepts player from </small>
+                                                <small class="text-muted" >acepts player from </small>
                                                 <img width="40px" height="17px" style="border-radius:1rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                             </div>
                                             <div class="col-md-12 col-lg-6 py-3">
-                                                <i class="fa fa-check text-white bg-success rounded px-1 py-1 font-weight-light" style="font-size:1rem"></i>
-                                                <span class="text-uppercase text-success align-middle"> Calificación</span>                            
+                                                <b class="text-white bg-success rounded font-weight-light px-1" style="font-size:1.2rem">-</b>
+                                                <small style="font-size:1.2rem;" class="text-uppercase text-success"> Calificación</small>                            
                                             </div>
                                             <!-- rating -->
                                             <div class="col-md-12 col-lg-6 d-none d-lg-block py-3" >
-                                                <span class="text-uppercase text-body "><?php echo $bookmaker["rating"]?></span>
+                                                <small style="font-size:1.2rem;" class="text-uppercase text-body"><?php echo $bookmaker["rating"]?></small>
                                                 <?php 
                                                     if(isset($bookmaker["rating"])):
                                                         for($i=1; $i<=5;$i++):
-                                                            echo '<span style="font-size:1.2rem;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' px-1 py-1 align-text-bottom" >★</span>';
+                                                            echo '<span style="font-size:1.2rem; margin-top:-10px !important; position:relative;" class=" '.($i <= intval($bookmaker["rating"]) ? "text-warning" : "").' my-0 px-1" >★</span>';
                                                         endfor;
                                                     endif;
                                                 ?>
@@ -137,14 +137,14 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                         <div class="row">
                 
                                             <div class="col-12 text-right d-none d-sm-block py-3">
-                                                <small class="align-middle">acepts player from </small>
+                                                <small class="text-muted" >acepts player from </small>
                                                 <img width="40px" height="17px" style="border-radius:.5rem;object-fit:contain;" src="<?php echo $location->flag_uri ?>" alt="<?php echo $location->country ?>">
                                             </div>
                                             <div class="col-12 d-none d-sm-block ">
                                                 <?php
                                                     if(isset($bookmaker["feactures"]) and count($bookmaker["feactures"]) > 0):
                                                         foreach($bookmaker["feactures"] as $feacture):
-                                                            echo '<p style="color:#00203A;" ><i class="fal fa-check-square"></i> '.$feacture['feacture'].' </p>';
+                                                            echo '<p style="color:#00203A;" ><i class="mr-1">°</i> '.$feacture['feacture'].' </p>';
                                                         endforeach;
                                                     endif;
                                                 ?>
@@ -154,7 +154,7 @@ $post_date = get_the_modified_date( "Y-m-d H:i:s", get_the_ID());
                                                     if( isset($bookmaker["payment_methods"]) and count($bookmaker["payment_methods"]) > 0){
                                                         foreach ($bookmaker["payment_methods"] as $key => $payment) {
                                                             if($key < 3):
-                                                                echo '<img loading="lazy" width="60" class="mx-2" height="60" src="'.$payment->logo_1x1.'" />';
+                                                                echo '<img loading="lazy" width="60" height="60" class="mx-2" src="'.$payment->logo_1x1.'" />';
                                                             endif;
                                                         }
                                                         
