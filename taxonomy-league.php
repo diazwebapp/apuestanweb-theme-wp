@@ -1,6 +1,7 @@
 <?php
 get_header();
 $term = get_term_by('name',$term,'league' );
+$migas_de_pan_html = "";
 if($term){
     $migas_de_pan_html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
     $taxonomy_page = !empty($term) ? carbon_get_term_meta($term->term_id,'taxonomy_page') : null ;
