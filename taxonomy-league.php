@@ -9,7 +9,7 @@ if(isset($taxonomy_page[0])){
     $perma = get_permalink($taxonomy_page[0]["id"]);
     var_dump($perma . "  perma 1");
 }else{
-    $perma = get_term_link($term, 'league');
+    $perma = get_term_link($term->term_id, 'league');
     var_dump($perma . "  perma 2");
 }
 die();
