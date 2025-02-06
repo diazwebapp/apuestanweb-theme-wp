@@ -5,8 +5,8 @@ $term = get_term_by('name',$term,'league' );
 $migas_de_pan_html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
 $taxonomy_page = !empty($term) ? carbon_get_term_meta($term->term_id,'taxonomy_page') : null ;
 var_dump($taxonomy_page);
-die();
-$term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+
+$term->redirect = !empty($taxonomy_page[0]) ? $taxonomy_page[0] : null;
 
 $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
 $migas_de_pan_html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
