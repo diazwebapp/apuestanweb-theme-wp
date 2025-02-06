@@ -20,7 +20,10 @@ wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css
                         <div class="col-lg-9 mt-3">
                         <?php echo $migas_de_pan_html ?>
                         
-                        <?php echo do_shortcode("[forecasts model='2' num='6' filter='yes' league='$term->slug']") ?>
+                        <?php 
+                            $slug = $term->slug ? : null;
+                            echo do_shortcode("[forecasts model='2' num='6' filter='yes' league='$slug']");
+                        ?>
 
                         </div>
                         <div class="col-lg-3">
