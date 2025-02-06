@@ -21,7 +21,7 @@ wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css
                         <?php echo $migas_de_pan_html ?>
                         
                         <?php 
-                            $slug = $term->slug ? : null;
+                            $slug = $term->slug ? : 'all';
                             echo do_shortcode("[forecasts model='2' num='6' filter='yes' league='$slug']");
                         ?>
 
