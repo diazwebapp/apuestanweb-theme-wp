@@ -23,7 +23,7 @@ wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css
                         
                         <?php 
                             $slug =  $term ? $term->slug : 'all';
-                            echo do_shortcode("[forecasts model='2' num='6' filter='yes' league='$slug']");
+                            echo do_shortcode("[forecasts model='2' num='6' league='$slug']");
                         ?>
 
                         </div>
