@@ -8,16 +8,6 @@ if($term){
     $migas_de_pan_html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
 }
 
-
-if(isset($taxonomy_page[0])){
-    $perma = get_permalink($taxonomy_page[0]["id"]);
-    var_dump($perma . "  perma 1");
-}else{
-    $perma = get_term_link($term->term_id, 'league');
-    var_dump($perma . "  perma 2");
-}
-die();
-
 wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
 
  ?>
