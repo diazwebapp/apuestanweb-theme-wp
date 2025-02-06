@@ -4,8 +4,15 @@ $term = get_term_by('name',$term,'league' );
 
 $migas_de_pan_html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
 $taxonomy_page = !empty($term) ? carbon_get_term_meta($term->term_id,'taxonomy_page') : null ;
-var_dump($taxonomy_page);
 
+if(isset($taxonomy_page[0])){
+    $perma = get_permalink($taxonomy_page[0]["id"]);
+    var_dump($perma . "  perma 1");
+}else{
+    $perma = get_term_link($term, 'league');
+    var_dump($perma . "  perma 2");
+}
+die();
 $term->permalink = !empty($taxonomy_page[0]) ? get_permalink($taxonomy_page[0]["id"]) : get_term_link($term, 'league');
 $migas_de_pan_html .= '<li><a href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
 wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css/forecasts-styles.css', null, false, 'all' );
