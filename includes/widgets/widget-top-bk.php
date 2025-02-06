@@ -74,19 +74,19 @@ class w_bookmakers extends WP_Widget{
                 
                 echo '<div class="top_box mb-2">
                         <div class="row m-0 pt-2">
-                            <div class="col-3">
-                                <span class="serial">'.$key.'</span>
-                            </div>
-                            <div class="col-6" style="background:'.$color.';border-radius:.3rem;">
-                                <img src="'.$image_png.'" width="80" height="25" class="px-1" style="object-fit:contain;" alt="'.$bookmaker->post_title.'">
+                            <div class="col-9 d-flex align-items-center">
+                                <span class="serial mr-2">'.$key.'</span>
+                                <img src="'.$image_png.'" width="80" height="25" class="p-1" style="object-fit:contain;background:'.$color.';border-radius:.3rem;" alt="'.$bookmaker->post_title.'">
                             </div>
                             <div class="col-3 d-flex">
                                 <span>'.$rating_float.'</span>
                                 <b class="text-warning" >★</b>
                             </div>
-                            <div class="my-2 col-12">
-                                <a href="'.get_the_permalink($bookmaker->ID).'" class="btn btn-secondary btn-sm" title="Conoce mas de '.$bookmaker->post_title.'">Revision</a>
-                                <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" class="btn btn-primary btn-sm" title="Apostar con '.$bookmaker->post_title.'">Apostar</a>
+                            <div class="my-2 col-6 pr-1">
+                                <a href="'.get_the_permalink($bookmaker->ID).'" style="background-color:#0348ff3d; color: rgb(5 63 173); font-weight: 500;" class="btn btn-sm w-100" title="Conoce mas de '.$bookmaker->post_title.'">Revision</a>
+                            </div>
+                            <div class="my-2 col-6 pl-1">
+                                <a rel="nofollow noopener noreferrer" target="_blank" href="'.$ref.'" style="font-weight:500;background-color:#1a42fb;color:#fff;" class="btn btn-sm w-100" title="Apostar con '.$bookmaker->post_title.'">Apostar</a>
                             </div>
                         </div>
                     </div>';
