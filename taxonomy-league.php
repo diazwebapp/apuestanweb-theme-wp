@@ -1,7 +1,7 @@
 <?php
 get_header();
-var_dump($term);
-$term = get_term_by('name',$term,'league' );
+
+$term = get_term_by('slug',$term,'league' );
 $migas_de_pan_html = "";
 if($term){
     $migas_de_pan_html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
