@@ -1,6 +1,7 @@
 <?php
 get_header();
 $term = get_term_by('name',$term,'league' );
+var_dump($term);
 $migas_de_pan_html = "";
 if($term){
     $migas_de_pan_html = '<li><a href="'.get_home_url().'">Inicio</a></li>';
@@ -21,7 +22,7 @@ wp_enqueue_style( 's-forecasts-css', get_template_directory_uri( ) .'/assets/css
                         <?php echo $migas_de_pan_html ?>
                         
                         <?php 
-                            $slug = $term->slug ? : 'all';
+                            $slug =  $term ? $term->slug : 'all';
                             echo do_shortcode("[forecasts model='2' num='6' filter='yes' league='$slug']");
                         ?>
 
