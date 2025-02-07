@@ -173,7 +173,7 @@ add_shortcode('forecasts', 'shortcode_forecast');
 // Cargar common.js condicionalmente
 function load_common_js_if_shortcode_exists() {
     global $post;
-    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts'))) {
+    if (isset($post) && is_a($post, 'WP_Post') && (has_shortcode($post->post_content, 'forecasts')) || is_tax()) {
         wp_enqueue_script('common-js', get_template_directory_uri() . '/assets/js/common.js', array(), null, true);
         wp_enqueue_style('s-forecasts-css', get_template_directory_uri() . '/assets/css/forecasts-styles.css');
     }

@@ -44,7 +44,7 @@ class w_bookmakers extends WP_Widget{
 
         if ($bookmakers and count($bookmakers) > 0) {
             echo '<div class="col-lg-12 col-md-6">
-                    <div class="side_box mt-5">
+                    <div class="side_box mt-3">
                         <div class="box_header">' . $title . '</div>
                         <div class="box_body">
                         ';

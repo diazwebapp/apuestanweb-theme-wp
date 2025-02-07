@@ -41,7 +41,7 @@ endif;
                                 $formatted_content = do_shortcode($content);
                                 if(!$disable_title):
                                     if ( !$banner_top || $banner_top == 'yes' ):
-                                        echo "<h1 class='title mt-4 mb-4 order-lg-1'>".(!empty($custom_h1) ? $custom_h1 : get_the_title(get_the_ID()))."</h1>";
+                                        echo "<h1 class='title mt-3 mb-3 order-lg-1'>".(!empty($custom_h1) ? $custom_h1 : get_the_title(get_the_ID()))."</h1>";
                                     endif;
                                 endif;
                                 ?>
@@ -65,7 +65,7 @@ endif;
                 <?php if (!$disable_sidebar || $disable_sidebar == 'no') echo '</section>'; ?>
             
                 <?php if ($disable_sidebar == 'yes'): echo ''; else: ?> 
-                    <section class="col-lg-3">
+                    <section class="col-lg-3 mt-3">
                         <div class="row">
                             <?php dynamic_sidebar('forecast-right'); ?>
                         </div>

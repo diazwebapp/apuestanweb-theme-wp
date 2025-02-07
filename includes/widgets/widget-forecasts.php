@@ -25,7 +25,7 @@ class W_Forecasts extends WP_Widget {
             $query = new WP_Query($args);
             if ($query):
                 echo "<div class='col-lg-12 col-md-12'> 
-                        <div class='side_box mt-5'>
+                        <div class='side_box mt-3'>
                             <div class='box_header'>
                                 $title
                             </div>

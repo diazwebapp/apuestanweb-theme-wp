@@ -61,10 +61,10 @@
                             // Equipos de pronóstico
                             $teams = get_forecast_teams($post_id, ["w" => 50, "h" => 50]);
                 ?>
-                            <section class="col-lg-8 mt-5 con-t">
+                            <section class="col-lg-8 mt-4 con-t">
                                 <article>
                                     <div class="single_envent_heading">
-                                        <h1 class="title"><?php the_title(); ?></h1>
+                                        <h1 class="title mt-3"><?php the_title(); ?></h1>
                                     </div>
                                     <!-- breadcrumb -->
                                     <?php echo migas_de_pan(); ?>
@@ -135,7 +135,7 @@
                             </section>
 
                             <!-- Sidebar -->
-                            <section class="col-lg-3">
+                            <section class="col-lg-3 mt-4">
                                 <div class="row justify-content-end"><?php dynamic_sidebar("forecast-right"); ?></div>
                             </section>
 
