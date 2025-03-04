@@ -40,17 +40,21 @@ function shortcode_forecast($atts)
 
     // Si hay filtro, crear el HTML de la selección
     if ($filter) {
-        $ret .= "<div class='row my-2'>
-                    <h2 class='title-h2 col-8'>" . (isset($title) ? esc_html($title) : '') . "</h2>
-                    <div class='col-4 text-right '>
-                        <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)' class='myselect'>
-                            <option value='' " . (!$date ? 'selected' : '') . ">" . __('Todo', 'jbetting') . "</option>
-                            <option value='ayer' " . ($date == 'ayer' ? 'selected' : '') . ">" . __('Ayer', 'jbetting') . "</option>
-                            <option value='hoy' " . ($date == 'hoy' ? 'selected' : '') . ">" . __('Hoy', 'jbetting') . "</option>
-                            <option value='mañana' " . ($date == 'mañana' ? 'selected' : '') . ">" . __('Mañana', 'jbetting') . "</option>
-                        </select>
-                    </div>
-                </div>";
+        $ret .= "
+        <div class='container'>
+            <div class='row my-2'>
+                <h2 class='title-h2 col-7'>" . (isset($title) ? esc_html($title) : '') . "</h2>
+                <div class='col-5 text-right '>
+                    <select name='ord' data-type='forecast' id='element_select_forecasts' onchange='filter_date_items(this)' class='myselect'>
+                        <option value='' " . (!$date ? 'selected' : '') . ">" . __('Todo', 'jbetting') . "</option>
+                        <option value='ayer' " . ($date == 'ayer' ? 'selected' : '') . ">" . __('Ayer', 'jbetting') . "</option>
+                        <option value='hoy' " . ($date == 'hoy' ? 'selected' : '') . ">" . __('Hoy', 'jbetting') . "</option>
+                        <option value='mañana' " . ($date == 'mañana' ? 'selected' : '') . ">" . __('Mañana', 'jbetting') . "</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        ";
     }
 
     // Procesar las ligas
