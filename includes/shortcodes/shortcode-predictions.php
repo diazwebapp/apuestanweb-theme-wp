@@ -93,10 +93,10 @@ function shortcode_predictions($atts)
                                         <span class='text-muted'>Pronóstico {$predictionCounter}</span>
                                         <div class='row'>
                                             <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
-                                                <p>{$prediction['title']}</p>                                           
+                                                <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
                                                 <span class='oddsbox'>{$prediction['cuote']}</span>
                                             </div>
-                                            <div class='col-12 py-2 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
+                                            <div class='col-12 py-3 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
                                                 <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
                                                 <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
                                             </div>
