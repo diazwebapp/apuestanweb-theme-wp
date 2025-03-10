@@ -7,7 +7,8 @@ function shortcode_predictions($atts)
         'model' => 1,
         'id' => null,
     ), $atts));
-    $ret = "";
+    $ret = "<div class='container my-2'>
+            <div class='row'>";
     if($model == 1){
 
         $id_post = isset($id) ? $id : get_the_ID();
@@ -34,85 +35,61 @@ function shortcode_predictions($atts)
         
         $predictions = carbon_get_post_meta($id_post, 'predictions');
         $predictionCount = count($predictions);
-
-
+     
         if ($predictionCount === 1) {
-
-            $ret .= "<div class='container mt-2'>
-            <div class='row'>";
             // Show the first component HTML if there is only one prediction
             $prediction = $predictions[0];
             $oOddsConverter = new Converter($prediction['cuote'], 'eu');
             $odds_result = $oOddsConverter->doConverting();
             $prediction['cuote'] = $odds_result[get_option('odds_type')];
 
-            $ret .= "<div class='single_event_match_title_box mb-4'>
-            <div class='tip-p row mx-1 px-4 py-4'>
-            <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><img width='80' height='20' loading='lazy' src='{$bookmaker['logo_2x1']}'  style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 4px;height: 3rem;' alt='{$bookmaker['name']}'></a>
-            </div>
-            <table class='table-single-predict'>
-            <thead>
-                <tr>                                   
-                <th scope='col'>Pronóstico</th>
-                <th scope='col'>Cuota</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr> 
-                    <td>{$prediction['title']}</td>
-                    <td class=''>{$prediction['cuote']}</td>
-                    
-                </tr>
-            </tbody>
-            </table>
-            <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button'>Apostar</button></a>
-            
-            </div>
-            <div class='d-flex justify-content-center'>
-            <a href='{$bookmaker['ref_link']}' rel='nofollow'><button class='event-button-mv' style='margin-top: 2rem;'>Apostar</button></a>
-            </div>
-
-            <hr class='mt-2 mb-3'/>
-            
-            </div>
-            </div>";
-
-        } else {
-                // Show the second component HTML if there are more than one prediction
-                $ret .= "<div class='container mt-5'>
-                            <div class='row'>";
-    
-                $predictionCounter = 1;
-                    foreach($predictions as $prediction){
-                        $oOddsConverter = new Converter($prediction['cuote'], 'eu');
-                        $odds_result = $oOddsConverter->doConverting();
-                        $prediction['cuote'] = $odds_result[get_option( 'odds_type' )];
-
-                        $ret .= "<div class='col-md-6'>
-                                    <div class='container border custom-rectangle pt-2'>
-                                        <span class='text-muted'>Pronóstico {$predictionCounter}</span>
-                                        <div class='row'>
-                                            <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
-                                                <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
-                                                <span class='oddsbox'>{$prediction['cuote']}</span>
-                                            </div>
-                                            <div class='col-12 py-3 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
-                                                <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
-                                                <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
-                                            </div>
-                                        </div>
+            $ret .= "<div class='col-12'>
+                            <div class='container border custom-rectangle pt-2'>
+                                <span class='text-muted'>Pronóstico </span>
+                                <div class='row'>
+                                    <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
+                                        <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
+                                        <span class='oddsbox'>{$prediction['cuote']}</span>
                                     </div>
-                                </div>";
-            $predictionCounter++;
+                                    <div class='col-12 py-3 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
+                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
+                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>";
+ 
+        } else {
+            // Show the second component HTML if there are more than one prediction
+
+            $predictionCounter = 1;
+            foreach($predictions as $prediction){
+                $oOddsConverter = new Converter($prediction['cuote'], 'eu');
+                $odds_result = $oOddsConverter->doConverting();
+                $prediction['cuote'] = $odds_result[get_option( 'odds_type' )];
+
+                $ret .= "<div class='col-md-6'>
+                            <div class='container border custom-rectangle pt-2'>
+                                <span class='text-muted'>Pronóstico {$predictionCounter}</span>
+                                <div class='row'>
+                                    <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
+                                        <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
+                                        <span class='oddsbox'>{$prediction['cuote']}</span>
+                                    </div>
+                                    <div class='col-12 py-3 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
+                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
+                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>";
+                $predictionCounter++;
+            }
         }
-
-        $ret .= "</div>
-            </div>";
-
-
-       }
     }
-    
+
+     $ret .= "</div>
+            </div>"; 
     return $ret;
 }
 
