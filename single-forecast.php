@@ -117,7 +117,7 @@
                                             <hr></hr>  
                                         <?php endif; ?>
                                         <?php the_content(); ?>
-                                        
+                                        <?php echo do_shortcode("[predictions]") ?>
                                         <?php echo do_shortcode("[social_contact title='SÍGUENOS']"); ?>
                                         <p class="text-muted"><?php echo __('Las cuotas mostradas son una aproximación, verifica antes de hacer tu apuesta'); ?></p>
                                     </div>
