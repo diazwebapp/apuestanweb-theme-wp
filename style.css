@@ -175,20 +175,18 @@ textarea:focus{
 	display: flex;
 	align-items: center;
 	background-color: #00203A;
-	border-radius: 1rem;
+	border-radius: .4rem;
 	justify-content: space-between;
-	padding: 0.8rem 1rem;
-	margin-top: 1.5rem;
+	padding: 0.3rem .6rem;
+	margin-top: .5rem;
 }
 .single_event_match_title_box span {
-	font-size:1.4rem;
+	font-size:1.1rem;
 	color: #fafcfd;
 	font-weight: bold;
 
 }
-.single_event_match_title_box2{
-	margin-top: 5.5rem;
-}
+
 h1,h2,h3,h4,h5,h6{
 	font-size: 166%;
 	margin-bottom: 0 !important;
