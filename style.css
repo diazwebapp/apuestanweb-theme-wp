@@ -166,6 +166,9 @@ textarea:focus{
     border-radius: .2rem;
     background-color: #ddeafd;
 }
+.custom-rectangle .btn{
+	box-shadow:0 .1rem .5rem rgba(11,105,236,.33);
+}
 h1,h2,h3,h4,h5,h6{
 	font-size: 166%;
 	margin-bottom: 0 !important;
@@ -799,6 +802,8 @@ body > footer .menu li a::before{
 /* Extracted styles for #table-of-contents */
 #table-of-contents a {
     text-transform: capitalize;
+	text-decoration:none;
+	color:#00203A;
 }
 
 /* Extracted styles for #table-of-contents */
