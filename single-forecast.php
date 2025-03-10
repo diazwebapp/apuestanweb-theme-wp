@@ -96,7 +96,7 @@
                                     </div>
                                     
                                     <div class="single_event_content text-break">
-                                        
+                                        <?php echo do_shortcode("[predictions]") ?>
                                         <?php remove_filter('the_content', 'wpautop'); ?>
                                         <?php if (!$disable_table): ?>
                                             <hr></hr>

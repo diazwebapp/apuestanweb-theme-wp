@@ -152,7 +152,20 @@ textarea:focus{
 }
 
 /*////////////////end///////////////*/
-
+/*////////redicciones shortcode//////*/
+.custom-rectangle {
+    border-radius: .5rem;
+	overflow: hidden;
+}
+.oddsbox {
+    font-size: .8rem;
+    line-height: 1.2;
+    color: #0558cb;
+    font-weight: 700;
+    padding: .3rem .4rem;
+    border-radius: .2rem;
+    background-color: #ddeafd;
+}
 h1,h2,h3,h4,h5,h6{
 	font-size: 166%;
 	margin-bottom: 0 !important;

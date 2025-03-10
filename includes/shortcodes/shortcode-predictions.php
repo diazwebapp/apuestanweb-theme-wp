@@ -89,16 +89,16 @@ function shortcode_predictions($atts)
                         $prediction['cuote'] = $odds_result[get_option( 'odds_type' )];
 
                         $ret .= "<div class='col-md-6'>
-                                    <div class='custom-rectangle border p-4 mt-1'>
+                                    <div class='container border custom-rectangle'>
                                         <span class='text-muted'>Pronóstico {$predictionCounter}</span>
                                         <div class='row'>
-                                            <div class='col-12 d-flex justify-content-between align-items-center mb_5'>
+                                            <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
                                                 <p>{$prediction['title']}</p>                                           
                                                 <span class='oddsbox'>{$prediction['cuote']}</span>
                                             </div>
-                                            <div class='col-12 mt-5 d-flex justify-content-between align-items-center'>
-                                                <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-5'><img width='150' height='50' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;height: 4.9rem;' alt='{$bookmaker['name']}'></a>
-                                                <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-primary mb-5 ml-3'>¡Gana ahora!</button></a>
+                                            <div class='col-12 py-2 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
+                                                <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
+                                                <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
                                             </div>
                                         </div>
                                     </div>

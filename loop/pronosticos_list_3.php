@@ -53,7 +53,7 @@ if(!empty($predictions)):
     $html_predictions = "<div class='row mt-2'>
                             <div class='col-12 p-1'><p class='text-secondary'>Pronóstico:</p></div>
                             <b class='col-6 p-1'>{$prediction['title']}</b>
-                            <span class='col-6 text-right'><b class='p-1' style='border-radius: .3rem;color:#0558cb;background-color:#ddeafd;font-size: .8rem;font-weight: 700;'>{$prediction['cuote']}</b></span>
+                            <span class='col-6 text-right'><b class='oddsbox'>{$prediction['cuote']}</b></span>
                             </div>";
 endif;
 $time_format_html = "<p class='text-light' >".$date->format('g:i a')."</p>";
