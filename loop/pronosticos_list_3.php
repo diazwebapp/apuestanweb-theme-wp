@@ -80,7 +80,7 @@ endif;
                 
                 <div class='border rounded'>
                    
-                        <header class='event2_top_box_wrapper text-center py-3 px-2 rounded'>
+                        <header class='event2_top_box_wrapper text-center py-2 px-2 rounded'>
                             <div class='row mx-auto align-items-center justify-content-center'>
                                 <div class='col-3 p-0'>
                                     <img src='{$teams['team1']['logo']}' width='60' height='60' alt='{$teams['team1']['name']}' title='{$teams['team1']['name']}' class='bg-light rounded-circle p-1'>
