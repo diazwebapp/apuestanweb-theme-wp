@@ -89,8 +89,8 @@ function shortcode_predictions($atts)
                         $prediction['cuote'] = $odds_result[get_option( 'odds_type' )];
 
                         $ret .= "<div class='col-md-6'>
-                                    <div class='container border custom-rectangle'>
-                                        <span class='text-muted pt-2'>Pronóstico {$predictionCounter}</span>
+                                    <div class='container border custom-rectangle pt-2'>
+                                        <span class='text-muted'>Pronóstico {$predictionCounter}</span>
                                         <div class='row'>
                                             <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
                                                 <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
