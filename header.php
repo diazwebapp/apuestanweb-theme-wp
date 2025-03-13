@@ -19,11 +19,7 @@
                 <span class="line-bottom"></span>
             </span>
             <!--logo start-->
-            <?php if ( carbon_get_theme_option( 'logo' ) ):
-                    $logo = wp_get_attachment_url( carbon_get_theme_option( 'logo' ) );
-                else:
-                    $logo =  get_template_directory_uri().'/assets/img/logo.svg';
-                endif;
+            <?php echo "apuestan"
             ?>
             <a href="<?php echo get_home_url('/')?>" class="logo_box" ><img class="img-fluid" width="183" height="19" alt="apuestan logo" src="<?php echo $logo; ?>"></a>
             <!--logo end-->
