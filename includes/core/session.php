@@ -36,13 +36,14 @@ add_action('wp_loaded', function(){
     
 
     //odds-converter
-    if(!isset($_SESSION['odds_format'])):
-        $_SESSION['odds_format'] = 2;
+    $odds_type = get_option("odds_type");
+    if(!$odds_type):
+        update_option("odds_type", 2);
     endif;
     if(isset($_GET['odds_format'])):
-        update_option( "odds_type", $_GET['odds_format']);
+        update_option("odds_type", $_GET['odds_format']);
     endif;
-
+    
     ///////////geolocation
 
     if(!isset($_SESSION["geolocation"])){
