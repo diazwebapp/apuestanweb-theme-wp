@@ -56,7 +56,7 @@ function shortcode_predictions($atts)
                                 <span class='text-muted'>Pronóstico </span>
                                 <div class='row'>
                                     <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
-                                        <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
+                                        <p style='margin-block-start:unset;'>{$prediction['title']}</p>                                           
                                         <span class='oddsbox'>{$prediction['cuote']}</span>
                                     </div>
                                     {$bk_component}
@@ -78,7 +78,7 @@ function shortcode_predictions($atts)
                                 <span class='text-muted'>Pronóstico {$predictionCounter}</span>
                                 <div class='row'>
                                     <div class='col-12 d-flex my-2 justify-content-between align-items-center'>
-                                        <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
+                                        <p style='margin-block-start:unset;'>{$prediction['title']}</p>                                           
                                         <span class='oddsbox'>{$prediction['cuote']}</span>
                                     </div>
                                    {$bk_component}
