@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(data => {
         console.log(data)
           if (data==0) {
-            console.log('Login successful');
             window.location.href = aw_login_params['redirect_url'];
             return
           } else {
