@@ -11,11 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
           method: 'POST',
           body: formData
       })
-      .then(response => response.text())
+      .then(response => response.json())
       .then(data => {
-        
-          if (data===0) {
+        console.log(data)
+          if (data==0) {
+            console.log('Login successful');
             window.location.href = aw_login_params['redirect_url'];
+            return
           } else {
               const notification = document.getElementById('notification');
               notification.innerHTML = data.data;
