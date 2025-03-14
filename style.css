@@ -62,6 +62,24 @@ a:hover{
 	transform: rotate(-180deg);
 	zoom: 1.8;
 }
+.droright-toggle::after{
+	transform: rotate(-90deg);
+	zoom: 1.8;
+}
+.icon-arrow {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: grey; /* Color del SVG */
+    -webkit-mask: url("data:image/svg+xml,%3Csvg width='15px' height='15px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z' fill='currentColor'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg width='20px' height='20px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z' fill='currentColor'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+.icon-arrow-left{
+	transform: rotate(-90deg);
+}
+.icon-arrow-right{
+	transform: rotate(90deg);
+}
 button:focus,
 a:focus,
 input:focus,
@@ -767,45 +785,12 @@ body > footer .menu li a::before{
 	margin-top: 2rem;
 }
 
-/* Styles for .single_event_breadcrumb */
-.single_event_breadcrumb ul li a,
-.single_event_breadcrumb ul li span{
-	display: flex;
-	align-items: center;
-	color: #ABAEB1;
-	font-weight: 500;
-}
 
 /* Styles for .single_event_breadcrumb */
 .single_event_breadcrumb ul li a:hover{
 	color: #0558CB;
 }
 
-/* Styles for .single_event_breadcrumb */
-.single_event_breadcrumb ul li a img,
-.single_event_breadcrumb ul li span img{
-	margin-right: 0.5rem;
-}
-
-/* Styles for .single_event_breadcrumb */
-.single_event_breadcrumb ul li + li{
-	position: relative;
-	margin-left: 1.5rem;
-	padding-left: 1.8rem;
-}
-
-/* Styles for .single_event_breadcrumb */
-.single_event_breadcrumb ul li + li::before{
-	position: absolute;
-	content: '\f054';
-	font-family: "Font Awesome 5 Pro";
-	top: 50%;
-	transform: translateY(-50%);
-	left: 0;
-	color: #ABAEB1;
-}
-
-	/* Extracted Styles for #table-of-contents */
 /* Extracted styles for #table-of-contents */
 #table-of-contents {
     list-style: none;
