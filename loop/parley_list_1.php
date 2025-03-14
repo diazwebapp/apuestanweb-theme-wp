@@ -106,7 +106,6 @@ if($forecasts and count($forecasts) > 0){
     }
 }
 
-
 $new_html = '<div class="parley-box">
             <div class="px-3 py-2 parley_top_content"><strong class="text-light text-capitalize">'.$parley_title .'-'. $fecha.'</strong></div>
 
@@ -147,5 +146,10 @@ $parley_data = '
             ';
 
 $new_html = str_replace("{replace-events}",$parley_event,$new_html);
-$new_html = str_replace("{replace-data}",$parley_data,$new_html);
+if (isset($bookmaker["name"]) && $bookmaker["name"] !== "no bookmaker"):
+    $new_html = str_replace("{replace-data}", $parley_data, $new_html);
+else:
+    $new_html = str_replace("{replace-data}", '',$new_html);
+endif;
+
 echo $new_html;
