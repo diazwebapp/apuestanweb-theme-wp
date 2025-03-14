@@ -27,12 +27,16 @@ if(isset($aw_system_location)):
 endif;
 $date = new DateTime($time);
 $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
-
-
-$vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1' title='Apuesta con {$bookmaker['name']}'>
-                        <img src='{$bookmaker['logo_2x1']}' width='80' height='25' alt='{$bookmaker['name']}' style='background:{$bookmaker['background_color']}'>
-                        <p class='text-secondary'>Haz una apuesta</p>
-                    </a>";
+$vipcomponent = '';
+if(isset($bookmaker["name"]) && $bookmaker["name"] !== "no bookmaker"):
+    if (isset($bookmaker['ref_link'])) {
+        $background_color = isset($bookmaker['background_color']) ? $bookmaker['background_color'] : '';
+        $vipcomponent ="<a href='{$bookmaker['ref_link']}' class='game_btn border mt-2 p-1' title='Apuesta con {$bookmaker['name']}'>
+                                <img src='{$bookmaker['logo_2x1']}' width='80' height='25' alt='{$bookmaker['name']}' style='background:{$background_color}'>
+                                <p class='text-secondary'>Haz una apuesta</p>
+                            </a>";
+    }
+endif;
 //Liga y deporte
 //taxonomy league
 $tax_leagues = wp_get_post_terms($args["forecast"]->ID,'league');  

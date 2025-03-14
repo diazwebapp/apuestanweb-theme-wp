@@ -40,35 +40,37 @@ function get_bookmaker_payments($bookmaker_id){
         foreach($methods as $key_item => $item){
             
             
-            $term = get_term($item['payment_method'][0]["id"],$item['payment_method'][0]["subtype"]);
-            if(isset($term)):
-                $default_logo = get_template_directory_uri( ) . "/assets/img/logo2.svg";
-                
-                $logo = carbon_get_term_meta($term->term_id,'logo_1x1'); 
-                if(isset($logo)):
-                    $logo = (wp_get_attachment_url( $logo ) ) ? wp_get_attachment_url( $logo ) : $default_logo; 
-                endif;
+            if (isset($item['payment_method'][0]["id"]) && isset($item['payment_method'][0]["subtype"])) {
+                $term = get_term($item['payment_method'][0]["id"], $item['payment_method'][0]["subtype"]);
+                if (!is_wp_error($term) && isset($term->term_id)) {
+                    $default_logo = get_template_directory_uri() . "/assets/img/logo2.svg";
 
-                $logo_2x1 = carbon_get_term_meta($term->term_id,'logo_2x1');
-                if(isset($logo_2x1)):
-                    $logo_2x1 = (wp_get_attachment_url( $logo_2x1 )) ? wp_get_attachment_url( $logo_2x1 ) : $default_logo;
-                endif;
-
-                $bookmaker_payment_methods[$key_item] = $term;
-                $bookmaker_payment_methods[$key_item]->logo_1x1 = $logo;
-                $bookmaker_payment_methods[$key_item]->logo_2x1 = $logo_2x1;
-                $bookmaker_payment_methods[$key_item]->payment_method_chars = [];
-
-                if(isset($item["caracteristicas"]) and count($item["caracteristicas"]) > 0){
-                    foreach($item["caracteristicas"] as $char){
-                        $bookmaker_payment_methods[$key_item]->payment_method_chars[] = [
-                            "titulo" => $char["title"],
-                            "contenido" => $char["content"]
-                        ];
+                    $logo = carbon_get_term_meta($term->term_id, 'logo_1x1');
+                    if ($logo) {
+                        $logo = (wp_get_attachment_url($logo)) ? wp_get_attachment_url($logo) : $default_logo;
                     }
+
+                    $logo_2x1 = carbon_get_term_meta($term->term_id, 'logo_2x1');
+                    if ($logo_2x1) {
+                        $logo_2x1 = (wp_get_attachment_url($logo_2x1)) ? wp_get_attachment_url($logo_2x1) : $default_logo;
+                    }
+
+                    $bookmaker_payment_methods[$key_item] = $term;
+                    $bookmaker_payment_methods[$key_item]->logo_1x1 = $logo;
+                    $bookmaker_payment_methods[$key_item]->logo_2x1 = $logo_2x1;
+                    $bookmaker_payment_methods[$key_item]->payment_method_chars = [];
+
+                    if (isset($item["caracteristicas"]) && count($item["caracteristicas"]) > 0) {
+                        foreach ($item["caracteristicas"] as $char) {
+                            $bookmaker_payment_methods[$key_item]->payment_method_chars[] = [
+                                "titulo" => $char["title"],
+                                "contenido" => $char["content"]
+                            ];
+                        }
+                    }
+                    $bookmaker_payment_methods[$key_item] = json_decode(json_encode($bookmaker_payment_methods[$key_item]));
                 }
-                $bookmaker_payment_methods[$key_item] = json_decode(json_encode($bookmaker_payment_methods[$key_item]));
-            endif;
+            }
         }
     }
     return $bookmaker_payment_methods;

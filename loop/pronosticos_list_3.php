@@ -29,6 +29,7 @@ $aw_system_location = aw_select_country(["country_code"=>$args["country_code"]])
 $bookmaker = [];
 
 //SI EL PAIS ESTÁ CONFIGURADO
+
 if(isset($aw_system_location)):
     $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true,"on_page"=>true]);
     if($bookmaker["name"] == "no bookmaker"){
@@ -37,6 +38,7 @@ if(isset($aw_system_location)):
     $bookmaker["logo_2x1"] = aq_resize($bookmaker["logo_2x1"],80,25,true,true,true);
     if (!$bookmaker["logo_2x1"]) { $bookmaker["logo_2x1"] = get_template_directory_uri() . '/assets/img/logo2.svg'; }
 endif;
+
 
 $html_predictions = '';
 
@@ -54,6 +56,24 @@ if(!empty($predictions)):
                             <div class='col-12 p-1'><p class='text-secondary'>Pronóstico:</p></div>
                             <b class='col-6 p-1'>{$prediction['title']}</b>
                             <span class='col-6 text-right'><b class='oddsbox'>{$prediction['cuote']}</b></span>
+                            </div>";
+    
+endif;
+$html_bk = "";
+if($bookmaker["name"] !== "no bookmaker"):
+    $html_bk = "<div class='row p-1'>
+                                <p class='col-2 p-0 text-secondary'>Bonus:</p>
+                                <strong class='col-10 text-right'>{$bookmaker['bonus_slogan']}</strong>
+                            </div>";
+    $html_bk .= "<div class='row mt-3'>
+                                <div class='col-6 text-right' >
+                                    <a href='{$bookmaker['ref_link']}' title='Apuesta con {$bookmaker['name']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
+                                        <img src='{$bookmaker["logo_2x1"]}' width='80' height='25' style='object-fit:contain;' alt='logo casa de apuesta' >
+                                    </a>
+                                </div>
+                                <div class='col-6 text-start'>
+                                    <a href='{$bookmaker['ref_link']}' title='Apuesta con {$bookmaker['name']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
+                                </div>
                             </div>";
 endif;
 $time_format_html = "<p class='text-light' >".$date->format('g:i a')."</p>";
@@ -105,20 +125,7 @@ endif;
                             <div class='w-100 text-center'>$estrellas</div>
                             
                             {$html_predictions}
-                            <div class='row p-1'>
-                                <p class='col-2 p-0 text-secondary'>Bonus:</p>
-                                <strong class='col-10 text-right'>{$bookmaker['bonus_slogan']}</strong>
-                            </div>
-                            <div class='row mt-3'>
-                                <div class='col-6 text-right' >
-                                    <a href='{$bookmaker['ref_link']}' title='Apuesta con {$bookmaker['name']}' class='btn' style='background:black;min-height:42px;max-height42px;overflow:hidden;'>
-                                        <img src='{$bookmaker["logo_2x1"]}' width='80' height='25' style='object-fit:contain;' alt='logo casa de apuesta' >
-                                    </a>
-                                </div>
-                                <div class='col-6 text-start'>
-                                    <a href='{$bookmaker['ref_link']}' title='Apuesta con {$bookmaker['name']}' class='p-2 btn btn-primary font-weight-bold' rel='nofollow noopener noreferrer' target='_blank'>Juega ahora</a>
-                                </div>
-                            </div>
+                            {$html_bk}
                         </div>
                    </div>
             </article>";

@@ -149,10 +149,13 @@ if(!function_exists('aw_select_relate_bookmakers')):
       $bookmaker["general_feactures"] = [];
       $bookmaker["rating"] = 0;
       $bookmaker["payment_methods"] = [];
-                
-      $list = $wpdb->get_row($query);
+
+      $show_bk = carbon_get_theme_option("bk_show");
+      if($show_bk):         
+        $list = $wpdb->get_row($query);
+      endif;
       //Si existe una casa de apuesta seteamos sus valores
-      if($list):
+      if(isset($list)):
         $bookmaker['name'] = $list->post_title;
         $aw_system_country = aw_select_country(["table_id"=>$country_id]);
         
