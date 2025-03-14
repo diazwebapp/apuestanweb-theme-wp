@@ -35,14 +35,22 @@ function shortcode_predictions($atts)
         
         $predictions = carbon_get_post_meta($id_post, 'predictions');
         $predictionCount = count($predictions);
-     
+        $bk_component = "";
+        if(isset($bookmaker["name"]) && $bookmaker["name"] !== "no bookmaker"):
+            $bk_component = "
+                                    <div class='col-12 py-3 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
+                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
+                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
+                                    </div>
+            ";
+        endif;
         if ($predictionCount === 1) {
             // Show the first component HTML if there is only one prediction
             $prediction = $predictions[0];
             $oOddsConverter = new Converter($prediction['cuote'], 'eu');
             $odds_result = $oOddsConverter->doConverting();
             $prediction['cuote'] = $odds_result[get_option('odds_type')];
-
+            
             $ret .= "<div class='col-12'>
                             <div class='container border custom-rectangle pt-2'>
                                 <span class='text-muted'>Pronóstico </span>
@@ -51,10 +59,7 @@ function shortcode_predictions($atts)
                                         <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
                                         <span class='oddsbox'>{$prediction['cuote']}</span>
                                     </div>
-                                    <div class='col-12 py-3 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
-                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
-                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
-                                    </div>
+                                    {$bk_component}
                                 </div>
                             </div>
                     </div>";
@@ -76,10 +81,7 @@ function shortcode_predictions($atts)
                                         <p style='line-height: 2rem;min-height: 2rem;'>{$prediction['title']}</p>                                           
                                         <span class='oddsbox'>{$prediction['cuote']}</span>
                                     </div>
-                                    <div class='col-12 py-3 d-flex justify-content-between align-items-center' style='background: var(--text-color);'>
-                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank' class='mb-1'><img width='120' height='30' loading='lazy' src='{$bookmaker['logo_2x1']}' style='background:{$bookmaker['background_color']};border-radius: 6px;padding: 8px;' alt='{$bookmaker['name']}'></a>
-                                        <a href='{$bookmaker['ref_link']}' rel='nofollow noreferrer noopener' target='_blank'><button id='event-button-pp' class='btn btn-success mb-1 ml-1 btn-sm'>¡Gana ahora!</button></a>
-                                    </div>
+                                   {$bk_component}
                                 </div>
                             </div>
                         </div>";
