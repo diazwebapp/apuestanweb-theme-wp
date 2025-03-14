@@ -12,8 +12,8 @@ if(isset($aw_system_location)):
     if($bookmaker["name"] == "no bookmaker"){
         $bookmaker = aw_select_relate_bookmakers($aw_system_location->id, ["unique"=>true,"random"=>true]);
     }
-    $bookmaker["logo_2x1"] = aq_resize($bookmaker["logo_2x1"],80,25,true,true,true);
-    if (!$bookmaker["logo_2x1"]) { $bookmaker["logo_2x1"] = get_template_directory_uri() . '/assets/img/logo2.svg'; }
+    $bookmaker["logo"] = aq_resize($bookmaker["logo"],50,50,true,true,true);
+    if (!$bookmaker["logo"]) { $bookmaker["logo"] = get_template_directory_uri() . '/assets/img/logo2.svg'; }
 endif;
 
 $permalink = get_the_permalink($args["forecast"]->ID);
@@ -29,11 +29,17 @@ $date = $date->setTimezone(new DateTimeZone($args["timezone"]));
 $oOddsConverter = new Converter($prediction['cuote'], 'eu');
 $odds_result = $oOddsConverter->doConverting();
 $prediction['cuote'] = isset($odds_result[$args["odds"]]) ? $odds_result[$args["odds"]] : 0;
-$vipcomponent ="<div class='plogo'>
-                    <img loading='lazy' src='{$bookmaker['logo']}' class='img-fluid' alt='{$bookmaker['name']}'>
-                </div>
-                    <a href='$permalink' title='Apuesta con {$bookmaker['name']}' >{$prediction['title']}</a>
-                <div class='rate'>{$prediction['cuote']}</div>";
+$vipcomponent = '';
+if(isset($bookmaker["name"]) && $bookmaker["name"] !== "no bookmaker"):
+$vipcomponent ="
+                <img loading='lazy' width='50' height='50' src='{$bookmaker['logo']}' class='bg-secondary p-2' alt='{$bookmaker['name']}'>
+                
+                <a href='$permalink' title='Apuesta con {$bookmaker['name']}' class='text-light text-capitalize' >{$prediction['title']}</a>
+                
+                <span class='mr-1 oddsbox'>{$prediction['cuote']}</span>
+                "
+                ;
+endif;
 
 //leagues
 $sport['class'] = '' ;
@@ -53,7 +59,7 @@ $time_format_html = "<p class='p2'><span>".$date->format('g:i a')."</span></p>";
                             <b id='date_horas'></b>h:<b id='date_minutos'></b>:<b id='date_segundos'></b>
                         </div>";
 endif;
-echo "<article class='prediction_box'>
+echo "<article class='border rounded p-3'>
             <header class='d-flex align-items-center justify-content-between'>
                 <p class='game_name {$sport['class']}'>{$sport['name']}</p>
                 <p>
@@ -62,18 +68,18 @@ echo "<article class='prediction_box'>
                 </p>
             </header> 
 
-            <div class='d-flex align-items-center justify-content-between mt_15'>
+            <div class='d-flex align-items-center justify-content-between my-3'>
                 <div class='media align-items-center'>
-                    <img loading='lazy' width='70' height='70' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
+                    <img loading='lazy' width='50' height='50' src='{$teams['team1']['logo']}' alt='{$teams['team1']['name']}'>
                 </div> 
                 <div>
-                    <p style='margin:0 5px;'>{$teams['team1']['acronimo']} vs {$teams['team2']['name']}</p> 
+                    <p class='small font-weight-bold'>{$teams['team1']['acronimo']} vs {$teams['team2']['name']}</p> 
                 </div>                               
                 <div class='media align-items-center'>
-                    <img loading='lazy' width='70' height='70' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
+                    <img loading='lazy' width='50' height='50' src='{$teams['team2']['logo']}' alt='{$teams['team2']['name']}'>
                 </div>
             </div>
-            <div class='rate_box'>
+            <div class='bg-primary rounded-right d-flex justify-content-between align-items-center'>
                 {$vipcomponent}
             </div>
 </article>";
