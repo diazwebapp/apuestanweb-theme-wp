@@ -107,13 +107,14 @@ function migas_de_pan() {
      $html .= '<li><a class="text-muted text-capitalize" href="'.get_home_url().'">Inicio</a></li>';
      if (is_single() || is_page()) {
             $terms = get_the_terms( get_the_ID(),'league' );
-            
-            foreach($terms as $term){
-                $taxonomy_page = carbon_get_term_meta($term->term_id,'taxonomy_page');
-                $term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
-                $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
-                $html .= '<span class="icon-arrow icon-arrow-right bg-secondary mx-2"></span><li><a class="text-muted text-lowercase" href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
-            }
+            if($terms):
+                foreach($terms as $term){
+                    $taxonomy_page = carbon_get_term_meta($term->term_id,'taxonomy_page');
+                    $term->redirect = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                    $term->permalink = isset($term->redirect) ? get_permalink($term->redirect["id"]) : get_term_link($term, 'league');
+                    $html .= '<span class="icon-arrow icon-arrow-right bg-secondary mx-2"></span><li><a class="text-muted text-lowercase" href="'.$term->permalink.'" >'.$term->name.'</a></li>' ;
+                }
+            endif;
      }
   }
   $html .= '</ul>

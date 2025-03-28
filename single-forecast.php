@@ -35,7 +35,8 @@
                             
                             // Obtener los términos de la taxonomía personalizada 'leagues'
                             $terms = get_the_terms(get_the_ID(), 'league');
-                            $parent_taxonomy = [];
+                            $parent_taxonomy['name'] = "";
+                            $parent_taxonomy['permalink'] = "#";
                             
                             if ($terms && !is_wp_error($terms)) {
                                 // Filtrar solo los términos principales (parent = 0)
@@ -45,18 +46,16 @@
                                      
                                 });
                                 
-                                
-                                //Obtener los atos de los términos principales
-                                $parent_taxonomy['name'] = implode(', ', wp_list_pluck($parent_terms, 'name'));
-                                $parent_taxonomy['term_id'] = intval(implode(', ', wp_list_pluck($parent_terms, 'term_id')));
-                                $parent_taxonomy['slug'] = implode(', ', wp_list_pluck($parent_terms, 'slug'));
-                                $taxonomy_page = carbon_get_term_meta($parent_taxonomy['term_id'],'taxonomy_page');
-                                $parent_taxonomy["redirect"] = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
-                                $parent_taxonomy['permalink'] = isset($parent_taxonomy["redirect"]) ? get_permalink($parent_taxonomy["redirect"]["id"]) : get_term_link($parent_taxonomy['term_id'], 'league');
-                                
-                            } else {
-                                $parent_taxonomy = 'No main league assigned'; // Texto predeterminado si no hay términos principales
-                            }     
+                                if($parent_terms):   
+                                    //Obtener los atos de los términos principales
+                                    $parent_taxonomy['name'] = implode(', ', wp_list_pluck($parent_terms, 'name'));
+                                    $parent_taxonomy['term_id'] = intval(implode(', ', wp_list_pluck($parent_terms, 'term_id')));
+                                    $parent_taxonomy['slug'] = implode(', ', wp_list_pluck($parent_terms, 'slug'));
+                                    $taxonomy_page = carbon_get_term_meta($parent_taxonomy['term_id'],'taxonomy_page');
+                                    $parent_taxonomy["redirect"] = isset($taxonomy_page[0]) ? $taxonomy_page[0] : null;
+                                    $parent_taxonomy['permalink'] = isset($parent_taxonomy["redirect"]) ? get_permalink($parent_taxonomy["redirect"]["id"]) : get_term_link($parent_taxonomy['term_id'], 'league');
+                                endif;
+                            }   
                             
                             // Equipos de pronóstico
                             $teams = get_forecast_teams($post_id, ["w" => 50, "h" => 50]);
