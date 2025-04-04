@@ -147,5 +147,9 @@ $parley_data = '
             ';
 
 $new_html = str_replace("{replace-events}",$parley_event,$new_html);
-$new_html = str_replace("{replace-data}",$parley_data,$new_html);
+if(isset($bookmaker["name"]) && $bookmaker["name"] !== "no bookmaker"):
+    $new_html = str_replace("{replace-data}",$parley_data,$new_html);
+else:
+    $new_html = str_replace("{replace-data}","",$new_html);
+endif;
 echo $new_html;
